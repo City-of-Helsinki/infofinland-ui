@@ -1,36 +1,41 @@
 # Infofinland Nextjs repository
 
-
 ## Intro
-Infofinland Nextjs frontend for headless drupal site. 
 
-See also  [https://github.com/City-of-Helsinki/drupal-infofinland](https://github.com/City-of-Helsinki/drupal-infofinland)
+Infofinland Nextjs frontend for headless drupal site.
 
+See also [https://github.com/City-of-Helsinki/drupal-infofinland](https://github.com/City-of-Helsinki/drupal-infofinland)
 
-
-## Development 
+## Development
 
 Install Yarn if not already installed
+
 ```bash
 npn i -g yarn
 ```
+
 Clone this repo
+
 ```bash
 git clone git@github.com:City-of-Helsinki/infofinland-ui.git
 cd info-finland-ui
 ```
+
 Install dependencies
+
 ```bash
 yarn
 ```
 
 3. Start development server
+
 ```bash
 yarn dev
 ```
 
 4. Make changes to your feature branch, run linter.
-This project uses ESlint NextJS plugin rules and ESLint Tailwind plugin rules.
+   This project uses ESlint NextJS plugin rules and ESLint Tailwind plugin rules.
+
 ```bash
 git checkout -b IFU-[jiraissueid]-somelabel
 yarn next lint
@@ -46,58 +51,52 @@ yarn format
 
 _TODO: Add tests to this list._
 
-
 ### Required tools
 
 Preferred Editor is VSCode but any editor or IDE is quite fine.
-Just remember to use *Editorconfig.* 
+Just remember to use _Editorconfig._
 
 #### Recommended setup:
-  VSCode with the following extensions:
-  * Editorconfig (see .editorconfig) 
-  * Docker
-  * ENV (file type support for .env files)
-  * ESLint
-  * Prettier (See .prettierrc)
-  * Prettier ESlint
-  * TailwindCSS Intellisense, Tailwind Docs
-  * Azure toolkit, Azure CLI Tools
-  
 
+VSCode with the following extensions:
 
-  
-
+- Editorconfig (see .editorconfig)
+- Docker
+- ENV (file type support for .env files)
+- ESLint
+- Prettier (See .prettierrc)
+- Prettier ESlint
+- TailwindCSS Intellisense, Tailwind Docs
+- Azure toolkit, Azure CLI Tools
 
 ## Production deployment
-### Run production server locally. 
+
+### Run production server locally.
+
 Make a build and start Nextjs server. See localhost:3000
 
 ```bash
-yarn build && yarn start 
+yarn build && yarn start
 ```
 
 ### Run production server on local docker.
 
 Build Dockerfile, start container. See localhost:3000
 
-#### *In VSCode*
+#### _In VSCode_
 
-* Install Docker Extension if not installed
-* Right-click on Dockerfile, select Build Image.
-* Check that image is built without errors.
-* Select the new image from Docker-tab, Run Interactive, See localhost:3000.
-
-
-
-
+- Install Docker Extension if not installed
+- Right-click on Dockerfile, select Build Image.
+- Check that image is built without errors.
+- Select the new image from Docker-tab, Run Interactive, See localhost:3000.
 
 ## Styling
 
-This project uses TailwindCSS for styling. In this project we _AVOID_ using any CSS-in-JS or other dynamic styling techniques. 
+This project uses TailwindCSS for styling. In this project we _AVOID_ using any CSS-in-JS or other dynamic styling techniques.
 
 Use Tailwind classes as much as possible. Custom classes use BEM marking with ifu-prefix to differentiate custom classes from Tailwind classes.
 
-All component class collections can be converted to custom class using Tailwind classes with @apply. Prefer this, especially when dealing with spacing and other relational units. 
+All component class collections can be converted to custom class using Tailwind classes with @apply. Prefer this, especially when dealing with spacing and other relational units.
 
 EXAMPLE:
 
@@ -107,14 +106,12 @@ EXAMPLE:
 }
 ```
 
-
 ## Images
+
 Use React SVG components as much as possible.
 
 ## Localization
 
-Static UI texts are localized in using  [https://www.npmjs.com/package/next-translate](https://www.npmjs.com/package/next-translate).
+Static UI texts are localized in using [https://www.npmjs.com/package/next-translate](https://www.npmjs.com/package/next-translate).
 See /locales/[locale]/common.json. This project uses only common.json.
 Page-level localization files are not required.
-
-

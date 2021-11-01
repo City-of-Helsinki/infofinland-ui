@@ -14,7 +14,6 @@ module.exports = {
           // 'test-utils/index.tsx',
           // '@types/jest-dom.d.ts',
           'next.config.js',
-
         ],
       },
     ],
