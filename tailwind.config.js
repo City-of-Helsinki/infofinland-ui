@@ -116,7 +116,7 @@ module.exports = {
         drawer: '18.625rem',
         drawerxl: '28rem',
       },
-      maxWidth:{
+      maxWidth: {
         article: '46rem',
       },
       screens: {

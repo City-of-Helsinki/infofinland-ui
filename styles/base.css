@@ -36,7 +36,6 @@
     font-weight: bold;
   }
 
-
   /* Focus outline style */
   *:focus {
     @apply rounded;

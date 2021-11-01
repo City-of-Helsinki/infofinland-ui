@@ -102,7 +102,7 @@ const Article = ({ children, breadcrumbs, color, ...heroProps }) => {
       </div>
 
       <HeroImage {...heroProps} />
-      <div className="ifu-article__bodyblock">{children}</div>
+      {children}
     </div>
   )
 }
