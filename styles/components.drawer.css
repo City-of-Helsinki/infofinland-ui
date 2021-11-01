@@ -1,0 +1,58 @@
+@layer components {
+  /**
+  * Drawer opens on the left side
+  */
+  .ifu-drawer-body {
+    @apply absolute md:left-0 w-screen md:w-drawer h-screen bg-white overflow-y-auto;
+  }
+
+  /**
+  * Drawer opens on the right side when RTL is used
+  */
+
+  [dir='rtl'] .ifu-drawer-body {
+    @apply absolute md:right-0 w-screen md:w-drawer h-screen bg-white overflow-y-auto overscroll-y-contain;
+  }
+
+  @screen md {
+    /**
+    * Drawer animates from the left side
+    */
+
+    .ifu-drawer--appear {
+      @apply transform -translate-x-80;
+    }
+
+    .ifu-drawer--appear-active {
+      @apply transform translate-x-0 transition-transform;
+    }
+
+    .ifu-drawer--enter {
+      @apply transform -translate-x-80;
+    }
+    .ifu-drawer--enter-active,
+    .ifu-drawer--enter-done {
+      @apply transform translate-x-0 transition-transform;
+    }
+
+    /**
+    * Drawer animates from the right side on RTL mode
+    */
+
+    [dir='rtl'] .ifu-drawer--appear {
+      @apply transform translate-x-80;
+    }
+
+    [dir='rtl'] .ifu-drawer--appear-active {
+      @apply transform translate-x-0 transition-transform;
+    }
+
+    [dir='rtl'] .ifu-drawer--enter {
+      @apply transform translate-x-80;
+    }
+    [dir='rtl'] .ifu-drawer--enter-active,
+    [dir='rtl'] .ifu-drawer--enter-done {
+      @apply transform translate-x-0 transition-transform;
+    }
+  }
+}

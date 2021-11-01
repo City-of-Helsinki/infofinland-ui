@@ -1,0 +1,49 @@
+{
+  "buttons": {
+    "close": "Close",
+    "search": "Search",
+    "yes": "Yes",
+    "no": "No",
+    "ok": "OK"
+  },
+  "feedback": {
+    "title": "Send Feedback",
+    "urlLabel": "URL of the page:",
+    "labels": {
+      "name": "Name",
+      "email": "Email",
+      "feedback": "Feedback"
+    },
+    "buttons": {
+      "open": "Send feedback about this page",
+      "send": "Send",
+      "cancel": "Cancel",
+      "close": "Close",
+      "sendAgain": "Send a new message"
+    },
+    "text": [
+      "TODO FROM DRUPAL We respond to feedback submitted in Finnish, Swedish or English. Unfortunately, we cannot reply to feedback written in other languages.",
+      "The feedback form has an automatic spam filter. Do not include links in feedback.",
+      "We will only respond to feedback concerning the InfoFinland website. Please understand that we do not provide advice or counselling on the management of your affairs. Counselling services are listed on the InfoFinland page Call and ask for advice."
+    ],
+    "info1": "The form has three fields.",
+    "info2": "Name, email and feedback text are all required information.",
+    "states": {
+      "submitting": "Submitting your message",
+      "fail": "We were unable to send your message. Please try again",
+      "success": "Thank you for your feedback",
+      "invalid": "Required"
+    }
+  },
+  "languageMenu": {
+    "label": "Select language"
+  },
+  "languageSelector": {
+    "button": "Languages"
+  },
+  "languageMessage": {
+    "title": "Would you like to change the language?",
+    "text": "Infofinland website is available in 12 languages. Would you like to change to your preferred language?"
+  },
+  "mainMenu": { "button": "Main menu" }
+}

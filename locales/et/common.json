@@ -1,0 +1,43 @@
+{
+  "buttons": { "close": "!Sulje", "search": "Otsi" },
+  "feedback": {
+    "title": "Tagasiside",
+    "urlLabel": "Lehekülje aadress",
+    "buttons": {
+      "send": "Saada",
+      "cancel": "!Peruuta",
+      "sendAgain": "!Lähetä uusi",
+      "close": "!Sulje",
+      "open": "Saada selle lehe kohta tagasisidet"
+    },
+    "labels": {
+      "name": "Nimi",
+      "email": "E-post",
+      "feedback": "Tagasiside"
+    },
+    "text": [
+      "TODO FROM DRUPAL Vastaamme palautteisiin seuraavilla kielillä: suomi, ruotsi ja englanti. Valitettavasti emme voi vastata palautteisiin, jotka on kirjoitettu muilla kielillä.",
+      "Palautelomakkeessa on automaattinen roskapostisuodatin. Palautteeseen ei saa liittää linkkiä.",
+      "Vastaamme vain InfoFinland-sivustoa koskeviin palautteisiin. Ota huomioon, että emme anna neuvontaa omien asioiden hoitamisessa. Neuvontapalveluja löydät InfoFinlandin sivulta Soita ja kysy neuvoa."
+    ],
+    "info1": "Küsitluslehel on kolm välja.",
+    "info2": "Nimi, e-posti aadress ja tagasiside tekst on kõik kohustusliku teabega väljad.",
+    "states": {
+      "submitting": "!Lähetetään palautetta...",
+      "fail": "Viga tagasiside saatmisel",
+      "success": "Aitäh tagasiside eest",
+      "invalid": "See väli on kohustuslik"
+    }
+  },
+  "languageMenu": {
+    "label": "!Valitse kieli"
+  },
+  "languageSelector": {
+    "button": "!Kielet"
+  },
+  "languageMessage": {
+    "title": "!Haluatko vaihtaa kieltä?",
+    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
+  },
+  "mainMenu": { "button": "!Päävalikko" }
+}

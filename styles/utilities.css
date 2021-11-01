@@ -1,0 +1,20 @@
+@import './rtl.css';
+
+@layer utilities {
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
+  .text-shadow-home {
+    text-shadow: 1px 1px 16px #777777;
+  }
+
+  @screen lg {
+    /* List of upscaled text elements for chinese characters */
+    /*  Home hero title */
+    .ifu-hero-home__title:lang(zh),
+    .ifu-hero__title:lang(zh) {
+      font-size: 6rem;
+    }
+  }
+}

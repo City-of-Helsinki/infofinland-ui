@@ -1,0 +1,25 @@
+@import './components.messagecard.css';
+@import './components.mainmenu.css';
+@import './components.drawer.css';
+@import './components.modal.css';
+@import './components.topmenu.css';
+@import './components.feedback.css';
+@import './components.article.css';
+@import './components.footer.css';
+
+@layer components {
+  .ifu-layout__body {
+    min-height: calc(100vh - 80px);
+    @apply flex flex-col justify-between  flex-1 xl:px-0 border-black-op1 border-s-2;
+  }
+
+  .ifu-text-link {
+    @apply text-link hover:text-link-hover hover:underline;
+  }
+
+  .ifu-button {
+    @apply text-black bg-white shadow-button hover:shadow-button-hover border-2 border-black rounded px-4 py-2 leading-6  font-sans font-bold;
+  }
+
+  /*demo content styling. remove when real content comes*/
+}

@@ -1,0 +1,45 @@
+{
+  "buttons": { "close": "!Sulje", "search": "Buscar" },
+
+  "feedback": {
+    "title": "Comentario",
+    "urlLabel": "Dirección de la página",
+    "buttons": {
+      "open": "Enviar comentarios sobre esta página",
+      "close": "!Sulje",
+      "send": "Enviar",
+      "cancel": "!Peruuta",
+      "sendAgain": "!Lähetä uusi"
+    },
+
+    "labels": {
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "feedback": "Comentario"
+    },
+    "text": [
+      "TODO FROM DRUPAL Vastaamme palautteisiin seuraavilla kielillä: suomi, ruotsi ja englanti. Valitettavasti emme voi vastata palautteisiin, jotka on kirjoitettu muilla kielillä.",
+      "Palautelomakkeessa on automaattinen roskapostisuodatin. Palautteeseen ei saa liittää linkkiä.",
+      "Vastaamme vain InfoFinland-sivustoa koskeviin palautteisiin. Ota huomioon, että emme anna neuvontaa omien asioiden hoitamisessa. Neuvontapalveluja löydät InfoFinlandin sivulta Soita ja kysy neuvoa."
+    ],
+    "info1": "El formulario tiene tres campos.",
+    "info2": "El nombre, el correo electrónico y el comentario son datos obligatorios.",
+    "states": {
+      "submitting": "!Lähetetään palautetta...",
+      "fail": "Error al enviar el formulario",
+      "success": "Gracias por su comentario",
+      "invalid": "Comentario"
+    }
+  },
+  "languageMenu": {
+    "label": "!Valitse kieli"
+  },
+  "languageSelector": {
+    "button": "!Kielet"
+  },
+  "languageMessage": {
+    "title": "!Haluatko vaihtaa kieltä?",
+    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
+  },
+  "mainMenu": { "button": "!Päävalikko" }
+}

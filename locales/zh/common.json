@@ -1,0 +1,43 @@
+{
+  "buttons": { "close": "!Sulje", "search": "搜索" },
+  "feedback": {
+    "title": "意见与建议反馈",
+    "urlLabel": "網址",
+    "buttons": {
+      "send": "发送",
+      "cancel": "!Peruuta",
+      "sendAgain": "!Lähetä uusi",
+      "close": "!Sulje",
+      "open": "发送对页面的回馈"
+    },
+    "labels": {
+      "name": "姓名",
+      "email": "电子邮件",
+      "feedback": "意见与建议反馈"
+    },
+    "text": [
+      "TODO FROM DRUPAL Vastaamme palautteisiin seuraavilla kielillä: suomi, ruotsi ja englanti. Valitettavasti emme voi vastata palautteisiin, jotka on kirjoitettu muilla kielillä.",
+      "Palautelomakkeessa on automaattinen roskapostisuodatin. Palautteeseen ei saa liittää linkkiä.",
+      "Vastaamme vain InfoFinland-sivustoa koskeviin palautteisiin. Ota huomioon, että emme anna neuvontaa omien asioiden hoitamisessa. Neuvontapalveluja löydät InfoFinlandin sivulta Soita ja kysy neuvoa."
+    ],
+    "info1": "表格中有三个文本框",
+    "info2": "姓名、电子邮件和反馈内容为必填信息。",
+    "states": {
+      "submitting": "!Lähetetään palautetta...",
+      "fail": "发送反馈错误",
+      "success": "谢谢您的反馈！",
+      "invalid": "本项为必填信息"
+    }
+  },
+  "languageMenu": {
+    "label": "!Valitse kieli"
+  },
+  "languageSelector": {
+    "button": "!Kielet"
+  },
+  "languageMessage": {
+    "title": "!Haluatko vaihtaa kieltä?",
+    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
+  },
+  "mainMenu": { "button": "!Päävalikko" }
+}

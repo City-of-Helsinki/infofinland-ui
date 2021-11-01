@@ -1,0 +1,73 @@
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /**
+   * Extend font settings but keep them in the base layer to
+   * preserverve cascading and specificity
+   */
+
+  @font-face {
+    font-family: 'Noto Sans';
+    src: url('/fonts/NotoSans/NotoSans-Regular.ttf');
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Noto Sans';
+    src: url('/fonts/NotoSans/NotoSans-Bold.ttf');
+    font-weight: bold;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Noto Sans';
+    src: url('/fonts/NotoSans/NotoSans-Italic.ttf');
+    font-display: swap;
+    font-style: italic;
+  }
+
+  @font-face {
+    font-family: 'Noto Sans';
+    src: url('/fonts/NotoSans/NotoSans-BoldItalic.ttf');
+    font-display: swap;
+    font-style: italic;
+    font-weight: bold;
+  }
+  @screen md {
+    /* width */
+    :root {
+      --scrollbarWidth: 8px;
+    }
+    ::-webkit-scrollbar {
+      width: var(--scrollbarWidth);
+      height: var(--scrollbarWidth);
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      border-radius: 100vh;
+      background: #f0f0f0;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #fafafa;
+      border-radius: 100vh;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #e2e2e2;
+    }
+  }
+
+  /* Focus outline style */
+  *:focus {
+    @apply rounded;
+    outline-style: solid;
+    outline-color: black;
+    outline-width: 2px;
+  }
+}

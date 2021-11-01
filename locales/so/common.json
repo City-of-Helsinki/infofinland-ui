@@ -1,0 +1,43 @@
+{
+  "buttons": { "close": "!Sulje", "search": "Raadi" },
+  "feedback": {
+    "title": "Jawaab-celin",
+    "urlLabel": "Cinwaanka bogga",
+    "buttons": {
+      "send": "Dir",
+      "cancel": "!Peruuta",
+      "sendAgain": "!Lähetä uusi",
+      "close": "!Sulje",
+      "open": "Boggan war-celin ka soo dir"
+    },
+    "labels": {
+      "name": "Magac",
+      "email": "Emayl",
+      "feedback": "Jawaab-celin"
+    },
+    "text": [
+      "TODO FROM DRUPAL Vastaamme palautteisiin seuraavilla kielillä: suomi, ruotsi ja englanti. Valitettavasti emme voi vastata palautteisiin, jotka on kirjoitettu muilla kielillä.",
+      "Palautelomakkeessa on automaattinen roskapostisuodatin. Palautteeseen ei saa liittää linkkiä.",
+      "Vastaamme vain InfoFinland-sivustoa koskeviin palautteisiin. Ota huomioon, että emme anna neuvontaa omien asioiden hoitamisessa. Neuvontapalveluja löydät InfoFinlandin sivulta Soita ja kysy neuvoa."
+    ],
+    "info1": "Saddex qaanadood ayaa foomka ku jirta.",
+    "info2": "Magaca, iimaylka iyo qoraalka aragti-celintuba waa macluumaadyo dhammaantood qasab ah.",
+    "states": {
+      "submitting": "!Lähetetään palautetta...",
+      "fail": "Qaladka diritaanka jawaab-celinta",
+      "success": "Waad ku mahadsan tahay warcelinta",
+      "invalid": "Qaanaddan waa qasab"
+    }
+  },
+  "languageMenu": {
+    "label": "!Valitse kieli"
+  },
+  "languageSelector": {
+    "button": "!Kielet"
+  },
+  "languageMessage": {
+    "title": "!Haluatko vaihtaa kieltä?",
+    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
+  },
+  "mainMenu": { "button": "!Päävalikko" }
+}

@@ -1,0 +1,33 @@
+@layer components {
+  .ifu-modal {
+    @apply md:mt-16 overflow-y-auto mx-auto max-w-lg lg:max-w-xl md:rounded;
+  }
+
+  .ifu-modal__overlay {
+    @apply fixed inset-0 bg-black-op3 z-50;
+  }
+
+  .ifu-modal__body {
+    @apply bg-white overflow-y-auto max-h-screen;
+  }
+
+  @screen md {
+    .ifu-modal__body {
+      max-height: calc(100vh - 8rem);
+      @apply rounded;
+    }
+  }
+
+  .ReactModal__Overlay {
+    opacity: 0.5;
+    /* transition: opacity 0.1s ease-out; */
+  }
+
+  .ReactModal__Overlay--after-open {
+    opacity: 1;
+  }
+
+  .ReactModal__Overlay--before-close {
+    opacity: 0.5;
+  }
+}

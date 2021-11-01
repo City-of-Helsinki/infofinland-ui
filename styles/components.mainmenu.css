@@ -1,0 +1,56 @@
+@layer components {
+  /* .ifu-mainmenu--scroll .ifu-mainmenu__submenu-icon {
+    transform: translateX(var(--scrollbarWidth));
+  } */
+
+  .ifu-mainmenu__desktop {
+    /* SHAME! should use h-topbarxl . make it into css variable*/
+    height: calc(100vh - 80px);
+  }
+
+  .ifu-mainmenu__submenu {
+    scroll-margin-top: 8rem;
+  }
+
+  .ifu-mainmenu__submenu--enter {
+    max-height: 0;
+    opacity: 0;
+  }
+
+  .ifu-mainmenu__submenu--enter-active {
+    @apply bg-white;
+    max-height: 100vh;
+    opacity: 1;
+    transition: opacity ease-out;
+    transition-duration: 0.4s;
+  }
+
+  .ifu-mainmenu__submenu--exit-active {
+    max-height: 0;
+    opacity: 0;
+  }
+  /*
+Accordion arrows are using absolute positioning so
+that they wont move sideways when scrollbar becomes visible
+*/
+  .ifu-mainmenu__submenu-icon {
+    position: absolute;
+    right: 2rem;
+    top: 1.5rem;
+  }
+  [dir='rtl'] .ifu-mainmenu__submenu-icon {
+    left: 2rem;
+  }
+
+  @screen md {
+    .ifu-mainmenu__submenu-icon {
+      position: absolute;
+      left: 16rem;
+      top: 1.5rem;
+    }
+
+    [dir='rtl'] .ifu-mainmenu__submenu-icon {
+      right: 16rem;
+    }
+  }
+}

@@ -1,0 +1,6 @@
+/* @layer base {
+  .layout {
+      border:2px solid red;
+      @apply p-8 bg-red-lighter;
+    }
+} */

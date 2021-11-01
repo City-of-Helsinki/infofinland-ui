@@ -1,0 +1,25 @@
+@layer components {
+  .ifu-feedback__form--enter {
+    opacity: 0;
+  }
+
+  .ifu-feedback__form--enter-active {
+    opacity: 1;
+    transition: opacity 0.4s ease-out;
+  }
+
+  .ifu-feedback__form--enter-done {
+    opacity: 1;
+  }
+
+  .ifu-feedback__form--exit {
+    opacity: 1;
+  }
+  .ifu-feedback__form--exit-active {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .ifu-feedback__form--exit-done {
+    opacity: 0;
+  }
+}

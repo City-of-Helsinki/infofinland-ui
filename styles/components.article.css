@@ -1,0 +1,74 @@
+@layer components {
+  :root {
+    --gradientHeight: 250px;
+  }
+
+  .-translate-y-1px {
+    transform: translateY(-1px);
+  }
+
+  @screen md {
+    :root {
+      --gradientHeight: 440px;
+    }
+  }
+  /**
+  * Hero area background colors
+  */
+  .bg-article-red {
+    /* background: rgb(235,107,92); */
+    background: linear-gradient(
+      180deg,
+      #eb6b5c var(--gradientHeight),
+      rgba(255, 255, 255, 1) var(--gradientHeight)
+    );
+  }
+
+  .bg-article-green {
+    /* background: rgb(180,222,147); */
+    background: linear-gradient(
+      180deg,
+      rgba(180, 222, 147, 1) var(--gradientHeight),
+      rgba(255, 255, 255, 1) var(--gradientHeight)
+    );
+  }
+
+  .bg-article-blue {
+    /* background: rgb(127,213,249); */
+    background: linear-gradient(
+      180deg,
+      rgba(127, 213, 249, 1) var(--gradientHeight),
+      rgba(255, 255, 255, 1) var(--gradientHeight)
+    );
+  }
+
+  .bg-article-orange {
+    /* background: rgb(244,163,104); */
+    background: linear-gradient(
+      180deg,
+      rgba(244, 163, 104, 1) var(--gradientHeight),
+      rgba(255, 255, 255, 1) var(--gradientHeight)
+    );
+  }
+
+  /**
+* Article body styles for markup content from Drupal
+*/
+  .ifu-article__bodyblock ul {
+    @apply list-disc list-inside py-4 mb-4 ms-4;
+  }
+  .ifu-article__bodyblock p {
+    @apply text-body;
+  }
+  .ifu-article__bodyblock h2 {
+    @apply text-h2 md:text-h2xl mb-8 mt-16;
+  }
+
+  .ifu-article__bodyblock h3 {
+    @apply text-h3 md:text-h3xl mb-8 mt-16;
+  }
+
+  .ifu-article__bodyblock p:first-child {
+    @apply text-body-large mb-8;
+  }
+}

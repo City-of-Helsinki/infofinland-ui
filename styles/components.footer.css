@@ -1,0 +1,15 @@
+/* inline-block px-2 mb-3 */
+@layer components {
+  .ifu-footer__hki-logo {
+    background-image: url('/helsinki/helsinki.svg');
+    background-repeat: no-repeat;
+    background-position: 0 0;
+    background-size: contain;
+    height: 60px;
+    width: 110px;
+  }
+
+  .ifu-footer__link {
+    @apply px-2 mb-3 hover:underline;
+  }
+}

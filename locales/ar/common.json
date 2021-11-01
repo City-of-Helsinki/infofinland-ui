@@ -1,0 +1,43 @@
+{
+  "buttons": { "close": "Sulje", "search": "إبحث" },
+  "feedback": {
+    "title": "پیشنهادات و انتقادات",
+    "urlLabel": "آدرس سایت",
+    "buttons": {
+      "send": "ارسال کن",
+      "cancel": "!Peruuta",
+      "sendAgain": "!Lähetä uusi",
+      "close": "!Sulje",
+      "open": "نظر خود را درباره این سایت ارسال کنید"
+    },
+    "labels": {
+      "name": "نام",
+      "email": "پست الکترونیکی",
+      "feedback": "پیشنهادات و انتقادات"
+    },
+    "text": [
+      "TODO FROM DRUPAL Vastaamme palautteisiin seuraavilla kielillä: suomi, ruotsi ja englanti. Valitettavasti emme voi vastata palautteisiin, jotka on kirjoitettu muilla kielillä.",
+      "Palautelomakkeessa on automaattinen roskapostisuodatin. Palautteeseen ei saa liittää linkkiä.",
+      "Vastaamme vain InfoFinland-sivustoa koskeviin palautteisiin. Ota huomioon, että emme anna neuvontaa omien asioiden hoitamisessa. Neuvontapalveluja löydät InfoFinlandin sivulta Soita ja kysy neuvoa."
+    ],
+    "info1": "در فرم سه جا وجود دارد. نام، آدرس پست اکترونیکی و متن پیشنهادات و انتقادات، همه اطلاعاتی هستند که باید حتماً داده شوند.",
+    "info2": "",
+    "states": {
+      "submitting": "!Lähetetään palautetta...",
+      "fail": "خطأ في إرسال التعليق",
+      "success": "از پیشنهادات و نظراتتان سپاسگزاریم",
+      "invalid": "این مکان باید حتماً پر شود"
+    }
+  },
+  "languageMenu": {
+    "label": "!Valitse kieli"
+  },
+  "languageSelector": {
+    "button": "!Kielet"
+  },
+  "languageMessage": {
+    "title": "!Haluatko vaihtaa kieltä?",
+    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
+  },
+  "mainMenu": { "button": "!Päävalikko" }
+}
