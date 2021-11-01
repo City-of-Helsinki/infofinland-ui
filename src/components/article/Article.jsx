@@ -13,7 +13,7 @@ const ArticleHeading = ({ heroImage, title, date }) => {
   const { locale } = useRouter()
   return (
     <div className={cls(BLOCK_MARGIN)}>
-      <div className={cls('lg:w-article', { 'absolute bottom-8': !heroImage })}>
+      <div className={cls({ 'absolute bottom-8': !heroImage })}>
         {/* article category */}
 
         <span
@@ -29,7 +29,7 @@ const ArticleHeading = ({ heroImage, title, date }) => {
         {/* article title / hero text */}
         <h1
           className={cls(
-            'mt-2 mb-6 me-2 ifu-hero__title',
+            'mt-2 mb-6  max-w-article me-2 ifu-hero__title',
             longTextClass(title, {
               size: 40,
               classes: [

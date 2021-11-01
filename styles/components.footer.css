@@ -10,6 +10,6 @@
   }
 
   .ifu-footer__link {
-    @apply px-2 mb-3 hover:underline;
+    @apply px-2 mb-3 hover:underline inline-block;
   }
 }

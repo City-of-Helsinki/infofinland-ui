@@ -35,33 +35,7 @@
     font-style: italic;
     font-weight: bold;
   }
-  @screen md {
-    /* width */
-    :root {
-      --scrollbarWidth: 8px;
-    }
-    ::-webkit-scrollbar {
-      width: var(--scrollbarWidth);
-      height: var(--scrollbarWidth);
-    }
 
-    /* Track */
-    ::-webkit-scrollbar-track {
-      border-radius: 100vh;
-      background: #f0f0f0;
-    }
-
-    /* Handle */
-    ::-webkit-scrollbar-thumb {
-      background: #fafafa;
-      border-radius: 100vh;
-    }
-
-    /* Handle on hover */
-    ::-webkit-scrollbar-thumb:hover {
-      background: #e2e2e2;
-    }
-  }
 
   /* Focus outline style */
   *:focus {
