@@ -18,6 +18,7 @@ Clone this repo
 ```bash
 git clone git@github.com:City-of-Helsinki/infofinland-ui.git
 cd info-finland-ui
+git checkout development
 ```
 Install dependencies
 ```bash
