@@ -18,7 +18,6 @@ Clone this repo
 ```bash
 git clone git@github.com:City-of-Helsinki/infofinland-ui.git
 cd info-finland-ui
-git checkout development
 ```
 Install dependencies
 ```bash
@@ -30,9 +29,10 @@ yarn
 yarn dev
 ```
 
-4. Make changes, run linter.
+4. Make changes to your feature branch, run linter.
 This project uses ESlint NextJS plugin rules and ESLint Tailwind plugin rules.
 ```bash
+git checkout -b IFU-[jiraissueid]-somelabel
 yarn next lint
 ```
 
