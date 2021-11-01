@@ -33,7 +33,7 @@ const LanguageSelector = ({ openMenu }) => {
             key={`lang-${code}`}
           >
             <a
-              className="px-3 2xl:px-4 font-bold text-center uppercase xl:inline-block"
+              className="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase"
               title={text}
               hrefLang={code}
               lang={code}

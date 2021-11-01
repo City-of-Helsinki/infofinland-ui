@@ -10,48 +10,48 @@ export const HERO_MARGIN =
   'px-6 lg:px-0 lg:mx-12 xl:mx-28 2xl:mx-48  3xl:ms-64  3xl:max-w-4xl'
 
 const ArticleHeading = ({ heroImage, title, date }) => {
-  const {locale} = useRouter()
+  const { locale } = useRouter()
   return (
-  <div className={cls(BLOCK_MARGIN)}>
-    <div className={cls('lg:w-article', { 'absolute bottom-8': !heroImage })}>
-      {/* article category */}
+    <div className={cls(BLOCK_MARGIN)}>
+      <div className={cls('lg:w-article', { 'absolute bottom-8': !heroImage })}>
+        {/* article category */}
 
+        <span
+          lang="fi"
+          className={cls('block text-action mb-3', {
+            'text-gray-darker': heroImage,
+            'text-bodytext-color mt-6': !heroImage,
+            invisible: locale === 'fi',
+          })}
+        >
+          {title}
+        </span>
+        {/* article title / hero text */}
+        <h1
+          className={cls(
+            'mt-2 mb-6 me-2 ifu-hero__title',
+            longTextClass(title, {
+              size: 40,
+              classes: [
+                ' text-h2 md:text-h1xl',
+                'text-h3 md:text-h1 lg:text-h1xl',
+              ],
+            })
+          )}
+        >
+          {title}
+        </h1>
 
-      <span
-        lang="fi"
-        className={cls('block text-action mb-3', {
-          'text-gray-darker': heroImage,
-          'text-bodytext-color mt-6': !heroImage,
-          'invisible':locale === 'fi'
-        })}
-      >
-        {title}
-      </span>
-      {/* article title / hero text */}
-      <h1
-        className={cls(
-          'mt-2 mb-6 me-2 ifu-hero__title',
-          longTextClass(title, {
-            size: 40,
-            classes: [
-              ' text-h2 md:text-h1xl',
-              'text-h3 md:text-h1 lg:text-h1xl',
-            ],
-          })
-        )}
-      >
-        {title}
-      </h1>
+        {/* article date */}
 
-      {/* article date */}
-
-      <div className="flex items-center mb-8 text-body-small text-bodytext-color">
-        <IconCalendar className="transform translate-y-px  md:h-4 md:w-4" />
-        <span className="px-2 transform translate-y-px">{date}</span>
+        <div className="flex items-center mb-8 text-body-small text-bodytext-color">
+          <IconCalendar className="md:w-4 md:h-4 transform translate-y-px" />
+          <span className="px-2 transform translate-y-px">{date}</span>
+        </div>
       </div>
     </div>
-  </div>
-)}
+  )
+}
 
 const HeroImage = ({ heroImage, ...rest }) => {
   if (heroImage) {

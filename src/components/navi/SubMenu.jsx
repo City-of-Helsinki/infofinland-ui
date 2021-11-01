@@ -5,7 +5,7 @@ import cls from 'classnames'
 import { useRouter } from 'next/router'
 
 const SubMenuItem = ({ text, url, selected, pages, level, isOpen }) => (
-  <li className=" block ">
+  <li className=" block">
     <Link passHref href={url}>
       <a
         tabIndex={isOpen ? '0' : '-1'}
