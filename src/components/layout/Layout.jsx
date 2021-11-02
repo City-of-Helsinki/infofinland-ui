@@ -6,7 +6,15 @@ import FeedbackButtonBlock from '../feedback/FeedbackForm'
 import TopMenu from './TopMenu'
 import ReactModal from 'react-modal'
 import useSetLocalization from '../../hooks/useSetLocalization'
+import Router from 'next/router'
+import NProgress from 'nprogress'
+
 ReactModal.setAppElement('#__next')
+// Connect Page loader indicator to next/router
+NProgress.configure({ showSpinner: false })
+Router.events.on('routeChangeStart', () => NProgress.start())
+Router.events.on('routeChangeComplete', () => NProgress.done())
+Router.events.on('routeChangeError', () => NProgress.done())
 
 const Layout = ({ children }) => {
   useSetLocalization()
