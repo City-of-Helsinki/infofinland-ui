@@ -1,7 +1,7 @@
 const nextTranslate = require('next-translate')
 
 //TODO read from drupal, not from config
-const cities = ['Vantaa', 'Helsinki', 'Espoo', 'Tampere', 'Turku']
+const cities = ['Vantaa', 'Helsinki', 'Espoo', 'Tampere', 'Turku', 'Vaasa']
 
 const rtlLocales = ['ar', 'fa']
 module.exports = nextTranslate(

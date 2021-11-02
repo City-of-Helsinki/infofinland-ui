@@ -1,14 +1,14 @@
 {
-  "buttons": { "close": "Sulje", "search": "جستجو کن" },
+  "buttons": { "close": "ببند", "search": "جستجو کن" },
 
   "feedback": {
     "title": "پیشنهادات و انتقادات",
     "urlLabel": "آدرس سایت",
     "buttons": {
       "send": "ارسال کن",
-      "cancel": "!Peruuta",
-      "sendAgain": "!Lähetä uusi",
-      "close": "!Sulje",
+      "cancel": "لغو کن",
+      "sendAgain": "یک جدید را بفرست",
+      "close": "ببند",
       "open": "نظر خود را درباره این سایت ارسال کنید"
     },
     "labels": {
@@ -24,21 +24,21 @@
     "info1": "در فرم سه جا وجود دارد. نام، آدرس پست اکترونیکی و متن پیشنهادات و انتقادات، همه اطلاعاتی هستند که باید حتماً داده شوند.",
     "info2": "",
     "states": {
-      "submitting": "!Lähetetään palautetta...",
+      "submitting": "پیشنهاد فرستاده می شود",
       "fail": "خطا در ارسال مطالب.",
       "success": "از پیشنهادات و نظراتتان سپاسگزاریم",
-      "invalid": "این مکان باید حتماً پر شود"
+      "invalid": "فیلد اجباری"
     }
   },
   "languageMenu": {
-    "label": "!Valitse kieli"
+    "label": "زبان را انتخاب کن"
   },
   "languageSelector": {
-    "button": "!Kielet"
+    "button": "زبانها"
   },
   "languageMessage": {
     "title": "!Haluatko vaihtaa kieltä?",
     "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
   },
-  "mainMenu": { "button": "!Päävalikko" }
+  "mainMenu": { "button": "لیست انتخاب اصلی" }
 }

@@ -1,13 +1,13 @@
 {
-  "buttons": { "close": "!Sulje", "search": "Cherchez" },
+  "buttons": { "close": "Fermer", "search": "Cherchez" },
   "feedback": {
     "title": "Remarques",
     "urlLabel": "Adresse de la page",
     "buttons": {
       "send": "Envoyer",
-      "cancel": "!Peruuta",
-      "sendAgain": "L!ähetä uusi",
-      "close": "!Sulje",
+      "cancel": "Annuler",
+      "sendAgain": "Envoyer un nouveau",
+      "close": "Fermer",
       "open": "Envoyez une rémarque sur cette page"
     },
     "labels": {
@@ -23,22 +23,22 @@
     "info1": "Le formulaire comprend trois champs.",
     "info2": "Le nom, l’e-mail et le texte de commentaires sont toutes des données obligatoires.",
     "states": {
-      "submitting": "!Lähetetään palautetta...",
+      "submitting": "Envoi des commentaires",
       "fail": "Erreur lors de l'envoi du formulaire",
       "success": "Merci pour vos commentaires",
-      "invalid": "Ce champ est obligatoire"
+      "invalid": "Champ obligatoire"
     }
   },
   "languageMenu": {
-    "label": "!Valitse kieli"
+    "label": "Sélectionner la langue"
   },
   "languageSelector": {
-    "button": "!Kielet"
+    "button": "Langues"
   },
   "languageMessage": {
     "title": "!Haluatko vaihtaa kieltä?",
     "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
   },
 
-  "mainMenu": { "button": "!Päävalikko" }
+  "mainMenu": { "button": "Menu principal" }
 }

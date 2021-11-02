@@ -1,11 +1,11 @@
 {
-  "buttons": { "close": "Stäng", "search": "Sök", "yes": "Ja", "no": "Nej" },
+  "buttons": { "close": "!Sulje", "search": "Sök" },
   "feedback": {
     "title": "Respons",
     "buttons": {
       "send": "Skicka ny response",
       "cancel": "Tillbaka",
-      "sendAgain": "Skicka en ny",
+      "sendAgain": "Skicka igen",
       "close": "Stäng",
       "open": "Ge respons på denna sida"
     },
@@ -24,21 +24,21 @@
     "info1": "Formuläret innehåller tre fält.",
     "info2": "Namn, e-post och responstext är obligatoriska fält.",
     "states": {
-      "submitting": "Responsen skickas in...",
+      "submitting": "!Lähetetään palautetta...",
       "fail": "Fel när respons skulle skickas",
       "success": "Tack för din respons",
-      "invalid": "Obligatoriskt fält"
+      "invalid": "!Pakollinen kenttä"
     }
   },
   "languageMenu": {
-    "label": "Välj språk"
+    "label": "!Valitse kieli"
   },
   "languageSelector": {
-    "button": "Språk"
+    "button": "!Kielet"
   },
   "languageMessage": {
     "title": "!Haluatko vaihtaa kieltä?",
     "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
   },
-  "mainMenu": { "button": "Huvudmeny" }
+  "mainMenu": { "button": "!Päävalikko" }
 }

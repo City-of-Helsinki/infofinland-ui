@@ -1,13 +1,13 @@
 {
-  "buttons": { "close": "!Sulje", "search": "搜索" },
+  "buttons": { "close": "关闭", "search": "搜索" },
   "feedback": {
     "title": "意见与建议反馈",
     "urlLabel": "網址",
     "buttons": {
       "send": "发送",
-      "cancel": "!Peruuta",
-      "sendAgain": "!Lähetä uusi",
-      "close": "!Sulje",
+      "cancel": "取消",
+      "sendAgain": "发送新的反馈",
+      "close": "关闭",
       "open": "发送对页面的回馈"
     },
     "labels": {
@@ -23,21 +23,21 @@
     "info1": "表格中有三个文本框",
     "info2": "姓名、电子邮件和反馈内容为必填信息。",
     "states": {
-      "submitting": "!Lähetetään palautetta...",
+      "submitting": "正在发送反馈",
       "fail": "发送反馈错误",
       "success": "谢谢您的反馈！",
-      "invalid": "本项为必填信息"
+      "invalid": "必填"
     }
   },
   "languageMenu": {
-    "label": "!Valitse kieli"
+    "label": "选择语言"
   },
   "languageSelector": {
-    "button": "!Kielet"
+    "button": "语言"
   },
   "languageMessage": {
     "title": "!Haluatko vaihtaa kieltä?",
     "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
   },
-  "mainMenu": { "button": "!Päävalikko" }
+  "mainMenu": { "button": "主菜单" }
 }

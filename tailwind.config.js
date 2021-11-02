@@ -28,7 +28,7 @@ module.exports = {
       action: ['0.75rem', '1.5'],
       message: ['0.75rem', '1.125rem'],
       tiny: ['0.813rem', '1.5em'],
-      fine: ['0.688rem', '2em'],
+      // fine: ['0.688rem', '2em'],
     },
     boxShadow: {
       button: '0px 2px rgba(0, 0, 0, 0.15)',
