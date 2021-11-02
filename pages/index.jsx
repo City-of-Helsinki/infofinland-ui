@@ -12,8 +12,11 @@ const HomePage = () => (
       <title>Article demo page</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <HomeHero title="Your source for living in Finland
-" image="/images/home.png" />
+    <HomeHero
+      title="Your source for living in Finland
+"
+      image="/images/home.png"
+    />
     {/* <div className="mx-6 lg:mx-12 xl:mx-24 2xl:mx-48 mb-16 4xl:max-w-6xl"> */}
     <Block>
       <p className="mb-8 text-body text-bodytext-color">
