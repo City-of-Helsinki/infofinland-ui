@@ -1,15 +1,15 @@
 {
-  "buttons": { "close": "!Sulje", "search": "Buscar" },
+  "buttons": { "close": "Cerrar", "search": "Buscar" },
 
   "feedback": {
     "title": "Comentario",
     "urlLabel": "Dirección de la página",
     "buttons": {
       "open": "Enviar comentarios sobre esta página",
-      "close": "!Sulje",
+      "close": "Cerrar",
       "send": "Enviar",
-      "cancel": "!Peruuta",
-      "sendAgain": "!Lähetä uusi"
+      "cancel": "Cancelar",
+      "sendAgain": "Enviar nuevo"
     },
 
     "labels": {
@@ -28,18 +28,18 @@
       "submitting": "!Lähetetään palautetta...",
       "fail": "Error al enviar el formulario",
       "success": "Gracias por su comentario",
-      "invalid": "Comentario"
+      "invalid": "Campo obligatorio"
     }
   },
   "languageMenu": {
-    "label": "!Valitse kieli"
+    "label": "Elegir idioma"
   },
   "languageSelector": {
-    "button": "!Kielet"
+    "button": "Idiomas"
   },
   "languageMessage": {
     "title": "!Haluatko vaihtaa kieltä?",
     "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
   },
-  "mainMenu": { "button": "!Päävalikko" }
+  "mainMenu": { "button": "Menú principal" }
 }

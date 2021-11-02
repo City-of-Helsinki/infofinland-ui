@@ -9,25 +9,25 @@ const ThemeList = ({ showImages }) => (
       <CategoryCard
         url="/theme/page/"
         blue
-        title="Работа и предпринимательство ринимательство"
+        title="Moving to Finland"
         image={showImages && CATEGORY_IMAGES[0]}
       />
       <CategoryCard
         url="/theme/page/subpage"
         green
-        title="Otsikko Otsikko Otsikko Otsikko"
+        title="Settling in Finland"
         image={showImages && CATEGORY_IMAGES[1]}
       />
       <CategoryCard
         url="/theme/page/subpage"
-        green
+        blue
         title="Otsikko"
         image={showImages && CATEGORY_IMAGES[2]}
       />
       <CategoryCard
         url="/theme/page/subpage"
-        blue
-        title="健康"
+        green
+        title="Otsikko"
         image={showImages && CATEGORY_IMAGES[1]}
       />
       <CategoryCard
@@ -44,13 +44,13 @@ const ThemeList = ({ showImages }) => (
       />
       <CategoryCard
         url="/theme/page/subpage"
-        green
-        title="اتباع کشورهای خارج از اتحادیه اروپا"
+        blue
+        title="Otsikko"
         image={showImages && CATEGORY_IMAGES[2]}
       />
       <CategoryCard
         url="/theme/page/subpage"
-        blue
+        green
         title="Otsikko"
         image={showImages && CATEGORY_IMAGES[1]}
       />

@@ -7,20 +7,10 @@ import Block from '../article/Block'
 import cls from 'classnames'
 const DEMOHTML = `
 <div>
-<p>The education system includes early childhood education, preschool
-education, comprehensive education, upper secondary education and higher
-education. Adult education is intended for adults and <a href="/" class="class-from-content"title="some title" id="doodaa"><span>it</span> <span>includes</span></a> a
-multitude of alternatives from comprehensive to higher education</p>
-<ul>
-<li>Adult education is intended</li>
-<li>early childhood education</li>
-<li>comprehensive education</li>
-<li>upper secondary education </li>
-</ul>
-<p>The education system includes early childhood education, preschool
-education, comprehensive education, upper secondary education and higher
-education. Adult education is intended for adults and <a href="/" class="class-from-content"title="some title" id="doodaa"><span>it</span> <span>includes</span></a> a
-multitude of alternatives from comprehensive to higher education</p></div>
+
+<p>Vocational training is aimed at both young people and adults. You can apply for vocational training all year round. You can study for an upper secondary education or increase your skills in vocational training. Vocational training in Vaasa is organised by Vamia and YA – Vocational College of Ostrobothnia (Yrkesakademin i Österbotten (YA)).</p>
+<p>YA and Vamia also organise preparatory training for basic vocational training, i.e. VALMA. The training lasts for a maximum of one academic year. YA’s VALMA training is in Swedish; Handledande utbildning för yrkesutbildning.</p>
+</div>
 `
 const LocalInformation = () => {
   const [city] = useAtom(selectedCity)

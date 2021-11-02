@@ -36,12 +36,11 @@
     font-weight: bold;
   }
 
-
   /* Focus outline style */
-  *:focus {
+  *:focus-visible {
     @apply rounded;
     outline-style: solid;
     outline-color: black;
-    outline-width: 2px;
+    outline-width: 1px;
   }
 }

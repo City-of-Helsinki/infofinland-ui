@@ -3,11 +3,11 @@ import { HERO_MARGIN } from '../article/Article'
 import Link from 'next/link'
 import cls from 'classnames'
 const Footer = () => (
-  <footer className={cls(HERO_MARGIN, 'mb-8')}>
+  <footer className={cls(HERO_MARGIN, 'mt-16 mb-16')}>
     <div className="py-10 border-t border-b border-gray ifu-footer__brand">
       <div className="mx-auto sm:mx-0 mb-5 ifu-footer__hki-logo" />
 
-      <p className="mx-8 md:mx-0 text-fine text-center sm:text-left text-gray">
+      <p className=" mx-8 md:mx-0 text-tiny text-center sm:text-left text-gray">
         The InfoFinland website is published by the City of Helsinki, and it is
         funded by the state and the InfoFinland member municipalities.
       </p>

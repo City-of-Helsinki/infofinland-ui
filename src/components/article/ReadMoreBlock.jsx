@@ -47,7 +47,7 @@ const CONTENT = [
 ]
 const ReadMoreBlock = ({ content = CONTENT }) => {
   return (
-    <Block className="mb-8 bg-orange-white">
+    <Block className="mt-8 mb-8 bg-orange-white">
       <div className="py-6">
         {content.map(
           ({ siteUrl, siteName, pageUrl, pageName, languages }, i) => (
