@@ -5,7 +5,7 @@ const languages = [
   { code: 'ru', text: 'Pусский' },
   { code: 'et', text: 'Eesti keel' },
   { text: 'Français', code: 'fr' },
-  { text: 'Soomali', code: 'so' },
+  { text: 'Soomaali', code: 'so' },
   { code: 'es', text: 'Español' },
   { code: 'tr', text: 'Türkçe' },
   { code: 'zh', text: '中文' },
