@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Typography should render the h1 1`] = `
+<DocumentFragment>
+  <h1
+    class="text-bodytext-color font-sans text-h1 md:text-h1xl"
+  >
+    Heading 1
+  </h1>
+</DocumentFragment>
+`;
+
+exports[`Typography should render the h2 1`] = `
+<DocumentFragment>
+  <h2
+    class="text-bodytext-color font-sans text-h2 md:text-h2xl"
+  >
+    Heading 2
+  </h2>
+</DocumentFragment>
+`;
+
+exports[`Typography should render the h3 1`] = `
+<DocumentFragment>
+  <h3
+    class="text-bodytext-color font-sans text-h3 tmd:text-h3xl"
+  >
+    Heading 3
+  </h3>
+</DocumentFragment>
+`;
+
+exports[`Typography should render the h4 1`] = `
+<DocumentFragment>
+  <h4
+    class="text-bodytext-color font-sans text-h4 md:text-h4xl"
+  >
+    Heading 4
+  </h4>
+</DocumentFragment>
+`;
+
+exports[`Typography should render the h5 1`] = `
+<DocumentFragment>
+  <h4
+    class="text-bodytext-color font-sans text-h5 md:text-h5xl"
+  >
+    Heading 5
+  </h4>
+</DocumentFragment>
+`;
+
+exports[`Typography should render the h6 1`] = `
+<DocumentFragment>
+  <h4
+    class="text-bodytext-color font-sans text-h6"
+  >
+    Heading 6
+  </h4>
+</DocumentFragment>
+`;
+
+exports[`Typography should render the hr 1`] = `
+<DocumentFragment>
+  <hr
+    class="my-8"
+  />
+</DocumentFragment>
+`;

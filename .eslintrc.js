@@ -1,6 +1,7 @@
 module.exports = {
   env: {
     es6: true,
+    jest: true,
   },
   plugins: ['tailwindcss'],
   extends: ['eslint:recommended', 'plugin:tailwindcss/recommended', 'next'],

@@ -5,7 +5,8 @@
     "build": "next build",
     "format": "prettier --write .",
     "start": "next start",
-    "twconfig": "tailwind-config-viewer -o --port 3600"
+    "twconfig": "tailwind-config-viewer -o --port 3600",
+    "test": "jest"
   },
   "dependencies": {
     "@fullhuman/postcss-purgecss": "4.0.3",
