@@ -1,6 +1,6 @@
 import cls from 'classnames'
-import LanguageMessageCard from './LanguageMessageCard'
-import AlertMessages from './AlertMessages'
+import LanguageMessageCard from '@/components/messages/LanguageMessageCard'
+import AlertMessages from '@/components/messages/AlertMessages'
 
 const Messages = () => {
   return (

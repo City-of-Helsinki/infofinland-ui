@@ -1,6 +1,6 @@
 import parse, { domToReact, attributesToProps } from 'html-react-parser'
 import cls from 'classnames'
-import TextLink from './TextLink'
+import TextLink from '@/components/TextLink'
 
 const options = {
   replace: ({ name, attribs, children }) => {

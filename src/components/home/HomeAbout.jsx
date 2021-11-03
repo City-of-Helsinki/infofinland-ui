@@ -1,8 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import image from '../../../public/logo/logo-vertical.png'
-import { HR } from '../Typo'
-import Block from '../article/Block'
+import image from '@/public/logo/logo-vertical.png'
+import { HR } from '@/components/Typo'
+import Block from '@/components/article/Block'
 const HomeAbout = () => (
   <Block>
     <HR className="border-gray-darker" />

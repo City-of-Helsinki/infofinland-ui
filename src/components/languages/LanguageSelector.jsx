@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { IconGlobe } from '../Icons'
+import { IconGlobe } from '@/components/Icons'
 import cls from 'classnames'
 import useTranslation from 'next-translate/useTranslation'
-import { languages } from '../../../i18n'
+import { languages } from '@/i18n'
 
 const LanguageSelector = ({ openMenu }) => {
   const { pathname, query, locale } = useRouter()

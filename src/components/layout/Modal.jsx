@@ -1,5 +1,5 @@
 import ReactModal from 'react-modal'
-import { CloseButton } from '../Button'
+import { CloseButton } from '@/components/Button'
 
 const Modal = ({ children, isOpen, close, contentLabel }) => {
   return (

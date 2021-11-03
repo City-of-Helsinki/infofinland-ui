@@ -1,5 +1,5 @@
-import Block from './Block'
-import { IconExternalSite } from '../Icons'
+import Block from '@/components/article/Block'
+import { IconExternalSite } from '@/components/Icons'
 import cls from 'classnames'
 
 const CONTENT = [

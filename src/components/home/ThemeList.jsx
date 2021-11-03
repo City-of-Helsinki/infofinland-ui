@@ -1,6 +1,6 @@
-import CategoryCard from './ThemeCard'
-import { CATEGORY_IMAGES } from '../../../pages/styleguide'
-import Block from '../article/Block'
+import CategoryCard from '@/components/home/ThemeCard'
+import { CATEGORY_IMAGES } from '@/pages/styleguide'
+import Block from '@/components/article/Block'
 
 const ThemeList = ({ showImages }) => (
   // { themes }

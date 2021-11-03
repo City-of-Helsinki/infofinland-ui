@@ -1,5 +1,5 @@
 import cls from 'classnames'
-import { IconCross } from './Icons'
+import { IconCross } from '@/components/Icons'
 import useTranslation from 'next-translate/useTranslation'
 
 const Button = ({ children, className, ...buttonProps }) => (

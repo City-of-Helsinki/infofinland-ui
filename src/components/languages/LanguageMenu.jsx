@@ -1,11 +1,11 @@
 import Link from 'next/link'
-import { IconCheck, IconGlobe } from '../Icons'
-import Drawer from '../layout/Drawer'
+import { IconCheck, IconGlobe } from '@/components/Icons'
+import Drawer from '@/components/layout/Drawer'
 import { useRouter } from 'next/router'
 import cls from 'classnames'
 import useTranslation from 'next-translate/useTranslation'
 
-import { languages } from '../../../i18n'
+import { languages } from '@/i18n'
 
 export const LanguageMenu = ({ closeMenu }) => {
   const { t } = useTranslation('common')

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import cls from 'classnames'
 import { useRouter } from 'next/router'
-import SubMenu from './SubMenu'
+import SubMenu from '@/components/navi/SubMenu'
 
 const getThemeIndexByPathName = ({ pages, path }) => {
   let index
