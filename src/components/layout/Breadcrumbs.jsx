@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import Icon, { IconAngleRight } from '../Icons'
+import Icon, { IconAngleRight } from '@/components/Icons'
 
 const Breadcrumbs = ({ pages }) => (
   <nav className="block relative py-2 mt-3 mb-2 text-black">

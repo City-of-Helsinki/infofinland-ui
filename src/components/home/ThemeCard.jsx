@@ -1,7 +1,7 @@
 import cls from 'classnames'
 import Link from 'next/link'
 import Image from 'next/image'
-import { longTextClass } from '../Typo'
+import { longTextClass } from '@/components/Typo'
 
 const MAX_TITLE_LENGTH = 40
 

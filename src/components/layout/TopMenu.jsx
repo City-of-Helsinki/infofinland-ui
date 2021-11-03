@@ -1,13 +1,16 @@
 import Link from 'next/link'
 // import { useState } from 'react'
-import useLangMenuToggle from '../../hooks/useLangMenuToggle'
+import useLangMenuToggle from '@/hooks/useLangMenuToggle'
 import useTranslation from 'next-translate/useTranslation'
 
-import { IconLookingGlass } from '../Icons'
-import MobileNavi from '../navi/MobileNavi'
-import LanguageSelector from '../languages/LanguageSelector'
-import { LanguageMenuButton, LangMenuDrawer } from '../languages/LanguageMenu'
-import CityMenu from './CityMenu'
+import { IconLookingGlass } from '@/components/Icons'
+import MobileNavi from '@/components/navi/MobileNavi'
+import LanguageSelector from '@/components/languages/LanguageSelector'
+import {
+  LanguageMenuButton,
+  LangMenuDrawer,
+} from '@/components/languages/LanguageMenu'
+import CityMenu from '@/components/layout/CityMenu'
 const Logo = () => (
   <div
     className="flex-none mx-3 transform translate-y-px md:ms-6 md:me-2"

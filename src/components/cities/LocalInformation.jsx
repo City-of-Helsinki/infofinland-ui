@@ -1,9 +1,9 @@
-import Button from '../Button'
-import { IconMapMarker } from '../Icons'
-import ParseHtml from '../ParseHtml'
+import Button from '@/components/Button'
+import { IconMapMarker } from '@/components/Icons'
+import ParseHtml from '@/components/ParseHtml'
 import { useAtom } from 'jotai'
-import { selectedCity, cityMenuVisibility } from '../app/atoms'
-import Block from '../article/Block'
+import { selectedCity, cityMenuVisibility } from '@/components/app/atoms'
+import Block from '@/components/article/Block'
 import cls from 'classnames'
 const DEMOHTML = `
 <div>

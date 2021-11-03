@@ -1,7 +1,7 @@
 import { CSSTransition } from 'react-transition-group'
 import cls from 'classnames'
 import ReactModal from 'react-modal'
-import { CloseButton } from '../Button'
+import { CloseButton } from '@/components/Button'
 
 const Drawer = ({ close, children, isOpen, contentLabel }) => (
   <ReactModal

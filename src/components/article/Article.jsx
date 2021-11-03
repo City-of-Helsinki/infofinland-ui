@@ -1,8 +1,8 @@
 import cls from 'classnames'
 // import Image from 'next/image'
-import { longTextClass } from '../Typo'
-import { IconCalendar } from '../Icons'
-import Breadcrumbs from '../layout/Breadcrumbs'
+import { longTextClass } from '@/components/Typo'
+import { IconCalendar } from '@/components/Icons'
+import Breadcrumbs from '@/components/layout/Breadcrumbs'
 import { useRouter } from 'next/router'
 export const BLOCK_MARGIN = `px-6 lg:px-12 lg:mx-12  xl:mx-28 2xl:mx-48  3xl:ms-64  3xl:max-w-4xl`
 

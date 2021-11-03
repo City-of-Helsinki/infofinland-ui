@@ -1,7 +1,7 @@
 import Drawer from './Drawer'
 import { useAtom } from 'jotai'
-import { selectedCity, cityMenuVisibility } from '../app/atoms'
-import { IconCheck } from '../Icons'
+import { selectedCity, cityMenuVisibility } from '@/components/app/atoms'
+import { IconCheck } from '@/components/Icons'
 import cls from 'classnames'
 
 const CityMenu = () => {

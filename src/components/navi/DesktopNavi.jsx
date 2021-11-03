@@ -1,6 +1,6 @@
 import { PAGES } from '../MOCK_PAGES'
-import MainNavi from './MainNavi'
-import Messages from '../messages/Messages'
+import MainNavi from '@/components/navi/MainNavi'
+import Messages from '@/components/messages/Messages'
 
 const DesktopNavi = () => {
   return (

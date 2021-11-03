@@ -47,9 +47,19 @@ yarn next lint
 yarn format
 ```
 
-6. Commit to you feature branch, push to repo, make a merge request.
+6. Run all tests (again, but now if you didn't). Check all snapshots, make you include new tests for new code.
 
-_TODO: Add tests to this list._
+```bash
+yarn test
+```
+
+Use watch-mode for test runner
+
+```bash
+yarn test --watch
+```
+
+7. Commit to you feature branch, push to repo, make a merge request.
 
 ### Required tools
 
@@ -85,8 +95,16 @@ Build Dockerfile, start container. See localhost:3000
 
 #### _In VSCode_
 
+- Check environment variables (TODO instructions here)
 - Install Docker Extension if not installed
-- Right-click on Dockerfile, select Build Image.
+- Build image
+  - Right-click on Dockerfile, select Build Image. (no build-args)
+  - or run from command line
+
+```bash
+docker build --build-arg TEST='commandline' -t infofinland-ui .
+```
+
 - Check that image is built without errors.
 - Select the new image from Docker-tab, Run Interactive, See localhost:3000.
 

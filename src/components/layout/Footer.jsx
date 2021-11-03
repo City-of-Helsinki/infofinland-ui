@@ -1,5 +1,5 @@
 import { IconFacebook, IconInstagram, IconTwitter, IconYoutube } from '../Icons'
-import { HERO_MARGIN } from '../article/Article'
+import { HERO_MARGIN } from '@/components/article/Article'
 import Link from 'next/link'
 import cls from 'classnames'
 const Footer = () => (

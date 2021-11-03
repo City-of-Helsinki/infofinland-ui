@@ -1,5 +1,5 @@
 import { CSSTransition } from 'react-transition-group'
-import { IconAngleDown, IconAngleUp } from '../Icons'
+import { IconAngleDown, IconAngleUp } from '@/components/Icons'
 import Link from 'next/link'
 import cls from 'classnames'
 import { useRouter } from 'next/router'
