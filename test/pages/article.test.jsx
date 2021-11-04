@@ -4,6 +4,11 @@ import { getPage } from 'next-page-tester'
 import prettier from 'prettier'
 
 describe('Article page', () => {
+  beforeAll(() => {
+    // prevent language notification from showing up on react hydration phase"
+    window.sessionStorage.setItem('langMessage', 'shown')
+  })
+
   it('page renders and matches snapshot', async () => {
     const { serverRenderToString, render } = await getPage({
       route: '/theme/page',
@@ -24,6 +29,40 @@ describe('Article page', () => {
     })
 
     expect(formattedHydratedSnapshot).toMatchSnapshot()
+  })
+
+  it('renders ltr text direction attribute', async () => {
+    const { render } = await getPage({
+      route: '/fi',
+    })
+    render()
+
+    const html = document.documentElement
+
+    expect(html).toHaveAttribute('dir', 'ltr')
+
+    // const head = document.head;
+    // expect(head.querySelector('meta[name="Description"]')).toHaveAttribute(
+    //   'Content',
+    //   'My custom page description'
+    // );
+  })
+
+  it('renders rtl text direction attribute', async () => {
+    const { render } = await getPage({
+      route: '/fa',
+    })
+    render()
+
+    const html = document.documentElement
+
+    expect(html).toHaveAttribute('dir', 'rtl')
+
+    // const head = document.head;
+    // expect(head.querySelector('meta[name="Description"]')).toHaveAttribute(
+    //   'Content',
+    //   'My custom page description'
+    // );
   })
 
   //   it('renders home page in default language', async () => {
