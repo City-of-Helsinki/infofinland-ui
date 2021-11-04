@@ -9,10 +9,11 @@ export const BLOCK_MARGIN = `px-6 lg:px-12 lg:mx-12  xl:mx-28 2xl:mx-48  3xl:ms-
 export const HERO_MARGIN =
   'px-6 lg:px-0 lg:mx-12 xl:mx-28 2xl:mx-48  3xl:ms-64  3xl:max-w-4xl'
 
-const ArticleHeading = ({ heroImage, title, date }) => {
+const ArticleHeading = ({ heroImage, title, date, themeHero }) => {
   const { locale } = useRouter()
+  const titleMargin = themeHero ? HERO_MARGIN : BLOCK_MARGIN
   return (
-    <div className={cls(BLOCK_MARGIN)}>
+    <div className={titleMargin}>
       <div className={cls({ 'absolute bottom-8': !heroImage })}>
         {/* article category */}
 

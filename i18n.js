@@ -12,12 +12,13 @@ const languages = [
   { code: 'fa', text: ' فارسی' },
   { code: 'ar', text: 'العربية' },
 ]
-
+const rtlLocales = ['ar', 'fa']
 const locales = languages.map(({ code }) => code)
 
 module.exports = {
   locales,
   languages,
+  rtlLocales,
   defaultLocale: 'fi',
   fallbackLocale: 'en',
   pages: {

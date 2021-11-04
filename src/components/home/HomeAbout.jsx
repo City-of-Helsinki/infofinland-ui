@@ -1,14 +1,18 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import image from '@/public/logo/logo-vertical.png'
-import { HR } from '@/components/Typo'
+// import image from '@/public/logo/logo-vertical.png'
 import Block from '@/components/article/Block'
 const HomeAbout = () => (
-  <Block>
-    <HR className="border-gray-darker" />
+  <Block className="pt-8 border-t border-gray-darker">
     <div className="grid grid-cols-1 md:grid-cols-2 pb-8">
       <div className="hidden md:block float-left px-8 mt-14 text-center transform md:-translate-x-6 md:-translate-y-0.5">
-        <Image src={image} alt="" />
+        <Image
+          src="/images/logo-vertical.png"
+          height="190"
+          width="237"
+          alt=""
+          layout="fixed"
+        />
       </div>
       <div className="">
         <h2 className="mb-4 text-h2">About us</h2>

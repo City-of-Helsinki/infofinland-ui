@@ -16,6 +16,8 @@ const ThemeCard = ({ title, url, image, blue, green }) => (
       <div className="hidden md:block rounded">
         <Image
           src={image}
+          height={100}
+          width={300}
           alt={title}
           layout="responsive"
           className="rounded-t"

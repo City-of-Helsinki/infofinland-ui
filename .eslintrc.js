@@ -11,7 +11,7 @@ module.exports = {
       'error',
       {
         devDependencies: [
-          // '__tests__/**/*',
+          'tests/**/*',
           // 'test-utils/index.tsx',
           // '@types/jest-dom.d.ts',
           'next.config.js',
