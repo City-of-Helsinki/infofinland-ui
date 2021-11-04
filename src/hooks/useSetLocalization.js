@@ -1,11 +1,12 @@
 import { useEffect } from 'react'
 import { useRouter } from 'next/router'
 import useLanguageMessage from './useLanguageMessage'
+import { rtlLocales } from '@/i18n'
 
 export default function useSetLocalization() {
   const { showMessage, hideMessage, userLocale, locales } = useLanguageMessage()
   const { locale } = useRouter()
-  const direction = process.env.rtlLocales.includes(locale) ? 'rtl' : 'ltr'
+  const direction = rtlLocales.includes(locale) ? 'rtl' : 'ltr'
 
   // Show Language message if route's locale doe1s not match user agent locale
   useEffect(() => {

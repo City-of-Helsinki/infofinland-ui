@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import cls from 'classnames'
 import { longTextClass } from '../src/components/Typo'
 import useTranslation from 'next-translate/useTranslation'
+import TextLink from '@/components/TextLink'
 const TEXTS = {
   fi: {
     title: 'Sivua ei löydy.',
@@ -132,13 +133,8 @@ export const LanguageNotFound = () => {
         )}
       >
         <h1 className="mb-10 text-h2">{t('lang404.title')}</h1>
-
-        <p className="">
-          Commodo sed vel convallis scelerisque mauris, facilisi augue. Diam ut
-          amet arcu velit egestas. Mauris nulla sed pharetra duis. Odio praesent
-          euismod quis a at arcu ut suspendisse vestibulum. Arcu augue lorem vel
-          eget viverra.
-        </p>
+        <p className="mb-4">{t('lang404.text')}</p>
+        <TextLink href="/">{t('lang404.link')}</TextLink>
       </div>
     </Layout>
   )

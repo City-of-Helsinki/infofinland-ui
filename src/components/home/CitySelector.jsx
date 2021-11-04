@@ -1,15 +1,13 @@
 import Button from '@/components/Button'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
-import image from '@/public/images/suomi-kartta.png'
-import { HR } from '@/components/Typo'
+// import image from '@/public/images/suomi-kartta.png'
 import Block from '@/components/article/Block'
 const CitySelector = () => {
   const { push } = useRouter()
   const goToCities = () => push('/cities')
   return (
-    <Block>
-      <HR className="border-gray-darker" />
+    <Block className="pt-8 border-t border-gray-darker">
       <div className="grid grid-cols-2 pb-8">
         <div className="foo">
           <h2 className="mb-4 text-h2">Cities</h2>
@@ -21,7 +19,13 @@ const CitySelector = () => {
           <Button onClick={goToCities}>Go to Cities</Button>
         </div>
         <div className="">
-          <Image src={image} alt="" />
+          <Image
+            src="/images/suomi-kartta.png"
+            alt=""
+            height="381"
+            width="219"
+            layout="intrinsic"
+          />
         </div>
       </div>
     </Block>

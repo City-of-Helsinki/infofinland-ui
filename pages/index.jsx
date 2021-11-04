@@ -1,11 +1,12 @@
 import Head from 'next/head'
-import HomeHero from '../src/components/home/HomeHero'
-import Layout from '../src/components/layout/Layout'
+import HomeHero from '@/components/home/HomeHero'
+import Layout from '@/components/layout/Layout'
 // import { ARTICLE_MARGIN_CLASS } from '../components/theme/page/subpage/Article'
-import ThemeList from '../src/components/home/ThemeList'
-import CitySelector from '../src/components/home/CitySelector'
-import HomeAbout from '../src/components/home/HomeAbout'
-import Block from '../src/components/article/Block'
+import ThemeList from '@/components/home/ThemeList'
+import CitySelector from '@/components/home/CitySelector'
+import HomeAbout from '@/components/home/HomeAbout'
+import Block from '@/components/article/Block'
+
 const HomePage = () => (
   <Layout>
     <Head>
@@ -26,7 +27,9 @@ const HomePage = () => (
         multitude of alternatives from comprehensive to higher education.
       </p>
     </Block>
-    <ThemeList themes={[]} showImages />
+    <Block>
+      <ThemeList themes={[]} showImages />
+    </Block>
     <CitySelector />
     <HomeAbout />
     {/* </div> */}

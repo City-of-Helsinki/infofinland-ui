@@ -3,6 +3,7 @@ import { useAtom } from 'jotai'
 import { selectedCity, cityMenuVisibility } from '@/components/app/atoms'
 import { IconCheck } from '@/components/Icons'
 import cls from 'classnames'
+import CITIES from '@/MOCK_CITIES'
 
 const CityMenu = () => {
   const [open, setOpen] = useAtom(cityMenuVisibility)
@@ -16,7 +17,7 @@ const CityMenu = () => {
     <Drawer close={close} isOpen={open} left>
       <ul>
         <li className="px-14 mb-4 text-body-large font-bold">Choose city</li>
-        {process.env.cities.map((cityName) => (
+        {CITIES.map((cityName) => (
           <li
             key={cityName}
             className={cls('block', {
