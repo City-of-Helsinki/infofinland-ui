@@ -1,9 +1,7 @@
 import Link from 'next/link'
 // import { useState } from 'react'
 import useLangMenuToggle from '@/hooks/useLangMenuToggle'
-import useTranslation from 'next-translate/useTranslation'
 
-import { IconLookingGlass } from '@/components/Icons'
 import MobileNavi from '@/components/navi/MobileNavi'
 import LanguageSelector from '@/components/languages/LanguageSelector'
 import {
@@ -11,6 +9,8 @@ import {
   LangMenuDrawer,
 } from '@/components/languages/LanguageMenu'
 import CityMenu from '@/components/layout/CityMenu'
+import Search from '../search/Search'
+
 const Logo = () => (
   <div
     className="flex-none mx-3 transform translate-y-px md:ms-6 md:me-2"
@@ -22,24 +22,7 @@ const Logo = () => (
   </div>
 )
 
-const Search = () => {
-  const { t } = useTranslation('common')
 
-  return (
-    <div className=" flex-none 2xl:flex-grow">
-      <button
-        className=" w-8 md:w-24 h-8 text-action"
-        title={t('buttons.search')}
-      >
-        <span className="px-2 transform translate-y-0.5">
-          <IconLookingGlass className="" />
-        </span>
-
-        <span className="hidden md:inline-block">{t('buttons.search')}</span>
-      </button>
-    </div>
-  )
-}
 
 const TopMenu = () => {
   const [open, setLangMenuVisibility] = useLangMenuToggle()
@@ -56,8 +39,9 @@ const TopMenu = () => {
         <LangMenuDrawer closeMenu={closeMenu} isOpen={open} />
         <Search />
         <MobileNavi />
-        <CityMenu />
+      <CityMenu />
       </div>
+
     </div>
   )
 }
