@@ -7,6 +7,8 @@ import cls from 'classnames'
 import { longTextClass } from '../src/components/Typo'
 import useTranslation from 'next-translate/useTranslation'
 import TextLink from '@/components/TextLink'
+import { rtlLocales } from '@/i18n'
+
 const TEXTS = {
   fi: {
     title: 'Sivua ei löydy.',
@@ -106,7 +108,7 @@ const PageNotFound = () => {
               key={`${locale}-content`}
               lang={locale}
               className="mb-8 lg:mb-0"
-              dir={process.env.rtlLocales.includes(locale) ? 'rtl' : 'ltr'}
+              dir={rtlLocales.includes(locale) ? 'rtl' : 'ltr'}
             >
               <p className="text-body-small font-bold">{title}</p>
               <p className="text-body-small">{help}</p>
