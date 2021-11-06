@@ -21,7 +21,9 @@ const ThemePage = ({ title, ...articleProps }) => (
         </p>
       </Block>
     </Article>
-    <ThemeList themes={[]} />
+    <Block hero>
+      <ThemeList themes={[]} />
+    </Block>
   </Layout>
 )
 

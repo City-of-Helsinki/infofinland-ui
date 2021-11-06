@@ -5,6 +5,8 @@ import { HERO_MARGIN } from '../src/components/article/Article'
 import { useRouter } from 'next/router'
 import cls from 'classnames'
 import { longTextClass } from '../src/components/Typo'
+import useTranslation from 'next-translate/useTranslation'
+import TextLink from '@/components/TextLink'
 const TEXTS = {
   fi: {
     title: 'Sivua ei löydy.',
@@ -70,9 +72,11 @@ const PageNotFound = () => {
           'mx-2 md:px-6 lg:px-12 lg:mx-12  xl:mx-28 2xl:mx-48  3xl:ms-64  3xl:max-w-4xl'
         )}
       >
-        <h1 className="flex-none px-4 text-h2 md:text-h1xl font-bold">404</h1>
+        <span className="flex-none px-4 text-h2 md:text-h1xl font-bold">
+          404
+        </span>
 
-        <p className="flex-grow text-body md:text-body-large md:ms-6 lg:ms-12">
+        <h1 className="flex-grow text-body md:text-body-large md:ms-6 lg:ms-12">
           {TEXTS[locale].title}
           <span
             className={cls(
@@ -85,7 +89,7 @@ const PageNotFound = () => {
           >
             {TEXTS[locale].help}
           </span>
-        </p>
+        </h1>
       </div>
       <div
         className={cls(
@@ -109,6 +113,28 @@ const PageNotFound = () => {
             </div>
           )
         })}
+      </div>
+    </Layout>
+  )
+}
+
+export const LanguageNotFound = () => {
+  // const { locale } = useRouter()
+  const { t } = useTranslation('common')
+  return (
+    <Layout>
+      <Head>
+        <title>{t('lang404.title')}</title>
+      </Head>
+      <div
+        className={cls(
+          'border-s-10 border-neon-pink shadow-404title rounded min-h-lang404',
+          ' mt-6 md:mt-12 mx-2 p-8 lg:mx-12  xl:mx-28 2xl:mx-48  3xl:ms-64  3xl:max-w-4xl '
+        )}
+      >
+        <h1 className="mb-10 text-h2">{t('lang404.title')}</h1>
+        <p className="mb-4">{t('lang404.text')}</p>
+        <TextLink href="/">{t('lang404.link')}</TextLink>
       </div>
     </Layout>
   )

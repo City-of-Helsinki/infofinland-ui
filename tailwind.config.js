@@ -139,6 +139,7 @@ module.exports = {
       },
       minHeight: {
         card: '7rem',
+        lang404: '24rem',
       },
       leading: {
         one: '1',

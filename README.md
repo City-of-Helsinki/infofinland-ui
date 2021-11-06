@@ -47,7 +47,7 @@ yarn next lint
 yarn format
 ```
 
-6. Run all tests (again, but now if you didn't). Check all snapshots, make you include new tests for new code.
+6. Run all tests (again, but now if you didn't). Check all snapshots, make sure you include new tests for new code.
 
 ```bash
 yarn test
@@ -63,7 +63,7 @@ yarn test --watch
 
 ### Required tools
 
-Preferred Editor is VSCode but any editor or IDE is quite fine.
+Preferred editor is VSCode but any editor or IDE is quite fine.
 Just remember to use _Editorconfig._
 
 #### Recommended setup:
@@ -110,7 +110,7 @@ docker build --build-arg TEST='commandline' -t infofinland-ui .
 
 ## Styling
 
-This project uses TailwindCSS for styling. In this project we _AVOID_ using any CSS-in-JS or other dynamic styling techniques.
+This project uses [TailwindCSS](https://tailwindcss.com/) for styling. In this project we _AVOID_ using any CSS-in-JS or other dynamic styling techniques.
 
 Use Tailwind classes as much as possible. Custom classes use BEM marking with ifu-prefix to differentiate custom classes from Tailwind classes.
 
@@ -124,9 +124,17 @@ EXAMPLE:
 }
 ```
 
-## Images
+### Tailwind Config viewer
 
-Use React SVG components as much as possible.
+The project includes a [Tailwind config viewer](https://www.npmjs.com/package/tailwind-config-viewer).for inspecting and developing desing assets and tokens.
+
+```bash
+yarn twconfig
+```
+
+### Images
+
+In the UI, use React SVG components as much as possible.
 
 ## Localization
 

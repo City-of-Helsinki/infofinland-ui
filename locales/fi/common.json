@@ -45,5 +45,10 @@
     "title": "Haluatko vaihtaa kieltä?",
     "text": "Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
   },
+  "lang404": {
+    "title": "Sivua ei ole saatavilla tällä kielellä",
+    "text": "ommodo sed vel convallis scelerisque mauris, facilisi augue. Diam ut amet arcu velit egestas. Mauris nulla sed pharetra duis. Odio praesent euismod quis a at arcu ut suspendisse vestibulum. Arcu augue lorem vel eget viverra."
+  },
+  "link": "Etusivulle",
   "mainMenu": { "button": "Päävalikko" }
 }
