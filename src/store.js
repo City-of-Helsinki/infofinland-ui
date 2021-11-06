@@ -1,6 +1,9 @@
 import { atom } from 'jotai'
+import axios from 'axios'
 import { focusAtom } from 'jotai/optics'
 import { atomWithStorage, splitAtom } from 'jotai/utils'
+
+export const SEARCH_URL = '/api/search'
 export const CITY_ATOM_KEY = 'city'
 export const LANG_ATOM_KEY = 'language'
 export const selectedCity = atomWithStorage(CITY_ATOM_KEY, undefined)
@@ -34,3 +37,22 @@ export const alertMessages = focusAtom(messages, (optics) =>
   optics.prop('alerts')
 )
 export const alertMessageAtoms = splitAtom(alertMessages)
+
+// Search store
+
+export const getSearchResults = async (q) => {
+  const { data } = await axios.get(SEARCH_URL, { params: { q } })
+  console.log({ data })
+  return data.results
+}
+
+export const searchQueryValue = atom('')
+
+export const fetchSearchResults = atom(async (get) => {
+  const q = get(searchQueryValue)
+  if (!q) {
+    return []
+  } else {
+    return await getSearchResults(q)
+  }
+})

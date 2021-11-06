@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai'
-import { languageMenuVisibility } from '../components/app/atoms'
+import { languageMenuVisibility } from '../store'
 
 const useLanguageMenuToggle = () => {
   return useAtom(languageMenuVisibility)

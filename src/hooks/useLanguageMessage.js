@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai'
-import { languageMessageIsOpen } from '../components/app/atoms'
+import { languageMessageIsOpen } from '../store'
 import { locales, fallbackLocale } from '../../i18n'
 const SESSION_KEY = 'langMessage'
 const SHOWN = 'shown'

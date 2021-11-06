@@ -1,6 +1,6 @@
 import Drawer from './Drawer'
 import { useAtom } from 'jotai'
-import { selectedCity, cityMenuVisibility } from '@/components/app/atoms'
+import { selectedCity, cityMenuVisibility } from '@/src/store'
 import { IconCheck } from '@/components/Icons'
 import cls from 'classnames'
 import CITIES from '@/MOCK_CITIES'

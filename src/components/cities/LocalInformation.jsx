@@ -2,7 +2,7 @@ import Button from '@/components/Button'
 import { IconMapMarker } from '@/components/Icons'
 import ParseHtml from '@/components/ParseHtml'
 import { useAtom } from 'jotai'
-import { selectedCity, cityMenuVisibility } from '@/components/app/atoms'
+import { selectedCity, cityMenuVisibility } from '@/src/store'
 import Block from '@/components/article/Block'
 import cls from 'classnames'
 const DEMOHTML = `
