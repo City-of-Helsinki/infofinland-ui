@@ -47,12 +47,13 @@ export const getSearchResults = async (q) => {
 }
 
 export const searchQueryValue = atom('')
+// export const searchResults = atom([])
 
-export const fetchSearchResults = atom(async (get) => {
-  const q = get(searchQueryValue)
-  if (!q) {
-    return []
-  } else {
-    return await getSearchResults(q)
-  }
-})
+// export const fetchSearchResults = atom(async (get) => {
+//   const q = get(searchQueryValue)
+//   if (!q) {
+//     return []
+//   } else {
+//     return await getSearchResults(q)
+//   }
+// })

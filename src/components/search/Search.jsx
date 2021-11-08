@@ -1,18 +1,26 @@
 import useTranslation from 'next-translate/useTranslation'
-import { IconLookingGlass } from '@/components/Icons'
-import Drawer from '@/components/layout/Drawer'
+import { IconLookingGlass, IconCross } from '@/components/Icons'
+import Drawer from '@/components/search/SearchDrawer'
 import { useState } from 'react'
-// import { getSearchResults } from '@/src/store'
-
+import useSearchResults from '@/hooks/useSearchResults'
 import { useAtom } from 'jotai'
-import { useAtomValue } from 'jotai/utils'
-import { searchQueryValue, fetchSearchResults } from '@/src/store'
+import { searchQueryValue } from '@/src/store'
+import Button from '../Button'
 import { Suspense } from 'react'
-import useSWR from 'swr'
+import Link from 'next/link'
+import useSearchRoute from '@/hooks/useSearchRoute'
 const Search = () => {
   const [isOpen, setVisibility] = useState(false)
   const [query, setQuery] = useAtom(searchQueryValue)
   const { t } = useTranslation('common')
+  const close = () => setVisibility(false)
+  const onSubmit = () => {
+    close()
+    // And reset top menu search bar query word
+    setQuery('')
+  }
+  const goToSearch = useSearchRoute({ onSubmit, q: query })
+
   return (
     <>
       <div className=" flex-none 2xl:flex-grow">
@@ -22,39 +30,43 @@ const Search = () => {
           title={t('buttons.search')}
         >
           <span className="px-2 transform translate-y-0.5">
-            <IconLookingGlass className="" />
+            {!isOpen && <IconLookingGlass className="" />}
+            {isOpen && <IconCross className="me-2" />}
           </span>
-
-          <span className="hidden md:inline-block">{t('buttons.search')}</span>
+          {!isOpen && (
+            <span className="hidden md:inline-block">
+              {t('buttons.search')}
+            </span>
+          )}{' '}
         </button>
       </div>
-      <Drawer close={() => setVisibility(false)} isOpen={isOpen}>
-        <form className="bg-white">
-          <div className="flex py-4 mx-4 border-gray-lighter">
-            <div className="overflow-hidden flex-grow ms-4">
+      <Drawer close={close} isOpen={isOpen}>
+        <form className="bg-white" action="/hae" onSubmit={goToSearch}>
+          <div className="flex items-center py-4 mx-2 md:mx-4">
+            <div className="overflow-hidden flex-grow h-14 md:h-16 border-b border-gray-lighter">
               <input
                 type="text"
+                name="q"
                 value={query}
                 onChange={({ target: { value } }) => setQuery(value)}
-                name=""
-                placeholder="Hae hakusanalla..."
+                placeholder={t('search.placeholder')}
                 id=""
-                className="py-3 px-1 text-h3 md:text-h3xl outline-none"
+                className="py-3 px-1 md:w-full text-h3 outline-none"
               />
             </div>
-            <div className="flex-none">
-              <button type="submit" className="inline-block">
-                <IconLookingGlass className="mx-4" />
+            <div className="flex flex-none items-center h-14 md:h-16 border-b border-gray-lighter">
+              <Button type="submit" className="hidden md:inline-block me-2">
+                <IconLookingGlass className="mx-2" />
+              </Button>
+              <button type="submit" className="inline-block md:hidden me-2">
+                <IconLookingGlass className="mx-2" />
               </button>
             </div>
           </div>
         </form>
-        <Suspense fallback="loading...">
-          <SearchResults />
+        <Suspense fallback={<div className="mx-4">loading....</div>}>
+          <SWRResults />
         </Suspense>
-        {/* <Suspense fallback="loading...">
-          <SWRResults/>
-        </Suspense> */}
       </Drawer>
     </>
   )
@@ -62,24 +74,21 @@ const Search = () => {
 
 const Result = ({ title, url }) => (
   <p className="mb-4">
-    {title}
-    <br />
-    {url}
+    <Link passHref href={url}>
+      <a> {title}</a>
+    </Link>
   </p>
 )
 
-const SearchResults = () => {
-  const results = useAtomValue(fetchSearchResults)
-  return results.map((r, i) => <Result {...r} key={`r-${i}`} />)
+export const SWRResults = () => {
+  const results = useSearchResults()
+  return (
+    <div className="mx-4">
+      {results.map((r, i) => (
+        <Result {...r} key={`r-${i}`} />
+      ))}
+    </div>
+  )
 }
-
-// const SWRResults = () =>{
-//   const q = useAtomValue(searchQueryValue)
-//   const cacheKey = () => q === '' ? false: q
-//   const {data:results } = useSWR(cacheKey,getSearchResults,{suspense:true})
-
-//   return results.map( (r,i) => <Result {...r} key={`r-${i}`}/>    )
-
-// }
 
 export default Search

@@ -28,7 +28,7 @@ const TopMenu = () => {
   const closeMenu = () => setLangMenuVisibility(false)
 
   return (
-    <div className="sticky top-0 z-10 xl:justify-center items-center h-topbar md:h-topbarxl bg-white shadow-topbar">
+    <header className="sticky top-0 z-10 xl:justify-center items-center h-topbar md:h-topbarxl bg-white shadow-topbar">
       <div className="flex items-center w-full 3xl:max-w-screen-4xl h-topbar md:h-topbarxl">
         <Logo />
         <div className="flex-grow"></div>
@@ -39,7 +39,7 @@ const TopMenu = () => {
         <MobileNavi />
         <CityMenu />
       </div>
-    </div>
+    </header>
   )
 }
 

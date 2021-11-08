@@ -6,6 +6,7 @@
 @import './components.feedback.css';
 @import './components.article.css';
 @import './components.footer.css';
+@import './components.search.css';
 
 @layer components {
   .ifu-layout__body {

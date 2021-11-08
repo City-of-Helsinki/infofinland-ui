@@ -50,5 +50,14 @@
     "text": "ommodo sed vel convallis scelerisque mauris, facilisi augue. Diam ut amet arcu velit egestas. Mauris nulla sed pharetra duis. Odio praesent euismod quis a at arcu ut suspendisse vestibulum. Arcu augue lorem vel eget viverra."
   },
   "link": "Etusivulle",
+  "search": {
+    "heading": "Hakutulokset",
+    "placeholder": "Hae hakusanalla..",
+    "title": {
+      "results": "Hakutulokset: {{q}}",
+      "start": "Hae sivustolta",
+      "noresults": "Ei hakutuloksia"
+    }
+  },
   "mainMenu": { "button": "Päävalikko" }
 }

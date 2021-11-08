@@ -7,6 +7,7 @@
     .ifu-topmenu__container {
       height: 80px;
       box-shadow: 0 4px 5px 0px rgb(0 0 0 / 35%);
+      @apply z-50;
     }
   }
   .ifu-topmenu__logo {
