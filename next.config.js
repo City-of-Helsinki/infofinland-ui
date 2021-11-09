@@ -10,6 +10,7 @@ module.exports = nextTranslate(
    * See i18n.js for localization configs
    * */
   {
+    reactStrictMode: true,
     poweredByHeader: false,
     env: {
       FB_URL: 'https://www.facebook.com/infofinland.fi',
