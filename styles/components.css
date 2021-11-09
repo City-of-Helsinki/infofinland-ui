@@ -11,7 +11,7 @@
 @layer components {
   .ifu-layout__body {
     min-height: calc(100vh - 80px);
-    @apply flex flex-col justify-between  flex-1 xl:px-0 border-black-op1 border-s-2;
+    @apply flex flex-col justify-between  flex-1 xl:px-0 border-black-op1 border-s-2 overflow-hidden;
   }
 
   .ifu-text-link {

@@ -51,6 +51,7 @@ const Search = () => {
                 onChange={({ target: { value } }) => setQuery(value)}
                 placeholder={t('search.placeholder')}
                 id=""
+                autoFocus
                 className="py-3 px-1 md:w-full text-h3 outline-none"
               />
             </div>

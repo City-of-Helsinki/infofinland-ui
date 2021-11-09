@@ -39,7 +39,7 @@ const SearchBar = ({ qw }) => {
   return (
     <div className="my-8">
       <form
-        className="flex items-center py-2 border border-black"
+        className="flex items-center border border-black"
         onSubmit={goToSearch}
       >
         <input
@@ -48,10 +48,10 @@ const SearchBar = ({ qw }) => {
           name="q"
           value={q}
           onChange={({ target: { value } }) => setQuery(value)}
-          className=" inline-block flex-grow px-2 outline-none"
+          className=" inline-block flex-grow px-2 h-12"
         />
-        <button>
-          <IconLookingGlass className=" inline-block flex-none me-6" />
+        <button className="inline-block flex-none w-12 h-12">
+          <IconLookingGlass className="mx-2" />
         </button>
       </form>
     </div>
