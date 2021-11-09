@@ -2,6 +2,9 @@ import { IconFacebook, IconInstagram, IconTwitter, IconYoutube } from '../Icons'
 import { HERO_MARGIN } from '@/components/article/Article'
 import Link from 'next/link'
 import cls from 'classnames'
+/**
+ * SOME Urls are defined in next.config.js
+ * */
 const Footer = () => (
   <footer className={cls(HERO_MARGIN, 'mt-16 mb-16')}>
     <div className="py-10 border-t border-b border-gray ifu-footer__brand">
@@ -14,28 +17,28 @@ const Footer = () => (
     </div>
     <div className="flex justify-center sm:justify-start items-center py-11 sm:py-7 mb-5 space-s-4">
       <div>
-        <Link href="/" passHref>
+        <Link href={process.env.FB_URL} passHref>
           <a>
             <IconFacebook title="Facebook" />
           </a>
         </Link>
       </div>
       <div>
-        <Link href="/" passHref>
+        <Link href={process.env.TWITTER_URL} passHref>
           <a>
             <IconTwitter title="Twitter" />
           </a>
         </Link>
       </div>
       <div>
-        <Link href="/" passHref>
+        <Link href={process.env.INSTAGRAM_URL} passHref>
           <a>
             <IconInstagram title="Instagram" />
           </a>
         </Link>
       </div>
       <div>
-        <Link href="/" passHref>
+        <Link href={process.env.YOUTUBE_URL} passHref>
           <a>
             <IconYoutube title="Youtube" />
           </a>

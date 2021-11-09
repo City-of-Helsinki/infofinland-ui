@@ -11,6 +11,11 @@ module.exports = nextTranslate(
    * */
   {
     poweredByHeader: false,
-    env: {},
+    env: {
+      FB_URL: 'https://www.facebook.com/infofinland.fi',
+      INSTAGRAM_URL: 'https://www.instagram.com/infofinland.fi/',
+      YOUTUBE_URL: 'https://www.youtube.com/c/infofinland',
+      TWITTER_URL: 'https://twitter.com/InfoFinlandfi',
+    },
   }
 )

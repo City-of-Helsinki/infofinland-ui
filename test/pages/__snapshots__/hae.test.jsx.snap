@@ -746,7 +746,7 @@ exports[`Search Page page renders empty search field  1`] = `
                   \\"
                 >
                   <div>
-                    <a href=\\"/\\"
+                    <a href=\\"https://www.facebook.com/infofinland.fi\\"
                       ><svg
                         class=\\"inline-block\\"
                         width=\\"35\\"
@@ -772,7 +772,7 @@ exports[`Search Page page renders empty search field  1`] = `
                     ></a>
                   </div>
                   <div>
-                    <a href=\\"/\\"
+                    <a href=\\"https://twitter.com/InfoFinlandfi\\"
                       ><svg
                         class=\\"inline-block\\"
                         width=\\"35\\"
@@ -798,7 +798,7 @@ exports[`Search Page page renders empty search field  1`] = `
                     ></a>
                   </div>
                   <div>
-                    <a href=\\"/\\"
+                    <a href=\\"https://www.instagram.com/infofinland.fi/\\"
                       ><svg
                         class=\\"inline-block\\"
                         width=\\"35\\"
@@ -836,7 +836,7 @@ exports[`Search Page page renders empty search field  1`] = `
                     ></a>
                   </div>
                   <div>
-                    <a href=\\"/\\"
+                    <a href=\\"https://www.youtube.com/c/infofinland\\"
                       ><svg
                         class=\\"inline-block\\"
                         width=\\"35\\"
@@ -1690,7 +1690,7 @@ exports[`Search Page page renders empty search field  2`] = `
               \\"
             >
               <div>
-                <a href=\\"/\\"
+                <a href=\\"https://www.facebook.com/infofinland.fi\\"
                   ><svg
                     class=\\"inline-block\\"
                     width=\\"35\\"
@@ -1716,7 +1716,7 @@ exports[`Search Page page renders empty search field  2`] = `
                 ></a>
               </div>
               <div>
-                <a href=\\"/\\"
+                <a href=\\"https://twitter.com/InfoFinlandfi\\"
                   ><svg
                     class=\\"inline-block\\"
                     width=\\"35\\"
@@ -1742,7 +1742,7 @@ exports[`Search Page page renders empty search field  2`] = `
                 ></a>
               </div>
               <div>
-                <a href=\\"/\\"
+                <a href=\\"https://www.instagram.com/infofinland.fi/\\"
                   ><svg
                     class=\\"inline-block\\"
                     width=\\"35\\"
@@ -1780,7 +1780,7 @@ exports[`Search Page page renders empty search field  2`] = `
                 ></a>
               </div>
               <div>
-                <a href=\\"/\\"
+                <a href=\\"https://www.youtube.com/c/infofinland\\"
                   ><svg
                     class=\\"inline-block\\"
                     width=\\"35\\"
@@ -2720,7 +2720,7 @@ exports[`Search Page page renders with given query string from url 1`] = `
                   \\"
                 >
                   <div>
-                    <a href=\\"/\\"
+                    <a href=\\"https://www.facebook.com/infofinland.fi\\"
                       ><svg
                         class=\\"inline-block\\"
                         width=\\"35\\"
@@ -2746,7 +2746,7 @@ exports[`Search Page page renders with given query string from url 1`] = `
                     ></a>
                   </div>
                   <div>
-                    <a href=\\"/\\"
+                    <a href=\\"https://twitter.com/InfoFinlandfi\\"
                       ><svg
                         class=\\"inline-block\\"
                         width=\\"35\\"
@@ -2772,7 +2772,7 @@ exports[`Search Page page renders with given query string from url 1`] = `
                     ></a>
                   </div>
                   <div>
-                    <a href=\\"/\\"
+                    <a href=\\"https://www.instagram.com/infofinland.fi/\\"
                       ><svg
                         class=\\"inline-block\\"
                         width=\\"35\\"
@@ -2810,7 +2810,7 @@ exports[`Search Page page renders with given query string from url 1`] = `
                     ></a>
                   </div>
                   <div>
-                    <a href=\\"/\\"
+                    <a href=\\"https://www.youtube.com/c/infofinland\\"
                       ><svg
                         class=\\"inline-block\\"
                         width=\\"35\\"
@@ -3745,7 +3745,7 @@ exports[`Search Page page renders with given query string from url 2`] = `
               \\"
             >
               <div>
-                <a href=\\"/\\"
+                <a href=\\"https://www.facebook.com/infofinland.fi\\"
                   ><svg
                     class=\\"inline-block\\"
                     width=\\"35\\"
@@ -3771,7 +3771,7 @@ exports[`Search Page page renders with given query string from url 2`] = `
                 ></a>
               </div>
               <div>
-                <a href=\\"/\\"
+                <a href=\\"https://twitter.com/InfoFinlandfi\\"
                   ><svg
                     class=\\"inline-block\\"
                     width=\\"35\\"
@@ -3797,7 +3797,7 @@ exports[`Search Page page renders with given query string from url 2`] = `
                 ></a>
               </div>
               <div>
-                <a href=\\"/\\"
+                <a href=\\"https://www.instagram.com/infofinland.fi/\\"
                   ><svg
                     class=\\"inline-block\\"
                     width=\\"35\\"
@@ -3835,7 +3835,7 @@ exports[`Search Page page renders with given query string from url 2`] = `
                 ></a>
               </div>
               <div>
-                <a href=\\"/\\"
+                <a href=\\"https://www.youtube.com/c/infofinland\\"
                   ><svg
                     class=\\"inline-block\\"
                     width=\\"35\\"
@@ -4688,7 +4688,7 @@ exports[`Search Page page renders with no results 1`] = `
                   \\"
                 >
                   <div>
-                    <a href=\\"/\\"
+                    <a href=\\"https://www.facebook.com/infofinland.fi\\"
                       ><svg
                         class=\\"inline-block\\"
                         width=\\"35\\"
@@ -4714,7 +4714,7 @@ exports[`Search Page page renders with no results 1`] = `
                     ></a>
                   </div>
                   <div>
-                    <a href=\\"/\\"
+                    <a href=\\"https://twitter.com/InfoFinlandfi\\"
                       ><svg
                         class=\\"inline-block\\"
                         width=\\"35\\"
@@ -4740,7 +4740,7 @@ exports[`Search Page page renders with no results 1`] = `
                     ></a>
                   </div>
                   <div>
-                    <a href=\\"/\\"
+                    <a href=\\"https://www.instagram.com/infofinland.fi/\\"
                       ><svg
                         class=\\"inline-block\\"
                         width=\\"35\\"
@@ -4778,7 +4778,7 @@ exports[`Search Page page renders with no results 1`] = `
                     ></a>
                   </div>
                   <div>
-                    <a href=\\"/\\"
+                    <a href=\\"https://www.youtube.com/c/infofinland\\"
                       ><svg
                         class=\\"inline-block\\"
                         width=\\"35\\"
@@ -5638,7 +5638,7 @@ exports[`Search Page page renders with no results 2`] = `
               \\"
             >
               <div>
-                <a href=\\"/\\"
+                <a href=\\"https://www.facebook.com/infofinland.fi\\"
                   ><svg
                     class=\\"inline-block\\"
                     width=\\"35\\"
@@ -5664,7 +5664,7 @@ exports[`Search Page page renders with no results 2`] = `
                 ></a>
               </div>
               <div>
-                <a href=\\"/\\"
+                <a href=\\"https://twitter.com/InfoFinlandfi\\"
                   ><svg
                     class=\\"inline-block\\"
                     width=\\"35\\"
@@ -5690,7 +5690,7 @@ exports[`Search Page page renders with no results 2`] = `
                 ></a>
               </div>
               <div>
-                <a href=\\"/\\"
+                <a href=\\"https://www.instagram.com/infofinland.fi/\\"
                   ><svg
                     class=\\"inline-block\\"
                     width=\\"35\\"
@@ -5728,7 +5728,7 @@ exports[`Search Page page renders with no results 2`] = `
                 ></a>
               </div>
               <div>
-                <a href=\\"/\\"
+                <a href=\\"https://www.youtube.com/c/infofinland\\"
                   ><svg
                     class=\\"inline-block\\"
                     width=\\"35\\"

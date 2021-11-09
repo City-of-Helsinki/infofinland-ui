@@ -1737,7 +1737,7 @@ exports[`Home page page renders and matches snapshot 1`] = `
                   \\"
                 >
                   <div>
-                    <a href=\\"/\\"
+                    <a href=\\"https://www.facebook.com/infofinland.fi\\"
                       ><svg
                         class=\\"inline-block\\"
                         width=\\"35\\"
@@ -1763,7 +1763,7 @@ exports[`Home page page renders and matches snapshot 1`] = `
                     ></a>
                   </div>
                   <div>
-                    <a href=\\"/\\"
+                    <a href=\\"https://twitter.com/InfoFinlandfi\\"
                       ><svg
                         class=\\"inline-block\\"
                         width=\\"35\\"
@@ -1789,7 +1789,7 @@ exports[`Home page page renders and matches snapshot 1`] = `
                     ></a>
                   </div>
                   <div>
-                    <a href=\\"/\\"
+                    <a href=\\"https://www.instagram.com/infofinland.fi/\\"
                       ><svg
                         class=\\"inline-block\\"
                         width=\\"35\\"
@@ -1827,7 +1827,7 @@ exports[`Home page page renders and matches snapshot 1`] = `
                     ></a>
                   </div>
                   <div>
-                    <a href=\\"/\\"
+                    <a href=\\"https://www.youtube.com/c/infofinland\\"
                       ><svg
                         class=\\"inline-block\\"
                         width=\\"35\\"
@@ -3672,7 +3672,7 @@ exports[`Home page page renders and matches snapshot 2`] = `
               \\"
             >
               <div>
-                <a href=\\"/\\"
+                <a href=\\"https://www.facebook.com/infofinland.fi\\"
                   ><svg
                     class=\\"inline-block\\"
                     width=\\"35\\"
@@ -3698,7 +3698,7 @@ exports[`Home page page renders and matches snapshot 2`] = `
                 ></a>
               </div>
               <div>
-                <a href=\\"/\\"
+                <a href=\\"https://twitter.com/InfoFinlandfi\\"
                   ><svg
                     class=\\"inline-block\\"
                     width=\\"35\\"
@@ -3724,7 +3724,7 @@ exports[`Home page page renders and matches snapshot 2`] = `
                 ></a>
               </div>
               <div>
-                <a href=\\"/\\"
+                <a href=\\"https://www.instagram.com/infofinland.fi/\\"
                   ><svg
                     class=\\"inline-block\\"
                     width=\\"35\\"
@@ -3762,7 +3762,7 @@ exports[`Home page page renders and matches snapshot 2`] = `
                 ></a>
               </div>
               <div>
-                <a href=\\"/\\"
+                <a href=\\"https://www.youtube.com/c/infofinland\\"
                   ><svg
                     class=\\"inline-block\\"
                     width=\\"35\\"
