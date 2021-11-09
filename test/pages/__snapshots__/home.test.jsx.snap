@@ -6,7 +6,7 @@ exports[`Home page page renders and matches snapshot 1`] = `
   <body>
     <div id=\\"__next\\">
       <div class=\\"relative text-body bg-white\\">
-        <div
+        <header
           class=\\"
             sticky
             top-0
@@ -40,7 +40,7 @@ exports[`Home page page renders and matches snapshot 1`] = `
               title=\\"common:languageMenu.label\\"
               class=\\"block lg:hidden h-8 transform -translate-y-0.5 md:me-2\\"
             >
-              <span class=\\"inline-block text-action uppercase\\">fi</span
+              <span class=\\"text-action uppercase\\">Suomi</span
               ><svg
                 class=\\"inline-block mx-2 xl:mx-0 w-4 md:w-5 h-4 md:h-5\\"
                 xmlns=\\"http://www.w3.org/2000/svg\\"
@@ -127,7 +127,7 @@ exports[`Home page page renders and matches snapshot 1`] = `
                 role=\\"option\\"
                 aria-selected=\\"true\\"
                 href=\\"/index\\"
-                ><span class=\\"xl:hidden border-b-3 border-black\\">fi</span
+                ><span class=\\"xl:hidden border-b-2 border-black\\">fi</span
                 ><span
                   class=\\"
                     hidden
@@ -466,7 +466,7 @@ exports[`Home page page renders and matches snapshot 1`] = `
               </button>
             </div>
           </div>
-        </div>
+        </header>
         <main class=\\"md:flex md:items-stretch\\" role=\\"main\\">
           <div class=\\"md:hidden\\">
             <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
@@ -572,7 +572,6 @@ exports[`Home page page renders and matches snapshot 1`] = `
                 <li class=\\"block relative\\">
                   <div
                     class=\\"
-                      py-4
                       flex
                       items-center
                       w-full
@@ -583,12 +582,12 @@ exports[`Home page page renders and matches snapshot 1`] = `
                       border-white
                     \\"
                   >
-                    <a class=\\"flex-grow\\" title=\\"Close menu\\" href=\\"/theme1\\"
+                    <a class=\\"flex-grow py-4\\" title=\\"Close menu\\" href=\\"/theme1\\"
                       ><span class=\\"block\\">Moving to Finland</span></a
                     >
                     <div class=\\"flex-none\\">
                       <button
-                        class=\\"w-14 h-8 text-gray-light me-2 text-start\\"
+                        class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
                         tabindex=\\"0\\"
                       >
                         <svg
@@ -614,7 +613,6 @@ exports[`Home page page renders and matches snapshot 1`] = `
                 <li class=\\"block relative\\">
                   <div
                     class=\\"
-                      py-4
                       flex
                       items-center
                       w-full
@@ -625,12 +623,12 @@ exports[`Home page page renders and matches snapshot 1`] = `
                       border-white
                     \\"
                   >
-                    <a class=\\"flex-grow\\" title=\\"Close menu\\" href=\\"/theme2\\"
+                    <a class=\\"flex-grow py-4\\" title=\\"Close menu\\" href=\\"/theme2\\"
                       ><span class=\\"block\\"> Education</span></a
                     >
                     <div class=\\"flex-none\\">
                       <button
-                        class=\\"w-14 h-8 text-gray-light me-2 text-start\\"
+                        class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
                         tabindex=\\"0\\"
                       >
                         <svg
@@ -1939,7 +1937,7 @@ exports[`Home page page renders and matches snapshot 1`] = `
 exports[`Home page page renders and matches snapshot 2`] = `
 "<div id=\\"__next\\">
   <div class=\\"relative text-body bg-white\\">
-    <div
+    <header
       class=\\"
         sticky
         top-0
@@ -1973,7 +1971,7 @@ exports[`Home page page renders and matches snapshot 2`] = `
           title=\\"common:languageMenu.label\\"
           class=\\"block lg:hidden h-8 transform -translate-y-0.5 md:me-2\\"
         >
-          <span class=\\"inline-block text-action uppercase\\">fi</span
+          <span class=\\"text-action uppercase\\">Suomi</span
           ><svg
             class=\\"inline-block mx-2 xl:mx-0 w-4 md:w-5 h-4 md:h-5\\"
             xmlns=\\"http://www.w3.org/2000/svg\\"
@@ -2060,7 +2058,7 @@ exports[`Home page page renders and matches snapshot 2`] = `
             role=\\"option\\"
             aria-selected=\\"true\\"
             href=\\"/index\\"
-            ><span class=\\"xl:hidden border-b-3 border-black\\">fi</span
+            ><span class=\\"xl:hidden border-b-2 border-black\\">fi</span
             ><span
               class=\\"
                 hidden
@@ -2397,7 +2395,7 @@ exports[`Home page page renders and matches snapshot 2`] = `
           </button>
         </div>
       </div>
-    </div>
+    </header>
     <main class=\\"md:flex md:items-stretch\\" role=\\"main\\">
       <div class=\\"md:hidden\\">
         <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
@@ -2513,7 +2511,6 @@ exports[`Home page page renders and matches snapshot 2`] = `
             <li class=\\"block relative\\">
               <div
                 class=\\"
-                  py-4
                   flex
                   items-center
                   w-full
@@ -2524,12 +2521,12 @@ exports[`Home page page renders and matches snapshot 2`] = `
                   border-white
                 \\"
               >
-                <a class=\\"flex-grow\\" title=\\"Close menu\\" href=\\"/theme1\\"
+                <a class=\\"flex-grow py-4\\" title=\\"Close menu\\" href=\\"/theme1\\"
                   ><span class=\\"block\\">Moving to Finland</span></a
                 >
                 <div class=\\"flex-none\\">
                   <button
-                    class=\\"w-14 h-8 text-gray-light me-2 text-start\\"
+                    class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
                     tabindex=\\"0\\"
                   >
                     <svg
@@ -2555,7 +2552,6 @@ exports[`Home page page renders and matches snapshot 2`] = `
             <li class=\\"block relative\\">
               <div
                 class=\\"
-                  py-4
                   flex
                   items-center
                   w-full
@@ -2566,12 +2562,12 @@ exports[`Home page page renders and matches snapshot 2`] = `
                   border-white
                 \\"
               >
-                <a class=\\"flex-grow\\" title=\\"Close menu\\" href=\\"/theme2\\"
+                <a class=\\"flex-grow py-4\\" title=\\"Close menu\\" href=\\"/theme2\\"
                   ><span class=\\"block\\"> Education</span></a
                 >
                 <div class=\\"flex-none\\">
                   <button
-                    class=\\"w-14 h-8 text-gray-light me-2 text-start\\"
+                    class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
                     tabindex=\\"0\\"
                   >
                     <svg

@@ -74,9 +74,7 @@ export const LanguageMenuButton = ({ onClick }) => {
       onClick={onClick}
     >
       {/* <span className=" inline-block text-action uppercase">{locale}</span> */}
-      <span className="text-action uppercase">
-        {text}
-      </span>
+      <span className="text-action uppercase">{text}</span>
       <IconGlobe className="mx-2 xl:mx-0 w-4 md:w-5 h-4 md:h-5" />
     </button>
   )

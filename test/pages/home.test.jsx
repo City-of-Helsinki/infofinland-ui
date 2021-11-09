@@ -4,6 +4,11 @@ import { getPage } from 'next-page-tester'
 import prettier from 'prettier'
 
 describe('Home page', () => {
+  beforeAll(() => {
+    // prevent language notification from showing up on react hydration phase"
+    window.sessionStorage.setItem('langMessage', 'shown')
+  })
+
   it('page renders and matches snapshot', async () => {
     const { serverRenderToString, render } = await getPage({
       route: '/',

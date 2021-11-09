@@ -11,7 +11,6 @@ const LanguageSelector = ({ openMenu }) => {
   const { t } = useTranslation('common')
 
   return (
-    //Check data structure with real data
     <>
       <div
         dir="ltr"

@@ -8,11 +8,9 @@ import React from 'react'
 // import { render } from "@/test/test-utils";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { render } from '@testing-library/react'
-import Button, {CloseButton, LinkButton} from '@/components/Button'
+import Button, { CloseButton, LinkButton } from '@/components/Button'
 
 describe('Buttons', () => {
-
-
   describe('Button', () => {
     it('should render Button component with ifu-button base class', () => {
       const { asFragment } = render(<Button>Hello</Button>)
@@ -25,7 +23,11 @@ describe('Buttons', () => {
     })
 
     it('should render pass any props to button', () => {
-      const { asFragment } = render(<Button type="submit" id="test" aria-label="hello">Hello</Button>)
+      const { asFragment } = render(
+        <Button type="submit" id="test" aria-label="hello">
+          Hello
+        </Button>
+      )
       expect(asFragment()).toMatchSnapshot()
     })
   })
@@ -36,12 +38,18 @@ describe('Buttons', () => {
       expect(asFragment()).toMatchSnapshot()
     })
     it('should render append classNames component', () => {
-      const { asFragment } = render(<LinkButton className="foo">looks like link</LinkButton>)
+      const { asFragment } = render(
+        <LinkButton className="foo">looks like link</LinkButton>
+      )
       expect(asFragment()).toMatchSnapshot()
     })
 
     it('should render pass any props to button', () => {
-      const { asFragment } = render(<LinkButton id="test" type="submit">looks like link</LinkButton>)
+      const { asFragment } = render(
+        <LinkButton id="test" type="submit">
+          looks like link
+        </LinkButton>
+      )
       expect(asFragment()).toMatchSnapshot()
     })
   })
@@ -53,6 +61,4 @@ describe('Buttons', () => {
       expect(asFragment()).toMatchSnapshot()
     })
   })
-
-
 })

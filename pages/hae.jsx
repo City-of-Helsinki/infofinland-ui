@@ -1,24 +1,32 @@
-// import { useRouter } from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
 import Layout from '@/components/layout/Layout'
 import Head from 'next/head'
 import Block from '@/components/article/Block'
-// import { SWRResults } from '@/components/search/Search'
-// import { Suspense } from 'react'
+
 import Link from 'next/link'
 import SEARCH_RESULTS from '@/MOCK_SEARCH'
 import { useEffect, useState } from 'react'
 import { IconLookingGlass } from '@/components/Icons'
-// import { getSearchResults } from '@/src/store'
-// const isServer = typeof window === 'undefined'
+
 import useSearchRoute from '@/hooks/useSearchRoute'
 import { IconAngleRight } from '@/components/Icons'
 
 import Highlighter from 'react-highlight-words'
 
 export async function getServerSideProps({ query }) {
+  /*
+   Scaffold for testing different UI states for search page.
+   See page snapshot tests when real search is implemented and
+  mock search results.
+  */
+
   const q = query.q || null
-  const results = q === null ? [] : SEARCH_RESULTS
+  let results = null
+  // Mock no results witn '_'
+  if (q) {
+    results = q === '_' ? [] : SEARCH_RESULTS
+  }
+
   return {
     props: {
       q,
@@ -28,6 +36,7 @@ export async function getServerSideProps({ query }) {
 }
 
 const SearchBar = ({ qw }) => {
+  // Sync search field with URL
   const { t } = useTranslation('common')
   const [q, setQuery] = useState(qw)
   const goToSearch = useSearchRoute({ q })
@@ -46,7 +55,7 @@ const SearchBar = ({ qw }) => {
           type="text"
           placeholder={t('search.placeholder')}
           name="q"
-          value={q}
+          value={q === null ? '' : q}
           onChange={({ target: { value } }) => setQuery(value)}
           className=" inline-block flex-grow px-2 h-12"
         />
@@ -94,7 +103,7 @@ export const SearchPage = ({ q, results }) => {
   const { t } = useTranslation('common')
 
   let title
-  if (q == null) {
+  if (!q) {
     title = t('search.title.start')
   } else if (results.length === 0) {
     title = t('search.title.noresults')
@@ -109,9 +118,8 @@ export const SearchPage = ({ q, results }) => {
       </Head>
       <Block hero>
         <h1 className="mt-16 text-h2 md:text-h2xl">{title}</h1>
-
         <SearchBar qw={q} />
-        <SearchResults q={q} results={results} />
+        {results && <SearchResults q={q} results={results} />}{' '}
       </Block>
     </Layout>
   )
