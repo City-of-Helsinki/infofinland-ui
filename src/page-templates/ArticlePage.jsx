@@ -221,7 +221,7 @@ const ArticlePage = ({
           </p>
         </Block>
         <ReadMoreBlock />
-        <LocalInformation />
+        <LocalInformation readMoreUrl={'/test'} />
         <ReadMoreBlock />
       </Article>
     </Layout>

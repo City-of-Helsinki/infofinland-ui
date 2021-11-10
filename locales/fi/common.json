@@ -49,9 +49,10 @@
     "title": "Sivua ei ole saatavilla tällä kielellä",
     "text": "ommodo sed vel convallis scelerisque mauris, facilisi augue. Diam ut amet arcu velit egestas. Mauris nulla sed pharetra duis. Odio praesent euismod quis a at arcu ut suspendisse vestibulum. Arcu augue lorem vel eget viverra."
   },
-  "link": "Etusivulle",
+  "localInfo": {
+    "readMore": "Lue lisää"
+  },
   "search": {
-    "heading": "Hakutulokset",
     "placeholder": "Hae hakusanalla..",
     "title": {
       "results": "Hakutulokset: {{q}}",

@@ -6,8 +6,10 @@ import { selectedCity, cityMenuVisibility } from '@/src/store'
 import Block from '@/components/article/Block'
 import cls from 'classnames'
 import { IconExternalSite } from '@/components/Icons'
+import useTranslation from 'next-translate/useTranslation'
 
 import { READMORE_CONTENT } from '@/components/article/ReadMoreBlock'
+import TextLink from '../TextLink'
 const DEMOHTML = `
 <div>
 
@@ -15,11 +17,12 @@ const DEMOHTML = `
 <p>YA and Vamia also organise preparatory training for basic vocational training, i.e. VALMA. The training lasts for a maximum of one academic year. YA’s VALMA training is in Swedish; Handledande utbildning för yrkesutbildning.</p>
 </div>
 `
-const LocalInformation = () => {
+const LocalInformation = ({ readMoreUrl }) => {
   const [city] = useAtom(selectedCity)
   // eslint-disable-next-line no-unused-vars
   const [, setOpen] = useAtom(cityMenuVisibility)
   const openMenu = () => setOpen(true)
+  const { t } = useTranslation('common')
 
   return (
     <div className="mb-8">
@@ -58,6 +61,13 @@ const LocalInformation = () => {
         <Block className="py-8 mb-4 bg-green-white">
           <ParseHtml html={DEMOHTML} />
           <LocalReadMore />
+          {readMoreUrl && (
+            <p className="mt-8">
+              <TextLink className="font-bold" href={readMoreUrl}>
+                {t('localInfo.readMore')}
+              </TextLink>
+            </p>
+          )}
         </Block>
       )}
     </div>
