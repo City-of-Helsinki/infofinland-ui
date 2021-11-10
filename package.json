@@ -4,7 +4,7 @@
     "dev": "next dev",
     "build": "next build",
     "format": "prettier --write .",
-    "start": "next start -p 8080",
+    "start": "next start",
     "twconfig": "tailwind-config-viewer -o --port 3600",
     "test": "jest"
   },
