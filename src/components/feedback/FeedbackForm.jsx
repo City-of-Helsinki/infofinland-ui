@@ -159,7 +159,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
               ></textarea>
             </div>
             <div className="mb-16">
-              <Button type="submit" value="ok">
+              <Button type="submit" value="ok" className="me-2">
                 {t('feedback.buttons.send')}
               </Button>
               <LinkButton onClick={onCancel} type="button">

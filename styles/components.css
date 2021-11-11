@@ -6,11 +6,12 @@
 @import './components.feedback.css';
 @import './components.article.css';
 @import './components.footer.css';
+@import './components.search.css';
 
 @layer components {
   .ifu-layout__body {
     min-height: calc(100vh - 80px);
-    @apply flex flex-col justify-between  flex-1 xl:px-0 border-black-op1 border-s-2;
+    @apply flex flex-col justify-between  flex-1 xl:px-0 border-black-op1 border-s-2 overflow-hidden;
   }
 
   .ifu-text-link {
@@ -19,6 +20,13 @@
 
   .ifu-button {
     @apply text-black bg-white shadow-button hover:shadow-button-hover border-2 border-black rounded px-4 py-2 leading-6  font-sans font-bold;
+  }
+
+  .ifu-button:focus-visible {
+    outline-position: outside;
+    outline-style: solid;
+    outline-color: rgba(0, 0, 50, 0.3);
+    outline-width: 3px;
   }
 
   /*demo content styling. remove when real content comes*/

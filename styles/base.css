@@ -37,10 +37,11 @@
   }
 
   /* Focus outline style */
-  *:focus-visible {
+  /* input:focus-visible {
     @apply rounded;
+    outline-position: outside;
     outline-style: solid;
-    outline-color: black;
-    outline-width: 1px;
-  }
+    outline-color: rgba(0, 0, 0, 0.3);
+    outline-width: 2px;
+  } */
 }

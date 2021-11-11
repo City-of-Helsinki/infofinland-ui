@@ -2,7 +2,7 @@ import Block from '@/components/article/Block'
 import { IconExternalSite } from '@/components/Icons'
 import cls from 'classnames'
 
-const CONTENT = [
+export const READMORE_CONTENT = [
   {
     siteName: 'DEMO:Kela',
     pageUrl: 'http://www.kela.fi/',
@@ -45,7 +45,7 @@ const CONTENT = [
     ],
   },
 ]
-const ReadMoreBlock = ({ content = CONTENT }) => {
+const ReadMoreBlock = ({ content = READMORE_CONTENT }) => {
   return (
     <Block className="mt-8 mb-8 bg-orange-white">
       <div className="py-6">

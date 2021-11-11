@@ -2,9 +2,14 @@ import Button from '@/components/Button'
 import { IconMapMarker } from '@/components/Icons'
 import ParseHtml from '@/components/ParseHtml'
 import { useAtom } from 'jotai'
-import { selectedCity, cityMenuVisibility } from '@/components/app/atoms'
+import { selectedCity, cityMenuVisibility } from '@/src/store'
 import Block from '@/components/article/Block'
 import cls from 'classnames'
+import { IconExternalSite } from '@/components/Icons'
+import useTranslation from 'next-translate/useTranslation'
+
+import { READMORE_CONTENT } from '@/components/article/ReadMoreBlock'
+import TextLink from '../TextLink'
 const DEMOHTML = `
 <div>
 
@@ -12,11 +17,12 @@ const DEMOHTML = `
 <p>YA and Vamia also organise preparatory training for basic vocational training, i.e. VALMA. The training lasts for a maximum of one academic year. YA’s VALMA training is in Swedish; Handledande utbildning för yrkesutbildning.</p>
 </div>
 `
-const LocalInformation = () => {
+const LocalInformation = ({ readMoreUrl }) => {
   const [city] = useAtom(selectedCity)
   // eslint-disable-next-line no-unused-vars
   const [, setOpen] = useAtom(cityMenuVisibility)
   const openMenu = () => setOpen(true)
+  const { t } = useTranslation('common')
 
   return (
     <div className="mb-8">
@@ -54,9 +60,70 @@ const LocalInformation = () => {
       {city && (
         <Block className="py-8 mb-4 bg-green-white">
           <ParseHtml html={DEMOHTML} />
+          <LocalReadMore />
+          {readMoreUrl && (
+            <p className="mt-8">
+              <TextLink className="font-bold" href={readMoreUrl}>
+                {t('localInfo.readMore')}
+              </TextLink>
+            </p>
+          )}
         </Block>
       )}
     </div>
   )
 }
+
+const LocalReadMore = ({ content = READMORE_CONTENT }) => {
+  return (
+    <div className="p-4 bg-white rounded">
+      {content.map(({ siteUrl, siteName, pageUrl, pageName, languages }, i) => (
+        <div
+          className={cls({
+            'mb-3 pb-3 border-b border-gray-hr': i + 1 < content.length,
+          })}
+          key={`${siteName}-${i}`}
+        >
+          <span
+            className="flex items-center text-small"
+            href={siteUrl}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <IconExternalSite className="me-2" />
+            {siteName}
+          </span>
+
+          <a
+            rel="noreferrer"
+            href={pageUrl}
+            target="_blank"
+            className="inline-block mb-4 text-body font-bold ifu-text-link"
+          >
+            {pageName}
+          </a>
+
+          <div className="flex flex-wrap leading-4 divide-link divide-s">
+            {languages.map(({ url, text, lang }, k) => (
+              <a
+                title={pageName}
+                rel="noreferrer"
+                href={url}
+                key={`link-${text}-${k}`}
+                target="_blank"
+                lang={lang}
+                className={cls('text-small ifu-text-link pe-2', {
+                  'ps-2': k > 0,
+                })}
+              >
+                {text}
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export default LocalInformation

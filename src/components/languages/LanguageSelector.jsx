@@ -11,7 +11,6 @@ const LanguageSelector = ({ openMenu }) => {
   const { t } = useTranslation('common')
 
   return (
-    //Check data structure with real data
     <>
       <div
         dir="ltr"
@@ -42,7 +41,7 @@ const LanguageSelector = ({ openMenu }) => {
             >
               <span
                 className={cls('xl:hidden', {
-                  ' border-b-3 border-black': locale === code,
+                  ' border-b-2 border-black': locale === code,
                 })}
               >
                 {code}
