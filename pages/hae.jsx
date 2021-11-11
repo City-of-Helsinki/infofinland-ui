@@ -52,7 +52,7 @@ const SearchBar = ({ qw }) => {
         onSubmit={goToSearch}
       >
         <input
-          type="text"
+          type="search"
           placeholder={t('search.placeholder')}
           name="q"
           value={q === null ? '' : q}

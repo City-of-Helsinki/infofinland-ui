@@ -672,7 +672,7 @@ exports[`Search Page page renders empty search field  1`] = `
               <div class=\\"my-8\\">
                 <form class=\\"flex items-center border border-black\\">
                   <input
-                    type=\\"text\\"
+                    type=\\"search\\"
                     placeholder=\\"common:search.placeholder\\"
                     name=\\"q\\"
                     value=\\"\\"
@@ -1620,7 +1620,7 @@ exports[`Search Page page renders empty search field  2`] = `
           <div class=\\"my-8\\">
             <form class=\\"flex items-center border border-black\\">
               <input
-                type=\\"text\\"
+                type=\\"search\\"
                 placeholder=\\"common:search.placeholder\\"
                 name=\\"q\\"
                 value=\\"\\"
@@ -2563,7 +2563,7 @@ exports[`Search Page page renders with given query string from url 1`] = `
               <div class=\\"my-8\\">
                 <form class=\\"flex items-center border border-black\\">
                   <input
-                    type=\\"text\\"
+                    type=\\"search\\"
                     placeholder=\\"common:search.placeholder\\"
                     name=\\"q\\"
                     value=\\"testi\\"
@@ -3608,7 +3608,7 @@ exports[`Search Page page renders with given query string from url 2`] = `
           <div class=\\"my-8\\">
             <form class=\\"flex items-center border border-black\\">
               <input
-                type=\\"text\\"
+                type=\\"search\\"
                 placeholder=\\"common:search.placeholder\\"
                 name=\\"q\\"
                 value=\\"testi\\"
@@ -4626,7 +4626,7 @@ exports[`Search Page page renders with no results 1`] = `
               <div class=\\"my-8\\">
                 <form class=\\"flex items-center border border-black\\">
                   <input
-                    type=\\"text\\"
+                    type=\\"search\\"
                     placeholder=\\"common:search.placeholder\\"
                     name=\\"q\\"
                     value=\\"_\\"
@@ -5580,7 +5580,7 @@ exports[`Search Page page renders with no results 2`] = `
           <div class=\\"my-8\\">
             <form class=\\"flex items-center border border-black\\">
               <input
-                type=\\"text\\"
+                type=\\"search\\"
                 placeholder=\\"common:search.placeholder\\"
                 name=\\"q\\"
                 value=\\"_\\"

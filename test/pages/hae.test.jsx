@@ -54,7 +54,8 @@ describe('Search Page', () => {
   })
 
   it('page renders with no results', async () => {
-    // Scaffold test for empty results. Will change and break
+    // Scaffold test for empty results. using _ for testing empty results in UI
+    // this should break accordingly when real API is connected.
     const { serverRenderToString, render } = await getPage({
       route: '/fi/hae?q=_',
     })

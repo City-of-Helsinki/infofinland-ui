@@ -77,7 +77,7 @@ COPY --from=builder /app/.next/server/pages ./pages
 
 USER nextjs
 
-EXPOSE 3000
+EXPOSE 8080
 
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry

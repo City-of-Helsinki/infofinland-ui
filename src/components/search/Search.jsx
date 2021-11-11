@@ -45,14 +45,15 @@ const Search = () => {
           <div className="flex items-center py-4 mx-2 md:mx-4">
             <div className="overflow-hidden flex-grow h-14 md:h-16 border-b border-gray-lighter">
               <input
-                type="text"
+                type="search"
                 name="q"
+                autoComplete="off"
                 value={query}
                 onChange={({ target: { value } }) => setQuery(value)}
                 placeholder={t('search.placeholder')}
                 id=""
                 autoFocus
-                className="py-3 px-1 md:w-full text-h3 outline-none"
+                className="py-3 px-1 w-full text-h3 outline-none"
               />
             </div>
             <div className="flex flex-none items-center h-14 md:h-16 border-b border-gray-lighter">
