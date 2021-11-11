@@ -32,7 +32,6 @@ FROM node:16-alpine AS builder
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
-ENV NEXT_PUBLIC_TEST=$TEST
 RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
 
 # Production image, copy all the files and run next
@@ -78,7 +77,7 @@ COPY --from=builder /app/.next/server/pages ./pages
 USER nextjs
 
 EXPOSE 8080
-
+ENV PORT=8080
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
 # Uncomment the following line in case you want to disable telemetry.
