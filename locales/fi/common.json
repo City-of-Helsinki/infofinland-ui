@@ -53,6 +53,7 @@
     "readMore": "Lue lisää"
   },
   "search": {
+    "loading": "Searching...",
     "placeholder": "Hae hakusanalla..",
     "title": {
       "results": "Hakutulokset: {{q}}",

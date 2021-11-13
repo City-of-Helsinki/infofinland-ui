@@ -417,7 +417,35 @@ exports[`Article page page renders and matches snapshot 1`] = `
             </div>
             <div class=\\"flex-none 2xl:flex-grow\\">
               <button
-                class=\\"w-8 md:w-24 h-8 text-action\\"
+                class=\\"md:hidden w-8 md:w-24 h-8 text-action\\"
+                title=\\"common:buttons.search\\"
+              >
+                <span class=\\"px-2 transform translate-y-0.5\\"
+                  ><svg
+                    class=\\"inline-block\\"
+                    width=\\"17\\"
+                    height=\\"17\\"
+                    viewBox=\\"0 0 17 17\\"
+                    fill=\\"none\\"
+                    xmlns=\\"http://www.w3.org/2000/svg\\"
+                  >
+                    <path
+                      fill-rule=\\"evenodd\\"
+                      clip-rule=\\"evenodd\\"
+                      d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
+                      stroke=\\"black\\"
+                      stroke-width=\\"2\\"
+                    ></path>
+                    <path
+                      d=\\"M10.7061 10.7059L16.0001 16\\"
+                      stroke=\\"black\\"
+                      stroke-width=\\"2\\"
+                    ></path></svg></span
+                ><span class=\\"hidden md:inline-block\\"
+                  >common:buttons.search</span
+                ></button
+              ><button
+                class=\\"hidden md:inline-block w-8 md:w-24 h-8 text-action\\"
                 title=\\"common:buttons.search\\"
               >
                 <span class=\\"px-2 transform translate-y-0.5\\"
@@ -3048,7 +3076,35 @@ exports[`Article page page renders and matches snapshot 2`] = `
         </div>
         <div class=\\"flex-none 2xl:flex-grow\\">
           <button
-            class=\\"w-8 md:w-24 h-8 text-action\\"
+            class=\\"md:hidden w-8 md:w-24 h-8 text-action\\"
+            title=\\"common:buttons.search\\"
+          >
+            <span class=\\"px-2 transform translate-y-0.5\\"
+              ><svg
+                class=\\"inline-block\\"
+                width=\\"17\\"
+                height=\\"17\\"
+                viewBox=\\"0 0 17 17\\"
+                fill=\\"none\\"
+                xmlns=\\"http://www.w3.org/2000/svg\\"
+              >
+                <path
+                  fill-rule=\\"evenodd\\"
+                  clip-rule=\\"evenodd\\"
+                  d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
+                  stroke=\\"black\\"
+                  stroke-width=\\"2\\"
+                ></path>
+                <path
+                  d=\\"M10.7061 10.7059L16.0001 16\\"
+                  stroke=\\"black\\"
+                  stroke-width=\\"2\\"
+                ></path></svg></span
+            ><span class=\\"hidden md:inline-block\\"
+              >common:buttons.search</span
+            ></button
+          ><button
+            class=\\"hidden md:inline-block w-8 md:w-24 h-8 text-action\\"
             title=\\"common:buttons.search\\"
           >
             <span class=\\"px-2 transform translate-y-0.5\\"

@@ -5,37 +5,57 @@ import { useState } from 'react'
 import useSearchResults from '@/hooks/useSearchResults'
 import { useAtom } from 'jotai'
 import { searchQueryValue } from '@/src/store'
-import Button from '../Button'
 import { Suspense } from 'react'
 import Link from 'next/link'
 import useSearchRoute from '@/hooks/useSearchRoute'
 import { CloseButton } from '@/components/Button'
 
 const Search = () => {
-  const [isOpen, setVisibility] = useState(false)
+  const [isDesktopOpen, setDesktopVisibility] = useState(false)
+  const [isMobileOpen, setMobileVisibility] = useState(false)
   const [query, setQuery] = useAtom(searchQueryValue)
   const { t } = useTranslation('common')
-  const close = () => setVisibility(false)
+  const closeMobile = () => setMobileVisibility(false)
+  const closeDesktop = () => setDesktopVisibility(false)
+
   const reset = () => {
-    close()
+    closeMobile()
+    closeDesktop()
     // And reset top menu search bar query word
     setQuery('')
   }
   const onSubmit = useSearchRoute({ onSubmit: reset, q: query })
+
   const onChange = ({ target: { value } }) => setQuery(value)
+
   return (
     <>
       <div className=" flex-none 2xl:flex-grow">
         <button
-          onClick={() => setVisibility(!isOpen)}
-          className=" w-8 md:w-24 h-8 text-action"
+          onClick={() => setMobileVisibility(!isMobileOpen)}
+          className=" md:hidden w-8 md:w-24 h-8 text-action"
           title={t('buttons.search')}
         >
           <span className="px-2 transform translate-y-0.5">
-            {!isOpen && <IconLookingGlass className="" />}
-            {isOpen && <IconCross className="me-2" />}
+            {!isMobileOpen && <IconLookingGlass className="" />}
+            {isMobileOpen && <IconCross className="me-2" />}
           </span>
-          {!isOpen && (
+          {!isMobileOpen && (
+            <span className="hidden md:inline-block">
+              {t('buttons.search')}
+            </span>
+          )}{' '}
+        </button>
+        <button
+          onClick={() => setDesktopVisibility(!isDesktopOpen)}
+          className=" hidden md:inline-block w-8 md:w-24 h-8 text-action"
+          title={t('buttons.search')}
+        >
+          <span className="px-2 transform translate-y-0.5">
+            {!isDesktopOpen && <IconLookingGlass className="" />}
+            {isDesktopOpen && <IconCross className="me-2" />}
+          </span>
+          {!isDesktopOpen && (
             <span className="hidden md:inline-block">
               {t('buttons.search')}
             </span>
@@ -43,14 +63,12 @@ const Search = () => {
         </button>
       </div>
       {/* Mobile */}
-      <div className="md:hidden">
-      <Drawer close={close} isOpen={isOpen}>
+      <Drawer close={closeMobile} isOpen={isMobileOpen}>
         <SearchBar onSubmit={onSubmit} onChange={onChange} query={query} />
       </Drawer>
-      </div>
 
       {/* Desktop */}
-      <SearchDesktopBar close={close} isOpen={isOpen}>
+      <SearchDesktopBar close={closeDesktop} isOpen={isDesktopOpen}>
         <SearchBar onSubmit={onSubmit} onChange={onChange} query={query} />
       </SearchDesktopBar>
     </>
@@ -62,12 +80,11 @@ const SearchBar = ({ onSubmit, onChange, query }) => {
 
   return (
     <>
-      {' '}
       <form className="bg-white" action="/hae" onSubmit={onSubmit}>
         <div className="flex items-center py-4 mx-2 md:mx-4">
           <div className="overflow-hidden flex-grow h-14 md:h-16 border-b border-gray-lighter">
             <input
-              type="search"
+              type="text"
               name="q"
               autoComplete="off"
               value={query}
@@ -78,16 +95,15 @@ const SearchBar = ({ onSubmit, onChange, query }) => {
             />
           </div>
           <div className="flex flex-none items-center h-14 md:h-16 border-b border-gray-lighter">
-            <Button type="submit" className="hidden md:inline-block me-2">
-              <IconLookingGlass className="mx-2" />
-            </Button>
-            <button type="submit" className="inline-block md:hidden me-2">
+            <button type="submit" className="me-2">
               <IconLookingGlass className="mx-2" />
             </button>
           </div>
         </div>
       </form>
-      <Suspense fallback={<div className="mx-4">loading....</div>}>
+      <Suspense
+        fallback={<div className="mx-4 h-40">{t('search.loading')}</div>}
+      >
         <SWRResults />
       </Suspense>
     </>
