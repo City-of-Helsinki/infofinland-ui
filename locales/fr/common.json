@@ -41,5 +41,7 @@
   },
 
   "mainMenu": { "button": "Menu principal" },
-  "helsinkiDisclaimer": "The InfoFinland website is published by the City of Helsinki, and it is funded by the state and the InfoFinland member municipalities."
+  "footer": {
+    "helsinkiDisclaimer": "The InfoFinland website is published by the City of Helsinki, and it is funded by the state and the InfoFinland member municipalities."
+  }
 }

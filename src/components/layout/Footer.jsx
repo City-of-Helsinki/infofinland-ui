@@ -15,7 +15,10 @@ const FooterLinks = () => {
       <section className="py-10 border-t border-b border-gray ifu-footer__brand">
         <div className="mx-auto sm:mx-0 mb-5 ifu-footer__hki-logo" />
 
-        <p className=" mx-8 md:mx-0 text-tiny text-center sm:text-left text-gray">
+        <p
+          lang="en"
+          className=" mx-8 md:mx-0 text-tiny text-center sm:text-left text-gray"
+        >
           {t('footer.helsinkiDisclaimer')}
         </p>
       </section>
