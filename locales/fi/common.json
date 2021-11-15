@@ -50,7 +50,10 @@
     "text": "ommodo sed vel convallis scelerisque mauris, facilisi augue. Diam ut amet arcu velit egestas. Mauris nulla sed pharetra duis. Odio praesent euismod quis a at arcu ut suspendisse vestibulum. Arcu augue lorem vel eget viverra."
   },
   "localInfo": {
-    "readMore": "Lue lisää"
+    "readMore": "Lue lisää",
+    "select":"Valitse kunta",
+    "reselect":"Valitse toinen kunta"
+
   },
   "search": {
     "loading": "Haetaan...",

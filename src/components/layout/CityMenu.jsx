@@ -25,8 +25,6 @@ const CityMenu = () => {
             })}
           >
             <button
-              aria-haspopup="dialog"
-              aria-expanded={open}
               value={cityName}
               onClick={chooseCity}
               className="

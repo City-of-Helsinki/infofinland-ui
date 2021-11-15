@@ -38,6 +38,11 @@
   "languageMenu": {
     "label": "Select language"
   },
+  "localInfo":{
+    "readMore":"Read more",
+    "select":"Choose City",
+    "reselect":"Change City"
+  },
   "languageSelector": {
     "button": "Languages"
   },

@@ -18,6 +18,7 @@ const DEMOHTML = `
 </div>
 `
 const LocalInformation = ({ readMoreUrl }) => {
+
   const [city] = useAtom(selectedCity)
   // eslint-disable-next-line no-unused-vars
   const [, setOpen] = useAtom(cityMenuVisibility)
@@ -50,9 +51,12 @@ const LocalInformation = ({ readMoreUrl }) => {
             </h3>
           )}
           <div className="md:flex-none mt-6 md:mt-0 mb-2 md:mb-0">
-            <Button onClick={openMenu}>
-              {!city && 'Choose City'}
-              {city && 'Change City'}
+            <Button onClick={openMenu}
+              aria-haspopup="dialog"
+              aria-expanded={open}
+            >
+              {!city && t('localInfo.select')}
+              {city && t('localInfo.reselect')}
             </Button>
           </div>
         </div>
