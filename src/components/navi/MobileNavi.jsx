@@ -35,6 +35,7 @@ const MobileNavi = () => {
       <div className="md:hidden md:mx-6 me-6 ms-2">
         {!isOpen && (
           <button
+            aria-haspopup="dialog"
             onClick={open}
             title={t('mainMenu.button')}
             className="z-50 transform -translate-y-0.5"

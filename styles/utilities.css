@@ -6,13 +6,9 @@
   }
 
   .text-shadow-home {
-
-    text-shadow: 2px 2px 5px rgb(0 0 0 / 80%),
-                -2px -2px 5px rgb(0 0 0 / 40%),
-                0px 0px 50px rgb(0 0 0 / 50%);
-
+    text-shadow: 2px 2px 5px rgb(0 0 0 / 80%), -2px -2px 5px rgb(0 0 0 / 40%),
+      0px 0px 50px rgb(0 0 0 / 50%);
   }
-
 
   @screen lg {
     /* List of upscaled text elements for chinese characters */

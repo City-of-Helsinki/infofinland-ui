@@ -5,8 +5,8 @@ import cls from 'classnames'
 /**
  * SOME Urls are defined in next.config.js
  * */
-const Footer = () => (
-  <footer className={cls(HERO_MARGIN, 'mt-16 mb-16')}>
+const FooterLinks = () => (
+  <div className={cls(HERO_MARGIN, 'mt-16 mb-16')}>
     <section className="py-10 border-t border-b border-gray ifu-footer__brand">
       <div className="mx-auto sm:mx-0 mb-5 ifu-footer__hki-logo" />
 
@@ -67,7 +67,7 @@ const Footer = () => (
         <a className="ifu-footer__link">Saatavuus</a>
       </Link>
     </section>
-  </footer>
+  </div>
 )
 
-export default Footer
+export default FooterLinks

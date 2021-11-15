@@ -35,6 +35,8 @@ const Search = () => {
           onClick={() => setMobileVisibility(!isMobileOpen)}
           className=" md:hidden w-8 md:w-24 h-8 text-action"
           title={t('buttons.search')}
+          aria-expanded={isMobileOpen}
+          aria-haspopup="dialog"
         >
           <span className="px-2 transform translate-y-0.5">
             {!isMobileOpen && <IconLookingGlass className="" />}
@@ -50,6 +52,7 @@ const Search = () => {
           onClick={() => setDesktopVisibility(!isDesktopOpen)}
           className=" hidden md:inline-block w-8 md:w-24 h-8 text-action"
           title={t('buttons.search')}
+          aria-expanded={isDesktopOpen}
         >
           <span className="px-2 transform translate-y-0.5">
             {!isDesktopOpen && <IconLookingGlass className="" />}

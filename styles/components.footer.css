@@ -11,5 +11,12 @@
 
   .ifu-footer__link {
     @apply px-2 mb-3 hover:underline inline-block;
+    line-height: 1;
+  }
+
+  @screen md {
+    .ifu-footer__link {
+      line-height: 1.2;
+    }
   }
 }

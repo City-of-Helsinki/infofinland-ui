@@ -93,7 +93,8 @@ const SubMenu = ({
         <button
           className="block w-14 h-12 text-gray-light me-2 text-start"
           onClick={toggle}
-          tabIndex="0"
+          aria-expanded={isOpen}
+          // tabIndex="0"
         >
           {!isOpen && (
             <IconAngleDown className="fill-current ifu-mainmenu__submenu-icon" />
