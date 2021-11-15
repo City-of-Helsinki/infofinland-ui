@@ -15,6 +15,20 @@ class MyDocument extends Document {
       <Html dir={direction} lang={this.props.locale}>
         <Head>
           <Favicons />
+          <link
+            rel="preload"
+            href="/fonts/NotoSans/NotoSans-Bold.ttf"
+            as="font"
+            type="font/ttf"
+            crossOrigin=""
+          />
+          <link
+            rel="preload"
+            href="/fonts/NotoSans/NotoSans-Regular.ttf"
+            as="font"
+            type="font/ttf"
+            crossOrigin=""
+          />
         </Head>
         <body>
           <Main />
