@@ -51,9 +51,8 @@
   },
   "localInfo": {
     "readMore": "Lue lisää",
-    "select":"Valitse kunta",
-    "reselect":"Valitse toinen kunta"
-
+    "select": "Valitse kunta",
+    "reselect": "Valitse toinen kunta"
   },
   "search": {
     "loading": "Haetaan...",
@@ -64,5 +63,8 @@
       "noresults": "Ei hakutuloksia"
     }
   },
-  "mainMenu": { "button": "Päävalikko" }
+  "mainMenu": { "button": "Päävalikko" },
+  "footer": {
+    "helsinkiDisclaimer": "The InfoFinland website is published by the City of Helsinki, and it is funded by the state and the InfoFinland member municipalities."
+  }
 }
