@@ -35,8 +35,8 @@ const Layout = ({ children }) => {
           </div>
           <DesktopNavi />
           <div className="ifu-layout__body">
-            <main>{children}</main>
-            <footer className="ifu-footer">
+            <main id="main">{children}</main>
+            <footer className="ifu-footer" id="footer">
               <FooterLinks />
               <FeedbackButtonBlock />
             </footer>

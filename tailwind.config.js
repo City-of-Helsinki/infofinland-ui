@@ -101,6 +101,7 @@ module.exports = {
     },
     extend: {
       variants: { height: ['responsive'] },
+      animation: ['hover', 'focus'],
       // boxShadow: {
       //   button: '0px 2px rgba(0, 0, 0, 0.15)',
       //   'button-hover': 'none',

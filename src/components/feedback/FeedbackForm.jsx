@@ -203,7 +203,7 @@ const FeedbackButtonBlock = () => {
     scrollRef.current?.scrollIntoView({ block: 'center' })
 
   return (
-    <section className="bg-blue-white">
+    <section className="bg-blue-white" id="#feedback">
       <div
         className={cls(
           'px-2 lg:px-0 lg:mx-12 xl:mx-28 2xl:mx-48  3xl:ms-64  3xl:max-w-4xl',

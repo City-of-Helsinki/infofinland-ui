@@ -4,7 +4,8 @@
     "search": "Hae",
     "yes": "Kyllä",
     "no": "Ei",
-    "ok": "OK"
+    "ok": "OK",
+    "skipTo": "Siirry sisältöön"
   },
   "feedback": {
     "title": "Lähetä palutetta",

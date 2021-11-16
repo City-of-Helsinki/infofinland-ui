@@ -27,4 +27,14 @@
       height: 41px;
     }
   }
+
+  .ifu-topmenu__skiplink {
+    @apply z-10 absolute transition-transform transform -translate-y-52 duration-200 ease-in-out rounded-b focus:translate-y-12 p-2 bg-white  text-tiny  text-link;
+  }
+
+  @screen md {
+    .ifu-topmenu__skiplink {
+      @apply -translate-x-full focus:translate-x-64 translate-y-0 focus:translate-y-0 rounded;
+    }
+  }
 }
