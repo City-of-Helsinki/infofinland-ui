@@ -50,9 +50,12 @@
     "text": "ommodo sed vel convallis scelerisque mauris, facilisi augue. Diam ut amet arcu velit egestas. Mauris nulla sed pharetra duis. Odio praesent euismod quis a at arcu ut suspendisse vestibulum. Arcu augue lorem vel eget viverra."
   },
   "localInfo": {
-    "readMore": "Lue lisää"
+    "readMore": "Lue lisää",
+    "select": "Valitse kunta",
+    "reselect": "Valitse toinen kunta"
   },
   "search": {
+    "loading": "Haetaan...",
     "placeholder": "Hae hakusanalla..",
     "title": {
       "results": "Hakutulokset: {{q}}",
@@ -60,5 +63,8 @@
       "noresults": "Ei hakutuloksia"
     }
   },
-  "mainMenu": { "button": "Päävalikko" }
+  "mainMenu": { "button": "Päävalikko" },
+  "footer": {
+    "helsinkiDisclaimer": "The InfoFinland website is published by the City of Helsinki, and it is funded by the state and the InfoFinland member municipalities."
+  }
 }

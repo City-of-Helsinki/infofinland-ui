@@ -40,5 +40,8 @@
     "title": "!Haluatko vaihtaa kieltä?",
     "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
   },
-  "mainMenu": { "button": "!Päävalikko" }
+  "mainMenu": { "button": "!Päävalikko" },
+  "footer": {
+    "helsinkiDisclaimer": "The InfoFinland website is published by the City of Helsinki, and it is funded by the state and the InfoFinland member municipalities."
+  }
 }

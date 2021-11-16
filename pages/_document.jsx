@@ -17,15 +17,17 @@ class MyDocument extends Document {
           <Favicons />
           <link
             rel="preload"
-            href="/fonts/NotoSans-Bold.ttf"
+            href="/fonts/NotoSans/NotoSans-Bold.ttf"
             as="font"
             type="font/ttf"
+            crossOrigin=""
           />
           <link
             rel="preload"
-            href="/fonts/NotoSans-Regular.ttf"
+            href="/fonts/NotoSans/NotoSans-Regular.ttf"
             as="font"
             type="font/ttf"
+            crossOrigin=""
           />
         </Head>
         <body>

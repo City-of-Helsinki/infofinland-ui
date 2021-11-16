@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import DesktopNavi from '@/components/navi/DesktopNavi'
 import Messages from '@/components/messages/Messages'
-import Footer from '@/components/layout/Footer'
+import FooterLinks from '@/components/layout/Footer'
 import FeedbackButtonBlock from '@/components/feedback/FeedbackForm'
 import TopMenu from '@/components/layout/TopMenu'
 import ReactModal from 'react-modal'
@@ -29,19 +29,19 @@ const Layout = ({ children }) => {
       </Head>
       <div className=" relative text-body bg-white">
         <TopMenu />
-        <main className=" md:flex md:items-stretch" role="main">
+        <div className=" md:flex md:items-stretch" role="main">
           <div className="md:hidden">
             <Messages />
           </div>
           <DesktopNavi />
           <div className="ifu-layout__body">
-            {children}
-            <div className="ifu-footer">
-              <Footer />
+            <main>{children}</main>
+            <footer className="ifu-footer">
+              <FooterLinks />
               <FeedbackButtonBlock />
-            </div>
+            </footer>
           </div>
-        </main>
+        </div>
       </div>
     </>
   )

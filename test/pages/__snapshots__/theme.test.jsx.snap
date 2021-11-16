@@ -37,6 +37,7 @@ exports[`Theme page page renders and matches snapshot 1`] = `
             </div>
             <div class=\\"flex-grow\\"></div>
             <button
+              aria-haspopup=\\"dialog\\"
               title=\\"common:languageMenu.label\\"
               class=\\"block lg:hidden h-8 transform -translate-y-0.5 md:me-2\\"
             >
@@ -81,9 +82,11 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                 me-4
                 md:ms-1
               \\"
-              role=\\"listbox\\"
             >
-              <button class=\\"xl:hidden lg:px-0 pe-2 ps-2\\">
+              <button
+                class=\\"xl:hidden lg:px-0 pe-2 ps-2\\"
+                aria-haspopup=\\"dialog\\"
+              >
                 <span class=\\"hidden md:inline-block xl:hidden\\"
                   >common:languageSelector.button</span
                 ><svg
@@ -124,8 +127,6 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                 title=\\"Suomi\\"
                 hreflang=\\"fi\\"
                 lang=\\"fi\\"
-                role=\\"option\\"
-                aria-selected=\\"true\\"
                 href=\\"/theme/index\\"
                 ><span class=\\"xl:hidden border-b-2 border-black\\">fi</span
                 ><span
@@ -149,8 +150,6 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                 title=\\"Svenska\\"
                 hreflang=\\"sv\\"
                 lang=\\"sv\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/theme/index\\"
                 ><span class=\\"xl:hidden\\">sv</span
                 ><span
@@ -174,8 +173,6 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                 title=\\"English\\"
                 hreflang=\\"en\\"
                 lang=\\"en\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/theme/index\\"
                 ><span class=\\"xl:hidden\\">en</span
                 ><span
@@ -199,8 +196,6 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                 title=\\"Pусский\\"
                 hreflang=\\"ru\\"
                 lang=\\"ru\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/theme/index\\"
                 ><span class=\\"xl:hidden\\">ru</span
                 ><span
@@ -224,8 +219,6 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                 title=\\"Eesti keel\\"
                 hreflang=\\"et\\"
                 lang=\\"et\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/theme/index\\"
                 ><span class=\\"xl:hidden\\">et</span
                 ><span
@@ -249,8 +242,6 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                 title=\\"Français\\"
                 hreflang=\\"fr\\"
                 lang=\\"fr\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/theme/index\\"
                 ><span class=\\"xl:hidden\\">fr</span
                 ><span
@@ -274,8 +265,6 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                 title=\\"Soomaali\\"
                 hreflang=\\"so\\"
                 lang=\\"so\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/theme/index\\"
                 ><span class=\\"xl:hidden\\">so</span
                 ><span
@@ -299,8 +288,6 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                 title=\\"Español\\"
                 hreflang=\\"es\\"
                 lang=\\"es\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/theme/index\\"
                 ><span class=\\"xl:hidden\\">es</span
                 ><span
@@ -324,8 +311,6 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                 title=\\"Türkçe\\"
                 hreflang=\\"tr\\"
                 lang=\\"tr\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/theme/index\\"
                 ><span class=\\"xl:hidden\\">tr</span
                 ><span
@@ -349,8 +334,6 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                 title=\\"中文\\"
                 hreflang=\\"zh\\"
                 lang=\\"zh\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/theme/index\\"
                 ><span class=\\"xl:hidden\\">zh</span
                 ><span
@@ -374,8 +357,6 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                 title=\\" فارسی\\"
                 hreflang=\\"fa\\"
                 lang=\\"fa\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/theme/index\\"
                 ><span class=\\"xl:hidden\\">fa</span
                 ><span
@@ -400,8 +381,6 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                 title=\\"العربية\\"
                 hreflang=\\"ar\\"
                 lang=\\"ar\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/theme/index\\"
                 ><span class=\\"xl:hidden\\">ar</span
                 ><span
@@ -417,8 +396,39 @@ exports[`Theme page page renders and matches snapshot 1`] = `
             </div>
             <div class=\\"flex-none 2xl:flex-grow\\">
               <button
-                class=\\"w-8 md:w-24 h-8 text-action\\"
+                class=\\"md:hidden w-8 md:w-24 h-8 text-action\\"
                 title=\\"common:buttons.search\\"
+                aria-expanded=\\"false\\"
+                aria-haspopup=\\"dialog\\"
+              >
+                <span class=\\"px-2 transform translate-y-0.5\\"
+                  ><svg
+                    class=\\"inline-block\\"
+                    width=\\"17\\"
+                    height=\\"17\\"
+                    viewBox=\\"0 0 17 17\\"
+                    fill=\\"none\\"
+                    xmlns=\\"http://www.w3.org/2000/svg\\"
+                  >
+                    <path
+                      fill-rule=\\"evenodd\\"
+                      clip-rule=\\"evenodd\\"
+                      d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
+                      stroke=\\"black\\"
+                      stroke-width=\\"2\\"
+                    ></path>
+                    <path
+                      d=\\"M10.7061 10.7059L16.0001 16\\"
+                      stroke=\\"black\\"
+                      stroke-width=\\"2\\"
+                    ></path></svg></span
+                ><span class=\\"hidden md:inline-block\\"
+                  >common:buttons.search</span
+                ></button
+              ><button
+                class=\\"hidden md:inline-block w-8 md:w-24 h-8 text-action\\"
+                title=\\"common:buttons.search\\"
+                aria-expanded=\\"false\\"
               >
                 <span class=\\"px-2 transform translate-y-0.5\\"
                   ><svg
@@ -448,6 +458,7 @@ exports[`Theme page page renders and matches snapshot 1`] = `
             </div>
             <div class=\\"md:hidden md:mx-6 me-6 ms-2\\">
               <button
+                aria-haspopup=\\"dialog\\"
                 title=\\"common:mainMenu.button\\"
                 class=\\"z-50 transform -translate-y-0.5\\"
               >
@@ -467,10 +478,10 @@ exports[`Theme page page renders and matches snapshot 1`] = `
             </div>
           </div>
         </header>
-        <main class=\\"md:flex md:items-stretch\\" role=\\"main\\">
+        <div class=\\"md:flex md:items-stretch\\" role=\\"main\\">
           <div class=\\"md:hidden\\">
             <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
-              <div class=\\"bg-gray-lighter\\">
+              <section class=\\"bg-gray-lighter\\">
                 <div class=\\"flex my-2 bg-white rounded shadow-md me-2 ms-2\\">
                   <div class=\\"w-2 flex-none rounded-s bg-neon-red\\"></div>
                   <div
@@ -481,7 +492,7 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                       ifu-messages__card-body
                     \\"
                   >
-                    <p class=\\"flex-none mb-2 text-message font-bold\\">Alert</p>
+                    <h2 class=\\"flex-none mb-2 text-message font-bold\\">Alert</h2>
                     <div class=\\"text-message\\">
                       some stuff withouth html, maybe try that later
                     </div>
@@ -501,7 +512,7 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                     </div>
                   </div>
                 </div>
-              </div>
+              </section>
             </div>
           </div>
           <div
@@ -518,7 +529,7 @@ exports[`Theme page page renders and matches snapshot 1`] = `
             \\"
           >
             <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
-              <div class=\\"bg-gray-lighter\\">
+              <section class=\\"bg-gray-lighter\\">
                 <div class=\\"flex my-2 bg-white rounded shadow-md me-2 ms-2\\">
                   <div class=\\"w-2 flex-none rounded-s bg-neon-red\\"></div>
                   <div
@@ -529,7 +540,7 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                       ifu-messages__card-body
                     \\"
                   >
-                    <p class=\\"flex-none mb-2 text-message font-bold\\">Alert</p>
+                    <h2 class=\\"flex-none mb-2 text-message font-bold\\">Alert</h2>
                     <div class=\\"text-message\\">
                       some stuff withouth html, maybe try that later
                     </div>
@@ -549,7 +560,7 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                     </div>
                   </div>
                 </div>
-              </div>
+              </section>
             </div>
             <nav class=\\"mb-8 pt-8\\">
               <ul class=\\"block\\">
@@ -587,7 +598,7 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                     <div class=\\"flex-none\\">
                       <button
                         class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
-                        tabindex=\\"0\\"
+                        aria-expanded=\\"false\\"
                       >
                         <svg
                           class=\\"
@@ -628,7 +639,7 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                     <div class=\\"flex-none\\">
                       <button
                         class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
-                        tabindex=\\"0\\"
+                        aria-expanded=\\"false\\"
                       >
                         <svg
                           class=\\"
@@ -657,144 +668,255 @@ exports[`Theme page page renders and matches snapshot 1`] = `
             class=\\"hidden md:block flex-none w-navi border-black-op1 border-e-2\\"
           ></div>
           <div class=\\"ifu-layout__body\\">
-            <div class=\\"relative bg-article-green\\">
-              <div
-                class=\\"
-                  px-6
-                  lg:px-0 lg:mx-12
-                  xl:mx-28
-                  2xl:mx-48
-                  3xl:ms-64 3xl:max-w-4xl
-                \\"
-              >
-                <nav class=\\"block relative py-2 mt-3 mb-2 text-black\\">
-                  <div class=\\"justify-items-start\\">
-                    <div class=\\"flex-none w-8 float-start\\">
-                      <a
-                        class=\\"
-                          inline-block
-                          relative
-                          flex-none
-                          mt-1
-                          text-small
-                          md:text-body-small
-                        \\"
-                        title=\\"home\\"
-                        href=\\"/\\"
-                        ><i class=\\"inline-block text-center\\"
-                          ><svg
-                            aria-labelledby=\\"home\\"
+            <main>
+              <div class=\\"relative bg-article-green\\">
+                <div
+                  class=\\"
+                    px-6
+                    lg:px-0 lg:mx-12
+                    xl:mx-28
+                    2xl:mx-48
+                    3xl:ms-64 3xl:max-w-4xl
+                  \\"
+                >
+                  <nav class=\\"block relative py-2 mt-3 mb-2 text-black\\">
+                    <div class=\\"justify-items-start\\">
+                      <div class=\\"flex-none w-8 float-start\\">
+                        <a
+                          class=\\"
+                            inline-block
+                            relative
+                            flex-none
+                            mt-1
+                            text-small
+                            md:text-body-small
+                          \\"
+                          title=\\"home\\"
+                          href=\\"/\\"
+                          ><i class=\\"inline-block text-center\\"
+                            ><svg
+                              aria-labelledby=\\"home\\"
+                              class=\\"
+                                inline-block
+                                absolute
+                                -top-1
+                                transform
+                                scale-125
+                                translate-y-1
+                              \\"
+                              width=\\"17\\"
+                              height=\\"14\\"
+                              viewBox=\\"0 0 17 14\\"
+                              fill=\\"none\\"
+                              xmlns=\\"http://www.w3.org/2000/svg\\"
+                            >
+                              <path
+                                d=\\"M7.29412 13.4231H4.20588V8.34614H2L9.05882 1.5769L15.6765 8.34614H13.4706V13.4231H10.3824V9.19229H7.29412V13.4231Z\\"
+                                stroke=\\"black\\"
+                              ></path></svg></i
+                        ></a>
+                      </div>
+                      <div class=\\"flex-wrap leading-5 ps-4\\">
+                        <div class=\\"inline-block\\">
+                          <svg
+                            preserveAspectRatio=\\"xMidYMin slice\\"
                             class=\\"
                               inline-block
-                              absolute
-                              -top-1
                               transform
-                              scale-125
-                              translate-y-1
+                              scale-150
+                              fill-current
+                              me-3
+                              ifu-breadcrumb__arrow
                             \\"
-                            width=\\"17\\"
-                            height=\\"14\\"
-                            viewBox=\\"0 0 17 14\\"
+                            width=\\"3\\"
+                            height=\\"5\\"
+                            viewBox=\\"0 0 3 5\\"
                             fill=\\"none\\"
                             xmlns=\\"http://www.w3.org/2000/svg\\"
                           >
                             <path
-                              d=\\"M7.29412 13.4231H4.20588V8.34614H2L9.05882 1.5769L15.6765 8.34614H13.4706V13.4231H10.3824V9.19229H7.29412V13.4231Z\\"
-                              stroke=\\"black\\"
-                            ></path></svg></i
-                      ></a>
+                              d=\\"M3 2.58235L0.805497 5L0 4.55882L1.8203 2.49412L0 0.435294L0.805497 0L3 2.42353V2.58235Z\\"
+                              fill=\\"black\\"
+                            ></path>
+                          </svg>
+                        </div>
+                        <div class=\\"inline-block\\">
+                          <a
+                            class=\\"
+                              text-small
+                              md:text-body-small
+                              hover:underline
+                            \\"
+                            title=\\"Living\\"
+                            href=\\"/\\"
+                            >Living</a
+                          ><svg
+                            preserveAspectRatio=\\"xMidYMin slice\\"
+                            class=\\"
+                              inline-block
+                              mx-3
+                              transform
+                              scale-150
+                              fill-current
+                              ifu-breadcrumb__arrow
+                            \\"
+                            width=\\"3\\"
+                            height=\\"5\\"
+                            viewBox=\\"0 0 3 5\\"
+                            fill=\\"none\\"
+                            xmlns=\\"http://www.w3.org/2000/svg\\"
+                          >
+                            <path
+                              d=\\"M3 2.58235L0.805497 5L0 4.55882L1.8203 2.49412L0 0.435294L0.805497 0L3 2.42353V2.58235Z\\"
+                              fill=\\"black\\"
+                            ></path>
+                          </svg>
+                        </div>
+                        <div class=\\"inline-block\\">
+                          <a
+                            class=\\"
+                              text-small
+                              md:text-body-small
+                              hover:underline
+                            \\"
+                            title=\\"Health and other things\\"
+                            href=\\"/\\"
+                            >Health and other things</a
+                          ><svg
+                            preserveAspectRatio=\\"xMidYMin slice\\"
+                            class=\\"
+                              inline-block
+                              mx-3
+                              transform
+                              scale-150
+                              fill-current
+                              ifu-breadcrumb__arrow
+                            \\"
+                            width=\\"3\\"
+                            height=\\"5\\"
+                            viewBox=\\"0 0 3 5\\"
+                            fill=\\"none\\"
+                            xmlns=\\"http://www.w3.org/2000/svg\\"
+                          >
+                            <path
+                              d=\\"M3 2.58235L0.805497 5L0 4.55882L1.8203 2.49412L0 0.435294L0.805497 0L3 2.42353V2.58235Z\\"
+                              fill=\\"black\\"
+                            ></path>
+                          </svg>
+                        </div>
+                        <div class=\\"inline-block\\">
+                          <a
+                            class=\\"
+                              text-small
+                              md:text-body-small
+                              hover:underline
+                            \\"
+                            title=\\"Health services in Finland\\"
+                            href=\\"/\\"
+                            >Health services in Finland</a
+                          >
+                        </div>
+                      </div>
                     </div>
-                    <div class=\\"flex-wrap leading-5 ps-4\\">
-                      <div class=\\"inline-block\\">
-                        <svg
-                          preserveAspectRatio=\\"xMidYMin slice\\"
-                          class=\\"
-                            inline-block
-                            transform
-                            scale-150
-                            fill-current
-                            me-3
-                            ifu-breadcrumb__arrow
-                          \\"
-                          width=\\"3\\"
-                          height=\\"5\\"
-                          viewBox=\\"0 0 3 5\\"
-                          fill=\\"none\\"
-                          xmlns=\\"http://www.w3.org/2000/svg\\"
-                        >
-                          <path
-                            d=\\"M3 2.58235L0.805497 5L0 4.55882L1.8203 2.49412L0 0.435294L0.805497 0L3 2.42353V2.58235Z\\"
-                            fill=\\"black\\"
-                          ></path>
-                        </svg>
-                      </div>
-                      <div class=\\"inline-block\\">
-                        <a
-                          class=\\"text-small md:text-body-small hover:underline\\"
-                          title=\\"Living\\"
-                          href=\\"/\\"
-                          >Living</a
-                        ><svg
-                          preserveAspectRatio=\\"xMidYMin slice\\"
-                          class=\\"
-                            inline-block
-                            mx-3
-                            transform
-                            scale-150
-                            fill-current
-                            ifu-breadcrumb__arrow
-                          \\"
-                          width=\\"3\\"
-                          height=\\"5\\"
-                          viewBox=\\"0 0 3 5\\"
-                          fill=\\"none\\"
-                          xmlns=\\"http://www.w3.org/2000/svg\\"
-                        >
-                          <path
-                            d=\\"M3 2.58235L0.805497 5L0 4.55882L1.8203 2.49412L0 0.435294L0.805497 0L3 2.42353V2.58235Z\\"
-                            fill=\\"black\\"
-                          ></path>
-                        </svg>
-                      </div>
-                      <div class=\\"inline-block\\">
-                        <a
-                          class=\\"text-small md:text-body-small hover:underline\\"
-                          title=\\"Health and other things\\"
-                          href=\\"/\\"
-                          >Health and other things</a
-                        ><svg
-                          preserveAspectRatio=\\"xMidYMin slice\\"
-                          class=\\"
-                            inline-block
-                            mx-3
-                            transform
-                            scale-150
-                            fill-current
-                            ifu-breadcrumb__arrow
-                          \\"
-                          width=\\"3\\"
-                          height=\\"5\\"
-                          viewBox=\\"0 0 3 5\\"
-                          fill=\\"none\\"
-                          xmlns=\\"http://www.w3.org/2000/svg\\"
-                        >
-                          <path
-                            d=\\"M3 2.58235L0.805497 5L0 4.55882L1.8203 2.49412L0 0.435294L0.805497 0L3 2.42353V2.58235Z\\"
-                            fill=\\"black\\"
-                          ></path>
-                        </svg>
-                      </div>
-                      <div class=\\"inline-block\\">
-                        <a
-                          class=\\"text-small md:text-body-small hover:underline\\"
-                          title=\\"Health services in Finland\\"
-                          href=\\"/\\"
-                          >Health services in Finland</a
-                        >
-                      </div>
+                  </nav>
+                </div>
+                <div
+                  class=\\"
+                    px-6
+                    lg:px-0 lg:mx-12
+                    xl:mx-28
+                    2xl:mx-48
+                    3xl:ms-64 3xl:max-w-4xl
+                    overflow-hidden
+                    mb-6
+                    h-hero
+                    md:h-heroxl
+                    text-center
+                    rounded
+                  \\"
+                >
+                  <img
+                    src=\\"/images/article1-sm.png\\"
+                    alt=\\"\\"
+                    class=\\"block w-full h-full rounded\\"
+                  />
+                </div>
+                <div
+                  class=\\"
+                    px-6
+                    lg:px-12 lg:mx-12
+                    xl:mx-28
+                    2xl:mx-48
+                    3xl:ms-64 3xl:max-w-4xl
+                  \\"
+                >
+                  <div class=\\"\\">
+                    <span
+                      lang=\\"fi\\"
+                      class=\\"block text-action mb-3 text-gray-darker invisible\\"
+                      >Health services in Finlande</span
+                    >
+                    <h1
+                      class=\\"
+                        mt-2
+                        mb-6
+                        max-w-article
+                        me-2
+                        ifu-hero__title
+                        text-h2
+                        md:text-h1xl
+                      \\"
+                    >
+                      Health services in Finlande
+                    </h1>
+                    <div
+                      class=\\"
+                        flex
+                        items-center
+                        mb-8
+                        text-body-small text-bodytext-color
+                      \\"
+                    >
+                      <svg
+                        class=\\"
+                          inline-block
+                          md:w-4 md:h-4
+                          transform
+                          translate-y-px
+                        \\"
+                        width=\\"11\\"
+                        height=\\"12\\"
+                        viewBox=\\"0 0 11 12\\"
+                        fill=\\"none\\"
+                        xmlns=\\"http://www.w3.org/2000/svg\\"
+                      >
+                        <path
+                          d=\\"M9.77778 1.2H9.16667V0H7.94444V1.2H3.05556V0H1.83333V1.2H1.22222C0.543889 1.2 0.00611111 1.74 0.00611111 2.4L0 10.8C0 11.46 0.543889 12 1.22222 12H9.77778C10.45 12 11 11.46 11 10.8V2.4C11 1.74 10.45 1.2 9.77778 1.2ZM9.77778 10.8H1.22222V4.8H9.77778V10.8ZM9.77778 3.6H1.22222V2.4H9.77778V3.6ZM5.5 6.6H8.55556V9.6H5.5V6.6Z\\"
+                          fill=\\"black\\"
+                        ></path></svg
+                      ><span class=\\"px-2 transform translate-y-px\\"
+                        >23.12.2015</span
+                      >
                     </div>
                   </div>
-                </nav>
+                </div>
+                <div
+                  class=\\"
+                    px-6
+                    lg:px-12 lg:mx-12
+                    xl:mx-28
+                    2xl:mx-48
+                    3xl:ms-64 3xl:max-w-4xl
+                  \\"
+                >
+                  <p class=\\"mb-8 text-body text-bodytext-color\\">
+                    The education system includes early childhood education,
+                    preschool education, comprehensive education, upper
+                    secondary education and higher education. Adult education is
+                    intended for adults and it includes a multitude of
+                    alternatives from comprehensive to higher education.
+                  </p>
+                </div>
               </div>
               <div
                 class=\\"
@@ -803,225 +925,127 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                   xl:mx-28
                   2xl:mx-48
                   3xl:ms-64 3xl:max-w-4xl
-                  overflow-hidden
-                  mb-6
-                  h-hero
-                  md:h-heroxl
-                  text-center
-                  rounded
                 \\"
               >
-                <img
-                  src=\\"/images/article1-sm.png\\"
-                  alt=\\"\\"
-                  class=\\"block w-full h-full rounded\\"
-                />
-              </div>
-              <div
-                class=\\"
-                  px-6
-                  lg:px-12 lg:mx-12
-                  xl:mx-28
-                  2xl:mx-48
-                  3xl:ms-64 3xl:max-w-4xl
-                \\"
-              >
-                <div class=\\"\\">
-                  <span
-                    lang=\\"fi\\"
-                    class=\\"block text-action mb-3 text-gray-darker invisible\\"
-                    >Health services in Finlande</span
-                  >
-                  <h1
+                <div class=\\"grid grid-cols-1 md:grid-cols-2 gap-6 mb-28\\">
+                  <a
                     class=\\"
-                      mt-2
-                      mb-6
-                      max-w-article
-                      me-2
-                      ifu-hero__title
-                      text-h2
-                      md:text-h1xl
+                      rounded
+                      block
+                      bg-blue-white
+                      hover:bg-blue-lighter
+                      shadow-themecard-blue
                     \\"
-                  >
-                    Health services in Finlande
-                  </h1>
-                  <div
+                    href=\\"/theme/page\\"
+                    ><span class=\\"flex md:h-24\\"
+                      ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                        >Moving to Finland</span
+                      ></span
+                    ></a
+                  ><a
                     class=\\"
-                      flex
-                      items-center
-                      mb-8
-                      text-body-small text-bodytext-color
+                      rounded
+                      block
+                      bg-green-lighter
+                      hover:bg-green-light
+                      shadow-themecard-green
                     \\"
+                    href=\\"/theme/page/subpage\\"
+                    ><span class=\\"flex md:h-24\\"
+                      ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                        >Settling in Finland</span
+                      ></span
+                    ></a
+                  ><a
+                    class=\\"
+                      rounded
+                      block
+                      bg-blue-white
+                      hover:bg-blue-lighter
+                      shadow-themecard-blue
+                    \\"
+                    href=\\"/theme/page/subpage\\"
+                    ><span class=\\"flex md:h-24\\"
+                      ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                        >Otsikko</span
+                      ></span
+                    ></a
+                  ><a
+                    class=\\"
+                      rounded
+                      block
+                      bg-green-lighter
+                      hover:bg-green-light
+                      shadow-themecard-green
+                    \\"
+                    href=\\"/theme/page/subpage\\"
+                    ><span class=\\"flex md:h-24\\"
+                      ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                        >Otsikko</span
+                      ></span
+                    ></a
+                  ><a
+                    class=\\"
+                      rounded
+                      block
+                      bg-blue-white
+                      hover:bg-blue-lighter
+                      shadow-themecard-blue
+                    \\"
+                    href=\\"/theme/page/subpage\\"
+                    ><span class=\\"flex md:h-24\\"
+                      ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                        >Otsikko</span
+                      ></span
+                    ></a
+                  ><a
+                    class=\\"
+                      rounded
+                      block
+                      bg-green-lighter
+                      hover:bg-green-light
+                      shadow-themecard-green
+                    \\"
+                    href=\\"/theme/page/subpage\\"
+                    ><span class=\\"flex md:h-24\\"
+                      ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                        >Otsikko</span
+                      ></span
+                    ></a
+                  ><a
+                    class=\\"
+                      rounded
+                      block
+                      bg-blue-white
+                      hover:bg-blue-lighter
+                      shadow-themecard-blue
+                    \\"
+                    href=\\"/theme/page/subpage\\"
+                    ><span class=\\"flex md:h-24\\"
+                      ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                        >Otsikko</span
+                      ></span
+                    ></a
+                  ><a
+                    class=\\"
+                      rounded
+                      block
+                      bg-green-lighter
+                      hover:bg-green-light
+                      shadow-themecard-green
+                    \\"
+                    href=\\"/theme/page/subpage\\"
+                    ><span class=\\"flex md:h-24\\"
+                      ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                        >Otsikko</span
+                      ></span
+                    ></a
                   >
-                    <svg
-                      class=\\"
-                        inline-block
-                        md:w-4 md:h-4
-                        transform
-                        translate-y-px
-                      \\"
-                      width=\\"11\\"
-                      height=\\"12\\"
-                      viewBox=\\"0 0 11 12\\"
-                      fill=\\"none\\"
-                      xmlns=\\"http://www.w3.org/2000/svg\\"
-                    >
-                      <path
-                        d=\\"M9.77778 1.2H9.16667V0H7.94444V1.2H3.05556V0H1.83333V1.2H1.22222C0.543889 1.2 0.00611111 1.74 0.00611111 2.4L0 10.8C0 11.46 0.543889 12 1.22222 12H9.77778C10.45 12 11 11.46 11 10.8V2.4C11 1.74 10.45 1.2 9.77778 1.2ZM9.77778 10.8H1.22222V4.8H9.77778V10.8ZM9.77778 3.6H1.22222V2.4H9.77778V3.6ZM5.5 6.6H8.55556V9.6H5.5V6.6Z\\"
-                        fill=\\"black\\"
-                      ></path></svg
-                    ><span class=\\"px-2 transform translate-y-px\\"
-                      >23.12.2015</span
-                    >
-                  </div>
                 </div>
               </div>
+            </main>
+            <footer class=\\"ifu-footer\\">
               <div
-                class=\\"
-                  px-6
-                  lg:px-12 lg:mx-12
-                  xl:mx-28
-                  2xl:mx-48
-                  3xl:ms-64 3xl:max-w-4xl
-                \\"
-              >
-                <p class=\\"mb-8 text-body text-bodytext-color\\">
-                  The education system includes early childhood education,
-                  preschool education, comprehensive education, upper secondary
-                  education and higher education. Adult education is intended
-                  for adults and it includes a multitude of alternatives from
-                  comprehensive to higher education.
-                </p>
-              </div>
-            </div>
-            <div
-              class=\\"
-                px-6
-                lg:px-0 lg:mx-12
-                xl:mx-28
-                2xl:mx-48
-                3xl:ms-64 3xl:max-w-4xl
-              \\"
-            >
-              <div class=\\"grid grid-cols-1 md:grid-cols-2 gap-6 mb-28\\">
-                <div
-                  class=\\"
-                    rounded
-                    bg-blue-white
-                    hover:bg-blue-lighter
-                    shadow-themecard-blue
-                  \\"
-                >
-                  <div class=\\"flex md:h-24\\">
-                    <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                      <a class=\\"block\\" href=\\"/theme/page\\">Moving to Finland</a>
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class=\\"
-                    rounded
-                    bg-green-lighter
-                    hover:bg-green-light
-                    shadow-themecard-green
-                  \\"
-                >
-                  <div class=\\"flex md:h-24\\">
-                    <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                      <a class=\\"block\\" href=\\"/theme/page/subpage\\"
-                        >Settling in Finland</a
-                      >
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class=\\"
-                    rounded
-                    bg-blue-white
-                    hover:bg-blue-lighter
-                    shadow-themecard-blue
-                  \\"
-                >
-                  <div class=\\"flex md:h-24\\">
-                    <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                      <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class=\\"
-                    rounded
-                    bg-green-lighter
-                    hover:bg-green-light
-                    shadow-themecard-green
-                  \\"
-                >
-                  <div class=\\"flex md:h-24\\">
-                    <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                      <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class=\\"
-                    rounded
-                    bg-blue-white
-                    hover:bg-blue-lighter
-                    shadow-themecard-blue
-                  \\"
-                >
-                  <div class=\\"flex md:h-24\\">
-                    <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                      <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class=\\"
-                    rounded
-                    bg-green-lighter
-                    hover:bg-green-light
-                    shadow-themecard-green
-                  \\"
-                >
-                  <div class=\\"flex md:h-24\\">
-                    <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                      <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class=\\"
-                    rounded
-                    bg-blue-white
-                    hover:bg-blue-lighter
-                    shadow-themecard-blue
-                  \\"
-                >
-                  <div class=\\"flex md:h-24\\">
-                    <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                      <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class=\\"
-                    rounded
-                    bg-green-lighter
-                    hover:bg-green-light
-                    shadow-themecard-green
-                  \\"
-                >
-                  <div class=\\"flex md:h-24\\">
-                    <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                      <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class=\\"ifu-footer\\">
-              <footer
                 class=\\"
                   px-6
                   lg:px-0 lg:mx-12
@@ -1197,8 +1221,8 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                     >Saatavuus</a
                   >
                 </section>
-              </footer>
-              <div class=\\"bg-blue-white\\">
+              </div>
+              <section class=\\"bg-blue-white\\">
                 <div
                   class=\\"
                     px-2
@@ -1209,7 +1233,10 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                     h-20
                   \\"
                 >
-                  <button class=\\"flex items-center w-full h-20\\">
+                  <button
+                    class=\\"flex items-center w-full h-20\\"
+                    aria-expanded=\\"false\\"
+                  >
                     <svg
                       class=\\"
                         inline-block
@@ -1253,10 +1280,10 @@ exports[`Theme page page renders and matches snapshot 1`] = `
                     overflow-hidden
                   \\"
                 ></div>
-              </div>
-            </div>
+              </section>
+            </footer>
           </div>
-        </main>
+        </div>
       </div>
     </div>
   </body>
@@ -1298,6 +1325,7 @@ exports[`Theme page page renders and matches snapshot 2`] = `
         </div>
         <div class=\\"flex-grow\\"></div>
         <button
+          aria-haspopup=\\"dialog\\"
           title=\\"common:languageMenu.label\\"
           class=\\"block lg:hidden h-8 transform -translate-y-0.5 md:me-2\\"
         >
@@ -1342,9 +1370,8 @@ exports[`Theme page page renders and matches snapshot 2`] = `
             me-4
             md:ms-1
           \\"
-          role=\\"listbox\\"
         >
-          <button class=\\"xl:hidden lg:px-0 pe-2 ps-2\\">
+          <button class=\\"xl:hidden lg:px-0 pe-2 ps-2\\" aria-haspopup=\\"dialog\\">
             <span class=\\"hidden md:inline-block xl:hidden\\"
               >common:languageSelector.button</span
             ><svg
@@ -1385,8 +1412,6 @@ exports[`Theme page page renders and matches snapshot 2`] = `
             title=\\"Suomi\\"
             hreflang=\\"fi\\"
             lang=\\"fi\\"
-            role=\\"option\\"
-            aria-selected=\\"true\\"
             href=\\"/theme/index\\"
             ><span class=\\"xl:hidden border-b-2 border-black\\">fi</span
             ><span
@@ -1410,8 +1435,6 @@ exports[`Theme page page renders and matches snapshot 2`] = `
             title=\\"Svenska\\"
             hreflang=\\"sv\\"
             lang=\\"sv\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/theme/index\\"
             ><span class=\\"xl:hidden\\">sv</span
             ><span
@@ -1435,8 +1458,6 @@ exports[`Theme page page renders and matches snapshot 2`] = `
             title=\\"English\\"
             hreflang=\\"en\\"
             lang=\\"en\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/theme/index\\"
             ><span class=\\"xl:hidden\\">en</span
             ><span
@@ -1460,8 +1481,6 @@ exports[`Theme page page renders and matches snapshot 2`] = `
             title=\\"Pусский\\"
             hreflang=\\"ru\\"
             lang=\\"ru\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/theme/index\\"
             ><span class=\\"xl:hidden\\">ru</span
             ><span
@@ -1485,8 +1504,6 @@ exports[`Theme page page renders and matches snapshot 2`] = `
             title=\\"Eesti keel\\"
             hreflang=\\"et\\"
             lang=\\"et\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/theme/index\\"
             ><span class=\\"xl:hidden\\">et</span
             ><span
@@ -1510,8 +1527,6 @@ exports[`Theme page page renders and matches snapshot 2`] = `
             title=\\"Français\\"
             hreflang=\\"fr\\"
             lang=\\"fr\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/theme/index\\"
             ><span class=\\"xl:hidden\\">fr</span
             ><span
@@ -1535,8 +1550,6 @@ exports[`Theme page page renders and matches snapshot 2`] = `
             title=\\"Soomaali\\"
             hreflang=\\"so\\"
             lang=\\"so\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/theme/index\\"
             ><span class=\\"xl:hidden\\">so</span
             ><span
@@ -1560,8 +1573,6 @@ exports[`Theme page page renders and matches snapshot 2`] = `
             title=\\"Español\\"
             hreflang=\\"es\\"
             lang=\\"es\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/theme/index\\"
             ><span class=\\"xl:hidden\\">es</span
             ><span
@@ -1585,8 +1596,6 @@ exports[`Theme page page renders and matches snapshot 2`] = `
             title=\\"Türkçe\\"
             hreflang=\\"tr\\"
             lang=\\"tr\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/theme/index\\"
             ><span class=\\"xl:hidden\\">tr</span
             ><span
@@ -1610,8 +1619,6 @@ exports[`Theme page page renders and matches snapshot 2`] = `
             title=\\"中文\\"
             hreflang=\\"zh\\"
             lang=\\"zh\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/theme/index\\"
             ><span class=\\"xl:hidden\\">zh</span
             ><span
@@ -1635,8 +1642,6 @@ exports[`Theme page page renders and matches snapshot 2`] = `
             title=\\" فارسی\\"
             hreflang=\\"fa\\"
             lang=\\"fa\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/theme/index\\"
             ><span class=\\"xl:hidden\\">fa</span
             ><span
@@ -1661,8 +1666,6 @@ exports[`Theme page page renders and matches snapshot 2`] = `
             title=\\"العربية\\"
             hreflang=\\"ar\\"
             lang=\\"ar\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/theme/index\\"
             ><span class=\\"xl:hidden\\">ar</span
             ><span
@@ -1678,8 +1681,39 @@ exports[`Theme page page renders and matches snapshot 2`] = `
         </div>
         <div class=\\"flex-none 2xl:flex-grow\\">
           <button
-            class=\\"w-8 md:w-24 h-8 text-action\\"
+            class=\\"md:hidden w-8 md:w-24 h-8 text-action\\"
             title=\\"common:buttons.search\\"
+            aria-expanded=\\"false\\"
+            aria-haspopup=\\"dialog\\"
+          >
+            <span class=\\"px-2 transform translate-y-0.5\\"
+              ><svg
+                class=\\"inline-block\\"
+                width=\\"17\\"
+                height=\\"17\\"
+                viewBox=\\"0 0 17 17\\"
+                fill=\\"none\\"
+                xmlns=\\"http://www.w3.org/2000/svg\\"
+              >
+                <path
+                  fill-rule=\\"evenodd\\"
+                  clip-rule=\\"evenodd\\"
+                  d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
+                  stroke=\\"black\\"
+                  stroke-width=\\"2\\"
+                ></path>
+                <path
+                  d=\\"M10.7061 10.7059L16.0001 16\\"
+                  stroke=\\"black\\"
+                  stroke-width=\\"2\\"
+                ></path></svg></span
+            ><span class=\\"hidden md:inline-block\\"
+              >common:buttons.search</span
+            ></button
+          ><button
+            class=\\"hidden md:inline-block w-8 md:w-24 h-8 text-action\\"
+            title=\\"common:buttons.search\\"
+            aria-expanded=\\"false\\"
           >
             <span class=\\"px-2 transform translate-y-0.5\\"
               ><svg
@@ -1707,6 +1741,7 @@ exports[`Theme page page renders and matches snapshot 2`] = `
         </div>
         <div class=\\"md:hidden md:mx-6 me-6 ms-2\\">
           <button
+            aria-haspopup=\\"dialog\\"
             title=\\"common:mainMenu.button\\"
             class=\\"z-50 transform -translate-y-0.5\\"
           >
@@ -1726,10 +1761,10 @@ exports[`Theme page page renders and matches snapshot 2`] = `
         </div>
       </div>
     </header>
-    <main class=\\"md:flex md:items-stretch\\" role=\\"main\\">
+    <div class=\\"md:flex md:items-stretch\\" role=\\"main\\">
       <div class=\\"md:hidden\\">
         <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
-          <div
+          <section
             class=\\"
               bg-gray-lighter
               ifu-messages__card--appear ifu-messages__card--appear-active
@@ -1745,7 +1780,7 @@ exports[`Theme page page renders and matches snapshot 2`] = `
                   ifu-messages__card-body
                 \\"
               >
-                <p class=\\"flex-none mb-2 text-message font-bold\\">Alert</p>
+                <h2 class=\\"flex-none mb-2 text-message font-bold\\">Alert</h2>
                 <div class=\\"text-message\\">
                   some stuff withouth html, maybe try that later
                 </div>
@@ -1765,7 +1800,7 @@ exports[`Theme page page renders and matches snapshot 2`] = `
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         </div>
       </div>
       <div
@@ -1782,7 +1817,7 @@ exports[`Theme page page renders and matches snapshot 2`] = `
         \\"
       >
         <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
-          <div
+          <section
             class=\\"
               bg-gray-lighter
               ifu-messages__card--appear ifu-messages__card--appear-active
@@ -1798,7 +1833,7 @@ exports[`Theme page page renders and matches snapshot 2`] = `
                   ifu-messages__card-body
                 \\"
               >
-                <p class=\\"flex-none mb-2 text-message font-bold\\">Alert</p>
+                <h2 class=\\"flex-none mb-2 text-message font-bold\\">Alert</h2>
                 <div class=\\"text-message\\">
                   some stuff withouth html, maybe try that later
                 </div>
@@ -1818,7 +1853,7 @@ exports[`Theme page page renders and matches snapshot 2`] = `
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         </div>
         <nav class=\\"mb-8 pt-8\\">
           <ul class=\\"block\\">
@@ -1856,7 +1891,7 @@ exports[`Theme page page renders and matches snapshot 2`] = `
                 <div class=\\"flex-none\\">
                   <button
                     class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
-                    tabindex=\\"0\\"
+                    aria-expanded=\\"false\\"
                   >
                     <svg
                       class=\\"
@@ -1897,7 +1932,7 @@ exports[`Theme page page renders and matches snapshot 2`] = `
                 <div class=\\"flex-none\\">
                   <button
                     class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
-                    tabindex=\\"0\\"
+                    aria-expanded=\\"false\\"
                   >
                     <svg
                       class=\\"
@@ -1926,144 +1961,236 @@ exports[`Theme page page renders and matches snapshot 2`] = `
         class=\\"hidden md:block flex-none w-navi border-black-op1 border-e-2\\"
       ></div>
       <div class=\\"ifu-layout__body\\">
-        <div class=\\"relative bg-article-green\\">
-          <div
-            class=\\"
-              px-6
-              lg:px-0 lg:mx-12
-              xl:mx-28
-              2xl:mx-48
-              3xl:ms-64 3xl:max-w-4xl
-            \\"
-          >
-            <nav class=\\"block relative py-2 mt-3 mb-2 text-black\\">
-              <div class=\\"justify-items-start\\">
-                <div class=\\"flex-none w-8 float-start\\">
-                  <a
-                    class=\\"
-                      inline-block
-                      relative
-                      flex-none
-                      mt-1
-                      text-small
-                      md:text-body-small
-                    \\"
-                    title=\\"home\\"
-                    href=\\"/\\"
-                    ><i class=\\"inline-block text-center\\"
-                      ><svg
-                        aria-labelledby=\\"home\\"
+        <main>
+          <div class=\\"relative bg-article-green\\">
+            <div
+              class=\\"
+                px-6
+                lg:px-0 lg:mx-12
+                xl:mx-28
+                2xl:mx-48
+                3xl:ms-64 3xl:max-w-4xl
+              \\"
+            >
+              <nav class=\\"block relative py-2 mt-3 mb-2 text-black\\">
+                <div class=\\"justify-items-start\\">
+                  <div class=\\"flex-none w-8 float-start\\">
+                    <a
+                      class=\\"
+                        inline-block
+                        relative
+                        flex-none
+                        mt-1
+                        text-small
+                        md:text-body-small
+                      \\"
+                      title=\\"home\\"
+                      href=\\"/\\"
+                      ><i class=\\"inline-block text-center\\"
+                        ><svg
+                          aria-labelledby=\\"home\\"
+                          class=\\"
+                            inline-block
+                            absolute
+                            -top-1
+                            transform
+                            scale-125
+                            translate-y-1
+                          \\"
+                          width=\\"17\\"
+                          height=\\"14\\"
+                          viewBox=\\"0 0 17 14\\"
+                          fill=\\"none\\"
+                          xmlns=\\"http://www.w3.org/2000/svg\\"
+                        >
+                          <path
+                            d=\\"M7.29412 13.4231H4.20588V8.34614H2L9.05882 1.5769L15.6765 8.34614H13.4706V13.4231H10.3824V9.19229H7.29412V13.4231Z\\"
+                            stroke=\\"black\\"
+                          ></path></svg></i
+                    ></a>
+                  </div>
+                  <div class=\\"flex-wrap leading-5 ps-4\\">
+                    <div class=\\"inline-block\\">
+                      <svg
+                        preserveAspectRatio=\\"xMidYMin slice\\"
                         class=\\"
                           inline-block
-                          absolute
-                          -top-1
                           transform
-                          scale-125
-                          translate-y-1
+                          scale-150
+                          fill-current
+                          me-3
+                          ifu-breadcrumb__arrow
                         \\"
-                        width=\\"17\\"
-                        height=\\"14\\"
-                        viewBox=\\"0 0 17 14\\"
+                        width=\\"3\\"
+                        height=\\"5\\"
+                        viewBox=\\"0 0 3 5\\"
                         fill=\\"none\\"
                         xmlns=\\"http://www.w3.org/2000/svg\\"
                       >
                         <path
-                          d=\\"M7.29412 13.4231H4.20588V8.34614H2L9.05882 1.5769L15.6765 8.34614H13.4706V13.4231H10.3824V9.19229H7.29412V13.4231Z\\"
-                          stroke=\\"black\\"
-                        ></path></svg></i
-                  ></a>
+                          d=\\"M3 2.58235L0.805497 5L0 4.55882L1.8203 2.49412L0 0.435294L0.805497 0L3 2.42353V2.58235Z\\"
+                          fill=\\"black\\"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class=\\"inline-block\\">
+                      <a
+                        class=\\"text-small md:text-body-small hover:underline\\"
+                        title=\\"Living\\"
+                        href=\\"/\\"
+                        >Living</a
+                      ><svg
+                        preserveAspectRatio=\\"xMidYMin slice\\"
+                        class=\\"
+                          inline-block
+                          mx-3
+                          transform
+                          scale-150
+                          fill-current
+                          ifu-breadcrumb__arrow
+                        \\"
+                        width=\\"3\\"
+                        height=\\"5\\"
+                        viewBox=\\"0 0 3 5\\"
+                        fill=\\"none\\"
+                        xmlns=\\"http://www.w3.org/2000/svg\\"
+                      >
+                        <path
+                          d=\\"M3 2.58235L0.805497 5L0 4.55882L1.8203 2.49412L0 0.435294L0.805497 0L3 2.42353V2.58235Z\\"
+                          fill=\\"black\\"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class=\\"inline-block\\">
+                      <a
+                        class=\\"text-small md:text-body-small hover:underline\\"
+                        title=\\"Health and other things\\"
+                        href=\\"/\\"
+                        >Health and other things</a
+                      ><svg
+                        preserveAspectRatio=\\"xMidYMin slice\\"
+                        class=\\"
+                          inline-block
+                          mx-3
+                          transform
+                          scale-150
+                          fill-current
+                          ifu-breadcrumb__arrow
+                        \\"
+                        width=\\"3\\"
+                        height=\\"5\\"
+                        viewBox=\\"0 0 3 5\\"
+                        fill=\\"none\\"
+                        xmlns=\\"http://www.w3.org/2000/svg\\"
+                      >
+                        <path
+                          d=\\"M3 2.58235L0.805497 5L0 4.55882L1.8203 2.49412L0 0.435294L0.805497 0L3 2.42353V2.58235Z\\"
+                          fill=\\"black\\"
+                        ></path>
+                      </svg>
+                    </div>
+                    <div class=\\"inline-block\\">
+                      <a
+                        class=\\"text-small md:text-body-small hover:underline\\"
+                        title=\\"Health services in Finland\\"
+                        href=\\"/\\"
+                        >Health services in Finland</a
+                      >
+                    </div>
+                  </div>
                 </div>
-                <div class=\\"flex-wrap leading-5 ps-4\\">
-                  <div class=\\"inline-block\\">
-                    <svg
-                      preserveAspectRatio=\\"xMidYMin slice\\"
-                      class=\\"
-                        inline-block
-                        transform
-                        scale-150
-                        fill-current
-                        me-3
-                        ifu-breadcrumb__arrow
-                      \\"
-                      width=\\"3\\"
-                      height=\\"5\\"
-                      viewBox=\\"0 0 3 5\\"
-                      fill=\\"none\\"
-                      xmlns=\\"http://www.w3.org/2000/svg\\"
-                    >
-                      <path
-                        d=\\"M3 2.58235L0.805497 5L0 4.55882L1.8203 2.49412L0 0.435294L0.805497 0L3 2.42353V2.58235Z\\"
-                        fill=\\"black\\"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div class=\\"inline-block\\">
-                    <a
-                      class=\\"text-small md:text-body-small hover:underline\\"
-                      title=\\"Living\\"
-                      href=\\"/\\"
-                      >Living</a
-                    ><svg
-                      preserveAspectRatio=\\"xMidYMin slice\\"
-                      class=\\"
-                        inline-block
-                        mx-3
-                        transform
-                        scale-150
-                        fill-current
-                        ifu-breadcrumb__arrow
-                      \\"
-                      width=\\"3\\"
-                      height=\\"5\\"
-                      viewBox=\\"0 0 3 5\\"
-                      fill=\\"none\\"
-                      xmlns=\\"http://www.w3.org/2000/svg\\"
-                    >
-                      <path
-                        d=\\"M3 2.58235L0.805497 5L0 4.55882L1.8203 2.49412L0 0.435294L0.805497 0L3 2.42353V2.58235Z\\"
-                        fill=\\"black\\"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div class=\\"inline-block\\">
-                    <a
-                      class=\\"text-small md:text-body-small hover:underline\\"
-                      title=\\"Health and other things\\"
-                      href=\\"/\\"
-                      >Health and other things</a
-                    ><svg
-                      preserveAspectRatio=\\"xMidYMin slice\\"
-                      class=\\"
-                        inline-block
-                        mx-3
-                        transform
-                        scale-150
-                        fill-current
-                        ifu-breadcrumb__arrow
-                      \\"
-                      width=\\"3\\"
-                      height=\\"5\\"
-                      viewBox=\\"0 0 3 5\\"
-                      fill=\\"none\\"
-                      xmlns=\\"http://www.w3.org/2000/svg\\"
-                    >
-                      <path
-                        d=\\"M3 2.58235L0.805497 5L0 4.55882L1.8203 2.49412L0 0.435294L0.805497 0L3 2.42353V2.58235Z\\"
-                        fill=\\"black\\"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div class=\\"inline-block\\">
-                    <a
-                      class=\\"text-small md:text-body-small hover:underline\\"
-                      title=\\"Health services in Finland\\"
-                      href=\\"/\\"
-                      >Health services in Finland</a
-                    >
-                  </div>
+              </nav>
+            </div>
+            <div
+              class=\\"
+                px-6
+                lg:px-0 lg:mx-12
+                xl:mx-28
+                2xl:mx-48
+                3xl:ms-64 3xl:max-w-4xl
+                overflow-hidden
+                mb-6
+                h-hero
+                md:h-heroxl
+                text-center
+                rounded
+              \\"
+            >
+              <img
+                src=\\"/images/article1-sm.png\\"
+                alt=\\"\\"
+                class=\\"block w-full h-full rounded\\"
+              />
+            </div>
+            <div
+              class=\\"
+                px-6
+                lg:px-12 lg:mx-12
+                xl:mx-28
+                2xl:mx-48
+                3xl:ms-64 3xl:max-w-4xl
+              \\"
+            >
+              <div class=\\"\\">
+                <span
+                  lang=\\"fi\\"
+                  class=\\"block text-action mb-3 text-gray-darker invisible\\"
+                  >Health services in Finlande</span
+                >
+                <h1
+                  class=\\"
+                    mt-2
+                    mb-6
+                    max-w-article
+                    me-2
+                    ifu-hero__title
+                    text-h2
+                    md:text-h1xl
+                  \\"
+                >
+                  Health services in Finlande
+                </h1>
+                <div
+                  class=\\"
+                    flex
+                    items-center
+                    mb-8
+                    text-body-small text-bodytext-color
+                  \\"
+                >
+                  <svg
+                    class=\\"inline-block md:w-4 md:h-4 transform translate-y-px\\"
+                    width=\\"11\\"
+                    height=\\"12\\"
+                    viewBox=\\"0 0 11 12\\"
+                    fill=\\"none\\"
+                    xmlns=\\"http://www.w3.org/2000/svg\\"
+                  >
+                    <path
+                      d=\\"M9.77778 1.2H9.16667V0H7.94444V1.2H3.05556V0H1.83333V1.2H1.22222C0.543889 1.2 0.00611111 1.74 0.00611111 2.4L0 10.8C0 11.46 0.543889 12 1.22222 12H9.77778C10.45 12 11 11.46 11 10.8V2.4C11 1.74 10.45 1.2 9.77778 1.2ZM9.77778 10.8H1.22222V4.8H9.77778V10.8ZM9.77778 3.6H1.22222V2.4H9.77778V3.6ZM5.5 6.6H8.55556V9.6H5.5V6.6Z\\"
+                      fill=\\"black\\"
+                    ></path></svg
+                  ><span class=\\"px-2 transform translate-y-px\\">23.12.2015</span>
                 </div>
               </div>
-            </nav>
+            </div>
+            <div
+              class=\\"
+                px-6
+                lg:px-12 lg:mx-12
+                xl:mx-28
+                2xl:mx-48
+                3xl:ms-64 3xl:max-w-4xl
+              \\"
+            >
+              <p class=\\"mb-8 text-body text-bodytext-color\\">
+                The education system includes early childhood education,
+                preschool education, comprehensive education, upper secondary
+                education and higher education. Adult education is intended for
+                adults and it includes a multitude of alternatives from
+                comprehensive to higher education.
+              </p>
+            </div>
           </div>
           <div
             class=\\"
@@ -2072,218 +2199,127 @@ exports[`Theme page page renders and matches snapshot 2`] = `
               xl:mx-28
               2xl:mx-48
               3xl:ms-64 3xl:max-w-4xl
-              overflow-hidden
-              mb-6
-              h-hero
-              md:h-heroxl
-              text-center
-              rounded
             \\"
           >
-            <img
-              src=\\"/images/article1-sm.png\\"
-              alt=\\"\\"
-              class=\\"block w-full h-full rounded\\"
-            />
-          </div>
-          <div
-            class=\\"
-              px-6
-              lg:px-12 lg:mx-12
-              xl:mx-28
-              2xl:mx-48
-              3xl:ms-64 3xl:max-w-4xl
-            \\"
-          >
-            <div class=\\"\\">
-              <span
-                lang=\\"fi\\"
-                class=\\"block text-action mb-3 text-gray-darker invisible\\"
-                >Health services in Finlande</span
-              >
-              <h1
+            <div class=\\"grid grid-cols-1 md:grid-cols-2 gap-6 mb-28\\">
+              <a
                 class=\\"
-                  mt-2
-                  mb-6
-                  max-w-article
-                  me-2
-                  ifu-hero__title
-                  text-h2
-                  md:text-h1xl
+                  rounded
+                  block
+                  bg-blue-white
+                  hover:bg-blue-lighter
+                  shadow-themecard-blue
                 \\"
-              >
-                Health services in Finlande
-              </h1>
-              <div
+                href=\\"/theme/page\\"
+                ><span class=\\"flex md:h-24\\"
+                  ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                    >Moving to Finland</span
+                  ></span
+                ></a
+              ><a
                 class=\\"
-                  flex
-                  items-center
-                  mb-8
-                  text-body-small text-bodytext-color
+                  rounded
+                  block
+                  bg-green-lighter
+                  hover:bg-green-light
+                  shadow-themecard-green
                 \\"
+                href=\\"/theme/page/subpage\\"
+                ><span class=\\"flex md:h-24\\"
+                  ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                    >Settling in Finland</span
+                  ></span
+                ></a
+              ><a
+                class=\\"
+                  rounded
+                  block
+                  bg-blue-white
+                  hover:bg-blue-lighter
+                  shadow-themecard-blue
+                \\"
+                href=\\"/theme/page/subpage\\"
+                ><span class=\\"flex md:h-24\\"
+                  ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                    >Otsikko</span
+                  ></span
+                ></a
+              ><a
+                class=\\"
+                  rounded
+                  block
+                  bg-green-lighter
+                  hover:bg-green-light
+                  shadow-themecard-green
+                \\"
+                href=\\"/theme/page/subpage\\"
+                ><span class=\\"flex md:h-24\\"
+                  ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                    >Otsikko</span
+                  ></span
+                ></a
+              ><a
+                class=\\"
+                  rounded
+                  block
+                  bg-blue-white
+                  hover:bg-blue-lighter
+                  shadow-themecard-blue
+                \\"
+                href=\\"/theme/page/subpage\\"
+                ><span class=\\"flex md:h-24\\"
+                  ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                    >Otsikko</span
+                  ></span
+                ></a
+              ><a
+                class=\\"
+                  rounded
+                  block
+                  bg-green-lighter
+                  hover:bg-green-light
+                  shadow-themecard-green
+                \\"
+                href=\\"/theme/page/subpage\\"
+                ><span class=\\"flex md:h-24\\"
+                  ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                    >Otsikko</span
+                  ></span
+                ></a
+              ><a
+                class=\\"
+                  rounded
+                  block
+                  bg-blue-white
+                  hover:bg-blue-lighter
+                  shadow-themecard-blue
+                \\"
+                href=\\"/theme/page/subpage\\"
+                ><span class=\\"flex md:h-24\\"
+                  ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                    >Otsikko</span
+                  ></span
+                ></a
+              ><a
+                class=\\"
+                  rounded
+                  block
+                  bg-green-lighter
+                  hover:bg-green-light
+                  shadow-themecard-green
+                \\"
+                href=\\"/theme/page/subpage\\"
+                ><span class=\\"flex md:h-24\\"
+                  ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                    >Otsikko</span
+                  ></span
+                ></a
               >
-                <svg
-                  class=\\"inline-block md:w-4 md:h-4 transform translate-y-px\\"
-                  width=\\"11\\"
-                  height=\\"12\\"
-                  viewBox=\\"0 0 11 12\\"
-                  fill=\\"none\\"
-                  xmlns=\\"http://www.w3.org/2000/svg\\"
-                >
-                  <path
-                    d=\\"M9.77778 1.2H9.16667V0H7.94444V1.2H3.05556V0H1.83333V1.2H1.22222C0.543889 1.2 0.00611111 1.74 0.00611111 2.4L0 10.8C0 11.46 0.543889 12 1.22222 12H9.77778C10.45 12 11 11.46 11 10.8V2.4C11 1.74 10.45 1.2 9.77778 1.2ZM9.77778 10.8H1.22222V4.8H9.77778V10.8ZM9.77778 3.6H1.22222V2.4H9.77778V3.6ZM5.5 6.6H8.55556V9.6H5.5V6.6Z\\"
-                    fill=\\"black\\"
-                  ></path></svg
-                ><span class=\\"px-2 transform translate-y-px\\">23.12.2015</span>
-              </div>
             </div>
           </div>
+        </main>
+        <footer class=\\"ifu-footer\\">
           <div
-            class=\\"
-              px-6
-              lg:px-12 lg:mx-12
-              xl:mx-28
-              2xl:mx-48
-              3xl:ms-64 3xl:max-w-4xl
-            \\"
-          >
-            <p class=\\"mb-8 text-body text-bodytext-color\\">
-              The education system includes early childhood education, preschool
-              education, comprehensive education, upper secondary education and
-              higher education. Adult education is intended for adults and it
-              includes a multitude of alternatives from comprehensive to higher
-              education.
-            </p>
-          </div>
-        </div>
-        <div
-          class=\\"
-            px-6
-            lg:px-0 lg:mx-12
-            xl:mx-28
-            2xl:mx-48
-            3xl:ms-64 3xl:max-w-4xl
-          \\"
-        >
-          <div class=\\"grid grid-cols-1 md:grid-cols-2 gap-6 mb-28\\">
-            <div
-              class=\\"
-                rounded
-                bg-blue-white
-                hover:bg-blue-lighter
-                shadow-themecard-blue
-              \\"
-            >
-              <div class=\\"flex md:h-24\\">
-                <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                  <a class=\\"block\\" href=\\"/theme/page\\">Moving to Finland</a>
-                </p>
-              </div>
-            </div>
-            <div
-              class=\\"
-                rounded
-                bg-green-lighter
-                hover:bg-green-light
-                shadow-themecard-green
-              \\"
-            >
-              <div class=\\"flex md:h-24\\">
-                <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                  <a class=\\"block\\" href=\\"/theme/page/subpage\\"
-                    >Settling in Finland</a
-                  >
-                </p>
-              </div>
-            </div>
-            <div
-              class=\\"
-                rounded
-                bg-blue-white
-                hover:bg-blue-lighter
-                shadow-themecard-blue
-              \\"
-            >
-              <div class=\\"flex md:h-24\\">
-                <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                  <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                </p>
-              </div>
-            </div>
-            <div
-              class=\\"
-                rounded
-                bg-green-lighter
-                hover:bg-green-light
-                shadow-themecard-green
-              \\"
-            >
-              <div class=\\"flex md:h-24\\">
-                <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                  <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                </p>
-              </div>
-            </div>
-            <div
-              class=\\"
-                rounded
-                bg-blue-white
-                hover:bg-blue-lighter
-                shadow-themecard-blue
-              \\"
-            >
-              <div class=\\"flex md:h-24\\">
-                <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                  <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                </p>
-              </div>
-            </div>
-            <div
-              class=\\"
-                rounded
-                bg-green-lighter
-                hover:bg-green-light
-                shadow-themecard-green
-              \\"
-            >
-              <div class=\\"flex md:h-24\\">
-                <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                  <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                </p>
-              </div>
-            </div>
-            <div
-              class=\\"
-                rounded
-                bg-blue-white
-                hover:bg-blue-lighter
-                shadow-themecard-blue
-              \\"
-            >
-              <div class=\\"flex md:h-24\\">
-                <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                  <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                </p>
-              </div>
-            </div>
-            <div
-              class=\\"
-                rounded
-                bg-green-lighter
-                hover:bg-green-light
-                shadow-themecard-green
-              \\"
-            >
-              <div class=\\"flex md:h-24\\">
-                <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                  <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class=\\"ifu-footer\\">
-          <footer
             class=\\"
               px-6
               lg:px-0 lg:mx-12
@@ -2457,8 +2493,8 @@ exports[`Theme page page renders and matches snapshot 2`] = `
               ><a class=\\"ifu-footer__link\\" href=\\"/theme#terms\\">Avoin data</a
               ><a class=\\"ifu-footer__link\\" href=\\"/theme#cookies\\">Saatavuus</a>
             </section>
-          </footer>
-          <div class=\\"bg-blue-white\\">
+          </div>
+          <section class=\\"bg-blue-white\\">
             <div
               class=\\"
                 px-2
@@ -2469,7 +2505,10 @@ exports[`Theme page page renders and matches snapshot 2`] = `
                 h-20
               \\"
             >
-              <button class=\\"flex items-center w-full h-20\\">
+              <button
+                class=\\"flex items-center w-full h-20\\"
+                aria-expanded=\\"false\\"
+              >
                 <svg
                   class=\\"
                     inline-block
@@ -2513,10 +2552,10 @@ exports[`Theme page page renders and matches snapshot 2`] = `
                 overflow-hidden
               \\"
             ></div>
-          </div>
-        </div>
+          </section>
+        </footer>
       </div>
-    </main>
+    </div>
   </div>
 </div>
 "

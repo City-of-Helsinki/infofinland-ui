@@ -6,7 +6,8 @@
   }
 
   .text-shadow-home {
-    text-shadow: 1px 1px 16px #777777;
+    text-shadow: 2px 2px 5px rgb(0 0 0 / 80%), -2px -2px 5px rgb(0 0 0 / 40%),
+      0px 0px 50px rgb(0 0 0 / 50%);
   }
 
   @screen lg {

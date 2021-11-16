@@ -37,6 +37,7 @@ exports[`Search Page page renders empty search field  1`] = `
             </div>
             <div class=\\"flex-grow\\"></div>
             <button
+              aria-haspopup=\\"dialog\\"
               title=\\"common:languageMenu.label\\"
               class=\\"block lg:hidden h-8 transform -translate-y-0.5 md:me-2\\"
             >
@@ -81,9 +82,11 @@ exports[`Search Page page renders empty search field  1`] = `
                 me-4
                 md:ms-1
               \\"
-              role=\\"listbox\\"
             >
-              <button class=\\"xl:hidden lg:px-0 pe-2 ps-2\\">
+              <button
+                class=\\"xl:hidden lg:px-0 pe-2 ps-2\\"
+                aria-haspopup=\\"dialog\\"
+              >
                 <span class=\\"hidden md:inline-block xl:hidden\\"
                   >common:languageSelector.button</span
                 ><svg
@@ -124,8 +127,6 @@ exports[`Search Page page renders empty search field  1`] = `
                 title=\\"Suomi\\"
                 hreflang=\\"fi\\"
                 lang=\\"fi\\"
-                role=\\"option\\"
-                aria-selected=\\"true\\"
                 href=\\"/hae\\"
                 ><span class=\\"xl:hidden border-b-2 border-black\\">fi</span
                 ><span
@@ -149,8 +150,6 @@ exports[`Search Page page renders empty search field  1`] = `
                 title=\\"Svenska\\"
                 hreflang=\\"sv\\"
                 lang=\\"sv\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae\\"
                 ><span class=\\"xl:hidden\\">sv</span
                 ><span
@@ -174,8 +173,6 @@ exports[`Search Page page renders empty search field  1`] = `
                 title=\\"English\\"
                 hreflang=\\"en\\"
                 lang=\\"en\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae\\"
                 ><span class=\\"xl:hidden\\">en</span
                 ><span
@@ -199,8 +196,6 @@ exports[`Search Page page renders empty search field  1`] = `
                 title=\\"Pусский\\"
                 hreflang=\\"ru\\"
                 lang=\\"ru\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae\\"
                 ><span class=\\"xl:hidden\\">ru</span
                 ><span
@@ -224,8 +219,6 @@ exports[`Search Page page renders empty search field  1`] = `
                 title=\\"Eesti keel\\"
                 hreflang=\\"et\\"
                 lang=\\"et\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae\\"
                 ><span class=\\"xl:hidden\\">et</span
                 ><span
@@ -249,8 +242,6 @@ exports[`Search Page page renders empty search field  1`] = `
                 title=\\"Français\\"
                 hreflang=\\"fr\\"
                 lang=\\"fr\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae\\"
                 ><span class=\\"xl:hidden\\">fr</span
                 ><span
@@ -274,8 +265,6 @@ exports[`Search Page page renders empty search field  1`] = `
                 title=\\"Soomaali\\"
                 hreflang=\\"so\\"
                 lang=\\"so\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae\\"
                 ><span class=\\"xl:hidden\\">so</span
                 ><span
@@ -299,8 +288,6 @@ exports[`Search Page page renders empty search field  1`] = `
                 title=\\"Español\\"
                 hreflang=\\"es\\"
                 lang=\\"es\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae\\"
                 ><span class=\\"xl:hidden\\">es</span
                 ><span
@@ -324,8 +311,6 @@ exports[`Search Page page renders empty search field  1`] = `
                 title=\\"Türkçe\\"
                 hreflang=\\"tr\\"
                 lang=\\"tr\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae\\"
                 ><span class=\\"xl:hidden\\">tr</span
                 ><span
@@ -349,8 +334,6 @@ exports[`Search Page page renders empty search field  1`] = `
                 title=\\"中文\\"
                 hreflang=\\"zh\\"
                 lang=\\"zh\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae\\"
                 ><span class=\\"xl:hidden\\">zh</span
                 ><span
@@ -374,8 +357,6 @@ exports[`Search Page page renders empty search field  1`] = `
                 title=\\" فارسی\\"
                 hreflang=\\"fa\\"
                 lang=\\"fa\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae\\"
                 ><span class=\\"xl:hidden\\">fa</span
                 ><span
@@ -400,8 +381,6 @@ exports[`Search Page page renders empty search field  1`] = `
                 title=\\"العربية\\"
                 hreflang=\\"ar\\"
                 lang=\\"ar\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae\\"
                 ><span class=\\"xl:hidden\\">ar</span
                 ><span
@@ -417,8 +396,39 @@ exports[`Search Page page renders empty search field  1`] = `
             </div>
             <div class=\\"flex-none 2xl:flex-grow\\">
               <button
-                class=\\"w-8 md:w-24 h-8 text-action\\"
+                class=\\"md:hidden w-8 md:w-24 h-8 text-action\\"
                 title=\\"common:buttons.search\\"
+                aria-expanded=\\"false\\"
+                aria-haspopup=\\"dialog\\"
+              >
+                <span class=\\"px-2 transform translate-y-0.5\\"
+                  ><svg
+                    class=\\"inline-block\\"
+                    width=\\"17\\"
+                    height=\\"17\\"
+                    viewBox=\\"0 0 17 17\\"
+                    fill=\\"none\\"
+                    xmlns=\\"http://www.w3.org/2000/svg\\"
+                  >
+                    <path
+                      fill-rule=\\"evenodd\\"
+                      clip-rule=\\"evenodd\\"
+                      d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
+                      stroke=\\"black\\"
+                      stroke-width=\\"2\\"
+                    ></path>
+                    <path
+                      d=\\"M10.7061 10.7059L16.0001 16\\"
+                      stroke=\\"black\\"
+                      stroke-width=\\"2\\"
+                    ></path></svg></span
+                ><span class=\\"hidden md:inline-block\\"
+                  >common:buttons.search</span
+                ></button
+              ><button
+                class=\\"hidden md:inline-block w-8 md:w-24 h-8 text-action\\"
+                title=\\"common:buttons.search\\"
+                aria-expanded=\\"false\\"
               >
                 <span class=\\"px-2 transform translate-y-0.5\\"
                   ><svg
@@ -448,6 +458,7 @@ exports[`Search Page page renders empty search field  1`] = `
             </div>
             <div class=\\"md:hidden md:mx-6 me-6 ms-2\\">
               <button
+                aria-haspopup=\\"dialog\\"
                 title=\\"common:mainMenu.button\\"
                 class=\\"z-50 transform -translate-y-0.5\\"
               >
@@ -467,10 +478,10 @@ exports[`Search Page page renders empty search field  1`] = `
             </div>
           </div>
         </header>
-        <main class=\\"md:flex md:items-stretch\\" role=\\"main\\">
+        <div class=\\"md:flex md:items-stretch\\" role=\\"main\\">
           <div class=\\"md:hidden\\">
             <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
-              <div class=\\"bg-gray-lighter\\">
+              <section class=\\"bg-gray-lighter\\">
                 <div class=\\"flex my-2 bg-white rounded shadow-md me-2 ms-2\\">
                   <div class=\\"w-2 flex-none rounded-s bg-neon-red\\"></div>
                   <div
@@ -481,7 +492,7 @@ exports[`Search Page page renders empty search field  1`] = `
                       ifu-messages__card-body
                     \\"
                   >
-                    <p class=\\"flex-none mb-2 text-message font-bold\\">Alert</p>
+                    <h2 class=\\"flex-none mb-2 text-message font-bold\\">Alert</h2>
                     <div class=\\"text-message\\">
                       some stuff withouth html, maybe try that later
                     </div>
@@ -501,7 +512,7 @@ exports[`Search Page page renders empty search field  1`] = `
                     </div>
                   </div>
                 </div>
-              </div>
+              </section>
             </div>
           </div>
           <div
@@ -518,7 +529,7 @@ exports[`Search Page page renders empty search field  1`] = `
             \\"
           >
             <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
-              <div class=\\"bg-gray-lighter\\">
+              <section class=\\"bg-gray-lighter\\">
                 <div class=\\"flex my-2 bg-white rounded shadow-md me-2 ms-2\\">
                   <div class=\\"w-2 flex-none rounded-s bg-neon-red\\"></div>
                   <div
@@ -529,7 +540,7 @@ exports[`Search Page page renders empty search field  1`] = `
                       ifu-messages__card-body
                     \\"
                   >
-                    <p class=\\"flex-none mb-2 text-message font-bold\\">Alert</p>
+                    <h2 class=\\"flex-none mb-2 text-message font-bold\\">Alert</h2>
                     <div class=\\"text-message\\">
                       some stuff withouth html, maybe try that later
                     </div>
@@ -549,7 +560,7 @@ exports[`Search Page page renders empty search field  1`] = `
                     </div>
                   </div>
                 </div>
-              </div>
+              </section>
             </div>
             <nav class=\\"mb-8 pt-8\\">
               <ul class=\\"block\\">
@@ -587,7 +598,7 @@ exports[`Search Page page renders empty search field  1`] = `
                     <div class=\\"flex-none\\">
                       <button
                         class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
-                        tabindex=\\"0\\"
+                        aria-expanded=\\"false\\"
                       >
                         <svg
                           class=\\"
@@ -628,7 +639,7 @@ exports[`Search Page page renders empty search field  1`] = `
                     <div class=\\"flex-none\\">
                       <button
                         class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
-                        tabindex=\\"0\\"
+                        aria-expanded=\\"false\\"
                       >
                         <svg
                           class=\\"
@@ -657,54 +668,56 @@ exports[`Search Page page renders empty search field  1`] = `
             class=\\"hidden md:block flex-none w-navi border-black-op1 border-e-2\\"
           ></div>
           <div class=\\"ifu-layout__body\\">
-            <div
-              class=\\"
-                px-6
-                lg:px-0 lg:mx-12
-                xl:mx-28
-                2xl:mx-48
-                3xl:ms-64 3xl:max-w-4xl
-              \\"
-            >
-              <h1 class=\\"mt-16 text-h2 md:text-h2xl\\">
-                common:search.title.start
-              </h1>
-              <div class=\\"my-8\\">
-                <form class=\\"flex items-center border border-black\\">
-                  <input
-                    type=\\"search\\"
-                    placeholder=\\"common:search.placeholder\\"
-                    name=\\"q\\"
-                    value=\\"\\"
-                    class=\\"inline-block flex-grow px-2 h-12\\"
-                  /><button class=\\"inline-block flex-none w-12 h-12\\">
-                    <svg
-                      class=\\"inline-block mx-2\\"
-                      width=\\"17\\"
-                      height=\\"17\\"
-                      viewBox=\\"0 0 17 17\\"
-                      fill=\\"none\\"
-                      xmlns=\\"http://www.w3.org/2000/svg\\"
-                    >
-                      <path
-                        fill-rule=\\"evenodd\\"
-                        clip-rule=\\"evenodd\\"
-                        d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
-                        stroke=\\"black\\"
-                        stroke-width=\\"2\\"
-                      ></path>
-                      <path
-                        d=\\"M10.7061 10.7059L16.0001 16\\"
-                        stroke=\\"black\\"
-                        stroke-width=\\"2\\"
-                      ></path>
-                    </svg>
-                  </button>
-                </form>
+            <main>
+              <div
+                class=\\"
+                  px-6
+                  lg:px-0 lg:mx-12
+                  xl:mx-28
+                  2xl:mx-48
+                  3xl:ms-64 3xl:max-w-4xl
+                \\"
+              >
+                <h1 class=\\"mt-16 text-h2 md:text-h2xl\\">
+                  common:search.title.start
+                </h1>
+                <div class=\\"my-8\\">
+                  <form class=\\"flex items-center border border-black\\">
+                    <input
+                      type=\\"text\\"
+                      placeholder=\\"common:search.placeholder\\"
+                      name=\\"q\\"
+                      value=\\"\\"
+                      class=\\"inline-block flex-grow px-2 h-12\\"
+                    /><button class=\\"inline-block flex-none w-12 h-12\\">
+                      <svg
+                        class=\\"inline-block mx-2\\"
+                        width=\\"17\\"
+                        height=\\"17\\"
+                        viewBox=\\"0 0 17 17\\"
+                        fill=\\"none\\"
+                        xmlns=\\"http://www.w3.org/2000/svg\\"
+                      >
+                        <path
+                          fill-rule=\\"evenodd\\"
+                          clip-rule=\\"evenodd\\"
+                          d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
+                          stroke=\\"black\\"
+                          stroke-width=\\"2\\"
+                        ></path>
+                        <path
+                          d=\\"M10.7061 10.7059L16.0001 16\\"
+                          stroke=\\"black\\"
+                          stroke-width=\\"2\\"
+                        ></path>
+                      </svg>
+                    </button>
+                  </form>
+                </div>
               </div>
-            </div>
-            <div class=\\"ifu-footer\\">
-              <footer
+            </main>
+            <footer class=\\"ifu-footer\\">
+              <div
                 class=\\"
                   px-6
                   lg:px-0 lg:mx-12
@@ -878,8 +891,8 @@ exports[`Search Page page renders empty search field  1`] = `
                   ><a class=\\"ifu-footer__link\\" href=\\"/hae#terms\\">Avoin data</a
                   ><a class=\\"ifu-footer__link\\" href=\\"/hae#cookies\\">Saatavuus</a>
                 </section>
-              </footer>
-              <div class=\\"bg-blue-white\\">
+              </div>
+              <section class=\\"bg-blue-white\\">
                 <div
                   class=\\"
                     px-2
@@ -890,7 +903,10 @@ exports[`Search Page page renders empty search field  1`] = `
                     h-20
                   \\"
                 >
-                  <button class=\\"flex items-center w-full h-20\\">
+                  <button
+                    class=\\"flex items-center w-full h-20\\"
+                    aria-expanded=\\"false\\"
+                  >
                     <svg
                       class=\\"
                         inline-block
@@ -934,10 +950,10 @@ exports[`Search Page page renders empty search field  1`] = `
                     overflow-hidden
                   \\"
                 ></div>
-              </div>
-            </div>
+              </section>
+            </footer>
           </div>
-        </main>
+        </div>
       </div>
     </div>
   </body>
@@ -979,6 +995,7 @@ exports[`Search Page page renders empty search field  2`] = `
         </div>
         <div class=\\"flex-grow\\"></div>
         <button
+          aria-haspopup=\\"dialog\\"
           title=\\"common:languageMenu.label\\"
           class=\\"block lg:hidden h-8 transform -translate-y-0.5 md:me-2\\"
         >
@@ -1023,9 +1040,8 @@ exports[`Search Page page renders empty search field  2`] = `
             me-4
             md:ms-1
           \\"
-          role=\\"listbox\\"
         >
-          <button class=\\"xl:hidden lg:px-0 pe-2 ps-2\\">
+          <button class=\\"xl:hidden lg:px-0 pe-2 ps-2\\" aria-haspopup=\\"dialog\\">
             <span class=\\"hidden md:inline-block xl:hidden\\"
               >common:languageSelector.button</span
             ><svg
@@ -1066,8 +1082,6 @@ exports[`Search Page page renders empty search field  2`] = `
             title=\\"Suomi\\"
             hreflang=\\"fi\\"
             lang=\\"fi\\"
-            role=\\"option\\"
-            aria-selected=\\"true\\"
             href=\\"/hae\\"
             ><span class=\\"xl:hidden border-b-2 border-black\\">fi</span
             ><span
@@ -1091,8 +1105,6 @@ exports[`Search Page page renders empty search field  2`] = `
             title=\\"Svenska\\"
             hreflang=\\"sv\\"
             lang=\\"sv\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae\\"
             ><span class=\\"xl:hidden\\">sv</span
             ><span
@@ -1116,8 +1128,6 @@ exports[`Search Page page renders empty search field  2`] = `
             title=\\"English\\"
             hreflang=\\"en\\"
             lang=\\"en\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae\\"
             ><span class=\\"xl:hidden\\">en</span
             ><span
@@ -1141,8 +1151,6 @@ exports[`Search Page page renders empty search field  2`] = `
             title=\\"Pусский\\"
             hreflang=\\"ru\\"
             lang=\\"ru\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae\\"
             ><span class=\\"xl:hidden\\">ru</span
             ><span
@@ -1166,8 +1174,6 @@ exports[`Search Page page renders empty search field  2`] = `
             title=\\"Eesti keel\\"
             hreflang=\\"et\\"
             lang=\\"et\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae\\"
             ><span class=\\"xl:hidden\\">et</span
             ><span
@@ -1191,8 +1197,6 @@ exports[`Search Page page renders empty search field  2`] = `
             title=\\"Français\\"
             hreflang=\\"fr\\"
             lang=\\"fr\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae\\"
             ><span class=\\"xl:hidden\\">fr</span
             ><span
@@ -1216,8 +1220,6 @@ exports[`Search Page page renders empty search field  2`] = `
             title=\\"Soomaali\\"
             hreflang=\\"so\\"
             lang=\\"so\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae\\"
             ><span class=\\"xl:hidden\\">so</span
             ><span
@@ -1241,8 +1243,6 @@ exports[`Search Page page renders empty search field  2`] = `
             title=\\"Español\\"
             hreflang=\\"es\\"
             lang=\\"es\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae\\"
             ><span class=\\"xl:hidden\\">es</span
             ><span
@@ -1266,8 +1266,6 @@ exports[`Search Page page renders empty search field  2`] = `
             title=\\"Türkçe\\"
             hreflang=\\"tr\\"
             lang=\\"tr\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae\\"
             ><span class=\\"xl:hidden\\">tr</span
             ><span
@@ -1291,8 +1289,6 @@ exports[`Search Page page renders empty search field  2`] = `
             title=\\"中文\\"
             hreflang=\\"zh\\"
             lang=\\"zh\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae\\"
             ><span class=\\"xl:hidden\\">zh</span
             ><span
@@ -1316,8 +1312,6 @@ exports[`Search Page page renders empty search field  2`] = `
             title=\\" فارسی\\"
             hreflang=\\"fa\\"
             lang=\\"fa\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae\\"
             ><span class=\\"xl:hidden\\">fa</span
             ><span
@@ -1342,8 +1336,6 @@ exports[`Search Page page renders empty search field  2`] = `
             title=\\"العربية\\"
             hreflang=\\"ar\\"
             lang=\\"ar\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae\\"
             ><span class=\\"xl:hidden\\">ar</span
             ><span
@@ -1359,8 +1351,39 @@ exports[`Search Page page renders empty search field  2`] = `
         </div>
         <div class=\\"flex-none 2xl:flex-grow\\">
           <button
-            class=\\"w-8 md:w-24 h-8 text-action\\"
+            class=\\"md:hidden w-8 md:w-24 h-8 text-action\\"
             title=\\"common:buttons.search\\"
+            aria-expanded=\\"false\\"
+            aria-haspopup=\\"dialog\\"
+          >
+            <span class=\\"px-2 transform translate-y-0.5\\"
+              ><svg
+                class=\\"inline-block\\"
+                width=\\"17\\"
+                height=\\"17\\"
+                viewBox=\\"0 0 17 17\\"
+                fill=\\"none\\"
+                xmlns=\\"http://www.w3.org/2000/svg\\"
+              >
+                <path
+                  fill-rule=\\"evenodd\\"
+                  clip-rule=\\"evenodd\\"
+                  d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
+                  stroke=\\"black\\"
+                  stroke-width=\\"2\\"
+                ></path>
+                <path
+                  d=\\"M10.7061 10.7059L16.0001 16\\"
+                  stroke=\\"black\\"
+                  stroke-width=\\"2\\"
+                ></path></svg></span
+            ><span class=\\"hidden md:inline-block\\"
+              >common:buttons.search</span
+            ></button
+          ><button
+            class=\\"hidden md:inline-block w-8 md:w-24 h-8 text-action\\"
+            title=\\"common:buttons.search\\"
+            aria-expanded=\\"false\\"
           >
             <span class=\\"px-2 transform translate-y-0.5\\"
               ><svg
@@ -1388,6 +1411,7 @@ exports[`Search Page page renders empty search field  2`] = `
         </div>
         <div class=\\"md:hidden md:mx-6 me-6 ms-2\\">
           <button
+            aria-haspopup=\\"dialog\\"
             title=\\"common:mainMenu.button\\"
             class=\\"z-50 transform -translate-y-0.5\\"
           >
@@ -1407,10 +1431,10 @@ exports[`Search Page page renders empty search field  2`] = `
         </div>
       </div>
     </header>
-    <main class=\\"md:flex md:items-stretch\\" role=\\"main\\">
+    <div class=\\"md:flex md:items-stretch\\" role=\\"main\\">
       <div class=\\"md:hidden\\">
         <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
-          <div
+          <section
             class=\\"
               bg-gray-lighter
               ifu-messages__card--appear ifu-messages__card--appear-active
@@ -1426,7 +1450,7 @@ exports[`Search Page page renders empty search field  2`] = `
                   ifu-messages__card-body
                 \\"
               >
-                <p class=\\"flex-none mb-2 text-message font-bold\\">Alert</p>
+                <h2 class=\\"flex-none mb-2 text-message font-bold\\">Alert</h2>
                 <div class=\\"text-message\\">
                   some stuff withouth html, maybe try that later
                 </div>
@@ -1446,7 +1470,7 @@ exports[`Search Page page renders empty search field  2`] = `
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         </div>
       </div>
       <div
@@ -1463,7 +1487,7 @@ exports[`Search Page page renders empty search field  2`] = `
         \\"
       >
         <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
-          <div
+          <section
             class=\\"
               bg-gray-lighter
               ifu-messages__card--appear ifu-messages__card--appear-active
@@ -1479,7 +1503,7 @@ exports[`Search Page page renders empty search field  2`] = `
                   ifu-messages__card-body
                 \\"
               >
-                <p class=\\"flex-none mb-2 text-message font-bold\\">Alert</p>
+                <h2 class=\\"flex-none mb-2 text-message font-bold\\">Alert</h2>
                 <div class=\\"text-message\\">
                   some stuff withouth html, maybe try that later
                 </div>
@@ -1499,7 +1523,7 @@ exports[`Search Page page renders empty search field  2`] = `
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         </div>
         <nav class=\\"mb-8 pt-8\\">
           <ul class=\\"block\\">
@@ -1537,7 +1561,7 @@ exports[`Search Page page renders empty search field  2`] = `
                 <div class=\\"flex-none\\">
                   <button
                     class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
-                    tabindex=\\"0\\"
+                    aria-expanded=\\"false\\"
                   >
                     <svg
                       class=\\"
@@ -1578,7 +1602,7 @@ exports[`Search Page page renders empty search field  2`] = `
                 <div class=\\"flex-none\\">
                   <button
                     class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
-                    tabindex=\\"0\\"
+                    aria-expanded=\\"false\\"
                   >
                     <svg
                       class=\\"
@@ -1607,52 +1631,56 @@ exports[`Search Page page renders empty search field  2`] = `
         class=\\"hidden md:block flex-none w-navi border-black-op1 border-e-2\\"
       ></div>
       <div class=\\"ifu-layout__body\\">
-        <div
-          class=\\"
-            px-6
-            lg:px-0 lg:mx-12
-            xl:mx-28
-            2xl:mx-48
-            3xl:ms-64 3xl:max-w-4xl
-          \\"
-        >
-          <h1 class=\\"mt-16 text-h2 md:text-h2xl\\">common:search.title.start</h1>
-          <div class=\\"my-8\\">
-            <form class=\\"flex items-center border border-black\\">
-              <input
-                type=\\"search\\"
-                placeholder=\\"common:search.placeholder\\"
-                name=\\"q\\"
-                value=\\"\\"
-                class=\\"inline-block flex-grow px-2 h-12\\"
-              /><button class=\\"inline-block flex-none w-12 h-12\\">
-                <svg
-                  class=\\"inline-block mx-2\\"
-                  width=\\"17\\"
-                  height=\\"17\\"
-                  viewBox=\\"0 0 17 17\\"
-                  fill=\\"none\\"
-                  xmlns=\\"http://www.w3.org/2000/svg\\"
-                >
-                  <path
-                    fill-rule=\\"evenodd\\"
-                    clip-rule=\\"evenodd\\"
-                    d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
-                    stroke=\\"black\\"
-                    stroke-width=\\"2\\"
-                  ></path>
-                  <path
-                    d=\\"M10.7061 10.7059L16.0001 16\\"
-                    stroke=\\"black\\"
-                    stroke-width=\\"2\\"
-                  ></path>
-                </svg>
-              </button>
-            </form>
+        <main>
+          <div
+            class=\\"
+              px-6
+              lg:px-0 lg:mx-12
+              xl:mx-28
+              2xl:mx-48
+              3xl:ms-64 3xl:max-w-4xl
+            \\"
+          >
+            <h1 class=\\"mt-16 text-h2 md:text-h2xl\\">
+              common:search.title.start
+            </h1>
+            <div class=\\"my-8\\">
+              <form class=\\"flex items-center border border-black\\">
+                <input
+                  type=\\"text\\"
+                  placeholder=\\"common:search.placeholder\\"
+                  name=\\"q\\"
+                  value=\\"\\"
+                  class=\\"inline-block flex-grow px-2 h-12\\"
+                /><button class=\\"inline-block flex-none w-12 h-12\\">
+                  <svg
+                    class=\\"inline-block mx-2\\"
+                    width=\\"17\\"
+                    height=\\"17\\"
+                    viewBox=\\"0 0 17 17\\"
+                    fill=\\"none\\"
+                    xmlns=\\"http://www.w3.org/2000/svg\\"
+                  >
+                    <path
+                      fill-rule=\\"evenodd\\"
+                      clip-rule=\\"evenodd\\"
+                      d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
+                      stroke=\\"black\\"
+                      stroke-width=\\"2\\"
+                    ></path>
+                    <path
+                      d=\\"M10.7061 10.7059L16.0001 16\\"
+                      stroke=\\"black\\"
+                      stroke-width=\\"2\\"
+                    ></path>
+                  </svg>
+                </button>
+              </form>
+            </div>
           </div>
-        </div>
-        <div class=\\"ifu-footer\\">
-          <footer
+        </main>
+        <footer class=\\"ifu-footer\\">
+          <div
             class=\\"
               px-6
               lg:px-0 lg:mx-12
@@ -1826,8 +1854,8 @@ exports[`Search Page page renders empty search field  2`] = `
               ><a class=\\"ifu-footer__link\\" href=\\"/hae#terms\\">Avoin data</a
               ><a class=\\"ifu-footer__link\\" href=\\"/hae#cookies\\">Saatavuus</a>
             </section>
-          </footer>
-          <div class=\\"bg-blue-white\\">
+          </div>
+          <section class=\\"bg-blue-white\\">
             <div
               class=\\"
                 px-2
@@ -1838,7 +1866,10 @@ exports[`Search Page page renders empty search field  2`] = `
                 h-20
               \\"
             >
-              <button class=\\"flex items-center w-full h-20\\">
+              <button
+                class=\\"flex items-center w-full h-20\\"
+                aria-expanded=\\"false\\"
+              >
                 <svg
                   class=\\"
                     inline-block
@@ -1882,10 +1913,10 @@ exports[`Search Page page renders empty search field  2`] = `
                 overflow-hidden
               \\"
             ></div>
-          </div>
-        </div>
+          </section>
+        </footer>
       </div>
-    </main>
+    </div>
   </div>
 </div>
 "
@@ -1928,6 +1959,7 @@ exports[`Search Page page renders with given query string from url 1`] = `
             </div>
             <div class=\\"flex-grow\\"></div>
             <button
+              aria-haspopup=\\"dialog\\"
               title=\\"common:languageMenu.label\\"
               class=\\"block lg:hidden h-8 transform -translate-y-0.5 md:me-2\\"
             >
@@ -1972,9 +2004,11 @@ exports[`Search Page page renders with given query string from url 1`] = `
                 me-4
                 md:ms-1
               \\"
-              role=\\"listbox\\"
             >
-              <button class=\\"xl:hidden lg:px-0 pe-2 ps-2\\">
+              <button
+                class=\\"xl:hidden lg:px-0 pe-2 ps-2\\"
+                aria-haspopup=\\"dialog\\"
+              >
                 <span class=\\"hidden md:inline-block xl:hidden\\"
                   >common:languageSelector.button</span
                 ><svg
@@ -2015,8 +2049,6 @@ exports[`Search Page page renders with given query string from url 1`] = `
                 title=\\"Suomi\\"
                 hreflang=\\"fi\\"
                 lang=\\"fi\\"
-                role=\\"option\\"
-                aria-selected=\\"true\\"
                 href=\\"/hae?q=testi\\"
                 ><span class=\\"xl:hidden border-b-2 border-black\\">fi</span
                 ><span
@@ -2040,8 +2072,6 @@ exports[`Search Page page renders with given query string from url 1`] = `
                 title=\\"Svenska\\"
                 hreflang=\\"sv\\"
                 lang=\\"sv\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae?q=testi\\"
                 ><span class=\\"xl:hidden\\">sv</span
                 ><span
@@ -2065,8 +2095,6 @@ exports[`Search Page page renders with given query string from url 1`] = `
                 title=\\"English\\"
                 hreflang=\\"en\\"
                 lang=\\"en\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae?q=testi\\"
                 ><span class=\\"xl:hidden\\">en</span
                 ><span
@@ -2090,8 +2118,6 @@ exports[`Search Page page renders with given query string from url 1`] = `
                 title=\\"Pусский\\"
                 hreflang=\\"ru\\"
                 lang=\\"ru\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae?q=testi\\"
                 ><span class=\\"xl:hidden\\">ru</span
                 ><span
@@ -2115,8 +2141,6 @@ exports[`Search Page page renders with given query string from url 1`] = `
                 title=\\"Eesti keel\\"
                 hreflang=\\"et\\"
                 lang=\\"et\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae?q=testi\\"
                 ><span class=\\"xl:hidden\\">et</span
                 ><span
@@ -2140,8 +2164,6 @@ exports[`Search Page page renders with given query string from url 1`] = `
                 title=\\"Français\\"
                 hreflang=\\"fr\\"
                 lang=\\"fr\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae?q=testi\\"
                 ><span class=\\"xl:hidden\\">fr</span
                 ><span
@@ -2165,8 +2187,6 @@ exports[`Search Page page renders with given query string from url 1`] = `
                 title=\\"Soomaali\\"
                 hreflang=\\"so\\"
                 lang=\\"so\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae?q=testi\\"
                 ><span class=\\"xl:hidden\\">so</span
                 ><span
@@ -2190,8 +2210,6 @@ exports[`Search Page page renders with given query string from url 1`] = `
                 title=\\"Español\\"
                 hreflang=\\"es\\"
                 lang=\\"es\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae?q=testi\\"
                 ><span class=\\"xl:hidden\\">es</span
                 ><span
@@ -2215,8 +2233,6 @@ exports[`Search Page page renders with given query string from url 1`] = `
                 title=\\"Türkçe\\"
                 hreflang=\\"tr\\"
                 lang=\\"tr\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae?q=testi\\"
                 ><span class=\\"xl:hidden\\">tr</span
                 ><span
@@ -2240,8 +2256,6 @@ exports[`Search Page page renders with given query string from url 1`] = `
                 title=\\"中文\\"
                 hreflang=\\"zh\\"
                 lang=\\"zh\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae?q=testi\\"
                 ><span class=\\"xl:hidden\\">zh</span
                 ><span
@@ -2265,8 +2279,6 @@ exports[`Search Page page renders with given query string from url 1`] = `
                 title=\\" فارسی\\"
                 hreflang=\\"fa\\"
                 lang=\\"fa\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae?q=testi\\"
                 ><span class=\\"xl:hidden\\">fa</span
                 ><span
@@ -2291,8 +2303,6 @@ exports[`Search Page page renders with given query string from url 1`] = `
                 title=\\"العربية\\"
                 hreflang=\\"ar\\"
                 lang=\\"ar\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae?q=testi\\"
                 ><span class=\\"xl:hidden\\">ar</span
                 ><span
@@ -2308,8 +2318,39 @@ exports[`Search Page page renders with given query string from url 1`] = `
             </div>
             <div class=\\"flex-none 2xl:flex-grow\\">
               <button
-                class=\\"w-8 md:w-24 h-8 text-action\\"
+                class=\\"md:hidden w-8 md:w-24 h-8 text-action\\"
                 title=\\"common:buttons.search\\"
+                aria-expanded=\\"false\\"
+                aria-haspopup=\\"dialog\\"
+              >
+                <span class=\\"px-2 transform translate-y-0.5\\"
+                  ><svg
+                    class=\\"inline-block\\"
+                    width=\\"17\\"
+                    height=\\"17\\"
+                    viewBox=\\"0 0 17 17\\"
+                    fill=\\"none\\"
+                    xmlns=\\"http://www.w3.org/2000/svg\\"
+                  >
+                    <path
+                      fill-rule=\\"evenodd\\"
+                      clip-rule=\\"evenodd\\"
+                      d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
+                      stroke=\\"black\\"
+                      stroke-width=\\"2\\"
+                    ></path>
+                    <path
+                      d=\\"M10.7061 10.7059L16.0001 16\\"
+                      stroke=\\"black\\"
+                      stroke-width=\\"2\\"
+                    ></path></svg></span
+                ><span class=\\"hidden md:inline-block\\"
+                  >common:buttons.search</span
+                ></button
+              ><button
+                class=\\"hidden md:inline-block w-8 md:w-24 h-8 text-action\\"
+                title=\\"common:buttons.search\\"
+                aria-expanded=\\"false\\"
               >
                 <span class=\\"px-2 transform translate-y-0.5\\"
                   ><svg
@@ -2339,6 +2380,7 @@ exports[`Search Page page renders with given query string from url 1`] = `
             </div>
             <div class=\\"md:hidden md:mx-6 me-6 ms-2\\">
               <button
+                aria-haspopup=\\"dialog\\"
                 title=\\"common:mainMenu.button\\"
                 class=\\"z-50 transform -translate-y-0.5\\"
               >
@@ -2358,10 +2400,10 @@ exports[`Search Page page renders with given query string from url 1`] = `
             </div>
           </div>
         </header>
-        <main class=\\"md:flex md:items-stretch\\" role=\\"main\\">
+        <div class=\\"md:flex md:items-stretch\\" role=\\"main\\">
           <div class=\\"md:hidden\\">
             <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
-              <div class=\\"bg-gray-lighter\\">
+              <section class=\\"bg-gray-lighter\\">
                 <div class=\\"flex my-2 bg-white rounded shadow-md me-2 ms-2\\">
                   <div class=\\"w-2 flex-none rounded-s bg-neon-red\\"></div>
                   <div
@@ -2372,7 +2414,7 @@ exports[`Search Page page renders with given query string from url 1`] = `
                       ifu-messages__card-body
                     \\"
                   >
-                    <p class=\\"flex-none mb-2 text-message font-bold\\">Alert</p>
+                    <h2 class=\\"flex-none mb-2 text-message font-bold\\">Alert</h2>
                     <div class=\\"text-message\\">
                       some stuff withouth html, maybe try that later
                     </div>
@@ -2392,7 +2434,7 @@ exports[`Search Page page renders with given query string from url 1`] = `
                     </div>
                   </div>
                 </div>
-              </div>
+              </section>
             </div>
           </div>
           <div
@@ -2409,7 +2451,7 @@ exports[`Search Page page renders with given query string from url 1`] = `
             \\"
           >
             <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
-              <div class=\\"bg-gray-lighter\\">
+              <section class=\\"bg-gray-lighter\\">
                 <div class=\\"flex my-2 bg-white rounded shadow-md me-2 ms-2\\">
                   <div class=\\"w-2 flex-none rounded-s bg-neon-red\\"></div>
                   <div
@@ -2420,7 +2462,7 @@ exports[`Search Page page renders with given query string from url 1`] = `
                       ifu-messages__card-body
                     \\"
                   >
-                    <p class=\\"flex-none mb-2 text-message font-bold\\">Alert</p>
+                    <h2 class=\\"flex-none mb-2 text-message font-bold\\">Alert</h2>
                     <div class=\\"text-message\\">
                       some stuff withouth html, maybe try that later
                     </div>
@@ -2440,7 +2482,7 @@ exports[`Search Page page renders with given query string from url 1`] = `
                     </div>
                   </div>
                 </div>
-              </div>
+              </section>
             </div>
             <nav class=\\"mb-8 pt-8\\">
               <ul class=\\"block\\">
@@ -2478,7 +2520,7 @@ exports[`Search Page page renders with given query string from url 1`] = `
                     <div class=\\"flex-none\\">
                       <button
                         class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
-                        tabindex=\\"0\\"
+                        aria-expanded=\\"false\\"
                       >
                         <svg
                           class=\\"
@@ -2519,7 +2561,7 @@ exports[`Search Page page renders with given query string from url 1`] = `
                     <div class=\\"flex-none\\">
                       <button
                         class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
-                        tabindex=\\"0\\"
+                        aria-expanded=\\"false\\"
                       >
                         <svg
                           class=\\"
@@ -2548,145 +2590,147 @@ exports[`Search Page page renders with given query string from url 1`] = `
             class=\\"hidden md:block flex-none w-navi border-black-op1 border-e-2\\"
           ></div>
           <div class=\\"ifu-layout__body\\">
-            <div
-              class=\\"
-                px-6
-                lg:px-0 lg:mx-12
-                xl:mx-28
-                2xl:mx-48
-                3xl:ms-64 3xl:max-w-4xl
-              \\"
-            >
-              <h1 class=\\"mt-16 text-h2 md:text-h2xl\\">
-                common:search.title.results
-              </h1>
-              <div class=\\"my-8\\">
-                <form class=\\"flex items-center border border-black\\">
-                  <input
-                    type=\\"search\\"
-                    placeholder=\\"common:search.placeholder\\"
-                    name=\\"q\\"
-                    value=\\"testi\\"
-                    class=\\"inline-block flex-grow px-2 h-12\\"
-                  /><button class=\\"inline-block flex-none w-12 h-12\\">
-                    <svg
-                      class=\\"inline-block mx-2\\"
-                      width=\\"17\\"
-                      height=\\"17\\"
-                      viewBox=\\"0 0 17 17\\"
-                      fill=\\"none\\"
-                      xmlns=\\"http://www.w3.org/2000/svg\\"
+            <main>
+              <div
+                class=\\"
+                  px-6
+                  lg:px-0 lg:mx-12
+                  xl:mx-28
+                  2xl:mx-48
+                  3xl:ms-64 3xl:max-w-4xl
+                \\"
+              >
+                <h1 class=\\"mt-16 text-h2 md:text-h2xl\\">
+                  common:search.title.results
+                </h1>
+                <div class=\\"my-8\\">
+                  <form class=\\"flex items-center border border-black\\">
+                    <input
+                      type=\\"text\\"
+                      placeholder=\\"common:search.placeholder\\"
+                      name=\\"q\\"
+                      value=\\"testi\\"
+                      class=\\"inline-block flex-grow px-2 h-12\\"
+                    /><button class=\\"inline-block flex-none w-12 h-12\\">
+                      <svg
+                        class=\\"inline-block mx-2\\"
+                        width=\\"17\\"
+                        height=\\"17\\"
+                        viewBox=\\"0 0 17 17\\"
+                        fill=\\"none\\"
+                        xmlns=\\"http://www.w3.org/2000/svg\\"
+                      >
+                        <path
+                          fill-rule=\\"evenodd\\"
+                          clip-rule=\\"evenodd\\"
+                          d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
+                          stroke=\\"black\\"
+                          stroke-width=\\"2\\"
+                        ></path>
+                        <path
+                          d=\\"M10.7061 10.7059L16.0001 16\\"
+                          stroke=\\"black\\"
+                          stroke-width=\\"2\\"
+                        ></path>
+                      </svg>
+                    </button>
+                  </form>
+                </div>
+                <section class=\\"mxy-8\\">
+                  <h2 class=\\"text-h5xl font-bold\\">
+                    <a href=\\"/hello\\">Hello result</a>
+                  </h2>
+                  <p
+                    class=\\"
+                      pb-8
+                      mt-2
+                      mb-8
+                      text-body-small
+                      border-b border-gray-light
+                    \\"
+                  >
+                    <span
+                      ><span class=\\"\\"
+                        >Suomessa saat esitäytetyn veroilmoituksen
+                        verohallinnosta… …saat esitäytetyn veroilmoituksen
+                        verohallinnosta postissa… …postissa tai sähköisessä
+                        palvelussa. Veroilmoituksen perusteella…</span
+                      ></span
                     >
-                      <path
-                        fill-rule=\\"evenodd\\"
-                        clip-rule=\\"evenodd\\"
-                        d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
-                        stroke=\\"black\\"
-                        stroke-width=\\"2\\"
-                      ></path>
-                      <path
-                        d=\\"M10.7061 10.7059L16.0001 16\\"
-                        stroke=\\"black\\"
-                        stroke-width=\\"2\\"
-                      ></path>
-                    </svg>
-                  </button>
-                </form>
+                  </p>
+                </section>
+                <section class=\\"mxy-8\\">
+                  <h2 class=\\"text-h5xl font-bold\\">
+                    <a href=\\"/hello/two\\">Hello Two</a>
+                  </h2>
+                  <p class=\\"\\">
+                    <a class=\\"text-tiny text-gray\\" href=\\"/hello\\">hello</a>
+                  </p>
+                  <p
+                    class=\\"
+                      pb-8
+                      mt-2
+                      mb-8
+                      text-body-small
+                      border-b border-gray-light
+                    \\"
+                  >
+                    <span
+                      ><span class=\\"\\"
+                        >Suomessa saat esitäytetyn veroilmoituksen
+                        verohallinnosta… …saat esitäytetyn veroilmoituksen
+                        verohallinnosta postissa… …postissa tai sähköisessä
+                        palvelussa. Veroilmoituksen perusteella…</span
+                      ></span
+                    >
+                  </p>
+                </section>
+                <section class=\\"mxy-8\\">
+                  <h2 class=\\"text-h5xl font-bold\\">
+                    <a href=\\"/hello/two/two\\">Hello Two Two</a>
+                  </h2>
+                  <p class=\\"\\">
+                    <a class=\\"text-tiny text-gray\\" href=\\"/hello\\"
+                      >hello<svg
+                        preserveAspectRatio=\\"xMidYMin slice\\"
+                        class=\\"inline-block mx-1\\"
+                        width=\\"3\\"
+                        height=\\"5\\"
+                        viewBox=\\"0 0 3 5\\"
+                        fill=\\"none\\"
+                        xmlns=\\"http://www.w3.org/2000/svg\\"
+                      >
+                        <path
+                          d=\\"M3 2.58235L0.805497 5L0 4.55882L1.8203 2.49412L0 0.435294L0.805497 0L3 2.42353V2.58235Z\\"
+                          fill=\\"black\\"
+                        ></path></svg></a
+                    ><a class=\\"text-tiny text-gray\\" href=\\"/hello/two\\"
+                      >hello two</a
+                    >
+                  </p>
+                  <p
+                    class=\\"
+                      pb-8
+                      mt-2
+                      mb-8
+                      text-body-small
+                      border-b border-gray-light
+                    \\"
+                  >
+                    <span
+                      ><span class=\\"\\"
+                        >Suomessa saat esitäytetyn veroilmoituksen
+                        verohallinnosta… …saat esitäytetyn veroilmoituksen
+                        verohallinnosta postissa… …postissa tai sähköisessä
+                        palvelussa. Veroilmoituksen perusteella…</span
+                      ></span
+                    >
+                  </p>
+                </section>
               </div>
-              <section class=\\"mxy-8\\">
-                <h2 class=\\"text-h5xl font-bold\\">
-                  <a href=\\"/hello\\">Hello result</a>
-                </h2>
-                <p
-                  class=\\"
-                    pb-8
-                    mt-2
-                    mb-8
-                    text-body-small
-                    border-b border-gray-light
-                  \\"
-                >
-                  <span
-                    ><span class=\\"\\"
-                      >Suomessa saat esitäytetyn veroilmoituksen
-                      verohallinnosta… …saat esitäytetyn veroilmoituksen
-                      verohallinnosta postissa… …postissa tai sähköisessä
-                      palvelussa. Veroilmoituksen perusteella…</span
-                    ></span
-                  >
-                </p>
-              </section>
-              <section class=\\"mxy-8\\">
-                <h2 class=\\"text-h5xl font-bold\\">
-                  <a href=\\"/hello/two\\">Hello Two</a>
-                </h2>
-                <p class=\\"\\">
-                  <a class=\\"text-tiny text-gray\\" href=\\"/hello\\">hello</a>
-                </p>
-                <p
-                  class=\\"
-                    pb-8
-                    mt-2
-                    mb-8
-                    text-body-small
-                    border-b border-gray-light
-                  \\"
-                >
-                  <span
-                    ><span class=\\"\\"
-                      >Suomessa saat esitäytetyn veroilmoituksen
-                      verohallinnosta… …saat esitäytetyn veroilmoituksen
-                      verohallinnosta postissa… …postissa tai sähköisessä
-                      palvelussa. Veroilmoituksen perusteella…</span
-                    ></span
-                  >
-                </p>
-              </section>
-              <section class=\\"mxy-8\\">
-                <h2 class=\\"text-h5xl font-bold\\">
-                  <a href=\\"/hello/two/two\\">Hello Two Two</a>
-                </h2>
-                <p class=\\"\\">
-                  <a class=\\"text-tiny text-gray\\" href=\\"/hello\\"
-                    >hello<svg
-                      preserveAspectRatio=\\"xMidYMin slice\\"
-                      class=\\"inline-block mx-1\\"
-                      width=\\"3\\"
-                      height=\\"5\\"
-                      viewBox=\\"0 0 3 5\\"
-                      fill=\\"none\\"
-                      xmlns=\\"http://www.w3.org/2000/svg\\"
-                    >
-                      <path
-                        d=\\"M3 2.58235L0.805497 5L0 4.55882L1.8203 2.49412L0 0.435294L0.805497 0L3 2.42353V2.58235Z\\"
-                        fill=\\"black\\"
-                      ></path></svg></a
-                  ><a class=\\"text-tiny text-gray\\" href=\\"/hello/two\\"
-                    >hello two</a
-                  >
-                </p>
-                <p
-                  class=\\"
-                    pb-8
-                    mt-2
-                    mb-8
-                    text-body-small
-                    border-b border-gray-light
-                  \\"
-                >
-                  <span
-                    ><span class=\\"\\"
-                      >Suomessa saat esitäytetyn veroilmoituksen
-                      verohallinnosta… …saat esitäytetyn veroilmoituksen
-                      verohallinnosta postissa… …postissa tai sähköisessä
-                      palvelussa. Veroilmoituksen perusteella…</span
-                    ></span
-                  >
-                </p>
-              </section>
-            </div>
-            <div class=\\"ifu-footer\\">
-              <footer
+            </main>
+            <footer class=\\"ifu-footer\\">
+              <div
                 class=\\"
                   px-6
                   lg:px-0 lg:mx-12
@@ -2864,8 +2908,8 @@ exports[`Search Page page renders with given query string from url 1`] = `
                     >Saatavuus</a
                   >
                 </section>
-              </footer>
-              <div class=\\"bg-blue-white\\">
+              </div>
+              <section class=\\"bg-blue-white\\">
                 <div
                   class=\\"
                     px-2
@@ -2876,7 +2920,10 @@ exports[`Search Page page renders with given query string from url 1`] = `
                     h-20
                   \\"
                 >
-                  <button class=\\"flex items-center w-full h-20\\">
+                  <button
+                    class=\\"flex items-center w-full h-20\\"
+                    aria-expanded=\\"false\\"
+                  >
                     <svg
                       class=\\"
                         inline-block
@@ -2920,10 +2967,10 @@ exports[`Search Page page renders with given query string from url 1`] = `
                     overflow-hidden
                   \\"
                 ></div>
-              </div>
-            </div>
+              </section>
+            </footer>
           </div>
-        </main>
+        </div>
       </div>
     </div>
   </body>
@@ -2965,6 +3012,7 @@ exports[`Search Page page renders with given query string from url 2`] = `
         </div>
         <div class=\\"flex-grow\\"></div>
         <button
+          aria-haspopup=\\"dialog\\"
           title=\\"common:languageMenu.label\\"
           class=\\"block lg:hidden h-8 transform -translate-y-0.5 md:me-2\\"
         >
@@ -3009,9 +3057,8 @@ exports[`Search Page page renders with given query string from url 2`] = `
             me-4
             md:ms-1
           \\"
-          role=\\"listbox\\"
         >
-          <button class=\\"xl:hidden lg:px-0 pe-2 ps-2\\">
+          <button class=\\"xl:hidden lg:px-0 pe-2 ps-2\\" aria-haspopup=\\"dialog\\">
             <span class=\\"hidden md:inline-block xl:hidden\\"
               >common:languageSelector.button</span
             ><svg
@@ -3052,8 +3099,6 @@ exports[`Search Page page renders with given query string from url 2`] = `
             title=\\"Suomi\\"
             hreflang=\\"fi\\"
             lang=\\"fi\\"
-            role=\\"option\\"
-            aria-selected=\\"true\\"
             href=\\"/hae?q=testi\\"
             ><span class=\\"xl:hidden border-b-2 border-black\\">fi</span
             ><span
@@ -3077,8 +3122,6 @@ exports[`Search Page page renders with given query string from url 2`] = `
             title=\\"Svenska\\"
             hreflang=\\"sv\\"
             lang=\\"sv\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae?q=testi\\"
             ><span class=\\"xl:hidden\\">sv</span
             ><span
@@ -3102,8 +3145,6 @@ exports[`Search Page page renders with given query string from url 2`] = `
             title=\\"English\\"
             hreflang=\\"en\\"
             lang=\\"en\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae?q=testi\\"
             ><span class=\\"xl:hidden\\">en</span
             ><span
@@ -3127,8 +3168,6 @@ exports[`Search Page page renders with given query string from url 2`] = `
             title=\\"Pусский\\"
             hreflang=\\"ru\\"
             lang=\\"ru\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae?q=testi\\"
             ><span class=\\"xl:hidden\\">ru</span
             ><span
@@ -3152,8 +3191,6 @@ exports[`Search Page page renders with given query string from url 2`] = `
             title=\\"Eesti keel\\"
             hreflang=\\"et\\"
             lang=\\"et\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae?q=testi\\"
             ><span class=\\"xl:hidden\\">et</span
             ><span
@@ -3177,8 +3214,6 @@ exports[`Search Page page renders with given query string from url 2`] = `
             title=\\"Français\\"
             hreflang=\\"fr\\"
             lang=\\"fr\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae?q=testi\\"
             ><span class=\\"xl:hidden\\">fr</span
             ><span
@@ -3202,8 +3237,6 @@ exports[`Search Page page renders with given query string from url 2`] = `
             title=\\"Soomaali\\"
             hreflang=\\"so\\"
             lang=\\"so\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae?q=testi\\"
             ><span class=\\"xl:hidden\\">so</span
             ><span
@@ -3227,8 +3260,6 @@ exports[`Search Page page renders with given query string from url 2`] = `
             title=\\"Español\\"
             hreflang=\\"es\\"
             lang=\\"es\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae?q=testi\\"
             ><span class=\\"xl:hidden\\">es</span
             ><span
@@ -3252,8 +3283,6 @@ exports[`Search Page page renders with given query string from url 2`] = `
             title=\\"Türkçe\\"
             hreflang=\\"tr\\"
             lang=\\"tr\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae?q=testi\\"
             ><span class=\\"xl:hidden\\">tr</span
             ><span
@@ -3277,8 +3306,6 @@ exports[`Search Page page renders with given query string from url 2`] = `
             title=\\"中文\\"
             hreflang=\\"zh\\"
             lang=\\"zh\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae?q=testi\\"
             ><span class=\\"xl:hidden\\">zh</span
             ><span
@@ -3302,8 +3329,6 @@ exports[`Search Page page renders with given query string from url 2`] = `
             title=\\" فارسی\\"
             hreflang=\\"fa\\"
             lang=\\"fa\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae?q=testi\\"
             ><span class=\\"xl:hidden\\">fa</span
             ><span
@@ -3328,8 +3353,6 @@ exports[`Search Page page renders with given query string from url 2`] = `
             title=\\"العربية\\"
             hreflang=\\"ar\\"
             lang=\\"ar\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae?q=testi\\"
             ><span class=\\"xl:hidden\\">ar</span
             ><span
@@ -3345,8 +3368,39 @@ exports[`Search Page page renders with given query string from url 2`] = `
         </div>
         <div class=\\"flex-none 2xl:flex-grow\\">
           <button
-            class=\\"w-8 md:w-24 h-8 text-action\\"
+            class=\\"md:hidden w-8 md:w-24 h-8 text-action\\"
             title=\\"common:buttons.search\\"
+            aria-expanded=\\"false\\"
+            aria-haspopup=\\"dialog\\"
+          >
+            <span class=\\"px-2 transform translate-y-0.5\\"
+              ><svg
+                class=\\"inline-block\\"
+                width=\\"17\\"
+                height=\\"17\\"
+                viewBox=\\"0 0 17 17\\"
+                fill=\\"none\\"
+                xmlns=\\"http://www.w3.org/2000/svg\\"
+              >
+                <path
+                  fill-rule=\\"evenodd\\"
+                  clip-rule=\\"evenodd\\"
+                  d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
+                  stroke=\\"black\\"
+                  stroke-width=\\"2\\"
+                ></path>
+                <path
+                  d=\\"M10.7061 10.7059L16.0001 16\\"
+                  stroke=\\"black\\"
+                  stroke-width=\\"2\\"
+                ></path></svg></span
+            ><span class=\\"hidden md:inline-block\\"
+              >common:buttons.search</span
+            ></button
+          ><button
+            class=\\"hidden md:inline-block w-8 md:w-24 h-8 text-action\\"
+            title=\\"common:buttons.search\\"
+            aria-expanded=\\"false\\"
           >
             <span class=\\"px-2 transform translate-y-0.5\\"
               ><svg
@@ -3374,6 +3428,7 @@ exports[`Search Page page renders with given query string from url 2`] = `
         </div>
         <div class=\\"md:hidden md:mx-6 me-6 ms-2\\">
           <button
+            aria-haspopup=\\"dialog\\"
             title=\\"common:mainMenu.button\\"
             class=\\"z-50 transform -translate-y-0.5\\"
           >
@@ -3393,10 +3448,10 @@ exports[`Search Page page renders with given query string from url 2`] = `
         </div>
       </div>
     </header>
-    <main class=\\"md:flex md:items-stretch\\" role=\\"main\\">
+    <div class=\\"md:flex md:items-stretch\\" role=\\"main\\">
       <div class=\\"md:hidden\\">
         <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
-          <div
+          <section
             class=\\"
               bg-gray-lighter
               ifu-messages__card--appear ifu-messages__card--appear-active
@@ -3412,7 +3467,7 @@ exports[`Search Page page renders with given query string from url 2`] = `
                   ifu-messages__card-body
                 \\"
               >
-                <p class=\\"flex-none mb-2 text-message font-bold\\">Alert</p>
+                <h2 class=\\"flex-none mb-2 text-message font-bold\\">Alert</h2>
                 <div class=\\"text-message\\">
                   some stuff withouth html, maybe try that later
                 </div>
@@ -3432,7 +3487,7 @@ exports[`Search Page page renders with given query string from url 2`] = `
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         </div>
       </div>
       <div
@@ -3449,7 +3504,7 @@ exports[`Search Page page renders with given query string from url 2`] = `
         \\"
       >
         <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
-          <div
+          <section
             class=\\"
               bg-gray-lighter
               ifu-messages__card--appear ifu-messages__card--appear-active
@@ -3465,7 +3520,7 @@ exports[`Search Page page renders with given query string from url 2`] = `
                   ifu-messages__card-body
                 \\"
               >
-                <p class=\\"flex-none mb-2 text-message font-bold\\">Alert</p>
+                <h2 class=\\"flex-none mb-2 text-message font-bold\\">Alert</h2>
                 <div class=\\"text-message\\">
                   some stuff withouth html, maybe try that later
                 </div>
@@ -3485,7 +3540,7 @@ exports[`Search Page page renders with given query string from url 2`] = `
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         </div>
         <nav class=\\"mb-8 pt-8\\">
           <ul class=\\"block\\">
@@ -3523,7 +3578,7 @@ exports[`Search Page page renders with given query string from url 2`] = `
                 <div class=\\"flex-none\\">
                   <button
                     class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
-                    tabindex=\\"0\\"
+                    aria-expanded=\\"false\\"
                   >
                     <svg
                       class=\\"
@@ -3564,7 +3619,7 @@ exports[`Search Page page renders with given query string from url 2`] = `
                 <div class=\\"flex-none\\">
                   <button
                     class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
-                    tabindex=\\"0\\"
+                    aria-expanded=\\"false\\"
                   >
                     <svg
                       class=\\"
@@ -3593,125 +3648,145 @@ exports[`Search Page page renders with given query string from url 2`] = `
         class=\\"hidden md:block flex-none w-navi border-black-op1 border-e-2\\"
       ></div>
       <div class=\\"ifu-layout__body\\">
-        <div
-          class=\\"
-            px-6
-            lg:px-0 lg:mx-12
-            xl:mx-28
-            2xl:mx-48
-            3xl:ms-64 3xl:max-w-4xl
-          \\"
-        >
-          <h1 class=\\"mt-16 text-h2 md:text-h2xl\\">
-            common:search.title.results
-          </h1>
-          <div class=\\"my-8\\">
-            <form class=\\"flex items-center border border-black\\">
-              <input
-                type=\\"search\\"
-                placeholder=\\"common:search.placeholder\\"
-                name=\\"q\\"
-                value=\\"testi\\"
-                class=\\"inline-block flex-grow px-2 h-12\\"
-              /><button class=\\"inline-block flex-none w-12 h-12\\">
-                <svg
-                  class=\\"inline-block mx-2\\"
-                  width=\\"17\\"
-                  height=\\"17\\"
-                  viewBox=\\"0 0 17 17\\"
-                  fill=\\"none\\"
-                  xmlns=\\"http://www.w3.org/2000/svg\\"
+        <main>
+          <div
+            class=\\"
+              px-6
+              lg:px-0 lg:mx-12
+              xl:mx-28
+              2xl:mx-48
+              3xl:ms-64 3xl:max-w-4xl
+            \\"
+          >
+            <h1 class=\\"mt-16 text-h2 md:text-h2xl\\">
+              common:search.title.results
+            </h1>
+            <div class=\\"my-8\\">
+              <form class=\\"flex items-center border border-black\\">
+                <input
+                  type=\\"text\\"
+                  placeholder=\\"common:search.placeholder\\"
+                  name=\\"q\\"
+                  value=\\"testi\\"
+                  class=\\"inline-block flex-grow px-2 h-12\\"
+                /><button class=\\"inline-block flex-none w-12 h-12\\">
+                  <svg
+                    class=\\"inline-block mx-2\\"
+                    width=\\"17\\"
+                    height=\\"17\\"
+                    viewBox=\\"0 0 17 17\\"
+                    fill=\\"none\\"
+                    xmlns=\\"http://www.w3.org/2000/svg\\"
+                  >
+                    <path
+                      fill-rule=\\"evenodd\\"
+                      clip-rule=\\"evenodd\\"
+                      d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
+                      stroke=\\"black\\"
+                      stroke-width=\\"2\\"
+                    ></path>
+                    <path
+                      d=\\"M10.7061 10.7059L16.0001 16\\"
+                      stroke=\\"black\\"
+                      stroke-width=\\"2\\"
+                    ></path>
+                  </svg>
+                </button>
+              </form>
+            </div>
+            <section class=\\"mxy-8\\">
+              <h2 class=\\"text-h5xl font-bold\\">
+                <a href=\\"/hello\\">Hello result</a>
+              </h2>
+              <p
+                class=\\"
+                  pb-8
+                  mt-2
+                  mb-8
+                  text-body-small
+                  border-b border-gray-light
+                \\"
+              >
+                <span
+                  ><span class=\\"\\"
+                    >Suomessa saat esitäytetyn veroilmoituksen verohallinnosta…
+                    …saat esitäytetyn veroilmoituksen verohallinnosta postissa…
+                    …postissa tai sähköisessä palvelussa. Veroilmoituksen
+                    perusteella…</span
+                  ></span
                 >
-                  <path
-                    fill-rule=\\"evenodd\\"
-                    clip-rule=\\"evenodd\\"
-                    d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
-                    stroke=\\"black\\"
-                    stroke-width=\\"2\\"
-                  ></path>
-                  <path
-                    d=\\"M10.7061 10.7059L16.0001 16\\"
-                    stroke=\\"black\\"
-                    stroke-width=\\"2\\"
-                  ></path>
-                </svg>
-              </button>
-            </form>
+              </p>
+            </section>
+            <section class=\\"mxy-8\\">
+              <h2 class=\\"text-h5xl font-bold\\">
+                <a href=\\"/hello/two\\">Hello Two</a>
+              </h2>
+              <p class=\\"\\">
+                <a class=\\"text-tiny text-gray\\" href=\\"/hello\\">hello</a>
+              </p>
+              <p
+                class=\\"
+                  pb-8
+                  mt-2
+                  mb-8
+                  text-body-small
+                  border-b border-gray-light
+                \\"
+              >
+                <span
+                  ><span class=\\"\\"
+                    >Suomessa saat esitäytetyn veroilmoituksen verohallinnosta…
+                    …saat esitäytetyn veroilmoituksen verohallinnosta postissa…
+                    …postissa tai sähköisessä palvelussa. Veroilmoituksen
+                    perusteella…</span
+                  ></span
+                >
+              </p>
+            </section>
+            <section class=\\"mxy-8\\">
+              <h2 class=\\"text-h5xl font-bold\\">
+                <a href=\\"/hello/two/two\\">Hello Two Two</a>
+              </h2>
+              <p class=\\"\\">
+                <a class=\\"text-tiny text-gray\\" href=\\"/hello\\"
+                  >hello<svg
+                    preserveAspectRatio=\\"xMidYMin slice\\"
+                    class=\\"inline-block mx-1\\"
+                    width=\\"3\\"
+                    height=\\"5\\"
+                    viewBox=\\"0 0 3 5\\"
+                    fill=\\"none\\"
+                    xmlns=\\"http://www.w3.org/2000/svg\\"
+                  >
+                    <path
+                      d=\\"M3 2.58235L0.805497 5L0 4.55882L1.8203 2.49412L0 0.435294L0.805497 0L3 2.42353V2.58235Z\\"
+                      fill=\\"black\\"
+                    ></path></svg></a
+                ><a class=\\"text-tiny text-gray\\" href=\\"/hello/two\\">hello two</a>
+              </p>
+              <p
+                class=\\"
+                  pb-8
+                  mt-2
+                  mb-8
+                  text-body-small
+                  border-b border-gray-light
+                \\"
+              >
+                <span
+                  ><span class=\\"\\"
+                    >Suomessa saat esitäytetyn veroilmoituksen verohallinnosta…
+                    …saat esitäytetyn veroilmoituksen verohallinnosta postissa…
+                    …postissa tai sähköisessä palvelussa. Veroilmoituksen
+                    perusteella…</span
+                  ></span
+                >
+              </p>
+            </section>
           </div>
-          <section class=\\"mxy-8\\">
-            <h2 class=\\"text-h5xl font-bold\\">
-              <a href=\\"/hello\\">Hello result</a>
-            </h2>
-            <p
-              class=\\"pb-8 mt-2 mb-8 text-body-small border-b border-gray-light\\"
-            >
-              <span
-                ><span class=\\"\\"
-                  >Suomessa saat esitäytetyn veroilmoituksen verohallinnosta…
-                  …saat esitäytetyn veroilmoituksen verohallinnosta postissa…
-                  …postissa tai sähköisessä palvelussa. Veroilmoituksen
-                  perusteella…</span
-                ></span
-              >
-            </p>
-          </section>
-          <section class=\\"mxy-8\\">
-            <h2 class=\\"text-h5xl font-bold\\">
-              <a href=\\"/hello/two\\">Hello Two</a>
-            </h2>
-            <p class=\\"\\">
-              <a class=\\"text-tiny text-gray\\" href=\\"/hello\\">hello</a>
-            </p>
-            <p
-              class=\\"pb-8 mt-2 mb-8 text-body-small border-b border-gray-light\\"
-            >
-              <span
-                ><span class=\\"\\"
-                  >Suomessa saat esitäytetyn veroilmoituksen verohallinnosta…
-                  …saat esitäytetyn veroilmoituksen verohallinnosta postissa…
-                  …postissa tai sähköisessä palvelussa. Veroilmoituksen
-                  perusteella…</span
-                ></span
-              >
-            </p>
-          </section>
-          <section class=\\"mxy-8\\">
-            <h2 class=\\"text-h5xl font-bold\\">
-              <a href=\\"/hello/two/two\\">Hello Two Two</a>
-            </h2>
-            <p class=\\"\\">
-              <a class=\\"text-tiny text-gray\\" href=\\"/hello\\"
-                >hello<svg
-                  preserveAspectRatio=\\"xMidYMin slice\\"
-                  class=\\"inline-block mx-1\\"
-                  width=\\"3\\"
-                  height=\\"5\\"
-                  viewBox=\\"0 0 3 5\\"
-                  fill=\\"none\\"
-                  xmlns=\\"http://www.w3.org/2000/svg\\"
-                >
-                  <path
-                    d=\\"M3 2.58235L0.805497 5L0 4.55882L1.8203 2.49412L0 0.435294L0.805497 0L3 2.42353V2.58235Z\\"
-                    fill=\\"black\\"
-                  ></path></svg></a
-              ><a class=\\"text-tiny text-gray\\" href=\\"/hello/two\\">hello two</a>
-            </p>
-            <p
-              class=\\"pb-8 mt-2 mb-8 text-body-small border-b border-gray-light\\"
-            >
-              <span
-                ><span class=\\"\\"
-                  >Suomessa saat esitäytetyn veroilmoituksen verohallinnosta…
-                  …saat esitäytetyn veroilmoituksen verohallinnosta postissa…
-                  …postissa tai sähköisessä palvelussa. Veroilmoituksen
-                  perusteella…</span
-                ></span
-              >
-            </p>
-          </section>
-        </div>
-        <div class=\\"ifu-footer\\">
-          <footer
+        </main>
+        <footer class=\\"ifu-footer\\">
+          <div
             class=\\"
               px-6
               lg:px-0 lg:mx-12
@@ -3889,8 +3964,8 @@ exports[`Search Page page renders with given query string from url 2`] = `
                 >Saatavuus</a
               >
             </section>
-          </footer>
-          <div class=\\"bg-blue-white\\">
+          </div>
+          <section class=\\"bg-blue-white\\">
             <div
               class=\\"
                 px-2
@@ -3901,7 +3976,10 @@ exports[`Search Page page renders with given query string from url 2`] = `
                 h-20
               \\"
             >
-              <button class=\\"flex items-center w-full h-20\\">
+              <button
+                class=\\"flex items-center w-full h-20\\"
+                aria-expanded=\\"false\\"
+              >
                 <svg
                   class=\\"
                     inline-block
@@ -3945,10 +4023,10 @@ exports[`Search Page page renders with given query string from url 2`] = `
                 overflow-hidden
               \\"
             ></div>
-          </div>
-        </div>
+          </section>
+        </footer>
       </div>
-    </main>
+    </div>
   </div>
 </div>
 "
@@ -3991,6 +4069,7 @@ exports[`Search Page page renders with no results 1`] = `
             </div>
             <div class=\\"flex-grow\\"></div>
             <button
+              aria-haspopup=\\"dialog\\"
               title=\\"common:languageMenu.label\\"
               class=\\"block lg:hidden h-8 transform -translate-y-0.5 md:me-2\\"
             >
@@ -4035,9 +4114,11 @@ exports[`Search Page page renders with no results 1`] = `
                 me-4
                 md:ms-1
               \\"
-              role=\\"listbox\\"
             >
-              <button class=\\"xl:hidden lg:px-0 pe-2 ps-2\\">
+              <button
+                class=\\"xl:hidden lg:px-0 pe-2 ps-2\\"
+                aria-haspopup=\\"dialog\\"
+              >
                 <span class=\\"hidden md:inline-block xl:hidden\\"
                   >common:languageSelector.button</span
                 ><svg
@@ -4078,8 +4159,6 @@ exports[`Search Page page renders with no results 1`] = `
                 title=\\"Suomi\\"
                 hreflang=\\"fi\\"
                 lang=\\"fi\\"
-                role=\\"option\\"
-                aria-selected=\\"true\\"
                 href=\\"/hae?q=_\\"
                 ><span class=\\"xl:hidden border-b-2 border-black\\">fi</span
                 ><span
@@ -4103,8 +4182,6 @@ exports[`Search Page page renders with no results 1`] = `
                 title=\\"Svenska\\"
                 hreflang=\\"sv\\"
                 lang=\\"sv\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae?q=_\\"
                 ><span class=\\"xl:hidden\\">sv</span
                 ><span
@@ -4128,8 +4205,6 @@ exports[`Search Page page renders with no results 1`] = `
                 title=\\"English\\"
                 hreflang=\\"en\\"
                 lang=\\"en\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae?q=_\\"
                 ><span class=\\"xl:hidden\\">en</span
                 ><span
@@ -4153,8 +4228,6 @@ exports[`Search Page page renders with no results 1`] = `
                 title=\\"Pусский\\"
                 hreflang=\\"ru\\"
                 lang=\\"ru\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae?q=_\\"
                 ><span class=\\"xl:hidden\\">ru</span
                 ><span
@@ -4178,8 +4251,6 @@ exports[`Search Page page renders with no results 1`] = `
                 title=\\"Eesti keel\\"
                 hreflang=\\"et\\"
                 lang=\\"et\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae?q=_\\"
                 ><span class=\\"xl:hidden\\">et</span
                 ><span
@@ -4203,8 +4274,6 @@ exports[`Search Page page renders with no results 1`] = `
                 title=\\"Français\\"
                 hreflang=\\"fr\\"
                 lang=\\"fr\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae?q=_\\"
                 ><span class=\\"xl:hidden\\">fr</span
                 ><span
@@ -4228,8 +4297,6 @@ exports[`Search Page page renders with no results 1`] = `
                 title=\\"Soomaali\\"
                 hreflang=\\"so\\"
                 lang=\\"so\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae?q=_\\"
                 ><span class=\\"xl:hidden\\">so</span
                 ><span
@@ -4253,8 +4320,6 @@ exports[`Search Page page renders with no results 1`] = `
                 title=\\"Español\\"
                 hreflang=\\"es\\"
                 lang=\\"es\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae?q=_\\"
                 ><span class=\\"xl:hidden\\">es</span
                 ><span
@@ -4278,8 +4343,6 @@ exports[`Search Page page renders with no results 1`] = `
                 title=\\"Türkçe\\"
                 hreflang=\\"tr\\"
                 lang=\\"tr\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae?q=_\\"
                 ><span class=\\"xl:hidden\\">tr</span
                 ><span
@@ -4303,8 +4366,6 @@ exports[`Search Page page renders with no results 1`] = `
                 title=\\"中文\\"
                 hreflang=\\"zh\\"
                 lang=\\"zh\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae?q=_\\"
                 ><span class=\\"xl:hidden\\">zh</span
                 ><span
@@ -4328,8 +4389,6 @@ exports[`Search Page page renders with no results 1`] = `
                 title=\\" فارسی\\"
                 hreflang=\\"fa\\"
                 lang=\\"fa\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae?q=_\\"
                 ><span class=\\"xl:hidden\\">fa</span
                 ><span
@@ -4354,8 +4413,6 @@ exports[`Search Page page renders with no results 1`] = `
                 title=\\"العربية\\"
                 hreflang=\\"ar\\"
                 lang=\\"ar\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/hae?q=_\\"
                 ><span class=\\"xl:hidden\\">ar</span
                 ><span
@@ -4371,8 +4428,39 @@ exports[`Search Page page renders with no results 1`] = `
             </div>
             <div class=\\"flex-none 2xl:flex-grow\\">
               <button
-                class=\\"w-8 md:w-24 h-8 text-action\\"
+                class=\\"md:hidden w-8 md:w-24 h-8 text-action\\"
                 title=\\"common:buttons.search\\"
+                aria-expanded=\\"false\\"
+                aria-haspopup=\\"dialog\\"
+              >
+                <span class=\\"px-2 transform translate-y-0.5\\"
+                  ><svg
+                    class=\\"inline-block\\"
+                    width=\\"17\\"
+                    height=\\"17\\"
+                    viewBox=\\"0 0 17 17\\"
+                    fill=\\"none\\"
+                    xmlns=\\"http://www.w3.org/2000/svg\\"
+                  >
+                    <path
+                      fill-rule=\\"evenodd\\"
+                      clip-rule=\\"evenodd\\"
+                      d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
+                      stroke=\\"black\\"
+                      stroke-width=\\"2\\"
+                    ></path>
+                    <path
+                      d=\\"M10.7061 10.7059L16.0001 16\\"
+                      stroke=\\"black\\"
+                      stroke-width=\\"2\\"
+                    ></path></svg></span
+                ><span class=\\"hidden md:inline-block\\"
+                  >common:buttons.search</span
+                ></button
+              ><button
+                class=\\"hidden md:inline-block w-8 md:w-24 h-8 text-action\\"
+                title=\\"common:buttons.search\\"
+                aria-expanded=\\"false\\"
               >
                 <span class=\\"px-2 transform translate-y-0.5\\"
                   ><svg
@@ -4402,6 +4490,7 @@ exports[`Search Page page renders with no results 1`] = `
             </div>
             <div class=\\"md:hidden md:mx-6 me-6 ms-2\\">
               <button
+                aria-haspopup=\\"dialog\\"
                 title=\\"common:mainMenu.button\\"
                 class=\\"z-50 transform -translate-y-0.5\\"
               >
@@ -4421,10 +4510,10 @@ exports[`Search Page page renders with no results 1`] = `
             </div>
           </div>
         </header>
-        <main class=\\"md:flex md:items-stretch\\" role=\\"main\\">
+        <div class=\\"md:flex md:items-stretch\\" role=\\"main\\">
           <div class=\\"md:hidden\\">
             <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
-              <div class=\\"bg-gray-lighter\\">
+              <section class=\\"bg-gray-lighter\\">
                 <div class=\\"flex my-2 bg-white rounded shadow-md me-2 ms-2\\">
                   <div class=\\"w-2 flex-none rounded-s bg-neon-red\\"></div>
                   <div
@@ -4435,7 +4524,7 @@ exports[`Search Page page renders with no results 1`] = `
                       ifu-messages__card-body
                     \\"
                   >
-                    <p class=\\"flex-none mb-2 text-message font-bold\\">Alert</p>
+                    <h2 class=\\"flex-none mb-2 text-message font-bold\\">Alert</h2>
                     <div class=\\"text-message\\">
                       some stuff withouth html, maybe try that later
                     </div>
@@ -4455,7 +4544,7 @@ exports[`Search Page page renders with no results 1`] = `
                     </div>
                   </div>
                 </div>
-              </div>
+              </section>
             </div>
           </div>
           <div
@@ -4472,7 +4561,7 @@ exports[`Search Page page renders with no results 1`] = `
             \\"
           >
             <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
-              <div class=\\"bg-gray-lighter\\">
+              <section class=\\"bg-gray-lighter\\">
                 <div class=\\"flex my-2 bg-white rounded shadow-md me-2 ms-2\\">
                   <div class=\\"w-2 flex-none rounded-s bg-neon-red\\"></div>
                   <div
@@ -4483,7 +4572,7 @@ exports[`Search Page page renders with no results 1`] = `
                       ifu-messages__card-body
                     \\"
                   >
-                    <p class=\\"flex-none mb-2 text-message font-bold\\">Alert</p>
+                    <h2 class=\\"flex-none mb-2 text-message font-bold\\">Alert</h2>
                     <div class=\\"text-message\\">
                       some stuff withouth html, maybe try that later
                     </div>
@@ -4503,7 +4592,7 @@ exports[`Search Page page renders with no results 1`] = `
                     </div>
                   </div>
                 </div>
-              </div>
+              </section>
             </div>
             <nav class=\\"mb-8 pt-8\\">
               <ul class=\\"block\\">
@@ -4541,7 +4630,7 @@ exports[`Search Page page renders with no results 1`] = `
                     <div class=\\"flex-none\\">
                       <button
                         class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
-                        tabindex=\\"0\\"
+                        aria-expanded=\\"false\\"
                       >
                         <svg
                           class=\\"
@@ -4582,7 +4671,7 @@ exports[`Search Page page renders with no results 1`] = `
                     <div class=\\"flex-none\\">
                       <button
                         class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
-                        tabindex=\\"0\\"
+                        aria-expanded=\\"false\\"
                       >
                         <svg
                           class=\\"
@@ -4611,54 +4700,56 @@ exports[`Search Page page renders with no results 1`] = `
             class=\\"hidden md:block flex-none w-navi border-black-op1 border-e-2\\"
           ></div>
           <div class=\\"ifu-layout__body\\">
-            <div
-              class=\\"
-                px-6
-                lg:px-0 lg:mx-12
-                xl:mx-28
-                2xl:mx-48
-                3xl:ms-64 3xl:max-w-4xl
-              \\"
-            >
-              <h1 class=\\"mt-16 text-h2 md:text-h2xl\\">
-                common:search.title.noresults
-              </h1>
-              <div class=\\"my-8\\">
-                <form class=\\"flex items-center border border-black\\">
-                  <input
-                    type=\\"search\\"
-                    placeholder=\\"common:search.placeholder\\"
-                    name=\\"q\\"
-                    value=\\"_\\"
-                    class=\\"inline-block flex-grow px-2 h-12\\"
-                  /><button class=\\"inline-block flex-none w-12 h-12\\">
-                    <svg
-                      class=\\"inline-block mx-2\\"
-                      width=\\"17\\"
-                      height=\\"17\\"
-                      viewBox=\\"0 0 17 17\\"
-                      fill=\\"none\\"
-                      xmlns=\\"http://www.w3.org/2000/svg\\"
-                    >
-                      <path
-                        fill-rule=\\"evenodd\\"
-                        clip-rule=\\"evenodd\\"
-                        d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
-                        stroke=\\"black\\"
-                        stroke-width=\\"2\\"
-                      ></path>
-                      <path
-                        d=\\"M10.7061 10.7059L16.0001 16\\"
-                        stroke=\\"black\\"
-                        stroke-width=\\"2\\"
-                      ></path>
-                    </svg>
-                  </button>
-                </form>
+            <main>
+              <div
+                class=\\"
+                  px-6
+                  lg:px-0 lg:mx-12
+                  xl:mx-28
+                  2xl:mx-48
+                  3xl:ms-64 3xl:max-w-4xl
+                \\"
+              >
+                <h1 class=\\"mt-16 text-h2 md:text-h2xl\\">
+                  common:search.title.noresults
+                </h1>
+                <div class=\\"my-8\\">
+                  <form class=\\"flex items-center border border-black\\">
+                    <input
+                      type=\\"text\\"
+                      placeholder=\\"common:search.placeholder\\"
+                      name=\\"q\\"
+                      value=\\"_\\"
+                      class=\\"inline-block flex-grow px-2 h-12\\"
+                    /><button class=\\"inline-block flex-none w-12 h-12\\">
+                      <svg
+                        class=\\"inline-block mx-2\\"
+                        width=\\"17\\"
+                        height=\\"17\\"
+                        viewBox=\\"0 0 17 17\\"
+                        fill=\\"none\\"
+                        xmlns=\\"http://www.w3.org/2000/svg\\"
+                      >
+                        <path
+                          fill-rule=\\"evenodd\\"
+                          clip-rule=\\"evenodd\\"
+                          d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
+                          stroke=\\"black\\"
+                          stroke-width=\\"2\\"
+                        ></path>
+                        <path
+                          d=\\"M10.7061 10.7059L16.0001 16\\"
+                          stroke=\\"black\\"
+                          stroke-width=\\"2\\"
+                        ></path>
+                      </svg>
+                    </button>
+                  </form>
+                </div>
               </div>
-            </div>
-            <div class=\\"ifu-footer\\">
-              <footer
+            </main>
+            <footer class=\\"ifu-footer\\">
+              <div
                 class=\\"
                   px-6
                   lg:px-0 lg:mx-12
@@ -4836,8 +4927,8 @@ exports[`Search Page page renders with no results 1`] = `
                     >Saatavuus</a
                   >
                 </section>
-              </footer>
-              <div class=\\"bg-blue-white\\">
+              </div>
+              <section class=\\"bg-blue-white\\">
                 <div
                   class=\\"
                     px-2
@@ -4848,7 +4939,10 @@ exports[`Search Page page renders with no results 1`] = `
                     h-20
                   \\"
                 >
-                  <button class=\\"flex items-center w-full h-20\\">
+                  <button
+                    class=\\"flex items-center w-full h-20\\"
+                    aria-expanded=\\"false\\"
+                  >
                     <svg
                       class=\\"
                         inline-block
@@ -4892,10 +4986,10 @@ exports[`Search Page page renders with no results 1`] = `
                     overflow-hidden
                   \\"
                 ></div>
-              </div>
-            </div>
+              </section>
+            </footer>
           </div>
-        </main>
+        </div>
       </div>
     </div>
   </body>
@@ -4937,6 +5031,7 @@ exports[`Search Page page renders with no results 2`] = `
         </div>
         <div class=\\"flex-grow\\"></div>
         <button
+          aria-haspopup=\\"dialog\\"
           title=\\"common:languageMenu.label\\"
           class=\\"block lg:hidden h-8 transform -translate-y-0.5 md:me-2\\"
         >
@@ -4981,9 +5076,8 @@ exports[`Search Page page renders with no results 2`] = `
             me-4
             md:ms-1
           \\"
-          role=\\"listbox\\"
         >
-          <button class=\\"xl:hidden lg:px-0 pe-2 ps-2\\">
+          <button class=\\"xl:hidden lg:px-0 pe-2 ps-2\\" aria-haspopup=\\"dialog\\">
             <span class=\\"hidden md:inline-block xl:hidden\\"
               >common:languageSelector.button</span
             ><svg
@@ -5024,8 +5118,6 @@ exports[`Search Page page renders with no results 2`] = `
             title=\\"Suomi\\"
             hreflang=\\"fi\\"
             lang=\\"fi\\"
-            role=\\"option\\"
-            aria-selected=\\"true\\"
             href=\\"/hae?q=_\\"
             ><span class=\\"xl:hidden border-b-2 border-black\\">fi</span
             ><span
@@ -5049,8 +5141,6 @@ exports[`Search Page page renders with no results 2`] = `
             title=\\"Svenska\\"
             hreflang=\\"sv\\"
             lang=\\"sv\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae?q=_\\"
             ><span class=\\"xl:hidden\\">sv</span
             ><span
@@ -5074,8 +5164,6 @@ exports[`Search Page page renders with no results 2`] = `
             title=\\"English\\"
             hreflang=\\"en\\"
             lang=\\"en\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae?q=_\\"
             ><span class=\\"xl:hidden\\">en</span
             ><span
@@ -5099,8 +5187,6 @@ exports[`Search Page page renders with no results 2`] = `
             title=\\"Pусский\\"
             hreflang=\\"ru\\"
             lang=\\"ru\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae?q=_\\"
             ><span class=\\"xl:hidden\\">ru</span
             ><span
@@ -5124,8 +5210,6 @@ exports[`Search Page page renders with no results 2`] = `
             title=\\"Eesti keel\\"
             hreflang=\\"et\\"
             lang=\\"et\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae?q=_\\"
             ><span class=\\"xl:hidden\\">et</span
             ><span
@@ -5149,8 +5233,6 @@ exports[`Search Page page renders with no results 2`] = `
             title=\\"Français\\"
             hreflang=\\"fr\\"
             lang=\\"fr\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae?q=_\\"
             ><span class=\\"xl:hidden\\">fr</span
             ><span
@@ -5174,8 +5256,6 @@ exports[`Search Page page renders with no results 2`] = `
             title=\\"Soomaali\\"
             hreflang=\\"so\\"
             lang=\\"so\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae?q=_\\"
             ><span class=\\"xl:hidden\\">so</span
             ><span
@@ -5199,8 +5279,6 @@ exports[`Search Page page renders with no results 2`] = `
             title=\\"Español\\"
             hreflang=\\"es\\"
             lang=\\"es\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae?q=_\\"
             ><span class=\\"xl:hidden\\">es</span
             ><span
@@ -5224,8 +5302,6 @@ exports[`Search Page page renders with no results 2`] = `
             title=\\"Türkçe\\"
             hreflang=\\"tr\\"
             lang=\\"tr\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae?q=_\\"
             ><span class=\\"xl:hidden\\">tr</span
             ><span
@@ -5249,8 +5325,6 @@ exports[`Search Page page renders with no results 2`] = `
             title=\\"中文\\"
             hreflang=\\"zh\\"
             lang=\\"zh\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae?q=_\\"
             ><span class=\\"xl:hidden\\">zh</span
             ><span
@@ -5274,8 +5348,6 @@ exports[`Search Page page renders with no results 2`] = `
             title=\\" فارسی\\"
             hreflang=\\"fa\\"
             lang=\\"fa\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae?q=_\\"
             ><span class=\\"xl:hidden\\">fa</span
             ><span
@@ -5300,8 +5372,6 @@ exports[`Search Page page renders with no results 2`] = `
             title=\\"العربية\\"
             hreflang=\\"ar\\"
             lang=\\"ar\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/hae?q=_\\"
             ><span class=\\"xl:hidden\\">ar</span
             ><span
@@ -5317,8 +5387,39 @@ exports[`Search Page page renders with no results 2`] = `
         </div>
         <div class=\\"flex-none 2xl:flex-grow\\">
           <button
-            class=\\"w-8 md:w-24 h-8 text-action\\"
+            class=\\"md:hidden w-8 md:w-24 h-8 text-action\\"
             title=\\"common:buttons.search\\"
+            aria-expanded=\\"false\\"
+            aria-haspopup=\\"dialog\\"
+          >
+            <span class=\\"px-2 transform translate-y-0.5\\"
+              ><svg
+                class=\\"inline-block\\"
+                width=\\"17\\"
+                height=\\"17\\"
+                viewBox=\\"0 0 17 17\\"
+                fill=\\"none\\"
+                xmlns=\\"http://www.w3.org/2000/svg\\"
+              >
+                <path
+                  fill-rule=\\"evenodd\\"
+                  clip-rule=\\"evenodd\\"
+                  d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
+                  stroke=\\"black\\"
+                  stroke-width=\\"2\\"
+                ></path>
+                <path
+                  d=\\"M10.7061 10.7059L16.0001 16\\"
+                  stroke=\\"black\\"
+                  stroke-width=\\"2\\"
+                ></path></svg></span
+            ><span class=\\"hidden md:inline-block\\"
+              >common:buttons.search</span
+            ></button
+          ><button
+            class=\\"hidden md:inline-block w-8 md:w-24 h-8 text-action\\"
+            title=\\"common:buttons.search\\"
+            aria-expanded=\\"false\\"
           >
             <span class=\\"px-2 transform translate-y-0.5\\"
               ><svg
@@ -5346,6 +5447,7 @@ exports[`Search Page page renders with no results 2`] = `
         </div>
         <div class=\\"md:hidden md:mx-6 me-6 ms-2\\">
           <button
+            aria-haspopup=\\"dialog\\"
             title=\\"common:mainMenu.button\\"
             class=\\"z-50 transform -translate-y-0.5\\"
           >
@@ -5365,10 +5467,10 @@ exports[`Search Page page renders with no results 2`] = `
         </div>
       </div>
     </header>
-    <main class=\\"md:flex md:items-stretch\\" role=\\"main\\">
+    <div class=\\"md:flex md:items-stretch\\" role=\\"main\\">
       <div class=\\"md:hidden\\">
         <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
-          <div
+          <section
             class=\\"
               bg-gray-lighter
               ifu-messages__card--appear ifu-messages__card--appear-active
@@ -5384,7 +5486,7 @@ exports[`Search Page page renders with no results 2`] = `
                   ifu-messages__card-body
                 \\"
               >
-                <p class=\\"flex-none mb-2 text-message font-bold\\">Alert</p>
+                <h2 class=\\"flex-none mb-2 text-message font-bold\\">Alert</h2>
                 <div class=\\"text-message\\">
                   some stuff withouth html, maybe try that later
                 </div>
@@ -5404,7 +5506,7 @@ exports[`Search Page page renders with no results 2`] = `
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         </div>
       </div>
       <div
@@ -5421,7 +5523,7 @@ exports[`Search Page page renders with no results 2`] = `
         \\"
       >
         <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
-          <div
+          <section
             class=\\"
               bg-gray-lighter
               ifu-messages__card--appear ifu-messages__card--appear-active
@@ -5437,7 +5539,7 @@ exports[`Search Page page renders with no results 2`] = `
                   ifu-messages__card-body
                 \\"
               >
-                <p class=\\"flex-none mb-2 text-message font-bold\\">Alert</p>
+                <h2 class=\\"flex-none mb-2 text-message font-bold\\">Alert</h2>
                 <div class=\\"text-message\\">
                   some stuff withouth html, maybe try that later
                 </div>
@@ -5457,7 +5559,7 @@ exports[`Search Page page renders with no results 2`] = `
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         </div>
         <nav class=\\"mb-8 pt-8\\">
           <ul class=\\"block\\">
@@ -5495,7 +5597,7 @@ exports[`Search Page page renders with no results 2`] = `
                 <div class=\\"flex-none\\">
                   <button
                     class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
-                    tabindex=\\"0\\"
+                    aria-expanded=\\"false\\"
                   >
                     <svg
                       class=\\"
@@ -5536,7 +5638,7 @@ exports[`Search Page page renders with no results 2`] = `
                 <div class=\\"flex-none\\">
                   <button
                     class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
-                    tabindex=\\"0\\"
+                    aria-expanded=\\"false\\"
                   >
                     <svg
                       class=\\"
@@ -5565,54 +5667,56 @@ exports[`Search Page page renders with no results 2`] = `
         class=\\"hidden md:block flex-none w-navi border-black-op1 border-e-2\\"
       ></div>
       <div class=\\"ifu-layout__body\\">
-        <div
-          class=\\"
-            px-6
-            lg:px-0 lg:mx-12
-            xl:mx-28
-            2xl:mx-48
-            3xl:ms-64 3xl:max-w-4xl
-          \\"
-        >
-          <h1 class=\\"mt-16 text-h2 md:text-h2xl\\">
-            common:search.title.noresults
-          </h1>
-          <div class=\\"my-8\\">
-            <form class=\\"flex items-center border border-black\\">
-              <input
-                type=\\"search\\"
-                placeholder=\\"common:search.placeholder\\"
-                name=\\"q\\"
-                value=\\"_\\"
-                class=\\"inline-block flex-grow px-2 h-12\\"
-              /><button class=\\"inline-block flex-none w-12 h-12\\">
-                <svg
-                  class=\\"inline-block mx-2\\"
-                  width=\\"17\\"
-                  height=\\"17\\"
-                  viewBox=\\"0 0 17 17\\"
-                  fill=\\"none\\"
-                  xmlns=\\"http://www.w3.org/2000/svg\\"
-                >
-                  <path
-                    fill-rule=\\"evenodd\\"
-                    clip-rule=\\"evenodd\\"
-                    d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
-                    stroke=\\"black\\"
-                    stroke-width=\\"2\\"
-                  ></path>
-                  <path
-                    d=\\"M10.7061 10.7059L16.0001 16\\"
-                    stroke=\\"black\\"
-                    stroke-width=\\"2\\"
-                  ></path>
-                </svg>
-              </button>
-            </form>
+        <main>
+          <div
+            class=\\"
+              px-6
+              lg:px-0 lg:mx-12
+              xl:mx-28
+              2xl:mx-48
+              3xl:ms-64 3xl:max-w-4xl
+            \\"
+          >
+            <h1 class=\\"mt-16 text-h2 md:text-h2xl\\">
+              common:search.title.noresults
+            </h1>
+            <div class=\\"my-8\\">
+              <form class=\\"flex items-center border border-black\\">
+                <input
+                  type=\\"text\\"
+                  placeholder=\\"common:search.placeholder\\"
+                  name=\\"q\\"
+                  value=\\"_\\"
+                  class=\\"inline-block flex-grow px-2 h-12\\"
+                /><button class=\\"inline-block flex-none w-12 h-12\\">
+                  <svg
+                    class=\\"inline-block mx-2\\"
+                    width=\\"17\\"
+                    height=\\"17\\"
+                    viewBox=\\"0 0 17 17\\"
+                    fill=\\"none\\"
+                    xmlns=\\"http://www.w3.org/2000/svg\\"
+                  >
+                    <path
+                      fill-rule=\\"evenodd\\"
+                      clip-rule=\\"evenodd\\"
+                      d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
+                      stroke=\\"black\\"
+                      stroke-width=\\"2\\"
+                    ></path>
+                    <path
+                      d=\\"M10.7061 10.7059L16.0001 16\\"
+                      stroke=\\"black\\"
+                      stroke-width=\\"2\\"
+                    ></path>
+                  </svg>
+                </button>
+              </form>
+            </div>
           </div>
-        </div>
-        <div class=\\"ifu-footer\\">
-          <footer
+        </main>
+        <footer class=\\"ifu-footer\\">
+          <div
             class=\\"
               px-6
               lg:px-0 lg:mx-12
@@ -5786,8 +5890,8 @@ exports[`Search Page page renders with no results 2`] = `
               ><a class=\\"ifu-footer__link\\" href=\\"/hae?q=_#terms\\">Avoin data</a
               ><a class=\\"ifu-footer__link\\" href=\\"/hae?q=_#cookies\\">Saatavuus</a>
             </section>
-          </footer>
-          <div class=\\"bg-blue-white\\">
+          </div>
+          <section class=\\"bg-blue-white\\">
             <div
               class=\\"
                 px-2
@@ -5798,7 +5902,10 @@ exports[`Search Page page renders with no results 2`] = `
                 h-20
               \\"
             >
-              <button class=\\"flex items-center w-full h-20\\">
+              <button
+                class=\\"flex items-center w-full h-20\\"
+                aria-expanded=\\"false\\"
+              >
                 <svg
                   class=\\"
                     inline-block
@@ -5842,10 +5949,10 @@ exports[`Search Page page renders with no results 2`] = `
                 overflow-hidden
               \\"
             ></div>
-          </div>
-        </div>
+          </section>
+        </footer>
       </div>
-    </main>
+    </div>
   </div>
 </div>
 "

@@ -37,6 +37,7 @@ exports[`Home page page renders and matches snapshot 1`] = `
             </div>
             <div class=\\"flex-grow\\"></div>
             <button
+              aria-haspopup=\\"dialog\\"
               title=\\"common:languageMenu.label\\"
               class=\\"block lg:hidden h-8 transform -translate-y-0.5 md:me-2\\"
             >
@@ -81,9 +82,11 @@ exports[`Home page page renders and matches snapshot 1`] = `
                 me-4
                 md:ms-1
               \\"
-              role=\\"listbox\\"
             >
-              <button class=\\"xl:hidden lg:px-0 pe-2 ps-2\\">
+              <button
+                class=\\"xl:hidden lg:px-0 pe-2 ps-2\\"
+                aria-haspopup=\\"dialog\\"
+              >
                 <span class=\\"hidden md:inline-block xl:hidden\\"
                   >common:languageSelector.button</span
                 ><svg
@@ -124,8 +127,6 @@ exports[`Home page page renders and matches snapshot 1`] = `
                 title=\\"Suomi\\"
                 hreflang=\\"fi\\"
                 lang=\\"fi\\"
-                role=\\"option\\"
-                aria-selected=\\"true\\"
                 href=\\"/index\\"
                 ><span class=\\"xl:hidden border-b-2 border-black\\">fi</span
                 ><span
@@ -149,8 +150,6 @@ exports[`Home page page renders and matches snapshot 1`] = `
                 title=\\"Svenska\\"
                 hreflang=\\"sv\\"
                 lang=\\"sv\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/index\\"
                 ><span class=\\"xl:hidden\\">sv</span
                 ><span
@@ -174,8 +173,6 @@ exports[`Home page page renders and matches snapshot 1`] = `
                 title=\\"English\\"
                 hreflang=\\"en\\"
                 lang=\\"en\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/index\\"
                 ><span class=\\"xl:hidden\\">en</span
                 ><span
@@ -199,8 +196,6 @@ exports[`Home page page renders and matches snapshot 1`] = `
                 title=\\"Pусский\\"
                 hreflang=\\"ru\\"
                 lang=\\"ru\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/index\\"
                 ><span class=\\"xl:hidden\\">ru</span
                 ><span
@@ -224,8 +219,6 @@ exports[`Home page page renders and matches snapshot 1`] = `
                 title=\\"Eesti keel\\"
                 hreflang=\\"et\\"
                 lang=\\"et\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/index\\"
                 ><span class=\\"xl:hidden\\">et</span
                 ><span
@@ -249,8 +242,6 @@ exports[`Home page page renders and matches snapshot 1`] = `
                 title=\\"Français\\"
                 hreflang=\\"fr\\"
                 lang=\\"fr\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/index\\"
                 ><span class=\\"xl:hidden\\">fr</span
                 ><span
@@ -274,8 +265,6 @@ exports[`Home page page renders and matches snapshot 1`] = `
                 title=\\"Soomaali\\"
                 hreflang=\\"so\\"
                 lang=\\"so\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/index\\"
                 ><span class=\\"xl:hidden\\">so</span
                 ><span
@@ -299,8 +288,6 @@ exports[`Home page page renders and matches snapshot 1`] = `
                 title=\\"Español\\"
                 hreflang=\\"es\\"
                 lang=\\"es\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/index\\"
                 ><span class=\\"xl:hidden\\">es</span
                 ><span
@@ -324,8 +311,6 @@ exports[`Home page page renders and matches snapshot 1`] = `
                 title=\\"Türkçe\\"
                 hreflang=\\"tr\\"
                 lang=\\"tr\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/index\\"
                 ><span class=\\"xl:hidden\\">tr</span
                 ><span
@@ -349,8 +334,6 @@ exports[`Home page page renders and matches snapshot 1`] = `
                 title=\\"中文\\"
                 hreflang=\\"zh\\"
                 lang=\\"zh\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/index\\"
                 ><span class=\\"xl:hidden\\">zh</span
                 ><span
@@ -374,8 +357,6 @@ exports[`Home page page renders and matches snapshot 1`] = `
                 title=\\" فارسی\\"
                 hreflang=\\"fa\\"
                 lang=\\"fa\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/index\\"
                 ><span class=\\"xl:hidden\\">fa</span
                 ><span
@@ -400,8 +381,6 @@ exports[`Home page page renders and matches snapshot 1`] = `
                 title=\\"العربية\\"
                 hreflang=\\"ar\\"
                 lang=\\"ar\\"
-                role=\\"option\\"
-                aria-selected=\\"false\\"
                 href=\\"/index\\"
                 ><span class=\\"xl:hidden\\">ar</span
                 ><span
@@ -417,8 +396,39 @@ exports[`Home page page renders and matches snapshot 1`] = `
             </div>
             <div class=\\"flex-none 2xl:flex-grow\\">
               <button
-                class=\\"w-8 md:w-24 h-8 text-action\\"
+                class=\\"md:hidden w-8 md:w-24 h-8 text-action\\"
                 title=\\"common:buttons.search\\"
+                aria-expanded=\\"false\\"
+                aria-haspopup=\\"dialog\\"
+              >
+                <span class=\\"px-2 transform translate-y-0.5\\"
+                  ><svg
+                    class=\\"inline-block\\"
+                    width=\\"17\\"
+                    height=\\"17\\"
+                    viewBox=\\"0 0 17 17\\"
+                    fill=\\"none\\"
+                    xmlns=\\"http://www.w3.org/2000/svg\\"
+                  >
+                    <path
+                      fill-rule=\\"evenodd\\"
+                      clip-rule=\\"evenodd\\"
+                      d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
+                      stroke=\\"black\\"
+                      stroke-width=\\"2\\"
+                    ></path>
+                    <path
+                      d=\\"M10.7061 10.7059L16.0001 16\\"
+                      stroke=\\"black\\"
+                      stroke-width=\\"2\\"
+                    ></path></svg></span
+                ><span class=\\"hidden md:inline-block\\"
+                  >common:buttons.search</span
+                ></button
+              ><button
+                class=\\"hidden md:inline-block w-8 md:w-24 h-8 text-action\\"
+                title=\\"common:buttons.search\\"
+                aria-expanded=\\"false\\"
               >
                 <span class=\\"px-2 transform translate-y-0.5\\"
                   ><svg
@@ -448,6 +458,7 @@ exports[`Home page page renders and matches snapshot 1`] = `
             </div>
             <div class=\\"md:hidden md:mx-6 me-6 ms-2\\">
               <button
+                aria-haspopup=\\"dialog\\"
                 title=\\"common:mainMenu.button\\"
                 class=\\"z-50 transform -translate-y-0.5\\"
               >
@@ -467,10 +478,10 @@ exports[`Home page page renders and matches snapshot 1`] = `
             </div>
           </div>
         </header>
-        <main class=\\"md:flex md:items-stretch\\" role=\\"main\\">
+        <div class=\\"md:flex md:items-stretch\\" role=\\"main\\">
           <div class=\\"md:hidden\\">
             <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
-              <div class=\\"bg-gray-lighter\\">
+              <section class=\\"bg-gray-lighter\\">
                 <div class=\\"flex my-2 bg-white rounded shadow-md me-2 ms-2\\">
                   <div class=\\"w-2 flex-none rounded-s bg-neon-red\\"></div>
                   <div
@@ -481,7 +492,7 @@ exports[`Home page page renders and matches snapshot 1`] = `
                       ifu-messages__card-body
                     \\"
                   >
-                    <p class=\\"flex-none mb-2 text-message font-bold\\">Alert</p>
+                    <h2 class=\\"flex-none mb-2 text-message font-bold\\">Alert</h2>
                     <div class=\\"text-message\\">
                       some stuff withouth html, maybe try that later
                     </div>
@@ -501,7 +512,7 @@ exports[`Home page page renders and matches snapshot 1`] = `
                     </div>
                   </div>
                 </div>
-              </div>
+              </section>
             </div>
           </div>
           <div
@@ -518,7 +529,7 @@ exports[`Home page page renders and matches snapshot 1`] = `
             \\"
           >
             <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
-              <div class=\\"bg-gray-lighter\\">
+              <section class=\\"bg-gray-lighter\\">
                 <div class=\\"flex my-2 bg-white rounded shadow-md me-2 ms-2\\">
                   <div class=\\"w-2 flex-none rounded-s bg-neon-red\\"></div>
                   <div
@@ -529,7 +540,7 @@ exports[`Home page page renders and matches snapshot 1`] = `
                       ifu-messages__card-body
                     \\"
                   >
-                    <p class=\\"flex-none mb-2 text-message font-bold\\">Alert</p>
+                    <h2 class=\\"flex-none mb-2 text-message font-bold\\">Alert</h2>
                     <div class=\\"text-message\\">
                       some stuff withouth html, maybe try that later
                     </div>
@@ -549,7 +560,7 @@ exports[`Home page page renders and matches snapshot 1`] = `
                     </div>
                   </div>
                 </div>
-              </div>
+              </section>
             </div>
             <nav class=\\"mb-8 pt-8\\">
               <ul class=\\"block\\">
@@ -588,7 +599,7 @@ exports[`Home page page renders and matches snapshot 1`] = `
                     <div class=\\"flex-none\\">
                       <button
                         class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
-                        tabindex=\\"0\\"
+                        aria-expanded=\\"false\\"
                       >
                         <svg
                           class=\\"
@@ -629,7 +640,7 @@ exports[`Home page page renders and matches snapshot 1`] = `
                     <div class=\\"flex-none\\">
                       <button
                         class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
-                        tabindex=\\"0\\"
+                        aria-expanded=\\"false\\"
                       >
                         <svg
                           class=\\"
@@ -658,320 +669,95 @@ exports[`Home page page renders and matches snapshot 1`] = `
             class=\\"hidden md:block flex-none w-navi border-black-op1 border-e-2\\"
           ></div>
           <div class=\\"ifu-layout__body\\">
-            <div
-              class=\\"relative mb-14 h-homehero md:h-homeheroxl\\"
-              style=\\"
-                background-image: url(/images/home.png);
-                background-position: center center;
-                background-size: cover;
-                background-repeat: no-repeat;
-              \\"
-            >
-              <h1
-                class=\\"
-                  absolute
-                  bottom-0
-                  mb-16
-                  ml-6
-                  md:max-w-lg
-                  text-h1
-                  md:text-h1xl
-                  lg:text-h1xl
-                  text-white
-                  md:ms-12
-                  ifu-hero-home__title
-                  text-shadow-home
-                  md:min-w-md
+            <main>
+              <div
+                class=\\"relative mb-14 h-homehero md:h-homeheroxl\\"
+                style=\\"
+                  background-image: url(/images/home.png);
+                  background-position: center center;
+                  background-size: cover;
+                  background-repeat: no-repeat;
                 \\"
               >
-                Your source for living in Finland
-              </h1>
-            </div>
-            <div
-              class=\\"
-                px-6
-                lg:px-12 lg:mx-12
-                xl:mx-28
-                2xl:mx-48
-                3xl:ms-64 3xl:max-w-4xl
-              \\"
-            >
-              <p class=\\"mb-8 text-body text-bodytext-color\\">
-                The education system includes early childhood education,
-                preschool education, comprehensive education, upper secondary
-                education and higher education. Adult education is intended for
-                adults and it includes a multitude of alternatives from
-                comprehensive to higher education.
-              </p>
-            </div>
-            <div
-              class=\\"
-                px-6
-                lg:px-12 lg:mx-12
-                xl:mx-28
-                2xl:mx-48
-                3xl:ms-64 3xl:max-w-4xl
-              \\"
-            >
-              <div class=\\"grid grid-cols-1 md:grid-cols-2 gap-6 mb-28\\">
-                <div
+                <h1
                   class=\\"
-                    rounded
-                    bg-blue-white
-                    hover:bg-blue-lighter
-                    shadow-themecard-blue
+                    absolute
+                    bottom-0
+                    mb-16
+                    ml-6
+                    md:max-w-lg
+                    text-h1
+                    md:text-h1xl
+                    lg:text-h1xl
+                    text-white
+                    md:ms-12
+                    ifu-hero-home__title
+                    text-shadow-home
+                    md:min-w-md
                   \\"
                 >
-                  <div class=\\"hidden md:block rounded\\">
-                    <div
-                      style=\\"
-                        display: block;
-                        overflow: hidden;
-                        position: relative;
-                        box-sizing: border-box;
-                        margin: 0;
-                      \\"
-                    >
-                      <div
+                  Your source for living in Finland
+                </h1>
+              </div>
+              <div
+                class=\\"
+                  px-6
+                  lg:px-12 lg:mx-12
+                  xl:mx-28
+                  2xl:mx-48
+                  3xl:ms-64 3xl:max-w-4xl
+                \\"
+              >
+                <p class=\\"mb-8 text-body text-bodytext-color\\">
+                  The education system includes early childhood education,
+                  preschool education, comprehensive education, upper secondary
+                  education and higher education. Adult education is intended
+                  for adults and it includes a multitude of alternatives from
+                  comprehensive to higher education.
+                </p>
+              </div>
+              <div
+                class=\\"
+                  px-6
+                  lg:px-12 lg:mx-12
+                  xl:mx-28
+                  2xl:mx-48
+                  3xl:ms-64 3xl:max-w-4xl
+                \\"
+              >
+                <div class=\\"grid grid-cols-1 md:grid-cols-2 gap-6 mb-28\\">
+                  <a
+                    class=\\"
+                      rounded
+                      block
+                      bg-blue-white
+                      hover:bg-blue-lighter
+                      shadow-themecard-blue
+                    \\"
+                    href=\\"/theme/page\\"
+                    ><span class=\\"hidden md:block rounded\\"
+                      ><div
                         style=\\"
                           display: block;
+                          overflow: hidden;
+                          position: relative;
                           box-sizing: border-box;
-                          padding-top: 33.33333333333333%;
+                          margin: 0;
                         \\"
-                      ></div>
-                      <img
-                        alt=\\"Moving to Finland\\"
-                        src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
-                        decoding=\\"async\\"
-                        data-nimg=\\"responsive\\"
-                        class=\\"rounded-t\\"
-                        style=\\"
-                          position: absolute;
-                          top: 0;
-                          left: 0;
-                          bottom: 0;
-                          right: 0;
-                          box-sizing: border-box;
-                          padding: 0;
-                          border: none;
-                          margin: auto;
-                          display: block;
-                          width: 0;
-                          height: 0;
-                          min-width: 100%;
-                          max-width: 100%;
-                          min-height: 100%;
-                          max-height: 100%;
-                        \\"
-                      /><noscript
-                        ><img
-                          alt=\\"Moving to Finland\\"
-                          sizes=\\"100vw\\"
-                          srcset=\\"
-                            /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=640&amp;q=75   640w,
-                            /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=750&amp;q=75   750w,
-                            /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=828&amp;q=75   828w,
-                            /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=1080&amp;q=75 1080w,
-                            /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=1200&amp;q=75 1200w,
-                            /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=1920&amp;q=75 1920w,
-                            /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=2048&amp;q=75 2048w,
-                            /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=3840&amp;q=75 3840w
-                          \\"
-                          src=\\"/_next/image?url=%2Fimages%2Fcategory1.png&amp;w=3840&amp;q=75\\"
-                          decoding=\\"async\\"
-                          data-nimg=\\"responsive\\"
-                          style=\\"
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            bottom: 0;
-                            right: 0;
-                            box-sizing: border-box;
-                            padding: 0;
-                            border: none;
-                            margin: auto;
-                            display: block;
-                            width: 0;
-                            height: 0;
-                            min-width: 100%;
-                            max-width: 100%;
-                            min-height: 100%;
-                            max-height: 100%;
-                          \\"
-                          class=\\"rounded-t\\"
-                          loading=\\"lazy\\"
-                      /></noscript>
-                    </div>
-                  </div>
-                  <div class=\\"flex md:h-24\\">
-                    <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                      <a class=\\"block\\" href=\\"/theme/page\\">Moving to Finland</a>
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class=\\"
-                    rounded
-                    bg-green-lighter
-                    hover:bg-green-light
-                    shadow-themecard-green
-                  \\"
-                >
-                  <div class=\\"hidden md:block rounded\\">
-                    <div
-                      style=\\"
-                        display: block;
-                        overflow: hidden;
-                        position: relative;
-                        box-sizing: border-box;
-                        margin: 0;
-                      \\"
-                    >
-                      <div
-                        style=\\"
-                          display: block;
-                          box-sizing: border-box;
-                          padding-top: 33.33333333333333%;
-                        \\"
-                      ></div>
-                      <img
-                        alt=\\"Settling in Finland\\"
-                        src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
-                        decoding=\\"async\\"
-                        data-nimg=\\"responsive\\"
-                        class=\\"rounded-t\\"
-                        style=\\"
-                          position: absolute;
-                          top: 0;
-                          left: 0;
-                          bottom: 0;
-                          right: 0;
-                          box-sizing: border-box;
-                          padding: 0;
-                          border: none;
-                          margin: auto;
-                          display: block;
-                          width: 0;
-                          height: 0;
-                          min-width: 100%;
-                          max-width: 100%;
-                          min-height: 100%;
-                          max-height: 100%;
-                        \\"
-                      /><noscript
-                        ><img
-                          alt=\\"Settling in Finland\\"
-                          sizes=\\"100vw\\"
-                          srcset=\\"
-                            /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=640&amp;q=75   640w,
-                            /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=750&amp;q=75   750w,
-                            /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=828&amp;q=75   828w,
-                            /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1080&amp;q=75 1080w,
-                            /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1200&amp;q=75 1200w,
-                            /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1920&amp;q=75 1920w,
-                            /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=2048&amp;q=75 2048w,
-                            /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=3840&amp;q=75 3840w
-                          \\"
-                          src=\\"/_next/image?url=%2Fimages%2Fcategory2.png&amp;w=3840&amp;q=75\\"
-                          decoding=\\"async\\"
-                          data-nimg=\\"responsive\\"
-                          style=\\"
-                            position: absolute;
-                            top: 0;
-                            left: 0;
-                            bottom: 0;
-                            right: 0;
-                            box-sizing: border-box;
-                            padding: 0;
-                            border: none;
-                            margin: auto;
-                            display: block;
-                            width: 0;
-                            height: 0;
-                            min-width: 100%;
-                            max-width: 100%;
-                            min-height: 100%;
-                            max-height: 100%;
-                          \\"
-                          class=\\"rounded-t\\"
-                          loading=\\"lazy\\"
-                      /></noscript>
-                    </div>
-                  </div>
-                  <div class=\\"flex md:h-24\\">
-                    <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                      <a class=\\"block\\" href=\\"/theme/page/subpage\\"
-                        >Settling in Finland</a
                       >
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class=\\"
-                    rounded
-                    bg-blue-white
-                    hover:bg-blue-lighter
-                    shadow-themecard-blue
-                  \\"
-                >
-                  <div class=\\"hidden md:block rounded\\">
-                    <div
-                      style=\\"
-                        display: block;
-                        overflow: hidden;
-                        position: relative;
-                        box-sizing: border-box;
-                        margin: 0;
-                      \\"
-                    >
-                      <div
-                        style=\\"
-                          display: block;
-                          box-sizing: border-box;
-                          padding-top: 33.33333333333333%;
-                        \\"
-                      ></div>
-                      <img
-                        alt=\\"Otsikko\\"
-                        src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
-                        decoding=\\"async\\"
-                        data-nimg=\\"responsive\\"
-                        class=\\"rounded-t\\"
-                        style=\\"
-                          position: absolute;
-                          top: 0;
-                          left: 0;
-                          bottom: 0;
-                          right: 0;
-                          box-sizing: border-box;
-                          padding: 0;
-                          border: none;
-                          margin: auto;
-                          display: block;
-                          width: 0;
-                          height: 0;
-                          min-width: 100%;
-                          max-width: 100%;
-                          min-height: 100%;
-                          max-height: 100%;
-                        \\"
-                      /><noscript
-                        ><img
-                          alt=\\"Otsikko\\"
-                          sizes=\\"100vw\\"
-                          srcset=\\"
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=640&amp;q=75   640w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=750&amp;q=75   750w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=828&amp;q=75   828w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1080&amp;q=75 1080w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1200&amp;q=75 1200w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1920&amp;q=75 1920w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=2048&amp;q=75 2048w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75 3840w
+                        <div
+                          style=\\"
+                            display: block;
+                            box-sizing: border-box;
+                            padding-top: 33.33333333333333%;
                           \\"
-                          src=\\"/_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75\\"
+                        ></div>
+                        <img
+                          alt=\\"\\"
+                          src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
                           decoding=\\"async\\"
                           data-nimg=\\"responsive\\"
+                          class=\\"rounded-t\\"
                           style=\\"
                             position: absolute;
                             top: 0;
@@ -990,83 +776,81 @@ exports[`Home page page renders and matches snapshot 1`] = `
                             min-height: 100%;
                             max-height: 100%;
                           \\"
-                          class=\\"rounded-t\\"
-                          loading=\\"lazy\\"
-                      /></noscript>
-                    </div>
-                  </div>
-                  <div class=\\"flex md:h-24\\">
-                    <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                      <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class=\\"
-                    rounded
-                    bg-green-lighter
-                    hover:bg-green-light
-                    shadow-themecard-green
-                  \\"
-                >
-                  <div class=\\"hidden md:block rounded\\">
-                    <div
-                      style=\\"
-                        display: block;
-                        overflow: hidden;
-                        position: relative;
-                        box-sizing: border-box;
-                        margin: 0;
-                      \\"
-                    >
-                      <div
+                        /><noscript
+                          ><img
+                            alt=\\"\\"
+                            sizes=\\"100vw\\"
+                            srcset=\\"
+                              /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=640&amp;q=75   640w,
+                              /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=750&amp;q=75   750w,
+                              /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=828&amp;q=75   828w,
+                              /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=1080&amp;q=75 1080w,
+                              /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=1200&amp;q=75 1200w,
+                              /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=1920&amp;q=75 1920w,
+                              /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=2048&amp;q=75 2048w,
+                              /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=3840&amp;q=75 3840w
+                            \\"
+                            src=\\"/_next/image?url=%2Fimages%2Fcategory1.png&amp;w=3840&amp;q=75\\"
+                            decoding=\\"async\\"
+                            data-nimg=\\"responsive\\"
+                            style=\\"
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              bottom: 0;
+                              right: 0;
+                              box-sizing: border-box;
+                              padding: 0;
+                              border: none;
+                              margin: auto;
+                              display: block;
+                              width: 0;
+                              height: 0;
+                              min-width: 100%;
+                              max-width: 100%;
+                              min-height: 100%;
+                              max-height: 100%;
+                            \\"
+                            class=\\"rounded-t\\"
+                            loading=\\"lazy\\"
+                        /></noscript></div></span
+                    ><span class=\\"flex md:h-24\\"
+                      ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                        >Moving to Finland</span
+                      ></span
+                    ></a
+                  ><a
+                    class=\\"
+                      rounded
+                      block
+                      bg-green-lighter
+                      hover:bg-green-light
+                      shadow-themecard-green
+                    \\"
+                    href=\\"/theme/page/subpage\\"
+                    ><span class=\\"hidden md:block rounded\\"
+                      ><div
                         style=\\"
                           display: block;
+                          overflow: hidden;
+                          position: relative;
                           box-sizing: border-box;
-                          padding-top: 33.33333333333333%;
+                          margin: 0;
                         \\"
-                      ></div>
-                      <img
-                        alt=\\"Otsikko\\"
-                        src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
-                        decoding=\\"async\\"
-                        data-nimg=\\"responsive\\"
-                        class=\\"rounded-t\\"
-                        style=\\"
-                          position: absolute;
-                          top: 0;
-                          left: 0;
-                          bottom: 0;
-                          right: 0;
-                          box-sizing: border-box;
-                          padding: 0;
-                          border: none;
-                          margin: auto;
-                          display: block;
-                          width: 0;
-                          height: 0;
-                          min-width: 100%;
-                          max-width: 100%;
-                          min-height: 100%;
-                          max-height: 100%;
-                        \\"
-                      /><noscript
-                        ><img
-                          alt=\\"Otsikko\\"
-                          sizes=\\"100vw\\"
-                          srcset=\\"
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=640&amp;q=75   640w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=750&amp;q=75   750w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=828&amp;q=75   828w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1080&amp;q=75 1080w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1200&amp;q=75 1200w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1920&amp;q=75 1920w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=2048&amp;q=75 2048w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75 3840w
+                      >
+                        <div
+                          style=\\"
+                            display: block;
+                            box-sizing: border-box;
+                            padding-top: 33.33333333333333%;
                           \\"
-                          src=\\"/_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75\\"
+                        ></div>
+                        <img
+                          alt=\\"\\"
+                          src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
                           decoding=\\"async\\"
                           data-nimg=\\"responsive\\"
+                          class=\\"rounded-t\\"
                           style=\\"
                             position: absolute;
                             top: 0;
@@ -1085,83 +869,81 @@ exports[`Home page page renders and matches snapshot 1`] = `
                             min-height: 100%;
                             max-height: 100%;
                           \\"
-                          class=\\"rounded-t\\"
-                          loading=\\"lazy\\"
-                      /></noscript>
-                    </div>
-                  </div>
-                  <div class=\\"flex md:h-24\\">
-                    <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                      <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class=\\"
-                    rounded
-                    bg-blue-white
-                    hover:bg-blue-lighter
-                    shadow-themecard-blue
-                  \\"
-                >
-                  <div class=\\"hidden md:block rounded\\">
-                    <div
-                      style=\\"
-                        display: block;
-                        overflow: hidden;
-                        position: relative;
-                        box-sizing: border-box;
-                        margin: 0;
-                      \\"
-                    >
-                      <div
+                        /><noscript
+                          ><img
+                            alt=\\"\\"
+                            sizes=\\"100vw\\"
+                            srcset=\\"
+                              /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=640&amp;q=75   640w,
+                              /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=750&amp;q=75   750w,
+                              /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=828&amp;q=75   828w,
+                              /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1080&amp;q=75 1080w,
+                              /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1200&amp;q=75 1200w,
+                              /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1920&amp;q=75 1920w,
+                              /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=2048&amp;q=75 2048w,
+                              /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=3840&amp;q=75 3840w
+                            \\"
+                            src=\\"/_next/image?url=%2Fimages%2Fcategory2.png&amp;w=3840&amp;q=75\\"
+                            decoding=\\"async\\"
+                            data-nimg=\\"responsive\\"
+                            style=\\"
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              bottom: 0;
+                              right: 0;
+                              box-sizing: border-box;
+                              padding: 0;
+                              border: none;
+                              margin: auto;
+                              display: block;
+                              width: 0;
+                              height: 0;
+                              min-width: 100%;
+                              max-width: 100%;
+                              min-height: 100%;
+                              max-height: 100%;
+                            \\"
+                            class=\\"rounded-t\\"
+                            loading=\\"lazy\\"
+                        /></noscript></div></span
+                    ><span class=\\"flex md:h-24\\"
+                      ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                        >Settling in Finland</span
+                      ></span
+                    ></a
+                  ><a
+                    class=\\"
+                      rounded
+                      block
+                      bg-blue-white
+                      hover:bg-blue-lighter
+                      shadow-themecard-blue
+                    \\"
+                    href=\\"/theme/page/subpage\\"
+                    ><span class=\\"hidden md:block rounded\\"
+                      ><div
                         style=\\"
                           display: block;
+                          overflow: hidden;
+                          position: relative;
                           box-sizing: border-box;
-                          padding-top: 33.33333333333333%;
+                          margin: 0;
                         \\"
-                      ></div>
-                      <img
-                        alt=\\"Otsikko\\"
-                        src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
-                        decoding=\\"async\\"
-                        data-nimg=\\"responsive\\"
-                        class=\\"rounded-t\\"
-                        style=\\"
-                          position: absolute;
-                          top: 0;
-                          left: 0;
-                          bottom: 0;
-                          right: 0;
-                          box-sizing: border-box;
-                          padding: 0;
-                          border: none;
-                          margin: auto;
-                          display: block;
-                          width: 0;
-                          height: 0;
-                          min-width: 100%;
-                          max-width: 100%;
-                          min-height: 100%;
-                          max-height: 100%;
-                        \\"
-                      /><noscript
-                        ><img
-                          alt=\\"Otsikko\\"
-                          sizes=\\"100vw\\"
-                          srcset=\\"
-                            /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=640&amp;q=75   640w,
-                            /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=750&amp;q=75   750w,
-                            /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=828&amp;q=75   828w,
-                            /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1080&amp;q=75 1080w,
-                            /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1200&amp;q=75 1200w,
-                            /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1920&amp;q=75 1920w,
-                            /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=2048&amp;q=75 2048w,
-                            /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=3840&amp;q=75 3840w
+                      >
+                        <div
+                          style=\\"
+                            display: block;
+                            box-sizing: border-box;
+                            padding-top: 33.33333333333333%;
                           \\"
-                          src=\\"/_next/image?url=%2Fimages%2Fcategory2.png&amp;w=3840&amp;q=75\\"
+                        ></div>
+                        <img
+                          alt=\\"\\"
+                          src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
                           decoding=\\"async\\"
                           data-nimg=\\"responsive\\"
+                          class=\\"rounded-t\\"
                           style=\\"
                             position: absolute;
                             top: 0;
@@ -1180,83 +962,81 @@ exports[`Home page page renders and matches snapshot 1`] = `
                             min-height: 100%;
                             max-height: 100%;
                           \\"
-                          class=\\"rounded-t\\"
-                          loading=\\"lazy\\"
-                      /></noscript>
-                    </div>
-                  </div>
-                  <div class=\\"flex md:h-24\\">
-                    <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                      <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class=\\"
-                    rounded
-                    bg-green-lighter
-                    hover:bg-green-light
-                    shadow-themecard-green
-                  \\"
-                >
-                  <div class=\\"hidden md:block rounded\\">
-                    <div
-                      style=\\"
-                        display: block;
-                        overflow: hidden;
-                        position: relative;
-                        box-sizing: border-box;
-                        margin: 0;
-                      \\"
-                    >
-                      <div
+                        /><noscript
+                          ><img
+                            alt=\\"\\"
+                            sizes=\\"100vw\\"
+                            srcset=\\"
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=640&amp;q=75   640w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=750&amp;q=75   750w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=828&amp;q=75   828w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1080&amp;q=75 1080w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1200&amp;q=75 1200w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1920&amp;q=75 1920w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=2048&amp;q=75 2048w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75 3840w
+                            \\"
+                            src=\\"/_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75\\"
+                            decoding=\\"async\\"
+                            data-nimg=\\"responsive\\"
+                            style=\\"
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              bottom: 0;
+                              right: 0;
+                              box-sizing: border-box;
+                              padding: 0;
+                              border: none;
+                              margin: auto;
+                              display: block;
+                              width: 0;
+                              height: 0;
+                              min-width: 100%;
+                              max-width: 100%;
+                              min-height: 100%;
+                              max-height: 100%;
+                            \\"
+                            class=\\"rounded-t\\"
+                            loading=\\"lazy\\"
+                        /></noscript></div></span
+                    ><span class=\\"flex md:h-24\\"
+                      ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                        >Otsikko</span
+                      ></span
+                    ></a
+                  ><a
+                    class=\\"
+                      rounded
+                      block
+                      bg-green-lighter
+                      hover:bg-green-light
+                      shadow-themecard-green
+                    \\"
+                    href=\\"/theme/page/subpage\\"
+                    ><span class=\\"hidden md:block rounded\\"
+                      ><div
                         style=\\"
                           display: block;
+                          overflow: hidden;
+                          position: relative;
                           box-sizing: border-box;
-                          padding-top: 33.33333333333333%;
+                          margin: 0;
                         \\"
-                      ></div>
-                      <img
-                        alt=\\"Otsikko\\"
-                        src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
-                        decoding=\\"async\\"
-                        data-nimg=\\"responsive\\"
-                        class=\\"rounded-t\\"
-                        style=\\"
-                          position: absolute;
-                          top: 0;
-                          left: 0;
-                          bottom: 0;
-                          right: 0;
-                          box-sizing: border-box;
-                          padding: 0;
-                          border: none;
-                          margin: auto;
-                          display: block;
-                          width: 0;
-                          height: 0;
-                          min-width: 100%;
-                          max-width: 100%;
-                          min-height: 100%;
-                          max-height: 100%;
-                        \\"
-                      /><noscript
-                        ><img
-                          alt=\\"Otsikko\\"
-                          sizes=\\"100vw\\"
-                          srcset=\\"
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=640&amp;q=75   640w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=750&amp;q=75   750w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=828&amp;q=75   828w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1080&amp;q=75 1080w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1200&amp;q=75 1200w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1920&amp;q=75 1920w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=2048&amp;q=75 2048w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75 3840w
+                      >
+                        <div
+                          style=\\"
+                            display: block;
+                            box-sizing: border-box;
+                            padding-top: 33.33333333333333%;
                           \\"
-                          src=\\"/_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75\\"
+                        ></div>
+                        <img
+                          alt=\\"\\"
+                          src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
                           decoding=\\"async\\"
                           data-nimg=\\"responsive\\"
+                          class=\\"rounded-t\\"
                           style=\\"
                             position: absolute;
                             top: 0;
@@ -1275,83 +1055,81 @@ exports[`Home page page renders and matches snapshot 1`] = `
                             min-height: 100%;
                             max-height: 100%;
                           \\"
-                          class=\\"rounded-t\\"
-                          loading=\\"lazy\\"
-                      /></noscript>
-                    </div>
-                  </div>
-                  <div class=\\"flex md:h-24\\">
-                    <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                      <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class=\\"
-                    rounded
-                    bg-blue-white
-                    hover:bg-blue-lighter
-                    shadow-themecard-blue
-                  \\"
-                >
-                  <div class=\\"hidden md:block rounded\\">
-                    <div
-                      style=\\"
-                        display: block;
-                        overflow: hidden;
-                        position: relative;
-                        box-sizing: border-box;
-                        margin: 0;
-                      \\"
-                    >
-                      <div
+                        /><noscript
+                          ><img
+                            alt=\\"\\"
+                            sizes=\\"100vw\\"
+                            srcset=\\"
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=640&amp;q=75   640w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=750&amp;q=75   750w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=828&amp;q=75   828w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1080&amp;q=75 1080w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1200&amp;q=75 1200w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1920&amp;q=75 1920w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=2048&amp;q=75 2048w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75 3840w
+                            \\"
+                            src=\\"/_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75\\"
+                            decoding=\\"async\\"
+                            data-nimg=\\"responsive\\"
+                            style=\\"
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              bottom: 0;
+                              right: 0;
+                              box-sizing: border-box;
+                              padding: 0;
+                              border: none;
+                              margin: auto;
+                              display: block;
+                              width: 0;
+                              height: 0;
+                              min-width: 100%;
+                              max-width: 100%;
+                              min-height: 100%;
+                              max-height: 100%;
+                            \\"
+                            class=\\"rounded-t\\"
+                            loading=\\"lazy\\"
+                        /></noscript></div></span
+                    ><span class=\\"flex md:h-24\\"
+                      ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                        >Otsikko</span
+                      ></span
+                    ></a
+                  ><a
+                    class=\\"
+                      rounded
+                      block
+                      bg-blue-white
+                      hover:bg-blue-lighter
+                      shadow-themecard-blue
+                    \\"
+                    href=\\"/theme/page/subpage\\"
+                    ><span class=\\"hidden md:block rounded\\"
+                      ><div
                         style=\\"
                           display: block;
+                          overflow: hidden;
+                          position: relative;
                           box-sizing: border-box;
-                          padding-top: 33.33333333333333%;
+                          margin: 0;
                         \\"
-                      ></div>
-                      <img
-                        alt=\\"Otsikko\\"
-                        src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
-                        decoding=\\"async\\"
-                        data-nimg=\\"responsive\\"
-                        class=\\"rounded-t\\"
-                        style=\\"
-                          position: absolute;
-                          top: 0;
-                          left: 0;
-                          bottom: 0;
-                          right: 0;
-                          box-sizing: border-box;
-                          padding: 0;
-                          border: none;
-                          margin: auto;
-                          display: block;
-                          width: 0;
-                          height: 0;
-                          min-width: 100%;
-                          max-width: 100%;
-                          min-height: 100%;
-                          max-height: 100%;
-                        \\"
-                      /><noscript
-                        ><img
-                          alt=\\"Otsikko\\"
-                          sizes=\\"100vw\\"
-                          srcset=\\"
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=640&amp;q=75   640w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=750&amp;q=75   750w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=828&amp;q=75   828w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1080&amp;q=75 1080w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1200&amp;q=75 1200w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1920&amp;q=75 1920w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=2048&amp;q=75 2048w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75 3840w
+                      >
+                        <div
+                          style=\\"
+                            display: block;
+                            box-sizing: border-box;
+                            padding-top: 33.33333333333333%;
                           \\"
-                          src=\\"/_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75\\"
+                        ></div>
+                        <img
+                          alt=\\"\\"
+                          src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
                           decoding=\\"async\\"
                           data-nimg=\\"responsive\\"
+                          class=\\"rounded-t\\"
                           style=\\"
                             position: absolute;
                             top: 0;
@@ -1370,83 +1148,81 @@ exports[`Home page page renders and matches snapshot 1`] = `
                             min-height: 100%;
                             max-height: 100%;
                           \\"
-                          class=\\"rounded-t\\"
-                          loading=\\"lazy\\"
-                      /></noscript>
-                    </div>
-                  </div>
-                  <div class=\\"flex md:h-24\\">
-                    <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                      <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                    </p>
-                  </div>
-                </div>
-                <div
-                  class=\\"
-                    rounded
-                    bg-green-lighter
-                    hover:bg-green-light
-                    shadow-themecard-green
-                  \\"
-                >
-                  <div class=\\"hidden md:block rounded\\">
-                    <div
-                      style=\\"
-                        display: block;
-                        overflow: hidden;
-                        position: relative;
-                        box-sizing: border-box;
-                        margin: 0;
-                      \\"
-                    >
-                      <div
+                        /><noscript
+                          ><img
+                            alt=\\"\\"
+                            sizes=\\"100vw\\"
+                            srcset=\\"
+                              /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=640&amp;q=75   640w,
+                              /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=750&amp;q=75   750w,
+                              /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=828&amp;q=75   828w,
+                              /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1080&amp;q=75 1080w,
+                              /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1200&amp;q=75 1200w,
+                              /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1920&amp;q=75 1920w,
+                              /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=2048&amp;q=75 2048w,
+                              /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=3840&amp;q=75 3840w
+                            \\"
+                            src=\\"/_next/image?url=%2Fimages%2Fcategory2.png&amp;w=3840&amp;q=75\\"
+                            decoding=\\"async\\"
+                            data-nimg=\\"responsive\\"
+                            style=\\"
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              bottom: 0;
+                              right: 0;
+                              box-sizing: border-box;
+                              padding: 0;
+                              border: none;
+                              margin: auto;
+                              display: block;
+                              width: 0;
+                              height: 0;
+                              min-width: 100%;
+                              max-width: 100%;
+                              min-height: 100%;
+                              max-height: 100%;
+                            \\"
+                            class=\\"rounded-t\\"
+                            loading=\\"lazy\\"
+                        /></noscript></div></span
+                    ><span class=\\"flex md:h-24\\"
+                      ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                        >Otsikko</span
+                      ></span
+                    ></a
+                  ><a
+                    class=\\"
+                      rounded
+                      block
+                      bg-green-lighter
+                      hover:bg-green-light
+                      shadow-themecard-green
+                    \\"
+                    href=\\"/theme/page/subpage\\"
+                    ><span class=\\"hidden md:block rounded\\"
+                      ><div
                         style=\\"
                           display: block;
+                          overflow: hidden;
+                          position: relative;
                           box-sizing: border-box;
-                          padding-top: 33.33333333333333%;
+                          margin: 0;
                         \\"
-                      ></div>
-                      <img
-                        alt=\\"Otsikko\\"
-                        src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
-                        decoding=\\"async\\"
-                        data-nimg=\\"responsive\\"
-                        class=\\"rounded-t\\"
-                        style=\\"
-                          position: absolute;
-                          top: 0;
-                          left: 0;
-                          bottom: 0;
-                          right: 0;
-                          box-sizing: border-box;
-                          padding: 0;
-                          border: none;
-                          margin: auto;
-                          display: block;
-                          width: 0;
-                          height: 0;
-                          min-width: 100%;
-                          max-width: 100%;
-                          min-height: 100%;
-                          max-height: 100%;
-                        \\"
-                      /><noscript
-                        ><img
-                          alt=\\"Otsikko\\"
-                          sizes=\\"100vw\\"
-                          srcset=\\"
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=640&amp;q=75   640w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=750&amp;q=75   750w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=828&amp;q=75   828w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1080&amp;q=75 1080w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1200&amp;q=75 1200w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1920&amp;q=75 1920w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=2048&amp;q=75 2048w,
-                            /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75 3840w
+                      >
+                        <div
+                          style=\\"
+                            display: block;
+                            box-sizing: border-box;
+                            padding-top: 33.33333333333333%;
                           \\"
-                          src=\\"/_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75\\"
+                        ></div>
+                        <img
+                          alt=\\"\\"
+                          src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
                           decoding=\\"async\\"
                           data-nimg=\\"responsive\\"
+                          class=\\"rounded-t\\"
                           style=\\"
                             position: absolute;
                             top: 0;
@@ -1465,101 +1241,292 @@ exports[`Home page page renders and matches snapshot 1`] = `
                             min-height: 100%;
                             max-height: 100%;
                           \\"
+                        /><noscript
+                          ><img
+                            alt=\\"\\"
+                            sizes=\\"100vw\\"
+                            srcset=\\"
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=640&amp;q=75   640w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=750&amp;q=75   750w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=828&amp;q=75   828w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1080&amp;q=75 1080w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1200&amp;q=75 1200w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1920&amp;q=75 1920w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=2048&amp;q=75 2048w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75 3840w
+                            \\"
+                            src=\\"/_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75\\"
+                            decoding=\\"async\\"
+                            data-nimg=\\"responsive\\"
+                            style=\\"
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              bottom: 0;
+                              right: 0;
+                              box-sizing: border-box;
+                              padding: 0;
+                              border: none;
+                              margin: auto;
+                              display: block;
+                              width: 0;
+                              height: 0;
+                              min-width: 100%;
+                              max-width: 100%;
+                              min-height: 100%;
+                              max-height: 100%;
+                            \\"
+                            class=\\"rounded-t\\"
+                            loading=\\"lazy\\"
+                        /></noscript></div></span
+                    ><span class=\\"flex md:h-24\\"
+                      ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                        >Otsikko</span
+                      ></span
+                    ></a
+                  ><a
+                    class=\\"
+                      rounded
+                      block
+                      bg-blue-white
+                      hover:bg-blue-lighter
+                      shadow-themecard-blue
+                    \\"
+                    href=\\"/theme/page/subpage\\"
+                    ><span class=\\"hidden md:block rounded\\"
+                      ><div
+                        style=\\"
+                          display: block;
+                          overflow: hidden;
+                          position: relative;
+                          box-sizing: border-box;
+                          margin: 0;
+                        \\"
+                      >
+                        <div
+                          style=\\"
+                            display: block;
+                            box-sizing: border-box;
+                            padding-top: 33.33333333333333%;
+                          \\"
+                        ></div>
+                        <img
+                          alt=\\"\\"
+                          src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
+                          decoding=\\"async\\"
+                          data-nimg=\\"responsive\\"
                           class=\\"rounded-t\\"
-                          loading=\\"lazy\\"
-                      /></noscript>
-                    </div>
-                  </div>
-                  <div class=\\"flex md:h-24\\">
-                    <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                      <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                    </p>
-                  </div>
+                          style=\\"
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            bottom: 0;
+                            right: 0;
+                            box-sizing: border-box;
+                            padding: 0;
+                            border: none;
+                            margin: auto;
+                            display: block;
+                            width: 0;
+                            height: 0;
+                            min-width: 100%;
+                            max-width: 100%;
+                            min-height: 100%;
+                            max-height: 100%;
+                          \\"
+                        /><noscript
+                          ><img
+                            alt=\\"\\"
+                            sizes=\\"100vw\\"
+                            srcset=\\"
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=640&amp;q=75   640w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=750&amp;q=75   750w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=828&amp;q=75   828w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1080&amp;q=75 1080w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1200&amp;q=75 1200w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1920&amp;q=75 1920w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=2048&amp;q=75 2048w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75 3840w
+                            \\"
+                            src=\\"/_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75\\"
+                            decoding=\\"async\\"
+                            data-nimg=\\"responsive\\"
+                            style=\\"
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              bottom: 0;
+                              right: 0;
+                              box-sizing: border-box;
+                              padding: 0;
+                              border: none;
+                              margin: auto;
+                              display: block;
+                              width: 0;
+                              height: 0;
+                              min-width: 100%;
+                              max-width: 100%;
+                              min-height: 100%;
+                              max-height: 100%;
+                            \\"
+                            class=\\"rounded-t\\"
+                            loading=\\"lazy\\"
+                        /></noscript></div></span
+                    ><span class=\\"flex md:h-24\\"
+                      ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                        >Otsikko</span
+                      ></span
+                    ></a
+                  ><a
+                    class=\\"
+                      rounded
+                      block
+                      bg-green-lighter
+                      hover:bg-green-light
+                      shadow-themecard-green
+                    \\"
+                    href=\\"/theme/page/subpage\\"
+                    ><span class=\\"hidden md:block rounded\\"
+                      ><div
+                        style=\\"
+                          display: block;
+                          overflow: hidden;
+                          position: relative;
+                          box-sizing: border-box;
+                          margin: 0;
+                        \\"
+                      >
+                        <div
+                          style=\\"
+                            display: block;
+                            box-sizing: border-box;
+                            padding-top: 33.33333333333333%;
+                          \\"
+                        ></div>
+                        <img
+                          alt=\\"\\"
+                          src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
+                          decoding=\\"async\\"
+                          data-nimg=\\"responsive\\"
+                          class=\\"rounded-t\\"
+                          style=\\"
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            bottom: 0;
+                            right: 0;
+                            box-sizing: border-box;
+                            padding: 0;
+                            border: none;
+                            margin: auto;
+                            display: block;
+                            width: 0;
+                            height: 0;
+                            min-width: 100%;
+                            max-width: 100%;
+                            min-height: 100%;
+                            max-height: 100%;
+                          \\"
+                        /><noscript
+                          ><img
+                            alt=\\"\\"
+                            sizes=\\"100vw\\"
+                            srcset=\\"
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=640&amp;q=75   640w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=750&amp;q=75   750w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=828&amp;q=75   828w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1080&amp;q=75 1080w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1200&amp;q=75 1200w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1920&amp;q=75 1920w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=2048&amp;q=75 2048w,
+                              /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75 3840w
+                            \\"
+                            src=\\"/_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75\\"
+                            decoding=\\"async\\"
+                            data-nimg=\\"responsive\\"
+                            style=\\"
+                              position: absolute;
+                              top: 0;
+                              left: 0;
+                              bottom: 0;
+                              right: 0;
+                              box-sizing: border-box;
+                              padding: 0;
+                              border: none;
+                              margin: auto;
+                              display: block;
+                              width: 0;
+                              height: 0;
+                              min-width: 100%;
+                              max-width: 100%;
+                              min-height: 100%;
+                              max-height: 100%;
+                            \\"
+                            class=\\"rounded-t\\"
+                            loading=\\"lazy\\"
+                        /></noscript></div></span
+                    ><span class=\\"flex md:h-24\\"
+                      ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                        >Otsikko</span
+                      ></span
+                    ></a
+                  >
                 </div>
               </div>
-            </div>
-            <div
-              class=\\"
-                px-6
-                lg:px-12 lg:mx-12
-                xl:mx-28
-                2xl:mx-48
-                3xl:ms-64 3xl:max-w-4xl
-                pt-8
-                border-t border-gray-darker
-              \\"
-            >
-              <div class=\\"grid grid-cols-2 pb-8\\">
-                <div class=\\"foo\\">
-                  <h2 class=\\"mb-4 text-h2\\">Cities</h2>
-                  <p class=\\"mb-8\\">
-                    Purus non blandit sem consectetur et dignissim arcu
-                    pellentesque morbi neque.
-                  </p>
-                  <button class=\\"ifu-button\\">Go to Cities</button>
-                </div>
-                <div class=\\"\\">
-                  <div
-                    style=\\"
-                      display: inline-block;
-                      max-width: 100%;
-                      overflow: hidden;
-                      position: relative;
-                      box-sizing: border-box;
-                      margin: 0;
-                    \\"
-                  >
+              <div
+                class=\\"
+                  px-6
+                  lg:px-12 lg:mx-12
+                  xl:mx-28
+                  2xl:mx-48
+                  3xl:ms-64 3xl:max-w-4xl
+                  pt-8
+                  border-t border-gray-darker
+                \\"
+              >
+                <div class=\\"grid grid-cols-2 pb-8\\">
+                  <div class=\\"foo\\">
+                    <h2 class=\\"mb-4 text-h2\\">Cities</h2>
+                    <p class=\\"mb-8\\">
+                      Purus non blandit sem consectetur et dignissim arcu
+                      pellentesque morbi neque.
+                    </p>
+                    <button class=\\"ifu-button\\">Go to Cities</button>
+                  </div>
+                  <div class=\\"\\">
                     <div
                       style=\\"
-                        box-sizing: border-box;
-                        display: block;
+                        display: inline-block;
                         max-width: 100%;
+                        overflow: hidden;
+                        position: relative;
+                        box-sizing: border-box;
+                        margin: 0;
                       \\"
                     >
-                      <img
+                      <div
                         style=\\"
-                          max-width: 100%;
+                          box-sizing: border-box;
                           display: block;
-                          margin: 0;
-                          border: none;
-                          padding: 0;
+                          max-width: 100%;
                         \\"
+                      >
+                        <img
+                          style=\\"
+                            max-width: 100%;
+                            display: block;
+                            margin: 0;
+                            border: none;
+                            padding: 0;
+                          \\"
+                          alt=\\"\\"
+                          aria-hidden=\\"true\\"
+                          src=\\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjE5IiBoZWlnaHQ9IjM4MSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4=\\"
+                        />
+                      </div>
+                      <img
                         alt=\\"\\"
-                        aria-hidden=\\"true\\"
-                        src=\\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjE5IiBoZWlnaHQ9IjM4MSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4=\\"
-                      />
-                    </div>
-                    <img
-                      alt=\\"\\"
-                      src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
-                      decoding=\\"async\\"
-                      data-nimg=\\"intrinsic\\"
-                      style=\\"
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        bottom: 0;
-                        right: 0;
-                        box-sizing: border-box;
-                        padding: 0;
-                        border: none;
-                        margin: auto;
-                        display: block;
-                        width: 0;
-                        height: 0;
-                        min-width: 100%;
-                        max-width: 100%;
-                        min-height: 100%;
-                        max-height: 100%;
-                      \\"
-                    /><noscript
-                      ><img
-                        alt=\\"\\"
-                        srcset=\\"
-                          /_next/image?url=%2Fimages%2Fsuomi-kartta.png&amp;w=256&amp;q=75 1x,
-                          /_next/image?url=%2Fimages%2Fsuomi-kartta.png&amp;w=640&amp;q=75 2x
-                        \\"
-                        src=\\"/_next/image?url=%2Fimages%2Fsuomi-kartta.png&amp;w=640&amp;q=75\\"
+                        src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
                         decoding=\\"async\\"
                         data-nimg=\\"intrinsic\\"
                         style=\\"
@@ -1580,77 +1547,77 @@ exports[`Home page page renders and matches snapshot 1`] = `
                           min-height: 100%;
                           max-height: 100%;
                         \\"
-                        loading=\\"lazy\\"
-                    /></noscript>
+                      /><noscript
+                        ><img
+                          alt=\\"\\"
+                          srcset=\\"
+                            /_next/image?url=%2Fimages%2Fsuomi-kartta.png&amp;w=256&amp;q=75 1x,
+                            /_next/image?url=%2Fimages%2Fsuomi-kartta.png&amp;w=640&amp;q=75 2x
+                          \\"
+                          src=\\"/_next/image?url=%2Fimages%2Fsuomi-kartta.png&amp;w=640&amp;q=75\\"
+                          decoding=\\"async\\"
+                          data-nimg=\\"intrinsic\\"
+                          style=\\"
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            bottom: 0;
+                            right: 0;
+                            box-sizing: border-box;
+                            padding: 0;
+                            border: none;
+                            margin: auto;
+                            display: block;
+                            width: 0;
+                            height: 0;
+                            min-width: 100%;
+                            max-width: 100%;
+                            min-height: 100%;
+                            max-height: 100%;
+                          \\"
+                          loading=\\"lazy\\"
+                      /></noscript>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div
-              class=\\"
-                px-6
-                lg:px-12 lg:mx-12
-                xl:mx-28
-                2xl:mx-48
-                3xl:ms-64 3xl:max-w-4xl
-                pt-8
-                border-t border-gray-darker
-              \\"
-            >
-              <div class=\\"grid grid-cols-1 md:grid-cols-2 pb-8\\">
-                <div
-                  class=\\"
-                    hidden
-                    md:block
-                    float-left
-                    px-8
-                    mt-14
-                    text-center
-                    transform
-                    md:-translate-x-6 md:-translate-y-0.5
-                  \\"
-                >
+              <div
+                class=\\"
+                  px-6
+                  lg:px-12 lg:mx-12
+                  xl:mx-28
+                  2xl:mx-48
+                  3xl:ms-64 3xl:max-w-4xl
+                  pt-8
+                  border-t border-gray-darker
+                \\"
+              >
+                <div class=\\"grid grid-cols-1 md:grid-cols-2 pb-8\\">
                   <div
-                    style=\\"
-                      overflow: hidden;
-                      box-sizing: border-box;
-                      display: inline-block;
-                      position: relative;
-                      width: 237px;
-                      height: 190px;
+                    class=\\"
+                      hidden
+                      md:block
+                      float-left
+                      px-8
+                      mt-14
+                      text-center
+                      transform
+                      md:-translate-x-6 md:-translate-y-0.5
                     \\"
                   >
-                    <img
-                      alt=\\"\\"
-                      src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
-                      decoding=\\"async\\"
-                      data-nimg=\\"fixed\\"
+                    <div
                       style=\\"
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        bottom: 0;
-                        right: 0;
+                        overflow: hidden;
                         box-sizing: border-box;
-                        padding: 0;
-                        border: none;
-                        margin: auto;
-                        display: block;
-                        width: 0;
-                        height: 0;
-                        min-width: 100%;
-                        max-width: 100%;
-                        min-height: 100%;
-                        max-height: 100%;
+                        display: inline-block;
+                        position: relative;
+                        width: 237px;
+                        height: 190px;
                       \\"
-                    /><noscript
-                      ><img
+                    >
+                      <img
                         alt=\\"\\"
-                        srcset=\\"
-                          /_next/image?url=%2Fimages%2Flogo-vertical.png&amp;w=256&amp;q=75 1x,
-                          /_next/image?url=%2Fimages%2Flogo-vertical.png&amp;w=640&amp;q=75 2x
-                        \\"
-                        src=\\"/_next/image?url=%2Fimages%2Flogo-vertical.png&amp;w=640&amp;q=75\\"
+                        src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
                         decoding=\\"async\\"
                         data-nimg=\\"fixed\\"
                         style=\\"
@@ -1671,31 +1638,61 @@ exports[`Home page page renders and matches snapshot 1`] = `
                           min-height: 100%;
                           max-height: 100%;
                         \\"
-                        loading=\\"lazy\\"
-                    /></noscript>
+                      /><noscript
+                        ><img
+                          alt=\\"\\"
+                          srcset=\\"
+                            /_next/image?url=%2Fimages%2Flogo-vertical.png&amp;w=256&amp;q=75 1x,
+                            /_next/image?url=%2Fimages%2Flogo-vertical.png&amp;w=640&amp;q=75 2x
+                          \\"
+                          src=\\"/_next/image?url=%2Fimages%2Flogo-vertical.png&amp;w=640&amp;q=75\\"
+                          decoding=\\"async\\"
+                          data-nimg=\\"fixed\\"
+                          style=\\"
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            bottom: 0;
+                            right: 0;
+                            box-sizing: border-box;
+                            padding: 0;
+                            border: none;
+                            margin: auto;
+                            display: block;
+                            width: 0;
+                            height: 0;
+                            min-width: 100%;
+                            max-width: 100%;
+                            min-height: 100%;
+                            max-height: 100%;
+                          \\"
+                          loading=\\"lazy\\"
+                      /></noscript>
+                    </div>
+                  </div>
+                  <div class=\\"\\">
+                    <h2 class=\\"mb-4 text-h2\\">About us</h2>
+                    <p class=\\"mb-8\\">
+                      Commodo sed vel convallis scelerisque mauris, facilisi
+                      augue. Diam ut amet arcu velit egestas. Mauris nulla sed
+                      pharetra duis. Odio praesent euismod quis a at arcu ut
+                      suspendisse vestibulum. Arcu augue lorem vel eget viverra.
+                      Pellentesque orci mauris maecenas sit. Pretium proin purus
+                      vitae nisi. Velit, in sit enim ornare enim tincidunt risus
+                      blandit. Faucibus nunc rhoncus nec imperdiet commodo ac
+                      in.
+                    </p>
+                    <a
+                      class=\\"text-body-small font-bold ifu-text-link\\"
+                      href=\\"/cities\\"
+                      >Learn more about us</a
+                    >
                   </div>
                 </div>
-                <div class=\\"\\">
-                  <h2 class=\\"mb-4 text-h2\\">About us</h2>
-                  <p class=\\"mb-8\\">
-                    Commodo sed vel convallis scelerisque mauris, facilisi
-                    augue. Diam ut amet arcu velit egestas. Mauris nulla sed
-                    pharetra duis. Odio praesent euismod quis a at arcu ut
-                    suspendisse vestibulum. Arcu augue lorem vel eget viverra.
-                    Pellentesque orci mauris maecenas sit. Pretium proin purus
-                    vitae nisi. Velit, in sit enim ornare enim tincidunt risus
-                    blandit. Faucibus nunc rhoncus nec imperdiet commodo ac in.
-                  </p>
-                  <a
-                    class=\\"text-body-small font-bold ifu-text-link\\"
-                    href=\\"/cities\\"
-                    >Learn more about us</a
-                  >
-                </div>
               </div>
-            </div>
-            <div class=\\"ifu-footer\\">
-              <footer
+            </main>
+            <footer class=\\"ifu-footer\\">
+              <div
                 class=\\"
                   px-6
                   lg:px-0 lg:mx-12
@@ -1869,8 +1866,8 @@ exports[`Home page page renders and matches snapshot 1`] = `
                   ><a class=\\"ifu-footer__link\\" href=\\"/#terms\\">Avoin data</a
                   ><a class=\\"ifu-footer__link\\" href=\\"/#cookies\\">Saatavuus</a>
                 </section>
-              </footer>
-              <div class=\\"bg-blue-white\\">
+              </div>
+              <section class=\\"bg-blue-white\\">
                 <div
                   class=\\"
                     px-2
@@ -1881,7 +1878,10 @@ exports[`Home page page renders and matches snapshot 1`] = `
                     h-20
                   \\"
                 >
-                  <button class=\\"flex items-center w-full h-20\\">
+                  <button
+                    class=\\"flex items-center w-full h-20\\"
+                    aria-expanded=\\"false\\"
+                  >
                     <svg
                       class=\\"
                         inline-block
@@ -1925,10 +1925,10 @@ exports[`Home page page renders and matches snapshot 1`] = `
                     overflow-hidden
                   \\"
                 ></div>
-              </div>
-            </div>
+              </section>
+            </footer>
           </div>
-        </main>
+        </div>
       </div>
     </div>
   </body>
@@ -1970,6 +1970,7 @@ exports[`Home page page renders and matches snapshot 2`] = `
         </div>
         <div class=\\"flex-grow\\"></div>
         <button
+          aria-haspopup=\\"dialog\\"
           title=\\"common:languageMenu.label\\"
           class=\\"block lg:hidden h-8 transform -translate-y-0.5 md:me-2\\"
         >
@@ -2014,9 +2015,8 @@ exports[`Home page page renders and matches snapshot 2`] = `
             me-4
             md:ms-1
           \\"
-          role=\\"listbox\\"
         >
-          <button class=\\"xl:hidden lg:px-0 pe-2 ps-2\\">
+          <button class=\\"xl:hidden lg:px-0 pe-2 ps-2\\" aria-haspopup=\\"dialog\\">
             <span class=\\"hidden md:inline-block xl:hidden\\"
               >common:languageSelector.button</span
             ><svg
@@ -2057,8 +2057,6 @@ exports[`Home page page renders and matches snapshot 2`] = `
             title=\\"Suomi\\"
             hreflang=\\"fi\\"
             lang=\\"fi\\"
-            role=\\"option\\"
-            aria-selected=\\"true\\"
             href=\\"/index\\"
             ><span class=\\"xl:hidden border-b-2 border-black\\">fi</span
             ><span
@@ -2082,8 +2080,6 @@ exports[`Home page page renders and matches snapshot 2`] = `
             title=\\"Svenska\\"
             hreflang=\\"sv\\"
             lang=\\"sv\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/index\\"
             ><span class=\\"xl:hidden\\">sv</span
             ><span
@@ -2107,8 +2103,6 @@ exports[`Home page page renders and matches snapshot 2`] = `
             title=\\"English\\"
             hreflang=\\"en\\"
             lang=\\"en\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/index\\"
             ><span class=\\"xl:hidden\\">en</span
             ><span
@@ -2132,8 +2126,6 @@ exports[`Home page page renders and matches snapshot 2`] = `
             title=\\"Pусский\\"
             hreflang=\\"ru\\"
             lang=\\"ru\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/index\\"
             ><span class=\\"xl:hidden\\">ru</span
             ><span
@@ -2157,8 +2149,6 @@ exports[`Home page page renders and matches snapshot 2`] = `
             title=\\"Eesti keel\\"
             hreflang=\\"et\\"
             lang=\\"et\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/index\\"
             ><span class=\\"xl:hidden\\">et</span
             ><span
@@ -2182,8 +2172,6 @@ exports[`Home page page renders and matches snapshot 2`] = `
             title=\\"Français\\"
             hreflang=\\"fr\\"
             lang=\\"fr\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/index\\"
             ><span class=\\"xl:hidden\\">fr</span
             ><span
@@ -2207,8 +2195,6 @@ exports[`Home page page renders and matches snapshot 2`] = `
             title=\\"Soomaali\\"
             hreflang=\\"so\\"
             lang=\\"so\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/index\\"
             ><span class=\\"xl:hidden\\">so</span
             ><span
@@ -2232,8 +2218,6 @@ exports[`Home page page renders and matches snapshot 2`] = `
             title=\\"Español\\"
             hreflang=\\"es\\"
             lang=\\"es\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/index\\"
             ><span class=\\"xl:hidden\\">es</span
             ><span
@@ -2257,8 +2241,6 @@ exports[`Home page page renders and matches snapshot 2`] = `
             title=\\"Türkçe\\"
             hreflang=\\"tr\\"
             lang=\\"tr\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/index\\"
             ><span class=\\"xl:hidden\\">tr</span
             ><span
@@ -2282,8 +2264,6 @@ exports[`Home page page renders and matches snapshot 2`] = `
             title=\\"中文\\"
             hreflang=\\"zh\\"
             lang=\\"zh\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/index\\"
             ><span class=\\"xl:hidden\\">zh</span
             ><span
@@ -2307,8 +2287,6 @@ exports[`Home page page renders and matches snapshot 2`] = `
             title=\\" فارسی\\"
             hreflang=\\"fa\\"
             lang=\\"fa\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/index\\"
             ><span class=\\"xl:hidden\\">fa</span
             ><span
@@ -2333,8 +2311,6 @@ exports[`Home page page renders and matches snapshot 2`] = `
             title=\\"العربية\\"
             hreflang=\\"ar\\"
             lang=\\"ar\\"
-            role=\\"option\\"
-            aria-selected=\\"false\\"
             href=\\"/index\\"
             ><span class=\\"xl:hidden\\">ar</span
             ><span
@@ -2350,8 +2326,39 @@ exports[`Home page page renders and matches snapshot 2`] = `
         </div>
         <div class=\\"flex-none 2xl:flex-grow\\">
           <button
-            class=\\"w-8 md:w-24 h-8 text-action\\"
+            class=\\"md:hidden w-8 md:w-24 h-8 text-action\\"
             title=\\"common:buttons.search\\"
+            aria-expanded=\\"false\\"
+            aria-haspopup=\\"dialog\\"
+          >
+            <span class=\\"px-2 transform translate-y-0.5\\"
+              ><svg
+                class=\\"inline-block\\"
+                width=\\"17\\"
+                height=\\"17\\"
+                viewBox=\\"0 0 17 17\\"
+                fill=\\"none\\"
+                xmlns=\\"http://www.w3.org/2000/svg\\"
+              >
+                <path
+                  fill-rule=\\"evenodd\\"
+                  clip-rule=\\"evenodd\\"
+                  d=\\"M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z\\"
+                  stroke=\\"black\\"
+                  stroke-width=\\"2\\"
+                ></path>
+                <path
+                  d=\\"M10.7061 10.7059L16.0001 16\\"
+                  stroke=\\"black\\"
+                  stroke-width=\\"2\\"
+                ></path></svg></span
+            ><span class=\\"hidden md:inline-block\\"
+              >common:buttons.search</span
+            ></button
+          ><button
+            class=\\"hidden md:inline-block w-8 md:w-24 h-8 text-action\\"
+            title=\\"common:buttons.search\\"
+            aria-expanded=\\"false\\"
           >
             <span class=\\"px-2 transform translate-y-0.5\\"
               ><svg
@@ -2379,6 +2386,7 @@ exports[`Home page page renders and matches snapshot 2`] = `
         </div>
         <div class=\\"md:hidden md:mx-6 me-6 ms-2\\">
           <button
+            aria-haspopup=\\"dialog\\"
             title=\\"common:mainMenu.button\\"
             class=\\"z-50 transform -translate-y-0.5\\"
           >
@@ -2398,10 +2406,10 @@ exports[`Home page page renders and matches snapshot 2`] = `
         </div>
       </div>
     </header>
-    <main class=\\"md:flex md:items-stretch\\" role=\\"main\\">
+    <div class=\\"md:flex md:items-stretch\\" role=\\"main\\">
       <div class=\\"md:hidden\\">
         <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
-          <div
+          <section
             class=\\"
               bg-gray-lighter
               ifu-messages__card--appear ifu-messages__card--appear-active
@@ -2417,7 +2425,7 @@ exports[`Home page page renders and matches snapshot 2`] = `
                   ifu-messages__card-body
                 \\"
               >
-                <p class=\\"flex-none mb-2 text-message font-bold\\">Alert</p>
+                <h2 class=\\"flex-none mb-2 text-message font-bold\\">Alert</h2>
                 <div class=\\"text-message\\">
                   some stuff withouth html, maybe try that later
                 </div>
@@ -2437,7 +2445,7 @@ exports[`Home page page renders and matches snapshot 2`] = `
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         </div>
       </div>
       <div
@@ -2454,7 +2462,7 @@ exports[`Home page page renders and matches snapshot 2`] = `
         \\"
       >
         <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
-          <div
+          <section
             class=\\"
               bg-gray-lighter
               ifu-messages__card--appear ifu-messages__card--appear-active
@@ -2470,7 +2478,7 @@ exports[`Home page page renders and matches snapshot 2`] = `
                   ifu-messages__card-body
                 \\"
               >
-                <p class=\\"flex-none mb-2 text-message font-bold\\">Alert</p>
+                <h2 class=\\"flex-none mb-2 text-message font-bold\\">Alert</h2>
                 <div class=\\"text-message\\">
                   some stuff withouth html, maybe try that later
                 </div>
@@ -2490,7 +2498,7 @@ exports[`Home page page renders and matches snapshot 2`] = `
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         </div>
         <nav class=\\"mb-8 pt-8\\">
           <ul class=\\"block\\">
@@ -2529,7 +2537,7 @@ exports[`Home page page renders and matches snapshot 2`] = `
                 <div class=\\"flex-none\\">
                   <button
                     class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
-                    tabindex=\\"0\\"
+                    aria-expanded=\\"false\\"
                   >
                     <svg
                       class=\\"
@@ -2570,7 +2578,7 @@ exports[`Home page page renders and matches snapshot 2`] = `
                 <div class=\\"flex-none\\">
                   <button
                     class=\\"block w-14 h-12 text-gray-light me-2 text-start\\"
-                    tabindex=\\"0\\"
+                    aria-expanded=\\"false\\"
                   >
                     <svg
                       class=\\"
@@ -2599,320 +2607,95 @@ exports[`Home page page renders and matches snapshot 2`] = `
         class=\\"hidden md:block flex-none w-navi border-black-op1 border-e-2\\"
       ></div>
       <div class=\\"ifu-layout__body\\">
-        <div
-          class=\\"relative mb-14 h-homehero md:h-homeheroxl\\"
-          style=\\"
-            background-image: url(/images/home.png);
-            background-position: center center;
-            background-size: cover;
-            background-repeat: no-repeat;
-          \\"
-        >
-          <h1
-            class=\\"
-              absolute
-              bottom-0
-              mb-16
-              ml-6
-              md:max-w-lg
-              text-h1
-              md:text-h1xl
-              lg:text-h1xl
-              text-white
-              md:ms-12
-              ifu-hero-home__title
-              text-shadow-home
-              md:min-w-md
+        <main>
+          <div
+            class=\\"relative mb-14 h-homehero md:h-homeheroxl\\"
+            style=\\"
+              background-image: url(/images/home.png);
+              background-position: center center;
+              background-size: cover;
+              background-repeat: no-repeat;
             \\"
           >
-            Your source for living in Finland
-          </h1>
-        </div>
-        <div
-          class=\\"
-            px-6
-            lg:px-12 lg:mx-12
-            xl:mx-28
-            2xl:mx-48
-            3xl:ms-64 3xl:max-w-4xl
-          \\"
-        >
-          <p class=\\"mb-8 text-body text-bodytext-color\\">
-            The education system includes early childhood education, preschool
-            education, comprehensive education, upper secondary education and
-            higher education. Adult education is intended for adults and it
-            includes a multitude of alternatives from comprehensive to higher
-            education.
-          </p>
-        </div>
-        <div
-          class=\\"
-            px-6
-            lg:px-12 lg:mx-12
-            xl:mx-28
-            2xl:mx-48
-            3xl:ms-64 3xl:max-w-4xl
-          \\"
-        >
-          <div class=\\"grid grid-cols-1 md:grid-cols-2 gap-6 mb-28\\">
-            <div
+            <h1
               class=\\"
-                rounded
-                bg-blue-white
-                hover:bg-blue-lighter
-                shadow-themecard-blue
+                absolute
+                bottom-0
+                mb-16
+                ml-6
+                md:max-w-lg
+                text-h1
+                md:text-h1xl
+                lg:text-h1xl
+                text-white
+                md:ms-12
+                ifu-hero-home__title
+                text-shadow-home
+                md:min-w-md
               \\"
             >
-              <div class=\\"hidden md:block rounded\\">
-                <div
-                  style=\\"
-                    display: block;
-                    overflow: hidden;
-                    position: relative;
-                    box-sizing: border-box;
-                    margin: 0;
-                  \\"
-                >
-                  <div
+              Your source for living in Finland
+            </h1>
+          </div>
+          <div
+            class=\\"
+              px-6
+              lg:px-12 lg:mx-12
+              xl:mx-28
+              2xl:mx-48
+              3xl:ms-64 3xl:max-w-4xl
+            \\"
+          >
+            <p class=\\"mb-8 text-body text-bodytext-color\\">
+              The education system includes early childhood education, preschool
+              education, comprehensive education, upper secondary education and
+              higher education. Adult education is intended for adults and it
+              includes a multitude of alternatives from comprehensive to higher
+              education.
+            </p>
+          </div>
+          <div
+            class=\\"
+              px-6
+              lg:px-12 lg:mx-12
+              xl:mx-28
+              2xl:mx-48
+              3xl:ms-64 3xl:max-w-4xl
+            \\"
+          >
+            <div class=\\"grid grid-cols-1 md:grid-cols-2 gap-6 mb-28\\">
+              <a
+                class=\\"
+                  rounded
+                  block
+                  bg-blue-white
+                  hover:bg-blue-lighter
+                  shadow-themecard-blue
+                \\"
+                href=\\"/theme/page\\"
+                ><span class=\\"hidden md:block rounded\\"
+                  ><div
                     style=\\"
                       display: block;
+                      overflow: hidden;
+                      position: relative;
                       box-sizing: border-box;
-                      padding-top: 33.33333333333333%;
+                      margin: 0;
                     \\"
-                  ></div>
-                  <img
-                    alt=\\"Moving to Finland\\"
-                    src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
-                    decoding=\\"async\\"
-                    data-nimg=\\"responsive\\"
-                    class=\\"rounded-t\\"
-                    style=\\"
-                      position: absolute;
-                      top: 0;
-                      left: 0;
-                      bottom: 0;
-                      right: 0;
-                      box-sizing: border-box;
-                      padding: 0;
-                      border: none;
-                      margin: auto;
-                      display: block;
-                      width: 0;
-                      height: 0;
-                      min-width: 100%;
-                      max-width: 100%;
-                      min-height: 100%;
-                      max-height: 100%;
-                    \\"
-                  /><noscript
-                    ><img
-                      alt=\\"Moving to Finland\\"
-                      sizes=\\"100vw\\"
-                      srcset=\\"
-                        /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=640&amp;q=75   640w,
-                        /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=750&amp;q=75   750w,
-                        /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=828&amp;q=75   828w,
-                        /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=1080&amp;q=75 1080w,
-                        /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=1200&amp;q=75 1200w,
-                        /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=1920&amp;q=75 1920w,
-                        /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=2048&amp;q=75 2048w,
-                        /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=3840&amp;q=75 3840w
-                      \\"
-                      src=\\"/_next/image?url=%2Fimages%2Fcategory1.png&amp;w=3840&amp;q=75\\"
-                      decoding=\\"async\\"
-                      data-nimg=\\"responsive\\"
-                      style=\\"
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        bottom: 0;
-                        right: 0;
-                        box-sizing: border-box;
-                        padding: 0;
-                        border: none;
-                        margin: auto;
-                        display: block;
-                        width: 0;
-                        height: 0;
-                        min-width: 100%;
-                        max-width: 100%;
-                        min-height: 100%;
-                        max-height: 100%;
-                      \\"
-                      class=\\"rounded-t\\"
-                      loading=\\"lazy\\"
-                  /></noscript>
-                </div>
-              </div>
-              <div class=\\"flex md:h-24\\">
-                <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                  <a class=\\"block\\" href=\\"/theme/page\\">Moving to Finland</a>
-                </p>
-              </div>
-            </div>
-            <div
-              class=\\"
-                rounded
-                bg-green-lighter
-                hover:bg-green-light
-                shadow-themecard-green
-              \\"
-            >
-              <div class=\\"hidden md:block rounded\\">
-                <div
-                  style=\\"
-                    display: block;
-                    overflow: hidden;
-                    position: relative;
-                    box-sizing: border-box;
-                    margin: 0;
-                  \\"
-                >
-                  <div
-                    style=\\"
-                      display: block;
-                      box-sizing: border-box;
-                      padding-top: 33.33333333333333%;
-                    \\"
-                  ></div>
-                  <img
-                    alt=\\"Settling in Finland\\"
-                    src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
-                    decoding=\\"async\\"
-                    data-nimg=\\"responsive\\"
-                    class=\\"rounded-t\\"
-                    style=\\"
-                      position: absolute;
-                      top: 0;
-                      left: 0;
-                      bottom: 0;
-                      right: 0;
-                      box-sizing: border-box;
-                      padding: 0;
-                      border: none;
-                      margin: auto;
-                      display: block;
-                      width: 0;
-                      height: 0;
-                      min-width: 100%;
-                      max-width: 100%;
-                      min-height: 100%;
-                      max-height: 100%;
-                    \\"
-                  /><noscript
-                    ><img
-                      alt=\\"Settling in Finland\\"
-                      sizes=\\"100vw\\"
-                      srcset=\\"
-                        /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=640&amp;q=75   640w,
-                        /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=750&amp;q=75   750w,
-                        /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=828&amp;q=75   828w,
-                        /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1080&amp;q=75 1080w,
-                        /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1200&amp;q=75 1200w,
-                        /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1920&amp;q=75 1920w,
-                        /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=2048&amp;q=75 2048w,
-                        /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=3840&amp;q=75 3840w
-                      \\"
-                      src=\\"/_next/image?url=%2Fimages%2Fcategory2.png&amp;w=3840&amp;q=75\\"
-                      decoding=\\"async\\"
-                      data-nimg=\\"responsive\\"
-                      style=\\"
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        bottom: 0;
-                        right: 0;
-                        box-sizing: border-box;
-                        padding: 0;
-                        border: none;
-                        margin: auto;
-                        display: block;
-                        width: 0;
-                        height: 0;
-                        min-width: 100%;
-                        max-width: 100%;
-                        min-height: 100%;
-                        max-height: 100%;
-                      \\"
-                      class=\\"rounded-t\\"
-                      loading=\\"lazy\\"
-                  /></noscript>
-                </div>
-              </div>
-              <div class=\\"flex md:h-24\\">
-                <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                  <a class=\\"block\\" href=\\"/theme/page/subpage\\"
-                    >Settling in Finland</a
                   >
-                </p>
-              </div>
-            </div>
-            <div
-              class=\\"
-                rounded
-                bg-blue-white
-                hover:bg-blue-lighter
-                shadow-themecard-blue
-              \\"
-            >
-              <div class=\\"hidden md:block rounded\\">
-                <div
-                  style=\\"
-                    display: block;
-                    overflow: hidden;
-                    position: relative;
-                    box-sizing: border-box;
-                    margin: 0;
-                  \\"
-                >
-                  <div
-                    style=\\"
-                      display: block;
-                      box-sizing: border-box;
-                      padding-top: 33.33333333333333%;
-                    \\"
-                  ></div>
-                  <img
-                    alt=\\"Otsikko\\"
-                    src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
-                    decoding=\\"async\\"
-                    data-nimg=\\"responsive\\"
-                    class=\\"rounded-t\\"
-                    style=\\"
-                      position: absolute;
-                      top: 0;
-                      left: 0;
-                      bottom: 0;
-                      right: 0;
-                      box-sizing: border-box;
-                      padding: 0;
-                      border: none;
-                      margin: auto;
-                      display: block;
-                      width: 0;
-                      height: 0;
-                      min-width: 100%;
-                      max-width: 100%;
-                      min-height: 100%;
-                      max-height: 100%;
-                    \\"
-                  /><noscript
-                    ><img
-                      alt=\\"Otsikko\\"
-                      sizes=\\"100vw\\"
-                      srcset=\\"
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=640&amp;q=75   640w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=750&amp;q=75   750w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=828&amp;q=75   828w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1080&amp;q=75 1080w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1200&amp;q=75 1200w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1920&amp;q=75 1920w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=2048&amp;q=75 2048w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75 3840w
+                    <div
+                      style=\\"
+                        display: block;
+                        box-sizing: border-box;
+                        padding-top: 33.33333333333333%;
                       \\"
-                      src=\\"/_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75\\"
+                    ></div>
+                    <img
+                      alt=\\"\\"
+                      src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
                       decoding=\\"async\\"
                       data-nimg=\\"responsive\\"
+                      class=\\"rounded-t\\"
                       style=\\"
                         position: absolute;
                         top: 0;
@@ -2931,83 +2714,81 @@ exports[`Home page page renders and matches snapshot 2`] = `
                         min-height: 100%;
                         max-height: 100%;
                       \\"
-                      class=\\"rounded-t\\"
-                      loading=\\"lazy\\"
-                  /></noscript>
-                </div>
-              </div>
-              <div class=\\"flex md:h-24\\">
-                <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                  <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                </p>
-              </div>
-            </div>
-            <div
-              class=\\"
-                rounded
-                bg-green-lighter
-                hover:bg-green-light
-                shadow-themecard-green
-              \\"
-            >
-              <div class=\\"hidden md:block rounded\\">
-                <div
-                  style=\\"
-                    display: block;
-                    overflow: hidden;
-                    position: relative;
-                    box-sizing: border-box;
-                    margin: 0;
-                  \\"
-                >
-                  <div
+                    /><noscript
+                      ><img
+                        alt=\\"\\"
+                        sizes=\\"100vw\\"
+                        srcset=\\"
+                          /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=640&amp;q=75   640w,
+                          /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=750&amp;q=75   750w,
+                          /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=828&amp;q=75   828w,
+                          /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=1080&amp;q=75 1080w,
+                          /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=1200&amp;q=75 1200w,
+                          /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=1920&amp;q=75 1920w,
+                          /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=2048&amp;q=75 2048w,
+                          /_next/image?url=%2Fimages%2Fcategory1.png&amp;w=3840&amp;q=75 3840w
+                        \\"
+                        src=\\"/_next/image?url=%2Fimages%2Fcategory1.png&amp;w=3840&amp;q=75\\"
+                        decoding=\\"async\\"
+                        data-nimg=\\"responsive\\"
+                        style=\\"
+                          position: absolute;
+                          top: 0;
+                          left: 0;
+                          bottom: 0;
+                          right: 0;
+                          box-sizing: border-box;
+                          padding: 0;
+                          border: none;
+                          margin: auto;
+                          display: block;
+                          width: 0;
+                          height: 0;
+                          min-width: 100%;
+                          max-width: 100%;
+                          min-height: 100%;
+                          max-height: 100%;
+                        \\"
+                        class=\\"rounded-t\\"
+                        loading=\\"lazy\\"
+                    /></noscript></div></span
+                ><span class=\\"flex md:h-24\\"
+                  ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                    >Moving to Finland</span
+                  ></span
+                ></a
+              ><a
+                class=\\"
+                  rounded
+                  block
+                  bg-green-lighter
+                  hover:bg-green-light
+                  shadow-themecard-green
+                \\"
+                href=\\"/theme/page/subpage\\"
+                ><span class=\\"hidden md:block rounded\\"
+                  ><div
                     style=\\"
                       display: block;
+                      overflow: hidden;
+                      position: relative;
                       box-sizing: border-box;
-                      padding-top: 33.33333333333333%;
+                      margin: 0;
                     \\"
-                  ></div>
-                  <img
-                    alt=\\"Otsikko\\"
-                    src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
-                    decoding=\\"async\\"
-                    data-nimg=\\"responsive\\"
-                    class=\\"rounded-t\\"
-                    style=\\"
-                      position: absolute;
-                      top: 0;
-                      left: 0;
-                      bottom: 0;
-                      right: 0;
-                      box-sizing: border-box;
-                      padding: 0;
-                      border: none;
-                      margin: auto;
-                      display: block;
-                      width: 0;
-                      height: 0;
-                      min-width: 100%;
-                      max-width: 100%;
-                      min-height: 100%;
-                      max-height: 100%;
-                    \\"
-                  /><noscript
-                    ><img
-                      alt=\\"Otsikko\\"
-                      sizes=\\"100vw\\"
-                      srcset=\\"
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=640&amp;q=75   640w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=750&amp;q=75   750w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=828&amp;q=75   828w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1080&amp;q=75 1080w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1200&amp;q=75 1200w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1920&amp;q=75 1920w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=2048&amp;q=75 2048w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75 3840w
+                  >
+                    <div
+                      style=\\"
+                        display: block;
+                        box-sizing: border-box;
+                        padding-top: 33.33333333333333%;
                       \\"
-                      src=\\"/_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75\\"
+                    ></div>
+                    <img
+                      alt=\\"\\"
+                      src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
                       decoding=\\"async\\"
                       data-nimg=\\"responsive\\"
+                      class=\\"rounded-t\\"
                       style=\\"
                         position: absolute;
                         top: 0;
@@ -3026,83 +2807,81 @@ exports[`Home page page renders and matches snapshot 2`] = `
                         min-height: 100%;
                         max-height: 100%;
                       \\"
-                      class=\\"rounded-t\\"
-                      loading=\\"lazy\\"
-                  /></noscript>
-                </div>
-              </div>
-              <div class=\\"flex md:h-24\\">
-                <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                  <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                </p>
-              </div>
-            </div>
-            <div
-              class=\\"
-                rounded
-                bg-blue-white
-                hover:bg-blue-lighter
-                shadow-themecard-blue
-              \\"
-            >
-              <div class=\\"hidden md:block rounded\\">
-                <div
-                  style=\\"
-                    display: block;
-                    overflow: hidden;
-                    position: relative;
-                    box-sizing: border-box;
-                    margin: 0;
-                  \\"
-                >
-                  <div
+                    /><noscript
+                      ><img
+                        alt=\\"\\"
+                        sizes=\\"100vw\\"
+                        srcset=\\"
+                          /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=640&amp;q=75   640w,
+                          /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=750&amp;q=75   750w,
+                          /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=828&amp;q=75   828w,
+                          /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1080&amp;q=75 1080w,
+                          /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1200&amp;q=75 1200w,
+                          /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1920&amp;q=75 1920w,
+                          /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=2048&amp;q=75 2048w,
+                          /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=3840&amp;q=75 3840w
+                        \\"
+                        src=\\"/_next/image?url=%2Fimages%2Fcategory2.png&amp;w=3840&amp;q=75\\"
+                        decoding=\\"async\\"
+                        data-nimg=\\"responsive\\"
+                        style=\\"
+                          position: absolute;
+                          top: 0;
+                          left: 0;
+                          bottom: 0;
+                          right: 0;
+                          box-sizing: border-box;
+                          padding: 0;
+                          border: none;
+                          margin: auto;
+                          display: block;
+                          width: 0;
+                          height: 0;
+                          min-width: 100%;
+                          max-width: 100%;
+                          min-height: 100%;
+                          max-height: 100%;
+                        \\"
+                        class=\\"rounded-t\\"
+                        loading=\\"lazy\\"
+                    /></noscript></div></span
+                ><span class=\\"flex md:h-24\\"
+                  ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                    >Settling in Finland</span
+                  ></span
+                ></a
+              ><a
+                class=\\"
+                  rounded
+                  block
+                  bg-blue-white
+                  hover:bg-blue-lighter
+                  shadow-themecard-blue
+                \\"
+                href=\\"/theme/page/subpage\\"
+                ><span class=\\"hidden md:block rounded\\"
+                  ><div
                     style=\\"
                       display: block;
+                      overflow: hidden;
+                      position: relative;
                       box-sizing: border-box;
-                      padding-top: 33.33333333333333%;
+                      margin: 0;
                     \\"
-                  ></div>
-                  <img
-                    alt=\\"Otsikko\\"
-                    src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
-                    decoding=\\"async\\"
-                    data-nimg=\\"responsive\\"
-                    class=\\"rounded-t\\"
-                    style=\\"
-                      position: absolute;
-                      top: 0;
-                      left: 0;
-                      bottom: 0;
-                      right: 0;
-                      box-sizing: border-box;
-                      padding: 0;
-                      border: none;
-                      margin: auto;
-                      display: block;
-                      width: 0;
-                      height: 0;
-                      min-width: 100%;
-                      max-width: 100%;
-                      min-height: 100%;
-                      max-height: 100%;
-                    \\"
-                  /><noscript
-                    ><img
-                      alt=\\"Otsikko\\"
-                      sizes=\\"100vw\\"
-                      srcset=\\"
-                        /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=640&amp;q=75   640w,
-                        /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=750&amp;q=75   750w,
-                        /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=828&amp;q=75   828w,
-                        /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1080&amp;q=75 1080w,
-                        /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1200&amp;q=75 1200w,
-                        /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1920&amp;q=75 1920w,
-                        /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=2048&amp;q=75 2048w,
-                        /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=3840&amp;q=75 3840w
+                  >
+                    <div
+                      style=\\"
+                        display: block;
+                        box-sizing: border-box;
+                        padding-top: 33.33333333333333%;
                       \\"
-                      src=\\"/_next/image?url=%2Fimages%2Fcategory2.png&amp;w=3840&amp;q=75\\"
+                    ></div>
+                    <img
+                      alt=\\"\\"
+                      src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
                       decoding=\\"async\\"
                       data-nimg=\\"responsive\\"
+                      class=\\"rounded-t\\"
                       style=\\"
                         position: absolute;
                         top: 0;
@@ -3121,83 +2900,81 @@ exports[`Home page page renders and matches snapshot 2`] = `
                         min-height: 100%;
                         max-height: 100%;
                       \\"
-                      class=\\"rounded-t\\"
-                      loading=\\"lazy\\"
-                  /></noscript>
-                </div>
-              </div>
-              <div class=\\"flex md:h-24\\">
-                <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                  <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                </p>
-              </div>
-            </div>
-            <div
-              class=\\"
-                rounded
-                bg-green-lighter
-                hover:bg-green-light
-                shadow-themecard-green
-              \\"
-            >
-              <div class=\\"hidden md:block rounded\\">
-                <div
-                  style=\\"
-                    display: block;
-                    overflow: hidden;
-                    position: relative;
-                    box-sizing: border-box;
-                    margin: 0;
-                  \\"
-                >
-                  <div
+                    /><noscript
+                      ><img
+                        alt=\\"\\"
+                        sizes=\\"100vw\\"
+                        srcset=\\"
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=640&amp;q=75   640w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=750&amp;q=75   750w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=828&amp;q=75   828w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1080&amp;q=75 1080w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1200&amp;q=75 1200w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1920&amp;q=75 1920w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=2048&amp;q=75 2048w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75 3840w
+                        \\"
+                        src=\\"/_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75\\"
+                        decoding=\\"async\\"
+                        data-nimg=\\"responsive\\"
+                        style=\\"
+                          position: absolute;
+                          top: 0;
+                          left: 0;
+                          bottom: 0;
+                          right: 0;
+                          box-sizing: border-box;
+                          padding: 0;
+                          border: none;
+                          margin: auto;
+                          display: block;
+                          width: 0;
+                          height: 0;
+                          min-width: 100%;
+                          max-width: 100%;
+                          min-height: 100%;
+                          max-height: 100%;
+                        \\"
+                        class=\\"rounded-t\\"
+                        loading=\\"lazy\\"
+                    /></noscript></div></span
+                ><span class=\\"flex md:h-24\\"
+                  ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                    >Otsikko</span
+                  ></span
+                ></a
+              ><a
+                class=\\"
+                  rounded
+                  block
+                  bg-green-lighter
+                  hover:bg-green-light
+                  shadow-themecard-green
+                \\"
+                href=\\"/theme/page/subpage\\"
+                ><span class=\\"hidden md:block rounded\\"
+                  ><div
                     style=\\"
                       display: block;
+                      overflow: hidden;
+                      position: relative;
                       box-sizing: border-box;
-                      padding-top: 33.33333333333333%;
+                      margin: 0;
                     \\"
-                  ></div>
-                  <img
-                    alt=\\"Otsikko\\"
-                    src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
-                    decoding=\\"async\\"
-                    data-nimg=\\"responsive\\"
-                    class=\\"rounded-t\\"
-                    style=\\"
-                      position: absolute;
-                      top: 0;
-                      left: 0;
-                      bottom: 0;
-                      right: 0;
-                      box-sizing: border-box;
-                      padding: 0;
-                      border: none;
-                      margin: auto;
-                      display: block;
-                      width: 0;
-                      height: 0;
-                      min-width: 100%;
-                      max-width: 100%;
-                      min-height: 100%;
-                      max-height: 100%;
-                    \\"
-                  /><noscript
-                    ><img
-                      alt=\\"Otsikko\\"
-                      sizes=\\"100vw\\"
-                      srcset=\\"
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=640&amp;q=75   640w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=750&amp;q=75   750w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=828&amp;q=75   828w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1080&amp;q=75 1080w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1200&amp;q=75 1200w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1920&amp;q=75 1920w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=2048&amp;q=75 2048w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75 3840w
+                  >
+                    <div
+                      style=\\"
+                        display: block;
+                        box-sizing: border-box;
+                        padding-top: 33.33333333333333%;
                       \\"
-                      src=\\"/_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75\\"
+                    ></div>
+                    <img
+                      alt=\\"\\"
+                      src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
                       decoding=\\"async\\"
                       data-nimg=\\"responsive\\"
+                      class=\\"rounded-t\\"
                       style=\\"
                         position: absolute;
                         top: 0;
@@ -3216,83 +2993,81 @@ exports[`Home page page renders and matches snapshot 2`] = `
                         min-height: 100%;
                         max-height: 100%;
                       \\"
-                      class=\\"rounded-t\\"
-                      loading=\\"lazy\\"
-                  /></noscript>
-                </div>
-              </div>
-              <div class=\\"flex md:h-24\\">
-                <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                  <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                </p>
-              </div>
-            </div>
-            <div
-              class=\\"
-                rounded
-                bg-blue-white
-                hover:bg-blue-lighter
-                shadow-themecard-blue
-              \\"
-            >
-              <div class=\\"hidden md:block rounded\\">
-                <div
-                  style=\\"
-                    display: block;
-                    overflow: hidden;
-                    position: relative;
-                    box-sizing: border-box;
-                    margin: 0;
-                  \\"
-                >
-                  <div
+                    /><noscript
+                      ><img
+                        alt=\\"\\"
+                        sizes=\\"100vw\\"
+                        srcset=\\"
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=640&amp;q=75   640w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=750&amp;q=75   750w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=828&amp;q=75   828w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1080&amp;q=75 1080w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1200&amp;q=75 1200w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1920&amp;q=75 1920w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=2048&amp;q=75 2048w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75 3840w
+                        \\"
+                        src=\\"/_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75\\"
+                        decoding=\\"async\\"
+                        data-nimg=\\"responsive\\"
+                        style=\\"
+                          position: absolute;
+                          top: 0;
+                          left: 0;
+                          bottom: 0;
+                          right: 0;
+                          box-sizing: border-box;
+                          padding: 0;
+                          border: none;
+                          margin: auto;
+                          display: block;
+                          width: 0;
+                          height: 0;
+                          min-width: 100%;
+                          max-width: 100%;
+                          min-height: 100%;
+                          max-height: 100%;
+                        \\"
+                        class=\\"rounded-t\\"
+                        loading=\\"lazy\\"
+                    /></noscript></div></span
+                ><span class=\\"flex md:h-24\\"
+                  ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                    >Otsikko</span
+                  ></span
+                ></a
+              ><a
+                class=\\"
+                  rounded
+                  block
+                  bg-blue-white
+                  hover:bg-blue-lighter
+                  shadow-themecard-blue
+                \\"
+                href=\\"/theme/page/subpage\\"
+                ><span class=\\"hidden md:block rounded\\"
+                  ><div
                     style=\\"
                       display: block;
+                      overflow: hidden;
+                      position: relative;
                       box-sizing: border-box;
-                      padding-top: 33.33333333333333%;
+                      margin: 0;
                     \\"
-                  ></div>
-                  <img
-                    alt=\\"Otsikko\\"
-                    src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
-                    decoding=\\"async\\"
-                    data-nimg=\\"responsive\\"
-                    class=\\"rounded-t\\"
-                    style=\\"
-                      position: absolute;
-                      top: 0;
-                      left: 0;
-                      bottom: 0;
-                      right: 0;
-                      box-sizing: border-box;
-                      padding: 0;
-                      border: none;
-                      margin: auto;
-                      display: block;
-                      width: 0;
-                      height: 0;
-                      min-width: 100%;
-                      max-width: 100%;
-                      min-height: 100%;
-                      max-height: 100%;
-                    \\"
-                  /><noscript
-                    ><img
-                      alt=\\"Otsikko\\"
-                      sizes=\\"100vw\\"
-                      srcset=\\"
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=640&amp;q=75   640w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=750&amp;q=75   750w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=828&amp;q=75   828w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1080&amp;q=75 1080w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1200&amp;q=75 1200w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1920&amp;q=75 1920w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=2048&amp;q=75 2048w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75 3840w
+                  >
+                    <div
+                      style=\\"
+                        display: block;
+                        box-sizing: border-box;
+                        padding-top: 33.33333333333333%;
                       \\"
-                      src=\\"/_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75\\"
+                    ></div>
+                    <img
+                      alt=\\"\\"
+                      src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
                       decoding=\\"async\\"
                       data-nimg=\\"responsive\\"
+                      class=\\"rounded-t\\"
                       style=\\"
                         position: absolute;
                         top: 0;
@@ -3311,83 +3086,81 @@ exports[`Home page page renders and matches snapshot 2`] = `
                         min-height: 100%;
                         max-height: 100%;
                       \\"
-                      class=\\"rounded-t\\"
-                      loading=\\"lazy\\"
-                  /></noscript>
-                </div>
-              </div>
-              <div class=\\"flex md:h-24\\">
-                <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                  <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                </p>
-              </div>
-            </div>
-            <div
-              class=\\"
-                rounded
-                bg-green-lighter
-                hover:bg-green-light
-                shadow-themecard-green
-              \\"
-            >
-              <div class=\\"hidden md:block rounded\\">
-                <div
-                  style=\\"
-                    display: block;
-                    overflow: hidden;
-                    position: relative;
-                    box-sizing: border-box;
-                    margin: 0;
-                  \\"
-                >
-                  <div
+                    /><noscript
+                      ><img
+                        alt=\\"\\"
+                        sizes=\\"100vw\\"
+                        srcset=\\"
+                          /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=640&amp;q=75   640w,
+                          /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=750&amp;q=75   750w,
+                          /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=828&amp;q=75   828w,
+                          /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1080&amp;q=75 1080w,
+                          /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1200&amp;q=75 1200w,
+                          /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=1920&amp;q=75 1920w,
+                          /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=2048&amp;q=75 2048w,
+                          /_next/image?url=%2Fimages%2Fcategory2.png&amp;w=3840&amp;q=75 3840w
+                        \\"
+                        src=\\"/_next/image?url=%2Fimages%2Fcategory2.png&amp;w=3840&amp;q=75\\"
+                        decoding=\\"async\\"
+                        data-nimg=\\"responsive\\"
+                        style=\\"
+                          position: absolute;
+                          top: 0;
+                          left: 0;
+                          bottom: 0;
+                          right: 0;
+                          box-sizing: border-box;
+                          padding: 0;
+                          border: none;
+                          margin: auto;
+                          display: block;
+                          width: 0;
+                          height: 0;
+                          min-width: 100%;
+                          max-width: 100%;
+                          min-height: 100%;
+                          max-height: 100%;
+                        \\"
+                        class=\\"rounded-t\\"
+                        loading=\\"lazy\\"
+                    /></noscript></div></span
+                ><span class=\\"flex md:h-24\\"
+                  ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                    >Otsikko</span
+                  ></span
+                ></a
+              ><a
+                class=\\"
+                  rounded
+                  block
+                  bg-green-lighter
+                  hover:bg-green-light
+                  shadow-themecard-green
+                \\"
+                href=\\"/theme/page/subpage\\"
+                ><span class=\\"hidden md:block rounded\\"
+                  ><div
                     style=\\"
                       display: block;
+                      overflow: hidden;
+                      position: relative;
                       box-sizing: border-box;
-                      padding-top: 33.33333333333333%;
+                      margin: 0;
                     \\"
-                  ></div>
-                  <img
-                    alt=\\"Otsikko\\"
-                    src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
-                    decoding=\\"async\\"
-                    data-nimg=\\"responsive\\"
-                    class=\\"rounded-t\\"
-                    style=\\"
-                      position: absolute;
-                      top: 0;
-                      left: 0;
-                      bottom: 0;
-                      right: 0;
-                      box-sizing: border-box;
-                      padding: 0;
-                      border: none;
-                      margin: auto;
-                      display: block;
-                      width: 0;
-                      height: 0;
-                      min-width: 100%;
-                      max-width: 100%;
-                      min-height: 100%;
-                      max-height: 100%;
-                    \\"
-                  /><noscript
-                    ><img
-                      alt=\\"Otsikko\\"
-                      sizes=\\"100vw\\"
-                      srcset=\\"
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=640&amp;q=75   640w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=750&amp;q=75   750w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=828&amp;q=75   828w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1080&amp;q=75 1080w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1200&amp;q=75 1200w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1920&amp;q=75 1920w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=2048&amp;q=75 2048w,
-                        /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75 3840w
+                  >
+                    <div
+                      style=\\"
+                        display: block;
+                        box-sizing: border-box;
+                        padding-top: 33.33333333333333%;
                       \\"
-                      src=\\"/_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75\\"
+                    ></div>
+                    <img
+                      alt=\\"\\"
+                      src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
                       decoding=\\"async\\"
                       data-nimg=\\"responsive\\"
+                      class=\\"rounded-t\\"
                       style=\\"
                         position: absolute;
                         top: 0;
@@ -3406,101 +3179,292 @@ exports[`Home page page renders and matches snapshot 2`] = `
                         min-height: 100%;
                         max-height: 100%;
                       \\"
+                    /><noscript
+                      ><img
+                        alt=\\"\\"
+                        sizes=\\"100vw\\"
+                        srcset=\\"
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=640&amp;q=75   640w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=750&amp;q=75   750w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=828&amp;q=75   828w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1080&amp;q=75 1080w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1200&amp;q=75 1200w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1920&amp;q=75 1920w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=2048&amp;q=75 2048w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75 3840w
+                        \\"
+                        src=\\"/_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75\\"
+                        decoding=\\"async\\"
+                        data-nimg=\\"responsive\\"
+                        style=\\"
+                          position: absolute;
+                          top: 0;
+                          left: 0;
+                          bottom: 0;
+                          right: 0;
+                          box-sizing: border-box;
+                          padding: 0;
+                          border: none;
+                          margin: auto;
+                          display: block;
+                          width: 0;
+                          height: 0;
+                          min-width: 100%;
+                          max-width: 100%;
+                          min-height: 100%;
+                          max-height: 100%;
+                        \\"
+                        class=\\"rounded-t\\"
+                        loading=\\"lazy\\"
+                    /></noscript></div></span
+                ><span class=\\"flex md:h-24\\"
+                  ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                    >Otsikko</span
+                  ></span
+                ></a
+              ><a
+                class=\\"
+                  rounded
+                  block
+                  bg-blue-white
+                  hover:bg-blue-lighter
+                  shadow-themecard-blue
+                \\"
+                href=\\"/theme/page/subpage\\"
+                ><span class=\\"hidden md:block rounded\\"
+                  ><div
+                    style=\\"
+                      display: block;
+                      overflow: hidden;
+                      position: relative;
+                      box-sizing: border-box;
+                      margin: 0;
+                    \\"
+                  >
+                    <div
+                      style=\\"
+                        display: block;
+                        box-sizing: border-box;
+                        padding-top: 33.33333333333333%;
+                      \\"
+                    ></div>
+                    <img
+                      alt=\\"\\"
+                      src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
+                      decoding=\\"async\\"
+                      data-nimg=\\"responsive\\"
                       class=\\"rounded-t\\"
-                      loading=\\"lazy\\"
-                  /></noscript>
-                </div>
-              </div>
-              <div class=\\"flex md:h-24\\">
-                <p class=\\"px-4 font-bold my-4 text-body-large\\">
-                  <a class=\\"block\\" href=\\"/theme/page/subpage\\">Otsikko</a>
-                </p>
-              </div>
+                      style=\\"
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        bottom: 0;
+                        right: 0;
+                        box-sizing: border-box;
+                        padding: 0;
+                        border: none;
+                        margin: auto;
+                        display: block;
+                        width: 0;
+                        height: 0;
+                        min-width: 100%;
+                        max-width: 100%;
+                        min-height: 100%;
+                        max-height: 100%;
+                      \\"
+                    /><noscript
+                      ><img
+                        alt=\\"\\"
+                        sizes=\\"100vw\\"
+                        srcset=\\"
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=640&amp;q=75   640w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=750&amp;q=75   750w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=828&amp;q=75   828w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1080&amp;q=75 1080w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1200&amp;q=75 1200w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1920&amp;q=75 1920w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=2048&amp;q=75 2048w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75 3840w
+                        \\"
+                        src=\\"/_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75\\"
+                        decoding=\\"async\\"
+                        data-nimg=\\"responsive\\"
+                        style=\\"
+                          position: absolute;
+                          top: 0;
+                          left: 0;
+                          bottom: 0;
+                          right: 0;
+                          box-sizing: border-box;
+                          padding: 0;
+                          border: none;
+                          margin: auto;
+                          display: block;
+                          width: 0;
+                          height: 0;
+                          min-width: 100%;
+                          max-width: 100%;
+                          min-height: 100%;
+                          max-height: 100%;
+                        \\"
+                        class=\\"rounded-t\\"
+                        loading=\\"lazy\\"
+                    /></noscript></div></span
+                ><span class=\\"flex md:h-24\\"
+                  ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                    >Otsikko</span
+                  ></span
+                ></a
+              ><a
+                class=\\"
+                  rounded
+                  block
+                  bg-green-lighter
+                  hover:bg-green-light
+                  shadow-themecard-green
+                \\"
+                href=\\"/theme/page/subpage\\"
+                ><span class=\\"hidden md:block rounded\\"
+                  ><div
+                    style=\\"
+                      display: block;
+                      overflow: hidden;
+                      position: relative;
+                      box-sizing: border-box;
+                      margin: 0;
+                    \\"
+                  >
+                    <div
+                      style=\\"
+                        display: block;
+                        box-sizing: border-box;
+                        padding-top: 33.33333333333333%;
+                      \\"
+                    ></div>
+                    <img
+                      alt=\\"\\"
+                      src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
+                      decoding=\\"async\\"
+                      data-nimg=\\"responsive\\"
+                      class=\\"rounded-t\\"
+                      style=\\"
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        bottom: 0;
+                        right: 0;
+                        box-sizing: border-box;
+                        padding: 0;
+                        border: none;
+                        margin: auto;
+                        display: block;
+                        width: 0;
+                        height: 0;
+                        min-width: 100%;
+                        max-width: 100%;
+                        min-height: 100%;
+                        max-height: 100%;
+                      \\"
+                    /><noscript
+                      ><img
+                        alt=\\"\\"
+                        sizes=\\"100vw\\"
+                        srcset=\\"
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=640&amp;q=75   640w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=750&amp;q=75   750w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=828&amp;q=75   828w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1080&amp;q=75 1080w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1200&amp;q=75 1200w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=1920&amp;q=75 1920w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=2048&amp;q=75 2048w,
+                          /_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75 3840w
+                        \\"
+                        src=\\"/_next/image?url=%2Fimages%2Fcategory3.png&amp;w=3840&amp;q=75\\"
+                        decoding=\\"async\\"
+                        data-nimg=\\"responsive\\"
+                        style=\\"
+                          position: absolute;
+                          top: 0;
+                          left: 0;
+                          bottom: 0;
+                          right: 0;
+                          box-sizing: border-box;
+                          padding: 0;
+                          border: none;
+                          margin: auto;
+                          display: block;
+                          width: 0;
+                          height: 0;
+                          min-width: 100%;
+                          max-width: 100%;
+                          min-height: 100%;
+                          max-height: 100%;
+                        \\"
+                        class=\\"rounded-t\\"
+                        loading=\\"lazy\\"
+                    /></noscript></div></span
+                ><span class=\\"flex md:h-24\\"
+                  ><span class=\\"px-4 font-bold my-4 text-body-large\\"
+                    >Otsikko</span
+                  ></span
+                ></a
+              >
             </div>
           </div>
-        </div>
-        <div
-          class=\\"
-            px-6
-            lg:px-12 lg:mx-12
-            xl:mx-28
-            2xl:mx-48
-            3xl:ms-64 3xl:max-w-4xl
-            pt-8
-            border-t border-gray-darker
-          \\"
-        >
-          <div class=\\"grid grid-cols-2 pb-8\\">
-            <div class=\\"foo\\">
-              <h2 class=\\"mb-4 text-h2\\">Cities</h2>
-              <p class=\\"mb-8\\">
-                Purus non blandit sem consectetur et dignissim arcu pellentesque
-                morbi neque.
-              </p>
-              <button class=\\"ifu-button\\">Go to Cities</button>
-            </div>
-            <div class=\\"\\">
-              <div
-                style=\\"
-                  display: inline-block;
-                  max-width: 100%;
-                  overflow: hidden;
-                  position: relative;
-                  box-sizing: border-box;
-                  margin: 0;
-                \\"
-              >
+          <div
+            class=\\"
+              px-6
+              lg:px-12 lg:mx-12
+              xl:mx-28
+              2xl:mx-48
+              3xl:ms-64 3xl:max-w-4xl
+              pt-8
+              border-t border-gray-darker
+            \\"
+          >
+            <div class=\\"grid grid-cols-2 pb-8\\">
+              <div class=\\"foo\\">
+                <h2 class=\\"mb-4 text-h2\\">Cities</h2>
+                <p class=\\"mb-8\\">
+                  Purus non blandit sem consectetur et dignissim arcu
+                  pellentesque morbi neque.
+                </p>
+                <button class=\\"ifu-button\\">Go to Cities</button>
+              </div>
+              <div class=\\"\\">
                 <div
                   style=\\"
-                    box-sizing: border-box;
-                    display: block;
+                    display: inline-block;
                     max-width: 100%;
+                    overflow: hidden;
+                    position: relative;
+                    box-sizing: border-box;
+                    margin: 0;
                   \\"
                 >
-                  <img
+                  <div
                     style=\\"
-                      max-width: 100%;
+                      box-sizing: border-box;
                       display: block;
-                      margin: 0;
-                      border: none;
-                      padding: 0;
+                      max-width: 100%;
                     \\"
+                  >
+                    <img
+                      style=\\"
+                        max-width: 100%;
+                        display: block;
+                        margin: 0;
+                        border: none;
+                        padding: 0;
+                      \\"
+                      alt=\\"\\"
+                      aria-hidden=\\"true\\"
+                      src=\\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjE5IiBoZWlnaHQ9IjM4MSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4=\\"
+                    />
+                  </div>
+                  <img
                     alt=\\"\\"
-                    aria-hidden=\\"true\\"
-                    src=\\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjE5IiBoZWlnaHQ9IjM4MSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB2ZXJzaW9uPSIxLjEiLz4=\\"
-                  />
-                </div>
-                <img
-                  alt=\\"\\"
-                  src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
-                  decoding=\\"async\\"
-                  data-nimg=\\"intrinsic\\"
-                  style=\\"
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    bottom: 0;
-                    right: 0;
-                    box-sizing: border-box;
-                    padding: 0;
-                    border: none;
-                    margin: auto;
-                    display: block;
-                    width: 0;
-                    height: 0;
-                    min-width: 100%;
-                    max-width: 100%;
-                    min-height: 100%;
-                    max-height: 100%;
-                  \\"
-                /><noscript
-                  ><img
-                    alt=\\"\\"
-                    srcset=\\"
-                      /_next/image?url=%2Fimages%2Fsuomi-kartta.png&amp;w=256&amp;q=75 1x,
-                      /_next/image?url=%2Fimages%2Fsuomi-kartta.png&amp;w=640&amp;q=75 2x
-                    \\"
-                    src=\\"/_next/image?url=%2Fimages%2Fsuomi-kartta.png&amp;w=640&amp;q=75\\"
+                    src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
                     decoding=\\"async\\"
                     data-nimg=\\"intrinsic\\"
                     style=\\"
@@ -3521,77 +3485,77 @@ exports[`Home page page renders and matches snapshot 2`] = `
                       min-height: 100%;
                       max-height: 100%;
                     \\"
-                    loading=\\"lazy\\"
-                /></noscript>
+                  /><noscript
+                    ><img
+                      alt=\\"\\"
+                      srcset=\\"
+                        /_next/image?url=%2Fimages%2Fsuomi-kartta.png&amp;w=256&amp;q=75 1x,
+                        /_next/image?url=%2Fimages%2Fsuomi-kartta.png&amp;w=640&amp;q=75 2x
+                      \\"
+                      src=\\"/_next/image?url=%2Fimages%2Fsuomi-kartta.png&amp;w=640&amp;q=75\\"
+                      decoding=\\"async\\"
+                      data-nimg=\\"intrinsic\\"
+                      style=\\"
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        bottom: 0;
+                        right: 0;
+                        box-sizing: border-box;
+                        padding: 0;
+                        border: none;
+                        margin: auto;
+                        display: block;
+                        width: 0;
+                        height: 0;
+                        min-width: 100%;
+                        max-width: 100%;
+                        min-height: 100%;
+                        max-height: 100%;
+                      \\"
+                      loading=\\"lazy\\"
+                  /></noscript>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div
-          class=\\"
-            px-6
-            lg:px-12 lg:mx-12
-            xl:mx-28
-            2xl:mx-48
-            3xl:ms-64 3xl:max-w-4xl
-            pt-8
-            border-t border-gray-darker
-          \\"
-        >
-          <div class=\\"grid grid-cols-1 md:grid-cols-2 pb-8\\">
-            <div
-              class=\\"
-                hidden
-                md:block
-                float-left
-                px-8
-                mt-14
-                text-center
-                transform
-                md:-translate-x-6 md:-translate-y-0.5
-              \\"
-            >
+          <div
+            class=\\"
+              px-6
+              lg:px-12 lg:mx-12
+              xl:mx-28
+              2xl:mx-48
+              3xl:ms-64 3xl:max-w-4xl
+              pt-8
+              border-t border-gray-darker
+            \\"
+          >
+            <div class=\\"grid grid-cols-1 md:grid-cols-2 pb-8\\">
               <div
-                style=\\"
-                  overflow: hidden;
-                  box-sizing: border-box;
-                  display: inline-block;
-                  position: relative;
-                  width: 237px;
-                  height: 190px;
+                class=\\"
+                  hidden
+                  md:block
+                  float-left
+                  px-8
+                  mt-14
+                  text-center
+                  transform
+                  md:-translate-x-6 md:-translate-y-0.5
                 \\"
               >
-                <img
-                  alt=\\"\\"
-                  src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
-                  decoding=\\"async\\"
-                  data-nimg=\\"fixed\\"
+                <div
                   style=\\"
-                    position: absolute;
-                    top: 0;
-                    left: 0;
-                    bottom: 0;
-                    right: 0;
+                    overflow: hidden;
                     box-sizing: border-box;
-                    padding: 0;
-                    border: none;
-                    margin: auto;
-                    display: block;
-                    width: 0;
-                    height: 0;
-                    min-width: 100%;
-                    max-width: 100%;
-                    min-height: 100%;
-                    max-height: 100%;
+                    display: inline-block;
+                    position: relative;
+                    width: 237px;
+                    height: 190px;
                   \\"
-                /><noscript
-                  ><img
+                >
+                  <img
                     alt=\\"\\"
-                    srcset=\\"
-                      /_next/image?url=%2Fimages%2Flogo-vertical.png&amp;w=256&amp;q=75 1x,
-                      /_next/image?url=%2Fimages%2Flogo-vertical.png&amp;w=640&amp;q=75 2x
-                    \\"
-                    src=\\"/_next/image?url=%2Fimages%2Flogo-vertical.png&amp;w=640&amp;q=75\\"
+                    src=\\"data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7\\"
                     decoding=\\"async\\"
                     data-nimg=\\"fixed\\"
                     style=\\"
@@ -3612,29 +3576,60 @@ exports[`Home page page renders and matches snapshot 2`] = `
                       min-height: 100%;
                       max-height: 100%;
                     \\"
-                    loading=\\"lazy\\"
-                /></noscript>
+                  /><noscript
+                    ><img
+                      alt=\\"\\"
+                      srcset=\\"
+                        /_next/image?url=%2Fimages%2Flogo-vertical.png&amp;w=256&amp;q=75 1x,
+                        /_next/image?url=%2Fimages%2Flogo-vertical.png&amp;w=640&amp;q=75 2x
+                      \\"
+                      src=\\"/_next/image?url=%2Fimages%2Flogo-vertical.png&amp;w=640&amp;q=75\\"
+                      decoding=\\"async\\"
+                      data-nimg=\\"fixed\\"
+                      style=\\"
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        bottom: 0;
+                        right: 0;
+                        box-sizing: border-box;
+                        padding: 0;
+                        border: none;
+                        margin: auto;
+                        display: block;
+                        width: 0;
+                        height: 0;
+                        min-width: 100%;
+                        max-width: 100%;
+                        min-height: 100%;
+                        max-height: 100%;
+                      \\"
+                      loading=\\"lazy\\"
+                  /></noscript>
+                </div>
+              </div>
+              <div class=\\"\\">
+                <h2 class=\\"mb-4 text-h2\\">About us</h2>
+                <p class=\\"mb-8\\">
+                  Commodo sed vel convallis scelerisque mauris, facilisi augue.
+                  Diam ut amet arcu velit egestas. Mauris nulla sed pharetra
+                  duis. Odio praesent euismod quis a at arcu ut suspendisse
+                  vestibulum. Arcu augue lorem vel eget viverra. Pellentesque
+                  orci mauris maecenas sit. Pretium proin purus vitae nisi.
+                  Velit, in sit enim ornare enim tincidunt risus blandit.
+                  Faucibus nunc rhoncus nec imperdiet commodo ac in.
+                </p>
+                <a
+                  class=\\"text-body-small font-bold ifu-text-link\\"
+                  href=\\"/cities\\"
+                  >Learn more about us</a
+                >
               </div>
             </div>
-            <div class=\\"\\">
-              <h2 class=\\"mb-4 text-h2\\">About us</h2>
-              <p class=\\"mb-8\\">
-                Commodo sed vel convallis scelerisque mauris, facilisi augue.
-                Diam ut amet arcu velit egestas. Mauris nulla sed pharetra duis.
-                Odio praesent euismod quis a at arcu ut suspendisse vestibulum.
-                Arcu augue lorem vel eget viverra. Pellentesque orci mauris
-                maecenas sit. Pretium proin purus vitae nisi. Velit, in sit enim
-                ornare enim tincidunt risus blandit. Faucibus nunc rhoncus nec
-                imperdiet commodo ac in.
-              </p>
-              <a class=\\"text-body-small font-bold ifu-text-link\\" href=\\"/cities\\"
-                >Learn more about us</a
-              >
-            </div>
           </div>
-        </div>
-        <div class=\\"ifu-footer\\">
-          <footer
+        </main>
+        <footer class=\\"ifu-footer\\">
+          <div
             class=\\"
               px-6
               lg:px-0 lg:mx-12
@@ -3807,8 +3802,8 @@ exports[`Home page page renders and matches snapshot 2`] = `
               ><a class=\\"ifu-footer__link\\" href=\\"/#terms\\">Avoin data</a
               ><a class=\\"ifu-footer__link\\" href=\\"/#cookies\\">Saatavuus</a>
             </section>
-          </footer>
-          <div class=\\"bg-blue-white\\">
+          </div>
+          <section class=\\"bg-blue-white\\">
             <div
               class=\\"
                 px-2
@@ -3819,7 +3814,10 @@ exports[`Home page page renders and matches snapshot 2`] = `
                 h-20
               \\"
             >
-              <button class=\\"flex items-center w-full h-20\\">
+              <button
+                class=\\"flex items-center w-full h-20\\"
+                aria-expanded=\\"false\\"
+              >
                 <svg
                   class=\\"
                     inline-block
@@ -3863,10 +3861,10 @@ exports[`Home page page renders and matches snapshot 2`] = `
                 overflow-hidden
               \\"
             ></div>
-          </div>
-        </div>
+          </section>
+        </footer>
       </div>
-    </main>
+    </div>
   </div>
 </div>
 "

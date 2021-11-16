@@ -2,46 +2,38 @@
 
 exports[`ThemeCard should render the ThemeCard in Blue 1`] = `
 <DocumentFragment>
-  <div
-    class="rounded bg-blue-white hover:bg-blue-lighter shadow-themecard-blue"
+  <a
+    class="rounded block bg-blue-white hover:bg-blue-lighter shadow-themecard-blue"
+    href="/"
   >
-    <div
+    <span
       class="flex md:h-24"
     >
-      <p
+      <span
         class="px-4 font-bold  my-4 text-body-large"
       >
-        <a
-          class="block"
-          href="/"
-        >
-          test
-        </a>
-      </p>
-    </div>
-  </div>
+        test
+      </span>
+    </span>
+  </a>
 </DocumentFragment>
 `;
 
 exports[`ThemeCard should render the ThemeCard in Green 1`] = `
 <DocumentFragment>
-  <div
-    class="rounded bg-green-lighter hover:bg-green-light shadow-themecard-green"
+  <a
+    class="rounded block bg-green-lighter hover:bg-green-light shadow-themecard-green"
+    href="/"
   >
-    <div
+    <span
       class="flex md:h-24"
     >
-      <p
+      <span
         class="px-4 font-bold  my-4 text-body-large"
       >
-        <a
-          class="block"
-          href="/"
-        >
-          test
-        </a>
-      </p>
-    </div>
-  </div>
+        test
+      </span>
+    </span>
+  </a>
 </DocumentFragment>
 `;

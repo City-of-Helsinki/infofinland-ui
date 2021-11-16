@@ -71,7 +71,7 @@ const MessageCard = ({
       unmountOnExit
       mountOnEnter
     >
-      <div className={cls('bg-gray-lighter')}>
+      <section className={cls('bg-gray-lighter')}>
         <div className=" flex my-2 bg-white rounded shadow-md me-2 ms-2">
           <div
             className={cls('w-2 flex-none rounded-s ', {
@@ -81,7 +81,7 @@ const MessageCard = ({
             })}
           />
           <div className=" flex flex-col flex-1 flex-grow p-4 min-h-card ifu-messages__card-body">
-            <p className="flex-none mb-2 text-message font-bold">{title}</p>
+            <h2 className="flex-none mb-2 text-message font-bold">{title}</h2>
             {text && <div className=" text-message">{text}</div>}
             <div className="flex-grow">{children}</div>
             <div className="mt-2 text-right">
@@ -91,7 +91,7 @@ const MessageCard = ({
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </CSSTransition>
   )
 }

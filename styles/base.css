@@ -44,4 +44,8 @@
     outline-color: rgba(0, 0, 0, 0.3);
     outline-width: 2px;
   } */
+
+  body {
+    font-family: 'Noto Sans';
+  }
 }
