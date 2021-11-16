@@ -29,12 +29,12 @@
   }
 
   .ifu-topmenu__skiplink {
-    @apply z-10 absolute transition-transform transform -translate-y-52 duration-200 ease-in-out rounded-b focus:translate-y-12 p-2 bg-white  text-tiny  text-link;
+    @apply z-10 absolute  transform -translate-y-52 rounded-br w-40 shadow-topbar focus:translate-y-12 p-2 bg-white text-center text-small  text-link font-bold;
   }
 
   @screen md {
     .ifu-topmenu__skiplink {
-      @apply -translate-x-full focus:translate-x-64 translate-y-0 focus:translate-y-0 rounded;
+      @apply -translate-x-full transition-transform duration-200 ease-in-out focus:translate-x-64 translate-y-0 focus:translate-y-0 rounded w-auto;
     }
   }
 }

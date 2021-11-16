@@ -13,7 +13,7 @@ import Search from '../search/Search'
 
 const Logo = () => (
   <div
-    className="relative z-20 flex-none px-3 bg-white transform translate-y-px md:ps-6 md:pe-2"
+    className="relative z-20 flex-none px-3 bg-white transform py-3 md:py-4 translate-y-px md:ps-6 md:pe-2"
     role="logo"
   >
     <Link href="/" passHref>

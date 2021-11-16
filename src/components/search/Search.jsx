@@ -29,7 +29,7 @@ const Search = () => {
 
   return (
     <>
-      <div className="flex-none md:pe-4">
+      <div className="flex-none md:w-24 text-right md:pe-4">
         <button
           onClick={() => setMobileVisibility(!isMobileOpen)}
           className=" md:hidden w-8 h-8 text-action"
@@ -49,7 +49,7 @@ const Search = () => {
         </button>
         <button
           onClick={() => setDesktopVisibility(!isDesktopOpen)}
-          className=" hidden md:inline-block w-24 h-8 text-action text-right"
+          className=" hidden md:inline-block h-8 text-action text-right min-w-12"
           title={isDesktopOpen ? t('buttons.close') : t('buttons.search')}
           aria-expanded={isDesktopOpen}
         >
