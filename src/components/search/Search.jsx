@@ -8,7 +8,6 @@ import { searchQueryValue } from '@/src/store'
 import { Suspense } from 'react'
 import Link from 'next/link'
 import useSearchRoute from '@/hooks/useSearchRoute'
-import { CloseButton } from '@/components/Button'
 
 const Search = () => {
   const [isDesktopOpen, setDesktopVisibility] = useState(false)
@@ -30,10 +29,10 @@ const Search = () => {
 
   return (
     <>
-      <div className=" flex-none 2xl:flex-grow">
+      <div className="flex-none md:pe-4">
         <button
           onClick={() => setMobileVisibility(!isMobileOpen)}
-          className=" md:hidden w-8 md:w-24 h-8 text-action"
+          className=" md:hidden w-8 h-8 text-action"
           title={t('buttons.search')}
           aria-expanded={isMobileOpen}
           aria-haspopup="dialog"
@@ -50,8 +49,8 @@ const Search = () => {
         </button>
         <button
           onClick={() => setDesktopVisibility(!isDesktopOpen)}
-          className=" hidden md:inline-block w-8 md:w-24 h-8 text-action"
-          title={t('buttons.search')}
+          className=" hidden md:inline-block w-24 h-8 text-action text-right"
+          title={isDesktopOpen ? t('buttons.close') : t('buttons.search')}
           aria-expanded={isDesktopOpen}
         >
           <span className="px-2 transform translate-y-0.5">
@@ -83,8 +82,8 @@ const SearchBar = ({ onSubmit, onChange, query }) => {
 
   return (
     <>
-      <form className="bg-white" action="/hae" onSubmit={onSubmit}>
-        <div className="flex items-center py-4 mx-2 md:mx-4">
+      <form className="max-w-topbar bg-white" action="/hae" onSubmit={onSubmit}>
+        <div className="flex items-center py-4 mx-2 md:mx-0">
           <div className="overflow-hidden flex-grow h-14 md:h-16 border-b border-gray-lighter">
             <input
               type="text"
@@ -94,11 +93,11 @@ const SearchBar = ({ onSubmit, onChange, query }) => {
               onChange={onChange}
               placeholder={t('search.placeholder')}
               autoFocus
-              className="py-3 px-1 w-full text-h3 outline-none"
+              className="py-3 px-1 w-full text-h3 outline-none ps-2 md:ps-4"
             />
           </div>
           <div className="flex flex-none items-center h-14 md:h-16 border-b border-gray-lighter">
-            <button type="submit" className="me-2">
+            <button type="submit" className="me-2.5 md:pe-4">
               <IconLookingGlass className="mx-2" />
             </button>
           </div>
@@ -113,13 +112,10 @@ const SearchBar = ({ onSubmit, onChange, query }) => {
   )
 }
 
-const SearchDesktopBar = ({ close, children, isOpen }) => {
+const SearchDesktopBar = ({ children, isOpen }) => {
   return isOpen ? (
     <div className=" hidden md:block overflow-visible absolute top-20 right-0 left-0 pb-2 h-24 md:h-auto bg-white shadow-topbar">
-      <div className="md:hidden mb-2 md:max-w-screen-3xl h-12">
-        <CloseButton className="float-end me-6" close={close} />
-      </div>
-      <div className="md:max-w-screen-3xl">{children}</div>
+      <div className="">{children}</div>
     </div>
   ) : null
 }

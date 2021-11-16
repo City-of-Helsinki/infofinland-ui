@@ -9,7 +9,7 @@ module.exports = {
   darkMode: false, // or 'media' or 'class'
   theme: {
     fontSize: {
-      h1xl: ['4.5rem', '1'],
+      h1xl: ['4.5rem', '1.2'],
       h1: ['3rem', '1'],
       h2xl: ['3.25rem', '1'],
       h2: ['2rem', '1'],
@@ -118,6 +118,7 @@ module.exports = {
       },
       maxWidth: {
         article: '46rem',
+        topbar: '100rem',
       },
       screens: {
         '3xl': '1600px',

@@ -46,7 +46,7 @@ const SearchBar = ({ qw }) => {
   }, [qw, setQuery])
 
   return (
-    <div className="my-8">
+    <div className="mt-8 mb-16">
       <form
         className="flex items-center border border-black"
         onSubmit={goToSearch}
@@ -88,7 +88,7 @@ const Result = ({ title, url, path, excerpt, q }) => (
     )}
     <p className="pb-8 mt-2 mb-8 text-body-small border-b border-gray-light">
       <Highlighter
-        highlightClassName="font-bold text-neon-pink bg-green-white"
+        highlightClassName="font-bold bg-green-lighter"
         textToHighlight={excerpt}
         searchWords={[q]}
       />
@@ -108,7 +108,7 @@ export const SearchPage = ({ q, results }) => {
   } else if (results.length === 0) {
     title = t('search.title.noresults')
   } else {
-    title = t('search.title.results', { q })
+    title = t('search.title.results')
   }
 
   return (
@@ -117,9 +117,9 @@ export const SearchPage = ({ q, results }) => {
         <title>{title}</title>
       </Head>
       <Block hero>
-        <h1 className="mt-16 text-h2 md:text-h2xl">{title}</h1>
+        <h1 className="mt-16 text-h2 md:text-h3xl">{title}</h1>
         <SearchBar qw={q} />
-        {results && <SearchResults q={q} results={results} />}{' '}
+        {results && <SearchResults q={q} results={results} />}
       </Block>
     </Layout>
   )

@@ -3,12 +3,14 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "format": "prettier --write .",
     "start": "next start",
     "twconfig": "tailwind-config-viewer -o --port 3600",
     "test": "jest"
   },
   "dependencies": {
+    "next-sitemap": "1.x",
     "@fullhuman/postcss-purgecss": "4.0.3",
     "add": "2.0.6",
     "autoprefixer": "10.x",

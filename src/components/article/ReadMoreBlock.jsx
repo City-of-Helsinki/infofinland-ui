@@ -76,7 +76,7 @@ const ReadMoreBlock = ({ content = READMORE_CONTENT }) => {
                 {pageName}
               </a>
 
-              <div className="flex flex-wrap leading-4 divide-link divide-s">
+              <div className="flex flex-wrap divide-link divide-s">
                 {languages.map(({ url, text, lang }, k) => (
                   <a
                     title={pageName}
@@ -85,9 +85,12 @@ const ReadMoreBlock = ({ content = READMORE_CONTENT }) => {
                     key={`link-${text}-${k}`}
                     target="_blank"
                     lang={lang}
-                    className={cls('text-small ifu-text-link pe-2', {
-                      'ps-2': k > 0,
-                    })}
+                    className={cls(
+                      'text-small leading-snug ifu-text-link pe-2',
+                      {
+                        'ps-2': k > 0,
+                      }
+                    )}
                   >
                     {text}
                   </a>

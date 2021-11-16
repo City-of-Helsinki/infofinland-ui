@@ -29,7 +29,7 @@ const TopMenu = () => {
 
   return (
     <header className="sticky top-0 z-10 xl:justify-center items-center h-topbar md:h-topbarxl bg-white shadow-topbar">
-      <div className="flex items-center w-full 3xl:max-w-screen-4xl h-topbar md:h-topbarxl">
+      <div className="flex items-center w-full 3xl:max-w-topbar h-topbar md:h-topbarxl">
         <Logo />
         <div className="flex-grow"></div>
         <LanguageMenuButton onClick={toggleLangMenu} />

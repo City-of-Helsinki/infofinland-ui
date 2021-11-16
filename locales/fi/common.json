@@ -58,7 +58,7 @@
     "loading": "Haetaan...",
     "placeholder": "Hae hakusanalla..",
     "title": {
-      "results": "Hakutulokset: {{q}}",
+      "results": "Hakutulokset",
       "start": "Hae sivustolta",
       "noresults": "Ei hakutuloksia"
     }
