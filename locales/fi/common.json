@@ -4,7 +4,8 @@
     "search": "Hae",
     "yes": "Kyllä",
     "no": "Ei",
-    "ok": "OK"
+    "ok": "OK",
+    "skipTo": "Siirry sisältöön"
   },
   "feedback": {
     "title": "Lähetä palutetta",
@@ -58,7 +59,7 @@
     "loading": "Haetaan...",
     "placeholder": "Hae hakusanalla..",
     "title": {
-      "results": "Hakutulokset: {{q}}",
+      "results": "Hakutulokset",
       "start": "Hae sivustolta",
       "noresults": "Ei hakutuloksia"
     }

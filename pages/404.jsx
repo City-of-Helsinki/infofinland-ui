@@ -1,13 +1,13 @@
 import Head from 'next/head'
-import Layout from '../src/components/layout/Layout'
-// import useTranslation from 'next-translate/useTranslation'
-import { HERO_MARGIN } from '../src/components/article/Article'
+import Layout from '@/components/layout/Layout'
+import { HERO_MARGIN } from '@/components/article/Article'
 import { useRouter } from 'next/router'
 import cls from 'classnames'
-import { longTextClass } from '../src/components/Typo'
+import { longTextClass } from '@/components/Typo'
 import useTranslation from 'next-translate/useTranslation'
 import TextLink from '@/components/TextLink'
 import { rtlLocales } from '@/i18n'
+import { map, omit } from 'lodash'
 
 const TEXTS = {
   fi: {
@@ -56,11 +56,10 @@ const TEXTS = {
     help: 'يمكنك أن تبحث عن الصفحة بالبحث العام أو من خريطة الموقع.',
   },
 }
-import _ from 'lodash'
 
 const PageNotFound = () => {
   const { locale } = useRouter()
-  const content = _.omit(TEXTS, locale)
+  const content = omit(TEXTS, locale)
 
   return (
     <Layout>
@@ -102,7 +101,7 @@ const PageNotFound = () => {
         <p className="block md:hidden mb-8 text-body-small">
           {TEXTS[locale].help}
         </p>
-        {_.map(content, ({ title, help }, locale) => {
+        {map(content, ({ title, help }, locale) => {
           return (
             <div
               key={`${locale}-content`}

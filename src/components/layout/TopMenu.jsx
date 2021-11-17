@@ -1,5 +1,5 @@
 import Link from 'next/link'
-// import { useState } from 'react'
+import useTranslation from 'next-translate/useTranslation'
 import useLangMenuToggle from '@/hooks/useLangMenuToggle'
 
 import MobileNavi from '@/components/navi/MobileNavi'
@@ -13,11 +13,11 @@ import Search from '../search/Search'
 
 const Logo = () => (
   <div
-    className="flex-none mx-3 transform translate-y-px md:ms-6 md:me-2"
+    className="relative z-20 flex-none py-3 md:py-4 px-3 bg-white transform translate-y-px md:ps-6 md:pe-2"
     role="logo"
   >
     <Link href="/" passHref>
-      <a className="ifu-topmenu__logo" title="infofinland.fi"></a>
+      <a className=" ifu-topmenu__logo" title="infofinland.fi"></a>
     </Link>
   </div>
 )
@@ -26,11 +26,14 @@ const TopMenu = () => {
   const [open, setLangMenuVisibility] = useLangMenuToggle()
   const toggleLangMenu = () => setLangMenuVisibility(!open)
   const closeMenu = () => setLangMenuVisibility(false)
-
+  const { t } = useTranslation('common')
   return (
-    <header className="sticky top-0 z-10 xl:justify-center items-center h-topbar md:h-topbarxl bg-white shadow-topbar">
-      <div className="flex items-center w-full 3xl:max-w-screen-4xl h-topbar md:h-topbarxl">
+    <header className="sticky top-0 z-20 xl:justify-center items-center h-topbar md:h-topbarxl bg-white shadow-topbar">
+      <div className="flex items-center w-full 3xl:max-w-topbar h-topbar md:h-topbarxl">
         <Logo />
+        <a className="ifu-topmenu__skiplink" href="#main">
+          {t('buttons.skipTo')}
+        </a>
         <div className="flex-grow"></div>
         <LanguageMenuButton onClick={toggleLangMenu} />
         <LanguageSelector openMenu={() => setLangMenuVisibility(true)} />

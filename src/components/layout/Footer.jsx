@@ -8,17 +8,16 @@ import useTranslation from 'next-translate/useTranslation'
  * SOME Urls are defined in next.config.js
  * */
 const FooterLinks = () => {
-  const { t } = useTranslation('common')
-
+  const { t, language } = useTranslation('common')
   return (
     <div className={cls(HERO_MARGIN, 'mt-16 mb-16')}>
       <section className="py-10 border-t border-b border-gray ifu-footer__brand">
-        <div className="mx-auto sm:mx-0 mb-5 ifu-footer__hki-logo" />
+        <div
+          className="mx-auto sm:mx-0 mb-5 ifu-footer__hki-logo"
+          lang={language}
+        />
 
-        <p
-          lang="en"
-          className=" mx-8 md:mx-0 text-tiny text-center sm:text-left text-gray"
-        >
+        <p className=" mx-8 md:mx-0 text-tiny text-center sm:text-left text-gray">
           {t('footer.helsinkiDisclaimer')}
         </p>
       </section>

@@ -6,6 +6,7 @@ import FeedbackButtonBlock from '@/components/feedback/FeedbackForm'
 import TopMenu from '@/components/layout/TopMenu'
 import ReactModal from 'react-modal'
 import useSetLocalization from '@/hooks/useSetLocalization'
+import useShowLangMessage from '@/hooks/useShowLangMessage'
 import Router from 'next/router'
 import NProgress from 'nprogress'
 
@@ -18,7 +19,7 @@ Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
-const Layout = ({ children }) => {
+export const BlankLayout = ({ children }) => {
   useSetLocalization()
 
   return (
@@ -27,16 +28,32 @@ const Layout = ({ children }) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <main className="relative text-body bg-white" id="main">
+        {children}
+      </main>
+    </>
+  )
+}
+
+const AppLayout = ({ children }) => {
+  useSetLocalization()
+  useShowLangMessage()
+  return (
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <div className=" relative text-body bg-white">
         <TopMenu />
-        <div className=" md:flex md:items-stretch" role="main">
+        <div className=" md:flex md:items-stretch">
           <div className="md:hidden">
             <Messages />
           </div>
           <DesktopNavi />
           <div className="ifu-layout__body">
-            <main>{children}</main>
-            <footer className="ifu-footer">
+            <main id="main">{children}</main>
+            <footer className="ifu-footer" id="footer">
               <FooterLinks />
               <FeedbackButtonBlock />
             </footer>
@@ -47,4 +64,4 @@ const Layout = ({ children }) => {
   )
 }
 
-export default Layout
+export default AppLayout

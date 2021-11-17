@@ -165,14 +165,13 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
               <Button type="submit" value="ok" className="me-2">
                 {t('feedback.buttons.send')}
               </Button>
-              <LinkButton onClick={onCancel} type="button">
+              <LinkButton
+                onClick={onCancel}
+                type="button"
+                className="float-right"
+              >
                 {t('feedback.buttons.close')}
               </LinkButton>
-              <br />
-              <label htmlFor="fail" className="block mt-8">
-                <input id="fail" type="checkbox" {...register('fail')} />
-                Lähetä epäonnistunut viesti (DEMO)
-              </label>
             </div>
           </form>
         </div>
@@ -183,9 +182,9 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
             <Button onClick={() => reset()} className="mt-4 me-6">
               {t('feedback.buttons.sendAgain')}
             </Button>
-            <Button onClick={() => onCancel()} className="mt-4">
+            <LinkButton onClick={() => onCancel()} className="mt-4">
               {t('feedback.buttons.close')}
-            </Button>
+            </LinkButton>
           </div>
         </div>
       )}
@@ -204,7 +203,7 @@ const FeedbackButtonBlock = () => {
     scrollRef.current?.scrollIntoView({ block: 'center' })
 
   return (
-    <section className="bg-blue-white">
+    <section className="bg-blue-white" id="#feedback">
       <div
         className={cls(
           'px-2 lg:px-0 lg:mx-12 xl:mx-28 2xl:mx-48  3xl:ms-64  3xl:max-w-4xl',

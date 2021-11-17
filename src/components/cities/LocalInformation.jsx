@@ -116,7 +116,7 @@ const LocalReadMore = ({ content = READMORE_CONTENT }) => {
                 key={`link-${text}-${k}`}
                 target="_blank"
                 lang={lang}
-                className={cls('text-small ifu-text-link pe-2', {
+                className={cls('text-small leading-snug ifu-text-link pe-2', {
                   'ps-2': k > 0,
                 })}
               >
