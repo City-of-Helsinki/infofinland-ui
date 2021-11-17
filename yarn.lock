@@ -5913,7 +5913,7 @@ next-page-tester@0.30.0:
     stealthy-require "^1.1.1"
     tiny-glob "^0.2.9"
 
-next-sitemap@1.6.203:
+next-sitemap@1.x:
   version "1.6.203"
   resolved "https://registry.yarnpkg.com/next-sitemap/-/next-sitemap-1.6.203.tgz#bfa2e67fea2bab1efed60cda743e7f98dc00bb46"
   integrity sha512-WigcoqIUNbXQa2GnwOiCOydGx/XHCS4kRtIPNEsc8DGX2XvJtbAJKRxcidZZ2KihTAtwwCu1XQ4Hbof4mJbvLg==
