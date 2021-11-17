@@ -6,33 +6,35 @@ import ThemeList from '@/components/home/ThemeList'
 import CitySelector from '@/components/home/CitySelector'
 import HomeAbout from '@/components/home/HomeAbout'
 import Block from '@/components/article/Block'
-import { getMenu,getPathsFromContext, getResourceFromContext} from "next-drupal"
+import * as DrupalApi from '@/src/lib/drupal-api'
 
 
-export async function getStaticPaths(context) {
-  console.log({context})
-  return {
-    paths: await getPathsFromContext("node--page", context),
-    fallback: false,
-  }
-}
+// export async function getStaticPaths(context) {
+//   // console.log({context})
+//   // return {
+//   //   paths: await getPathsFromContext("node--page", context),
+//   //   fallback: false,
+//   // }
+// }
 
-export async function getStaticProps(context) {
-  console.log({context})
-  // const node = await getResourceFromContext("node--page", context)
-  // console.log(node)
-  // Fetch the main menu.
-  // const { tree } = await getMenu("")
+// export async function getStaticProps(context) {
+//   console.log({context})
+//   // const node = await getResourceFromContext("node--page", context)
+//   // console.log(node)
+//   // Fetch the main menu.
+//   const { tree } = await DrupalApi.getMainMenu()
+//   const feedback = await DrupalApi.getFeedbackInstructionsBlock()
 
-  // return {
-  //   props: {
-  //     node,
-  //     menu: tree,
-  //   },
-  // }
-}
+//   // return {
+//   //   props: {
+//   //     node,
+//   //     menu: tree,
+//   //    blocks:{feedback}
+//   //   },
+//   // }
+// }
 
-const HomePage = ({node,menu}) => (
+const HomePage = ({menu}) => (
   <Layout menu={menu}>
     <Head>
       <title>Article demo page</title>
