@@ -2,9 +2,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import cls from 'classnames'
 import { map, omit } from 'lodash'
-
-import Layout from '@/components/layout/Layout'
-import { HERO_MARGIN } from '@/components/article/Article'
+import { BlankLayout } from '@/components/layout/Layout'
 import { longTextClass } from '@/components/Typo'
 import { rtlLocales } from '@/i18n'
 
@@ -61,7 +59,7 @@ const Error500 = () => {
   const content = omit(TEXTS, locale)
 
   return (
-    <Layout>
+    <BlankLayout>
       <Head>
         <title>{TEXTS[locale].title}</title>
       </Head>
@@ -69,7 +67,7 @@ const Error500 = () => {
       <div
         className={cls(
           'flex items-center border-s-10 border-neon-pink shadow-404title rounded h-32 mt-6 md:mt-12',
-          'mx-2 md:px-6 lg:px-12 lg:mx-12  xl:mx-28 2xl:mx-48  3xl:ms-64  3xl:max-w-4xl'
+          'mx-2 md:px-6 md:mx-auto md:max-w-4xl'
         )}
       >
         <span className="flex-none px-4 text-h2 md:text-h1xl font-bold">
@@ -94,7 +92,7 @@ const Error500 = () => {
       <div
         className={cls(
           'lg:grid md:grid-rows-6 md:grid-flow-col md:gap-y-8 md:gap-x-32 mt-8 md:mt-16 mb-8 md:mb-16',
-          HERO_MARGIN
+          'mx-2 md:px-6 md:mx-auto md:max-w-4xl'
         )}
       >
         <p className="block md:hidden mb-8 text-body-small">
@@ -114,7 +112,7 @@ const Error500 = () => {
           )
         })}
       </div>
-    </Layout>
+    </BlankLayout>
   )
 }
 

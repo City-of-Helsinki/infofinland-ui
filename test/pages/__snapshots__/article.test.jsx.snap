@@ -10,7 +10,7 @@ exports[`Article page page renders and matches snapshot 1`] = `
           class=\\"
             sticky
             top-0
-            z-10
+            z-20
             xl:justify-center
             items-center
             h-topbar
@@ -24,17 +24,31 @@ exports[`Article page page renders and matches snapshot 1`] = `
               flex
               items-center
               w-full
-              3xl:max-w-screen-4xl
+              3xl:max-w-topbar
               h-topbar
               md:h-topbarxl
             \\"
           >
             <div
-              class=\\"flex-none mx-3 transform translate-y-px md:ms-6 md:me-2\\"
+              class=\\"
+                relative
+                z-20
+                flex-none
+                py-3
+                md:py-4
+                px-3
+                bg-white
+                transform
+                translate-y-px
+                md:ps-6 md:pe-2
+              \\"
               role=\\"logo\\"
             >
               <a class=\\"ifu-topmenu__logo\\" title=\\"infofinland.fi\\" href=\\"/\\"></a>
             </div>
+            <a class=\\"ifu-topmenu__skiplink\\" href=\\"#main\\"
+              >common:buttons.skipTo</a
+            >
             <div class=\\"flex-grow\\"></div>
             <button
               aria-haspopup=\\"dialog\\"
@@ -394,9 +408,9 @@ exports[`Article page page renders and matches snapshot 1`] = `
                 ></a
               >
             </div>
-            <div class=\\"flex-none 2xl:flex-grow\\">
+            <div class=\\"flex-none md:w-24 text-right md:pe-4\\">
               <button
-                class=\\"md:hidden w-8 md:w-24 h-8 text-action\\"
+                class=\\"md:hidden w-8 h-8 text-action\\"
                 title=\\"common:buttons.search\\"
                 aria-expanded=\\"false\\"
                 aria-haspopup=\\"dialog\\"
@@ -426,7 +440,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                   >common:buttons.search</span
                 ></button
               ><button
-                class=\\"hidden md:inline-block w-8 md:w-24 h-8 text-action\\"
+                class=\\"
+                  hidden
+                  md:inline-block
+                  h-8
+                  text-action text-right
+                  min-w-12
+                \\"
                 title=\\"common:buttons.search\\"
                 aria-expanded=\\"false\\"
               >
@@ -478,7 +498,7 @@ exports[`Article page page renders and matches snapshot 1`] = `
             </div>
           </div>
         </header>
-        <div class=\\"md:flex md:items-stretch\\" role=\\"main\\">
+        <div class=\\"md:flex md:items-stretch\\">
           <div class=\\"md:hidden\\">
             <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
               <section class=\\"bg-gray-lighter\\">
@@ -668,7 +688,7 @@ exports[`Article page page renders and matches snapshot 1`] = `
             class=\\"hidden md:block flex-none w-navi border-black-op1 border-e-2\\"
           ></div>
           <div class=\\"ifu-layout__body\\">
-            <main>
+            <main id=\\"main\\">
               <div class=\\"relative bg-article-orange\\">
                 <div
                   class=\\"
@@ -679,7 +699,7 @@ exports[`Article page page renders and matches snapshot 1`] = `
                     3xl:ms-64 3xl:max-w-4xl
                   \\"
                 >
-                  <nav class=\\"block relative py-2 mt-3 mb-2 text-black\\">
+                  <nav class=\\"block relative pt-4 pb-2 mb-2 text-black\\">
                     <div class=\\"justify-items-start\\">
                       <div class=\\"flex-none w-8 float-start\\">
                         <a
@@ -992,16 +1012,14 @@ exports[`Article page page renders and matches snapshot 1`] = `
                         \\"
                         >Some random Kela page</a
                       >
-                      <div
-                        class=\\"flex flex-wrap leading-4 divide-link divide-s\\"
-                      >
+                      <div class=\\"flex flex-wrap divide-link divide-s\\">
                         <a
                           title=\\"Some random Kela page\\"
                           rel=\\"noreferrer\\"
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2\\"
+                          class=\\"text-small leading-snug ifu-text-link pe-2\\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1009,7 +1027,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         >
                       </div>
@@ -1045,16 +1069,14 @@ exports[`Article page page renders and matches snapshot 1`] = `
                         \\"
                         >Some random Kela page</a
                       >
-                      <div
-                        class=\\"flex flex-wrap leading-4 divide-link divide-s\\"
-                      >
+                      <div class=\\"flex flex-wrap divide-link divide-s\\">
                         <a
                           title=\\"Some random Kela page\\"
                           rel=\\"noreferrer\\"
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2\\"
+                          class=\\"text-small leading-snug ifu-text-link pe-2\\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1062,7 +1084,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1070,7 +1098,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1078,7 +1112,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1086,7 +1126,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1094,7 +1140,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1102,7 +1154,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1110,7 +1168,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1118,7 +1182,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         >
                       </div>
@@ -1207,16 +1277,14 @@ exports[`Article page page renders and matches snapshot 1`] = `
                         \\"
                         >Some random Kela page</a
                       >
-                      <div
-                        class=\\"flex flex-wrap leading-4 divide-link divide-s\\"
-                      >
+                      <div class=\\"flex flex-wrap divide-link divide-s\\">
                         <a
                           title=\\"Some random Kela page\\"
                           rel=\\"noreferrer\\"
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2\\"
+                          class=\\"text-small leading-snug ifu-text-link pe-2\\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1224,7 +1292,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         >
                       </div>
@@ -1260,16 +1334,14 @@ exports[`Article page page renders and matches snapshot 1`] = `
                         \\"
                         >Some random Kela page</a
                       >
-                      <div
-                        class=\\"flex flex-wrap leading-4 divide-link divide-s\\"
-                      >
+                      <div class=\\"flex flex-wrap divide-link divide-s\\">
                         <a
                           title=\\"Some random Kela page\\"
                           rel=\\"noreferrer\\"
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2\\"
+                          class=\\"text-small leading-snug ifu-text-link pe-2\\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1277,7 +1349,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1285,7 +1363,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1293,7 +1377,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1301,7 +1391,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1309,7 +1405,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1317,7 +1419,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1325,7 +1433,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1333,7 +1447,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         >
                       </div>
@@ -1422,16 +1542,14 @@ exports[`Article page page renders and matches snapshot 1`] = `
                         \\"
                         >Some random Kela page</a
                       >
-                      <div
-                        class=\\"flex flex-wrap leading-4 divide-link divide-s\\"
-                      >
+                      <div class=\\"flex flex-wrap divide-link divide-s\\">
                         <a
                           title=\\"Some random Kela page\\"
                           rel=\\"noreferrer\\"
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2\\"
+                          class=\\"text-small leading-snug ifu-text-link pe-2\\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1439,7 +1557,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         >
                       </div>
@@ -1475,16 +1599,14 @@ exports[`Article page page renders and matches snapshot 1`] = `
                         \\"
                         >Some random Kela page</a
                       >
-                      <div
-                        class=\\"flex flex-wrap leading-4 divide-link divide-s\\"
-                      >
+                      <div class=\\"flex flex-wrap divide-link divide-s\\">
                         <a
                           title=\\"Some random Kela page\\"
                           rel=\\"noreferrer\\"
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2\\"
+                          class=\\"text-small leading-snug ifu-text-link pe-2\\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1492,7 +1614,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1500,7 +1628,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1508,7 +1642,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1516,7 +1656,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1524,7 +1670,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1532,7 +1684,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1540,7 +1698,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1548,7 +1712,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         >
                       </div>
@@ -1678,16 +1848,14 @@ exports[`Article page page renders and matches snapshot 1`] = `
                         \\"
                         >Some random Kela page</a
                       >
-                      <div
-                        class=\\"flex flex-wrap leading-4 divide-link divide-s\\"
-                      >
+                      <div class=\\"flex flex-wrap divide-link divide-s\\">
                         <a
                           title=\\"Some random Kela page\\"
                           rel=\\"noreferrer\\"
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2\\"
+                          class=\\"text-small leading-snug ifu-text-link pe-2\\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1695,7 +1863,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         >
                       </div>
@@ -1731,16 +1905,14 @@ exports[`Article page page renders and matches snapshot 1`] = `
                         \\"
                         >Some random Kela page</a
                       >
-                      <div
-                        class=\\"flex flex-wrap leading-4 divide-link divide-s\\"
-                      >
+                      <div class=\\"flex flex-wrap divide-link divide-s\\">
                         <a
                           title=\\"Some random Kela page\\"
                           rel=\\"noreferrer\\"
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2\\"
+                          class=\\"text-small leading-snug ifu-text-link pe-2\\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1748,7 +1920,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1756,7 +1934,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1764,7 +1948,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1772,7 +1962,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1780,7 +1976,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1788,7 +1990,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1796,7 +2004,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1804,7 +2018,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         >
                       </div>
@@ -1874,16 +2094,14 @@ exports[`Article page page renders and matches snapshot 1`] = `
                         \\"
                         >Some random Kela page</a
                       >
-                      <div
-                        class=\\"flex flex-wrap leading-4 divide-link divide-s\\"
-                      >
+                      <div class=\\"flex flex-wrap divide-link divide-s\\">
                         <a
                           title=\\"Some random Kela page\\"
                           rel=\\"noreferrer\\"
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2\\"
+                          class=\\"text-small leading-snug ifu-text-link pe-2\\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1891,7 +2109,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         >
                       </div>
@@ -1927,16 +2151,14 @@ exports[`Article page page renders and matches snapshot 1`] = `
                         \\"
                         >Some random Kela page</a
                       >
-                      <div
-                        class=\\"flex flex-wrap leading-4 divide-link divide-s\\"
-                      >
+                      <div class=\\"flex flex-wrap divide-link divide-s\\">
                         <a
                           title=\\"Some random Kela page\\"
                           rel=\\"noreferrer\\"
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2\\"
+                          class=\\"text-small leading-snug ifu-text-link pe-2\\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1944,7 +2166,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1952,7 +2180,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1960,7 +2194,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1968,7 +2208,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1976,7 +2222,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1984,7 +2236,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -1992,7 +2250,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -2000,7 +2264,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         >
                       </div>
@@ -2098,16 +2368,14 @@ exports[`Article page page renders and matches snapshot 1`] = `
                         \\"
                         >Some random Kela page</a
                       >
-                      <div
-                        class=\\"flex flex-wrap leading-4 divide-link divide-s\\"
-                      >
+                      <div class=\\"flex flex-wrap divide-link divide-s\\">
                         <a
                           title=\\"Some random Kela page\\"
                           rel=\\"noreferrer\\"
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2\\"
+                          class=\\"text-small leading-snug ifu-text-link pe-2\\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -2115,7 +2383,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         >
                       </div>
@@ -2151,16 +2425,14 @@ exports[`Article page page renders and matches snapshot 1`] = `
                         \\"
                         >Some random Kela page</a
                       >
-                      <div
-                        class=\\"flex flex-wrap leading-4 divide-link divide-s\\"
-                      >
+                      <div class=\\"flex flex-wrap divide-link divide-s\\">
                         <a
                           title=\\"Some random Kela page\\"
                           rel=\\"noreferrer\\"
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2\\"
+                          class=\\"text-small leading-snug ifu-text-link pe-2\\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -2168,7 +2440,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -2176,7 +2454,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -2184,7 +2468,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -2192,7 +2482,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -2200,7 +2496,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -2208,7 +2510,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -2216,7 +2524,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -2224,7 +2538,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         >
                       </div>
@@ -2260,7 +2580,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                         >Local information
                       </h3>
                       <div class=\\"md:flex-none mt-6 md:mt-0 mb-2 md:mb-0\\">
-                        <button class=\\"ifu-button\\">Choose City</button>
+                        <button
+                          class=\\"ifu-button\\"
+                          aria-haspopup=\\"dialog\\"
+                          aria-expanded=\\"false\\"
+                        >
+                          common:localInfo.select
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -2309,16 +2635,14 @@ exports[`Article page page renders and matches snapshot 1`] = `
                         \\"
                         >Some random Kela page</a
                       >
-                      <div
-                        class=\\"flex flex-wrap leading-4 divide-link divide-s\\"
-                      >
+                      <div class=\\"flex flex-wrap divide-link divide-s\\">
                         <a
                           title=\\"Some random Kela page\\"
                           rel=\\"noreferrer\\"
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2\\"
+                          class=\\"text-small leading-snug ifu-text-link pe-2\\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -2326,7 +2650,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         >
                       </div>
@@ -2362,16 +2692,14 @@ exports[`Article page page renders and matches snapshot 1`] = `
                         \\"
                         >Some random Kela page</a
                       >
-                      <div
-                        class=\\"flex flex-wrap leading-4 divide-link divide-s\\"
-                      >
+                      <div class=\\"flex flex-wrap divide-link divide-s\\">
                         <a
                           title=\\"Some random Kela page\\"
                           rel=\\"noreferrer\\"
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2\\"
+                          class=\\"text-small leading-snug ifu-text-link pe-2\\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -2379,7 +2707,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"fi\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -2387,7 +2721,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -2395,7 +2735,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -2403,7 +2749,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -2411,7 +2763,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -2419,7 +2777,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -2427,7 +2791,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/fi/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Suomi</a
                         ><a
                           title=\\"Some random Kela page\\"
@@ -2435,7 +2805,13 @@ exports[`Article page page renders and matches snapshot 1`] = `
                           href=\\"http://www.kela.fi/sv/\\"
                           target=\\"_blank\\"
                           lang=\\"sv\\"
-                          class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                          class=\\"
+                            text-small
+                            leading-snug
+                            ifu-text-link
+                            pe-2
+                            ps-2
+                          \\"
                           >Ruotsi</a
                         >
                       </div>
@@ -2444,7 +2820,7 @@ exports[`Article page page renders and matches snapshot 1`] = `
                 </div>
               </div>
             </main>
-            <footer class=\\"ifu-footer\\">
+            <footer class=\\"ifu-footer\\" id=\\"footer\\">
               <div
                 class=\\"
                   px-6
@@ -2469,9 +2845,7 @@ exports[`Article page page renders and matches snapshot 1`] = `
                       text-gray
                     \\"
                   >
-                    The InfoFinland website is published by the City of
-                    Helsinki, and it is funded by the state and the InfoFinland
-                    member municipalities.
+                    common:footer.helsinkiDisclaimer
                   </p>
                 </section>
                 <section
@@ -2624,7 +2998,7 @@ exports[`Article page page renders and matches snapshot 1`] = `
                   >
                 </section>
               </div>
-              <section class=\\"bg-blue-white\\">
+              <section class=\\"bg-blue-white\\" id=\\"#feedback\\">
                 <div
                   class=\\"
                     px-2
@@ -2700,7 +3074,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
       class=\\"
         sticky
         top-0
-        z-10
+        z-20
         xl:justify-center
         items-center
         h-topbar
@@ -2710,21 +3084,26 @@ exports[`Article page page renders and matches snapshot 2`] = `
       \\"
     >
       <div
-        class=\\"
-          flex
-          items-center
-          w-full
-          3xl:max-w-screen-4xl
-          h-topbar
-          md:h-topbarxl
-        \\"
+        class=\\"flex items-center w-full 3xl:max-w-topbar h-topbar md:h-topbarxl\\"
       >
         <div
-          class=\\"flex-none mx-3 transform translate-y-px md:ms-6 md:me-2\\"
+          class=\\"
+            relative
+            z-20
+            flex-none
+            py-3
+            md:py-4
+            px-3
+            bg-white
+            transform
+            translate-y-px
+            md:ps-6 md:pe-2
+          \\"
           role=\\"logo\\"
         >
           <a class=\\"ifu-topmenu__logo\\" title=\\"infofinland.fi\\" href=\\"/\\"></a>
         </div>
+        <a class=\\"ifu-topmenu__skiplink\\" href=\\"#main\\">common:buttons.skipTo</a>
         <div class=\\"flex-grow\\"></div>
         <button
           aria-haspopup=\\"dialog\\"
@@ -3081,9 +3460,9 @@ exports[`Article page page renders and matches snapshot 2`] = `
             ></a
           >
         </div>
-        <div class=\\"flex-none 2xl:flex-grow\\">
+        <div class=\\"flex-none md:w-24 text-right md:pe-4\\">
           <button
-            class=\\"md:hidden w-8 md:w-24 h-8 text-action\\"
+            class=\\"md:hidden w-8 h-8 text-action\\"
             title=\\"common:buttons.search\\"
             aria-expanded=\\"false\\"
             aria-haspopup=\\"dialog\\"
@@ -3113,7 +3492,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
               >common:buttons.search</span
             ></button
           ><button
-            class=\\"hidden md:inline-block w-8 md:w-24 h-8 text-action\\"
+            class=\\"hidden md:inline-block h-8 text-action text-right min-w-12\\"
             title=\\"common:buttons.search\\"
             aria-expanded=\\"false\\"
           >
@@ -3163,7 +3542,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
         </div>
       </div>
     </header>
-    <div class=\\"md:flex md:items-stretch\\" role=\\"main\\">
+    <div class=\\"md:flex md:items-stretch\\">
       <div class=\\"md:hidden\\">
         <div class=\\"bg-gray-lighter grid grid-colums-1 ifu-messages\\">
           <section
@@ -3363,7 +3742,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
         class=\\"hidden md:block flex-none w-navi border-black-op1 border-e-2\\"
       ></div>
       <div class=\\"ifu-layout__body\\">
-        <main>
+        <main id=\\"main\\">
           <div class=\\"relative bg-article-orange\\">
             <div
               class=\\"
@@ -3374,7 +3753,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                 3xl:ms-64 3xl:max-w-4xl
               \\"
             >
-              <nav class=\\"block relative py-2 mt-3 mb-2 text-black\\">
+              <nav class=\\"block relative pt-4 pb-2 mb-2 text-black\\">
                 <div class=\\"justify-items-start\\">
                   <div class=\\"flex-none w-8 float-start\\">
                     <a
@@ -3660,14 +4039,14 @@ exports[`Article page page renders and matches snapshot 2`] = `
                     class=\\"inline-block mb-4 text-body font-bold ifu-text-link\\"
                     >Some random Kela page</a
                   >
-                  <div class=\\"flex flex-wrap leading-4 divide-link divide-s\\">
+                  <div class=\\"flex flex-wrap divide-link divide-s\\">
                     <a
                       title=\\"Some random Kela page\\"
                       rel=\\"noreferrer\\"
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -3675,7 +4054,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     >
                   </div>
@@ -3705,14 +4084,14 @@ exports[`Article page page renders and matches snapshot 2`] = `
                     class=\\"inline-block mb-4 text-body font-bold ifu-text-link\\"
                     >Some random Kela page</a
                   >
-                  <div class=\\"flex flex-wrap leading-4 divide-link divide-s\\">
+                  <div class=\\"flex flex-wrap divide-link divide-s\\">
                     <a
                       title=\\"Some random Kela page\\"
                       rel=\\"noreferrer\\"
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -3720,7 +4099,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -3728,7 +4107,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -3736,7 +4115,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -3744,7 +4123,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -3752,7 +4131,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -3760,7 +4139,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -3768,7 +4147,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -3776,7 +4155,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     >
                   </div>
@@ -3859,14 +4238,14 @@ exports[`Article page page renders and matches snapshot 2`] = `
                     class=\\"inline-block mb-4 text-body font-bold ifu-text-link\\"
                     >Some random Kela page</a
                   >
-                  <div class=\\"flex flex-wrap leading-4 divide-link divide-s\\">
+                  <div class=\\"flex flex-wrap divide-link divide-s\\">
                     <a
                       title=\\"Some random Kela page\\"
                       rel=\\"noreferrer\\"
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -3874,7 +4253,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     >
                   </div>
@@ -3904,14 +4283,14 @@ exports[`Article page page renders and matches snapshot 2`] = `
                     class=\\"inline-block mb-4 text-body font-bold ifu-text-link\\"
                     >Some random Kela page</a
                   >
-                  <div class=\\"flex flex-wrap leading-4 divide-link divide-s\\">
+                  <div class=\\"flex flex-wrap divide-link divide-s\\">
                     <a
                       title=\\"Some random Kela page\\"
                       rel=\\"noreferrer\\"
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -3919,7 +4298,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -3927,7 +4306,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -3935,7 +4314,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -3943,7 +4322,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -3951,7 +4330,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -3959,7 +4338,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -3967,7 +4346,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -3975,7 +4354,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     >
                   </div>
@@ -4057,14 +4436,14 @@ exports[`Article page page renders and matches snapshot 2`] = `
                     class=\\"inline-block mb-4 text-body font-bold ifu-text-link\\"
                     >Some random Kela page</a
                   >
-                  <div class=\\"flex flex-wrap leading-4 divide-link divide-s\\">
+                  <div class=\\"flex flex-wrap divide-link divide-s\\">
                     <a
                       title=\\"Some random Kela page\\"
                       rel=\\"noreferrer\\"
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4072,7 +4451,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     >
                   </div>
@@ -4102,14 +4481,14 @@ exports[`Article page page renders and matches snapshot 2`] = `
                     class=\\"inline-block mb-4 text-body font-bold ifu-text-link\\"
                     >Some random Kela page</a
                   >
-                  <div class=\\"flex flex-wrap leading-4 divide-link divide-s\\">
+                  <div class=\\"flex flex-wrap divide-link divide-s\\">
                     <a
                       title=\\"Some random Kela page\\"
                       rel=\\"noreferrer\\"
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4117,7 +4496,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4125,7 +4504,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4133,7 +4512,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4141,7 +4520,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4149,7 +4528,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4157,7 +4536,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4165,7 +4544,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4173,7 +4552,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     >
                   </div>
@@ -4295,14 +4674,14 @@ exports[`Article page page renders and matches snapshot 2`] = `
                     class=\\"inline-block mb-4 text-body font-bold ifu-text-link\\"
                     >Some random Kela page</a
                   >
-                  <div class=\\"flex flex-wrap leading-4 divide-link divide-s\\">
+                  <div class=\\"flex flex-wrap divide-link divide-s\\">
                     <a
                       title=\\"Some random Kela page\\"
                       rel=\\"noreferrer\\"
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4310,7 +4689,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     >
                   </div>
@@ -4340,14 +4719,14 @@ exports[`Article page page renders and matches snapshot 2`] = `
                     class=\\"inline-block mb-4 text-body font-bold ifu-text-link\\"
                     >Some random Kela page</a
                   >
-                  <div class=\\"flex flex-wrap leading-4 divide-link divide-s\\">
+                  <div class=\\"flex flex-wrap divide-link divide-s\\">
                     <a
                       title=\\"Some random Kela page\\"
                       rel=\\"noreferrer\\"
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4355,7 +4734,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4363,7 +4742,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4371,7 +4750,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4379,7 +4758,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4387,7 +4766,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4395,7 +4774,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4403,7 +4782,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4411,7 +4790,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     >
                   </div>
@@ -4475,14 +4854,14 @@ exports[`Article page page renders and matches snapshot 2`] = `
                     class=\\"inline-block mb-4 text-body font-bold ifu-text-link\\"
                     >Some random Kela page</a
                   >
-                  <div class=\\"flex flex-wrap leading-4 divide-link divide-s\\">
+                  <div class=\\"flex flex-wrap divide-link divide-s\\">
                     <a
                       title=\\"Some random Kela page\\"
                       rel=\\"noreferrer\\"
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4490,7 +4869,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     >
                   </div>
@@ -4520,14 +4899,14 @@ exports[`Article page page renders and matches snapshot 2`] = `
                     class=\\"inline-block mb-4 text-body font-bold ifu-text-link\\"
                     >Some random Kela page</a
                   >
-                  <div class=\\"flex flex-wrap leading-4 divide-link divide-s\\">
+                  <div class=\\"flex flex-wrap divide-link divide-s\\">
                     <a
                       title=\\"Some random Kela page\\"
                       rel=\\"noreferrer\\"
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4535,7 +4914,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4543,7 +4922,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4551,7 +4930,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4559,7 +4938,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4567,7 +4946,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4575,7 +4954,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4583,7 +4962,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4591,7 +4970,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     >
                   </div>
@@ -4681,14 +5060,14 @@ exports[`Article page page renders and matches snapshot 2`] = `
                     class=\\"inline-block mb-4 text-body font-bold ifu-text-link\\"
                     >Some random Kela page</a
                   >
-                  <div class=\\"flex flex-wrap leading-4 divide-link divide-s\\">
+                  <div class=\\"flex flex-wrap divide-link divide-s\\">
                     <a
                       title=\\"Some random Kela page\\"
                       rel=\\"noreferrer\\"
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4696,7 +5075,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     >
                   </div>
@@ -4726,14 +5105,14 @@ exports[`Article page page renders and matches snapshot 2`] = `
                     class=\\"inline-block mb-4 text-body font-bold ifu-text-link\\"
                     >Some random Kela page</a
                   >
-                  <div class=\\"flex flex-wrap leading-4 divide-link divide-s\\">
+                  <div class=\\"flex flex-wrap divide-link divide-s\\">
                     <a
                       title=\\"Some random Kela page\\"
                       rel=\\"noreferrer\\"
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4741,7 +5120,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4749,7 +5128,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4757,7 +5136,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4765,7 +5144,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4773,7 +5152,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4781,7 +5160,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4789,7 +5168,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4797,7 +5176,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     >
                   </div>
@@ -4833,7 +5212,13 @@ exports[`Article page page renders and matches snapshot 2`] = `
                     >Local information
                   </h3>
                   <div class=\\"md:flex-none mt-6 md:mt-0 mb-2 md:mb-0\\">
-                    <button class=\\"ifu-button\\">Choose City</button>
+                    <button
+                      class=\\"ifu-button\\"
+                      aria-haspopup=\\"dialog\\"
+                      aria-expanded=\\"false\\"
+                    >
+                      common:localInfo.select
+                    </button>
                   </div>
                 </div>
               </div>
@@ -4876,14 +5261,14 @@ exports[`Article page page renders and matches snapshot 2`] = `
                     class=\\"inline-block mb-4 text-body font-bold ifu-text-link\\"
                     >Some random Kela page</a
                   >
-                  <div class=\\"flex flex-wrap leading-4 divide-link divide-s\\">
+                  <div class=\\"flex flex-wrap divide-link divide-s\\">
                     <a
                       title=\\"Some random Kela page\\"
                       rel=\\"noreferrer\\"
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4891,7 +5276,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     >
                   </div>
@@ -4921,14 +5306,14 @@ exports[`Article page page renders and matches snapshot 2`] = `
                     class=\\"inline-block mb-4 text-body font-bold ifu-text-link\\"
                     >Some random Kela page</a
                   >
-                  <div class=\\"flex flex-wrap leading-4 divide-link divide-s\\">
+                  <div class=\\"flex flex-wrap divide-link divide-s\\">
                     <a
                       title=\\"Some random Kela page\\"
                       rel=\\"noreferrer\\"
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4936,7 +5321,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"fi\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4944,7 +5329,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4952,7 +5337,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4960,7 +5345,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4968,7 +5353,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4976,7 +5361,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4984,7 +5369,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/fi/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Suomi</a
                     ><a
                       title=\\"Some random Kela page\\"
@@ -4992,7 +5377,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                       href=\\"http://www.kela.fi/sv/\\"
                       target=\\"_blank\\"
                       lang=\\"sv\\"
-                      class=\\"text-small ifu-text-link pe-2 ps-2\\"
+                      class=\\"text-small leading-snug ifu-text-link pe-2 ps-2\\"
                       >Ruotsi</a
                     >
                   </div>
@@ -5001,7 +5386,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
             </div>
           </div>
         </main>
-        <footer class=\\"ifu-footer\\">
+        <footer class=\\"ifu-footer\\" id=\\"footer\\">
           <div
             class=\\"
               px-6
@@ -5026,9 +5411,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
                   text-gray
                 \\"
               >
-                The InfoFinland website is published by the City of Helsinki,
-                and it is funded by the state and the InfoFinland member
-                municipalities.
+                common:footer.helsinkiDisclaimer
               </p>
             </section>
             <section
@@ -5180,7 +5563,7 @@ exports[`Article page page renders and matches snapshot 2`] = `
               >
             </section>
           </div>
-          <section class=\\"bg-blue-white\\">
+          <section class=\\"bg-blue-white\\" id=\\"#feedback\\">
             <div
               class=\\"
                 px-2

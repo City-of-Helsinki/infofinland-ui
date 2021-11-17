@@ -17,7 +17,6 @@ export const getServerSideProps = async (ctx) => {
       // priority
     },
   ]
-
   return getServerSideSitemap(ctx, fields)
 }
 const Sitemap = () => {}
