@@ -6,9 +6,34 @@ import ThemeList from '@/components/home/ThemeList'
 import CitySelector from '@/components/home/CitySelector'
 import HomeAbout from '@/components/home/HomeAbout'
 import Block from '@/components/article/Block'
+import { getMenu,getPathsFromContext, getResourceFromContext} from "next-drupal"
 
-const HomePage = () => (
-  <Layout>
+
+export async function getStaticPaths(context) {
+  console.log({context})
+  return {
+    paths: await getPathsFromContext("node--page", context),
+    fallback: false,
+  }
+}
+
+export async function getStaticProps(context) {
+  console.log({context})
+  // const node = await getResourceFromContext("node--page", context)
+  // console.log(node)
+  // Fetch the main menu.
+  // const { tree } = await getMenu("")
+
+  // return {
+  //   props: {
+  //     node,
+  //     menu: tree,
+  //   },
+  // }
+}
+
+const HomePage = ({node,menu}) => (
+  <Layout menu={menu}>
     <Head>
       <title>Article demo page</title>
       <link rel="icon" href="/favicon.ico" />
