@@ -12,7 +12,7 @@ export const LanguageMenu = ({ closeMenu }) => {
 
   const { pathname, query, locale } = useRouter()
   return (
-    <div role="listbox">
+    <div>
       <label className="block px-14 mb-8 text-body-large font-bold">
         {t('languageMenu.label')}
       </label>
@@ -34,8 +34,6 @@ export const LanguageMenu = ({ closeMenu }) => {
               scroll={false}
             >
               <a
-                role="option"
-                aria-selected={code === locale}
                 className="flex items-center py-2 px-14 hover:bg-gray-white clear-start"
                 title={text}
                 lang={code}
@@ -66,17 +64,16 @@ export const LangMenuDrawer = ({ closeMenu, isOpen }) => (
 export const LanguageMenuButton = ({ onClick }) => {
   const { t } = useTranslation('common')
   const { locale } = useRouter()
-  // const { text } = languages.find(({ code }) => code === locale)
+  const { text } = languages.find(({ code }) => code === locale)
   return (
     <button
+      aria-haspopup="dialog"
       title={t('languageMenu.label')}
       className=" block lg:hidden h-8 transform -translate-y-0.5 md:me-2"
       onClick={onClick}
     >
-      <span className=" inline-block text-action uppercase">{locale}</span>
-      {/* <span className=" hidden md:inline-block text-action uppercase">
-        {text}
-      </span> */}
+      {/* <span className=" inline-block text-action uppercase">{locale}</span> */}
+      <span className="text-action uppercase">{text}</span>
       <IconGlobe className="mx-2 xl:mx-0 w-4 md:w-5 h-4 md:h-5" />
     </button>
   )

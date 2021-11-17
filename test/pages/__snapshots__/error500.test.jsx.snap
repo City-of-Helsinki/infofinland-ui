@@ -1,0 +1,184 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Error page page renders and matches snapshot 1`] = `
+"<html data-reactroot=\\"\\">
+  <head></head>
+  <body>
+    <div id=\\"__next\\">
+      <main class=\\"relative text-body bg-white\\" id=\\"main\\">
+        <div
+          class=\\"
+            flex
+            items-center
+            border-s-10 border-neon-pink
+            shadow-404title
+            rounded
+            h-32
+            mt-6
+            md:mt-12
+            mx-2
+            md:px-6 md:mx-auto md:max-w-4xl
+          \\"
+        >
+          <span class=\\"flex-none px-4 text-h2 md:text-h1xl font-bold\\">500</span>
+          <h1 class=\\"flex-grow text-body md:text-body-large md:ms-6 lg:ms-12\\">
+            Sivustolla tapahtui virhe<span
+              class=\\"hidden md:block text-body md:text-body-large\\"
+              >Lataa sivu uudestaan</span
+            >
+          </h1>
+        </div>
+        <div
+          class=\\"
+            lg:grid
+            md:grid-rows-6 md:grid-flow-col md:gap-y-8 md:gap-x-32
+            mt-8
+            md:mt-16
+            mb-8
+            md:mb-16
+            mx-2
+            md:px-6 md:mx-auto md:max-w-4xl
+          \\"
+        >
+          <p class=\\"block md:hidden mb-8 text-body-small\\">
+            Lataa sivu uudestaan
+          </p>
+          <div lang=\\"sv\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
+            <p class=\\"text-body-small font-bold\\">?</p>
+            <p class=\\"text-body-small\\">?</p>
+          </div>
+          <div lang=\\"en\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
+            <p class=\\"text-body-small font-bold\\">Something went wrong</p>
+            <p class=\\"text-body-small\\">Try to refresh the page</p>
+          </div>
+          <div lang=\\"ru\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
+            <p class=\\"text-body-small font-bold\\">?</p>
+            <p class=\\"text-body-small\\">?</p>
+          </div>
+          <div lang=\\"et\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
+            <p class=\\"text-body-small font-bold\\">?</p>
+            <p class=\\"text-body-small\\">?</p>
+          </div>
+          <div lang=\\"fr\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
+            <p class=\\"text-body-small font-bold\\">?</p>
+            <p class=\\"text-body-small\\">?</p>
+          </div>
+          <div lang=\\"so\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
+            <p class=\\"text-body-small font-bold\\">?</p>
+            <p class=\\"text-body-small\\">?</p>
+          </div>
+          <div lang=\\"es\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
+            <p class=\\"text-body-small font-bold\\">?</p>
+            <p class=\\"text-body-small\\">?</p>
+          </div>
+          <div lang=\\"tr\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
+            <p class=\\"text-body-small font-bold\\">?</p>
+            <p class=\\"text-body-small\\">?</p>
+          </div>
+          <div lang=\\"zh\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
+            <p class=\\"text-body-small font-bold\\">?</p>
+            <p class=\\"text-body-small\\">?</p>
+          </div>
+          <div lang=\\"fa\\" class=\\"mb-8 lg:mb-0\\" dir=\\"rtl\\">
+            <p class=\\"text-body-small font-bold\\">?</p>
+            <p class=\\"text-body-small\\">?</p>
+          </div>
+          <div lang=\\"ar\\" class=\\"mb-8 lg:mb-0\\" dir=\\"rtl\\">
+            <p class=\\"text-body-small font-bold\\">?</p>
+            <p class=\\"text-body-small\\">?</p>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
+"
+`;
+
+exports[`Error page page renders and matches snapshot 2`] = `
+"<div id=\\"__next\\">
+  <main class=\\"relative text-body bg-white\\" id=\\"main\\">
+    <div
+      class=\\"
+        flex
+        items-center
+        border-s-10 border-neon-pink
+        shadow-404title
+        rounded
+        h-32
+        mt-6
+        md:mt-12
+        mx-2
+        md:px-6 md:mx-auto md:max-w-4xl
+      \\"
+    >
+      <span class=\\"flex-none px-4 text-h2 md:text-h1xl font-bold\\">500</span>
+      <h1 class=\\"flex-grow text-body md:text-body-large md:ms-6 lg:ms-12\\">
+        Sivustolla tapahtui virhe<span
+          class=\\"hidden md:block text-body md:text-body-large\\"
+          >Lataa sivu uudestaan</span
+        >
+      </h1>
+    </div>
+    <div
+      class=\\"
+        lg:grid
+        md:grid-rows-6 md:grid-flow-col md:gap-y-8 md:gap-x-32
+        mt-8
+        md:mt-16
+        mb-8
+        md:mb-16
+        mx-2
+        md:px-6 md:mx-auto md:max-w-4xl
+      \\"
+    >
+      <p class=\\"block md:hidden mb-8 text-body-small\\">Lataa sivu uudestaan</p>
+      <div lang=\\"sv\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
+        <p class=\\"text-body-small font-bold\\">?</p>
+        <p class=\\"text-body-small\\">?</p>
+      </div>
+      <div lang=\\"en\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
+        <p class=\\"text-body-small font-bold\\">Something went wrong</p>
+        <p class=\\"text-body-small\\">Try to refresh the page</p>
+      </div>
+      <div lang=\\"ru\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
+        <p class=\\"text-body-small font-bold\\">?</p>
+        <p class=\\"text-body-small\\">?</p>
+      </div>
+      <div lang=\\"et\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
+        <p class=\\"text-body-small font-bold\\">?</p>
+        <p class=\\"text-body-small\\">?</p>
+      </div>
+      <div lang=\\"fr\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
+        <p class=\\"text-body-small font-bold\\">?</p>
+        <p class=\\"text-body-small\\">?</p>
+      </div>
+      <div lang=\\"so\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
+        <p class=\\"text-body-small font-bold\\">?</p>
+        <p class=\\"text-body-small\\">?</p>
+      </div>
+      <div lang=\\"es\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
+        <p class=\\"text-body-small font-bold\\">?</p>
+        <p class=\\"text-body-small\\">?</p>
+      </div>
+      <div lang=\\"tr\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
+        <p class=\\"text-body-small font-bold\\">?</p>
+        <p class=\\"text-body-small\\">?</p>
+      </div>
+      <div lang=\\"zh\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
+        <p class=\\"text-body-small font-bold\\">?</p>
+        <p class=\\"text-body-small\\">?</p>
+      </div>
+      <div lang=\\"fa\\" class=\\"mb-8 lg:mb-0\\" dir=\\"rtl\\">
+        <p class=\\"text-body-small font-bold\\">?</p>
+        <p class=\\"text-body-small\\">?</p>
+      </div>
+      <div lang=\\"ar\\" class=\\"mb-8 lg:mb-0\\" dir=\\"rtl\\">
+        <p class=\\"text-body-small font-bold\\">?</p>
+        <p class=\\"text-body-small\\">?</p>
+      </div>
+    </div>
+  </main>
+</div>
+"
+`;

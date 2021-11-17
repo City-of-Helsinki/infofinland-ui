@@ -1,0 +1,15 @@
+@layer components {
+  .ifu-search__overlay {
+    @apply fixed inset-0 bg-black-op3 z-50;
+  }
+
+  @screen md {
+    .ifu-search__overlay {
+      @apply fixed  bg-black-op3 z-20;
+      top: 80px;
+      left: 0;
+      bottom: 0;
+      right: 0;
+    }
+  }
+}

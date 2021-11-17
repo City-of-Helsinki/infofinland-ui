@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai'
-import { languageMenuVisibility } from '@/components/app/atoms'
+import { languageMenuVisibility } from '@/src/store'
 import useLanguageMessage from '@/hooks/useLanguageMessage'
 import MessageCard, { MESSAGE_TYPES } from '@/components/messages/MessageCard'
 import useTranslation from 'next-translate/useTranslation'

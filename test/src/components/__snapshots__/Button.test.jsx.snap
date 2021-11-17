@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Buttons Button should render Button component with ifu-button base class 1`] = `
+<DocumentFragment>
+  <button
+    class="ifu-button"
+  >
+    Hello
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Buttons Button should render append classNames component 1`] = `
+<DocumentFragment>
+  <button
+    class="ifu-button hello"
+  >
+    Hello
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Buttons Button should render pass any props to button 1`] = `
+<DocumentFragment>
+  <button
+    aria-label="hello"
+    class="ifu-button"
+    id="test"
+    type="submit"
+  >
+    Hello
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Buttons CloseButton should render LinkButton component with ifu-text-link base class 1`] = `
+<DocumentFragment>
+  <button
+    class="flex items-center mt-4 me-3"
+  >
+    <span
+      class="inline-block px-1 text-small"
+    >
+      common:buttons.close
+    </span>
+    <svg
+      class="inline-block inline-block text-black transform -translate-y-0.5 fill-current"
+      fill="none"
+      height="21"
+      viewBox="0 0 23 21"
+      width="23"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M11.0523 12.3944L6.42824 16.6474L4.63598 14.9989L9.26001 10.746L4.62403 6.48202L6.41629 4.83358L11.0523 9.09754L15.6763 4.84457L17.4686 6.49301L12.8445 10.746L17.4566 14.988L15.6644 16.6364L11.0523 12.3944Z"
+        fill="black"
+      />
+    </svg>
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Buttons LinkButton should render LinkButton component with ifu-text-link base class 1`] = `
+<DocumentFragment>
+  <button
+    class="ifu-text-link  px-4 py-2 leading-6  font-sans font-bold"
+  >
+    looks like link
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Buttons LinkButton should render append classNames component 1`] = `
+<DocumentFragment>
+  <button
+    class="ifu-text-link  px-4 py-2 leading-6  font-sans font-bold foo"
+  >
+    looks like link
+  </button>
+</DocumentFragment>
+`;
+
+exports[`Buttons LinkButton should render pass any props to button 1`] = `
+<DocumentFragment>
+  <button
+    class="ifu-text-link  px-4 py-2 leading-6  font-sans font-bold"
+    id="test"
+    type="submit"
+  >
+    looks like link
+  </button>
+</DocumentFragment>
+`;

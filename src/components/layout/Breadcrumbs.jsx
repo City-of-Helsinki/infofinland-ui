@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Icon, { IconAngleRight } from '@/components/Icons'
 
 const Breadcrumbs = ({ pages }) => (
-  <nav className="block relative py-2 mt-3 mb-2 text-black">
+  <nav className="block relative pt-4 pb-2 mb-2 text-black">
     <div className=" justify-items-start">
       <div className="flex-none w-8 float-start">
         <Link href="/" passHref>

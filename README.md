@@ -11,7 +11,7 @@ See also [https://github.com/City-of-Helsinki/drupal-infofinland](https://github
 Install Yarn if not already installed
 
 ```bash
-npn i -g yarn
+npm install -g yarn
 ```
 
 Clone this repo

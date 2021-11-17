@@ -11,14 +11,16 @@ const LanguageSelector = ({ openMenu }) => {
   const { t } = useTranslation('common')
 
   return (
-    //Check data structure with real data
     <>
       <div
         dir="ltr"
         className=" hidden lg:block text-action leading-10 divide-x xl:divide-x-0 divide-black me-4 md:ms-1"
-        role="listbox"
       >
-        <button className=" xl:hidden lg:px-0 pe-2 ps-2" onClick={openMenu}>
+        <button
+          className=" xl:hidden lg:px-0 pe-2 ps-2"
+          onClick={openMenu}
+          aria-haspopup="dialog"
+        >
           <span className="hidden md:inline-block xl:hidden">
             {t('languageSelector.button')}
           </span>
@@ -37,12 +39,10 @@ const LanguageSelector = ({ openMenu }) => {
               title={text}
               hrefLang={code}
               lang={code}
-              role="option"
-              aria-selected={code === locale}
             >
               <span
                 className={cls('xl:hidden', {
-                  ' border-b-3 border-black': locale === code,
+                  ' border-b-2 border-black': locale === code,
                 })}
               >
                 {code}

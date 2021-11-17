@@ -1,16 +1,30 @@
 import { atom } from 'jotai'
+import axios from 'axios'
 import { focusAtom } from 'jotai/optics'
 import { atomWithStorage, splitAtom } from 'jotai/utils'
+
+/** @module store */
+
+/** The name of the module. */
+export const name = 'store'
+
+/** localStorage key for storing municipality selection*/
 export const CITY_ATOM_KEY = 'city'
-export const LANG_ATOM_KEY = 'language'
+/** Chosen municipality for local information blocks*/
 export const selectedCity = atomWithStorage(CITY_ATOM_KEY, undefined)
+/** Visibility state of municipality menu*/
 export const cityMenuVisibility = atom(false)
+
+/** Visibility language menu*/
 export const languageMenuVisibility = atom(false)
-export const feedbackFormVisibility = atom(false)
+
+/** Visibility of language popup*/
 export const languageMessageIsOpen = atom(false)
 
-// TODO make one queue and add types to message objects
-// If typescript, add message object type
+/** Visibility state of feeback form */
+export const feedbackFormVisibility = atom(false)
+
+/** Message queue */
 export const messages = atom({
   messages: [
     {
@@ -34,3 +48,23 @@ export const alertMessages = focusAtom(messages, (optics) =>
   optics.prop('alerts')
 )
 export const alertMessageAtoms = splitAtom(alertMessages)
+
+/**
+ *  Searchbar store
+ */
+
+/** the search keyword being typed to input */
+export const searchQueryValue = atom('')
+
+/** The search API url  */
+export const SEARCH_URL = '/api/search'
+
+/**
+ * Get search results based on searchQueryValue
+ * @param {string} q - the search term.
+ */
+
+export const getSearchResults = async (q) => {
+  const { data } = await axios.get(SEARCH_URL, { params: { q } })
+  return data.results
+}

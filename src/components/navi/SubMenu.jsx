@@ -71,7 +71,7 @@ const SubMenu = ({
   <>
     <div
       className={cls(
-        'py-4 flex items-center w-full text-body-small ps-8 border-s-5  hover:bg-gray-white',
+        'flex items-center w-full text-body-small ps-8 border-s-5  hover:bg-gray-white',
         {
           'border-white ': !selected && !selectedIsHidden,
           'border-blue': selectedIsHidden || selected,
@@ -80,7 +80,10 @@ const SubMenu = ({
       )}
     >
       <Link passHref href={url}>
-        <a className="flex-grow" title={isOpen ? 'Open menu' : 'Close menu'}>
+        <a
+          className="flex-grow py-4"
+          title={isOpen ? 'Open menu' : 'Close menu'}
+        >
           <span className={cls('block', { 'font-bold': selected })}>
             {text}
           </span>
@@ -88,9 +91,10 @@ const SubMenu = ({
       </Link>
       <div className="flex-none">
         <button
-          className="w-14 h-8 text-gray-light me-2 text-start"
+          className="block w-14 h-12 text-gray-light me-2 text-start"
           onClick={toggle}
-          tabIndex="0"
+          aria-expanded={isOpen}
+          // tabIndex="0"
         >
           {!isOpen && (
             <IconAngleDown className="fill-current ifu-mainmenu__submenu-icon" />

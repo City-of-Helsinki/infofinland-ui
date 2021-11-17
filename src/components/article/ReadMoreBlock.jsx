@@ -2,7 +2,7 @@ import Block from '@/components/article/Block'
 import { IconExternalSite } from '@/components/Icons'
 import cls from 'classnames'
 
-const CONTENT = [
+export const READMORE_CONTENT = [
   {
     siteName: 'DEMO:Kela',
     pageUrl: 'http://www.kela.fi/',
@@ -45,7 +45,7 @@ const CONTENT = [
     ],
   },
 ]
-const ReadMoreBlock = ({ content = CONTENT }) => {
+const ReadMoreBlock = ({ content = READMORE_CONTENT }) => {
   return (
     <Block className="mt-8 mb-8 bg-orange-white">
       <div className="py-6">
@@ -76,7 +76,7 @@ const ReadMoreBlock = ({ content = CONTENT }) => {
                 {pageName}
               </a>
 
-              <div className="flex flex-wrap leading-4 divide-link divide-s">
+              <div className="flex flex-wrap divide-link divide-s">
                 {languages.map(({ url, text, lang }, k) => (
                   <a
                     title={pageName}
@@ -85,9 +85,12 @@ const ReadMoreBlock = ({ content = CONTENT }) => {
                     key={`link-${text}-${k}`}
                     target="_blank"
                     lang={lang}
-                    className={cls('text-small ifu-text-link pe-2', {
-                      'ps-2': k > 0,
-                    })}
+                    className={cls(
+                      'text-small leading-snug ifu-text-link pe-2',
+                      {
+                        'ps-2': k > 0,
+                      }
+                    )}
                   >
                     {text}
                   </a>

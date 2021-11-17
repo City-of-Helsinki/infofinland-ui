@@ -3,7 +3,7 @@ import MessageCard, { MESSAGE_TYPES } from '@/components/messages/MessageCard'
 import {
   // alertMessages,
   alertMessageAtoms,
-} from '@/components/app/atoms'
+} from '@/src/store'
 
 const AlertMessage = ({ atom }) => {
   const [message, setMessage] = useAtom(atom)

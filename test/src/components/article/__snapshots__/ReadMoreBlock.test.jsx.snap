@@ -40,10 +40,10 @@ exports[`ReadMoreBlock should render the ReadMoreBlock 1`] = `
           Some random Kela page
         </a>
         <div
-          class="flex flex-wrap leading-4 divide-link divide-s"
+          class="flex flex-wrap divide-link divide-s"
         >
           <a
-            class="text-small ifu-text-link pe-2"
+            class="text-small leading-snug ifu-text-link pe-2"
             href="http://www.kela.fi/fi/"
             lang="fi"
             rel="noreferrer"
@@ -53,7 +53,7 @@ exports[`ReadMoreBlock should render the ReadMoreBlock 1`] = `
             Suomi
           </a>
           <a
-            class="text-small ifu-text-link pe-2 ps-2"
+            class="text-small leading-snug ifu-text-link pe-2 ps-2"
             href="http://www.kela.fi/sv/"
             lang="fi"
             rel="noreferrer"
@@ -96,10 +96,10 @@ exports[`ReadMoreBlock should render the ReadMoreBlock 1`] = `
           Some random Kela page
         </a>
         <div
-          class="flex flex-wrap leading-4 divide-link divide-s"
+          class="flex flex-wrap divide-link divide-s"
         >
           <a
-            class="text-small ifu-text-link pe-2"
+            class="text-small leading-snug ifu-text-link pe-2"
             href="http://www.kela.fi/fi/"
             lang="fi"
             rel="noreferrer"
@@ -109,7 +109,7 @@ exports[`ReadMoreBlock should render the ReadMoreBlock 1`] = `
             Suomi
           </a>
           <a
-            class="text-small ifu-text-link pe-2 ps-2"
+            class="text-small leading-snug ifu-text-link pe-2 ps-2"
             href="http://www.kela.fi/fi/"
             lang="fi"
             rel="noreferrer"
@@ -119,7 +119,7 @@ exports[`ReadMoreBlock should render the ReadMoreBlock 1`] = `
             Suomi
           </a>
           <a
-            class="text-small ifu-text-link pe-2 ps-2"
+            class="text-small leading-snug ifu-text-link pe-2 ps-2"
             href="http://www.kela.fi/sv/"
             lang="sv"
             rel="noreferrer"
@@ -129,7 +129,7 @@ exports[`ReadMoreBlock should render the ReadMoreBlock 1`] = `
             Ruotsi
           </a>
           <a
-            class="text-small ifu-text-link pe-2 ps-2"
+            class="text-small leading-snug ifu-text-link pe-2 ps-2"
             href="http://www.kela.fi/sv/"
             lang="sv"
             rel="noreferrer"
@@ -139,7 +139,7 @@ exports[`ReadMoreBlock should render the ReadMoreBlock 1`] = `
             Ruotsi
           </a>
           <a
-            class="text-small ifu-text-link pe-2 ps-2"
+            class="text-small leading-snug ifu-text-link pe-2 ps-2"
             href="http://www.kela.fi/fi/"
             lang="sv"
             rel="noreferrer"
@@ -149,7 +149,7 @@ exports[`ReadMoreBlock should render the ReadMoreBlock 1`] = `
             Suomi
           </a>
           <a
-            class="text-small ifu-text-link pe-2 ps-2"
+            class="text-small leading-snug ifu-text-link pe-2 ps-2"
             href="http://www.kela.fi/sv/"
             lang="sv"
             rel="noreferrer"
@@ -159,7 +159,7 @@ exports[`ReadMoreBlock should render the ReadMoreBlock 1`] = `
             Ruotsi
           </a>
           <a
-            class="text-small ifu-text-link pe-2 ps-2"
+            class="text-small leading-snug ifu-text-link pe-2 ps-2"
             href="http://www.kela.fi/fi/"
             lang="sv"
             rel="noreferrer"
@@ -169,7 +169,7 @@ exports[`ReadMoreBlock should render the ReadMoreBlock 1`] = `
             Suomi
           </a>
           <a
-            class="text-small ifu-text-link pe-2 ps-2"
+            class="text-small leading-snug ifu-text-link pe-2 ps-2"
             href="http://www.kela.fi/fi/"
             lang="sv"
             rel="noreferrer"
@@ -179,7 +179,7 @@ exports[`ReadMoreBlock should render the ReadMoreBlock 1`] = `
             Suomi
           </a>
           <a
-            class="text-small ifu-text-link pe-2 ps-2"
+            class="text-small leading-snug ifu-text-link pe-2 ps-2"
             href="http://www.kela.fi/sv/"
             lang="sv"
             rel="noreferrer"
