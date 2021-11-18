@@ -4,8 +4,6 @@ import { getPage } from 'next-page-tester'
 import prettier from 'prettier'
 
 describe('Error page', () => {
-
-
   it('page renders and matches snapshot', async () => {
     const { serverRenderToString, render } = await getPage({
       route: '/500',
@@ -27,6 +25,4 @@ describe('Error page', () => {
 
     expect(formattedHydratedSnapshot).toMatchSnapshot()
   })
-
-
 })
