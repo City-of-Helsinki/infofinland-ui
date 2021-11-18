@@ -88,7 +88,7 @@ const Result = ({ title, url, path, excerpt, q }) => (
     )}
     <p className="pb-8 mt-2 mb-8 text-body-small border-b border-gray-light">
       <Highlighter
-        highlightClassName="font-bold bg-green-lighter"
+        highlightClassName=" bg-orange-light"
         textToHighlight={excerpt}
         searchWords={[q]}
       />
