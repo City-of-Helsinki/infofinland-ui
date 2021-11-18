@@ -10,16 +10,18 @@ import { IconLookingGlass } from '@/components/Icons'
 
 import useSearchRoute from '@/hooks/useSearchRoute'
 import { IconAngleRight } from '@/components/Icons'
+import * as DrupalApi from '@/src/lib/drupal-api'
 
 import Highlighter from 'react-highlight-words'
 
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps(context) {
+  const {query} = context
   /*
    Scaffold for testing different UI states for search page.
    See page snapshot tests when real search is implemented and
   mock search results.
   */
-
+  const common = await DrupalApi.getCommonApiContent(context)
   const q = query.q || null
   let results = null
   // Mock no results witn '_'
@@ -29,6 +31,7 @@ export async function getServerSideProps({ query }) {
 
   return {
     props: {
+      ...common,
       q,
       results,
     },
@@ -88,7 +91,7 @@ const Result = ({ title, url, path, excerpt, q }) => (
     )}
     <p className="pb-8 mt-2 mb-8 text-body-small border-b border-gray-light">
       <Highlighter
-        highlightClassName="font-bold bg-green-lighter"
+        highlightClassName="bg-orange-light text-black"
         textToHighlight={excerpt}
         searchWords={[q]}
       />
@@ -99,7 +102,7 @@ const SearchResults = ({ results, q }) => {
   return results.map((r, i) => <Result key={`foo-${i}`} {...r} q={q} />)
 }
 
-export const SearchPage = ({ q, results }) => {
+export const SearchPage = ({ q, results,mainMenu,aboutMenu }) => {
   const { t } = useTranslation('common')
 
   let title
@@ -112,7 +115,7 @@ export const SearchPage = ({ q, results }) => {
   }
 
   return (
-    <Layout>
+    <Layout mainMenu={mainMenu} aboutMenu={aboutMenu}>
       <Head>
         <title>{title}</title>
       </Head>
@@ -126,4 +129,3 @@ export const SearchPage = ({ q, results }) => {
 }
 
 export default SearchPage
-

@@ -89,17 +89,13 @@ export const PROPS = {
   category: 'Health and other things',
 }
 
-
 export async function getServerSideProps() {
-
-  const { mainMenu } = await DrupalApi.getCommonApiContent()
-
-console.log({mainMenu})
-  return {
-    props: {
-      mainMenu,
-      ...PROPS
-    }
+  const common = await DrupalApi.getCommonApiContent()
+  const props =  {
+    ...common,
+    ...PROPS
   }
+  console.log({props});
+  return { props }
 }
 export default ArticlePage

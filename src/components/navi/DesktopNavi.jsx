@@ -2,7 +2,7 @@
 import MainNavi from '@/components/navi/MainNavi'
 import Messages from '@/components/messages/Messages'
 
-const DesktopNavi = ({mainMenu}) => {
+const DesktopNavi = ({ mainMenu }) => {
   return (
     <>
       <div className="hidden md:block overflow-y-auto fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop">

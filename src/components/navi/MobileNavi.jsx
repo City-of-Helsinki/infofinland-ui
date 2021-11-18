@@ -6,7 +6,7 @@ import { useRouter } from 'next/router'
 
 import useTranslation from 'next-translate/useTranslation'
 
-const MobileNavi = ({mainMenu}) => {
+const MobileNavi = ({ mainMenu }) => {
   const [isOpen, setVisibility] = useState(false)
   const open = () => setVisibility(true)
   const close = () => setVisibility(false)

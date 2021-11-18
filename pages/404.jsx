@@ -8,7 +8,20 @@ import useTranslation from 'next-translate/useTranslation'
 import TextLink from '@/components/TextLink'
 import { rtlLocales } from '@/i18n'
 import { map, omit } from 'lodash'
+import * as DrupalApi from '@/src/lib/drupal-api'
 
+export async function getStaticProps(context) {
+  console.log({context})
+//   // const node = await getResourceFromContext("node--page", context)
+//   // console.log(node)
+//   // Fetch the main menu.
+  const common = await DrupalApi.getCommonApiContent(context)
+  return {
+    props: {
+      ...common,
+    },
+  }
+}
 const TEXTS = {
   fi: {
     title: 'Sivua ei löydy.',
@@ -57,12 +70,12 @@ const TEXTS = {
   },
 }
 
-const PageNotFound = () => {
+const PageNotFound = (props) => {
   const { locale } = useRouter()
   const content = omit(TEXTS, locale)
 
   return (
-    <Layout>
+    <Layout {...props}>
       <Head>
         <title>{TEXTS[locale].title}</title>
       </Head>
@@ -119,11 +132,10 @@ const PageNotFound = () => {
   )
 }
 
-export const LanguageNotFound = () => {
-  // const { locale } = useRouter()
+export const LanguageNotFound = (props) => {
   const { t } = useTranslation('common')
   return (
-    <Layout>
+    <Layout {...props}>
       <Head>
         <title>{t('lang404.title')}</title>
       </Head>

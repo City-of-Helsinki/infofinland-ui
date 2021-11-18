@@ -10,10 +10,11 @@ const ArticlePage = ({
   title,
   // body,
   mainMenu,
+  aboutMenu,
   ...articleProps
 }) => {
   return (
-    <Layout mainMenu={mainMenu}>
+    <Layout mainMenu={mainMenu} aboutMenu={aboutMenu}>
       <Head>
         <title>{title}</title>
       </Head>

@@ -4,26 +4,29 @@ import Link from 'next/link'
 import cls from 'classnames'
 import { useRouter } from 'next/router'
 
-const SubMenuItem = ({ title, url, selected, pages, level, isOpen }) => (
+const SubMenuItem = ({ title, url, selected, items, level, isOpen }) => (
   <li className=" block">
     <Link passHref href={url}>
       <a
         tabIndex={isOpen ? '0' : '-1'}
-        className={cls('block py-4 title-body-small hover:bg-gray-white pe-4 ', {
-          'ps-12 ': level === 1,
-          'ps-16': level === 2,
-          'border-s-5 border-blue  font-bold': selected,
-          'border-s-5 border-white ': !selected,
-        })}
+        className={cls(
+          'block py-4 title-body-small hover:bg-gray-white pe-4 ',
+          {
+            'ps-12 ': level === 1,
+            'ps-16': level === 2,
+            'border-s-5 border-blue  font-bold': selected,
+            'border-s-5 border-white ': !selected,
+          }
+        )}
       >
         {title}
       </a>
     </Link>
-    {pages && <SubMenuItems pages={pages} level={level + 1} isOpen={isOpen} />}
+    {items && <SubMenuItems items={items} level={level + 1} isOpen={isOpen} />}
   </li>
 )
 
-const SubMenuItems = ({ pages, isOpen, level }) => {
+const SubMenuItems = ({ items, isOpen, level }) => {
   const { asPath } = useRouter()
   return (
     <CSSTransition
@@ -45,7 +48,7 @@ const SubMenuItems = ({ pages, isOpen, level }) => {
       }}
     >
       <ul className="ifu-mainmenu__submenu">
-        {pages.map((props, i) => (
+        {items.map((props, i) => (
           <SubMenuItem
             key={`${props.title}-${i}`}
             {...props}
@@ -60,7 +63,7 @@ const SubMenuItems = ({ pages, isOpen, level }) => {
 }
 
 const SubMenu = ({
-  pages,
+  items,
   title,
   isOpen,
   toggle,
@@ -105,7 +108,7 @@ const SubMenu = ({
         </button>
       </div>
     </div>
-    {pages && <SubMenuItems pages={pages} isOpen={isOpen} level={1} />}
+    {items && <SubMenuItems items={items} isOpen={isOpen} level={1} />}
   </>
 )
 

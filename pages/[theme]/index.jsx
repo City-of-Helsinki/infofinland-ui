@@ -34,15 +34,12 @@ export const PROPS = {
 }
 
 export async function getServerSideProps() {
-
-  const { mainMenu } = await DrupalApi.getCommonApiContent()
-
-console.log({mainMenu})
+  const common = await DrupalApi.getCommonApiContent()
   return {
     props: {
-      mainMenu,
+      ...common,
       ...PROPS
-    }
+    },
   }
 }
 

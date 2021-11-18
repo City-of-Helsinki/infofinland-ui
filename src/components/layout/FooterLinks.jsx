@@ -7,8 +7,9 @@ import useTranslation from 'next-translate/useTranslation'
 /**
  * SOME Urls are defined in next.config.js
  * */
-const FooterLinks = () => {
+const FooterLinks = ({ aboutMenu }) => {
   const { t, language } = useTranslation('common')
+  console.log({ aboutMenu })
   return (
     <div className={cls(HERO_MARGIN, 'mt-16 mb-16')}>
       <section className="py-10 border-t border-b border-gray ifu-footer__brand">
@@ -60,18 +61,13 @@ const FooterLinks = () => {
       </section>
 
       <section className="mb-4 text-center sm:text-left divide-black divide-s">
-        <Link href="#about" passHref>
-          <a className="ifu-footer__link">Sivukartta</a>
-        </Link>
-        <Link href="#privacy" passHref>
-          <a className="ifu-footer__link">Tietoa palvelusta</a>
-        </Link>
-        <Link href="#terms" passHref>
-          <a className="ifu-footer__link">Avoin data</a>
-        </Link>
-        <Link href="#cookies" passHref>
-          <a className="ifu-footer__link">Saatavuus</a>
-        </Link>
+        {aboutMenu.tree.map(({ title, url },i) => {
+          return (
+            <Link href={url} passHref key={`footer-link-${i}`}>
+              <a className="ifu-footer__link">{title}</a>
+            </Link>
+          )
+        })}
       </section>
     </div>
   )

@@ -24,7 +24,6 @@ export const languageMessageIsOpen = atom(false)
 /** Visibility state of feeback form */
 export const feedbackFormVisibility = atom(false)
 
-
 // const mainMenu = atom({})
 
 /** Message queue */
