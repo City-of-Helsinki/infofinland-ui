@@ -9,10 +9,11 @@ import ReadMoreBlock from '../components/article/ReadMoreBlock'
 const ArticlePage = ({
   title,
   // body,
+  mainMenu,
   ...articleProps
 }) => {
   return (
-    <Layout>
+    <Layout mainMenu={mainMenu}>
       <Head>
         <title>{title}</title>
       </Head>

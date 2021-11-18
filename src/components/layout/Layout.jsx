@@ -35,9 +35,10 @@ export const BlankLayout = ({ children }) => {
   )
 }
 
-const AppLayout = ({ children }) => {
+const AppLayout = ({ children, mainMenu }) => {
   useSetLocalization()
   useShowLangMessage()
+console.log({mainMenu})
   return (
     <>
       <Head>
@@ -45,12 +46,12 @@ const AppLayout = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className=" relative text-body bg-white">
-        <TopMenu />
+        <TopMenu mainMenu={mainMenu}/>
         <div className=" md:flex md:items-stretch">
           <div className="md:hidden">
             <Messages />
           </div>
-          <DesktopNavi />
+          <DesktopNavi mainMenu={mainMenu}/>
           <div className="ifu-layout__body">
             <main id="main">{children}</main>
             <footer className="ifu-footer" id="footer">

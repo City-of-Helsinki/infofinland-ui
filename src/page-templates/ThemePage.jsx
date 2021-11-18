@@ -4,8 +4,8 @@ import Layout from '../components/layout/Layout'
 import ThemeList from '../components/home/ThemeList'
 import Block from '../components/article/Block'
 
-const ThemePage = ({ title, ...articleProps }) => (
-  <Layout>
+const ThemePage = ({ title,mainMenu, ...articleProps }) => (
+  <Layout mainMenu={mainMenu}>
     <Head>
       <title>{title} theme demo page</title>
       <link rel="icon" href="/favicon.ico" />

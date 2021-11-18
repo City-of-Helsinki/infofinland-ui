@@ -3,10 +3,10 @@ import MainNavi from '@/components/navi/MainNavi'
 import { IconMenu } from '@/components/Icons'
 import Drawer from '@/components/layout/Drawer'
 import { useRouter } from 'next/router'
-import { PAGES } from '../MOCK_PAGES'
+
 import useTranslation from 'next-translate/useTranslation'
 
-const MobileNavi = () => {
+const MobileNavi = ({mainMenu}) => {
   const [isOpen, setVisibility] = useState(false)
   const open = () => setVisibility(true)
   const close = () => setVisibility(false)
@@ -47,7 +47,7 @@ const MobileNavi = () => {
 
       <Drawer close={close} isOpen={isOpen}>
         <div className="bg-white">
-          <MainNavi pages={PAGES} />
+          <MainNavi mainMenu={mainMenu} />
         </div>
       </Drawer>
     </>

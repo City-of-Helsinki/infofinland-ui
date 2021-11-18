@@ -4,25 +4,25 @@ import cls from 'classnames'
 import { useRouter } from 'next/router'
 import SubMenu from '@/components/navi/SubMenu'
 
-const getThemeIndexByPathName = ({ pages, path }) => {
+const getThemeIndexByPathName = ({ mainMenu, path }) => {
   let index
 
-  const findPageByUrl = (pages, rootIndex) =>
-    pages.find(({ url, pages }, i) => {
-      if (url === path) {
-        index = rootIndex || i
-        return
-      } else if (pages) {
-        findPageByUrl(pages, rootIndex || i)
-      }
-    })
+  // const findPageByUrl = (pages, rootIndex) =>
+  //   pages.find(({ url, pages }, i) => {
+  //     if (url === path) {
+  //       index = rootIndex || i
+  //       return
+  //     } else if (pages) {
+  //       findPageByUrl(pages, rootIndex || i)
+  //     }
+  //   })
 
-  findPageByUrl(pages)
-  return index
+  // findPageByUrl(pages)
+  return index || 0
 }
 
 const TopMenuItem = ({
-  text,
+  title,
   url,
   pages,
   isOpen,
@@ -35,7 +35,7 @@ const TopMenuItem = ({
       <Link href={url}>
         <a
           className={cls(
-            'block text-body-small ps-8 py-4 border-s-5 hover:bg-gray-white',
+            'block title-body-small ps-8 py-4 border-s-5 hover:bg-gray-white',
             {
               'font-bold': selected,
               'border-white': !selected,
@@ -44,7 +44,7 @@ const TopMenuItem = ({
             }
           )}
         >
-          {text}
+          {title}
         </a>
       </Link>
     )}
@@ -53,7 +53,7 @@ const TopMenuItem = ({
       <SubMenu
         url={url}
         pages={pages}
-        text={text}
+        title={title}
         isOpen={isOpen}
         toggle={toggle}
         selected={selected}
@@ -63,9 +63,9 @@ const TopMenuItem = ({
   </li>
 )
 
-const MainNavi = ({ pages }) => {
+const MainNavi = ({ mainMenu }) => {
   const { asPath } = useRouter()
-  const indexFromRouter = getThemeIndexByPathName({ pages, path: asPath })
+  const indexFromRouter = getThemeIndexByPathName({ mainMenu, path: asPath })
   const [openIndex, setVisibility] = useState(indexFromRouter)
   const setOpenIndex = (i) => setVisibility(i === openIndex ? null : i)
   /**
@@ -79,9 +79,9 @@ const MainNavi = ({ pages }) => {
   return (
     <nav className={cls('mb-8  pt-8', {})}>
       <ul className="block">
-        {pages.map((props, i) => (
+        {mainMenu.tree.map((props, i) => (
           <TopMenuItem
-            key={`link-${props.text}`}
+            key={`link-${props.title}`}
             {...props}
             selected={asPath === props.url}
             isOpen={i === openIndex}

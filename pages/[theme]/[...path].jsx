@@ -1,5 +1,7 @@
 import ArticlePage from '../../src/page-templates/ArticlePage'
 import heroImage from '../../public/images/article1-sm.png'
+import * as DrupalApi from '@/src/lib/drupal-api'
+
 // import {
 //   getPathsFromContext,
 //   getResourceFromContext,
@@ -87,87 +89,17 @@ export const PROPS = {
   category: 'Health and other things',
 }
 
-// export async function getStaticPaths(context) {
-//   const paths =  await getPathsFromContext(["node--article", "node--page"], context)
-//   return {
-//     paths,
-//     fallback: true,
-//   }
-// }
 
 export async function getServerSideProps() {
-  // context
-  // const { tree, items } = await getMenu("testmenu")
-  // let url = null;
-  // if(context){ url = context.req.rawHeaders.find((h) => /^http:/.test(h))}
 
-  return { props: PROPS }
+  const { mainMenu } = await DrupalApi.getCommonApiContent()
 
-  //   const type = await getResourceTypeFromContext(context)
-  //   if (!type) {
-  //     return {
-  //       notFound: true,
-  //     }
-  //   }
-
-  //   let params = {}
-  //   if (type === "node--article") {
-  //     params = {
-  //       include: "field_image,uid",
-  //     }
-  //   }
-
-  //   const node = await getResourceFromContext(type, context, {
-  //     params,
-  //   })
-  //   if (!node?.status) {
-  //     return {
-  //       notFound: true,
-  //     }
-  //   }
-
-  //   return {
-  //     props: {
-  //       preview: context.preview || false,
-  //       node,
-  //     },
-  //     revalidate: 60,
-  //   }
+console.log({mainMenu})
+  return {
+    props: {
+      mainMenu,
+      ...PROPS
+    }
+  }
 }
-
-// export async function getServerSideProps() {
-//   return { props: PROPS }
-// }
-
-//   return {props}
-// export async function getStaticProps(context) {
-
-//   const props = {
-//     breadcrumbs:[
-//       { text: 'Living', url: '/' },
-//       { text: 'Health and other things', url: '/' },
-//       { text: 'Health services in Finland', url: '/' },
-//     ],
-//     heroImage,
-//     body,
-//     title:'Health services in Finlande',
-//     color:'red',
-//     date:'23.12.2015',
-//     category:'Health and other things'
-//   }
-
-//   return {props}
-
-// }
-
-// export async function getStaticPaths() {
-
-//   return {paths:[
-//     { params: { theme:'theme',page:'foo', subpage: 'bar' } },
-//   ],
-//   fallback:true
-// }
-
-// }
-
 export default ArticlePage

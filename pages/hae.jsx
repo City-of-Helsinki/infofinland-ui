@@ -88,7 +88,7 @@ const Result = ({ title, url, path, excerpt, q }) => (
     )}
     <p className="pb-8 mt-2 mb-8 text-body-small border-b border-gray-light">
       <Highlighter
-        highlightClassName=" bg-orange-light"
+        highlightClassName="font-bold bg-green-lighter"
         textToHighlight={excerpt}
         searchWords={[q]}
       />
@@ -126,3 +126,4 @@ export const SearchPage = ({ q, results }) => {
 }
 
 export default SearchPage
+

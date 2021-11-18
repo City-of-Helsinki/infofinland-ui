@@ -1,5 +1,6 @@
 import ThemePage from '../../src/page-templates/ThemePage'
 import heroImage from '../../public/images/article1-sm.png'
+import * as DrupalApi from '@/src/lib/drupal-api'
 
 const body = `
 <div>
@@ -33,7 +34,16 @@ export const PROPS = {
 }
 
 export async function getServerSideProps() {
-  return { props: PROPS }
+
+  const { mainMenu } = await DrupalApi.getCommonApiContent()
+
+console.log({mainMenu})
+  return {
+    props: {
+      mainMenu,
+      ...PROPS
+    }
+  }
 }
 
 export default ThemePage

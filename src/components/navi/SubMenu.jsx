@@ -4,19 +4,19 @@ import Link from 'next/link'
 import cls from 'classnames'
 import { useRouter } from 'next/router'
 
-const SubMenuItem = ({ text, url, selected, pages, level, isOpen }) => (
+const SubMenuItem = ({ title, url, selected, pages, level, isOpen }) => (
   <li className=" block">
     <Link passHref href={url}>
       <a
         tabIndex={isOpen ? '0' : '-1'}
-        className={cls('block py-4 text-body-small hover:bg-gray-white pe-4 ', {
+        className={cls('block py-4 title-body-small hover:bg-gray-white pe-4 ', {
           'ps-12 ': level === 1,
           'ps-16': level === 2,
           'border-s-5 border-blue  font-bold': selected,
           'border-s-5 border-white ': !selected,
         })}
       >
-        {text}
+        {title}
       </a>
     </Link>
     {pages && <SubMenuItems pages={pages} level={level + 1} isOpen={isOpen} />}
@@ -47,7 +47,7 @@ const SubMenuItems = ({ pages, isOpen, level }) => {
       <ul className="ifu-mainmenu__submenu">
         {pages.map((props, i) => (
           <SubMenuItem
-            key={`${props.text}-${i}`}
+            key={`${props.title}-${i}`}
             {...props}
             level={level}
             selected={props.url === asPath}
@@ -61,7 +61,7 @@ const SubMenuItems = ({ pages, isOpen, level }) => {
 
 const SubMenu = ({
   pages,
-  text,
+  title,
   isOpen,
   toggle,
   selected,
@@ -71,7 +71,7 @@ const SubMenu = ({
   <>
     <div
       className={cls(
-        'flex items-center w-full text-body-small ps-8 border-s-5  hover:bg-gray-white',
+        'flex items-center w-full title-body-small ps-8 border-s-5  hover:bg-gray-white',
         {
           'border-white ': !selected && !selectedIsHidden,
           'border-blue': selectedIsHidden || selected,
@@ -85,13 +85,13 @@ const SubMenu = ({
           title={isOpen ? 'Open menu' : 'Close menu'}
         >
           <span className={cls('block', { 'font-bold': selected })}>
-            {text}
+            {title}
           </span>
         </a>
       </Link>
       <div className="flex-none">
         <button
-          className="block w-14 h-12 text-gray-light me-2 text-start"
+          className="block w-14 h-12 title-gray-light me-2 title-start"
           onClick={toggle}
           aria-expanded={isOpen}
           // tabIndex="0"

@@ -17,25 +17,21 @@ import * as DrupalApi from '@/src/lib/drupal-api'
 //   // }
 // }
 
-// export async function getStaticProps(context) {
+export async function getStaticProps(context) {
 //   console.log({context})
 //   // const node = await getResourceFromContext("node--page", context)
 //   // console.log(node)
 //   // Fetch the main menu.
-//   const { tree } = await DrupalApi.getMainMenu()
-//   const feedback = await DrupalApi.getFeedbackInstructionsBlock()
+  const { mainMenu } = await DrupalApi.getCommonApiContent()
+  return {
+    props: {
+      mainMenu
+    },
+  }
+}
 
-//   // return {
-//   //   props: {
-//   //     node,
-//   //     menu: tree,
-//   //    blocks:{feedback}
-//   //   },
-//   // }
-// }
-
-const HomePage = ({menu}) => (
-  <Layout menu={menu}>
+const HomePage = ({mainMenu}) => (
+  <Layout mainMenu={mainMenu}>
     <Head>
       <title>Article demo page</title>
       <link rel="icon" href="/favicon.ico" />

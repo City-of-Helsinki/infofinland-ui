@@ -16,3 +16,10 @@ export const getFeedbackInstructionsBlock = async ()=> await getResource(
   // "block_content--basic",
   // "97ee0b84-309f-4b5e-b321-042018552428"
 )
+
+export const getCommonApiContent = async()=> {
+
+  const mainMenu = await getMainMenu()
+  // const aboutMenu = await getAboutMenu()
+  return {mainMenu}
+}
