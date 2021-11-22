@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import Icon, { IconAngleRight } from '@/components/Icons'
 
-const Breadcrumbs = ({ pages }) => (
+const Breadcrumbs = ({ items }) => (
   <nav className="block relative pt-4 pb-2 mb-2 text-black">
     <div className=" justify-items-start">
       <div className="flex-none w-8 float-start">
@@ -25,17 +25,17 @@ const Breadcrumbs = ({ pages }) => (
             aria-hidden
           />
         </div>
-        {pages.map(({ text, url }, i) => (
-          <div key={`crumb-${i}-${text}`} className="inline-block">
+        {items.map(({ title, url }, i) => (
+          <div key={`crumb-${i}-${title}`} className="inline-block">
             <Link href={url} passHref>
               <a
                 className="text-small md:text-body-small hover:underline"
-                title={text}
+                title={title}
               >
-                {text}
+                {title}
               </a>
             </Link>
-            {i + 1 < pages.length && (
+            {i + 1 < items.length && (
               <IconAngleRight
                 className=" mx-3 transform scale-150 fill-current ifu-breadcrumb__arrow"
                 aria-hidden

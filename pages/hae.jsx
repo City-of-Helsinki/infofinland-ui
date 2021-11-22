@@ -15,7 +15,7 @@ import * as DrupalApi from '@/src/lib/drupal-api'
 import Highlighter from 'react-highlight-words'
 
 export async function getServerSideProps(context) {
-  const {query} = context
+  const { query } = context
   /*
    Scaffold for testing different UI states for search page.
    See page snapshot tests when real search is implemented and
@@ -102,7 +102,7 @@ const SearchResults = ({ results, q }) => {
   return results.map((r, i) => <Result key={`foo-${i}`} {...r} q={q} />)
 }
 
-export const SearchPage = ({ q, results,mainMenu,aboutMenu }) => {
+export const SearchPage = ({ q, results, mainMenu, aboutMenu }) => {
   const { t } = useTranslation('common')
 
   let title

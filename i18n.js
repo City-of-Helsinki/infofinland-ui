@@ -19,7 +19,7 @@ module.exports = {
   locales,
   languages,
   rtlLocales,
-  defaultLocale: 'fi',
+  defaultLocale: 'en',
   fallbackLocale: 'en',
   pages: {
     '*': ['common'],

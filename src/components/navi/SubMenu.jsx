@@ -2,22 +2,19 @@ import { CSSTransition } from 'react-transition-group'
 import { IconAngleDown, IconAngleUp } from '@/components/Icons'
 import Link from 'next/link'
 import cls from 'classnames'
-import { useRouter } from 'next/router'
+import useLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 
 const SubMenuItem = ({ title, url, selected, items, level, isOpen }) => (
   <li className=" block">
     <Link passHref href={url}>
       <a
         tabIndex={isOpen ? '0' : '-1'}
-        className={cls(
-          'block py-4 title-body-small hover:bg-gray-white pe-4 ',
-          {
-            'ps-12 ': level === 1,
-            'ps-16': level === 2,
-            'border-s-5 border-blue  font-bold': selected,
-            'border-s-5 border-white ': !selected,
-          }
-        )}
+        className={cls('block py-4 text-body-small hover:bg-gray-white pe-4 ', {
+          'ps-12 ': level === 1,
+          'ps-16': level === 2,
+          'border-s-5 border-blue  font-bold': selected,
+          'border-s-5 border-white ': !selected,
+        })}
       >
         {title}
       </a>
@@ -27,7 +24,8 @@ const SubMenuItem = ({ title, url, selected, items, level, isOpen }) => (
 )
 
 const SubMenuItems = ({ items, isOpen, level }) => {
-  const { asPath } = useRouter()
+  const { localePath } = useLocalizedPath()
+
   return (
     <CSSTransition
       timeout={{ appear: 0, enter: 400, exit: 0 }}
@@ -53,7 +51,7 @@ const SubMenuItems = ({ items, isOpen, level }) => {
             key={`${props.title}-${i}`}
             {...props}
             level={level}
-            selected={props.url === asPath}
+            selected={props.url === localePath}
             isOpen={isOpen}
           />
         ))}
@@ -74,7 +72,7 @@ const SubMenu = ({
   <>
     <div
       className={cls(
-        'flex items-center w-full title-body-small ps-8 border-s-5  hover:bg-gray-white',
+        'flex items-center w-full text-body-small ps-8 border-s-5  hover:bg-gray-white',
         {
           'border-white ': !selected && !selectedIsHidden,
           'border-blue': selectedIsHidden || selected,
@@ -94,7 +92,7 @@ const SubMenu = ({
       </Link>
       <div className="flex-none">
         <button
-          className="block w-14 h-12 title-gray-light me-2 title-start"
+          className="block w-14 h-12 text-gray-light me-2 title-start"
           onClick={toggle}
           aria-expanded={isOpen}
           // tabIndex="0"

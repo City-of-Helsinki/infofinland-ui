@@ -5,6 +5,8 @@ import Layout from '../components/layout/Layout'
 import LocalInformation from '../components/cities/LocalInformation'
 import Block from '../components/article/Block'
 import ReadMoreBlock from '../components/article/ReadMoreBlock'
+import useBreadCrumbs from '@/hooks/useBreadCrumbs'
+import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 
 const ArticlePage = ({
   title,
@@ -13,12 +15,17 @@ const ArticlePage = ({
   aboutMenu,
   ...articleProps
 }) => {
+  const { localePath } = useRouterWithLocalizedPath()
+  const breadcrumbs = useBreadCrumbs({
+    items: mainMenu.items,
+    path: localePath,
+  })
   return (
     <Layout mainMenu={mainMenu} aboutMenu={aboutMenu}>
       <Head>
         <title>{title}</title>
       </Head>
-      <Article title={title} {...articleProps}>
+      <Article title={title} breadcrumbs={breadcrumbs} {...articleProps}>
         <Block className="my-8 ifu-article__bodyblock">
           <p className="mb-4">
             Vocational education and training are very practically-oriented and

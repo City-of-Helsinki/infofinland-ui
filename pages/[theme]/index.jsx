@@ -1,7 +1,8 @@
 import ThemePage from '../../src/page-templates/ThemePage'
 import heroImage from '../../public/images/article1-sm.png'
 import * as DrupalApi from '@/src/lib/drupal-api'
-
+import // getResourceFromContext,
+'next-drupal'
 const body = `
 <div>
 <p>The education system includes early childhood education, preschool
@@ -33,12 +34,14 @@ export const PROPS = {
   category: 'Health and other things',
 }
 
-export async function getServerSideProps() {
-  const common = await DrupalApi.getCommonApiContent()
+export async function getServerSideProps(context) {
+  // const paths = await getPathsFromContext('node--page',context)
+  const common = await DrupalApi.getCommonApiContent(context)
   return {
     props: {
       ...common,
-      ...PROPS
+      ...PROPS,
+      // paths
     },
   }
 }

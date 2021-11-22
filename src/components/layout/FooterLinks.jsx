@@ -9,7 +9,6 @@ import useTranslation from 'next-translate/useTranslation'
  * */
 const FooterLinks = ({ aboutMenu }) => {
   const { t, language } = useTranslation('common')
-  console.log({ aboutMenu })
   return (
     <div className={cls(HERO_MARGIN, 'mt-16 mb-16')}>
       <section className="py-10 border-t border-b border-gray ifu-footer__brand">
@@ -61,7 +60,7 @@ const FooterLinks = ({ aboutMenu }) => {
       </section>
 
       <section className="mb-4 text-center sm:text-left divide-black divide-s">
-        {aboutMenu.tree.map(({ title, url },i) => {
+        {aboutMenu.tree.map(({ title, url }, i) => {
           return (
             <Link href={url} passHref key={`footer-link-${i}`}>
               <a className="ifu-footer__link">{title}</a>

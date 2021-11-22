@@ -76,11 +76,6 @@ Apply for VALMA education in the search for preparatory education after comprehe
 <span class="normal langversions"><span class="linkarrow"><a href="https://opintopolku.fi/wp/valintojen-tuki/yhteishaku/haku-kesalla-perusopetuksen-jalkeisiin-valmistaviin-koulutuksiin/" target="_blank" onclick="ga('send', 'event', 'Exit Links', 'Click', 'opintopolku.fi');" class="outerlink">linkki</a></span><span class="linkorganisation">Studyinfo.fi:</span><br><span class="doctitle">Applying for VALMA education</span><span class="linklanguages"><a href="https://opintopolku.fi/wp/valintojen-tuki/yhteishaku/haku-kesalla-perusopetuksen-jalkeisiin-valmistaviin-koulutuksiin/" target="_blank" onclick="ga('send', 'event', 'Exit Links', 'Click', 'opintopolku.fi');" class="outerlink">Finnish</a> | <a href="https://studieinfo.fi/wp/stod-for-studievalet/gemensam-ansokan/ansokan-pa-sommaren-till-handledande-utbildningar-efter-grundlaggande-utbildning/" target="_blank" onclick="ga('send', 'event', 'Exit Links', 'Click', 'studieinfo.fi');" class="outerlink">Swedish</a> | <a href="https://studyinfo.fi/wp2/en/general-upper-secondary-education/preparatory-education-for-general-upper-secondary/" target="_blank" onclick="ga('send', 'event', 'Exit Links', 'Click', 'studyinfo.fi');" class="outerlink">English</a></span></span>
 `
 export const PROPS = {
-  breadcrumbs: [
-    { text: 'Living', url: '/' },
-    { text: 'Health and other things', url: '/' },
-    { text: 'Health services in Finland', url: '/' },
-  ],
   heroImage,
   body,
   title: 'Vocational education and training',
@@ -89,13 +84,12 @@ export const PROPS = {
   category: 'Health and other things',
 }
 
-export async function getServerSideProps() {
-  const common = await DrupalApi.getCommonApiContent()
-  const props =  {
+export async function getServerSideProps(context) {
+  const common = await DrupalApi.getCommonApiContent(context)
+  const props = {
     ...common,
-    ...PROPS
+    ...PROPS,
   }
-  console.log({props});
   return { props }
 }
 export default ArticlePage

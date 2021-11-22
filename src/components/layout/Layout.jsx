@@ -38,7 +38,6 @@ export const BlankLayout = ({ children }) => {
 const AppLayout = ({ children, mainMenu, aboutMenu }) => {
   useSetLocalization()
   useShowLangMessage()
-  console.log({ mainMenu })
   return (
     <>
       <Head>

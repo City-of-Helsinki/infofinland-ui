@@ -26,7 +26,6 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
   } = useForm()
 
   const onSubmit = (data) => {
-    console.log(data)
     return new Promise((ok, fail) => {
       const action = data.fail ? fail : ok
       setTimeout(action, 1500)
