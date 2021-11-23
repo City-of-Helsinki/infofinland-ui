@@ -12,7 +12,7 @@ const ThemePage = ({ title, mainMenu, aboutMenu, ...articleProps }) => {
     items: mainMenu.items,
     path: localePath,
   })
-  const themes = useThemeList({ tree: mainMenu.tree, path: localePath })
+  const themes = useThemeList({ ...mainMenu, path: localePath })
 
   return (
     <Layout mainMenu={mainMenu} aboutMenu={aboutMenu}>

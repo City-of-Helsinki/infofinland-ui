@@ -5,17 +5,17 @@ import SubMenu from '@/components/navi/SubMenu'
 import useLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 const getThemeIndexByPathName = ({ items, path }) => {
   let index
-  const findPageByUrl = (items, rootIndex) =>
+  const findPageIndexByUrl = (items, rootIndex) =>
     items.find(({ url, items }, i) => {
       if (url === path) {
         index = rootIndex || i
         return
       } else if (items) {
-        findPageByUrl(items, rootIndex || i)
+        findPageIndexByUrl(items, rootIndex || i)
       }
     })
 
-  findPageByUrl(items)
+  findPageIndexByUrl(items)
   return index
 }
 

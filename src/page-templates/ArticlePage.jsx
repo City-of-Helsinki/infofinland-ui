@@ -10,7 +10,7 @@ import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 
 const ArticlePage = ({
   title,
-  // body,
+
   mainMenu,
   aboutMenu,
   ...articleProps

@@ -1,11 +1,18 @@
+const findParent = ({ items, parentId }) =>
+  items.find(({ id }) => id === parentId)
+// TODO tests
 export default function useBreadCrumbs({ items, path }) {
-  let breadcrumbs = []
-  // Not the right solution, just testing out. Dont forget to fix this
   const page = items.find(({ url }) => url === path)
-  if (page.parent) {
-    breadcrumbs = [...items.filter(({ id }) => id === page.parent), page]
-  } else {
-    breadcrumbs = [page]
+  const breadcrumbs = [page]
+
+  let parentItem = findParent({ items, parentId: page.parent })
+  if (parentItem) {
+    breadcrumbs.push(parentItem)
+    while (parentItem.parent !== '') {
+      parentItem = findParent({ items, parentId: parentItem.parent })
+      breadcrumbs.push(parentItem)
+    }
   }
-  return breadcrumbs
+
+  return breadcrumbs.reverse()
 }
