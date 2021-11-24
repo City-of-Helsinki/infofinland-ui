@@ -1,4 +1,5 @@
-import useTranslation from 'next-translate/useTranslation'
+
+import { useTranslation } from 'next-i18next';
 import cls from 'classnames'
 
 const InfoBlock = ({ isSubmitting, isSubmitted, isSubmitSuccessful }) => {

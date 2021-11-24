@@ -1,9 +1,9 @@
 import ThemePage from '../../src/page-templates/ThemePage'
 import heroImage from '../../public/images/article1-sm.png'
-import * as DrupalApi from '@/src/lib/drupal-api'
+import * as DrupalApi from '@/lib/ssr-api'
 // import { getResourceFromContext, getResourceTypeFromContext,
 //   getResourceByPath, getResource} from 'next-drupal'
-import { locales } from '@/i18n'
+import { i18n } from '@/next-i18next.config'
 const body = `
 <div>
 <p>The education system includes early childhood education, preschool
@@ -37,7 +37,7 @@ export async function getStaticPaths() {
     },
   }
 
-  const paths = locales.map((locale) => ({ ...page, locale }))
+  const paths = i18n.locales.map((locale) => ({ ...page, locale }))
 
   return {
     paths,

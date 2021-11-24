@@ -5,10 +5,11 @@ import ThemeList from '@/components/home/ThemeList'
 import CitySelector from '@/components/home/CitySelector'
 import HomeAbout from '@/components/home/HomeAbout'
 import Block from '@/components/article/Block'
-import * as DrupalApi from '@/src/lib/drupal-api'
+import {getCommonApiContent} from '@/lib/ssr-api'
+// import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export async function getStaticProps(context) {
-  const common = await DrupalApi.getCommonApiContent(context)
+  const common = await getCommonApiContent(context)
   return {
     props: {
       ...common,

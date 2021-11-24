@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-css-tags */
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import Favicons from '@/components/layout/Favicons'
-import { rtlLocales } from '@/i18n'
+import { i18n } from '@/next-i18next.config'
 class MyDocument extends Document {
   static async getStaticProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx)
@@ -10,7 +10,7 @@ class MyDocument extends Document {
   }
 
   render() {
-    const direction = rtlLocales.includes(this.props.locale) ? 'rtl' : 'ltr'
+    const direction = i18n.rtlLocales.includes(this.props.locale) ? 'rtl' : 'ltr'
     return (
       <Html dir={direction} lang={this.props.locale}>
         <Head>

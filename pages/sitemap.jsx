@@ -4,9 +4,10 @@ import Layout from '@/components/layout/Layout'
 // import cls from 'classnames'
 // import  xml2js from 'xml2js'
 import sitemap from '-!xml-loader!../public/sitemap.xml'
-import useTranslation from 'next-translate/useTranslation'
+
+import { useTranslation } from 'next-i18next';
 import TextLink from '@/components/TextLink'
-import * as DrupalApi from '@/src/lib/drupal-api'
+import * as DrupalApi from '@/lib/ssr-api'
 import Block from '@/components/article/Block'
 
 export async function getStaticProps(context) {

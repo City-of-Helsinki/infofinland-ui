@@ -4,6 +4,7 @@ import {
   // getResourceFromContext,
   getResource,
 } from 'next-drupal'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export const getMainMenu = async (context) => await getMenu('main', context)
 
@@ -22,9 +23,13 @@ export const getFeedbackInstructionsBlock = async () => await getResource()
 // "97ee0b84-309f-4b5e-b321-042018552428"
 
 export const getCommonApiContent = async (context) => {
-  const [mainMenu, aboutMenu] = await Promise.all([
+  const [mainMenu, aboutMenu,translations] = await Promise.all([
     getMainMenu(context),
     getFooterAboutMenu(context),
+    serverSideTranslations(context.locale,['common'])
   ])
-  return { mainMenu, aboutMenu }
+  return { mainMenu, aboutMenu,...translations }
 }
+
+
+

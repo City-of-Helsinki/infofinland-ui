@@ -4,11 +4,12 @@ import { HERO_MARGIN } from '@/components/article/Article'
 import { useRouter } from 'next/router'
 import cls from 'classnames'
 import { longTextClass } from '@/components/Typo'
-import useTranslation from 'next-translate/useTranslation'
+
+import { useTranslation } from 'next-i18next';
 import TextLink from '@/components/TextLink'
-import { rtlLocales } from '@/i18n'
+import { i18n } from '@/next-i18next.config'
 import { map, omit } from 'lodash'
-import * as DrupalApi from '@/src/lib/drupal-api'
+import * as DrupalApi from '@/lib/ssr-api'
 
 export async function getStaticProps(context) {
   const common = await DrupalApi.getCommonApiContent(context)
@@ -116,7 +117,7 @@ const PageNotFound = (props) => {
               key={`${locale}-content`}
               lang={locale}
               className="mb-8 lg:mb-0"
-              dir={rtlLocales.includes(locale) ? 'rtl' : 'ltr'}
+              dir={i18n.rtlLocales.includes(locale) ? 'rtl' : 'ltr'}
             >
               <p className="text-body-small font-bold">{title}</p>
               <p className="text-body-small">{help}</p>
