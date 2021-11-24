@@ -15,5 +15,9 @@ module.exports = nextTranslate(
       YOUTUBE_URL: 'https://www.youtube.com/c/infofinland',
       TWITTER_URL: 'https://twitter.com/InfoFinlandfi',
     },
+    webpack: (config) => {
+      config.module.rules.push({ test: /\.xml$/, loader: 'xml-loader' })
+      return config
+    },
   }
 )

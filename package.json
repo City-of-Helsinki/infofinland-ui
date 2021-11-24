@@ -10,7 +10,6 @@
     "test": "jest"
   },
   "dependencies": {
-    "next-sitemap": "1.x",
     "@fullhuman/postcss-purgecss": "4.0.3",
     "add": "2.0.6",
     "autoprefixer": "10.x",
@@ -22,11 +21,13 @@
     "luxon": "2.0.2",
     "next": "11.x",
     "next-drupal": "0.x",
+    "next-sitemap": "1.x",
     "next-translate": "1.x",
     "nprogress": "0.2.0",
     "optics-ts": "2.2.0",
     "react": "17.x",
     "react-dom": "17.x",
+    "react-error-boundary": "3.1.4",
     "react-highlight-words": "0.17.0",
     "react-hook-form": "7.17.4",
     "react-loader-spinner": "4.0.0",
@@ -37,7 +38,9 @@
     "sharp": "0.29.2",
     "swr": "1.0.1",
     "tailwindcss": "2.x",
-    "tailwindcss-rtl": "latest"
+    "tailwindcss-rtl": "latest",
+    "xml-loader": "1.2.1",
+    "xml2js": "0.4.23"
   },
   "devDependencies": {
     "@babel/core": "7.x",
