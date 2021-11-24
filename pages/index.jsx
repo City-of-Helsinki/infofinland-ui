@@ -1,26 +1,13 @@
 import Head from 'next/head'
 import HomeHero from '@/components/home/HomeHero'
 import Layout from '@/components/layout/Layout'
-// import { ARTICLE_MARGIN_CLASS } from '../components/theme/page/subpage/Article'
 import ThemeList from '@/components/home/ThemeList'
 import CitySelector from '@/components/home/CitySelector'
 import HomeAbout from '@/components/home/HomeAbout'
 import Block from '@/components/article/Block'
 import * as DrupalApi from '@/src/lib/drupal-api'
 
-// export async function getStaticPaths(context) {
-//   // console.log({context})
-//   // return {
-//   //   paths: await getPathsFromContext("node--page", context),
-//   //   fallback: false,
-//   // }
-// }
-
 export async function getStaticProps(context) {
-  console.log({ context })
-  //   // const node = await getResourceFromContext("node--page", context)
-  //   // console.log(node)
-  //   // Fetch the main menu.
   const common = await DrupalApi.getCommonApiContent(context)
   return {
     props: {
@@ -36,8 +23,7 @@ const HomePage = ({ mainMenu, aboutMenu }) => (
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <HomeHero
-      title="Your source for living in Finland
-"
+      title="Your source for living in Finland"
       image="/images/home.png"
     />
     {/* <div className="mx-6 lg:mx-12 xl:mx-24 2xl:mx-48 mb-16 4xl:max-w-6xl"> */}
@@ -50,7 +36,7 @@ const HomePage = ({ mainMenu, aboutMenu }) => (
       </p>
     </Block>
     <Block>
-      <ThemeList themes={[]} showImages />
+      <ThemeList themes={mainMenu.tree} showImages />
     </Block>
     <CitySelector />
     <HomeAbout />

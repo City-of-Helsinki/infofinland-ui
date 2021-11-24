@@ -6,13 +6,17 @@ import Block from '../components/article/Block'
 import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import useBreadCrumbs from '@/hooks/useBreadCrumbs'
 import useThemeList from '@/hooks/useThemeList'
+
 const ThemePage = ({ title, mainMenu, aboutMenu, ...articleProps }) => {
   const { localePath } = useRouterWithLocalizedPath()
   const breadcrumbs = useBreadCrumbs({
     items: mainMenu.items,
     path: localePath,
   })
-  const themes = useThemeList({ ...mainMenu, path: localePath })
+  const themes = useThemeList({
+    tree: mainMenu.tree,
+    path: localePath,
+  })
 
   return (
     <Layout mainMenu={mainMenu} aboutMenu={aboutMenu}>

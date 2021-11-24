@@ -8,7 +8,6 @@ describe('Error page', () => {
     const { serverRenderToString, render } = await getPage({
       route: '/500',
     })
-
     // check correctness of SSR result
     const { html } = serverRenderToString()
     const formattedSSRSnapshot = prettier.format(html, {

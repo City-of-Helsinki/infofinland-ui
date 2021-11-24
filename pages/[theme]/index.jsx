@@ -1,8 +1,9 @@
 import ThemePage from '../../src/page-templates/ThemePage'
 import heroImage from '../../public/images/article1-sm.png'
 import * as DrupalApi from '@/src/lib/drupal-api'
-import // getResourceFromContext,
-'next-drupal'
+// import { getResourceFromContext, getResourceTypeFromContext,
+//   getResourceByPath, getResource} from 'next-drupal'
+import { locales } from '@/i18n'
 const body = `
 <div>
 <p>The education system includes early childhood education, preschool
@@ -21,11 +22,6 @@ education. Adult education is intended for adults and <a href="/" class="class-f
 multitude of alternatives from comprehensive to higher education</p></div>
 `
 export const PROPS = {
-  breadcrumbs: [
-    { text: 'Living', url: '/' },
-    { text: 'Health and other things', url: '/' },
-    { text: 'Health services in Finland', url: '/' },
-  ],
   heroImage,
   body,
   title: 'Health services in Finlande',
@@ -34,14 +30,28 @@ export const PROPS = {
   category: 'Health and other things',
 }
 
-export async function getServerSideProps(context) {
-  // const paths = await getPathsFromContext('node--page',context)
+export async function getStaticPaths() {
+  const page = {
+    params: {
+      theme: 'moving-to-finland',
+    },
+  }
+
+  const paths = locales.map((locale) => ({ ...page, locale }))
+
+  return {
+    paths,
+    fallback: 'blocking',
+  }
+}
+
+export async function getStaticProps(context) {
   const common = await DrupalApi.getCommonApiContent(context)
   return {
     props: {
       ...common,
       ...PROPS,
-      // paths
+      revalidate: 60,
     },
   }
 }

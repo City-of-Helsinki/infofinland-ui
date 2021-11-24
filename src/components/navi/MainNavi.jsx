@@ -3,6 +3,7 @@ import Link from 'next/link'
 import cls from 'classnames'
 import SubMenu from '@/components/navi/SubMenu'
 import useLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
+
 const getThemeIndexByPathName = ({ items, path }) => {
   let index
   const findPageIndexByUrl = (items, rootIndex) =>

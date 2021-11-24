@@ -1,4 +1,3 @@
-// import { PAGES } from '../MOCK_PAGES'
 import MainNavi from '@/components/navi/MainNavi'
 import Messages from '@/components/messages/Messages'
 

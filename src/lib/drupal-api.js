@@ -11,6 +11,7 @@ export const getMainMenu = async (context) => await getMenu('main', context)
 
 export const getFooterAboutMenu = async (context) =>
   await getMenu('footer-about', context)
+
 export const getAboutMenu = async (context) => await getMenu('about', context)
 
 // export const getPage = async () => await getMenu('main')
