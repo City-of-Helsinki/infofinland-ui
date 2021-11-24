@@ -36,5 +36,12 @@
     .ifu-topmenu__skiplink {
       @apply -translate-x-full transition-transform duration-200 ease-in-out focus:translate-x-64 translate-y-0 focus:translate-y-0 rounded w-auto;
     }
+
+    [dir='rtl'] .ifu-topmenu__skiplink {
+      @apply translate-x-full focus:-translate-x-64;
+    }
   }
+
+
+
 }
