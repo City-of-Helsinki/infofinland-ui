@@ -5,7 +5,9 @@ export default function useBreadCrumbs({ items, path }) {
   const page = items.find(({ url }) => url === path)
   const breadcrumbs = [page]
   //Cringe :(
-  if(!page) {return []}
+  if (!page) {
+    return []
+  }
 
   if (page?.parent === '') {
     return breadcrumbs
