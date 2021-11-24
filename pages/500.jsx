@@ -4,7 +4,7 @@ import cls from 'classnames'
 import { map, omit } from 'lodash'
 import { BlankLayout } from '@/components/layout/Layout'
 import { longTextClass } from '@/components/Typo'
-import { rtlLocales } from '@/i18n'
+import { i18n } from '@/next-i18next.config'
 
 const TEXTS = {
   fi: {
@@ -104,7 +104,7 @@ const Error500 = () => {
               key={`${locale}-content`}
               lang={locale}
               className="mb-8 lg:mb-0"
-              dir={rtlLocales.includes(locale) ? 'rtl' : 'ltr'}
+              dir={i18n.rtlLocales.includes(locale) ? 'rtl' : 'ltr'}
             >
               <p className="text-body-small font-bold">{title}</p>
               <p className="text-body-small">{help}</p>

@@ -1,6 +1,7 @@
 import cls from 'classnames'
 import { IconCross } from '@/components/Icons'
-import useTranslation from 'next-translate/useTranslation'
+
+import { useTranslation } from 'next-i18next';
 
 const Button = ({ children, className, ...buttonProps }) => (
   <button className={cls('ifu-button', className)} {...buttonProps}>

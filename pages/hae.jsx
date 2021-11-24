@@ -1,4 +1,5 @@
-import useTranslation from 'next-translate/useTranslation'
+
+import { useTranslation } from 'next-i18next';
 import Layout from '@/components/layout/Layout'
 import Head from 'next/head'
 import Block from '@/components/article/Block'
@@ -10,7 +11,7 @@ import { IconLookingGlass } from '@/components/Icons'
 
 import useSearchRoute from '@/hooks/useSearchRoute'
 import { IconAngleRight } from '@/components/Icons'
-import * as DrupalApi from '@/src/lib/drupal-api'
+import * as DrupalApi from '@/lib/ssr-api'
 
 import Highlighter from 'react-highlight-words'
 

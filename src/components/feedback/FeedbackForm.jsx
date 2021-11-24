@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, forwardRef } from 'react'
 import cls from 'classnames'
-import useTranslation from 'next-translate/useTranslation'
+
+import { useTranslation } from 'next-i18next';
 import { IconExclamationBubble, IconAngleUp } from '@/components/Icons'
 import { HERO_MARGIN } from '@/components/article/Article'
 import Button, { LinkButton } from '@/components/Button'

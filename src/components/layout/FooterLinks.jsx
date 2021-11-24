@@ -2,7 +2,8 @@ import { IconFacebook, IconInstagram, IconTwitter, IconYoutube } from '../Icons'
 import { HERO_MARGIN } from '@/components/article/Article'
 import Link from 'next/link'
 import cls from 'classnames'
-import useTranslation from 'next-translate/useTranslation'
+
+import { useTranslation } from 'next-i18next';
 
 /**
  * SOME Urls are defined in next.config.js

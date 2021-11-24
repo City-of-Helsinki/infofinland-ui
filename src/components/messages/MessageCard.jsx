@@ -7,7 +7,8 @@ export const MESSAGE_TYPES = {
 
 import { useState, useEffect } from 'react'
 import { CSSTransition } from 'react-transition-group'
-import useTranslation from 'next-translate/useTranslation'
+
+import { useTranslation } from 'next-i18next';
 
 const MessageButton = ({ cancel, confirm, onClick }) => {
   const { t } = useTranslation('common')

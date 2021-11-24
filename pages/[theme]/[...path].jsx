@@ -1,7 +1,7 @@
 import ArticlePage from '../../src/page-templates/ArticlePage'
 import heroImage from '../../public/images/article1-sm.png'
-import * as DrupalApi from '@/src/lib/drupal-api'
-import { locales } from '@/i18n'
+import * as DrupalApi from '@/lib/ssr-api'
+import { i18n } from '@/next-i18next.config'
 
 // import {
 //   getPathsFromContext,
@@ -94,7 +94,7 @@ export async function getStaticPaths() {
     },
   }
 
-  const paths = locales.map((locale) => ({ ...page, locale }))
+  const paths = i18n.locales.map((locale) => ({ ...page, locale }))
   return {
     paths,
     fallback: 'blocking',

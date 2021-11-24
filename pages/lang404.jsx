@@ -1,5 +1,5 @@
 import { LanguageNotFound } from './404'
-import * as DrupalApi from '@/src/lib/drupal-api'
+import * as DrupalApi from '@/lib/ssr-api'
 
 export async function getStaticProps(context) {
   const common = await DrupalApi.getCommonApiContent(context)

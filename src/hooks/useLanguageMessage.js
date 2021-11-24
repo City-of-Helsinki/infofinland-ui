@@ -1,6 +1,6 @@
 import { useAtom } from 'jotai'
 import { languageMessageIsOpen } from '../store'
-import { locales, fallbackLocale } from '../../i18n'
+import { i18n } from '../../next-i18next.config'
 const SESSION_KEY = 'langMessage'
 const SHOWN = 'shown'
 const NOT_SHOWN = 'not_shown'
@@ -32,8 +32,7 @@ const useLanguageMessage = () => {
     isOpen,
     isShownOnce: userHasClosedMessage === SHOWN,
     userLocale,
-    locales,
-    fallbackLocale,
+    locales:i18n.locales
   }
 }
 

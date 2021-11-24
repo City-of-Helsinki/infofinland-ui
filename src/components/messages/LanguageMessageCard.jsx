@@ -2,7 +2,8 @@ import { useAtom } from 'jotai'
 import { languageMenuVisibility } from '@/src/store'
 import useLanguageMessage from '@/hooks/useLanguageMessage'
 import MessageCard, { MESSAGE_TYPES } from '@/components/messages/MessageCard'
-import useTranslation from 'next-translate/useTranslation'
+
+import { useTranslation } from 'next-i18next';
 
 const LanguageMessageCard = () => {
   const { hideMessage, setShownOnce, isShownOnce, isOpen } =

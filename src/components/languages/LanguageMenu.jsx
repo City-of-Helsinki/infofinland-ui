@@ -3,9 +3,10 @@ import { IconCheck, IconGlobe } from '@/components/Icons'
 import Drawer from '@/components/layout/Drawer'
 import { useRouter } from 'next/router'
 import cls from 'classnames'
-import useTranslation from 'next-translate/useTranslation'
 
-import { languages } from '@/i18n'
+import { useTranslation } from 'next-i18next';
+
+import { i18n } from '@/next-i18next.config'
 
 export const LanguageMenu = ({ closeMenu }) => {
   const { t } = useTranslation('common')
@@ -16,7 +17,7 @@ export const LanguageMenu = ({ closeMenu }) => {
       <label className="block px-14 mb-8 text-body-large font-bold">
         {t('languageMenu.label')}
       </label>
-      {languages.map((lang) => {
+      {i18n.languages.map((lang) => {
         const { text, code } = lang
         const isSelected = locale === code
         return (
@@ -64,7 +65,7 @@ export const LangMenuDrawer = ({ closeMenu, isOpen }) => (
 export const LanguageMenuButton = ({ onClick }) => {
   const { t } = useTranslation('common')
   const { locale } = useRouter()
-  const { text } = languages.find(({ code }) => code === locale)
+  const { text } = i18n.languages.find(({ code }) => code === locale)
   return (
     <button
       aria-haspopup="dialog"
