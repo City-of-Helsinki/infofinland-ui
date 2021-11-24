@@ -2,7 +2,7 @@
 
 export default function useThemeList({ tree, path }) {
   const theme = tree.find(({ url }) => url === path)
-  if (!theme['items']) {
+  if (!theme || !theme.items) {
     return []
   } else {
     return theme.items

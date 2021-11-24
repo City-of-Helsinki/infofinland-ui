@@ -4,7 +4,12 @@ const findParent = ({ items, parentId }) =>
 export default function useBreadCrumbs({ items, path }) {
   const page = items.find(({ url }) => url === path)
   const breadcrumbs = [page]
-  if (page.parent === '') {
+  //Cringe :(
+  if (!page) {
+    return []
+  }
+
+  if (page?.parent === '') {
     return breadcrumbs
   }
   let parentItem = findParent({ items, parentId: page.parent })
