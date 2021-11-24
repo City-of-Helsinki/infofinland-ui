@@ -1,5 +1,8 @@
 import ArticlePage from '../../src/page-templates/ArticlePage'
 import heroImage from '../../public/images/article1-sm.png'
+import * as DrupalApi from '@/src/lib/drupal-api'
+import { locales } from '@/i18n'
+
 // import {
 //   getPathsFromContext,
 //   getResourceFromContext,
@@ -73,12 +76,8 @@ Apply for VALMA education in the search for preparatory education after comprehe
 <span class="normal langversions"><span class="linkarrow"><a href="https://opintopolku.fi/wp/ammatillinen-koulutus/%ef%bb%bfammatilliseen-peruskoulutukseen-valmentava-koulutus/" target="_blank" onclick="ga('send', 'event', 'Exit Links', 'Click', 'opintopolku.fi');" class="outerlink">linkki</a></span><span class="linkorganisation">Studyinfo.fi:</span><br><span class="doctitle">Information on VALMA education</span><span class="linklanguages"><a href="https://opintopolku.fi/wp/ammatillinen-koulutus/%ef%bb%bfammatilliseen-peruskoulutukseen-valmentava-koulutus/" target="_blank" onclick="ga('send', 'event', 'Exit Links', 'Click', 'opintopolku.fi');" class="outerlink">Finnish</a> | <a href="https://studieinfo.fi/wp/yrkesutbildning/utbildning-som-handleder-for-grundlaggande-yrkesutbildning/" target="_blank" onclick="ga('send', 'event', 'Exit Links', 'Click', 'studieinfo.fi');" class="outerlink">Swedish</a> | <a href="https://studyinfo.fi/wp2/en/vocational-education-and-training/preparatory-education-for-vocational-education/" target="_blank" onclick="ga('send', 'event', 'Exit Links', 'Click', 'studyinfo.fi');" class="outerlink">English</a></span></span>
 <span class="normal langversions"><span class="linkarrow"><a href="https://opintopolku.fi/wp/valintojen-tuki/yhteishaku/haku-kesalla-perusopetuksen-jalkeisiin-valmistaviin-koulutuksiin/" target="_blank" onclick="ga('send', 'event', 'Exit Links', 'Click', 'opintopolku.fi');" class="outerlink">linkki</a></span><span class="linkorganisation">Studyinfo.fi:</span><br><span class="doctitle">Applying for VALMA education</span><span class="linklanguages"><a href="https://opintopolku.fi/wp/valintojen-tuki/yhteishaku/haku-kesalla-perusopetuksen-jalkeisiin-valmistaviin-koulutuksiin/" target="_blank" onclick="ga('send', 'event', 'Exit Links', 'Click', 'opintopolku.fi');" class="outerlink">Finnish</a> | <a href="https://studieinfo.fi/wp/stod-for-studievalet/gemensam-ansokan/ansokan-pa-sommaren-till-handledande-utbildningar-efter-grundlaggande-utbildning/" target="_blank" onclick="ga('send', 'event', 'Exit Links', 'Click', 'studieinfo.fi');" class="outerlink">Swedish</a> | <a href="https://studyinfo.fi/wp2/en/general-upper-secondary-education/preparatory-education-for-general-upper-secondary/" target="_blank" onclick="ga('send', 'event', 'Exit Links', 'Click', 'studyinfo.fi');" class="outerlink">English</a></span></span>
 `
+
 export const PROPS = {
-  breadcrumbs: [
-    { text: 'Living', url: '/' },
-    { text: 'Health and other things', url: '/' },
-    { text: 'Health services in Finland', url: '/' },
-  ],
   heroImage,
   body,
   title: 'Vocational education and training',
@@ -87,87 +86,27 @@ export const PROPS = {
   category: 'Health and other things',
 }
 
-// export async function getStaticPaths(context) {
-//   const paths =  await getPathsFromContext(["node--article", "node--page"], context)
-//   return {
-//     paths,
-//     fallback: true,
-//   }
-// }
+export async function getStaticPaths() {
+  const page = {
+    params: {
+      theme: 'settling-in-finland',
+      path: ['eu-citizens'],
+    },
+  }
 
-export async function getServerSideProps() {
-  // context
-  // const { tree, items } = await getMenu("testmenu")
-  // let url = null;
-  // if(context){ url = context.req.rawHeaders.find((h) => /^http:/.test(h))}
-
-  return { props: PROPS }
-
-  //   const type = await getResourceTypeFromContext(context)
-  //   if (!type) {
-  //     return {
-  //       notFound: true,
-  //     }
-  //   }
-
-  //   let params = {}
-  //   if (type === "node--article") {
-  //     params = {
-  //       include: "field_image,uid",
-  //     }
-  //   }
-
-  //   const node = await getResourceFromContext(type, context, {
-  //     params,
-  //   })
-  //   if (!node?.status) {
-  //     return {
-  //       notFound: true,
-  //     }
-  //   }
-
-  //   return {
-  //     props: {
-  //       preview: context.preview || false,
-  //       node,
-  //     },
-  //     revalidate: 60,
-  //   }
+  const paths = locales.map((locale) => ({ ...page, locale }))
+  return {
+    paths,
+    fallback: 'blocking',
+  }
 }
 
-// export async function getServerSideProps() {
-//   return { props: PROPS }
-// }
-
-//   return {props}
-// export async function getStaticProps(context) {
-
-//   const props = {
-//     breadcrumbs:[
-//       { text: 'Living', url: '/' },
-//       { text: 'Health and other things', url: '/' },
-//       { text: 'Health services in Finland', url: '/' },
-//     ],
-//     heroImage,
-//     body,
-//     title:'Health services in Finlande',
-//     color:'red',
-//     date:'23.12.2015',
-//     category:'Health and other things'
-//   }
-
-//   return {props}
-
-// }
-
-// export async function getStaticPaths() {
-
-//   return {paths:[
-//     { params: { theme:'theme',page:'foo', subpage: 'bar' } },
-//   ],
-//   fallback:true
-// }
-
-// }
-
+export async function getStaticProps(context) {
+  const common = await DrupalApi.getCommonApiContent(context)
+  const props = {
+    ...common,
+    ...PROPS,
+  }
+  return { props }
+}
 export default ArticlePage

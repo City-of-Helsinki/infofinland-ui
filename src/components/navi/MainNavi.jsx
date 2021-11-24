@@ -1,37 +1,36 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import cls from 'classnames'
-import { useRouter } from 'next/router'
 import SubMenu from '@/components/navi/SubMenu'
+import useLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 
-const getThemeIndexByPathName = ({ pages, path }) => {
+const getThemeIndexByPathName = ({ items, path }) => {
   let index
-
-  const findPageByUrl = (pages, rootIndex) =>
-    pages.find(({ url, pages }, i) => {
+  const findPageIndexByUrl = (items, rootIndex) =>
+    items.find(({ url, items }, i) => {
       if (url === path) {
         index = rootIndex || i
         return
-      } else if (pages) {
-        findPageByUrl(pages, rootIndex || i)
+      } else if (items) {
+        findPageIndexByUrl(items, rootIndex || i)
       }
     })
 
-  findPageByUrl(pages)
+  findPageIndexByUrl(items)
   return index
 }
 
 const TopMenuItem = ({
-  text,
+  title,
   url,
-  pages,
+  items,
   isOpen,
   toggle,
   selected,
   selectedIsHidden,
 }) => (
-  <li className={cls(' block relative', {})}>
-    {!pages && (
+  <li className={cls('block relative', {})}>
+    {!items && (
       <Link href={url}>
         <a
           className={cls(
@@ -40,20 +39,20 @@ const TopMenuItem = ({
               'font-bold': selected,
               'border-white': !selected,
               'border-blue':
-                (selected && (!isOpen || !pages)) || selectedIsHidden,
+                (selected && (!isOpen || !items)) || selectedIsHidden,
             }
           )}
         >
-          {text}
+          {title}
         </a>
       </Link>
     )}
 
-    {pages && (
+    {items && (
       <SubMenu
         url={url}
-        pages={pages}
-        text={text}
+        items={items}
+        title={title}
         isOpen={isOpen}
         toggle={toggle}
         selected={selected}
@@ -63,9 +62,13 @@ const TopMenuItem = ({
   </li>
 )
 
-const MainNavi = ({ pages }) => {
-  const { asPath } = useRouter()
-  const indexFromRouter = getThemeIndexByPathName({ pages, path: asPath })
+const MainNavi = ({ mainMenu: { tree } }) => {
+  const { localePath } = useLocalizedPath()
+
+  const indexFromRouter = getThemeIndexByPathName({
+    items: tree,
+    path: localePath,
+  })
   const [openIndex, setVisibility] = useState(indexFromRouter)
   const setOpenIndex = (i) => setVisibility(i === openIndex ? null : i)
   /**
@@ -74,20 +77,22 @@ const MainNavi = ({ pages }) => {
    */
   useEffect(() => {
     setVisibility(indexFromRouter)
-  }, [asPath, indexFromRouter])
+  }, [localePath, indexFromRouter])
 
   return (
     <nav className={cls('mb-8  pt-8', {})}>
       <ul className="block">
-        {pages.map((props, i) => (
+        {tree.map((props, i) => (
           <TopMenuItem
-            key={`link-${props.text}`}
+            key={`link-${props.title}`}
             {...props}
-            selected={asPath === props.url}
+            selected={localePath === props.url}
             isOpen={i === openIndex}
             toggle={() => setOpenIndex(i)}
             selectedIsHidden={
-              i === indexFromRouter && openIndex !== i && asPath !== props.ur
+              i === indexFromRouter &&
+              openIndex !== i &&
+              localePath !== props.url
             }
           />
         ))}

@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import DesktopNavi from '@/components/navi/DesktopNavi'
 import Messages from '@/components/messages/Messages'
-import FooterLinks from '@/components/layout/Footer'
+import FooterLinks from '@/components/layout/FooterLinks'
 import FeedbackButtonBlock from '@/components/feedback/FeedbackForm'
 import TopMenu from '@/components/layout/TopMenu'
 import ReactModal from 'react-modal'
@@ -35,7 +35,7 @@ export const BlankLayout = ({ children }) => {
   )
 }
 
-const AppLayout = ({ children }) => {
+const AppLayout = ({ children, mainMenu, aboutMenu }) => {
   useSetLocalization()
   useShowLangMessage()
   return (
@@ -45,16 +45,16 @@ const AppLayout = ({ children }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className=" relative text-body bg-white">
-        <TopMenu />
+        <TopMenu mainMenu={mainMenu} />
         <div className=" md:flex md:items-stretch">
           <div className="md:hidden">
             <Messages />
           </div>
-          <DesktopNavi />
+          <DesktopNavi mainMenu={mainMenu} />
           <div className="ifu-layout__body">
             <main id="main">{children}</main>
             <footer className="ifu-footer" id="footer">
-              <FooterLinks />
+              <FooterLinks aboutMenu={aboutMenu} />
               <FeedbackButtonBlock />
             </footer>
           </div>

@@ -2,9 +2,9 @@ import { CSSTransition } from 'react-transition-group'
 import { IconAngleDown, IconAngleUp } from '@/components/Icons'
 import Link from 'next/link'
 import cls from 'classnames'
-import { useRouter } from 'next/router'
+import useLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 
-const SubMenuItem = ({ text, url, selected, pages, level, isOpen }) => (
+const SubMenuItem = ({ title, url, selected, items, level, isOpen }) => (
   <li className=" block">
     <Link passHref href={url}>
       <a
@@ -16,15 +16,16 @@ const SubMenuItem = ({ text, url, selected, pages, level, isOpen }) => (
           'border-s-5 border-white ': !selected,
         })}
       >
-        {text}
+        {title}
       </a>
     </Link>
-    {pages && <SubMenuItems pages={pages} level={level + 1} isOpen={isOpen} />}
+    {items && <SubMenuItems items={items} level={level + 1} isOpen={isOpen} />}
   </li>
 )
 
-const SubMenuItems = ({ pages, isOpen, level }) => {
-  const { asPath } = useRouter()
+const SubMenuItems = ({ items, isOpen, level }) => {
+  const { localePath } = useLocalizedPath()
+
   return (
     <CSSTransition
       timeout={{ appear: 0, enter: 400, exit: 0 }}
@@ -45,12 +46,12 @@ const SubMenuItems = ({ pages, isOpen, level }) => {
       }}
     >
       <ul className="ifu-mainmenu__submenu">
-        {pages.map((props, i) => (
+        {items.map((props, i) => (
           <SubMenuItem
-            key={`${props.text}-${i}`}
+            key={`${props.title}-${i}`}
             {...props}
             level={level}
-            selected={props.url === asPath}
+            selected={props.url === localePath}
             isOpen={isOpen}
           />
         ))}
@@ -60,8 +61,8 @@ const SubMenuItems = ({ pages, isOpen, level }) => {
 }
 
 const SubMenu = ({
-  pages,
-  text,
+  items,
+  title,
   isOpen,
   toggle,
   selected,
@@ -85,13 +86,13 @@ const SubMenu = ({
           title={isOpen ? 'Open menu' : 'Close menu'}
         >
           <span className={cls('block', { 'font-bold': selected })}>
-            {text}
+            {title}
           </span>
         </a>
       </Link>
       <div className="flex-none">
         <button
-          className="block w-14 h-12 text-gray-light me-2 text-start"
+          className="block w-14 h-12 text-gray-light me-2 title-start"
           onClick={toggle}
           aria-expanded={isOpen}
           // tabIndex="0"
@@ -105,7 +106,7 @@ const SubMenu = ({
         </button>
       </div>
     </div>
-    {pages && <SubMenuItems pages={pages} isOpen={isOpen} level={1} />}
+    {items && <SubMenuItems items={items} isOpen={isOpen} level={1} />}
   </>
 )
 

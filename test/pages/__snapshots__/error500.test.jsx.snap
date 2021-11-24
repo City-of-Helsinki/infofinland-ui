@@ -22,9 +22,9 @@ exports[`Error page page renders and matches snapshot 1`] = `
         >
           <span class=\\"flex-none px-4 text-h2 md:text-h1xl font-bold\\">500</span>
           <h1 class=\\"flex-grow text-body md:text-body-large md:ms-6 lg:ms-12\\">
-            Sivustolla tapahtui virhe<span
+            Something went wrong<span
               class=\\"hidden md:block text-body md:text-body-large\\"
-              >Lataa sivu uudestaan</span
+              >Try to refresh the page</span
             >
           </h1>
         </div>
@@ -41,15 +41,15 @@ exports[`Error page page renders and matches snapshot 1`] = `
           \\"
         >
           <p class=\\"block md:hidden mb-8 text-body-small\\">
-            Lataa sivu uudestaan
+            Try to refresh the page
           </p>
+          <div lang=\\"fi\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
+            <p class=\\"text-body-small font-bold\\">Sivustolla tapahtui virhe</p>
+            <p class=\\"text-body-small\\">Lataa sivu uudestaan</p>
+          </div>
           <div lang=\\"sv\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
             <p class=\\"text-body-small font-bold\\">?</p>
             <p class=\\"text-body-small\\">?</p>
-          </div>
-          <div lang=\\"en\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
-            <p class=\\"text-body-small font-bold\\">Something went wrong</p>
-            <p class=\\"text-body-small\\">Try to refresh the page</p>
           </div>
           <div lang=\\"ru\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
             <p class=\\"text-body-small font-bold\\">?</p>
@@ -114,9 +114,9 @@ exports[`Error page page renders and matches snapshot 2`] = `
     >
       <span class=\\"flex-none px-4 text-h2 md:text-h1xl font-bold\\">500</span>
       <h1 class=\\"flex-grow text-body md:text-body-large md:ms-6 lg:ms-12\\">
-        Sivustolla tapahtui virhe<span
+        Something went wrong<span
           class=\\"hidden md:block text-body md:text-body-large\\"
-          >Lataa sivu uudestaan</span
+          >Try to refresh the page</span
         >
       </h1>
     </div>
@@ -132,14 +132,16 @@ exports[`Error page page renders and matches snapshot 2`] = `
         md:px-6 md:mx-auto md:max-w-4xl
       \\"
     >
-      <p class=\\"block md:hidden mb-8 text-body-small\\">Lataa sivu uudestaan</p>
+      <p class=\\"block md:hidden mb-8 text-body-small\\">
+        Try to refresh the page
+      </p>
+      <div lang=\\"fi\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
+        <p class=\\"text-body-small font-bold\\">Sivustolla tapahtui virhe</p>
+        <p class=\\"text-body-small\\">Lataa sivu uudestaan</p>
+      </div>
       <div lang=\\"sv\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
         <p class=\\"text-body-small font-bold\\">?</p>
         <p class=\\"text-body-small\\">?</p>
-      </div>
-      <div lang=\\"en\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
-        <p class=\\"text-body-small font-bold\\">Something went wrong</p>
-        <p class=\\"text-body-small\\">Try to refresh the page</p>
       </div>
       <div lang=\\"ru\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
         <p class=\\"text-body-small font-bold\\">?</p>

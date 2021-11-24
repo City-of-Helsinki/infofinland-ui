@@ -99,7 +99,7 @@ const Article = ({ children, breadcrumbs, color, ...heroProps }) => {
           'px-6 lg:px-12': !heroProps.heroImage,
         })}
       >
-        <Breadcrumbs pages={breadcrumbs} />
+        <Breadcrumbs items={breadcrumbs} />
       </div>
 
       <HeroImage {...heroProps} />
