@@ -1,5 +1,4 @@
-
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next'
 import { IconLookingGlass, IconCross } from '@/components/Icons'
 import Drawer from '@/components/search/SearchDrawer'
 import { useState } from 'react'

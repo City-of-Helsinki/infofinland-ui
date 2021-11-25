@@ -4,8 +4,7 @@ import { IconMenu } from '@/components/Icons'
 import Drawer from '@/components/layout/Drawer'
 import { useRouter } from 'next/router'
 
-
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next'
 
 const MobileNavi = ({ mainMenu }) => {
   const [isOpen, setVisibility] = useState(false)

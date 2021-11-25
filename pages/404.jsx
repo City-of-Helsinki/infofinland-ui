@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import cls from 'classnames'
 import { longTextClass } from '@/components/Typo'
 
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next'
 import TextLink from '@/components/TextLink'
 import { i18n } from '@/next-i18next.config'
 import { map, omit } from 'lodash'

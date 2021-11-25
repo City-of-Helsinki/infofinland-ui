@@ -1,7 +1,6 @@
 import ArticlePage from '../../src/page-templates/ArticlePage'
 import heroImage from '../../public/images/article1-sm.png'
-import * as DrupalApi from '@/lib/ssr-api'
-import { i18n } from '@/next-i18next.config'
+import { getCommonApiContent, getMainMenu } from '@/lib/ssr-api'
 
 // import {
 //   getPathsFromContext,
@@ -86,27 +85,44 @@ export const PROPS = {
   category: 'Health and other things',
 }
 
-export async function getStaticPaths() {
-  const page = {
-    params: {
-      theme: 'settling-in-finland',
-      path: ['eu-citizens'],
-    },
-  }
+export async function getStaticPaths(context) {
+  // const localeFilter = new RegExp(i18n.locales.join('|'))
 
-  const paths = i18n.locales.map((locale) => ({ ...page, locale }))
+  const { items } = await getMainMenu(context)
+  const pages = items
+    // Filter out theme pages
+    .filter(({ parent }) => parent !== '')
+    // Parse to theme and path slug
+    .map(({ url }) => {
+      //remove root slash and language code
+      const [, , ...parts] = url.split('/')
+      const [theme, ...path] = parts
+      return {
+        params: {
+          theme,
+          path,
+        },
+      }
+    })
+
+  const paths = ['fi', 'en']
+    .map((locale) => pages.map((path) => ({ ...path, locale })))
+    .flat()
+
   return {
     paths,
-    fallback: 'blocking',
+    fallback: false,
   }
 }
 
 export async function getStaticProps(context) {
-  const common = await DrupalApi.getCommonApiContent(context)
-  const props = {
-    ...common,
-    ...PROPS,
+  const common = await getCommonApiContent(context)
+  return {
+    props: {
+      ...common,
+      ...PROPS,
+    },
+    revalidate: process.env.REVALIDATE_TIME,
   }
-  return { props }
 }
 export default ArticlePage

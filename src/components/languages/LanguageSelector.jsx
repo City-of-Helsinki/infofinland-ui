@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { IconGlobe } from '@/components/Icons'
 import cls from 'classnames'
 
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next'
 import { i18n } from '@/next-i18next.config'
 
 const LanguageSelector = ({ openMenu }) => {

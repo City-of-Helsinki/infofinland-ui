@@ -3,7 +3,7 @@ import { HERO_MARGIN } from '@/components/article/Article'
 import Link from 'next/link'
 import cls from 'classnames'
 
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next'
 
 /**
  * SOME Urls are defined in next.config.js

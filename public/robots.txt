@@ -3,8 +3,8 @@ User-agent: *
 Allow: /
 
 # Host
-Host: http://localhost:3000
+Host: undefined
 
 # Sitemaps
-Sitemap: http://localhost:3000/sitemap.xml
-Sitemap: http://localhost:3000/article-sitemap.xml
+Sitemap: undefined/sitemap.xml
+Sitemap: undefined/article-sitemap.xml

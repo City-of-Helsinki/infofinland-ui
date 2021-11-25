@@ -7,7 +7,7 @@ import Block from '@/components/article/Block'
 import cls from 'classnames'
 import { IconExternalSite } from '@/components/Icons'
 
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next'
 
 import { READMORE_CONTENT } from '@/components/article/ReadMoreBlock'
 import TextLink from '../TextLink'

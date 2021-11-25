@@ -5,7 +5,7 @@ import Layout from '@/components/layout/Layout'
 // import  xml2js from 'xml2js'
 import sitemap from '-!xml-loader!../public/sitemap.xml'
 
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next'
 import TextLink from '@/components/TextLink'
 import * as DrupalApi from '@/lib/ssr-api'
 import Block from '@/components/article/Block'
