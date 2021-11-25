@@ -1,5 +1,4 @@
-
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next'
 import Layout from '@/components/layout/Layout'
 import Head from 'next/head'
 import Block from '@/components/article/Block'

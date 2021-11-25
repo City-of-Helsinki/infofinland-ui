@@ -32,7 +32,7 @@ const useLanguageMessage = () => {
     isOpen,
     isShownOnce: userHasClosedMessage === SHOWN,
     userLocale,
-    locales:i18n.locales
+    locales: i18n.locales,
   }
 }
 

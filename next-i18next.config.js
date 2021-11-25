@@ -16,11 +16,10 @@ const rtlLocales = ['ar', 'fa']
 const locales = languages.map(({ code }) => code)
 
 module.exports = {
-  i18n:{
+  i18n: {
     locales,
     languages,
     rtlLocales,
     defaultLocale: 'en',
-  }
-
+  },
 }

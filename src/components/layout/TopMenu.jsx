@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { useTranslation } from 'next-i18next';
+import { useTranslation } from 'next-i18next'
 import useLangMenuToggle from '@/hooks/useLangMenuToggle'
 
 import MobileNavi from '@/components/navi/MobileNavi'

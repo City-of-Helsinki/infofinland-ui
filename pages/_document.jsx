@@ -10,7 +10,9 @@ class MyDocument extends Document {
   }
 
   render() {
-    const direction = i18n.rtlLocales.includes(this.props.locale) ? 'rtl' : 'ltr'
+    const direction = i18n.rtlLocales.includes(this.props.locale)
+      ? 'rtl'
+      : 'ltr'
     return (
       <Html dir={direction} lang={this.props.locale}>
         <Head>

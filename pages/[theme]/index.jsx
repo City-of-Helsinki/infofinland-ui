@@ -1,9 +1,8 @@
 import ThemePage from '../../src/page-templates/ThemePage'
 import heroImage from '../../public/images/article1-sm.png'
-import * as DrupalApi from '@/lib/ssr-api'
-// import { getResourceFromContext, getResourceTypeFromContext,
-//   getResourceByPath, getResource} from 'next-drupal'
-import { i18n } from '@/next-i18next.config'
+import { getCommonApiContent, getMainMenu } from '@/lib/ssr-api'
+import { map } from 'lodash'
+
 const body = `
 <div>
 <p>The education system includes early childhood education, preschool
@@ -21,6 +20,7 @@ education, comprehensive education, upper secondary education and higher
 education. Adult education is intended for adults and <a href="/" class="class-from-content"title="some title" id="doodaa"><span>it</span> <span>includes</span></a> a
 multitude of alternatives from comprehensive to higher education</p></div>
 `
+
 export const PROPS = {
   heroImage,
   body,
@@ -30,29 +30,37 @@ export const PROPS = {
   category: 'Health and other things',
 }
 
-export async function getStaticPaths() {
-  const page = {
-    params: {
-      theme: 'moving-to-finland',
-    },
-  }
+export async function getStaticPaths(context) {
+  const { tree } = await getMainMenu(context)
+  // Tree contains array of pages with subpages included inside.
+  // Map first level to get all themes
+  const themes = map(tree, ({ url }) => {
+    //remove root slash and language code
+    const [, , theme] = url.split('/')
+    return {
+      params: {
+        theme,
+      },
+    }
+  })
 
-  const paths = i18n.locales.map((locale) => ({ ...page, locale }))
-
+  const paths = ['fi', 'en']
+    .map((locale) => themes.map((theme) => ({ ...theme, locale })))
+    .flat()
   return {
     paths,
-    fallback: 'blocking',
+    fallback: false,
   }
 }
 
 export async function getStaticProps(context) {
-  const common = await DrupalApi.getCommonApiContent(context)
+  const common = await getCommonApiContent(context)
   return {
     props: {
       ...common,
       ...PROPS,
-      revalidate: 60,
     },
+    revalidate: process.env.REVALIDATE_TIME,
   }
 }
 
