@@ -1,10 +1,8 @@
 import { useEffect } from 'react'
-import { useRouter } from 'next/router'
 import useLanguageMessage from './useLanguageMessage'
 
-export default function useShowLangMessage() {
+export default function useShowLangMessage(locale) {
   const { showMessage, hideMessage, userLocale, locales } = useLanguageMessage()
-  const { locale } = useRouter()
   // Show Language message if route's locale doe1s not match user agent locale
   useEffect(() => {
     if (userLocale !== locale && locales.includes(userLocale)) {
