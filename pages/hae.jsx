@@ -102,7 +102,7 @@ const SearchResults = ({ results, q }) => {
   return results.map((r, i) => <Result key={`foo-${i}`} {...r} q={q} />)
 }
 
-export const SearchPage = ({ q, results, mainMenu, aboutMenu }) => {
+export const SearchPage = ({ q, results, mainMenu, footerMenu }) => {
   const { t } = useTranslation('common')
 
   let title
@@ -115,7 +115,7 @@ export const SearchPage = ({ q, results, mainMenu, aboutMenu }) => {
   }
 
   return (
-    <Layout mainMenu={mainMenu} aboutMenu={aboutMenu}>
+    <Layout mainMenu={mainMenu} footerMenu={footerMenu}>
       <Head>
         <title>{title}</title>
       </Head>

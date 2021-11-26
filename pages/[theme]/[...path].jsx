@@ -2,6 +2,7 @@ import ArticlePage from '../../src/page-templates/ArticlePage'
 import heroImage from '../../public/images/article1-sm.png'
 import { getCommonApiContent, getMainMenu } from '@/lib/ssr-api'
 import {
+  // getResourceByPath,
   getResource,
 } from 'next-drupal'
 
@@ -30,20 +31,24 @@ export async function getStaticPaths(context) {
       }
     })
 
-  const paths = ['fi', 'en', 'sv']
+  // Add list of prerendered languages for pages
+  const paths = ['fi']
     .map((locale) => pages.map((path) => ({ ...path, locale })))
     .flat()
 
   return {
     paths,
-    fallback: true,
+    fallback: 'blocking',
   }
 }
 
 export async function getStaticProps(context) {
   const common = await getCommonApiContent(context)
-  console.log(context)
-  const { locale, defaultLocale } = context
+
+  const { locale, defaultLocale /*params*/ } = context
+  // const path = ['', params.theme, ...params.path].join('/')
+  // const localePath = ['', locale, params.theme, ...params.path].join('/')
+  // const page = common.mainMenu.items.find(({ url }) => url === localePath)
   const node = await getResource(
     'node--page',
     '2228a737-94a7-4aa4-901f-d5d322e25833',
@@ -52,6 +57,14 @@ export async function getStaticProps(context) {
       defaultLocale,
     }
   )
+
+  // const node = await getResourceByPath(
+  //   path,
+  //   {
+  //     locale,
+  //     defaultLocale,
+  //   }
+  // )
   // TODO content type resolvers in ssr-api?
   const { title, field_content } = node
   const content = await Promise.all(

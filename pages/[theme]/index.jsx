@@ -44,12 +44,12 @@ export async function getStaticPaths(context) {
     }
   })
 
-  const paths = ['fi', 'en']
+  const paths = ['fi']
     .map((locale) => themes.map((theme) => ({ ...theme, locale })))
     .flat()
   return {
     paths,
-    fallback: true,
+    fallback: 'blocking',
   }
 }
 

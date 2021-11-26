@@ -7,7 +7,7 @@ import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import useBreadCrumbs from '@/hooks/useBreadCrumbs'
 import useThemeList from '@/hooks/useThemeList'
 
-const ThemePage = ({ title, mainMenu, aboutMenu, ...articleProps }) => {
+const ThemePage = ({ title, mainMenu, footerMenu, ...articleProps }) => {
   const { localePath } = useRouterWithLocalizedPath()
   const breadcrumbs = useBreadCrumbs({
     items: mainMenu.items,
@@ -19,7 +19,7 @@ const ThemePage = ({ title, mainMenu, aboutMenu, ...articleProps }) => {
   })
 
   return (
-    <Layout mainMenu={mainMenu} aboutMenu={aboutMenu}>
+    <Layout mainMenu={mainMenu} footerMenu={footerMenu}>
       <Head>
         <title>{title} theme demo page</title>
         <link rel="icon" href="/favicon.ico" />

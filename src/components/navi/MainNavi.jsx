@@ -3,20 +3,18 @@ import Link from 'next/link'
 import cls from 'classnames'
 import SubMenu from '@/components/navi/SubMenu'
 import useLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
+import { findPageByPath, findRootForPath, getThemes } from '@/lib/menu-utils'
 
 const getThemeIndexByPathName = ({ items, path }) => {
   let index
-  const findPageIndexByUrl = (items, rootIndex) =>
-    items.find(({ url, items }, i) => {
-      if (url === path) {
-        index = rootIndex || i
-        return
-      } else if (items) {
-        findPageIndexByUrl(items, rootIndex || i)
-      }
-    })
-
-  findPageIndexByUrl(items)
+  const root = findRootForPath({ items, path })
+  const themes = getThemes({ items })
+  themes.find(({ url }, i) => {
+    if (url === root.url) {
+      index = i
+      return true
+    }
+  })
   return index
 }
 
@@ -62,13 +60,16 @@ const TopMenuItem = ({
   </li>
 )
 
-const MainNavi = ({ mainMenu: { tree } }) => {
+const MainNavi = ({ mainMenu: { items, tree } }) => {
   const { localePath } = useLocalizedPath()
-
-  const indexFromRouter = getThemeIndexByPathName({
-    items: tree,
-    path: localePath,
-  })
+  let indexFromRouter = -1
+  const page = findPageByPath({ items, localePath })
+  if (page) {
+    indexFromRouter = getThemeIndexByPathName({
+      items,
+      path: localePath,
+    })
+  }
   const [openIndex, setVisibility] = useState(indexFromRouter)
   const setOpenIndex = (i) => setVisibility(i === openIndex ? null : i)
   /**

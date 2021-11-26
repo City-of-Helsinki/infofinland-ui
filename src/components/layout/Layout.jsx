@@ -35,7 +35,7 @@ export const BlankLayout = ({ children }) => {
   )
 }
 
-const AppLayout = ({ children, mainMenu, aboutMenu }) => {
+const AppLayout = ({ children, mainMenu, footerMenu }) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
   useShowLangMessage(locale)
@@ -56,7 +56,7 @@ const AppLayout = ({ children, mainMenu, aboutMenu }) => {
           <div className="ifu-layout__body">
             <main id="main">{children}</main>
             <footer className="ifu-footer" id="footer">
-              <FooterLinks aboutMenu={aboutMenu} />
+              <FooterLinks footerMenu={footerMenu} />
               <FeedbackButtonBlock />
             </footer>
           </div>

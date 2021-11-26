@@ -5,6 +5,11 @@ module.exports = {
   reactStrictMode: true,
   poweredByHeader: false,
   env: {
+    DRUPAL_MENUS: {
+      MAIN: 'main',
+      FOOTER: 'footer-about',
+      ABOUT: 'about',
+    },
     REVALIDATE_TIME: 60,
     FB_URL: 'https://www.facebook.com/infofinland.fi',
     INSTAGRAM_URL: 'https://www.instagram.com/infofinland.fi/',

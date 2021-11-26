@@ -11,8 +11,7 @@ import cls from 'classnames'
 const ArticlePage = ({
   title,
   mainMenu,
-  aboutMenu,
-  node,
+  footerMenu,
   content,
   ...articleProps
 }) => {
@@ -22,9 +21,8 @@ const ArticlePage = ({
     path: localePath,
   })
 
-  // console.log({ content, node })
   return (
-    <Layout mainMenu={mainMenu} aboutMenu={aboutMenu}>
+    <Layout mainMenu={mainMenu} footerMenu={footerMenu}>
       <Head>
         <title>{title}</title>
       </Head>

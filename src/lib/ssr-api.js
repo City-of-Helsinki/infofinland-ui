@@ -3,20 +3,25 @@ import {
   // getResourceFromContext,
   // getResource,
 } from 'next-drupal'
+
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
-export const getMainMenu = async (context) => await getMenu('main', context)
+export const getCommonTranslations = async (locale) =>
+  serverSideTranslations(locale, ['common'])
+export const getMainMenu = async (context) =>
+  getMenu(process.env.DRUPAL_MENUS.MAIN, context)
 
 export const getFooterAboutMenu = async (context) =>
-  await getMenu('footer-about', context)
+  getMenu(process.env.DRUPAL_MENUS.FOOTER, context)
 
-export const getAboutMenu = async (context) => await getMenu('about', context)
+export const getAboutMenu = async (context) =>
+  getMenu(process.env.DRUPAL_MENUS.ABOUT, context)
 
 export const getCommonApiContent = async (context) => {
-  const [mainMenu, aboutMenu, translations] = await Promise.all([
+  const [mainMenu, footerMenu, translations] = await Promise.all([
     getMainMenu(context),
     getFooterAboutMenu(context),
-    serverSideTranslations(context.locale, ['common']),
+    getCommonTranslations(context.locale),
   ])
-  return { mainMenu, aboutMenu, ...translations }
+  return { mainMenu, footerMenu, ...translations }
 }

@@ -8,7 +8,7 @@ import { useTranslation } from 'next-i18next'
 /**
  * SOME Urls are defined in next.config.js
  * */
-const FooterLinks = ({ aboutMenu }) => {
+const FooterLinks = ({ footerMenu }) => {
   const { t, language } = useTranslation('common')
   return (
     <div className={cls(HERO_MARGIN, 'mt-16 mb-16')}>
@@ -61,7 +61,7 @@ const FooterLinks = ({ aboutMenu }) => {
       </section>
 
       <section className="mb-4 text-center sm:text-left divide-black divide-s">
-        {aboutMenu.tree.map(({ title, url }, i) => {
+        {footerMenu.tree.map(({ title, url }, i) => {
           return (
             <Link href={url} passHref key={`footer-link-${i}`}>
               <a className="ifu-footer__link">{title}</a>
