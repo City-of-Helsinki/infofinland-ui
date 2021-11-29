@@ -7,6 +7,7 @@ export async function getStaticProps(context) {
     props: {
       ...common,
     },
+    revalidate: process.env.REVALIDATE_TIME,
   }
 }
 

@@ -11,7 +11,6 @@ export const findPageByPath = ({ items, path }) =>
   items.find(({ url }) => url === path)
 
 export const findRootForPath = ({ items, path }) => {
-  console.log({ path })
   const page = findPageByPath({ items, path })
   if (!page) {
     return

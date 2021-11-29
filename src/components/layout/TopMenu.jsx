@@ -15,7 +15,7 @@ import Search from '../search/Search'
 const Logo = () => (
   <div
     className="relative z-20 flex-none py-3 md:py-4 px-3 bg-white transform translate-y-px md:ps-6 md:pe-2"
-    role="logo"
+    role="banner"
   >
     <Link href="/" passHref>
       <a className=" ifu-topmenu__logo" title="infofinland.fi"></a>

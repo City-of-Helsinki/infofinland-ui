@@ -12,7 +12,7 @@ const FooterLinks = ({ footerMenu }) => {
   const { t, language } = useTranslation('common')
   return (
     <div className={cls(HERO_MARGIN, 'mt-16 mb-16')}>
-      <section className="py-10 border-t border-b border-gray ifu-footer__brand">
+      <div className="py-10 border-t border-b border-gray ifu-footer__brand">
         <div
           className="mx-auto sm:mx-0 mb-5 ifu-footer__hki-logo"
           lang={language}
@@ -21,8 +21,8 @@ const FooterLinks = ({ footerMenu }) => {
         <p className=" mx-8 md:mx-0 text-tiny text-center sm:text-left text-gray">
           {t('footer.helsinkiDisclaimer')}
         </p>
-      </section>
-      <section className="flex justify-center sm:justify-start items-center py-11 sm:py-7 mb-5 space-s-4">
+      </div>
+      <div className="flex justify-center sm:justify-start items-center py-11 sm:py-7 mb-5 space-s-4">
         <a
           href={process.env.FB_URL}
           target="_blank"
@@ -58,9 +58,9 @@ const FooterLinks = ({ footerMenu }) => {
         >
           <IconYoutube title="Youtube" />
         </a>
-      </section>
+      </div>
 
-      <section className="mb-4 text-center sm:text-left divide-black divide-s">
+      <div className="mb-4 text-center sm:text-left divide-black divide-s">
         {footerMenu.tree.map(({ title, url }, i) => {
           return (
             <Link href={url} passHref key={`footer-link-${i}`}>
@@ -68,7 +68,7 @@ const FooterLinks = ({ footerMenu }) => {
             </Link>
           )
         })}
-      </section>
+      </div>
     </div>
   )
 }
