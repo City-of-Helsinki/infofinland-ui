@@ -4,7 +4,7 @@ import Layout from '@/components/layout/Layout'
 import ThemeList from '@/components/home/ThemeList'
 import CitySelector from '@/components/home/CitySelector'
 import HomeAbout from '@/components/home/HomeAbout'
-import Block from '@/components/article/Block'
+import Block from '@/components/layout/Block'
 import { getCommonApiContent } from '@/lib/ssr-api'
 
 export async function getStaticProps(context) {

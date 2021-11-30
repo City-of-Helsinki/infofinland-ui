@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 // import image from '@/public/logo/logo-vertical.png'
-import Block from '@/components/article/Block'
+import Block from '@/components/layout/Block'
 const HomeAbout = () => (
   <Block className="pt-8 border-t border-gray-darker">
     <div className="grid grid-cols-1 md:grid-cols-2 pb-8">

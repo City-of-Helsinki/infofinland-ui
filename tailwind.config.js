@@ -28,9 +28,10 @@ module.exports = {
       action: ['0.75rem', '1.5'],
       message: ['0.75rem', '1.125rem'],
       tiny: ['0.813rem', '1.5em'],
-      // fine: ['0.688rem', '2em'],
+      fine: ['0.688rem', '2em'],
     },
     boxShadow: {
+      'bottom-bar': '0px -6px 25px -4px rgba(0, 0, 0, 0.20)',
       button: '0px 2px rgba(0, 0, 0, 0.15)',
       'button-hover': 'none',
       'themecard-blue': ' 0px 2px #CCDDED',
@@ -140,6 +141,7 @@ module.exports = {
         homeheroxl: '37.25rem',
       },
       minHeight: {
+        'bottom-bar': '12rem',
         card: '7rem',
         lang404: '24rem',
       },

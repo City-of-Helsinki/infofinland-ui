@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next'
 import Layout from '@/components/layout/Layout'
 import Head from 'next/head'
-import Block from '@/components/article/Block'
+import Block from '@/components/layout/Block'
 
 import Link from 'next/link'
 import SEARCH_RESULTS from '@/MOCK_SEARCH'

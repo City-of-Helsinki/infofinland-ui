@@ -8,7 +8,7 @@ import React from 'react'
 // import { render } from "@/test/test-utils";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { render } from '@testing-library/react'
-import Block from '@/components/article/Block'
+import Block from '@/components/layout/Block'
 
 describe('Block', () => {
   it('should render the Block', () => {

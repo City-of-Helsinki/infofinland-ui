@@ -17,6 +17,47 @@ describe.only('menu-utils', () => {
     })
   })
 
+  describe('findTheme',()=>{
+    it('should return the root level item of items tree with matching url',()=>{
+      const theme = menuUtils.findTheme({
+        tree: MAIN_MENU.tree,
+        path:'/en/settling-in-finland'
+      })
+
+      const noTheme = menuUtils.findTheme({
+        tree: MAIN_MENU.tree,
+        path:'/en/foofoo'
+      })
+
+      expect(theme).not.toBeUndefined()
+      expect(theme.url).toBe('/en/settling-in-finland')
+      expect(noTheme).toBeUndefined()
+
+
+    })
+  })
+
+
+  describe('findPageByPath',()=>{
+
+    it('should return item from flat item list by matching url',()=>{
+      const page = menuUtils.findPageByPath({
+        items:MAIN_MENU.items,
+        path:'/en/settling-in-finland'
+      })
+
+      const noPage = menuUtils.findPageByPath({
+        items:MAIN_MENU.items,
+        path:'/en/foofoo'
+      })
+
+      expect(page).not.toBeUndefined()
+      expect(page.url).toBe('/en/settling-in-finland')
+      expect(noPage).toBeUndefined()
+    })
+
+  })
+
   describe('findRootForPage', () => {
     it('should return root item for given child page', () => {
       const root = menuUtils.findRootForPath({
@@ -33,4 +74,7 @@ describe.only('menu-utils', () => {
       expect(noRoot).toBeUndefined()
     })
   })
+
+
+
 })

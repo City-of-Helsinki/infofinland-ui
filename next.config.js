@@ -5,6 +5,7 @@ module.exports = {
   reactStrictMode: true,
   poweredByHeader: false,
   env: {
+    COOKIE_PAGE_PATH: '/about/cookie-settings',
     DRUPAL_MENUS: {
       MAIN: 'main',
       FOOTER: 'footer-about',

@@ -67,5 +67,12 @@
   "mainMenu": { "button": "Päävalikko" },
   "footer": {
     "helsinkiDisclaimer": "The InfoFinland website is published by the City of Helsinki, and it is funded by the state and the InfoFinland member municipalities."
+  },
+  "cookies": {
+    "title": "infoFinland.fi käyttää evästeitä",
+    "text": "Tämä sivusto käyttää välttämättömiä evästeitä suorituskyvyn varmistamiseksi sekä yleisen käytön seurantaan. Lisäksi käytämme kohdennusevästeitä käyttäjäkokemuksen parantamiseksi.",
+    "allow": "Hyväksy kaikki evästeet",
+    "deny": "Vain välttämättömät",
+    "readMore": "Evästeasetukset"
   }
 }

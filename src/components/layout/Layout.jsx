@@ -9,6 +9,7 @@ import useSetLocalization from '@/hooks/useSetLocalization'
 import useShowLangMessage from '@/hooks/useShowLangMessage'
 import Router, { useRouter } from 'next/router'
 import NProgress from 'nprogress'
+import CookieConsentBar from '@/components/layout/CookieConsent'
 
 if (process.env.NODE_ENV !== 'test') {
   ReactModal.setAppElement('#__next')
@@ -31,6 +32,40 @@ export const BlankLayout = ({ children }) => {
       <main className="relative text-body bg-white" id="main">
         {children}
       </main>
+      <CookieConsentBar />
+    </>
+  )
+}
+
+export const AboutLayout = ({ menu, footerMenu, children }) => {
+  const { locale } = useRouter()
+  useSetLocalization(locale)
+  useShowLangMessage(locale)
+  return (
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
+      <div className=" relative text-body bg-white">
+        <TopMenu mainMenu={menu} />
+        <div className=" md:flex md:items-stretch">
+          <div className="md:hidden">
+            <Messages />
+          </div>
+          <DesktopNavi mainMenu={menu} />
+          <div className="ifu-layout__body">
+            <main id="main">{children}</main>
+            <footer className="ifu-footer" id="footer">
+              <FooterLinks footerMenu={footerMenu} />
+              <FeedbackButtonBlock />
+            </footer>
+          </div>
+        </div>
+
+        <CookieConsentBar />
+      </div>
     </>
   )
 }
@@ -61,6 +96,7 @@ const AppLayout = ({ children, mainMenu, footerMenu }) => {
             </footer>
           </div>
         </div>
+        <CookieConsentBar />
       </div>
     </>
   )
