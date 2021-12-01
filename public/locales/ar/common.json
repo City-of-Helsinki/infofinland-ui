@@ -41,6 +41,10 @@
   },
   "mainMenu": { "button": "قائمة الخيارات الرئيسية" },
   "footer": {
-    "helsinkiDisclaimer": "The InfoFinland website is published by the City of Helsinki, and it is funded by the state and the InfoFinland member municipalities."
+    "helsinkiDisclaimer": "تنشر مدينة هلسنكي موقع InfoFinland.fi، وتموله الدولة والبلديات الأعضاء في InfoFinland."
+  },
+  "lang404": {
+    "title": "الصفحة غير متوفرة بهذه اللغة",
+    "text": "للأسف الصفحة غير متوفرة باللغة التي اخترتها. تجد معلومات عن الموضوع باللغات التالية:"
   }
 }

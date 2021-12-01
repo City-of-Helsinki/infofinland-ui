@@ -76,6 +76,7 @@ module.exports = {
         DEFAULT: '#000000',
         op5: 'rgba(0,0,0,0.5)',
         op3: 'rgba(0,0,0,0.3)',
+        'op1.5': 'rgba(0,0,0,0.15)',
         op1: 'rgba(0,0,0,0.1)',
       },
       gray: {

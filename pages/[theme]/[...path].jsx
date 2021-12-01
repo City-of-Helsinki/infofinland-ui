@@ -3,6 +3,8 @@ import heroImage from '../../public/images/article1-sm.png'
 import { getCommonApiContent, getMainMenu } from '@/lib/ssr-api'
 import {
   // getResourceByPath,
+  // getResourceCollection,
+  // getResourceFromContext,
   getResource,
 } from 'next-drupal'
 
@@ -43,12 +45,36 @@ export async function getStaticPaths(context) {
 }
 
 export async function getStaticProps(context) {
+  const { locale, defaultLocale } = context
   const common = await getCommonApiContent(context)
-
-  const { locale, defaultLocale /*params*/ } = context
-  // const path = ['', params.theme, ...params.path].join('/')
+  // const path = [ params.theme, ...params.path].join('/')
   // const localePath = ['', locale, params.theme, ...params.path].join('/')
-  // const page = common.mainMenu.items.find(({ url }) => url === localePath)
+
+  // // const testPath = getPathFromContext({
+  //   locale,
+  //   defaultLocale:'disable-defaultLocale-omission',
+  //   params:{slug:path}
+  // })
+  // console.log({testPath,localePath,path})
+
+  // const page = await getResourceCollection("node--page", {
+  //   params: {
+  //     "filter[url]": localePath,
+  //   },
+  // })
+  // console.log({localePath})
+
+  // const node = await getResourceByPath(
+  //     localePath
+  //   )
+  // const node = await getResourceFromContext('node--page',{
+  //   locale,
+  //   defaultLocale:'disable-defaultLocale-omission',
+  //   params:{slug:path}
+  // })
+
+  // // // const localePath = ['', locale, params.theme, ...params.path].join('/')
+  // // // const page = common.mainMenu.items.find(({ url }) => url === localePath)
   const node = await getResource(
     'node--page',
     '2228a737-94a7-4aa4-901f-d5d322e25833',
@@ -57,6 +83,7 @@ export async function getStaticProps(context) {
       defaultLocale,
     }
   )
+  // console.log(path)
 
   // const node = await getResourceByPath(
   //   path,
@@ -65,7 +92,8 @@ export async function getStaticProps(context) {
   //     defaultLocale,
   //   }
   // )
-  // TODO content type resolvers in ssr-api?
+  // // TODO content type resolvers in ssr-api?
+
   const { title, field_content } = node
   const content = await Promise.all(
     field_content.map(({ type, id }) =>

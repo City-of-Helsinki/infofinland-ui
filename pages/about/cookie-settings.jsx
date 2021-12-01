@@ -8,6 +8,9 @@ import {
   getCommonTranslations,
   getFooterAboutMenu,
 } from '@/lib/ssr-api'
+import { useAtomValue, useUpdateAtom } from 'jotai/utils'
+import ToggleSwitch from '@/components/ToggleSwitch'
+import { cookieConsent } from '@/src/store'
 
 export async function getStaticProps(context) {
   const [aboutMenu, footerMenu, translations] = await Promise.all([
@@ -26,19 +29,39 @@ export async function getStaticProps(context) {
   }
 }
 
-export default function CookieConsentPage({ children, ...layout }) {
+export default function CookieConsentPage({ ...layout }) {
   const { t } = useTranslation('common')
+  const isAnalyticsAllowed = useAtomValue(cookieConsent)
+  const setConsent = useUpdateAtom(cookieConsent)
+  const toggleConsent = () => setConsent(!isAnalyticsAllowed)
 
   return (
     <AboutPage {...layout}>
-      {children}
-      <Block className="mt-16">
+      <Block hero>
+        <h1 className="mt-16 mb-8 text-h1 md:text-h1xl">
+          {t('cookies.settings.title')}
+        </h1>
         <p className="mb-16">{t('cookies.text')}</p>
-
-        <p className="text-center">
+        <p className="pt-8 text-center border-t border-bodytext-color">
           <CookieConsentActions />
         </p>
       </Block>
+      <form>
+        <Block className="pb-16 mt-16">
+          <ToggleSwitch
+            checked={isAnalyticsAllowed}
+            text={t('cookies.labels.analytics')}
+            id="ifu-cc-analytics"
+            value="analytics"
+            onChange={toggleConsent}
+            className=""
+          />
+          <span className="inline-block mx-4">
+            {t(isAnalyticsAllowed ? 'cookies.allowed' : 'cookies.denied')}
+          </span>
+        </Block>
+        <Block hero></Block>
+      </form>
     </AboutPage>
   )
 }

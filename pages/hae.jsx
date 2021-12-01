@@ -35,7 +35,6 @@ export async function getServerSideProps(context) {
       q,
       results,
     },
-    revalidate: process.env.REVALIDATE_TIME,
   }
 }
 

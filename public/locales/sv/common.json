@@ -30,6 +30,10 @@
       "invalid": "!Pakollinen kenttä"
     }
   },
+  "lang404": {
+    "title": "Sidan finns inte på detta språk.",
+    "text": "Tyvärr finns sidan inte på det språk du har valt. Du hittar information om ärendet på följande språk:"
+  },
   "languageMenu": {
     "label": "!Valitse kieli"
   },
@@ -42,6 +46,6 @@
   },
   "mainMenu": { "button": "!Päävalikko" },
   "footer": {
-    "helsinkiDisclaimer": "The InfoFinland website is published by the City of Helsinki, and it is funded by the state and the InfoFinland member municipalities."
+    "helsinkiDisclaimer": "Webbplatsen InfoFinland.fi publiceras av Helsingfors stad och finansieras av staten och InfoFinlands medlemskommuner."
   }
 }

@@ -41,6 +41,10 @@
   },
   "mainMenu": { "button": "Ana menü" },
   "footer": {
-    "helsinkiDisclaimer": "The InfoFinland website is published by the City of Helsinki, and it is funded by the state and the InfoFinland member municipalities."
+    "helsinkiDisclaimer": "InfoFinland.fi internet sitesi Helsinki Belediyesi tarafından yayınlanmakta; finansmanı da devlet ve InfoFinland'in üye belediyeleri tarafından sağlanmaktadır."
+  },
+  "lang404": {
+    "title": "Sayfa bu dilde mevcut değil",
+    "text": "Ne yazık ki sayfa seçtiğiniz dilde mevcut değil. Konuyla ilgili bilgiyi aşağıdaki dillerde bulabilirsiniz:"
   }
 }
