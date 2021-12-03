@@ -1,6 +1,11 @@
 import ArticlePage from '../../src/page-templates/ArticlePage'
 import heroImage from '../../public/images/article1-sm.png'
-import { getCommonApiContent, getMainMenu } from '@/lib/ssr-api'
+import {
+  getCommonApiContent,
+  getMainMenu,
+  addPrerenderLocalesToPaths,
+  resolvePath,
+} from '@/lib/ssr-api'
 import {
   // getResourceByPath,
   // getResourceCollection,
@@ -17,7 +22,7 @@ export const PROPS = {
 
 export async function getStaticPaths(context) {
   const { items } = await getMainMenu(context)
-  const pages = items
+  const paths = items
     // Filter out theme pages
     .filter(({ parent }) => parent !== '')
     // Parse to theme and path slug
@@ -33,65 +38,24 @@ export async function getStaticPaths(context) {
       }
     })
 
-  // Add list of prerendered languages for pages
-  const paths = ['fi']
-    .map((locale) => pages.map((path) => ({ ...path, locale })))
-    .flat()
-
   return {
-    paths,
+    paths: addPrerenderLocalesToPaths(paths),
     fallback: 'blocking',
   }
 }
 
 export async function getStaticProps(context) {
-  const { locale, defaultLocale } = context
+  const { locale, defaultLocale, params } = context
   const common = await getCommonApiContent(context)
   // const path = [ params.theme, ...params.path].join('/')
-  // const localePath = ['', locale, params.theme, ...params.path].join('/')
+  const localePath = ['', locale, params.theme, ...params.path].join('/')
+  const { data: page } = await resolvePath(localePath)
 
-  // // const testPath = getPathFromContext({
-  //   locale,
-  //   defaultLocale:'disable-defaultLocale-omission',
-  //   params:{slug:path}
-  // })
-  // console.log({testPath,localePath,path})
+  const node = await getResource('node--page', page.entity.uuid, {
+    locale,
+    defaultLocale,
+  })
 
-  // const page = await getResourceCollection("node--page", {
-  //   params: {
-  //     "filter[url]": localePath,
-  //   },
-  // })
-  // console.log({localePath})
-
-  // const node = await getResourceByPath(
-  //     localePath
-  //   )
-  // const node = await getResourceFromContext('node--page',{
-  //   locale,
-  //   defaultLocale:'disable-defaultLocale-omission',
-  //   params:{slug:path}
-  // })
-
-  // // // const localePath = ['', locale, params.theme, ...params.path].join('/')
-  // // // const page = common.mainMenu.items.find(({ url }) => url === localePath)
-  const node = await getResource(
-    'node--page',
-    '2228a737-94a7-4aa4-901f-d5d322e25833',
-    {
-      locale,
-      defaultLocale,
-    }
-  )
-  // console.log(path)
-
-  // const node = await getResourceByPath(
-  //   path,
-  //   {
-  //     locale,
-  //     defaultLocale,
-  //   }
-  // )
   // // TODO content type resolvers in ssr-api?
 
   const { title, field_content } = node

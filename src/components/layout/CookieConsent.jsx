@@ -36,10 +36,9 @@ export function CookieConsentActions() {
 export default function CookieConsentBar() {
   const { t } = useTranslation('common')
   const isConsentSet = useAtomValue(isCookieConsentSet)
-  const isAboutPage =
-    useRouter().asPath.match(new RegExp(`^${process.env.COOKIE_PAGE_PATH}`)) !==
-    null
-
+  const isAboutPage = useRouter().asPath.startsWith(
+    process.env.COOKIE_PAGE_PATH
+  )
   return (
     !isAboutPage && (
       <CSSTransition

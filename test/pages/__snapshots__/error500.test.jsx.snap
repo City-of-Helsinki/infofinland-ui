@@ -237,6 +237,7 @@ exports[`Error page page renders and matches snapshot 2`] = `
       shadow-bottom-bar
       min-bottom-bar
       lg:rounded-none
+      ifu-cookies__banner--appear ifu-cookies__banner--appear-active
     \\"
   >
     <h2 class=\\"mb-4 text-body-large font-bold\\">cookies.title</h2>

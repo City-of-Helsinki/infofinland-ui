@@ -4,7 +4,7 @@ export const findParent = ({ items, parentId }) =>
 export const findTheme = ({ tree, path }) =>
   tree.find(({ url }) => url === path)
 
-export const getThemes = ({ items }) =>
+export const getRootPages = (items) =>
   items.filter(({ parent }) => parent === '')
 
 export const findPageByPath = ({ items, path }) =>

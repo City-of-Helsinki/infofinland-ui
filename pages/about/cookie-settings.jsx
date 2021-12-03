@@ -42,9 +42,6 @@ export default function CookieConsentPage({ ...layout }) {
           {t('cookies.settings.title')}
         </h1>
         <p className="mb-16">{t('cookies.text')}</p>
-        <p className="pt-8 text-center border-t border-bodytext-color">
-          <CookieConsentActions />
-        </p>
       </Block>
       <form>
         <Block className="pb-16 mt-16">
@@ -60,7 +57,11 @@ export default function CookieConsentPage({ ...layout }) {
             {t(isAnalyticsAllowed ? 'cookies.allowed' : 'cookies.denied')}
           </span>
         </Block>
-        <Block hero></Block>
+        <Block hero>
+          <p className="pt-8 text-center border-t border-bodytext-color">
+            <CookieConsentActions />
+          </p>
+        </Block>
       </form>
     </AboutPage>
   )

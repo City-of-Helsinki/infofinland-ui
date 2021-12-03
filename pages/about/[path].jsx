@@ -4,27 +4,16 @@ import {
   getAboutMenu,
   getCommonTranslations,
   getFooterAboutMenu,
+  addPrerenderLocalesToPaths,
 } from '@/lib/ssr-api'
 
-export async function getStaticPaths() {
-  // const { tree,items } = await getAboutMenu(context)
-  // // Tree contains array of pages with subpages included inside.
-  // // Map first level to get all themes
-  // const items = map(tree, ({ url }) => {
-  //   //remove root slash and language code
-  //   const [, , theme] = url.split('/')
-  //   return {
-  //     params: {
-  //       theme,
-  //     },
-  //   }
-  // })
+import { getRootPages } from '@/lib/menu-utils'
 
-  // const paths = ['fi']
-  //   .map((locale) => themes.map((theme) => ({ ...theme, locale })))
-  //   .flat()
+export async function getStaticPaths(context) {
+  const { items } = await getAboutMenu(context)
+  const paths = getRootPages(items)
   return {
-    paths: [],
+    paths: addPrerenderLocalesToPaths(paths),
     fallback: 'blocking',
   }
 }

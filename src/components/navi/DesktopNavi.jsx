@@ -1,7 +1,10 @@
-import MainNavi from '@/components/navi/MainNavi'
+import MainNavi, { MainNaviError } from '@/components/navi/MainNavi'
 import Messages from '@/components/messages/Messages'
 
 const DesktopNavi = ({ mainMenu }) => {
+  if (mainMenu.error) {
+    return <MainNaviError />
+  }
   return (
     <>
       <div className="hidden md:block overflow-y-auto fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop">

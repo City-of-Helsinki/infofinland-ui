@@ -1,7 +1,7 @@
 import * as menuUtils from '../../../src/lib/menu-utils'
 import MAIN_MENU from './MAIN_MENU'
 
-describe.only('menu-utils', () => {
+describe('menu-utils', () => {
   describe('findParent', () => {
     it('shound return item matching the parent id', () => {
       const parent = menuUtils.findParent({
@@ -32,6 +32,23 @@ describe.only('menu-utils', () => {
       expect(theme).not.toBeUndefined()
       expect(theme.url).toBe('/en/settling-in-finland')
       expect(noTheme).toBeUndefined()
+    })
+  })
+
+  describe('getRootPages', () => {
+    it('should  return every item from flat menu item list that has no parent', () => {
+      expect(menuUtils.getRootPages(MAIN_MENU.items).length).toBe(3)
+      expect(
+        menuUtils.getRootPages([
+          { parent: '' },
+          { parent: '1' },
+          { parent: '2' },
+        ]).length
+      ).toBe(1)
+    })
+    it('should return empty list if no parentles items are found', () => {
+      expect(menuUtils.getRootPages([]).length).toBe(0)
+      expect(menuUtils.getRootPages([{ parent: '1' }]).length).toBe(0)
     })
   })
 
