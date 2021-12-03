@@ -72,7 +72,11 @@ export default function CookieConsentBar() {
             <div className="gap-4 justify-items-center items-center">
               <CookieConsentActions />
               {!isConsentSet && (
-                <Link passHref href={process.env.COOKIE_PAGE_PATH}>
+                <Link
+                  prefetch={false}
+                  passHref
+                  href={process.env.COOKIE_PAGE_PATH}
+                >
                   <a className="font-bold text-black underline">
                     {t('cookies.readMore')}
                   </a>

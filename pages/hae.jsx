@@ -73,14 +73,14 @@ const SearchBar = ({ qw }) => {
 const Result = ({ title, url, path, excerpt, q }) => (
   <section className="mxy-8">
     <h2 className="text-h5xl font-bold">
-      <Link href={url} passHref>
+      <Link href={url} passHref prefetch={false}>
         <a>{title}</a>
       </Link>
     </h2>
     {path && (
       <p className="">
         {path.map(({ title, url }, i) => (
-          <Link key={`result-${i}`} href={url} passHref>
+          <Link key={`result-${i}`} href={url} passHref prefetch={false}>
             <a className="text-tiny text-gray">
               {title}
               {i + 1 < path.length && <IconAngleRight className="mx-1" />}

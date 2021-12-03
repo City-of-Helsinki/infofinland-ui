@@ -6,7 +6,7 @@ const Breadcrumbs = ({ items }) => (
   <nav className="block relative pt-4 pb-2 mb-2 text-black">
     <div className=" justify-items-start">
       <div className="flex-none w-8 float-start">
-        <Link href="/" passHref>
+        <Link href="/" passHref prefetch={false}>
           <a
             className="inline-block relative flex-none mt-1 text-small md:text-body-small"
             title="home"
@@ -27,7 +27,7 @@ const Breadcrumbs = ({ items }) => (
         </div>
         {items.map(({ title, url }, i) => (
           <div key={`crumb-${i}-${title}`} className="inline-block">
-            <Link href={url} passHref>
+            <Link href={url} passHref prefetch={false}>
               <a
                 className="text-small md:text-body-small hover:underline"
                 title={title}

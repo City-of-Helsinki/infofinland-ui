@@ -195,7 +195,6 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
 const FeedbackButtonBlock = () => {
   const [isOpen, setVisibility] = useState(false)
   const toggle = () => setVisibility(!isOpen)
-  // const open = () => setVisibility(true)
   const close = () => setVisibility(false)
   const { t } = useTranslation('common')
   const scrollRef = useRef()

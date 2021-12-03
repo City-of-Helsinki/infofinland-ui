@@ -33,7 +33,7 @@ const TopMenuItem = ({
 }) => (
   <li className={cls('block relative', {})}>
     {!items && (
-      <Link href={url}>
+      <Link href={url} prefetch={false}>
         <a
           className={cls(
             'block text-body-small ps-8 py-4 border-s-5 hover:bg-gray-white',
