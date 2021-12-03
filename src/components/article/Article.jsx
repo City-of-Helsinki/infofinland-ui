@@ -45,7 +45,7 @@ const ArticleHeading = ({ heroImage, title, date, themeHero }) => {
               size: 40,
               classes: [
                 ' text-h2 md:text-h1xl',
-                'text-h3 md:text-h1 lg:text-h1xl',
+                'text-h3 md:text-h3 lg:text-h1',
               ],
             })
           )}

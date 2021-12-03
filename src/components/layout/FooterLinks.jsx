@@ -63,7 +63,7 @@ const FooterLinks = ({ footerMenu }) => {
       <div className="mb-4 text-center sm:text-left divide-black divide-s">
         {footerMenu.tree.map(({ title, url }, i) => {
           return (
-            <Link href={url} passHref key={`footer-link-${i}`}>
+            <Link href={url} passHref key={`footer-link-${i}`} prefetch={false}>
               <a className="ifu-footer__link">{title}</a>
             </Link>
           )

@@ -24,7 +24,7 @@ const HomeAbout = () => (
           purus vitae nisi. Velit, in sit enim ornare enim tincidunt risus
           blandit. Faucibus nunc rhoncus nec imperdiet commodo ac in.
         </p>
-        <Link href="/cities" passHref>
+        <Link href="/cities" passHref prefetch={false}>
           <a className="text-body-small font-bold ifu-text-link">
             Learn more about us
           </a>

@@ -55,11 +55,10 @@ export const getCommonApiContent = async (context) => {
     throw e
   })
 
-
   return {
     mainMenu,
     footerMenu,
-    color:sample(process.env.HERO_COLORS),
+    color: sample(process.env.HERO_COLORS),
     ...translations,
   }
 }
@@ -72,6 +71,7 @@ export const getPageByPath = async ({ path, context }) => {
   if (node?.field_content?.length > 0) {
     content = await getContent(node, localeContext)
   }
+
   return { node, content }
 }
 

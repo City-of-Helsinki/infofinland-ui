@@ -17,7 +17,7 @@ const Logo = () => (
     className="relative z-20 flex-none py-3 md:py-4 px-3 bg-white transform translate-y-px md:ps-6 md:pe-2"
     role="banner"
   >
-    <Link href="/" passHref>
+    <Link href="/" passHref prefetch={false}>
       <a className=" ifu-topmenu__logo" title="infofinland.fi"></a>
     </Link>
   </div>

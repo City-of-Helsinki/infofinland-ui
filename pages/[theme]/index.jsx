@@ -1,19 +1,11 @@
 import ThemePage from '../../src/page-templates/ThemePage'
-import heroImage from '../../public/images/article1-sm.png'
 import {
   getCommonApiContent,
   getMainMenu,
   addPrerenderLocalesToPaths,
+  getPageByPath,
 } from '@/lib/ssr-api'
 import { map } from 'lodash'
-import { getResourceByPath } from 'next-drupal'
-export const PROPS = {
-  heroImage,
-  title: 'Oleskelulupaongelmat',
-  color: 'green',
-  date: '23.12.2015',
-  category: 'Health and other things',
-}
 
 export async function getStaticPaths(context) {
   let paths = []
@@ -36,8 +28,7 @@ export async function getStaticPaths(context) {
   } catch (e) {
     console.error(e)
     const err = new Error(
-      'Error while getting menu paths for prerender in [theme].getStaticPaths',
-      e
+      'Error while getting menu paths for prerender in [theme].getStaticPaths'
     )
     // if(process.env.production){
 
@@ -53,19 +44,17 @@ export async function getStaticPaths(context) {
 }
 
 export async function getStaticProps(context) {
-  const { locale, defaultLocale, params } = context
-  const path = [params.theme].join('/')
   const common = await getCommonApiContent(context)
-
-  const node = await getResourceByPath(path, {
-    locale,
-    defaultLocale,
-  })
+  const path = `/${context.params.theme}`
+  const { content, node } = await getPageByPath({ path, context })
+  if (node === null) {
+    return { notFound: true }
+  }
 
   return {
     props: {
       ...common,
-      ...PROPS,
+      content,
       node,
     },
     revalidate: process.env.REVALIDATE_TIME,

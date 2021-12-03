@@ -1,18 +1,10 @@
 import ArticlePage from '../../src/page-templates/ArticlePage'
-import heroImage from '../../public/images/article1-sm.png'
 import {
   getCommonApiContent,
   getMainMenu,
   addPrerenderLocalesToPaths,
   getPageByPath,
 } from '@/lib/ssr-api'
-
-export const PROPS = {
-  heroImage,
-  color: 'orange',
-  date: '?23.12.2015',
-  category: '?Health and other things',
-}
 
 export async function getStaticPaths(context) {
   const { items } = await getMainMenu(context)
@@ -43,8 +35,8 @@ export async function getStaticProps(context) {
   const path = [params.theme, ...params.path].join('/')
   const common = await getCommonApiContent(context)
   const { content, node } = await getPageByPath({ path, context })
-  if(node === null) {
-    return {notFound:true}
+  if (node === null) {
+    return { notFound: true }
   }
   return {
     props: {

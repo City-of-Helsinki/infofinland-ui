@@ -6,7 +6,7 @@ import useLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 
 const SubMenuItem = ({ title, url, selected, items, level, isOpen }) => (
   <li className=" block">
-    <Link passHref href={url}>
+    <Link passHref href={url} prefetch={false}>
       <a
         tabIndex={isOpen ? '0' : '-1'}
         className={cls('block py-4 text-body-small hover:bg-gray-white pe-4 ', {
@@ -80,7 +80,7 @@ const SubMenu = ({
         }
       )}
     >
-      <Link passHref href={url}>
+      <Link passHref href={url} prefetch={false}>
         <a
           className="flex-grow py-4"
           title={isOpen ? 'Open menu' : 'Close menu'}

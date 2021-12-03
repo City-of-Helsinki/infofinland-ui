@@ -2,7 +2,7 @@ import Link from 'next/link'
 import cls from 'classnames'
 
 const TextLink = ({ href, className, children, ...linkProps }) => (
-  <Link href={href} passHref>
+  <Link href={href} passHref prefetch={false}>
     <a className={cls('ifu-text-link', className)} {...linkProps}>
       {children}
     </a>

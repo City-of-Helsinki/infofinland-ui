@@ -33,6 +33,7 @@ export const LanguageMenu = ({ closeMenu }) => {
               href={{ pathname, query }}
               locale={code}
               scroll={false}
+              prefetch={false}
             >
               <a
                 className="flex items-center py-2 px-14 hover:bg-gray-white clear-start"
