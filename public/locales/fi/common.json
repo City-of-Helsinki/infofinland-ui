@@ -47,8 +47,8 @@
     "text": "Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
   },
   "lang404": {
-    "title": "Sivua ei ole saatavilla tällä kielellä",
-    "text": "ommodo sed vel convallis scelerisque mauris, facilisi augue. Diam ut amet arcu velit egestas. Mauris nulla sed pharetra duis. Odio praesent euismod quis a at arcu ut suspendisse vestibulum. Arcu augue lorem vel eget viverra."
+    "title": "Sivua ei löydy tällä kielellä",
+    "text": "Valitettavasti sivua ei ole valitsemallasi kielellä. Löydät tietoa aiheesta seuraavilla kielillä: "
   },
   "localInfo": {
     "readMore": "Lue lisää",
@@ -66,6 +66,21 @@
   },
   "mainMenu": { "button": "Päävalikko" },
   "footer": {
-    "helsinkiDisclaimer": "The InfoFinland website is published by the City of Helsinki, and it is funded by the state and the InfoFinland member municipalities."
+    "helsinkiDisclaimer": "InfoFinland.fi-sivustoa julkaisee Helsingin kaupunki, ja sitä rahoittavat valtio ja InfoFinlandin jäsenkunnat."
+  },
+  "cookies": {
+    "title": "infoFinland.fi käyttää evästeitä",
+    "text": "Tämä sivusto käyttää välttämättömiä evästeitä suorituskyvyn varmistamiseksi sekä yleisen käytön seurantaan. Lisäksi käytämme kohdennusevästeitä käyttäjäkokemuksen parantamiseksi.",
+    "labels": {
+      "analytics": "Salli käyttöseuranta laatunvalvontatarkoituksiin"
+    },
+    "allowed": "Sallittu",
+    "denied": "Kielletty",
+    "allow": "Hyväksy kaikki evästeet",
+    "deny": "Vain välttämättömät",
+    "readMore": "Evästeasetukset",
+    "settings": {
+      "title": "Evästeasetukset"
+    }
   }
 }

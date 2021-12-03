@@ -41,7 +41,7 @@ exports[`Buttons CloseButton should render LinkButton component with ifu-text-li
     <span
       class="inline-block px-1 text-small"
     >
-      common:buttons.close
+      buttons.close
     </span>
     <svg
       class="inline-block inline-block text-black transform -translate-y-0.5 fill-current"

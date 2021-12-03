@@ -7,8 +7,9 @@ import TopMenu from '@/components/layout/TopMenu'
 import ReactModal from 'react-modal'
 import useSetLocalization from '@/hooks/useSetLocalization'
 import useShowLangMessage from '@/hooks/useShowLangMessage'
-import Router from 'next/router'
+import Router, { useRouter } from 'next/router'
 import NProgress from 'nprogress'
+import CookieConsentBar from '@/components/layout/CookieConsent'
 
 if (process.env.NODE_ENV !== 'test') {
   ReactModal.setAppElement('#__next')
@@ -20,7 +21,7 @@ Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
 export const BlankLayout = ({ children }) => {
-  useSetLocalization()
+  useSetLocalization(useRouter().locale)
 
   return (
     <>
@@ -31,19 +32,55 @@ export const BlankLayout = ({ children }) => {
       <main className="relative text-body bg-white" id="main">
         {children}
       </main>
+      <CookieConsentBar />
     </>
   )
 }
 
-const AppLayout = ({ children, mainMenu, aboutMenu }) => {
-  useSetLocalization()
-  useShowLangMessage()
+export const AboutLayout = ({ menu, footerMenu, children }) => {
+  const { locale } = useRouter()
+  useSetLocalization(locale)
+  useShowLangMessage(locale)
   return (
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <div className=" relative text-body bg-white">
+        <TopMenu mainMenu={menu} />
+        <div className=" md:flex md:items-stretch">
+          <div className="md:hidden">
+            <Messages />
+          </div>
+          <DesktopNavi mainMenu={menu} />
+          <div className="ifu-layout__body">
+            <main id="main">{children}</main>
+            <footer className="ifu-footer" id="footer">
+              <FooterLinks footerMenu={footerMenu} />
+              <FeedbackButtonBlock />
+            </footer>
+          </div>
+        </div>
+
+        <CookieConsentBar />
+      </div>
+    </>
+  )
+}
+
+const AppLayout = ({ children, mainMenu, footerMenu }) => {
+  const { locale } = useRouter()
+  useSetLocalization(locale)
+  useShowLangMessage(locale)
+  return (
+    <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <div className=" relative text-body bg-white">
         <TopMenu mainMenu={mainMenu} />
         <div className=" md:flex md:items-stretch">
@@ -54,11 +91,12 @@ const AppLayout = ({ children, mainMenu, aboutMenu }) => {
           <div className="ifu-layout__body">
             <main id="main">{children}</main>
             <footer className="ifu-footer" id="footer">
-              <FooterLinks aboutMenu={aboutMenu} />
+              <FooterLinks footerMenu={footerMenu} />
               <FeedbackButtonBlock />
             </footer>
           </div>
         </div>
+        <CookieConsentBar />
       </div>
     </>
   )

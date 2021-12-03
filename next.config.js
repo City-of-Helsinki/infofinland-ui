@@ -5,6 +5,14 @@ module.exports = {
   reactStrictMode: true,
   poweredByHeader: false,
   env: {
+    COOKIE_PAGE_PATH: '/about/cookie-settings',
+    PRERENDER_LOCALES: ['fi', 'en', 'sv', 'ru', 'so'],
+    DRUPAL_MENUS: {
+      MAIN: 'main',
+      FOOTER: 'footer-about',
+      ABOUT: 'about',
+    },
+    HERO_COLORS: ['red', 'green', 'orange', 'blue'],
     REVALIDATE_TIME: 60,
     FB_URL: 'https://www.facebook.com/infofinland.fi',
     INSTAGRAM_URL: 'https://www.instagram.com/infofinland.fi/',

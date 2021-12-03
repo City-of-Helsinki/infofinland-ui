@@ -89,6 +89,46 @@ exports[`Error page page renders and matches snapshot 1`] = `
           </div>
         </div>
       </main>
+      <section
+        class=\\"
+          sticky
+          bottom-0
+          items-center
+          px-6
+          lg:px-16
+          pt-6
+          lg:pt-12
+          text-center
+          lg:text-left
+          bg-white
+          rounded-t
+          shadow-bottom-bar
+          min-bottom-bar
+          lg:rounded-none
+        \\"
+      >
+        <h2 class=\\"mb-4 text-body-large font-bold\\">cookies.title</h2>
+        <div class=\\"lg:flex lg:gap-12 pb-6 max-w-topbar\\">
+          <div class=\\"lg:w-1/2\\">
+            <p class=\\"mb-8 text-action lg:text-body\\">cookies.text</p>
+          </div>
+          <div class=\\"gap-4 justify-items-center items-center\\">
+            <button
+              class=\\"ifu-button block md:inline-block mx-auto mb-4 md:me-4\\"
+            >
+              cookies.deny</button
+            ><button
+              class=\\"ifu-button block md:inline-block mx-auto mb-4 md:me-12\\"
+            >
+              cookies.allow</button
+            ><a
+              class=\\"font-bold text-black underline\\"
+              href=\\"/about/cookie-settings\\"
+              >cookies.readMore</a
+            >
+          </div>
+        </div>
+      </section>
     </div>
   </body>
 </html>
@@ -181,6 +221,41 @@ exports[`Error page page renders and matches snapshot 2`] = `
       </div>
     </div>
   </main>
+  <section
+    class=\\"
+      sticky
+      bottom-0
+      items-center
+      px-6
+      lg:px-16
+      pt-6
+      lg:pt-12
+      text-center
+      lg:text-left
+      bg-white
+      rounded-t
+      shadow-bottom-bar
+      min-bottom-bar
+      lg:rounded-none
+      ifu-cookies__banner--appear ifu-cookies__banner--appear-active
+    \\"
+  >
+    <h2 class=\\"mb-4 text-body-large font-bold\\">cookies.title</h2>
+    <div class=\\"lg:flex lg:gap-12 pb-6 max-w-topbar\\">
+      <div class=\\"lg:w-1/2\\">
+        <p class=\\"mb-8 text-action lg:text-body\\">cookies.text</p>
+      </div>
+      <div class=\\"gap-4 justify-items-center items-center\\">
+        <button class=\\"ifu-button block md:inline-block mx-auto mb-4 md:me-4\\">
+          cookies.deny</button
+        ><button class=\\"ifu-button block md:inline-block mx-auto mb-4 md:me-12\\">
+          cookies.allow</button
+        ><a class=\\"font-bold text-black underline\\" href=\\"/about/cookie-settings\\"
+          >cookies.readMore</a
+        >
+      </div>
+    </div>
+  </section>
 </div>
 "
 `;

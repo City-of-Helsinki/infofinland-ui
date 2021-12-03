@@ -1,7 +1,7 @@
 //TODO tests
-
+import { findTheme } from '@/lib/menu-utils'
 export default function useThemeList({ tree, path }) {
-  const theme = tree.find(({ url }) => url === path)
+  const theme = findTheme({ tree, path })
   if (!theme || !theme.items) {
     return []
   } else {

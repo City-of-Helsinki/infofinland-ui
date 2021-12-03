@@ -3,7 +3,7 @@ import { IconMapMarker } from '@/components/Icons'
 import ParseHtml from '@/components/ParseHtml'
 import { useAtom } from 'jotai'
 import { selectedCity, cityMenuVisibility } from '@/src/store'
-import Block from '@/components/article/Block'
+import Block from '@/components/layout/Block'
 import cls from 'classnames'
 import { IconExternalSite } from '@/components/Icons'
 

@@ -2,7 +2,7 @@ import Button from '@/components/Button'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 // import image from '@/public/images/suomi-kartta.png'
-import Block from '@/components/article/Block'
+import Block from '@/components/layout/Block'
 const CitySelector = () => {
   const { push } = useRouter()
   const goToCities = () => push('/cities')

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import MainNavi from '@/components/navi/MainNavi'
+import MainNavi, { MainNaviError } from '@/components/navi/MainNavi'
+
 import { IconMenu } from '@/components/Icons'
 import Drawer from '@/components/layout/Drawer'
 import { useRouter } from 'next/router'
@@ -20,6 +21,7 @@ const MobileNavi = ({ mainMenu }) => {
    on click event as the menu closes only after
    the route has changed.
   */
+
   useEffect(() => {
     router.events.on('routeChangeComplete', close)
     router.events.on('routeChangeError', close)
@@ -29,7 +31,9 @@ const MobileNavi = ({ mainMenu }) => {
       router.events.off('routeChangeError', close)
     }
   }, [router])
-
+  if (mainMenu.error) {
+    return <MainNaviError />
+  }
   return (
     <>
       <div className="md:hidden md:mx-6 me-6 ms-2">

@@ -1,4 +1,4 @@
-import Block from '@/components/article/Block'
+import Block from '@/components/layout/Block'
 import { IconExternalSite } from '@/components/Icons'
 import cls from 'classnames'
 

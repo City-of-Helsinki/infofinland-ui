@@ -1,5 +1,4 @@
-const findParent = ({ items, parentId }) =>
-  items.find(({ id }) => id === parentId)
+import { findParent } from '@/lib/menu-utils'
 // TODO tests
 export default function useBreadCrumbs({ items, path }) {
   const page = items.find(({ url }) => url === path)

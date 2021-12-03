@@ -20,6 +20,6 @@ module.exports = {
     locales,
     languages,
     rtlLocales,
-    defaultLocale: 'en',
+    defaultLocale: 'fi',
   },
 }

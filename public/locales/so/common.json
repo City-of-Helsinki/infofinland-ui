@@ -41,6 +41,10 @@
   },
   "mainMenu": { "button": "Liiska ugu weyn" },
   "footer": {
-    "helsinkiDisclaimer": "The InfoFinland website is published by the City of Helsinki, and it is funded by the state and the InfoFinland member municipalities."
+    "helsinkiDisclaimer": "Bogga InfoFinland waxaa soosaara magaalada Helsinki waxaana maalgeliya dowladda iyo degmooyinka xubnaha ka ah InfoFinland."
+  },
+  "lang404": {
+    "title": "Luqaddan bogga laguma helo",
+    "text": "Nasiibdarro luqadda aad dooratay kuma jirto bogga. Macluumaadka ku saabsan mowduucan waxaad ku heleysaa luqadaha soo socda:"
   }
 }

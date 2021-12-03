@@ -8,6 +8,9 @@ import { atomWithStorage, splitAtom } from 'jotai/utils'
 /** The name of the module. */
 export const name = 'store'
 
+/** localStorage key for storing cookie consent value*/
+export const COOKIE_CONSENT_KEY = 'infofinland-cc'
+
 /** localStorage key for storing municipality selection*/
 export const CITY_ATOM_KEY = 'city'
 /** Chosen municipality for local information blocks*/
@@ -25,6 +28,13 @@ export const languageMessageIsOpen = atom(false)
 export const feedbackFormVisibility = atom(false)
 
 // const mainMenu = atom({})
+
+/** Cookie consent atom */
+
+export const cookieConsent = atomWithStorage(COOKIE_CONSENT_KEY, undefined)
+export const isCookieConsentSet = atom(
+  (get) => typeof get(cookieConsent) !== 'undefined'
+)
 
 /** Message queue */
 export const messages = atom({

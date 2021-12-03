@@ -52,9 +52,9 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
         ref={ref}
       >
         {!isSubmitting && (
-          <h2 className="mt-8 mb-4 font-sans text-h2 text-bodytext-color">
+          <h3 className="mt-8 mb-4 font-sans text-h2 text-bodytext-color">
             {t('feedback.title')}
-          </h2>
+          </h3>
         )}
         {isSubmitting && (
           <h3 className="my-6 text-h3">{t('feedback.states.submitting')}</h3>
