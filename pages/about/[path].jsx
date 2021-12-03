@@ -4,16 +4,18 @@ import {
   getAboutMenu,
   getCommonTranslations,
   getFooterAboutMenu,
-  addPrerenderLocalesToPaths,
+  // addPrerenderLocalesToPaths,
 } from '@/lib/ssr-api'
 
-import { getRootPages } from '@/lib/menu-utils'
+// import { getRootPages } from '@/lib/menu-utils'
 
-export async function getStaticPaths(context) {
-  const { items } = await getAboutMenu(context)
-  const paths = getRootPages(items)
+export async function getStaticPaths() {
+  // context
+  // const { items } = await getAboutMenu(context)
+  // const paths = getRootPages(items)
   return {
-    paths: addPrerenderLocalesToPaths(paths),
+    paths: [],
+    //  addPrerenderLocalesToPaths(paths),
     fallback: 'blocking',
   }
 }

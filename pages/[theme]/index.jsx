@@ -6,7 +6,7 @@ import {
   addPrerenderLocalesToPaths,
 } from '@/lib/ssr-api'
 import { map } from 'lodash'
-
+import { getResourceByPath } from 'next-drupal'
 export const PROPS = {
   heroImage,
   title: 'Oleskelulupaongelmat',
@@ -53,11 +53,20 @@ export async function getStaticPaths(context) {
 }
 
 export async function getStaticProps(context) {
+  const { locale, defaultLocale, params } = context
+  const path = [params.theme].join('/')
   const common = await getCommonApiContent(context)
+
+  const node = await getResourceByPath(path, {
+    locale,
+    defaultLocale,
+  })
+
   return {
     props: {
       ...common,
       ...PROPS,
+      node,
     },
     revalidate: process.env.REVALIDATE_TIME,
   }

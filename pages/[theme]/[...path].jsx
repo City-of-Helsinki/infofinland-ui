@@ -4,14 +4,8 @@ import {
   getCommonApiContent,
   getMainMenu,
   addPrerenderLocalesToPaths,
-  resolvePath,
+  getPageByPath,
 } from '@/lib/ssr-api'
-import {
-  // getResourceByPath,
-  // getResourceCollection,
-  // getResourceFromContext,
-  getResource,
-} from 'next-drupal'
 
 export const PROPS = {
   heroImage,
@@ -45,36 +39,18 @@ export async function getStaticPaths(context) {
 }
 
 export async function getStaticProps(context) {
-  const { locale, defaultLocale, params } = context
+  const { params } = context
+  const path = [params.theme, ...params.path].join('/')
   const common = await getCommonApiContent(context)
-  // const path = [ params.theme, ...params.path].join('/')
-  const localePath = ['', locale, params.theme, ...params.path].join('/')
-  const { data: page } = await resolvePath(localePath)
-
-  const node = await getResource('node--page', page.entity.uuid, {
-    locale,
-    defaultLocale,
-  })
-
-  // // TODO content type resolvers in ssr-api?
-
-  const { title, field_content } = node
-  const content = await Promise.all(
-    field_content.map(({ type, id }) =>
-      getResource(type, id, {
-        locale,
-        defaultLocale,
-      })
-    )
-  )
-
+  const { content, node } = await getPageByPath({ path, context })
+  if(node === null) {
+    return {notFound:true}
+  }
   return {
     props: {
       ...common,
-      ...PROPS,
-      title,
-      node,
       content,
+      node,
     },
     revalidate: process.env.REVALIDATE_TIME,
   }

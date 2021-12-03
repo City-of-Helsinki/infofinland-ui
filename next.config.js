@@ -12,6 +12,7 @@ module.exports = {
       FOOTER: 'footer-about',
       ABOUT: 'about',
     },
+    HERO_COLORS: ['red', 'green', 'orange', 'blue'],
     REVALIDATE_TIME: 60,
     FB_URL: 'https://www.facebook.com/infofinland.fi',
     INSTAGRAM_URL: 'https://www.instagram.com/infofinland.fi/',
