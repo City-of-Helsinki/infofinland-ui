@@ -6,8 +6,9 @@ import Block from '../components/layout/Block'
 import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import useBreadCrumbs from '@/hooks/useBreadCrumbs'
 import useThemeList from '@/hooks/useThemeList'
-
-const ThemePage = ({ title, mainMenu, footerMenu, ...articleProps }) => {
+import cls from 'classnames'
+import ParseHtml from '@/components/ParseHtml'
+const ThemePage = ({ node, content, color, mainMenu, footerMenu }) => {
   const { localePath } = useRouterWithLocalizedPath()
   const breadcrumbs = useBreadCrumbs({
     items: mainMenu.items,
@@ -17,16 +18,22 @@ const ThemePage = ({ title, mainMenu, footerMenu, ...articleProps }) => {
     tree: mainMenu.tree,
     path: localePath,
   })
-
+  const { title, revision_timestamp } = node
   return (
     <Layout mainMenu={mainMenu} footerMenu={footerMenu}>
       <Head>
         <title>{title} theme demo page</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Article title={title} {...articleProps} breadcrumbs={breadcrumbs}>
+      <Article
+        color={color}
+        title={title}
+        date={revision_timestamp}
+        breadcrumbs={breadcrumbs}
+      >
         <Block>
           <p className="mb-8 text-body text-bodytext-color">
+            <span className="text-neon-pink">DEMO INGRESS PLACEHOLDER: </span>
             The education system includes early childhood education, preschool
             education, comprehensive education, upper secondary education and
             higher education. Adult education is intended for adults and it
@@ -36,6 +43,16 @@ const ThemePage = ({ title, mainMenu, footerMenu, ...articleProps }) => {
         </Block>
       </Article>
       <Block hero>{themes && <ThemeList themes={themes} />}</Block>
+      {content
+        .filter(({ type }) => type === 'paragraph--text')
+        .map(({ field_text: { format, processed } }, i) => (
+          <Block
+            key={[format, i].join('-')}
+            className={cls('my-8 ifu-article__bodyblock', format)}
+          >
+            <ParseHtml html={processed} />
+          </Block>
+        ))}
     </Layout>
   )
 }

@@ -3,12 +3,15 @@ import Link from 'next/link'
 import cls from 'classnames'
 import SubMenu from '@/components/navi/SubMenu'
 import useLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
-import { findPageByPath, findRootForPath, getRootPages } from '@/lib/menu-utils'
+import { findRootForPath, getRootPages } from '@/lib/menu-utils'
 import { IconExclamationCircle } from '../Icons'
 
 const getThemeIndexByPathName = ({ items, path }) => {
   let index
   const root = findRootForPath({ items, path })
+  if (!root) {
+    return -1
+  }
   const themes = getRootPages(items)
   themes.find(({ url }, i) => {
     if (url === root.url) {
@@ -63,14 +66,10 @@ const TopMenuItem = ({
 
 const MainNavi = ({ mainMenu: { items, tree } }) => {
   const { localePath } = useLocalizedPath()
-  let indexFromRouter = -1
-  const page = findPageByPath({ items, localePath })
-  if (page) {
-    indexFromRouter = getThemeIndexByPathName({
-      items,
-      path: localePath,
-    })
-  }
+  const indexFromRouter = getThemeIndexByPathName({
+    items,
+    path: localePath,
+  })
   const [openIndex, setVisibility] = useState(indexFromRouter)
   const setOpenIndex = (i) => setVisibility(i === openIndex ? null : i)
   /**

@@ -6,7 +6,7 @@ module.exports = {
   poweredByHeader: false,
   env: {
     COOKIE_PAGE_PATH: '/about/cookie-settings',
-    PRERENDER_LOCALES: ['fi', 'en', 'sv', 'ru', 'so'],
+    PRERENDER_LOCALES: ['fi', 'en', 'sv', 'ru', 'zh', 'ar', 'fa'],
     DRUPAL_MENUS: {
       MAIN: 'main',
       FOOTER: 'footer-about',
