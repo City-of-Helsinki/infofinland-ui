@@ -77,7 +77,7 @@ const MessageCard = ({
           <div
             className={cls('w-2 flex-none rounded-s ', {
               'bg-neon-green': type === MESSAGE_TYPES.MESSAGE,
-              'bg-neon-red': type === MESSAGE_TYPES.ALERT,
+              'bg-neon-pink': type === MESSAGE_TYPES.ALERT,
               'bg-neon-yellow': type === MESSAGE_TYPES.WARNING,
             })}
           />

@@ -42,9 +42,5 @@
   "mainMenu": { "button": "Peamenüü" },
   "footer": {
     "helsinkiDisclaimer": "Veebisaiti InfoFinland.fi avaldab Helsingi linn ja seda finantseerivad riik ja InfoFinlandi liikmesomavalitsused."
-  },
-  "lang404": {
-    "title": "Leht ei ole selles keeles saadaval",
-    "text": "Kahjuks ei ole leht sinu valitud keeles saadaval. Leiad teema kohta teavet järgmistes keeltes:"
   }
 }

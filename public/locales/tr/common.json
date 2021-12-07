@@ -42,9 +42,5 @@
   "mainMenu": { "button": "Ana menü" },
   "footer": {
     "helsinkiDisclaimer": "InfoFinland.fi internet sitesi Helsinki Belediyesi tarafından yayınlanmakta; finansmanı da devlet ve InfoFinland'in üye belediyeleri tarafından sağlanmaktadır."
-  },
-  "lang404": {
-    "title": "Sayfa bu dilde mevcut değil",
-    "text": "Ne yazık ki sayfa seçtiğiniz dilde mevcut değil. Konuyla ilgili bilgiyi aşağıdaki dillerde bulabilirsiniz:"
   }
 }

@@ -19,12 +19,12 @@ export const BLOCK_MARGIN = `px-6 lg:px-12 lg:mx-12  xl:mx-28 2xl:mx-48  3xl:ms-
 export const HERO_MARGIN =
   'px-6 lg:px-0 lg:mx-12 xl:mx-28 2xl:mx-48  3xl:ms-64  3xl:max-w-4xl'
 
-const ArticleHeading = ({ heroImage, title, date, themeHero }) => {
+const ArticleHeading = ({ heroImage, title, date, themeHero, fiTitle }) => {
   const { locale } = useRouter()
   const titleMargin = themeHero ? HERO_MARGIN : BLOCK_MARGIN
   return (
     <div className={titleMargin}>
-      <div className={cls({ 'absolute bottom-8': !heroImage })}>
+      <div className={cls({ 'absolute bottom-5 md:bottom-8': !heroImage })}>
         {/* article category */}
 
         <span
@@ -35,12 +35,12 @@ const ArticleHeading = ({ heroImage, title, date, themeHero }) => {
             invisible: locale === 'fi',
           })}
         >
-          {title}
+          {fiTitle}
         </span>
         {/* article title / hero text */}
         <h1
           className={cls(
-            'mt-2 mb-6  max-w-article me-2 ifu-hero__title',
+            'mb-2 md:mb-6  max-w-article me-2 ifu-hero__title',
             longTextClass(title, {
               size: 40,
               classes: [

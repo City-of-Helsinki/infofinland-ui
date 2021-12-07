@@ -8,7 +8,14 @@ import ReadMoreBlock from '@/components/article/ReadMoreBlock'
 import useBreadCrumbs from '@/hooks/useBreadCrumbs'
 import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import cls from 'classnames'
-const ArticlePage = ({ mainMenu, footerMenu, content, node, color }) => {
+const ArticlePage = ({
+  mainMenu,
+  footerMenu,
+  content,
+  node,
+  color,
+  fiNode,
+}) => {
   const { localePath } = useRouterWithLocalizedPath()
   const breadcrumbs = useBreadCrumbs({
     items: mainMenu.items,
@@ -25,6 +32,7 @@ const ArticlePage = ({ mainMenu, footerMenu, content, node, color }) => {
         color={color}
         breadcrumbs={breadcrumbs}
         date={revision_timestamp}
+        fiTitle={fiNode.title}
       >
         {content
           .filter(({ type }) => type === 'paragraph--text')

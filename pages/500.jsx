@@ -12,45 +12,45 @@ const TEXTS = {
     help: 'Lataa sivu uudestaan',
   },
   sv: {
-    title: '?',
-    help: '?',
+    title: 'Det har uppstått ett fel på webbplatsen',
+    help: 'Ladda om sidan',
   },
   en: {
     title: 'Something went wrong',
     help: 'Try to refresh the page',
   },
   ru: {
-    title: '?',
-    help: '?',
+    title: 'Перезагрузить страницу',
+    help: 'Перейти к содержанию',
   },
   et: {
-    title: '?',
-    help: '?',
+    title: 'Saidil ilmnes viga',
+    help: 'Laadi leht uuesti',
   },
   fr: {
-    title: '?',
-    help: '?',
+    title: 'Une erreur s’est produite sur la page',
+    help: 'Télécharger à nouveau la page',
   },
   so: {
-    title: '?',
-    help: '?',
+    title: 'Khalad baa bogga ka dhacay',
+    help: 'Markale dib u soo kici bogga',
   },
   es: {
-    title: '?',
-    help: '?',
+    title: 'Se ha producido un error en el portal',
+    help: 'Recargue la página.',
   },
   tr: {
-    title: '?',
-    help: '?',
+    title: 'Sayfada hata oluştu',
+    help: 'Sayfayı yeniden yükleyin',
   },
-  zh: { title: '?', help: '?' },
+  zh: { title: '网站出现错误', help: '重新载入页面' },
   fa: {
-    title: '?',
-    help: '?',
+    title: 'در صفحات خطا پیش آمد',
+    help: 'این صفحه را دو باره بارگذاری کنید',
   },
   ar: {
-    title: '?',
-    help: '?',
+    title: 'این صفحه را دو باره بارگذاری کنید',
+    help: 'حمّل الصفحة من جديد',
   },
 }
 
