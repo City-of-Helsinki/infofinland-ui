@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Icon, { IconAngleRight } from '@/components/Icons'
 
 const Breadcrumbs = ({ items }) => {
-  const parent = items.at(-2)
+  const parent = items?.at(-2)
   return (
     <nav className="block relative pt-4 pb-2 mb-2 text-black">
       {/* Mobile */}
@@ -46,7 +46,7 @@ const Breadcrumbs = ({ items }) => {
               aria-hidden
             />
           </div>
-          {items.map(({ title, url }, i) => (
+          {items?.map(({ title, url }, i) => (
             <div key={`crumb-${i}-${title}`} className="inline-block">
               <Link href={url} passHref prefetch={false}>
                 <a

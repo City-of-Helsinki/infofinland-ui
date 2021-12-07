@@ -6,6 +6,16 @@ import { BlankLayout } from '@/components/layout/Layout'
 import { longTextClass } from '@/components/Typo'
 import { i18n } from '@/next-i18next.config'
 
+import { getCommonTranslations } from '@/lib/ssr-api'
+
+export async function getStaticProps(context) {
+  return {
+    props: {
+      ...(await getCommonTranslations(context.defaultLocale)),
+    },
+  }
+}
+
 const TEXTS = {
   fi: {
     title: 'Sivustolla tapahtui virhe',

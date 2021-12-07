@@ -38,14 +38,14 @@
   content: '';
   border-radius: 4rem;
   top: 5px;
-  @apply w-16 h-6  bg-blue-lighter inline-block absolute right-0 shadow-input border border-black-op1.5 transition-all;
+  @apply w-12 h-6  bg-blue-lighter inline-block absolute right-0 shadow-input border border-black-op1.5 transition-all;
 }
 
 .ifu-toggleswitch__switch::after {
   content: '';
   border-radius: 4rem;
   top: 5px;
-  @apply w-6 h-6 bg-white shadow-input inline-block absolute right-10 border border-black-op1.5 transition-all ease-in;
+  @apply w-6 h-6 bg-white shadow-input inline-block absolute right-7 border border-black-op1.5 transition-all ease-in;
 }
 
 .ifu-toggleswitch__input:checked + .ifu-toggleswitch__switch::before {

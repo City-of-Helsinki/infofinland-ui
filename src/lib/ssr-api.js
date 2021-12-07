@@ -67,16 +67,19 @@ export const getDefaultLocaleNode = async (id) =>
     defaultLocale: NO_DEFAULT_LOCALE,
   })
 
-export const getPageByPath = async ({ path, context: locale }) => {
-  const localeContext = disableDefaultLocale(locale)
+export const getPageByPath = async ({ path, context }) => {
+  const localeContext = {
+    locale: context.locale,
+    defaultLocale: NO_DEFAULT_LOCALE,
+  }
   const node = await getResourceByPath(path, localeContext)
-  let fiNode = { title: node.title }
+  let fiNode = { title: node?.title || '' }
   let content = []
   if (node?.field_content?.length > 0) {
     content = await getContent(node, localeContext)
   }
 
-  if (locale !== i18n.defaultLocale) {
+  if (context.locale !== i18n.defaultLocale && node !== null) {
     fiNode = await getDefaultLocaleNode(node.id).catch(() => ({
       title: node.title,
     }))
