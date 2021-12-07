@@ -44,9 +44,5 @@
   "mainMenu": { "button": "Menú principal" },
   "footer": {
     "helsinkiDisclaimer": "El portal InfoFinland.fi es publicado por la ciudad de Helsinki con financiación del Estado y de los municipios miembros de InfoFinland."
-  },
-  "lang404": {
-    "title": "La página no existe en este idioma.",
-    "text": "La página no existe en este idioma."
   }
 }

@@ -30,10 +30,6 @@
       "invalid": "!Pakollinen kenttä"
     }
   },
-  "lang404": {
-    "title": "Sidan finns inte på detta språk.",
-    "text": "Tyvärr finns sidan inte på det språk du har valt. Du hittar information om ärendet på följande språk:"
-  },
   "languageMenu": {
     "label": "!Valitse kieli"
   },

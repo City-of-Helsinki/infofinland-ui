@@ -34,7 +34,7 @@ export async function getStaticProps(context) {
   const { params } = context
   const path = [params.theme, ...params.path].join('/')
   const common = await getCommonApiContent(context)
-  const { content, node } = await getPageByPath({ path, context })
+  const { content, node, fiNode } = await getPageByPath({ path, context })
   if (node === null) {
     return { notFound: true }
   }
@@ -43,6 +43,7 @@ export async function getStaticProps(context) {
       ...common,
       content,
       node,
+      fiNode,
     },
     revalidate: process.env.REVALIDATE_TIME,
   }

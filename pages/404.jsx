@@ -4,9 +4,6 @@ import { HERO_MARGIN } from '@/components/article/Article'
 import { useRouter } from 'next/router'
 import cls from 'classnames'
 import { longTextClass } from '@/components/Typo'
-
-import { useTranslation } from 'next-i18next'
-import TextLink from '@/components/TextLink'
 import { i18n } from '@/next-i18next.config'
 import { map, omit } from 'lodash'
 import * as DrupalApi from '@/lib/ssr-api'
@@ -15,12 +12,14 @@ export async function getStaticProps(context) {
   const common = await DrupalApi.getCommonApiContent(context)
   return {
     props: {
+      texts: TEXTS_404,
       ...common,
     },
     revalidate: process.env.REVALIDATE_TIME,
   }
 }
-const TEXTS = {
+
+const TEXTS_404 = {
   fi: {
     title: 'Sivua ei löydy.',
     help: 'Voit etsiä sivun haulla tai sivukartasta.',
@@ -68,14 +67,14 @@ const TEXTS = {
   },
 }
 
-const PageNotFound = (props) => {
+const PageNotFound = ({ texts, ...props }) => {
   const { locale } = useRouter()
-  const content = omit(TEXTS, locale)
+  const content = omit(texts, locale)
 
   return (
     <Layout {...props}>
       <Head>
-        <title>{TEXTS[locale].title}</title>
+        <title>{texts[locale].title}</title>
       </Head>
 
       <div
@@ -89,17 +88,17 @@ const PageNotFound = (props) => {
         </span>
 
         <h1 className="flex-grow text-body md:text-body-large md:ms-6 lg:ms-12">
-          {TEXTS[locale].title}
+          {texts[locale].title}
           <span
             className={cls(
               'hidden md:block',
-              longTextClass(TEXTS[locale].help, {
+              longTextClass(texts[locale].help, {
                 size: 50,
                 classes: ['text-body md:text-body-large', 'text-small'],
               })
             )}
           >
-            {TEXTS[locale].help}
+            {texts[locale].help}
           </span>
         </h1>
       </div>
@@ -110,7 +109,7 @@ const PageNotFound = (props) => {
         )}
       >
         <p className="block md:hidden mb-8 text-body-small">
-          {TEXTS[locale].help}
+          {texts[locale].help}
         </p>
         {map(content, ({ title, help }, locale) => {
           return (
@@ -125,27 +124,6 @@ const PageNotFound = (props) => {
             </div>
           )
         })}
-      </div>
-    </Layout>
-  )
-}
-
-export const LanguageNotFound = (props) => {
-  const { t } = useTranslation('common')
-  return (
-    <Layout {...props}>
-      <Head>
-        <title>{t('lang404.title')}</title>
-      </Head>
-      <div
-        className={cls(
-          'border-s-10 border-neon-pink shadow-404title rounded min-h-lang404',
-          ' mt-6 md:mt-12 mx-2 p-8 lg:mx-12  xl:mx-28 2xl:mx-48  3xl:ms-64  3xl:max-w-4xl '
-        )}
-      >
-        <h1 className="mb-10 text-h2">{t('lang404.title')}</h1>
-        <p className="mb-4">{t('lang404.text')}</p>
-        <TextLink href="/">{t('lang404.link')}</TextLink>
       </div>
     </Layout>
   )

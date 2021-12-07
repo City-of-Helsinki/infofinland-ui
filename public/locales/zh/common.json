@@ -42,9 +42,5 @@
   "mainMenu": { "button": "主菜单" },
   "footer": {
     "helsinkiDisclaimer": "InfoFinland.fi网站由赫尔辛基市负责发布，运作资金由国家和成员市镇提供。"
-  },
-  "lang404": {
-    "title": "本页不支持该语言",
-    "text": "很遗憾！本页不支持您所选的语言您可通过下列语言了解相关信息："
   }
 }
