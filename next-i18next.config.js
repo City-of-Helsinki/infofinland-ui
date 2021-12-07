@@ -17,6 +17,7 @@ const locales = languages.map(({ code }) => code)
 
 module.exports = {
   i18n: {
+    reloadOnPrerender: typeof process.env.development !== 'undefined',
     locales,
     languages,
     rtlLocales,
