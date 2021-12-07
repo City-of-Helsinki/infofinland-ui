@@ -59,7 +59,16 @@ Use watch-mode for test runner
 yarn test --watch
 ```
 
-7. Commit to you feature branch, push to repo, make a merge request.
+7. test build (before merge request)
+```bash
+yarn build && yarn start
+```
+test site at localhost:3000
+
+8. test docker build  (before merge request)
+build Dockerfile and run it. test site at localhost:8080
+
+9. Commit to you feature branch, push to repo, make a merge request.
 
 ### Required tools
 
