@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 
 import { useTranslation } from 'next-i18next'
 
-const MobileNavi = ({ mainMenu }) => {
+const MobileNavi = ({ menu }) => {
   const [isOpen, setVisibility] = useState(false)
   const open = () => setVisibility(true)
   const close = () => setVisibility(false)
@@ -31,7 +31,7 @@ const MobileNavi = ({ mainMenu }) => {
       router.events.off('routeChangeError', close)
     }
   }, [router])
-  if (mainMenu.error) {
+  if (menu.error) {
     return <MainNaviError />
   }
   return (
@@ -51,7 +51,7 @@ const MobileNavi = ({ mainMenu }) => {
 
       <Drawer close={close} isOpen={isOpen}>
         <div className="bg-white">
-          <MainNavi mainMenu={mainMenu} />
+          <MainNavi menu={menu} />
         </div>
       </Drawer>
     </>

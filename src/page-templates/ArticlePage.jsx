@@ -8,22 +8,15 @@ import ReadMoreBlock from '@/components/article/ReadMoreBlock'
 import useBreadCrumbs from '@/hooks/useBreadCrumbs'
 import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import cls from 'classnames'
-const ArticlePage = ({
-  mainMenu,
-  footerMenu,
-  content,
-  node,
-  color,
-  fiNode,
-}) => {
+const ArticlePage = ({ menu, footerMenu, content, node, color, fiNode }) => {
   const { localePath } = useRouterWithLocalizedPath()
   const breadcrumbs = useBreadCrumbs({
-    items: mainMenu.items,
+    items: menu.items,
     path: localePath,
   })
   const { title, revision_timestamp } = node
   return (
-    <Layout mainMenu={mainMenu} footerMenu={footerMenu}>
+    <Layout menu={menu} footerMenu={footerMenu}>
       <Head>
         <title>{title}</title>
       </Head>

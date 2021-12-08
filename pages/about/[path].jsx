@@ -1,13 +1,5 @@
 import AboutPage from '@/src/page-templates/AboutPage'
-
-import {
-  getAboutMenu,
-  getCommonTranslations,
-  getFooterAboutMenu,
-  // addPrerenderLocalesToPaths,
-} from '@/lib/ssr-api'
-
-// import { getRootPages } from '@/lib/menu-utils'
+import { getCommonApiContent } from '@/lib/ssr-api'
 
 export async function getStaticPaths() {
   // context
@@ -19,18 +11,11 @@ export async function getStaticPaths() {
     fallback: 'blocking',
   }
 }
-export async function getStaticProps(context) {
-  const [aboutMenu, footerMenu, translations] = await Promise.all([
-    getAboutMenu(context),
-    getFooterAboutMenu(context),
-    getCommonTranslations(context.locale),
-  ])
 
+export async function getStaticProps(context) {
   return {
     props: {
-      aboutMenu,
-      footerMenu,
-      ...translations,
+      ...(await getCommonApiContent(context, process.env.DRUPAL_MENUS.ABOUT)),
     },
     revalidate: process.env.REVALIDATE_TIME,
   }

@@ -3,7 +3,7 @@ import cls from 'classnames'
 
 import { useTranslation } from 'next-i18next'
 import { IconExclamationBubble, IconAngleUp } from '@/components/Icons'
-import { HERO_MARGIN } from '@/components/article/Article'
+import { HERO_MARGIN } from '@/components/layout/Block'
 import Button, { LinkButton } from '@/components/Button'
 import { useForm } from 'react-hook-form'
 import InfoBlock from '@/components/feedback/InfoBlock'

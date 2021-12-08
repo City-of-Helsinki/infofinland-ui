@@ -17,9 +17,9 @@ export async function getStaticProps(context) {
   }
 }
 
-const HomePage = ({ mainMenu, footerMenu }) => {
+const HomePage = ({ menu, footerMenu }) => {
   return (
-    <Layout mainMenu={mainMenu} footerMenu={footerMenu}>
+    <Layout menu={menu} footerMenu={footerMenu}>
       <Head>
         <title>Article demo page</title>
         <link rel="icon" href="/favicon.ico" />
@@ -40,7 +40,7 @@ const HomePage = ({ mainMenu, footerMenu }) => {
       </Block>
 
       <Block>
-        <ThemeList themes={mainMenu.tree} showImages />
+        <ThemeList themes={menu.tree} showImages />
       </Block>
       <CitySelector />
       <HomeAbout />

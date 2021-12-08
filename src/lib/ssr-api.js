@@ -34,14 +34,20 @@ export const getAboutMenu = async ({ locale }) =>
     defaultLocale: NO_DEFAULT_LOCALE,
   })
 
-export const getCommonApiContent = async ({ locale }) => {
+export const getCommonApiContent = async (
+  { locale },
+  main = process.env.DRUPAL_MENUS.MAIN,
+  footer = process.env.DRUPAL_MENUS.FOOTER
+) => {
   const context = { locale, defaultLocale: NO_DEFAULT_LOCALE }
-  const [mainMenu, footerMenu, translations] = await Promise.all([
-    getMenu(process.env.DRUPAL_MENUS.MAIN, context).catch((e) => {
-      console.error('mainMenu error', e)
+  const [menu, footerMenu, translations] = await Promise.all([
+    //Main menu or whatever is called
+    getMenu(main, context).catch((e) => {
+      console.error('menu error', e)
       return menuErrorResponse(e)
     }),
-    getMenu(process.env.DRUPAL_MENUS.FOOTER, context).catch((e) => {
+    //Footer Menu
+    getMenu(footer, context).catch((e) => {
       console.error('footerMenu error', e)
       return menuErrorResponse(e)
     }),
@@ -54,7 +60,7 @@ export const getCommonApiContent = async ({ locale }) => {
   })
 
   return {
-    mainMenu,
+    menu,
     footerMenu,
     color: sample(process.env.HERO_COLORS),
     ...translations,

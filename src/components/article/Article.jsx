@@ -5,6 +5,7 @@ import { IconCalendar } from '@/components/Icons'
 import Breadcrumbs from '@/components/layout/Breadcrumbs'
 import { useRouter } from 'next/router'
 import { DateTime } from 'luxon'
+import { BLOCK_MARGIN, HERO_MARGIN } from '@/components/layout/Block'
 
 // Tailwind color classes. Must be written out or css purge will remove them.
 const BG_COLORS = {
@@ -13,11 +14,6 @@ const BG_COLORS = {
   blue: 'bg-article-blue',
   orange: 'bg-article-orange',
 }
-
-export const BLOCK_MARGIN = `px-6 lg:px-12 lg:mx-12  xl:mx-28 2xl:mx-48  3xl:ms-64  3xl:max-w-4xl`
-
-export const HERO_MARGIN =
-  'px-6 lg:px-0 lg:mx-12 xl:mx-28 2xl:mx-48  3xl:ms-64  3xl:max-w-4xl'
 
 const ArticleHeading = ({ heroImage, title, date, themeHero, fiTitle }) => {
   const { locale } = useRouter()

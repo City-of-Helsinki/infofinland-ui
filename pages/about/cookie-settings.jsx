@@ -3,27 +3,15 @@ import { CookieConsentActions } from '@/components/layout/CookieConsent'
 import Block from '@/components/layout/Block'
 import { useTranslation } from 'next-i18next'
 
-import {
-  getAboutMenu,
-  getCommonTranslations,
-  getFooterAboutMenu,
-} from '@/lib/ssr-api'
+import { getCommonApiContent } from '@/lib/ssr-api'
 import { useAtomValue, useUpdateAtom } from 'jotai/utils'
 import ToggleSwitch from '@/components/ToggleSwitch'
 import { cookieConsent } from '@/src/store'
 
 export async function getStaticProps(context) {
-  const [aboutMenu, footerMenu, translations] = await Promise.all([
-    getAboutMenu(context),
-    getFooterAboutMenu(context),
-    getCommonTranslations(context.locale),
-  ])
-
   return {
     props: {
-      aboutMenu,
-      footerMenu,
-      ...translations,
+      ...(await getCommonApiContent(context, process.env.DRUPAL_MENUS.ABOUT)),
     },
     revalidate: process.env.REVALIDATE_TIME,
   }
@@ -37,14 +25,14 @@ export default function CookieConsentPage({ ...layout }) {
 
   return (
     <AboutPage {...layout}>
-      <Block hero>
-        <h1 className="mt-16 mb-8 text-h1 md:text-h1xl">
+      <Block about>
+        <h1 className="mt-16 mb-8 text-h1 lg:text-h1xl">
           {t('cookies.settings.title')}
         </h1>
         <p className="mb-16">{t('cookies.text')}</p>
       </Block>
       <form>
-        <Block className="pb-16 mt-16">
+        <Block className="pb-16 mt-16" about>
           <ToggleSwitch
             checked={isAnalyticsAllowed}
             text={t('cookies.labels.analytics')}
@@ -57,7 +45,7 @@ export default function CookieConsentPage({ ...layout }) {
             {t(isAnalyticsAllowed ? 'cookies.allowed' : 'cookies.denied')}
           </span>
         </Block>
-        <Block hero>
+        <Block about>
           <p className="pt-8 text-center border-t border-bodytext-color">
             <CookieConsentActions />
           </p>

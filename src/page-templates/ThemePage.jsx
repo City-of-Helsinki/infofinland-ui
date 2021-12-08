@@ -8,19 +8,19 @@ import useBreadCrumbs from '@/hooks/useBreadCrumbs'
 import useThemeList from '@/hooks/useThemeList'
 import cls from 'classnames'
 import ParseHtml from '@/components/ParseHtml'
-const ThemePage = ({ node, content, color, mainMenu, footerMenu }) => {
+const ThemePage = ({ node, content, color, menu, footerMenu }) => {
   const { localePath } = useRouterWithLocalizedPath()
   const breadcrumbs = useBreadCrumbs({
-    items: mainMenu.items,
+    items: menu.items,
     path: localePath,
   })
   const themes = useThemeList({
-    tree: mainMenu.tree,
+    tree: menu.tree,
     path: localePath,
   })
   const { title, revision_timestamp } = node
   return (
-    <Layout mainMenu={mainMenu} footerMenu={footerMenu}>
+    <Layout menu={menu} footerMenu={footerMenu}>
       <Head>
         <title>{title} theme demo page</title>
         <link rel="icon" href="/favicon.ico" />

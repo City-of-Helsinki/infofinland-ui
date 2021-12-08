@@ -38,7 +38,7 @@
   content: '';
   border-radius: 4rem;
   top: 5px;
-  @apply w-12 h-6  bg-blue-lighter inline-block absolute right-0 shadow-input border border-black-op1.5 transition-all;
+  @apply w-12 h-6  bg-red-light inline-block absolute right-0 shadow-input border border-black-op1.5 transition-all;
 }
 
 .ifu-toggleswitch__switch::after {

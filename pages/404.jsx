@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Layout from '@/components/layout/Layout'
-import { HERO_MARGIN } from '@/components/article/Article'
+import { HERO_MARGIN } from '@/components/layout/Block'
 import { useRouter } from 'next/router'
 import cls from 'classnames'
 import { longTextClass } from '@/components/Typo'

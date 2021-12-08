@@ -1,5 +1,5 @@
 import { IconFacebook, IconInstagram, IconTwitter, IconYoutube } from '../Icons'
-import { HERO_MARGIN } from '@/components/article/Article'
+import { HERO_MARGIN, ABOUT_MARGIN } from '@/components/layout/Block'
 import Link from 'next/link'
 import cls from 'classnames'
 
@@ -8,10 +8,11 @@ import { useTranslation } from 'next-i18next'
 /**
  * SOME Urls are defined in next.config.js
  * */
-const FooterLinks = ({ footerMenu }) => {
+const FooterLinks = ({ footerMenu, secondary }) => {
   const { t, language } = useTranslation('common')
+  const margin = secondary ? ABOUT_MARGIN : HERO_MARGIN
   return (
-    <div className={cls(HERO_MARGIN, 'mt-16 mb-16')}>
+    <div className={cls(margin, 'mt-16 mb-16')}>
       <div className="py-10 border-t border-b border-gray ifu-footer__brand">
         <div
           className="mx-auto sm:mx-0 mb-5 ifu-footer__hki-logo"

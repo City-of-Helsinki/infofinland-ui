@@ -39,7 +39,7 @@
     "title": "!Haluatko vaihtaa kieltä?",
     "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
   },
-  "mainMenu": { "button": "主菜单" },
+  "menu": { "button": "主菜单" },
   "footer": {
     "helsinkiDisclaimer": "InfoFinland.fi网站由赫尔辛基市负责发布，运作资金由国家和成员市镇提供。"
   }

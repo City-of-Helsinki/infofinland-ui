@@ -64,7 +64,7 @@ const TopMenuItem = ({
   </li>
 )
 
-const MainNavi = ({ mainMenu: { items, tree } }) => {
+const MainNavi = ({ menu: { items, tree } }) => {
   const { localePath } = useLocalizedPath()
   const indexFromRouter = getThemeIndexByPathName({
     items,
