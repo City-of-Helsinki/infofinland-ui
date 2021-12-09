@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import PreloadFonts from './PreloadFonts'
+import Favicons from './Favicons'
 import Messages from '@/components/messages/Messages'
 import FooterLinks from '@/components/layout/FooterLinks'
 import FeedbackButtonBlock from '@/components/feedback/FeedbackForm'
@@ -20,15 +22,23 @@ Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
+const CommonHead = ({ title = '', description = '', children }) => (
+  <Head>
+    {title && <title>{title}</title>}
+    {description && <meta name="description" content={description} />}
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <PreloadFonts />
+    <Favicons />
+    {children}
+  </Head>
+)
+
 export const BlankLayout = ({ children }) => {
   useSetLocalization(useRouter().locale)
 
   return (
     <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <CommonHead />
       <main className="relative text-body bg-white" id="main">
         {children}
       </main>
@@ -37,17 +47,13 @@ export const BlankLayout = ({ children }) => {
   )
 }
 
-export const SecondaryLayout = ({ children, menu, footerMenu }) => {
+export const SecondaryLayout = ({ children, menu, footerMenu, node }) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
   useShowLangMessage(locale)
   return (
     <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
+      <CommonHead description={node?.field_description} title={node?.title} />
       <div className=" relative text-body bg-white">
         <TopMenu menu={menu} />
         <div className="md:mx-auto lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
@@ -71,16 +77,13 @@ export const SecondaryLayout = ({ children, menu, footerMenu }) => {
   )
 }
 
-const AppLayout = ({ children, menu, footerMenu }) => {
+const AppLayout = ({ children, menu, footerMenu, node }) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
   useShowLangMessage(locale)
   return (
     <>
-      <Head>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <CommonHead description={node?.field_description} title={node?.title} />
 
       <div className=" relative text-body bg-white">
         <TopMenu menu={menu} />

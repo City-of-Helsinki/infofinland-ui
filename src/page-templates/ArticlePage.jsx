@@ -1,22 +1,22 @@
 import Head from 'next/head'
 import Article from '@/components/article/Article'
 import Layout from '@/components/layout/Layout'
-import ParseHtml from '../components/ParseHtml'
 import LocalInformation from '@/components/cities/LocalInformation'
-import Block from '@/components/layout/Block'
 import ReadMoreBlock from '@/components/article/ReadMoreBlock'
 import useBreadCrumbs from '@/hooks/useBreadCrumbs'
 import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
-import cls from 'classnames'
-const ArticlePage = ({ menu, footerMenu, content, node, color, fiNode }) => {
+import ContentMapper from '@/components/article/ContentMapper'
+
+const ArticlePage = ({ menu, footerMenu, node, color }) => {
   const { localePath } = useRouterWithLocalizedPath()
   const breadcrumbs = useBreadCrumbs({
     items: menu.items,
     path: localePath,
   })
-  const { title, revision_timestamp } = node
+
+  const { title, revision_timestamp, content, fiTitle } = node
   return (
-    <Layout menu={menu} footerMenu={footerMenu}>
+    <Layout menu={menu} footerMenu={footerMenu} node={node}>
       <Head>
         <title>{title}</title>
       </Head>
@@ -25,24 +25,13 @@ const ArticlePage = ({ menu, footerMenu, content, node, color, fiNode }) => {
         color={color}
         breadcrumbs={breadcrumbs}
         date={revision_timestamp}
-        fiTitle={fiNode.title}
+        fiTitle={fiTitle}
       >
-        {content
-          .filter(({ type }) => type === 'paragraph--text')
-          .map(({ field_text: { format, processed } }, i) => (
-            <Block
-              key={[format, i].join('-')}
-              className={cls('my-8 ifu-article__bodyblock', format)}
-            >
-              <ParseHtml html={processed} />
-            </Block>
-          ))}
-        {/* <Block className="my-8 ifu-article__bodyblock">
-
-        </Block> */}
+        {content && <ContentMapper content={content} />}
+        <p className="font-bold text-neon-pink">DEMO READMORE BLOCK</p>
         <ReadMoreBlock />
+        <p className="font-bold text-neon-pink">DEMO LOCAL INFO BLOCK</p>
         <LocalInformation readMoreUrl={'/test'} />
-        <ReadMoreBlock />
       </Article>
     </Layout>
   )

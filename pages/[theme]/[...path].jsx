@@ -3,8 +3,10 @@ import {
   getCommonApiContent,
   getMainMenu,
   addPrerenderLocalesToPaths,
-  getPageByPath,
+  // getPageByPath,
+  getPageWithContentByPath,
 } from '@/lib/ssr-api'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export async function getStaticPaths(context) {
   const { items } = await getMainMenu(context)
@@ -34,16 +36,18 @@ export async function getStaticProps(context) {
   const { params } = context
   const path = [params.theme, ...params.path].join('/')
   const common = await getCommonApiContent(context)
-  const { content, node, fiNode } = await getPageByPath({ path, context })
+  const node = await getPageWithContentByPath({ path, context })
+  // console.log({node})
+  // const { node } = await getPageByPath({ path, context })
+
   if (node === null) {
     return { notFound: true }
   }
   return {
     props: {
       ...common,
-      content,
       node,
-      fiNode,
+      ...(await serverSideTranslations(context.locale, ['common'])),
     },
     revalidate: process.env.REVALIDATE_TIME,
   }

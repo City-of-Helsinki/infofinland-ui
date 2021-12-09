@@ -5969,16 +5969,16 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-next-drupal@0.18.0:
-  version "0.18.0"
-  resolved "https://registry.yarnpkg.com/next-drupal/-/next-drupal-0.18.0.tgz#6dc0596c7a9121ab990210d3da9b0db0211c471e"
-  integrity sha512-5b/eHvCh7Y7v3EIEeNBrnvFYtc/eViCKghAQ5a8DIiCIRUz3tUrxuP/efd1ev/1E/CYYPDDrt1jTgFZXgvaPQQ==
+next-drupal@1.0.x:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/next-drupal/-/next-drupal-1.0.0.tgz#1af4bbf21227fe9b72b3a67ec6c43e2161bb5231"
+  integrity sha512-u3yoVMKq8Da26ZKbYUeJrkckREwbkNw5TYxudel9uOQwKM3GiUDcG5vECoAjXA2QELLHiUBoM/wmTpcKuP6vIQ==
   dependencies:
     jsona "^1.8.0"
     node-cache "^5.1.2"
     qs "^6.10.1"
 
-next-i18next@9.2.0:
+next-i18next@9.x:
   version "9.2.0"
   resolved "https://registry.yarnpkg.com/next-i18next/-/next-i18next-9.2.0.tgz#00d9c1f817648b492e017e0b956cd2b818f0c0d2"
   integrity sha512-cWhrgxYz9IZZQ81Vc4NgogaKSANN827qHRkyVuoscOerJBHNMr7t3vO1szj/M1qnyE7yIV0NHczCS4VyqWbQAg==

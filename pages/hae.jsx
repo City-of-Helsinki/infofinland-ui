@@ -11,6 +11,7 @@ import { IconLookingGlass } from '@/components/Icons'
 import useSearchRoute from '@/hooks/useSearchRoute'
 import { IconAngleRight } from '@/components/Icons'
 import * as DrupalApi from '@/lib/ssr-api'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import Highlighter from 'react-highlight-words'
 
@@ -32,6 +33,8 @@ export async function getServerSideProps(context) {
   return {
     props: {
       ...common,
+      ...(await serverSideTranslations(context.defaultLocale, ['common'])),
+
       q,
       results,
     },

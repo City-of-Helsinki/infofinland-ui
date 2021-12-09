@@ -1,5 +1,6 @@
 import { getCommonApiContent } from '@/lib/ssr-api'
 import PageNotFound from './404'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 const TEXTS = {
   fi: {
@@ -58,6 +59,7 @@ export async function getStaticProps(context) {
     props: {
       texts: TEXTS,
       ...common,
+      ...(await serverSideTranslations(context.defaultLocale, ['common'])),
     },
     revalidate: process.env.REVALIDATE_TIME,
   }

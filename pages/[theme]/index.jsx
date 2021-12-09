@@ -6,7 +6,7 @@ import {
   getPageByPath,
 } from '@/lib/ssr-api'
 import { map } from 'lodash'
-
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 export async function getStaticPaths(context) {
   let paths = []
 
@@ -56,6 +56,7 @@ export async function getStaticProps(context) {
       ...common,
       content,
       node,
+      ...(await serverSideTranslations(context.locale, ['common'])),
     },
     revalidate: process.env.REVALIDATE_TIME,
   }
