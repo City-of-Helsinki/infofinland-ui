@@ -49,56 +49,50 @@ const ReadMoreBlock = ({ content = READMORE_CONTENT }) => {
   return (
     <Block className="mt-8 mb-8 bg-orange-white">
       <div className="py-6">
-        {content.map(
-          ({ siteUrl, siteName, pageUrl, pageName, languages }, i) => (
-            <div
-              className={cls({
-                'mb-3 pb-3 border-b border-gray-hr': i + 1 < content.length,
-              })}
-              key={`${siteName}-${i}`}
+        {content.map(({ siteName, pageUrl, pageName, languages }, i) => (
+          <div
+            className={cls({
+              'mb-3 pb-3 border-b border-gray-hr': i + 1 < content.length,
+            })}
+            key={`${siteName}-${i}`}
+          >
+            <span
+              className="flex items-center text-small"
+              target="_blank"
+              rel="noreferrer"
             >
-              <span
-                className="flex items-center text-small"
-                href={siteUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <IconExternalSite className="me-2" />
-                {siteName}
-              </span>
+              <IconExternalSite className="me-2" />
+              {siteName}
+            </span>
 
-              <a
-                rel="noreferrer"
-                href={pageUrl}
-                target="_blank"
-                className="inline-block mb-4 text-body font-bold ifu-text-link"
-              >
-                {pageName}
-              </a>
+            <a
+              rel="noreferrer"
+              href={pageUrl}
+              target="_blank"
+              className="inline-block mb-4 text-body font-bold ifu-text-link"
+            >
+              {pageName}
+            </a>
 
-              <div className="flex flex-wrap divide-link divide-s">
-                {languages.map(({ url, text, lang }, k) => (
-                  <a
-                    title={pageName}
-                    rel="noreferrer"
-                    href={url}
-                    key={`link-${text}-${k}`}
-                    target="_blank"
-                    lang={lang}
-                    className={cls(
-                      'text-small leading-snug ifu-text-link pe-2',
-                      {
-                        'ps-2': k > 0,
-                      }
-                    )}
-                  >
-                    {text}
-                  </a>
-                ))}
-              </div>
+            <div className="flex flex-wrap divide-link divide-s">
+              {languages.map(({ url, text, lang }, k) => (
+                <a
+                  title={pageName}
+                  rel="noreferrer"
+                  href={url}
+                  key={`link-${text}-${k}`}
+                  target="_blank"
+                  lang={lang}
+                  className={cls('text-small leading-snug ifu-text-link pe-2', {
+                    'ps-2': k > 0,
+                  })}
+                >
+                  {text}
+                </a>
+              ))}
             </div>
-          )
-        )}
+          </div>
+        ))}
       </div>
     </Block>
   )

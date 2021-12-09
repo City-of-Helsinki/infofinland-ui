@@ -1,4 +1,4 @@
-import { getMenu, getResource, getResourceByPath } from 'next-drupal'
+import { getMenu, getResource } from 'next-drupal'
 import { sample } from 'lodash'
 import { i18n } from '../../next-i18next.config'
 import axios from 'axios'
@@ -31,7 +31,9 @@ export const resolvePath = async ({ path, context }) => {
 
 export const getPageById = async (id, { locale, defaultLocale }) => {
   return await axios.get(API_URLS.getPage({ locale, defaultLocale, id }), {
-    params: { include: 'field_content.field_image.field_media_image' },
+    params: {
+      include: `field_content.field_image.field_media_image,field_content.field_link_collection.field_links`,
+    },
   })
 }
 
@@ -126,29 +128,29 @@ export const getDefaultLocaleNode = async (id) =>
     defaultLocale: NO_DEFAULT_LOCALE,
   })
 
-export const getPageByPath = async ({ path, context }) => {
-  const localeContext = {
-    locale: context.locale,
-    defaultLocale: NO_DEFAULT_LOCALE,
-  }
-  const node = await getResourceByPath(path, {
-    ...localeContext,
-    params: { include: 'field_content' },
-  })
-  let fiNode = { title: node?.title || '' }
-  let content = []
-  if (node?.field_content?.length > 0) {
-    content = await getContent(node, localeContext)
-  }
+// export const getPageByPath = async ({ path, context }) => {
+//   const localeContext = {
+//     locale: context.locale,
+//     defaultLocale: NO_DEFAULT_LOCALE,
+//   }
+//   const node = await getResourceByPath(path, {
+//     ...localeContext,
+//     params: { include: 'field_content' },
+//   })
+//   let fiNode = { title: node?.title || '' }
+//   let content = []
+//   if (node?.field_content?.length > 0) {
+//     content = await getContent(node, localeContext)
+//   }
 
-  if (context.locale !== i18n.defaultLocale && node !== null) {
-    fiNode = await getDefaultLocaleNode(node.id).catch(() => ({
-      title: node.title,
-    }))
-  }
+//   if (context.locale !== i18n.defaultLocale && node !== null) {
+//     fiNode = await getDefaultLocaleNode(node.id).catch(() => ({
+//       title: node.title,
+//     }))
+//   }
 
-  return { node, content, fiTitle: fiNode.title }
-}
+//   return { node, content, fiTitle: fiNode.title }
+// }
 
 export const addPrerenderLocalesToPaths = (paths) =>
   process.env.PRERENDER_LOCALES.map((locale) =>

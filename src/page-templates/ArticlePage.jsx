@@ -2,7 +2,6 @@ import Head from 'next/head'
 import Article from '@/components/article/Article'
 import Layout from '@/components/layout/Layout'
 import LocalInformation from '@/components/cities/LocalInformation'
-import ReadMoreBlock from '@/components/article/ReadMoreBlock'
 import useBreadCrumbs from '@/hooks/useBreadCrumbs'
 import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import ContentMapper from '@/components/article/ContentMapper'
@@ -13,6 +12,7 @@ const ArticlePage = ({ menu, footerMenu, node, color }) => {
     items: menu.items,
     path: localePath,
   })
+  console.log({ node })
 
   const { title, revision_timestamp, content, fiTitle } = node
   return (
@@ -29,7 +29,6 @@ const ArticlePage = ({ menu, footerMenu, node, color }) => {
       >
         {content && <ContentMapper content={content} />}
         <p className="font-bold text-neon-pink">DEMO READMORE BLOCK</p>
-        <ReadMoreBlock />
         <p className="font-bold text-neon-pink">DEMO LOCAL INFO BLOCK</p>
         <LocalInformation readMoreUrl={'/test'} />
       </Article>

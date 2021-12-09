@@ -8,7 +8,7 @@ import useBreadCrumbs from '@/hooks/useBreadCrumbs'
 import useThemeList from '@/hooks/useThemeList'
 import cls from 'classnames'
 import ParseHtml from '@/components/ParseHtml'
-const ThemePage = ({ node, content, color, menu, footerMenu }) => {
+const ThemePage = ({ node, color, menu, footerMenu }) => {
   const { localePath } = useRouterWithLocalizedPath()
   const breadcrumbs = useBreadCrumbs({
     items: menu.items,
@@ -18,7 +18,9 @@ const ThemePage = ({ node, content, color, menu, footerMenu }) => {
     tree: menu.tree,
     path: localePath,
   })
-  const { title, revision_timestamp } = node
+  console.log({ node })
+  const { title, revision_timestamp, content, fiTitle } = node
+
   return (
     <Layout menu={menu} footerMenu={footerMenu}>
       <Head>
@@ -30,6 +32,7 @@ const ThemePage = ({ node, content, color, menu, footerMenu }) => {
         title={title}
         date={revision_timestamp}
         breadcrumbs={breadcrumbs}
+        fiTitle={fiTitle}
       >
         <Block>
           <p className="mb-8 text-body text-bodytext-color">
