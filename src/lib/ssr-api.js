@@ -18,6 +18,7 @@ const API_URLS = {
 }
 
 const menuErrorResponse = () => ({ items: [], tree: [], error: 'menu-error' })
+const AXIOS_ERROR_RESPONSE = { data: null }
 
 export const resolvePath = async ({ path, context }) => {
   const { locale, defaultLocale } = context
@@ -38,9 +39,13 @@ export const getPageById = async (id, { locale, defaultLocale }) => {
 }
 
 export const getPageWithContentByPath = async ({ path, context }) => {
-  const { data: pathNode } = await resolvePath({ path, context })
+  const { data: pathNode } = await resolvePath({ path, context }).catch((e) => {
+    console.error(e)
+    return AXIOS_ERROR_RESPONSE
+  })
+  // Error in resolving path. return 404 in getStaticProps
   if (!pathNode) {
-    throw new Error('unable to resolve path')
+    return null
   }
   const {
     entity: { uuid: id },
@@ -48,10 +53,10 @@ export const getPageWithContentByPath = async ({ path, context }) => {
 
   const { data: page } = await getPageById(id, context).catch((e) => {
     console.error(e)
-    return null
+    return AXIOS_ERROR_RESPONSE
   })
+  // Error in resolving page node. return 404 in getStaticProps
   if (!page) {
-    // throw new Error('unable to get page by uuid')
     return null
   }
   const included = page.included || []
@@ -68,6 +73,8 @@ export const getPageWithContentByPath = async ({ path, context }) => {
 
   if (context.locale !== i18n.defaultLocale) {
     fiNode = await getDefaultLocaleNode(id).catch(() => ({
+      // error in retriving finnish title.
+      // Ignore and return current language title.
       title: node.title,
     }))
   }

@@ -12,7 +12,7 @@ const ArticlePage = ({ menu, footerMenu, node, color }) => {
     items: menu.items,
     path: localePath,
   })
-  console.log({ node })
+  // console.log({ node })
 
   const { title, revision_timestamp, content, fiTitle } = node
   return (
@@ -28,7 +28,6 @@ const ArticlePage = ({ menu, footerMenu, node, color }) => {
         fiTitle={fiTitle}
       >
         {content && <ContentMapper content={content} />}
-        <p className="font-bold text-neon-pink">DEMO READMORE BLOCK</p>
         <p className="font-bold text-neon-pink">DEMO LOCAL INFO BLOCK</p>
         <LocalInformation readMoreUrl={'/test'} />
       </Article>

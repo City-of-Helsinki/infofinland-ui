@@ -18,13 +18,15 @@ const CONTENT_TYPES = {
   FILE: 'file--file',
   MEDIA_IMAGE: 'media--image',
 }
-// import ReadMoreBlock from '@/components/article/ReadMoreBlock'
 
 export const HtmlBlock = ({ field_text }) => (
   <Block className={cls('my-8 ifu-article__bodyblock', field_text?.format)}>
     <ParseHtml html={field_text?.processed} />
   </Block>
 )
+
+// But my gosh donchu know it...
+const getFit = ({ width, height }) => (width < height ? 'contain' : 'cover')
 
 export const ImageBlock = ({
   field_image_caption,
@@ -35,15 +37,15 @@ export const ImageBlock = ({
   title,
 }) => (
   <Block className="my-16">
-    <div className="relative rounded border-white">
+    <div className="ifu-article__image--basic">
       <Image
         alt={alt}
         src={src}
         height={height}
         width={width}
         title={title}
-        layout="responsive"
-        objectFit="contain"
+        layout="fill"
+        objectFit={getFit({ width, height })}
       />
     </div>
     <p className="text-body-small text-gray-dark">{field_image_caption}</p>
@@ -83,7 +85,7 @@ export default function ContentMapper({ content }) {
   }
 
   const getReadMoreLinks = ({ relationships }) => {
-    console.log(relationships)
+    // console.log(relationships)
     let content = []
     const linksIds = relationships.field_link_collection.data.map(
       ({ id }) => id
@@ -119,7 +121,7 @@ export default function ContentMapper({ content }) {
         }
       }
     )
-    console.log({ content })
+    // console.log({ content })
     return content
   }
 

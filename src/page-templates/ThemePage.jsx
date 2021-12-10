@@ -18,7 +18,7 @@ const ThemePage = ({ node, color, menu, footerMenu }) => {
     tree: menu.tree,
     path: localePath,
   })
-  console.log({ node })
+  // console.log({ node })¤
   const { title, revision_timestamp, content, fiTitle } = node
 
   return (
