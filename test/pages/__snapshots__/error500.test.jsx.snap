@@ -22,9 +22,9 @@ exports[`Error page page renders and matches snapshot 1`] = `
         >
           <span class=\\"flex-none px-4 text-h2 md:text-h1xl font-bold\\">500</span>
           <h1 class=\\"flex-grow text-body md:text-body-large md:ms-6 lg:ms-12\\">
-            Something went wrong<span
+            Sivustolla tapahtui virhe<span
               class=\\"hidden md:block text-body md:text-body-large\\"
-              >Try to refresh the page</span
+              >Lataa sivu uudestaan</span
             >
           </h1>
         </div>
@@ -41,51 +41,59 @@ exports[`Error page page renders and matches snapshot 1`] = `
           \\"
         >
           <p class=\\"block md:hidden mb-8 text-body-small\\">
-            Try to refresh the page
+            Lataa sivu uudestaan
           </p>
-          <div lang=\\"fi\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
-            <p class=\\"text-body-small font-bold\\">Sivustolla tapahtui virhe</p>
-            <p class=\\"text-body-small\\">Lataa sivu uudestaan</p>
-          </div>
           <div lang=\\"sv\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
-            <p class=\\"text-body-small font-bold\\">?</p>
-            <p class=\\"text-body-small\\">?</p>
+            <p class=\\"text-body-small font-bold\\">
+              Det har uppstått ett fel på webbplatsen
+            </p>
+            <p class=\\"text-body-small\\">Ladda om sidan</p>
+          </div>
+          <div lang=\\"en\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
+            <p class=\\"text-body-small font-bold\\">Something went wrong</p>
+            <p class=\\"text-body-small\\">Try to refresh the page</p>
           </div>
           <div lang=\\"ru\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
-            <p class=\\"text-body-small font-bold\\">?</p>
-            <p class=\\"text-body-small\\">?</p>
+            <p class=\\"text-body-small font-bold\\">Перезагрузить страницу</p>
+            <p class=\\"text-body-small\\">Перейти к содержанию</p>
           </div>
           <div lang=\\"et\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
-            <p class=\\"text-body-small font-bold\\">?</p>
-            <p class=\\"text-body-small\\">?</p>
+            <p class=\\"text-body-small font-bold\\">Saidil ilmnes viga</p>
+            <p class=\\"text-body-small\\">Laadi leht uuesti</p>
           </div>
           <div lang=\\"fr\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
-            <p class=\\"text-body-small font-bold\\">?</p>
-            <p class=\\"text-body-small\\">?</p>
+            <p class=\\"text-body-small font-bold\\">
+              Une erreur s’est produite sur la page
+            </p>
+            <p class=\\"text-body-small\\">Télécharger à nouveau la page</p>
           </div>
           <div lang=\\"so\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
-            <p class=\\"text-body-small font-bold\\">?</p>
-            <p class=\\"text-body-small\\">?</p>
+            <p class=\\"text-body-small font-bold\\">Khalad baa bogga ka dhacay</p>
+            <p class=\\"text-body-small\\">Markale dib u soo kici bogga</p>
           </div>
           <div lang=\\"es\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
-            <p class=\\"text-body-small font-bold\\">?</p>
-            <p class=\\"text-body-small\\">?</p>
+            <p class=\\"text-body-small font-bold\\">
+              Se ha producido un error en el portal
+            </p>
+            <p class=\\"text-body-small\\">Recargue la página.</p>
           </div>
           <div lang=\\"tr\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
-            <p class=\\"text-body-small font-bold\\">?</p>
-            <p class=\\"text-body-small\\">?</p>
+            <p class=\\"text-body-small font-bold\\">Sayfada hata oluştu</p>
+            <p class=\\"text-body-small\\">Sayfayı yeniden yükleyin</p>
           </div>
           <div lang=\\"zh\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
-            <p class=\\"text-body-small font-bold\\">?</p>
-            <p class=\\"text-body-small\\">?</p>
+            <p class=\\"text-body-small font-bold\\">网站出现错误</p>
+            <p class=\\"text-body-small\\">重新载入页面</p>
           </div>
           <div lang=\\"fa\\" class=\\"mb-8 lg:mb-0\\" dir=\\"rtl\\">
-            <p class=\\"text-body-small font-bold\\">?</p>
-            <p class=\\"text-body-small\\">?</p>
+            <p class=\\"text-body-small font-bold\\">در صفحات خطا پیش آمد</p>
+            <p class=\\"text-body-small\\">این صفحه را دو باره بارگذاری کنید</p>
           </div>
           <div lang=\\"ar\\" class=\\"mb-8 lg:mb-0\\" dir=\\"rtl\\">
-            <p class=\\"text-body-small font-bold\\">?</p>
-            <p class=\\"text-body-small\\">?</p>
+            <p class=\\"text-body-small font-bold\\">
+              این صفحه را دو باره بارگذاری کنید
+            </p>
+            <p class=\\"text-body-small\\">حمّل الصفحة من جديد</p>
           </div>
         </div>
       </main>
@@ -107,24 +115,30 @@ exports[`Error page page renders and matches snapshot 1`] = `
           lg:rounded-none
         \\"
       >
-        <h2 class=\\"mb-4 text-body-large font-bold\\">cookies.title</h2>
+        <h2 class=\\"mb-4 text-body-large font-bold\\">
+          infoFinland.fi käyttää evästeitä
+        </h2>
         <div class=\\"lg:flex lg:gap-12 pb-6 max-w-topbar\\">
           <div class=\\"lg:w-1/2\\">
-            <p class=\\"mb-8 text-action lg:text-body\\">cookies.text</p>
+            <p class=\\"mb-8 text-action lg:text-body\\">
+              Tämä sivusto käyttää välttämättömiä evästeitä suorituskyvyn
+              varmistamiseksi sekä yleisen käytön seurantaan. Lisäksi käytämme
+              kohdennusevästeitä käyttäjäkokemuksen parantamiseksi.
+            </p>
           </div>
           <div class=\\"gap-4 justify-items-center items-center\\">
             <button
               class=\\"ifu-button block md:inline-block mx-auto mb-4 md:me-4\\"
             >
-              cookies.deny</button
+              Vain välttämättömät</button
             ><button
               class=\\"ifu-button block md:inline-block mx-auto mb-4 md:me-12\\"
             >
-              cookies.allow</button
+              Hyväksy kaikki evästeet</button
             ><a
               class=\\"font-bold text-black underline\\"
               href=\\"/about/cookie-settings\\"
-              >cookies.readMore</a
+              >Evästeasetukset</a
             >
           </div>
         </div>
@@ -154,9 +168,9 @@ exports[`Error page page renders and matches snapshot 2`] = `
     >
       <span class=\\"flex-none px-4 text-h2 md:text-h1xl font-bold\\">500</span>
       <h1 class=\\"flex-grow text-body md:text-body-large md:ms-6 lg:ms-12\\">
-        Something went wrong<span
+        Sivustolla tapahtui virhe<span
           class=\\"hidden md:block text-body md:text-body-large\\"
-          >Try to refresh the page</span
+          >Lataa sivu uudestaan</span
         >
       </h1>
     </div>
@@ -172,52 +186,58 @@ exports[`Error page page renders and matches snapshot 2`] = `
         md:px-6 md:mx-auto md:max-w-4xl
       \\"
     >
-      <p class=\\"block md:hidden mb-8 text-body-small\\">
-        Try to refresh the page
-      </p>
-      <div lang=\\"fi\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
-        <p class=\\"text-body-small font-bold\\">Sivustolla tapahtui virhe</p>
-        <p class=\\"text-body-small\\">Lataa sivu uudestaan</p>
-      </div>
+      <p class=\\"block md:hidden mb-8 text-body-small\\">Lataa sivu uudestaan</p>
       <div lang=\\"sv\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
-        <p class=\\"text-body-small font-bold\\">?</p>
-        <p class=\\"text-body-small\\">?</p>
+        <p class=\\"text-body-small font-bold\\">
+          Det har uppstått ett fel på webbplatsen
+        </p>
+        <p class=\\"text-body-small\\">Ladda om sidan</p>
+      </div>
+      <div lang=\\"en\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
+        <p class=\\"text-body-small font-bold\\">Something went wrong</p>
+        <p class=\\"text-body-small\\">Try to refresh the page</p>
       </div>
       <div lang=\\"ru\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
-        <p class=\\"text-body-small font-bold\\">?</p>
-        <p class=\\"text-body-small\\">?</p>
+        <p class=\\"text-body-small font-bold\\">Перезагрузить страницу</p>
+        <p class=\\"text-body-small\\">Перейти к содержанию</p>
       </div>
       <div lang=\\"et\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
-        <p class=\\"text-body-small font-bold\\">?</p>
-        <p class=\\"text-body-small\\">?</p>
+        <p class=\\"text-body-small font-bold\\">Saidil ilmnes viga</p>
+        <p class=\\"text-body-small\\">Laadi leht uuesti</p>
       </div>
       <div lang=\\"fr\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
-        <p class=\\"text-body-small font-bold\\">?</p>
-        <p class=\\"text-body-small\\">?</p>
+        <p class=\\"text-body-small font-bold\\">
+          Une erreur s’est produite sur la page
+        </p>
+        <p class=\\"text-body-small\\">Télécharger à nouveau la page</p>
       </div>
       <div lang=\\"so\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
-        <p class=\\"text-body-small font-bold\\">?</p>
-        <p class=\\"text-body-small\\">?</p>
+        <p class=\\"text-body-small font-bold\\">Khalad baa bogga ka dhacay</p>
+        <p class=\\"text-body-small\\">Markale dib u soo kici bogga</p>
       </div>
       <div lang=\\"es\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
-        <p class=\\"text-body-small font-bold\\">?</p>
-        <p class=\\"text-body-small\\">?</p>
+        <p class=\\"text-body-small font-bold\\">
+          Se ha producido un error en el portal
+        </p>
+        <p class=\\"text-body-small\\">Recargue la página.</p>
       </div>
       <div lang=\\"tr\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
-        <p class=\\"text-body-small font-bold\\">?</p>
-        <p class=\\"text-body-small\\">?</p>
+        <p class=\\"text-body-small font-bold\\">Sayfada hata oluştu</p>
+        <p class=\\"text-body-small\\">Sayfayı yeniden yükleyin</p>
       </div>
       <div lang=\\"zh\\" class=\\"mb-8 lg:mb-0\\" dir=\\"ltr\\">
-        <p class=\\"text-body-small font-bold\\">?</p>
-        <p class=\\"text-body-small\\">?</p>
+        <p class=\\"text-body-small font-bold\\">网站出现错误</p>
+        <p class=\\"text-body-small\\">重新载入页面</p>
       </div>
       <div lang=\\"fa\\" class=\\"mb-8 lg:mb-0\\" dir=\\"rtl\\">
-        <p class=\\"text-body-small font-bold\\">?</p>
-        <p class=\\"text-body-small\\">?</p>
+        <p class=\\"text-body-small font-bold\\">در صفحات خطا پیش آمد</p>
+        <p class=\\"text-body-small\\">این صفحه را دو باره بارگذاری کنید</p>
       </div>
       <div lang=\\"ar\\" class=\\"mb-8 lg:mb-0\\" dir=\\"rtl\\">
-        <p class=\\"text-body-small font-bold\\">?</p>
-        <p class=\\"text-body-small\\">?</p>
+        <p class=\\"text-body-small font-bold\\">
+          این صفحه را دو باره بارگذاری کنید
+        </p>
+        <p class=\\"text-body-small\\">حمّل الصفحة من جديد</p>
       </div>
     </div>
   </main>
@@ -240,18 +260,24 @@ exports[`Error page page renders and matches snapshot 2`] = `
       ifu-cookies__banner--appear ifu-cookies__banner--appear-active
     \\"
   >
-    <h2 class=\\"mb-4 text-body-large font-bold\\">cookies.title</h2>
+    <h2 class=\\"mb-4 text-body-large font-bold\\">
+      infoFinland.fi käyttää evästeitä
+    </h2>
     <div class=\\"lg:flex lg:gap-12 pb-6 max-w-topbar\\">
       <div class=\\"lg:w-1/2\\">
-        <p class=\\"mb-8 text-action lg:text-body\\">cookies.text</p>
+        <p class=\\"mb-8 text-action lg:text-body\\">
+          Tämä sivusto käyttää välttämättömiä evästeitä suorituskyvyn
+          varmistamiseksi sekä yleisen käytön seurantaan. Lisäksi käytämme
+          kohdennusevästeitä käyttäjäkokemuksen parantamiseksi.
+        </p>
       </div>
       <div class=\\"gap-4 justify-items-center items-center\\">
         <button class=\\"ifu-button block md:inline-block mx-auto mb-4 md:me-4\\">
-          cookies.deny</button
+          Vain välttämättömät</button
         ><button class=\\"ifu-button block md:inline-block mx-auto mb-4 md:me-12\\">
-          cookies.allow</button
+          Hyväksy kaikki evästeet</button
         ><a class=\\"font-bold text-black underline\\" href=\\"/about/cookie-settings\\"
-          >cookies.readMore</a
+          >Evästeasetukset</a
         >
       </div>
     </div>
