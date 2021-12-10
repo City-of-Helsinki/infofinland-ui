@@ -14,7 +14,7 @@ const ArticlePage = ({ menu, footerMenu, node, color }) => {
   })
   // console.log({ node })
 
-  const { title, revision_timestamp, content, fiTitle } = node
+  const { title, revision_timestamp, content, fiTitle, hero } = node
   return (
     <Layout menu={menu} footerMenu={footerMenu} node={node}>
       <Head>
@@ -26,6 +26,7 @@ const ArticlePage = ({ menu, footerMenu, node, color }) => {
         breadcrumbs={breadcrumbs}
         date={revision_timestamp}
         fiTitle={fiTitle}
+        heroImage={hero.url}
       >
         {content && <ContentMapper content={content} />}
         <p className="font-bold text-neon-pink">DEMO LOCAL INFO BLOCK</p>

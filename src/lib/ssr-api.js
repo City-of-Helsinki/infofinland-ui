@@ -2,6 +2,21 @@ import { getMenu, getResource } from 'next-drupal'
 import { sample } from 'lodash'
 import { i18n } from '../../next-i18next.config'
 import axios from 'axios'
+import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
+export const CONTENT_TYPES = {
+  TEXT: 'paragraph--text',
+  HEADING: 'paragraph--heading',
+  PARAGRAPH_IMAGE: 'paragraph--image',
+  ACCORDION: 'accordion',
+  HERO: 'paragraph--hero',
+  COLUMNS: 'columns',
+  READMORE: 'paragraph--language_link_collection',
+  READMORE_LINK_COLLECTION: 'node--link',
+  READMORE_LINK: 'paragraph--language_link',
+  LOCALINFO: 'local',
+  FILE: 'file--file',
+  MEDIA_IMAGE: 'media--image',
+}
 
 //always use locale path for drupal api queries
 const NO_DEFAULT_LOCALE = 'dont-use'
@@ -11,10 +26,12 @@ const disableDefaultLocale = (locale) => ({
 })
 
 const API_URLS = {
-  getPage: ({ locale, defaultLocale, id }) =>
+  uriFromFile: (file) =>
+    `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}${file.uri.url}`,
+  getPage: ({ locale, defaultLocale, id, queryString }) =>
     `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${
       locale || defaultLocale
-    }/jsonapi/node/page/${id}`,
+    }/jsonapi/node/page/${id}?${queryString || ''}`,
 }
 
 const menuErrorResponse = () => ({ items: [], tree: [], error: 'menu-error' })
@@ -31,11 +48,22 @@ export const resolvePath = async ({ path, context }) => {
 }
 
 export const getPageById = async (id, { locale, defaultLocale }) => {
-  return await axios.get(API_URLS.getPage({ locale, defaultLocale, id }), {
-    params: {
-      include: `field_content.field_image.field_media_image,field_content.field_link_collection.field_links`,
-    },
-  })
+  const queryString = new DrupalJsonApiParams()
+    //Relations
+    .addInclude([
+      'field_content.field_image.field_media_image',
+      'field_content.field_link_collection.field_links',
+      'field_hero.field_hero_image.field_media_image',
+    ])
+    // Page data
+    .addFields('node--page', ['id', 'title', 'revision_timestamp'])
+    // image file data
+    .addFields('file--file', ['uri', 'url'])
+    // .addFields('paragraph--hero', ['title, field_hero_image'])
+    // .addFields('paragrap--language_link',['name'])
+    //DO not encode! Axios will do that
+    .getQueryString({ encode: false })
+  return axios.get(API_URLS.getPage({ locale, defaultLocale, id, queryString }))
 }
 
 export const getPageWithContentByPath = async ({ path, context }) => {
@@ -60,15 +88,19 @@ export const getPageWithContentByPath = async ({ path, context }) => {
     return null
   }
   const included = page.included || []
-  const content = page.included
-    ? included.map((item) => {
+  let content = []
+  if (page.included) {
+    content = await resolveContent(
+      page.included.map((item) => {
         const { type, id, attributes, ...rest } = item
         return { type, id, ...attributes, ...rest }
       })
-    : []
+    )
+  }
 
+  const hero = content.find(({ type }) => type === CONTENT_TYPES.HERO)
   const { attributes, ...restOfNode } = page.data
-  const node = { content, included, ...attributes, ...restOfNode }
+  const node = { content, included, ...attributes, ...restOfNode, hero }
   let fiNode = { title: node?.title || '' }
 
   if (context.locale !== i18n.defaultLocale) {
@@ -159,7 +191,145 @@ export const getDefaultLocaleNode = async (id) =>
 //   return { node, content, fiTitle: fiNode.title }
 // }
 
+const getReadMoreLinks = async ({
+  item: { relationships },
+  linkCollections,
+  links,
+}) => {
+  let content = []
+  const linksIds = relationships.field_link_collection.data.map(({ id }) => id)
+  const linkCollection = linkCollections.filter(({ id }) =>
+    linksIds.includes(id)
+  )
+
+  content = await Promise.all(
+    linkCollection.map(
+      async ({
+        relationships,
+        title,
+        field_link_target_site: siteName,
+        langcode: reqLang,
+      }) => {
+        const relatedLinksIds = relationships.field_links.data.map(
+          ({ id }) => id
+        )
+
+        const relatedLinks = links.filter(({ id }) =>
+          relatedLinksIds.includes(id)
+        )
+
+        const translations = await Promise.all(
+          relatedLinks.map(
+            async ({ field_language_link: url, relationships }) => {
+              const queryString = new DrupalJsonApiParams()
+                .addFields('taxonomy_term--language', ['name', 'langcode'])
+                .getQueryString({ encode: false })
+
+              const { data: translation } = await axios.get(
+                `${relationships.field_language.links.related.href}?${queryString}`
+              )
+              return {
+                url,
+                text: translation.data.attributes.name,
+                langcode: translation.data.attributes.langcode,
+              }
+            }
+          )
+        )
+
+        const mainTranslation = translations.find(
+          ({ langcode }) => langcode === reqLang
+        )
+        // const languages = translations.filter(
+        //   ({ langcode }) => langcode !== reqLang
+        // )
+
+        return {
+          pageName: title,
+          siteName,
+          siteUrl: mainTranslation?.url || '#todo',
+          languages: translations || [],
+        }
+      }
+    )
+  )
+  return content
+}
+
 export const addPrerenderLocalesToPaths = (paths) =>
   process.env.PRERENDER_LOCALES.map((locale) =>
     paths.map((path) => ({ ...path, locale }))
   ).flat()
+
+const getImageForParagraphImage = ({
+  item: { relationships },
+  media,
+  files,
+}) => {
+  const mediaId = relationships?.field_image?.data?.id
+  const mediaItem = media.find(({ id }) => id === mediaId).relationships
+    ?.field_media_image?.data
+  const file = files.find(({ id }) => id === mediaItem.id)
+  const src = API_URLS.uriFromFile(file)
+
+  return { ...mediaItem.meta, src }
+}
+
+const getHeroUrl = ({ item: { relationships }, media, files }) => {
+  const mediaId = relationships.field_hero_image.data.id
+  const mediaItem = media.find(({ id }) => id === mediaId)
+  const fileId = mediaItem.relationships.field_media_image.data.id
+  const file = files.find(({ id }) => id === fileId)
+  return API_URLS.uriFromFile(file)
+}
+export const resolveContent = async (content) => {
+  if (content?.length === 0) {
+    return null
+  }
+
+  const media = content.filter(({ type }) => type == CONTENT_TYPES.MEDIA_IMAGE)
+  const files = content.filter(({ type }) => type === CONTENT_TYPES.FILE)
+  const linkCollections = content.filter(
+    ({ type }) => type === CONTENT_TYPES.READMORE_LINK_COLLECTION
+  )
+  const links = content.filter(
+    ({ type }) => type === CONTENT_TYPES.READMORE_LINK
+  )
+
+  const paragraphs = content.filter(({ type }) =>
+    [
+      CONTENT_TYPES.READMORE,
+      CONTENT_TYPES.PARAGRAPH_IMAGE,
+      CONTENT_TYPES.TEXT,
+      CONTENT_TYPES.HEADING,
+      CONTENT_TYPES.HERO,
+    ].includes(type)
+  )
+
+  return await Promise.all(
+    paragraphs.map(async (item) => {
+      const { type } = item
+      switch (type) {
+        case CONTENT_TYPES.PARAGRAPH_IMAGE:
+          return {
+            ...item,
+            ...(await getImageForParagraphImage({ item, media, files })),
+          }
+        case CONTENT_TYPES.READMORE:
+          return {
+            ...item,
+            content: await getReadMoreLinks({ item, linkCollections, links }),
+          }
+
+        case CONTENT_TYPES.HERO:
+          return {
+            type: item.type,
+            url: getHeroUrl({ item, media, files }),
+          }
+
+        default:
+          return item
+      }
+    })
+  )
+}

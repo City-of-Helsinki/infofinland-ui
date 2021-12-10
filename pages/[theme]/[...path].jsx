@@ -9,7 +9,10 @@ import {
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export async function getStaticPaths(context) {
-  const { items } = await getMainMenu(context)
+  const { items } = await getMainMenu(context).catch((e) => {
+    console.error('Error while getting main menu', e)
+    return { items: [] }
+  })
   const paths = items
     // Filter out theme pages
     .filter(({ parent }) => parent !== '')
@@ -35,10 +38,11 @@ export async function getStaticPaths(context) {
 export async function getStaticProps(context) {
   const { params } = context
   const path = [params.theme, ...params.path].join('/')
-  const common = await getCommonApiContent(context)
-  const node = await getPageWithContentByPath({ path, context })
+  const [common, node] = await Promise.all([
+    getCommonApiContent(context),
+    getPageWithContentByPath({ path, context }),
+  ])
   // console.log({node})
-  // const { node } = await getPageByPath({ path, context })
 
   if (node === null) {
     return { notFound: true }
