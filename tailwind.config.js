@@ -114,6 +114,7 @@ module.exports = {
       // },
       width: {
         navi: '18.625rem',
+        // 'secondary-navi': '32.625rem',
         article: '46rem',
         articlexl: '72rem',
         drawer: '18.625rem',

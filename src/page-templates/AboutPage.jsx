@@ -1,9 +1,9 @@
-import { AboutLayout } from '@/components/layout/Layout'
+import { SecondaryLayout } from '@/components/layout/Layout'
 
-export default function AboutPage({ aboutMenu, footerMenu, children }) {
+export default function AboutPage({ menu, footerMenu, children }) {
   return (
-    <AboutLayout menu={aboutMenu} footerMenu={footerMenu}>
+    <SecondaryLayout menu={menu} footerMenu={footerMenu} secondary>
       {children}
-    </AboutLayout>
+    </SecondaryLayout>
   )
 }

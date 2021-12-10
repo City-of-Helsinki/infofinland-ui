@@ -6,20 +6,22 @@ import CitySelector from '@/components/home/CitySelector'
 import HomeAbout from '@/components/home/HomeAbout'
 import Block from '@/components/layout/Block'
 import { getCommonApiContent } from '@/lib/ssr-api'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export async function getStaticProps(context) {
   const common = await getCommonApiContent(context)
   return {
     props: {
       ...common,
+      ...(await serverSideTranslations(context.locale, ['common'])),
     },
     revalidate: process.env.REVALIDATE_TIME,
   }
 }
 
-const HomePage = ({ mainMenu, footerMenu }) => {
+const HomePage = ({ menu, footerMenu }) => {
   return (
-    <Layout mainMenu={mainMenu} footerMenu={footerMenu}>
+    <Layout menu={menu} footerMenu={footerMenu}>
       <Head>
         <title>Article demo page</title>
         <link rel="icon" href="/favicon.ico" />
@@ -40,7 +42,7 @@ const HomePage = ({ mainMenu, footerMenu }) => {
       </Block>
 
       <Block>
-        <ThemeList themes={mainMenu.tree} showImages />
+        <ThemeList themes={menu.tree} showImages />
       </Block>
       <CitySelector />
       <HomeAbout />

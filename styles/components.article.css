@@ -1,6 +1,8 @@
 @layer components {
   :root {
     --gradientHeight: 250px;
+    --full-image-ratio: 16/9;
+    --square-image-ratio: 1/1;
   }
 
   .-translate-y-1px {
@@ -71,4 +73,13 @@
   .ifu-article__bodyblock p:first-child {
     @apply text-body-large mb-8;
   }
+}
+
+.ifu-article__image--basic {
+  @apply bg-gray-lighter-teal rounded relative overflow-hidden;
+  aspect-ratio: var(--full-image-ratio);
+}
+
+.ifu-article__image--basic::after {
+  content: '' @apply absolute inset-0 rounded border-red border-3;
 }

@@ -19,6 +19,10 @@ module.exports = {
     YOUTUBE_URL: 'https://www.youtube.com/c/infofinland',
     TWITTER_URL: 'https://twitter.com/InfoFinlandfi',
   },
+  images: {
+    // populate all envs here
+    domains: ['nginx-infofinland-drupal-dev.agw.arodevtest.hel.fi'],
+  },
   webpack: (config) => {
     config.module.rules.push({ test: /\.xml$/, loader: 'xml-loader' })
     return config

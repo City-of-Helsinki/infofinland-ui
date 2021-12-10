@@ -1,12 +1,13 @@
 import Head from 'next/head'
 import Layout from '@/components/layout/Layout'
-import { HERO_MARGIN } from '@/components/article/Article'
+import { HERO_MARGIN } from '@/components/layout/Block'
 import { useRouter } from 'next/router'
 import cls from 'classnames'
 import { longTextClass } from '@/components/Typo'
 import { i18n } from '@/next-i18next.config'
 import { map, omit } from 'lodash'
 import * as DrupalApi from '@/lib/ssr-api'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export async function getStaticProps(context) {
   const common = await DrupalApi.getCommonApiContent(context)
@@ -14,6 +15,7 @@ export async function getStaticProps(context) {
     props: {
       texts: TEXTS_404,
       ...common,
+      ...(await serverSideTranslations(context.defaultLocale, ['common'])),
     },
     revalidate: process.env.REVALIDATE_TIME,
   }

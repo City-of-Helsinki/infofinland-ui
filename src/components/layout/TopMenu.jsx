@@ -23,7 +23,7 @@ const Logo = () => (
   </div>
 )
 
-const TopMenu = ({ mainMenu }) => {
+const TopMenu = ({ menu }) => {
   const [open, setLangMenuVisibility] = useLangMenuToggle()
   const toggleLangMenu = () => setLangMenuVisibility(!open)
   const closeMenu = () => setLangMenuVisibility(false)
@@ -39,8 +39,9 @@ const TopMenu = ({ mainMenu }) => {
         <LanguageMenuButton onClick={toggleLangMenu} />
         <LanguageSelector openMenu={() => setLangMenuVisibility(true)} />
         <LangMenuDrawer closeMenu={closeMenu} isOpen={open} />
+        <div className="2xl:flex-none xl:flex-grow"></div>
         <Search />
-        <MobileNavi mainMenu={mainMenu} />
+        <MobileNavi menu={menu} />
         <CityMenu />
       </div>
     </header>

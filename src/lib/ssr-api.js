@@ -1,7 +1,7 @@
-import { getMenu, getResource, getResourceByPath } from 'next-drupal'
+import { getMenu, getResource } from 'next-drupal'
 import { sample } from 'lodash'
 import { i18n } from '../../next-i18next.config'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import axios from 'axios'
 
 //always use locale path for drupal api queries
 const NO_DEFAULT_LOCALE = 'dont-use'
@@ -10,10 +10,76 @@ const disableDefaultLocale = (locale) => ({
   defaultLocale: NO_DEFAULT_LOCALE,
 })
 
-const menuErrorResponse = () => ({ items: [], tree: [], error: 'menu-error' })
+const API_URLS = {
+  getPage: ({ locale, defaultLocale, id }) =>
+    `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${
+      locale || defaultLocale
+    }/jsonapi/node/page/${id}`,
+}
 
-export const getCommonTranslations = async (locale) =>
-  serverSideTranslations(locale, ['common'])
+const menuErrorResponse = () => ({ items: [], tree: [], error: 'menu-error' })
+const AXIOS_ERROR_RESPONSE = { data: null }
+
+export const resolvePath = async ({ path, context }) => {
+  const { locale, defaultLocale } = context
+  const URL = `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${
+    locale || defaultLocale
+  }/router/translate-path`
+  return axios.get(URL, {
+    params: { path, _format: 'json' },
+  })
+}
+
+export const getPageById = async (id, { locale, defaultLocale }) => {
+  return await axios.get(API_URLS.getPage({ locale, defaultLocale, id }), {
+    params: {
+      include: `field_content.field_image.field_media_image,field_content.field_link_collection.field_links`,
+    },
+  })
+}
+
+export const getPageWithContentByPath = async ({ path, context }) => {
+  const { data: pathNode } = await resolvePath({ path, context }).catch((e) => {
+    console.error(e)
+    return AXIOS_ERROR_RESPONSE
+  })
+  // Error in resolving path. return 404 in getStaticProps
+  if (!pathNode) {
+    return null
+  }
+  const {
+    entity: { uuid: id },
+  } = pathNode
+
+  const { data: page } = await getPageById(id, context).catch((e) => {
+    console.error(e)
+    return AXIOS_ERROR_RESPONSE
+  })
+  // Error in resolving page node. return 404 in getStaticProps
+  if (!page) {
+    return null
+  }
+  const included = page.included || []
+  const content = page.included
+    ? included.map((item) => {
+        const { type, id, attributes, ...rest } = item
+        return { type, id, ...attributes, ...rest }
+      })
+    : []
+
+  const { attributes, ...restOfNode } = page.data
+  const node = { content, included, ...attributes, ...restOfNode }
+  let fiNode = { title: node?.title || '' }
+
+  if (context.locale !== i18n.defaultLocale) {
+    fiNode = await getDefaultLocaleNode(id).catch(() => ({
+      // error in retriving finnish title.
+      // Ignore and return current language title.
+      title: node.title,
+    }))
+  }
+  return { ...node, fiTitle: fiNode.title }
+}
 
 export const getMainMenu = async (context) =>
   getMenu(process.env.DRUPAL_MENUS.MAIN, context)
@@ -34,27 +100,29 @@ export const getAboutMenu = async ({ locale }) =>
     defaultLocale: NO_DEFAULT_LOCALE,
   })
 
-export const getCommonApiContent = async ({ locale }) => {
+export const getCommonApiContent = async (
+  { locale },
+  main = process.env.DRUPAL_MENUS.MAIN,
+  footer = process.env.DRUPAL_MENUS.FOOTER
+) => {
   const context = { locale, defaultLocale: NO_DEFAULT_LOCALE }
-  const [mainMenu, footerMenu, translations] = await Promise.all([
-    getMenu(process.env.DRUPAL_MENUS.MAIN, context).catch((e) => {
-      console.error('mainMenu error', e)
+  const [menu, footerMenu, translations] = await Promise.all([
+    //Main menu or whatever is called
+    getMenu(main, context).catch((e) => {
+      console.error('menu error', e)
       return menuErrorResponse(e)
     }),
-    getMenu(process.env.DRUPAL_MENUS.FOOTER, context).catch((e) => {
+    //Footer Menu
+    getMenu(footer, context).catch((e) => {
       console.error('footerMenu error', e)
       return menuErrorResponse(e)
-    }),
-    getCommonTranslations(context.locale).catch((e) => {
-      console.error('translation error', e)
-      return { error: e }
     }),
   ]).catch((e) => {
     throw e
   })
 
   return {
-    mainMenu,
+    menu,
     footerMenu,
     color: sample(process.env.HERO_COLORS),
     ...translations,
@@ -67,26 +135,29 @@ export const getDefaultLocaleNode = async (id) =>
     defaultLocale: NO_DEFAULT_LOCALE,
   })
 
-export const getPageByPath = async ({ path, context }) => {
-  const localeContext = {
-    locale: context.locale,
-    defaultLocale: NO_DEFAULT_LOCALE,
-  }
-  const node = await getResourceByPath(path, localeContext)
-  let fiNode = { title: node?.title || '' }
-  let content = []
-  if (node?.field_content?.length > 0) {
-    content = await getContent(node, localeContext)
-  }
+// export const getPageByPath = async ({ path, context }) => {
+//   const localeContext = {
+//     locale: context.locale,
+//     defaultLocale: NO_DEFAULT_LOCALE,
+//   }
+//   const node = await getResourceByPath(path, {
+//     ...localeContext,
+//     params: { include: 'field_content' },
+//   })
+//   let fiNode = { title: node?.title || '' }
+//   let content = []
+//   if (node?.field_content?.length > 0) {
+//     content = await getContent(node, localeContext)
+//   }
 
-  if (context.locale !== i18n.defaultLocale && node !== null) {
-    fiNode = await getDefaultLocaleNode(node.id).catch(() => ({
-      title: node.title,
-    }))
-  }
+//   if (context.locale !== i18n.defaultLocale && node !== null) {
+//     fiNode = await getDefaultLocaleNode(node.id).catch(() => ({
+//       title: node.title,
+//     }))
+//   }
 
-  return { node, content, fiNode }
-}
+//   return { node, content, fiTitle: fiNode.title }
+// }
 
 export const addPrerenderLocalesToPaths = (paths) =>
   process.env.PRERENDER_LOCALES.map((locale) =>

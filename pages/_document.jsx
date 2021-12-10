@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-css-tags */
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import Favicons from '@/components/layout/Favicons'
 import { i18n } from '@/next-i18next.config'
 class MyDocument extends Document {
   static async getStaticProps(ctx) {
@@ -15,23 +14,7 @@ class MyDocument extends Document {
       : 'ltr'
     return (
       <Html dir={direction} lang={this.props.locale}>
-        <Head>
-          <Favicons />
-          <link
-            rel="preload"
-            href="/fonts/NotoSans/NotoSans-Bold.ttf"
-            as="font"
-            type="font/ttf"
-            crossOrigin=""
-          />
-          <link
-            rel="preload"
-            href="/fonts/NotoSans/NotoSans-Regular.ttf"
-            as="font"
-            type="font/ttf"
-            crossOrigin=""
-          />
-        </Head>
+        <Head />
         <body>
           <Main />
           <NextScript />
