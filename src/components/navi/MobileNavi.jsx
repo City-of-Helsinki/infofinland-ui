@@ -32,10 +32,11 @@ const MobileNavi = ({ menu }) => {
     }
   }, [router])
   if (menu.error) {
-    return
-    <span className="md:hidden">
-      <MainNaviError />
-    </span>
+    return (
+      <span className="md:hidden">
+        <MainNaviError />
+      </span>
+    )
   }
   return (
     <>
