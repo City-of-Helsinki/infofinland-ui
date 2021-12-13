@@ -85,7 +85,7 @@ const AppLayout = ({ children, menu, footerMenu, node }) => {
     <>
       <CommonHead description={node?.field_description} title={node?.title} />
 
-      <div className=" relative text-body bg-white">
+      <div className="relative text-body bg-white" id={`node-${node?.id}`}>
         <TopMenu menu={menu} />
         <div className=" md:flex md:items-stretch">
           <div className="md:hidden">

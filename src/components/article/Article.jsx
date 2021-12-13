@@ -1,7 +1,7 @@
 import cls from 'classnames'
 // import Image from 'next/image'
 import Breadcrumbs from '@/components/layout/Breadcrumbs'
-
+import Image from 'next/image'
 import { HERO_MARGIN } from '@/components/layout/Block'
 import ArticleHeading from './ArticleHeading'
 // Tailwind color classes. Must be written out or css purge will remove them.
@@ -11,6 +11,7 @@ const BG_COLORS = {
   blue: 'bg-article-blue',
   orange: 'bg-article-orange',
 }
+import { getFit } from '@/lib/content-utils'
 
 const HeroImage = ({ heroImage, ...rest }) => {
   if (heroImage) {
@@ -19,14 +20,15 @@ const HeroImage = ({ heroImage, ...rest }) => {
         <div
           className={cls(
             HERO_MARGIN,
-            'overflow-hidden mb-6 h-hero  md:h-heroxl text-center rounded'
+            'overflow-hidden mb-6 h-hero  md:h-heroxl text-center rounded relative'
           )}
         >
-          {/* // eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/article1-sm.png"
+          <Image
+            src={heroImage}
             alt=""
+            layout="fill"
             className="block w-full h-full rounded"
+            objectFit={getFit({ width: 2, height: 1 })}
           />
         </div>
         <ArticleHeading heroImage={heroImage} {...rest} />

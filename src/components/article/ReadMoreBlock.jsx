@@ -8,8 +8,8 @@ export const READMORE_CONTENT = [
     pageUrl: 'http://www.kela.fi/',
     pageName: 'Some random Kela page',
     languages: [
-      { url: 'http://www.kela.fi/fi/', text: 'Suomi', lang: 'fi' },
-      { url: 'http://www.kela.fi/sv/', text: 'Ruotsi', lang: 'fi' },
+      { url: 'http://www.kela.fi/fi/', text: 'Suomi', langcode: 'fi' },
+      { url: 'http://www.kela.fi/sv/', text: 'Ruotsi', langcode: 'fi' },
     ],
   },
   {
@@ -17,30 +17,30 @@ export const READMORE_CONTENT = [
     pageUrl: 'http://www.kela.fi/',
     pageName: 'Some random Kela page',
     languages: [
-      { url: 'http://www.kela.fi/fi/', text: 'Suomi', lang: 'fi' },
-      { url: 'http://www.kela.fi/fi/', text: 'Suomi', lang: 'fi' },
+      { url: 'http://www.kela.fi/fi/', text: 'Suomi', langcode: 'fi' },
+      { url: 'http://www.kela.fi/fi/', text: 'Suomi', langcode: 'fi' },
       {
         url: 'http://www.kela.fi/sv/',
         text: 'Ruotsi',
-        lang: 'sv',
+        langcode: 'sv',
       },
       {
         url: 'http://www.kela.fi/sv/',
         text: 'Ruotsi',
-        lang: 'sv',
+        langcode: 'sv',
       },
-      { url: 'http://www.kela.fi/fi/', text: 'Suomi', lang: 'sv' },
+      { url: 'http://www.kela.fi/fi/', text: 'Suomi', langcode: 'sv' },
       {
         url: 'http://www.kela.fi/sv/',
         text: 'Ruotsi',
-        lang: 'sv',
+        langcode: 'sv',
       },
-      { url: 'http://www.kela.fi/fi/', text: 'Suomi', lang: 'sv' },
-      { url: 'http://www.kela.fi/fi/', text: 'Suomi', lang: 'sv' },
+      { url: 'http://www.kela.fi/fi/', text: 'Suomi', langcode: 'sv' },
+      { url: 'http://www.kela.fi/fi/', text: 'Suomi', langcode: 'sv' },
       {
         url: 'http://www.kela.fi/sv/',
         text: 'Ruotsi',
-        lang: 'sv',
+        langcode: 'sv',
       },
     ],
   },
@@ -75,14 +75,14 @@ const ReadMoreBlock = ({ content = READMORE_CONTENT }) => {
             </a>
 
             <div className="flex flex-wrap divide-link divide-s">
-              {languages.map(({ url, text, lang }, k) => (
+              {languages.map(({ url, text, langcode }, k) => (
                 <a
                   title={pageName}
                   rel="noreferrer"
                   href={url}
                   key={`link-${text}-${k}`}
                   target="_blank"
-                  lang={lang}
+                  lang={langcode}
                   className={cls('text-small leading-snug ifu-text-link pe-2', {
                     'ps-2': k > 0,
                   })}
