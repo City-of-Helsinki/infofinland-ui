@@ -1,5 +1,5 @@
 import Link from 'next/link'
-
+import cls from 'classnames'
 import Icon, { IconAngleRight } from '@/components/Icons'
 
 const Breadcrumbs = ({ items }) => {
@@ -26,7 +26,7 @@ const Breadcrumbs = ({ items }) => {
         </Link>
       )}
       {/* Desktop navi */}
-      <div className=" hidden md:block justify-items-start">
+      <div className={cls('hidden md:block justify-items-start',{'h-6':!showBreadcrumbs})}>
         {showBreadcrumbs && (
           <div className="flex-none w-8 float-start">
             <Link href="/" passHref prefetch={false}>

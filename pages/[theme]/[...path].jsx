@@ -10,7 +10,8 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export async function getStaticPaths(context) {
   const { items } = await getMainMenu(context).catch((e) => {
-    console.error('Error while getting main menu', e)
+    console.error('Error while getting main menu')
+    if(process.env.development) {console.error(e)}
     return { items: [] }
   })
   const paths = items
