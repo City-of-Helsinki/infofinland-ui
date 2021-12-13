@@ -41,15 +41,18 @@ export default function ContentMapper({ content }) {
     return null
   }
 
-  return content.map((item,i) => {
+  return content.map((item, i) => {
     const { type } = item
     const key = `paragraph--${i}-${type}`
     switch (type) {
       case CONTENT_TYPES.TEXT:
-        return <HtmlBlock {...item} key={key}/>
+        return <HtmlBlock {...item} key={key} />
       case CONTENT_TYPES.HEADING:
         return (
-          <H2 key={key} className={cls(BLOCK_MARGIN, 'my-8 ifu-article__bodyblock')}>
+          <H2
+            key={key}
+            className={cls(BLOCK_MARGIN, 'my-8 ifu-article__bodyblock')}
+          >
             {item.field_title}
           </H2>
         )
