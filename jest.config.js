@@ -9,15 +9,15 @@ const createJestConfig = nextJest({
 // Add any custom config to be passed to Jest
 const customJestConfig = {
   moduleNameMapper: {
-        // jsconfig absolute path mappings
-        '^@/components(.*)$': '<rootDir>/src/components$1',
-        '^@/pages(.*)$': '<rootDir>/pages$1',
-        '^@/hooks(.*)$': '<rootDir>/src/hooks$1',
-        '^@/lib(.*)$': '<rootDir>/src/lib$1',
-        '^@/test(.*)$': '<rootDir>/test$1',
-        '^@/public(.*)$': '<rootDir>/public$1',
-        '^@/(.*)$': '<rootDir>/$1',
-      },
+    // jsconfig absolute path mappings
+    '^@/components(.*)$': '<rootDir>/src/components$1',
+    '^@/pages(.*)$': '<rootDir>/pages$1',
+    '^@/hooks(.*)$': '<rootDir>/src/hooks$1',
+    '^@/lib(.*)$': '<rootDir>/src/lib$1',
+    '^@/test(.*)$': '<rootDir>/test$1',
+    '^@/public(.*)$': '<rootDir>/public$1',
+    '^@/(.*)$': '<rootDir>/$1',
+  },
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
 }
 

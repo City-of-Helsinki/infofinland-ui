@@ -26,14 +26,13 @@ export async function getStaticPaths(context) {
       })
     )
   } catch (e) {
-
-    const error_message =  'Error while getting menu paths for prerender in [theme].getStaticPaths'
-    console.error(error_message,e)
+    const error_message =
+      'Error while getting menu paths for prerender in [theme].getStaticPaths'
+    console.error(error_message, e)
     const err = new Error(
       'Error while getting menu paths for prerender in [theme].getStaticPaths'
     )
     throw err
-
   }
 
   return {
@@ -44,9 +43,9 @@ export async function getStaticPaths(context) {
 
 export async function getStaticProps(context) {
   const path = `/${context.params.theme}`
-  const [common,node] = await Promise.all([
+  const [common, node] = await Promise.all([
     getCommonApiContent(context),
-    getPageWithContentByPath({ path, context })
+    getPageWithContentByPath({ path, context }),
   ])
 
   if (node === null) {
