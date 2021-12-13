@@ -27,8 +27,6 @@ export const ImageBlock = ({
       <Image
         alt={alt}
         src={src}
-        // height={height}
-        // width={width}
         title={title}
         layout="fill"
         objectFit={getFit({ width, height })}
@@ -43,23 +41,24 @@ export default function ContentMapper({ content }) {
     return null
   }
 
-  return content.map((item) => {
+  return content.map((item,i) => {
     const { type } = item
+    const key = `paragraph--${i}-${type}`
     switch (type) {
       case CONTENT_TYPES.TEXT:
-        return <HtmlBlock {...item} />
+        return <HtmlBlock {...item} key={key}/>
       case CONTENT_TYPES.HEADING:
         return (
-          <H2 className={cls(BLOCK_MARGIN, 'my-8 ifu-article__bodyblock')}>
+          <H2 key={key} className={cls(BLOCK_MARGIN, 'my-8 ifu-article__bodyblock')}>
             {item.field_title}
           </H2>
         )
 
       case CONTENT_TYPES.PARAGRAPH_IMAGE:
-        return <ImageBlock {...item} />
+        return <ImageBlock key={key} {...item} />
 
       case CONTENT_TYPES.READMORE:
-        return <ReadMoreBlock content={item.content} />
+        return <ReadMoreBlock key={key} content={item.content} />
     }
   })
 }

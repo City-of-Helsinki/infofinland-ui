@@ -1,3 +1,2 @@
 export const getFit = ({ width, height }) =>
   width < height ? 'contain' : 'cover'
-// But my gosh donchu know it...

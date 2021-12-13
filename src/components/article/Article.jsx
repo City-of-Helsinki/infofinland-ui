@@ -4,6 +4,7 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs'
 import Image from 'next/image'
 import { HERO_MARGIN } from '@/components/layout/Block'
 import ArticleHeading from './ArticleHeading'
+import blurPlaceholder from '../blurPlaceholder'
 // Tailwind color classes. Must be written out or css purge will remove them.
 const BG_COLORS = {
   red: 'bg-article-red',
@@ -11,7 +12,6 @@ const BG_COLORS = {
   blue: 'bg-article-blue',
   orange: 'bg-article-orange',
 }
-import { getFit } from '@/lib/content-utils'
 
 const HeroImage = ({ heroImage, ...rest }) => {
   if (heroImage) {
@@ -24,11 +24,13 @@ const HeroImage = ({ heroImage, ...rest }) => {
           )}
         >
           <Image
+            placeholder="blur"
+            blurDataURL={blurPlaceholder}
             src={heroImage}
             alt=""
             layout="fill"
             className="block w-full h-full rounded"
-            objectFit={getFit({ width: 2, height: 1 })}
+            objectFit="cover"
           />
         </div>
         <ArticleHeading heroImage={heroImage} {...rest} />

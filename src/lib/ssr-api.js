@@ -98,7 +98,7 @@ export const getPageWithContentByPath = async ({ path, context }) => {
     )
   }
 
-  const hero = content.find(({ type }) => type === CONTENT_TYPES.HERO)
+  const hero = content.find(({ type }) => type === CONTENT_TYPES.HERO) || null
   const { attributes, ...restOfNode } = page.data
   const node = { content, included, ...attributes, ...restOfNode, hero }
   let fiNode = { title: node?.title || '' }
@@ -222,7 +222,7 @@ const getReadMoreLinks = async ({
           relatedLinks.map(
             async ({ field_language_link: url, relationships }) => {
               const queryString = new DrupalJsonApiParams()
-                .addFields('taxonomy_term--language', ['name', 'langcode'])
+                .addFields('taxonomy_term--language', ['name', 'field_locale'])
                 .getQueryString({ encode: false })
 
               const { data: translation } = await axios.get(
@@ -231,24 +231,46 @@ const getReadMoreLinks = async ({
               return {
                 url,
                 text: translation.data.attributes.name,
-                langcode: translation.data.attributes.langcode,
+                locale: translation.data.attributes.field_locale,
               }
             }
           )
         )
 
-        const mainTranslation = translations.find(
-          ({ langcode }) => langcode === reqLang
-        )
-        // const languages = translations.filter(
-        //   ({ langcode }) => langcode !== reqLang
-        // )
+        let mainTranslation
+        let languages
+
+        if (translations.length === 1) {
+          mainTranslation = translations.at(0)
+          languages = []
+        } else {
+          // Prefer link with current language
+          mainTranslation = translations.find(
+            ({ locale }) => locale === reqLang
+          )
+          // if not, use fallback locale (en)
+          if (!mainTranslation) {
+            mainTranslation = translations.find(
+              ({ locale }) => locale === i18n.fallbackLocale
+            )
+          }
+          // if not, use default locale (fi)
+          if (!mainTranslation) {
+            mainTranslation = translations.find(
+              ({ locale }) => locale === i18n.defaultLocale
+            )
+          }
+
+          languages = translations.filter(
+            ({ locale }) => locale !== mainTranslation?.locale
+          )
+        }
 
         return {
           pageName: title,
           siteName,
-          siteUrl: mainTranslation?.url || '#todo',
-          languages: translations || [],
+          mainTranslation,
+          languages,
         }
       }
     )

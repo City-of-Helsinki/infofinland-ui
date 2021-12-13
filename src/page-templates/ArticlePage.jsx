@@ -26,7 +26,7 @@ const ArticlePage = ({ menu, footerMenu, node, color }) => {
         breadcrumbs={breadcrumbs}
         date={revision_timestamp}
         fiTitle={fiTitle}
-        heroImage={hero.url}
+        heroImage={hero?.url}
       >
         {content && <ContentMapper content={content} />}
         <p className="font-bold text-neon-pink">DEMO LOCAL INFO BLOCK</p>
