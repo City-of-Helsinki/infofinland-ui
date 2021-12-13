@@ -68,7 +68,8 @@ export const getPageById = async (id, { locale, defaultLocale }) => {
 
 export const getPageWithContentByPath = async ({ path, context }) => {
   const { data: pathNode } = await resolvePath({ path, context }).catch((e) => {
-    console.error(e)
+    console.error('Router error for',path)
+    if(process.env.development) {console.error(e)}
     return AXIOS_ERROR_RESPONSE
   })
   // Error in resolving path. return 404 in getStaticProps

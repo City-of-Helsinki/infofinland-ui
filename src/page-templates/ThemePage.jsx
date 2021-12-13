@@ -6,8 +6,8 @@ import Block from '../components/layout/Block'
 import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import useBreadCrumbs from '@/hooks/useBreadCrumbs'
 import useThemeList from '@/hooks/useThemeList'
-import cls from 'classnames'
-import ParseHtml from '@/components/ParseHtml'
+import ContentMapper from '@/components/article/ContentMapper'
+
 const ThemePage = ({ node, color, menu, footerMenu }) => {
   const { localePath } = useRouterWithLocalizedPath()
   const breadcrumbs = useBreadCrumbs({
@@ -18,14 +18,13 @@ const ThemePage = ({ node, color, menu, footerMenu }) => {
     tree: menu.tree,
     path: localePath,
   })
-  // console.log({ node })¤
-  const { title, revision_timestamp, content, fiTitle } = node
+  console.log({ node })
+  const { title, revision_timestamp, content, fiTitle, hero } = node
 
   return (
     <Layout menu={menu} footerMenu={footerMenu}>
       <Head>
-        <title>{title} theme demo page</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>{title}</title>
       </Head>
       <Article
         color={color}
@@ -33,6 +32,7 @@ const ThemePage = ({ node, color, menu, footerMenu }) => {
         date={revision_timestamp}
         breadcrumbs={breadcrumbs}
         fiTitle={fiTitle}
+        heroImage={hero?.url}
       >
         <Block>
           <p className="mb-8 text-body text-bodytext-color">
@@ -44,18 +44,10 @@ const ThemePage = ({ node, color, menu, footerMenu }) => {
             education.
           </p>
         </Block>
+        <Block hero>{themes && <ThemeList themes={themes} />}</Block>
+
+        {content && <ContentMapper content={content} />}
       </Article>
-      <Block hero>{themes && <ThemeList themes={themes} />}</Block>
-      {content
-        .filter(({ type }) => type === 'paragraph--text')
-        .map(({ field_text: { format, processed } }, i) => (
-          <Block
-            key={[format, i].join('-')}
-            className={cls('my-8 ifu-article__bodyblock', format)}
-          >
-            <ParseHtml html={processed} />
-          </Block>
-        ))}
     </Layout>
   )
 }
