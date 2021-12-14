@@ -7,6 +7,7 @@ import Image from 'next/image'
 import ReadMoreBlock from './ReadMoreBlock'
 import { CONTENT_TYPES } from '@/lib/ssr-api'
 import { getFit } from '@/lib/content-utils'
+import PVTBlock from './PVTBlock'
 
 export const HtmlBlock = ({ field_text }) => (
   <Block className={cls('my-8 ifu-article__bodyblock', field_text?.format)}>
@@ -62,6 +63,9 @@ export default function ContentMapper({ content }) {
 
       case CONTENT_TYPES.READMORE:
         return <ReadMoreBlock key={key} content={item.content} />
+
+      case CONTENT_TYPES.PVT_NODE:
+        return <PVTBlock {...item} key={key} />
     }
   })
 }
