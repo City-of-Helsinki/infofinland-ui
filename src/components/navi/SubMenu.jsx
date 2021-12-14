@@ -9,9 +9,9 @@ const SubMenuItem = ({ title, url, selected, items, level, isOpen }) => (
     <Link passHref href={url} prefetch={false}>
       <a
         tabIndex={isOpen ? '0' : '-1'}
-        className={cls('block py-4 text-body-small hover:bg-gray-white pe-4 ', {
-          'ps-12 ': level === 1,
-          'ps-16': level === 2,
+        className={cls('block py-3 text-body-small hover:bg-gray-white pe-4 ', {
+          'ps-10 ': level === 1,
+          'ps-14': level === 2,
           'border-s-5 border-blue  font-bold': selected,
           'border-s-5 border-white ': !selected,
         })}

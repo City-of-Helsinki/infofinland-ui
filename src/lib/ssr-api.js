@@ -3,6 +3,12 @@ import { sample } from 'lodash'
 import { i18n } from '../../next-i18next.config'
 import axios from 'axios'
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
+
+export const NODE_TYPES = {
+  PAGE: 'node--page',
+  LANDING_PAGE: 'node--landing_page',
+  PVT_NODE: 'node--office_contact_info',
+}
 export const CONTENT_TYPES = {
   TEXT: 'paragraph--text',
   HEADING: 'paragraph--heading',
@@ -15,6 +21,8 @@ export const CONTENT_TYPES = {
   READMORE_LINK: 'paragraph--language_link',
   LOCALINFO: 'local',
   FILE: 'file--file',
+  PVT: 'paragraph--ptv_contact',
+  PVT_NODE: 'node--office_contact_info',
   MEDIA_IMAGE: 'media--image',
 }
 
@@ -51,27 +59,72 @@ export const getPageById = async (id, { locale, defaultLocale }) => {
   const queryString = new DrupalJsonApiParams()
     //Relations
     .addInclude([
+      // Image
       'field_content.field_image.field_media_image',
+      // Link Collectin
       'field_content.field_link_collection.field_links',
+      // Hero
       'field_hero.field_hero_image.field_media_image',
+      // PVT contact
+      'field_content.field_contact_data',
     ])
-    // Page data
-    .addFields('node--page', ['id', 'title', 'revision_timestamp'])
-    // image file data
-    .addFields('file--file', ['uri', 'url'])
-    // .addFields('paragraph--hero', ['title, field_hero_image'])
-    // .addFields('paragrap--language_link',['name'])
+    .addFields(NODE_TYPES.PAGE, [
+      'id',
+      'title',
+      'revision_timestamp',
+      'langcode',
+      'field_content',
+      'field_hero',
+      'field_description',
+      'field_has_hero',
+      'field_metatags',
+    ])
+    // .addFields('node--page', ['id', 'title', 'revision_timestamp','langcode'])
+    .addFields(CONTENT_TYPES.TEXT, ['field_text'])
+    .addFields(CONTENT_TYPES.HEADING, ['field_title'])
+    .addFields(CONTENT_TYPES.MEDIA_IMAGE, ['field_media_image'])
+    .addFields(CONTENT_TYPES.HERO, ['field_hero_title', 'field_hero_image'])
+    .addFields(CONTENT_TYPES.FILE, ['uri', 'url'])
+    .addFields(CONTENT_TYPES.PVT, ['field_contact_data'])
+    .addFields(CONTENT_TYPES.PVT_NODE, [
+      'field_email_address',
+      'field_office_id',
+      'field_phonenumber',
+      'field_postal_address',
+      'field_postal_address_additional',
+      'field_service_hours',
+      'field_visiting_address',
+      'field_visiting_address_additional',
+      'title',
+    ])
+    //Link  relations
+    .addFields(CONTENT_TYPES.READMORE, ['field_link_collection'])
+    .addFields(CONTENT_TYPES.READMORE_LINK_COLLECTION, [
+      'field_link_target_site',
+      'title',
+      'field_links',
+    ])
+    .addFields(CONTENT_TYPES.READMORE_LINK, [
+      'field_language_link',
+      'field_language',
+    ])
     //DO not encode! Axios will do that
+    // .getQueryObject()
     .getQueryString({ encode: false })
+  // return getResource(NODE_TYPES.PAGE, id, {
+  //   locale,
+  //   defaultLocale: NO_DEFAULT_LOCALE,
+  //   // params,
+  //  })
   return axios.get(API_URLS.getPage({ locale, defaultLocale, id, queryString }))
 }
 
 export const getPageWithContentByPath = async ({ path, context }) => {
   const { data: pathNode } = await resolvePath({ path, context }).catch((e) => {
-    console.error('Router error for', path)
-    if (process.env.development) {
-      console.error(e)
-    }
+    console.error('Router error for', path, e.response.status)
+    // if (process.env.development) {
+    //   console.error(e)
+    // }
     return AXIOS_ERROR_RESPONSE
   })
   // Error in resolving path. return 404 in getStaticProps
@@ -82,13 +135,10 @@ export const getPageWithContentByPath = async ({ path, context }) => {
     entity: { uuid: id },
   } = pathNode
 
-  const { data: page } = await getPageById(id, context).catch((e) => {
-    console.error(e)
-    return AXIOS_ERROR_RESPONSE
-  })
+  const { data: page } = await getPageById(id, context)
   // Error in resolving page node. return 404 in getStaticProps
   if (!page) {
-    return null
+    throw new Error('No page for url')
   }
   const included = page.included || []
   let content = []
@@ -107,11 +157,14 @@ export const getPageWithContentByPath = async ({ path, context }) => {
   let fiNode = { title: node?.title || '' }
 
   if (context.locale !== i18n.defaultLocale) {
-    fiNode = await getDefaultLocaleNode(id).catch(() => ({
+    fiNode = await getDefaultLocaleNode(id).catch(() => {
       // error in retriving finnish title.
       // Ignore and return current language title.
-      title: node.title,
-    }))
+      console.error('Error retrieving finnish title')
+      return {
+        title: node.title,
+      }
+    })
   }
   return { ...node, fiTitle: fiNode.title }
 }
@@ -165,7 +218,7 @@ export const getCommonApiContent = async (
 }
 
 export const getDefaultLocaleNode = async (id) =>
-  getResource('node--page', id, {
+  getResource(NODE_TYPES.PAGE, id, {
     locale: i18n.defaultLocale,
     defaultLocale: NO_DEFAULT_LOCALE,
   })
@@ -221,7 +274,7 @@ const getReadMoreLinks = async ({
           relatedLinksIds.includes(id)
         )
 
-        const translations = await Promise.all(
+        const languages = await Promise.all(
           relatedLinks.map(
             async ({ field_language_link: url, relationships }) => {
               const queryString = new DrupalJsonApiParams()
@@ -241,39 +294,38 @@ const getReadMoreLinks = async ({
         )
 
         let mainTranslation
-        let languages
 
-        if (translations.length === 1) {
-          mainTranslation = translations.at(0)
-          languages = []
+        if (languages.length === 1) {
+          mainTranslation = languages.at(0)
         } else {
           // Prefer link with current language
-          mainTranslation = translations.find(
-            ({ locale }) => locale === reqLang
-          )
+          mainTranslation = languages.find(({ locale }) => locale === reqLang)
           // if not, use fallback locale (en)
           if (!mainTranslation) {
-            mainTranslation = translations.find(
+            mainTranslation = languages.find(
               ({ locale }) => locale === i18n.fallbackLocale
             )
           }
           // if not, use default locale (fi)
           if (!mainTranslation) {
-            mainTranslation = translations.find(
+            mainTranslation = languages.find(
               ({ locale }) => locale === i18n.defaultLocale
             )
           }
-
-          languages = translations.filter(
-            ({ locale }) => locale !== mainTranslation?.locale
-          )
         }
+        // Sort language links to the same order as site languages are configured
+        const sorted = languages
+          .slice()
+          .sort(
+            (a, b) =>
+              i18n.locales.indexOf(a.locale) - i18n.locales.indexOf(b.locale)
+          )
 
         return {
           pageName: title,
           siteName,
           mainTranslation,
-          languages,
+          languages: sorted,
         }
       }
     )
@@ -303,10 +355,19 @@ const getImageForParagraphImage = ({
 const getHeroUrl = ({ item: { relationships }, media, files }) => {
   const mediaId = relationships.field_hero_image.data.id
   const mediaItem = media.find(({ id }) => id === mediaId)
+  if (!mediaItem) {
+    return null
+  }
   const fileId = mediaItem.relationships.field_media_image.data.id
   const file = files.find(({ id }) => id === fileId)
   return API_URLS.uriFromFile(file)
 }
+
+const getPVTNode = ({ item: { relationships }, pvtNodes }) =>
+  pvtNodes.find(
+    ({ id }) => id === relationships?.field_contact_data.data.at(0).id
+  )
+
 export const resolveContent = async (content) => {
   if (content?.length === 0) {
     return null
@@ -321,6 +382,8 @@ export const resolveContent = async (content) => {
     ({ type }) => type === CONTENT_TYPES.READMORE_LINK
   )
 
+  const pvtNodes = content.filter(({ type }) => type == CONTENT_TYPES.PVT_NODE)
+
   const paragraphs = content.filter(({ type }) =>
     [
       CONTENT_TYPES.READMORE,
@@ -328,6 +391,7 @@ export const resolveContent = async (content) => {
       CONTENT_TYPES.TEXT,
       CONTENT_TYPES.HEADING,
       CONTENT_TYPES.HERO,
+      CONTENT_TYPES.PVT,
     ].includes(type)
   )
 
@@ -338,7 +402,7 @@ export const resolveContent = async (content) => {
         case CONTENT_TYPES.PARAGRAPH_IMAGE:
           return {
             ...item,
-            ...(await getImageForParagraphImage({ item, media, files })),
+            ...getImageForParagraphImage({ item, media, files }),
           }
         case CONTENT_TYPES.READMORE:
           return {
@@ -351,6 +415,8 @@ export const resolveContent = async (content) => {
             type: item.type,
             url: getHeroUrl({ item, media, files }),
           }
+        case CONTENT_TYPES.PVT:
+          return getPVTNode({ item, pvtNodes })
 
         default:
           return item

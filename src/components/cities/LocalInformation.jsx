@@ -9,7 +9,6 @@ import { IconExternalSite } from '@/components/Icons'
 
 import { useTranslation } from 'next-i18next'
 
-import { READMORE_CONTENT } from '@/components/article/ReadMoreBlock'
 import TextLink from '../TextLink'
 const DEMOHTML = `
 <div>
@@ -79,7 +78,7 @@ const LocalInformation = ({ readMoreUrl }) => {
   )
 }
 
-const LocalReadMore = ({ content = READMORE_CONTENT }) => {
+const LocalReadMore = ({ content = [] }) => {
   return (
     <div className="p-4 bg-white rounded">
       {content.map(({ siteUrl, siteName, pageUrl, pageName, languages }, i) => (
