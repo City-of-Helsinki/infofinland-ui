@@ -147,7 +147,7 @@ export const getPageWithContentByPath = async ({ path, context }) => {
       page.included.map((item) => {
         const { type, id, attributes, ...rest } = item
         return { type, id, ...attributes, ...rest }
-      })
+      }),context
     )
   }
 
@@ -251,6 +251,7 @@ const getReadMoreLinks = async ({
   item: { relationships },
   linkCollections,
   links,
+  locale:reqLang
 }) => {
   let content = []
   const linksIds = relationships.field_link_collection.data.map(({ id }) => id)
@@ -264,7 +265,6 @@ const getReadMoreLinks = async ({
         relationships,
         title,
         field_link_target_site: siteName,
-        langcode: reqLang,
       }) => {
         const relatedLinksIds = relationships.field_links.data.map(
           ({ id }) => id
@@ -294,7 +294,6 @@ const getReadMoreLinks = async ({
         )
 
         let mainTranslation
-
         if (languages.length === 1) {
           mainTranslation = languages.at(0)
         } else {
@@ -368,7 +367,7 @@ const getPVTNode = ({ item: { relationships }, pvtNodes }) =>
     ({ id }) => id === relationships?.field_contact_data.data.at(0).id
   )
 
-export const resolveContent = async (content) => {
+export const resolveContent = async (content,{locale}) => {
   if (content?.length === 0) {
     return null
   }
@@ -407,7 +406,7 @@ export const resolveContent = async (content) => {
         case CONTENT_TYPES.READMORE:
           return {
             ...item,
-            content: await getReadMoreLinks({ item, linkCollections, links }),
+            content: await getReadMoreLinks({ item, linkCollections, links,locale }),
           }
 
         case CONTENT_TYPES.HERO:

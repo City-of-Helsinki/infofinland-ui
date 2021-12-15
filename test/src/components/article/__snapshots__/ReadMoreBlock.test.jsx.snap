@@ -9,62 +9,6 @@ exports[`ReadMoreBlock should render the ReadMoreBlock 1`] = `
       class="py-6"
     >
       <div
-        class="mb-3 pb-3 border-b border-gray-hr"
-      >
-        <span
-          class="flex items-center text-small"
-          rel="noreferrer"
-          target="_blank"
-        >
-          <svg
-            class="inline-block me-2"
-            fill="none"
-            height="10"
-            viewBox="0 0 10 10"
-            width="10"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M8.88889 8.88889H1.11111V1.11111H5V0H1.11111C0.494444 0 0 0.5 0 1.11111V8.88889C0 9.5 0.494444 10 1.11111 10H8.88889C9.5 10 10 9.5 10 8.88889V5H8.88889V8.88889ZM6.11111 0V1.11111H8.10556L2.64444 6.57222L3.42778 7.35556L8.88889 1.89444V3.88889H10V0H6.11111Z"
-              fill="black"
-            />
-          </svg>
-          DEMO:Kela
-        </span>
-        <a
-          class="inline-block mb-4 text-body font-bold ifu-text-link"
-          href="http://www.kela.fi/"
-          rel="noreferrer"
-          target="_blank"
-        >
-          Some random Kela page
-        </a>
-        <div
-          class="flex flex-wrap divide-link divide-s"
-        >
-          <a
-            class="text-small leading-snug ifu-text-link pe-2"
-            href="http://www.kela.fi/fi/"
-            lang="fi"
-            rel="noreferrer"
-            target="_blank"
-            title="Some random Kela page"
-          >
-            Suomi
-          </a>
-          <a
-            class="text-small leading-snug ifu-text-link pe-2 ps-2"
-            href="http://www.kela.fi/sv/"
-            lang="fi"
-            rel="noreferrer"
-            target="_blank"
-            title="Some random Kela page"
-          >
-            Ruotsi
-          </a>
-        </div>
-      </div>
-      <div
         class=""
       >
         <span
@@ -88,32 +32,21 @@ exports[`ReadMoreBlock should render the ReadMoreBlock 1`] = `
           DEMO:Kela
         </span>
         <a
-          class="inline-block mb-4 text-body font-bold ifu-text-link"
-          href="http://www.kela.fi/"
+          class="inline-block mb-4 text-body font-bold leading-snug ifu-text-link"
+          href="http://www.kela.fi/fi/"
+          lang="fi"
           rel="noreferrer"
           target="_blank"
         >
           Some random Kela page
         </a>
         <div
-          class="flex flex-wrap divide-link divide-s"
+          class="flex flex-wrap divide-link divide-s lowercase"
         >
           <a
             class="text-small leading-snug ifu-text-link pe-2"
             href="http://www.kela.fi/fi/"
-            lang="fi"
             rel="noreferrer"
-            target="_blank"
-            title="Some random Kela page"
-          >
-            Suomi
-          </a>
-          <a
-            class="text-small leading-snug ifu-text-link pe-2 ps-2"
-            href="http://www.kela.fi/fi/"
-            lang="fi"
-            rel="noreferrer"
-            target="_blank"
             title="Some random Kela page"
           >
             Suomi
@@ -121,69 +54,7 @@ exports[`ReadMoreBlock should render the ReadMoreBlock 1`] = `
           <a
             class="text-small leading-snug ifu-text-link pe-2 ps-2"
             href="http://www.kela.fi/sv/"
-            lang="sv"
             rel="noreferrer"
-            target="_blank"
-            title="Some random Kela page"
-          >
-            Ruotsi
-          </a>
-          <a
-            class="text-small leading-snug ifu-text-link pe-2 ps-2"
-            href="http://www.kela.fi/sv/"
-            lang="sv"
-            rel="noreferrer"
-            target="_blank"
-            title="Some random Kela page"
-          >
-            Ruotsi
-          </a>
-          <a
-            class="text-small leading-snug ifu-text-link pe-2 ps-2"
-            href="http://www.kela.fi/fi/"
-            lang="sv"
-            rel="noreferrer"
-            target="_blank"
-            title="Some random Kela page"
-          >
-            Suomi
-          </a>
-          <a
-            class="text-small leading-snug ifu-text-link pe-2 ps-2"
-            href="http://www.kela.fi/sv/"
-            lang="sv"
-            rel="noreferrer"
-            target="_blank"
-            title="Some random Kela page"
-          >
-            Ruotsi
-          </a>
-          <a
-            class="text-small leading-snug ifu-text-link pe-2 ps-2"
-            href="http://www.kela.fi/fi/"
-            lang="sv"
-            rel="noreferrer"
-            target="_blank"
-            title="Some random Kela page"
-          >
-            Suomi
-          </a>
-          <a
-            class="text-small leading-snug ifu-text-link pe-2 ps-2"
-            href="http://www.kela.fi/fi/"
-            lang="sv"
-            rel="noreferrer"
-            target="_blank"
-            title="Some random Kela page"
-          >
-            Suomi
-          </a>
-          <a
-            class="text-small leading-snug ifu-text-link pe-2 ps-2"
-            href="http://www.kela.fi/sv/"
-            lang="sv"
-            rel="noreferrer"
-            target="_blank"
             title="Some random Kela page"
           >
             Ruotsi

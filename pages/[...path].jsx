@@ -40,7 +40,6 @@ export async function getStaticPaths(context) {
 export async function getStaticProps(context) {
   const { params } = context
   const path = params.path.join('/')
-  console.log({ path })
   const [common, node] = await Promise.all([
     getCommonApiContent(context),
     getPageWithContentByPath({ path, context }),
