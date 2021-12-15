@@ -4,7 +4,7 @@ import cls from 'classnames'
 
 const LOWERCASE_LOCALES = ['fi', 'et', 'es', 'fr']
 const ReadMoreBlock = ({ content = [] }) => {
-    return (
+  return (
     <Block className="mt-8 mb-8 bg-orange-white">
       <div className="py-6">
         {content.map(
@@ -37,7 +37,9 @@ const ReadMoreBlock = ({ content = [] }) => {
               {languages.length > 0 && (
                 <div
                   className={cls('flex flex-wrap divide-link divide-s', {
-                    lowercase: LOWERCASE_LOCALES.includes(mainTranslation.locale),
+                    lowercase: LOWERCASE_LOCALES.includes(
+                      mainTranslation.locale
+                    ),
                   })}
                 >
                   {languages.map(({ url, text, locale }, k) => (

@@ -38,7 +38,6 @@ const ArticlePage = ({ menu, footerMenu, node, color }) => {
       >
         {themes?.length > 0 && (
           <Block hero>
-            {' '}
             <ThemeList themes={themes} />
           </Block>
         )}

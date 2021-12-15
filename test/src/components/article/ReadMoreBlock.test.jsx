@@ -9,7 +9,7 @@ import ReadMoreBlock from '@/components/article/ReadMoreBlock'
 export const READMORE_CONTENT = [
   {
     siteName: 'DEMO:Kela',
-    mainTranslation:{locale:'fi',url:'http://www.kela.fi/fi/'},
+    mainTranslation: { locale: 'fi', url: 'http://www.kela.fi/fi/' },
     pageName: 'Some random Kela page',
     languages: [
       { url: 'http://www.kela.fi/fi/', text: 'Suomi', lang: 'fi' },
@@ -18,13 +18,12 @@ export const READMORE_CONTENT = [
         text: 'Ruotsi',
         lang: 'sv',
       },
-
     ],
   },
 ]
 describe('ReadMoreBlock', () => {
   it('should render the ReadMoreBlock', () => {
-    const { asFragment } = render(<ReadMoreBlock content={READMORE_CONTENT}/>)
+    const { asFragment } = render(<ReadMoreBlock content={READMORE_CONTENT} />)
     expect(asFragment()).toMatchSnapshot()
   })
 })
