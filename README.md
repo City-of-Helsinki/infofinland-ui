@@ -2,9 +2,9 @@
 
 ## Intro
 
-Infofinland Nextjs frontend for headless drupal site.
+Infofinland Nextjs-frontend for headless drupal site.
 
-See also [https://github.com/City-of-Helsinki/drupal-infofinland](https://github.com/City-of-Helsinki/drupal-infofinland)
+See also [https://github.com/City-of-Helsinki/drupal-infofinland](https://github.com/City-of-Helsinki/drupal-infofinland) for instructions on running corresponding Drupal site locally.
 
 ## Development
 
@@ -14,7 +14,7 @@ Install Yarn if not already installed
 npm install -g yarn
 ```
 
-Clone this repo
+Clone [the InfoFinland UI](https://github.com/City-of-Helsinki/infofinland-ui) repo
 
 ```bash
 git clone git@github.com:City-of-Helsinki/infofinland-ui.git
@@ -29,7 +29,7 @@ Install dependencies
 yarn
 ```
 
-Copy one of `.env.example.local`,`.env.example.dev` or `.env.example.production`,, to .env.local. This is a `.gitignore`d local checkout's env file. Modify it as you need, depending on which drupal instance you want to connect to.
+Copy one of `.env.example.local`,`.env.example.dev` or `.env.example.production` to .env.local. This is a `.gitignore`d local checkout's env file. Modify it as you need, depending on which drupal instance you want to connect to.
 
 Required environment variables are
 
@@ -52,9 +52,10 @@ NEXT_TELEMETRY_DISABLED=0
 ### Start development server
 
 ```bash
-
 yarn dev
 ```
+Go to ```localhost:3000``` in your browser.
+
 
 Make changes to your feature branch, run linter.
 This project uses ESlint NextJS plugin rules and ESLint Tailwind plugin rules.
@@ -63,13 +64,13 @@ This project uses ESlint NextJS plugin rules and ESLint Tailwind plugin rules.
 yarn next lint
 ```
 
-5. Format your code before committing. You can set your IDE to run prettier automaticallt but if you dont, run it manually before you commit. For now, there are no precommit tasks.
+Format your code before committing. You can set your IDE to run prettier automaticallt but if you dont, run it manually before you commit. For now, there are no precommit tasks.
 
 ```bash
 yarn format
 ```
 
-6. Run all tests (again, but now if you didn't). Check all snapshots, make sure you include new tests for new code.
+Run all tests (again, but now if you didn't). Check all snapshots, make sure you include new tests for new code.
 
 ```bash
 yarn test
@@ -81,7 +82,7 @@ Use watch-mode for test runner
 yarn test --watch
 ```
 
-7. Commit to you feature branch, push to repo, make a merge request.
+Commit to you feature branch, push to repo, make a merge request.
 
 ### Required tools
 
@@ -107,7 +108,7 @@ TODO: Check env variables in docker container
 
 ### Run production server locally.
 
-Make a build and start Nextjs server. See localhost:3000
+Make a build and start Nextjs server. See ```localhost:3000```
 
 ```bash
 yarn build && yarn start
@@ -115,7 +116,7 @@ yarn build && yarn start
 
 ### Run production server on local docker.
 
-Build Dockerfile, start container. See localhost:8080
+Build Dockerfile, start container. See ```localhost:8080```
 
 #### _In VSCode_
 
@@ -162,8 +163,6 @@ In the UI, use React SVG components as much as possible.
 
 ## Localization
 
-Static UI texts are localized in using
-
-[https://github.com/isaachinman/next-i18next](next-i18next)
+Static UI texts are localized with [next-i18next](https://github.com/isaachinman/next-i18next).
 
 See `public/locales/[locale]/common.json`. Page-level localization files are not required at this point but can be added as needed.
