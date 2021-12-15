@@ -5,11 +5,18 @@ import ThemeList from '@/components/home/ThemeList'
 import CitySelector from '@/components/home/CitySelector'
 import HomeAbout from '@/components/home/HomeAbout'
 import Block from '@/components/layout/Block'
-import { getCommonApiContent } from '@/lib/ssr-api'
+import { getCommonApiContent, resolvePath } from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export async function getStaticProps(context) {
   const common = await getCommonApiContent(context)
+  const themes = common.menu.tree.map(({ url }) => url)
+  const themeNodes = await Promise.all(
+    themes.map((path) => resolvePath({ path, context }))
+  )
+  const data = themeNodes.map(({ data }) => data)
+  console.log({ data })
+
   return {
     props: {
       ...common,

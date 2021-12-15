@@ -121,10 +121,10 @@ export const getPageById = async (id, { locale, defaultLocale }) => {
 
 export const getPageWithContentByPath = async ({ path, context }) => {
   const { data: pathNode } = await resolvePath({ path, context }).catch((e) => {
-    console.error('Router error for', path, e.response.status)
-    // if (process.env.development) {
-    //   console.error(e)
-    // }
+    console.error('Router error for', context.locale, path)
+    if (process.env.development) {
+      console.error(e)
+    }
     return AXIOS_ERROR_RESPONSE
   })
   // Error in resolving path. return 404 in getStaticProps
@@ -197,12 +197,12 @@ export const getCommonApiContent = async (
   const [menu, footerMenu, translations] = await Promise.all([
     //Main menu or whatever is called
     getMenu(main, context).catch((e) => {
-      console.error('menu error', e)
+      console.error('menu error')
       return menuErrorResponse(e)
     }),
     //Footer Menu
     getMenu(footer, context).catch((e) => {
-      console.error('footerMenu error', e)
+      console.error('footerMenu error')
       return menuErrorResponse(e)
     }),
   ]).catch((e) => {

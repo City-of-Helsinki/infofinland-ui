@@ -1,15 +1,23 @@
 import Head from 'next/head'
+import ThemeList from '@/components/home/ThemeList'
+import Block from '@/components/layout/Block'
 import Article from '@/components/article/Article'
 import Layout from '@/components/layout/Layout'
 import LocalInformation from '@/components/cities/LocalInformation'
 import useBreadCrumbs from '@/hooks/useBreadCrumbs'
 import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import ContentMapper from '@/components/article/ContentMapper'
+import useThemeList from '@/hooks/useThemeList'
 
 const ArticlePage = ({ menu, footerMenu, node, color }) => {
   const { localePath } = useRouterWithLocalizedPath()
   const breadcrumbs = useBreadCrumbs({
     items: menu.items,
+    path: localePath,
+  })
+
+  const themes = useThemeList({
+    tree: menu.tree,
     path: localePath,
   })
   // console.log({ node })
@@ -28,6 +36,13 @@ const ArticlePage = ({ menu, footerMenu, node, color }) => {
         fiTitle={fiTitle}
         heroImage={hero?.url}
       >
+        {themes?.length > 0 && (
+          <Block hero>
+            {' '}
+            <ThemeList themes={themes} />
+          </Block>
+        )}
+
         {content && <ContentMapper content={content} />}
         <p className="font-bold text-neon-pink">DEMO LOCAL INFO BLOCK</p>
         <LocalInformation readMoreUrl={'/test'} />

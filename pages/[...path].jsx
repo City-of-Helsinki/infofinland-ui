@@ -1,4 +1,5 @@
-import ArticlePage from '../../src/page-templates/ArticlePage'
+import ArticlePage from '@/src/page-templates/ArticlePage'
+// import ThemePage from '@/src/page-templates/ThemePage'
 import {
   getCommonApiContent,
   getMainMenu,
@@ -22,11 +23,9 @@ export async function getStaticPaths(context) {
     // Parse to theme and path slug
     .map(({ url }) => {
       //remove root slash and language code
-      const [, , ...parts] = url.split('/')
-      const [theme, ...path] = parts
+      const [, , ...path] = url.split('/')
       return {
         params: {
-          theme,
           path,
         },
       }
@@ -40,7 +39,8 @@ export async function getStaticPaths(context) {
 
 export async function getStaticProps(context) {
   const { params } = context
-  const path = [params.theme, ...params.path].join('/')
+  const path = params.path.join('/')
+  console.log({ path })
   const [common, node] = await Promise.all([
     getCommonApiContent(context),
     getPageWithContentByPath({ path, context }),
