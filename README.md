@@ -54,8 +54,8 @@ NEXT_TELEMETRY_DISABLED=0
 ```bash
 yarn dev
 ```
-Go to ```localhost:3000``` in your browser.
 
+Go to `localhost:3000` in your browser.
 
 Make changes to your feature branch, run linter.
 This project uses ESlint NextJS plugin rules and ESLint Tailwind plugin rules.
@@ -108,7 +108,7 @@ TODO: Check env variables in docker container
 
 ### Run production server locally.
 
-Make a build and start Nextjs server. See ```localhost:3000```
+Make a build and start Nextjs server. See `localhost:3000`
 
 ```bash
 yarn build && yarn start
@@ -116,7 +116,7 @@ yarn build && yarn start
 
 ### Run production server on local docker.
 
-Build Dockerfile, start container. See ```localhost:8080```
+Build Dockerfile, start container. See `localhost:8080`
 
 #### _In VSCode_
 

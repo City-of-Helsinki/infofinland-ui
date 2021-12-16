@@ -10,7 +10,6 @@ import {
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export async function getStaticPaths() {
-
   return {
     paths: [],
     fallback: 'blocking',

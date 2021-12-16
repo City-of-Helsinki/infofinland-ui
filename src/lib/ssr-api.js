@@ -3,7 +3,7 @@ import { sample } from 'lodash'
 import { i18n } from '../../next-i18next.config'
 import axios from 'axios'
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
-import getConfig from "next/config";
+import getConfig from 'next/config'
 
 export const NODE_TYPES = {
   PAGE: 'node--page',
@@ -36,7 +36,9 @@ const disableDefaultLocale = (locale) => ({
 
 const API_URLS = {
   uriFromFile: (file) =>
-    `${getConfig().serverRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL}${file.uri.url}`,
+    `${getConfig().serverRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL}${
+      file.uri.url
+    }`,
   getPage: ({ locale, defaultLocale, id, queryString }) =>
     `${getConfig().serverRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL}/${
       locale || defaultLocale
@@ -47,8 +49,8 @@ const menuErrorResponse = () => ({ items: [], tree: [], error: 'menu-error' })
 const AXIOS_ERROR_RESPONSE = { data: null }
 
 export const resolvePath = async ({ path, context }) => {
-  const {serverRuntimeConfig } = getConfig()
-  console.log({serverRuntimeConfig})
+  const { serverRuntimeConfig } = getConfig()
+  console.log({ serverRuntimeConfig })
   const { locale, defaultLocale } = context
   const URL = `${serverRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL}/${
     locale || defaultLocale

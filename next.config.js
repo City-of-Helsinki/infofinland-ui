@@ -4,22 +4,20 @@ module.exports = {
   i18n,
   reactStrictMode: true,
   poweredByHeader: false,
-  publicRuntimeConfig:{
-    NEXT_PUBLIC_DRUPAL_BASE_URL:process.env.NEXT_PUBLIC_DRUPAL_BASE_URL,
+  publicRuntimeConfig: {
+    NEXT_PUBLIC_DRUPAL_BASE_URL: process.env.NEXT_PUBLIC_DRUPAL_BASE_URL,
     // NEXT_IMAGE_DOMAIN:process.env.NEXT_IMAGE_DOMAIN
-
-
   },
   serverRuntimeConfig: {
-    NEXT_PUBLIC_DRUPAL_BASE_URL:process.env.NEXT_PUBLIC_DRUPAL_BASE_URL,
-    NEXT_IMAGE_DOMAIN:process.env.NEXT_IMAGE_DOMAIN,
+    NEXT_PUBLIC_DRUPAL_BASE_URL: process.env.NEXT_PUBLIC_DRUPAL_BASE_URL,
+    NEXT_IMAGE_DOMAIN: process.env.NEXT_IMAGE_DOMAIN,
     // Will only be available on the server side
-    DOO:'baf',
-    DRUPAL_FRONT_PAGE:process.env.DRUPAL_FRONT_PAGE,
-    DRUPAL_SITE_ID:process.env.DRUPAL_SITE_ID,
-    DRUPAL_CLIENT_ID:process.env.DRUPAL_CLIENT_ID,
-    DRUPAL_PREVIEW_SECRET:process.env.DRUPAL_PREVIEW_SECRET,
-    DRUPAL_CLIENT_SECRET:process.env.DRUPAL_CLIENT_SECRET,
+    DOO: 'baf',
+    DRUPAL_FRONT_PAGE: process.env.DRUPAL_FRONT_PAGE,
+    DRUPAL_SITE_ID: process.env.DRUPAL_SITE_ID,
+    DRUPAL_CLIENT_ID: process.env.DRUPAL_CLIENT_ID,
+    DRUPAL_PREVIEW_SECRET: process.env.DRUPAL_PREVIEW_SECRET,
+    DRUPAL_CLIENT_SECRET: process.env.DRUPAL_CLIENT_SECRET,
   },
   env: {
     COOKIE_PAGE_PATH: '/about/cookie-settings',
