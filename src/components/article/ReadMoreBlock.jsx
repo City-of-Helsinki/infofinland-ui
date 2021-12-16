@@ -1,11 +1,9 @@
 import Block from '@/components/layout/Block'
 import { IconExternalSite } from '@/components/Icons'
 import cls from 'classnames'
-import { useRouter } from 'next/router'
 
 const LOWERCASE_LOCALES = ['fi', 'et', 'es', 'fr']
 const ReadMoreBlock = ({ content = [] }) => {
-  const { locale } = useRouter()
   return (
     <Block className="mt-8 mb-8 bg-orange-white">
       <div className="py-6">
@@ -39,7 +37,9 @@ const ReadMoreBlock = ({ content = [] }) => {
               {languages.length > 0 && (
                 <div
                   className={cls('flex flex-wrap divide-link divide-s', {
-                    lowercase: LOWERCASE_LOCALES.includes(locale),
+                    lowercase: LOWERCASE_LOCALES.includes(
+                      mainTranslation.locale
+                    ),
                   })}
                 >
                   {languages.map(({ url, text, locale }, k) => (

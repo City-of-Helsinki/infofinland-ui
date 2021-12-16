@@ -6,3 +6,5 @@ coverage
 .eslintcache
 .vercel
 .vscode
+.env.local
+# .env.production

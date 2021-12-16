@@ -5,39 +5,39 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 const TEXTS = {
   fi: {
     title: 'Sivua ei löydy tällä kielellä',
-    help: 'Valitettavasti sivua ei ole valitsemallasi kielellä. Löydät tietoa aiheesta seuraavilla kielillä:',
+    help: 'Valitettavasti sivua ei ole valitsemallasi kielellä.',
   },
   sv: {
     title: 'Sidan finns inte på detta språk',
-    help: 'Tyvärr finns sidan inte på det språk du har valt. Du hittar information om ärendet på följande språk',
+    help: 'Tyvärr finns sidan inte på det språk du har valt.',
   },
   en: {
     title: 'Page not found in this language',
-    help: 'Unfortunately, the page does not exist in the language of your choice. Information is available in the following languages:',
+    help: 'Unfortunately, the page does not exist in the language of your choice.',
   },
   ru: {
     title: 'Страница на данном языке не найдена',
-    help: 'К сожалению, страницы на выбранном вами языке, не существует. Информация по теме доступна на следующих языках:',
+    help: 'К сожалению, страницы на выбранном вами языке, не существует.',
   },
   et: {
     title: 'Leht ei ole selles keeles saadaval',
-    help: 'Kahjuks ei ole leht sinu valitud keeles saadaval. Leiad teema kohta teavet järgmistes keeltes:',
+    help: 'Kahjuks ei ole leht sinu valitud keeles saadaval.',
   },
   fr: {
     title: 'La page est introuvable dans cette langue',
-    help: 'Malheureusement, cette page n’est pas disponible dans la langue sélectionnée. Vous trouverez davantage d’informations sur le sujet dans les langues suivantes:',
+    help: 'Malheureusement, cette page n’est pas disponible dans la langue sélectionnée.',
   },
   so: {
     title: 'Luqaddan bogga laguma helo',
-    help: 'Nasiibdarro luqadda aad dooratay kuma jirto bogga. Macluumaadka ku saabsan mowduucan waxaad ku heleysaa luqadaha soo socda:',
+    help: 'Nasiibdarro luqadda aad dooratay kuma jirto bogga.',
   },
   es: {
     title: 'La página no existe en este idioma',
-    help: 'Lamentablemente, la página no existe en el idioma que ha elegido. Encontrará información sobre este tema en los siguientes idiomas:',
+    help: 'Lamentablemente, la página no existe en el idioma que ha elegido.',
   },
   tr: {
     title: 'Sayfa bu dilde mevcut değil',
-    help: 'Ne yazık ki sayfa seçtiğiniz dilde mevcut değil. Konuyla ilgili bilgiyi aşağıdaki dillerde bulabilirsiniz:',
+    help: 'Ne yazık ki sayfa seçtiğiniz dilde mevcut değil.',
   },
   zh: {
     title: '本页不支持该语言',
@@ -45,11 +45,11 @@ const TEXTS = {
   },
   fa: {
     title: 'ین صفحه در حال حاضر در دسترس نیست',
-    help: 'متأسفانه این صفحه به زبانی که انتخاب کردید وجود ندارد. می توانید در مورد این موضوع به زبان های زیر اطلاعات کسب کنید.',
+    help: 'می توانید در مورد این موضوع به زبان های زیر اطلاعات کسب کنید.',
   },
   ar: {
     title: 'الصفحة غير متوفرة بهذه اللغة',
-    help: 'للأسف الصفحة غير متوفرة باللغة التي اخترتها. تجد معلومات عن الموضوع باللغات التالية:',
+    help: 'تجد معلومات عن الموضوع باللغات التالية',
   },
 }
 

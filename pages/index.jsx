@@ -10,6 +10,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export async function getStaticProps(context) {
   const common = await getCommonApiContent(context)
+
   return {
     props: {
       ...common,

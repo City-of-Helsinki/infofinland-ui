@@ -21,7 +21,8 @@ module.exports = {
     locales,
     languages,
     rtlLocales,
-    defaultLocale: 'fi',
-    fallbackLocale: 'en',
+    defaultLocale: 'en',
+    fallbackLocale: 'fi',
+    // localeDetection: false,
   },
 }

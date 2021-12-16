@@ -3,6 +3,7 @@ import { sample } from 'lodash'
 import { i18n } from '../../next-i18next.config'
 import axios from 'axios'
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
+import getConfig from 'next/config'
 
 export const NODE_TYPES = {
   PAGE: 'node--page',
@@ -35,9 +36,11 @@ const disableDefaultLocale = (locale) => ({
 
 const API_URLS = {
   uriFromFile: (file) =>
-    `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}${file.uri.url}`,
+    `${getConfig().serverRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL}${
+      file.uri.url
+    }`,
   getPage: ({ locale, defaultLocale, id, queryString }) =>
-    `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${
+    `${getConfig().serverRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL}/${
       locale || defaultLocale
     }/jsonapi/node/page/${id}?${queryString || ''}`,
 }
@@ -46,8 +49,10 @@ const menuErrorResponse = () => ({ items: [], tree: [], error: 'menu-error' })
 const AXIOS_ERROR_RESPONSE = { data: null }
 
 export const resolvePath = async ({ path, context }) => {
+  const { serverRuntimeConfig } = getConfig()
+  console.log({ serverRuntimeConfig })
   const { locale, defaultLocale } = context
-  const URL = `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/${
+  const URL = `${serverRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL}/${
     locale || defaultLocale
   }/router/translate-path`
   return axios.get(URL, {
@@ -121,10 +126,10 @@ export const getPageById = async (id, { locale, defaultLocale }) => {
 
 export const getPageWithContentByPath = async ({ path, context }) => {
   const { data: pathNode } = await resolvePath({ path, context }).catch((e) => {
-    console.error('Router error for', path, e.response.status)
-    // if (process.env.development) {
-    //   console.error(e)
-    // }
+    console.error('Router error for', context.locale, path)
+    if (process.env.development) {
+      console.error(e)
+    }
     return AXIOS_ERROR_RESPONSE
   })
   // Error in resolving path. return 404 in getStaticProps
@@ -147,7 +152,8 @@ export const getPageWithContentByPath = async ({ path, context }) => {
       page.included.map((item) => {
         const { type, id, attributes, ...rest } = item
         return { type, id, ...attributes, ...rest }
-      })
+      }),
+      context
     )
   }
 
@@ -197,12 +203,12 @@ export const getCommonApiContent = async (
   const [menu, footerMenu, translations] = await Promise.all([
     //Main menu or whatever is called
     getMenu(main, context).catch((e) => {
-      console.error('menu error', e)
+      console.error('menu error')
       return menuErrorResponse(e)
     }),
     //Footer Menu
     getMenu(footer, context).catch((e) => {
-      console.error('footerMenu error', e)
+      console.error('footerMenu error')
       return menuErrorResponse(e)
     }),
   ]).catch((e) => {
@@ -251,6 +257,7 @@ const getReadMoreLinks = async ({
   item: { relationships },
   linkCollections,
   links,
+  locale: reqLang,
 }) => {
   let content = []
   const linksIds = relationships.field_link_collection.data.map(({ id }) => id)
@@ -260,12 +267,7 @@ const getReadMoreLinks = async ({
 
   content = await Promise.all(
     linkCollection.map(
-      async ({
-        relationships,
-        title,
-        field_link_target_site: siteName,
-        langcode: reqLang,
-      }) => {
+      async ({ relationships, title, field_link_target_site: siteName }) => {
         const relatedLinksIds = relationships.field_links.data.map(
           ({ id }) => id
         )
@@ -294,22 +296,21 @@ const getReadMoreLinks = async ({
         )
 
         let mainTranslation
-
         if (languages.length === 1) {
           mainTranslation = languages.at(0)
         } else {
           // Prefer link with current language
           mainTranslation = languages.find(({ locale }) => locale === reqLang)
-          // if not, use fallback locale (en)
-          if (!mainTranslation) {
-            mainTranslation = languages.find(
-              ({ locale }) => locale === i18n.fallbackLocale
-            )
-          }
-          // if not, use default locale (fi)
+          // if not, use default locale (en)
           if (!mainTranslation) {
             mainTranslation = languages.find(
               ({ locale }) => locale === i18n.defaultLocale
+            )
+          }
+          // if not, use fallback locale (fi)
+          if (!mainTranslation) {
+            mainTranslation = languages.find(
+              ({ locale }) => locale === i18n.fallbackLocale
             )
           }
         }
@@ -368,7 +369,7 @@ const getPVTNode = ({ item: { relationships }, pvtNodes }) =>
     ({ id }) => id === relationships?.field_contact_data.data.at(0).id
   )
 
-export const resolveContent = async (content) => {
+export const resolveContent = async (content, { locale }) => {
   if (content?.length === 0) {
     return null
   }
@@ -407,7 +408,12 @@ export const resolveContent = async (content) => {
         case CONTENT_TYPES.READMORE:
           return {
             ...item,
-            content: await getReadMoreLinks({ item, linkCollections, links }),
+            content: await getReadMoreLinks({
+              item,
+              linkCollections,
+              links,
+              locale,
+            }),
           }
 
         case CONTENT_TYPES.HERO:

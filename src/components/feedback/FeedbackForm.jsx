@@ -214,7 +214,7 @@ const FeedbackButtonBlock = () => {
           onClick={toggle}
           aria-expanded={isOpen}
         >
-          <IconExclamationBubble className="block mx-4 h-8 transform translate-y-0.5 ifu-feedbackbutton__icon" />
+          <IconExclamationBubble className="block mx-4 h-8 transform translate-y-0.5 lg:ms-0 ifu-feedbackbutton__icon" />
           <span
             className={cls(
               'block md:flex-none  font-bold ifu-text-link',

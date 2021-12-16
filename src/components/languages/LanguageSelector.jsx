@@ -51,7 +51,7 @@ const LanguageSelector = ({ openMenu }) => {
               </span>
               <span
                 className={cls(
-                  'hidden xl:inline-block hover:border-black border-b-2',
+                  'hidden xl:inline-block hover:border-black border-b-2 transition-all ease-in-out duration-300',
                   {
                     'border-black': locale === code,
                     'border-white': locale !== code,
