@@ -108,6 +108,9 @@ TODO: Check env variables in docker container
 
 ### Run production server locally.
 
+Ensure you have set next-drupal environment variables.
+You may create a local `.env.producion` file using the `.env.example ` files
+
 Make a build and start Nextjs server. See `localhost:3000`
 
 ```bash
