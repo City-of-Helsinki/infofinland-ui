@@ -1,4 +1,6 @@
 {
+  "engineStrict" : true,
+  "engines": {"node":">= 0.16"},
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
