@@ -50,7 +50,6 @@ const AXIOS_ERROR_RESPONSE = { data: null }
 
 export const resolvePath = async ({ path, context }) => {
   const { serverRuntimeConfig } = getConfig()
-  console.log({ serverRuntimeConfig })
   const { locale, defaultLocale } = context
   const URL = `${serverRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL}/${
     locale || defaultLocale
