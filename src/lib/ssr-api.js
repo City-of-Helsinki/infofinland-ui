@@ -132,12 +132,12 @@ export const getPageWithContentByPath = async ({ path, context }) => {
     console.error(
       'Router error for',
       ['', context.locale, path].join('/'),
-      e.response?.data.message,
-      e.response?.data.details
+      e.response?.data?.message || e.response?.data,
+      e.response?.data?.details
     )
     return AXIOS_ERROR_RESPONSE
   })
-  // Error in resolving path. return 404 in getStaticProps
+  // Error in resolving path. returns 404 in getStaticProps
   if (!pathNode) {
     return null
   }
@@ -147,9 +147,10 @@ export const getPageWithContentByPath = async ({ path, context }) => {
 
   const { data: page } = await getPageById(id, context).catch((e) => {
     console.error('Error while resolving page node')
-    throw e
+    const {data,status,statusText} = e.response
+    // Error in resolving page node. returns 500 in getStaticProps
+    throw new Error({data,status,statusText})
   })
-  // Error in resolving page node. return 500 in getStaticProps
 
   const included = page.included || []
   let content = []
@@ -169,7 +170,8 @@ export const getPageWithContentByPath = async ({ path, context }) => {
   const node = { content, included, ...attributes, ...restOfNode, hero }
   let fiNode = { title: node?.title || '' }
 
-  if (context.locale !== i18n.defaultLocale) {
+  //Get Finnish title for non-finnish pages
+  if (context.locale !== i18n.fallbackLocale) {
     fiNode = await getDefaultLocaleNode(id).catch(() => {
       // error in retriving finnish title.
       // Ignore and return current language title.
@@ -234,6 +236,7 @@ export const getDefaultLocaleNode = async (id) =>
   getResource(NODE_TYPES.PAGE, id, {
     locale: i18n.defaultLocale,
     defaultLocale: NO_DEFAULT_LOCALE,
+    // TODO make this work with params.fields to reduce unused payload
   })
 
 const getReadMoreLinks = async ({

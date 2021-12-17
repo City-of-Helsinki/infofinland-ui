@@ -11,14 +11,25 @@ FROM node:16-alpine AS builder
 ## Build & runtime env variables
 # These should be set from Azure pipeline env variables to Docker build runtime env variables in 'yarn build'
 # Hardcoded until we figure out how to provide them to build context
-ARG NEXT_PUBLIC_DRUPAL_BASE_URL=https://nginx-infofinland-drupal-dev.agw.arodevtest.hel.fi
-ARG NEXT_IMAGE_DOMAIN=nginx-infofinland-drupal-dev.agw.arodevtest.hel.fi
-ARG DRUPAL_FRONT_PAGE=/
-ARG DRUPAL_SITE_ID=937d29b3-8e64-440a-a9ee-64dfb375ce4d
-ARG DRUPAL_CLIENT_ID=f4558345-2945-45fe-8c58-fd3ac0d5741a
+# ARG NEXT_PUBLIC_DRUPAL_BASE_URL=https://nginx-infofinland-drupal-dev.agw.arodevtest.hel.fi
+# ARG NEXT_IMAGE_DOMAIN=nginx-infofinland-drupal-dev.agw.arodevtest.hel.fi
+# ARG DRUPAL_FRONT_PAGE=/
+# ARG DRUPAL_SITE_ID=937d29b3-8e64-440a-a9ee-64dfb375ce4d
+# ARG DRUPAL_CLIENT_ID=f4558345-2945-45fe-8c58-fd3ac0d5741a
 
-ARG DRUPAL_PREVIEW_SECRET=1%%eS!z%b*0O5rX!maKqp%5m8xZ52yOU
-ARG DRUPAL_CLIENT_SECRET=0LXZ#%6nz&Px2zA34*8o7nlE3bPW9N%x
+# ARG DRUPAL_PREVIEW_SECRET=1%%eS!z%b*0O5rX!maKqp%5m8xZ52yOU
+# ARG DRUPAL_CLIENT_SECRET=0LXZ#%6nz&Px2zA34*8o7nlE3bPW9N%x
+
+
+ARG NEXT_PUBLIC_DRUPAL_BASE_URL
+ARG NEXT_IMAGE_DOMAIN
+ARG DRUPAL_FRONT_PAGE
+ARG DRUPAL_SITE_ID
+ARG DRUPAL_CLIENT_ID
+
+ARG DRUPAL_PREVIEW_SECRET
+ARG DRUPAL_CLIENT_SECRET
+ARG TEST
 
 ENV NEXT_PUBLIC_DRUPAL_BASE_URL=$NEXT_PUBLIC_DRUPAL_BASE_URL
 ENV NEXT_IMAGE_DOMAIN=$NEXT_IMAGE_DOMAIN
