@@ -21,6 +21,7 @@ module.exports = {
   env,
   publicRuntimeConfig: {
     NEXT_PUBLIC_DRUPAL_BASE_URL: process.env.NEXT_PUBLIC_DRUPAL_BASE_URL,
+    TEST:process.env.TEST,
     ...env,
   },
   serverRuntimeConfig: {
@@ -32,6 +33,7 @@ module.exports = {
     DRUPAL_CLIENT_ID: process.env.DRUPAL_CLIENT_ID,
     DRUPAL_PREVIEW_SECRET: process.env.DRUPAL_PREVIEW_SECRET,
     DRUPAL_CLIENT_SECRET: process.env.DRUPAL_CLIENT_SECRET,
+    TEST: process.env.TEST,
     ...env,
   },
   images: {

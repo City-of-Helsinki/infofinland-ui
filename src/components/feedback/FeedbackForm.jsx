@@ -34,7 +34,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
   }
 
   const onError = (errors, e) => {
-    console.log({ errors, e })
+    console.error({ errors, e })
   }
 
   useEffect(() => {
