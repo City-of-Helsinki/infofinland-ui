@@ -1,5 +1,6 @@
 import ArticlePage from '@/src/page-templates/ArticlePage'
-// import ThemePage from '@/src/page-templates/ThemePage'
+import getConfig from 'next/config'
+
 import {
   getCommonApiContent,
   // getMainMenu,
@@ -43,8 +44,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-  const { params } = context
-  const path = params.path.join('/')
+  const {serverRuntimeConfig,publicRuntimeConfig} = getConfig()
+  console.log({ssr:serverRuntimeConfig.TEST,public:publicRuntimeConfig.TEST})
+  const { params, locale } = context
+  const path = params.slug.join('/')
   const [common, node] = await Promise.all([
     getCommonApiContent(context),
     getPageWithContentByPath({ path, context }),
@@ -56,6 +59,7 @@ export async function getStaticProps(context) {
   }
   return {
     props: {
+      locale,
       ...common,
       node,
       ...(await serverSideTranslations(context.locale, ['common'])),

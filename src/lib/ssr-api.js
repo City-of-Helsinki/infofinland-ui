@@ -125,10 +125,13 @@ export const getPageById = async (id, { locale, defaultLocale }) => {
 
 export const getPageWithContentByPath = async ({ path, context }) => {
   const { data: pathNode } = await resolvePath({ path, context }).catch((e) => {
-    console.error('Router error for', context.locale, path)
-    if (process.env.development) {
-      console.error(e)
-    }
+    console.error(
+      'Router error for',
+      context.locale,
+      path,
+      e.response?.data.message,
+      e.response?.data.details
+    )
     return AXIOS_ERROR_RESPONSE
   })
   // Error in resolving path. return 404 in getStaticProps
@@ -140,7 +143,7 @@ export const getPageWithContentByPath = async ({ path, context }) => {
   } = pathNode
 
   const { data: page } = await getPageById(id, context)
-  // Error in resolving page node. return 404 in getStaticProps
+  // Error in resolving page node. return 500 in getStaticProps
   if (!page) {
     throw new Error('No page for url')
   }
@@ -202,12 +205,12 @@ export const getCommonApiContent = async (
   const [menu, footerMenu, translations] = await Promise.all([
     //Main menu or whatever is called
     getMenu(main, context).catch((e) => {
-      console.error('menu error')
+      console.error('menu error', e)
       return menuErrorResponse(e)
     }),
     //Footer Menu
     getMenu(footer, context).catch((e) => {
-      console.error('footerMenu error')
+      console.error('footerMenu error', e)
       return menuErrorResponse(e)
     }),
   ]).catch((e) => {
@@ -227,30 +230,6 @@ export const getDefaultLocaleNode = async (id) =>
     locale: i18n.defaultLocale,
     defaultLocale: NO_DEFAULT_LOCALE,
   })
-
-// export const getPageByPath = async ({ path, context }) => {
-//   const localeContext = {
-//     locale: context.locale,
-//     defaultLocale: NO_DEFAULT_LOCALE,
-//   }
-//   const node = await getResourceByPath(path, {
-//     ...localeContext,
-//     params: { include: 'field_content' },
-//   })
-//   let fiNode = { title: node?.title || '' }
-//   let content = []
-//   if (node?.field_content?.length > 0) {
-//     content = await getContent(node, localeContext)
-//   }
-
-//   if (context.locale !== i18n.defaultLocale && node !== null) {
-//     fiNode = await getDefaultLocaleNode(node.id).catch(() => ({
-//       title: node.title,
-//     }))
-//   }
-
-//   return { node, content, fiTitle: fiNode.title }
-// }
 
 const getReadMoreLinks = async ({
   item: { relationships },
