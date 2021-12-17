@@ -124,11 +124,14 @@ export const getPageById = async (id, { locale, defaultLocale }) => {
 }
 
 export const getPageWithContentByPath = async ({ path, context }) => {
+  console.log('ENV VALUE IN BUILD & RUNTIME', {
+    siteid: process.env.DRUPAL_SITE_ID,
+    test: process.env.TEST,
+  })
   const { data: pathNode } = await resolvePath({ path, context }).catch((e) => {
     console.error(
       'Router error for',
-      context.locale,
-      path,
+      ['', context.locale, path].join('/'),
       e.response?.data.message,
       e.response?.data.details
     )
@@ -142,13 +145,15 @@ export const getPageWithContentByPath = async ({ path, context }) => {
     entity: { uuid: id },
   } = pathNode
 
-  const { data: page } = await getPageById(id, context)
+  const { data: page } = await getPageById(id, context).catch((e) => {
+    console.error('Error while resolving page node')
+    throw e
+  })
   // Error in resolving page node. return 500 in getStaticProps
-  if (!page) {
-    throw new Error('No page for url')
-  }
+
   const included = page.included || []
   let content = []
+
   if (page.included) {
     content = await resolveContent(
       page.included.map((item) => {

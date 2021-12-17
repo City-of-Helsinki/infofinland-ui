@@ -21,7 +21,7 @@ module.exports = {
   env,
   publicRuntimeConfig: {
     NEXT_PUBLIC_DRUPAL_BASE_URL: process.env.NEXT_PUBLIC_DRUPAL_BASE_URL,
-    TEST:process.env.TEST,
+    NEXT_PUBLIC_TEST: process.env.TEST,
     ...env,
   },
   serverRuntimeConfig: {
