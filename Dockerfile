@@ -28,7 +28,7 @@ ENV DRUPAL_CLIENT_ID=$DRUPAL_CLIENT_ID
 ENV DRUPAL_PREVIEW_SECRET=$DRUPAL_PREVIEW_SECRET
 ENV DRUPAL_CLIENT_SECRET=$DRUPAL_CLIENT_SECRET
 ENV NEXT_TELEMETRY_DISABLED 1
-ENV TEST=docker-buildtime
+# ENV TEST=docker-buildtime
 
 WORKDIR /app
 COPY . .
@@ -67,7 +67,6 @@ ENV PORT=8080
 # Learn more here: https://nextjs.org/telemetry
 # We don't use it.
 ENV NEXT_TELEMETRY_DISABLED 1
-ENV TEST docker-runtime
 RUN echo $TEST
 
 CMD ["yarn", "start"]

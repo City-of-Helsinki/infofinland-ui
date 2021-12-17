@@ -8,7 +8,7 @@ import useBreadCrumbs from '@/hooks/useBreadCrumbs'
 import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import ContentMapper from '@/components/article/ContentMapper'
 import useThemeList from '@/hooks/useThemeList'
-
+import getConfig from 'next/config'
 const ArticlePage = ({ menu, footerMenu, node, color }) => {
   const { localePath } = useRouterWithLocalizedPath()
   const breadcrumbs = useBreadCrumbs({
@@ -21,7 +21,12 @@ const ArticlePage = ({ menu, footerMenu, node, color }) => {
     path: localePath,
   })
   // console.log({ node })
-
+  const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
+  console.log('env.TEST PAGE', {
+    ssr: serverRuntimeConfig.TEST,
+    public: publicRuntimeConfig.NEXT_PUBLIC_TEST,
+    direct: process.env.TEST,
+  })
   const { title, revision_timestamp, content, fiTitle, hero } = node
   return (
     <Layout menu={menu} footerMenu={footerMenu} node={node}>

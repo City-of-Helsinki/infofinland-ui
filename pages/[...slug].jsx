@@ -11,6 +11,12 @@ import {
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export async function getStaticPaths() {
+  const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
+  console.log('env.TEST PRERENDER PATHS', {
+    ssr: serverRuntimeConfig.TEST,
+    public: publicRuntimeConfig.NEXT_PUBLIC_TEST,
+    direct: process.env.TEST,
+  })
   return {
     paths: [],
     fallback: 'blocking',
@@ -44,8 +50,12 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-  const {serverRuntimeConfig,publicRuntimeConfig} = getConfig()
-  console.log({ssr:serverRuntimeConfig.TEST,public:publicRuntimeConfig.TEST})
+  const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
+  console.log('env.TEST SSR', {
+    ssr: serverRuntimeConfig.TEST,
+    public: publicRuntimeConfig.NEXT_PUBLIC_TEST,
+    direct: process.env.TEST,
+  })
   const { params, locale } = context
   const path = params.slug.join('/')
   const [common, node] = await Promise.all([
