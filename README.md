@@ -169,3 +169,105 @@ In the UI, use React SVG components as much as possible.
 Static UI texts are localized with [next-i18next](https://github.com/isaachinman/next-i18next).
 
 See `public/locales/[locale]/common.json`. Page-level localization files are not required at this point but can be added as needed.
+
+## next.config.js and getConfig
+
+Dont use ```{process.env}``` directly in application runtime code. 
+Use ``` next/config``` ```getConfig().serverRuntimeConfig``` and ```getConfig().publicRuntimeConfig``` instead to avoid building env variables directly as strings to build files.
+
+
+### Drupal Menus
+
+Basic pages use three menus from Drupal. These are configured as environment variables in next.config.js and accessed via getConfig(). You may pass them as env variables as well if you need to configure them by site. Just remove them from next.confing.js env object.
+next.config.js
+```js
+
+// next.config.js
+const env = {
+  ...
+  //Remove these
+  DRUPAL_MENUS: {
+    MAIN: 'main',
+    FOOTER: 'footer-about',
+    ABOUT: 'about',
+  },
+
+  serverRuntimeConfig: {
+    //And move here. 
+     DRUPAL_MENUS: {
+       MAIN: process.env.DRUPAL_MENU_MAIN //for example. Set this in your env variables
+      ...
+```
+TODO/Discuss: Hardcode to next.config or env vars?
+
+### Revalidate time
+
+Automatic static optimization revalidates page content every XX seconds.
+Change this if you need to to optimize page refreshing time and server loads.
+
+```js
+// next.config.js
+const env = {
+  ...  REVALIDATE_TIME: 60, //seconds
+```
+TODO/Discuss: Hardcode to next.config or env vars?
+
+### Social Media URLS
+
+```js
+// next.config.js
+const env = {
+  FB_URL: 'https://www.facebook.com/infofinland.fi',
+  INSTAGRAM_URL: 'https://www.instagram.com/infofinland.fi/',
+  YOUTUBE_URL: 'https://www.youtube.com/c/infofinland',
+  TWITTER_URL: 'https://twitter.com/InfoFinlandfi',
+```
+
+TODO/Discuss: Hardcode to next.config or env vars?
+
+
+### Prerendered locales
+List of locales to be prerendered in buildtime/static optimization cycle
+This may create request burst so use with discression.
+Currenlty prerendering is disabled due to insufficient dev capacity.
+See ```async getStaticPaths() ``` in ```/pages``` files.
+
+```js
+// next.config.js
+const env = {
+    ...
+    PRERENDER_LOCALES: ['fi', 'en', 'sv', 'ar', 'ru'],
+    ...
+  ```
+TODO/Discuss: Hardcode to next.config or env vars?
+
+### Cookie Consent page
+
+The URL for cookie consent page. This is used by the cookie consent banner and cookie consent page to ensure that the banner is not shown when we are on the consent page.
+
+```js
+// next.config.js
+const env = { 
+    ...
+    COOKIE_PAGE_PATH: '/about/cookie-settings',
+    ...
+
+```
+
+
+### Image domains
+Images loaded from Drupal (or anywhere else than static imports or nextjs app)
+need CORS permissions. Add all drupal domains here
+
+```js
+// next.config.js
+module.exports = {
+  images: {
+  // populate all envs here
+    domains: [
+      'drupal-infofinland.docker.so',
+      'nginx-infofinland-drupal-dev.agw.arodevtest.hel.fi'],
+  },
+
+
+```
