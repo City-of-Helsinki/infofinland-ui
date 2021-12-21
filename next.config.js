@@ -8,7 +8,7 @@ const env = {
     ABOUT: 'about',
   },
   HERO_COLORS: ['red', 'green', 'orange', 'blue'],
-  REVALIDATE_TIME: 60,
+  REVALIDATE_TIME: 60, //seconds
   FB_URL: 'https://www.facebook.com/infofinland.fi',
   INSTAGRAM_URL: 'https://www.instagram.com/infofinland.fi/',
   YOUTUBE_URL: 'https://www.youtube.com/c/infofinland',
@@ -38,7 +38,15 @@ module.exports = {
   },
   images: {
     // populate all envs here
-    domains: ['nginx-infofinland-drupal-dev.agw.arodevtest.hel.fi'],
+    domains: [
+      //local Stonehenge drupal instance
+      'drupal-infofinland.docker.so',
+      //dev
+      'nginx-infofinland-drupal-dev.agw.arodevtest.hel.fi',
+      //test is missing
+      //staging is missing
+      //production is missing
+    ],
   },
   webpack: (config) => {
     config.module.rules.push({ test: /\.xml$/, loader: 'xml-loader' })

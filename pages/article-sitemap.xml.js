@@ -1,6 +1,10 @@
 import { getServerSideSitemap } from 'next-sitemap'
 // const siteUrl = process.env.SITE_URL
+// import getConfig from 'next/config'
+
 export const getServerSideProps = async (ctx) => {
+  // const { serverRuntimeConfig } = getConfig()
+
   // TODO Fetch paths from Drupal api.
 
   const fields = [

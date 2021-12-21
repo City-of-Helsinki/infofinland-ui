@@ -9,8 +9,8 @@ RUN yarn install --frozen-lockfile
 # Rebuild the source code only when needed
 FROM node:16-alpine AS builder
 ## Build & runtime env variables
-# These should be set from Azure pipeline env variables to Docker build runtime env variables in 'yarn build'
-# Hardcoded until we figure out how to provide them to build context
+# These should be set from Azure pipeline env variables to Docker build runtime env variables for use in 'yarn build'
+# Hardcoded to dev drupal until we figure out how to provide them to build context
 # ARG NEXT_PUBLIC_DRUPAL_BASE_URL=https://nginx-infofinland-drupal-dev.agw.arodevtest.hel.fi
 # ARG NEXT_IMAGE_DOMAIN=nginx-infofinland-drupal-dev.agw.arodevtest.hel.fi
 # ARG DRUPAL_FRONT_PAGE=/
@@ -21,32 +21,38 @@ FROM node:16-alpine AS builder
 # ARG DRUPAL_CLIENT_SECRET=0LXZ#%6nz&Px2zA34*8o7nlE3bPW9N%x
 
 
-ARG NEXT_PUBLIC_DRUPAL_BASE_URL
-ARG NEXT_IMAGE_DOMAIN
-ARG DRUPAL_FRONT_PAGE
-ARG DRUPAL_SITE_ID
-ARG DRUPAL_CLIENT_ID
+# # ARG NEXT_PUBLIC_DRUPAL_BASE_URL
+# # ARG NEXT_IMAGE_DOMAIN
+# # ARG DRUPAL_FRONT_PAGE
+# # ARG DRUPAL_SITE_ID
+# # ARG DRUPAL_CLIENT_ID
 
-ARG DRUPAL_PREVIEW_SECRET
-ARG DRUPAL_CLIENT_SECRET
-ARG TEST
+# # ARG DRUPAL_PREVIEW_SECRET
+# # ARG DRUPAL_CLIENT_SECRET
+# # ARG TEST
 
-ENV NEXT_PUBLIC_DRUPAL_BASE_URL=$NEXT_PUBLIC_DRUPAL_BASE_URL
-ENV NEXT_IMAGE_DOMAIN=$NEXT_IMAGE_DOMAIN
-ENV DRUPAL_FRONT_PAGE=$DRUPAL_FRONT_PAGE
-ENV DRUPAL_SITE_ID=$DRUPAL_SITE_ID
-ENV DRUPAL_CLIENT_ID=$DRUPAL_CLIENT_ID
-ENV DRUPAL_PREVIEW_SECRET=$DRUPAL_PREVIEW_SECRET
-ENV DRUPAL_CLIENT_SECRET=$DRUPAL_CLIENT_SECRET
-ENV NEXT_TELEMETRY_DISABLED 1
-# ENV TEST=docker-buildtime
+# ENV NEXT_PUBLIC_DRUPAL_BASE_URL=$NEXT_PUBLIC_DRUPAL_BASE_URL
+# ENV NEXT_IMAGE_DOMAIN=$NEXT_IMAGE_DOMAIN
+# ENV DRUPAL_FRONT_PAGE=$DRUPAL_FRONT_PAGE
+# ENV DRUPAL_SITE_ID=$DRUPAL_SITE_ID
+# ENV DRUPAL_CLIENT_ID=$DRUPAL_CLIENT_ID
+# ENV DRUPAL_PREVIEW_SECRET=$DRUPAL_PREVIEW_SECRET
+# ENV DRUPAL_CLIENT_SECRET=$DRUPAL_CLIENT_SECRET
+# ENV NEXT_TELEMETRY_DISABLED 1
+RUN echo 'echo in builder'
+RUN echo $DRUPAL_SITE_ID
+RUN echo $TEST
 
 WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 
-RUN echo $DRUPAL_SITE_ID
-RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
+
+RUN yarn build
+# Prune dev & build deps until we can use Yarn 2 which does it on the next line a
+RUN rm -rf node_modules
+# Install only production runtime deps
+RUN yarn install --production --ignore-scripts --prefer-offline
 # Use Azure env variables
 
 # Production image, copy all the files and run next
@@ -78,6 +84,8 @@ ENV PORT=8080
 # Learn more here: https://nextjs.org/telemetry
 # We don't use it.
 ENV NEXT_TELEMETRY_DISABLED 1
+RUN echo 'echo in runner'
+RUN echo $DRUPAL_SITE_ID
 RUN echo $TEST
 
 CMD ["yarn", "start"]

@@ -62,7 +62,11 @@
   }
 
   .ifu-article__bodyblock ul {
-    @apply list-disc list-inside py-4 mb-4 ms-4;
+    @apply list-disc list-outside py-4 mb-4 ms-4 ps-4;
+  }
+
+  .ifu-article__bodyblock ul li {
+    @apply ps-2;
   }
 
   .ifu-article__bodyblock p {

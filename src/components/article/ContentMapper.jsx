@@ -8,7 +8,7 @@ import ReadMoreBlock from './ReadMoreBlock'
 import { CONTENT_TYPES } from '@/lib/ssr-api'
 import { getFit } from '@/lib/content-utils'
 import PVTBlock from './PVTBlock'
-
+const TEXT_HTML_FORMAT = 'full_html'
 export const HtmlBlock = ({ field_text }) => (
   <Block className={cls('my-8 ifu-article__bodyblock', field_text?.format)}>
     <ParseHtml html={field_text?.processed} />
@@ -47,6 +47,12 @@ export default function ContentMapper({ content }) {
     const key = `paragraph--${i}-${type}`
     switch (type) {
       case CONTENT_TYPES.TEXT:
+        if (
+          item?.field_text?.format !== TEXT_HTML_FORMAT ||
+          !item?.field_text?.processed
+        ) {
+          return null
+        }
         return <HtmlBlock {...item} key={key} />
       case CONTENT_TYPES.HEADING:
         return (
