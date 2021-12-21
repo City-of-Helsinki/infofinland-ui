@@ -11,12 +11,12 @@ import {
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export async function getStaticPaths() {
-  // const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
-  // console.log('env.TEST PRERENDER PATHS', {
-  //   ssr: serverRuntimeConfig.TEST,
-  //   public: publicRuntimeConfig.NEXT_PUBLIC_TEST,
-  //   direct: process.env.TEST,
-  // })
+  const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
+  console.log('env.TEST PRERENDER PATHS', {
+    ssr: serverRuntimeConfig.TEST,
+    public: publicRuntimeConfig.NEXT_PUBLIC_TEST,
+    direct: process.env.TEST,
+  })
   return {
     paths: [],
     fallback: 'blocking',

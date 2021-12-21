@@ -43,7 +43,7 @@ module.exports = {
       'drupal-infofinland.docker.so',
       //dev
       'nginx-infofinland-drupal-dev.agw.arodevtest.hel.fi',
-      //test is missing
+      'nginx-infofinland-drupal-test.agw.arodevtest.hel.fi',
       //staging is missing
       //production is missing
     ],

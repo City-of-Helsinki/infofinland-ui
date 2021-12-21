@@ -242,6 +242,7 @@ export const getDefaultLocaleNode = async (id) =>
   getResource(NODE_TYPES.PAGE, id, {
     locale: i18n.defaultLocale,
     defaultLocale: NO_DEFAULT_LOCALE,
+
     // TODO make this work with params.fields to reduce unused payload
   })
 
