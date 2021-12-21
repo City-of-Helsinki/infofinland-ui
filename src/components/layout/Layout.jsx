@@ -12,7 +12,7 @@ import Router, { useRouter } from 'next/router'
 import NProgress from 'nprogress'
 import CookieConsentBar from '@/components/layout/CookieConsent'
 import MainNavi, { MainNaviError } from '@/components/navi/MainNavi'
-
+export const FALLBACK_TITLE = 'infofinland.fi'
 /**
  *
  * Site component configuration
@@ -29,12 +29,12 @@ if (process.env.NODE_ENV !== 'test') {
  * Subscribe NProgress loader bar to Router events
  *
  */
-NProgress.configure({ showSpinner: true })
+NProgress.configure({ showSpinner: false })
 Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
-const CommonHead = ({ title = '', description = '', children }) => (
+const CommonHead = ({ title = FALLBACK_TITLE, description = '', children }) => (
   <Head>
     {title && <title>{title}</title>}
     {description && <meta name="description" content={description} />}
@@ -89,13 +89,23 @@ export const SecondaryLayout = ({ children, menu, footerMenu, node }) => {
   )
 }
 
-const AppLayout = ({ children, menu, footerMenu, node }) => {
+const AppLayout = ({
+  children,
+  menu,
+  footerMenu,
+  node,
+  title,
+  description,
+}) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
   useShowLangMessage(locale)
   return (
     <>
-      <CommonHead description={node?.field_description} title={node?.title} />
+      <CommonHead
+        description={description || node?.field_description}
+        title={title || node?.title}
+      />
 
       <div className="relative text-body bg-white" id={`node-${node?.id}`}>
         <TopMenu menu={menu} />
