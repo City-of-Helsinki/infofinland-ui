@@ -172,14 +172,14 @@ See `public/locales/[locale]/common.json`. Page-level localization files are not
 
 ## next.config.js and getConfig
 
-Dont use ```{process.env}``` directly in application runtime code. 
-Use ``` next/config``` ```getConfig().serverRuntimeConfig``` and ```getConfig().publicRuntimeConfig``` instead to avoid building env variables directly as strings to build files.
-
+Dont use `{process.env}` directly in application runtime code.
+Use ` next/config` `getConfig().serverRuntimeConfig` and `getConfig().publicRuntimeConfig` instead to avoid building env variables directly as strings to build files.
 
 ### Drupal Menus
 
 Basic pages use three menus from Drupal. These are configured as environment variables in next.config.js and accessed via getConfig(). You may pass them as env variables as well if you need to configure them by site. Just remove them from next.confing.js env object.
 next.config.js
+
 ```js
 
 // next.config.js
@@ -193,11 +193,12 @@ const env = {
   },
 
   serverRuntimeConfig: {
-    //And move here. 
+    //And move here.
      DRUPAL_MENUS: {
        MAIN: process.env.DRUPAL_MENU_MAIN //for example. Set this in your env variables
       ...
 ```
+
 TODO/Discuss: Hardcode to next.config or env vars?
 
 ### Revalidate time
@@ -210,6 +211,7 @@ Change this if you need to to optimize page refreshing time and server loads.
 const env = {
   ...  REVALIDATE_TIME: 60, //seconds
 ```
+
 TODO/Discuss: Hardcode to next.config or env vars?
 
 ### Social Media URLS
@@ -225,12 +227,12 @@ const env = {
 
 TODO/Discuss: Hardcode to next.config or env vars?
 
-
 ### Prerendered locales
+
 List of locales to be prerendered in buildtime/static optimization cycle
 This may create request burst so use with discression.
 Currenlty prerendering is disabled due to insufficient dev capacity.
-See ```async getStaticPaths() ``` in ```/pages``` files.
+See `async getStaticPaths() ` in `/pages` files.
 
 ```js
 // next.config.js
@@ -238,7 +240,8 @@ const env = {
     ...
     PRERENDER_LOCALES: ['fi', 'en', 'sv', 'ar', 'ru'],
     ...
-  ```
+```
+
 TODO/Discuss: Hardcode to next.config or env vars?
 
 ### Cookie Consent page
@@ -247,15 +250,15 @@ The URL for cookie consent page. This is used by the cookie consent banner and c
 
 ```js
 // next.config.js
-const env = { 
+const env = {
     ...
     COOKIE_PAGE_PATH: '/about/cookie-settings',
     ...
 
 ```
 
-
 ### Image domains
+
 Images loaded from Drupal (or anywhere else than static imports or nextjs app)
 need CORS permissions. Add all drupal domains here
 
@@ -266,7 +269,8 @@ module.exports = {
   // populate all envs here
     domains: [
       'drupal-infofinland.docker.so',
-      'nginx-infofinland-drupal-dev.agw.arodevtest.hel.fi'],
+      'nginx-infofinland-drupal-dev.agw.arodevtest.hel.fi'
+    ],
   },
 
 
