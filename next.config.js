@@ -1,5 +1,6 @@
 const { i18n } = require('./next-i18next.config')
 const env = {
+  //TODO use getConfig for these as well: Do not refer to process.env anywhere in code
   COOKIE_PAGE_PATH: '/about/cookie-settings',
   PRERENDER_LOCALES: ['fi', 'en', 'sv', 'ar', 'ru'],
   DRUPAL_MENUS: {

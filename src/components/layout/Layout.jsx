@@ -13,11 +13,23 @@ import NProgress from 'nprogress'
 import CookieConsentBar from '@/components/layout/CookieConsent'
 import MainNavi, { MainNaviError } from '@/components/navi/MainNavi'
 
+/**
+ *
+ * Site component configuration
+ */
+
+/**
+ * Set ReactModal root element for a18y
+ */
+
 if (process.env.NODE_ENV !== 'test') {
   ReactModal.setAppElement('#__next')
 }
-// Connect Page loader indicator to next/router
-NProgress.configure({ showSpinner: false })
+/**
+ * Subscribe NProgress loader bar to Router events
+ *
+ */
+NProgress.configure({ showSpinner: true })
 Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
@@ -33,12 +45,12 @@ const CommonHead = ({ title = '', description = '', children }) => (
   </Head>
 )
 
-export const BlankLayout = ({ children }) => {
+export const BlankLayout = ({ children, title, description }) => {
   useSetLocalization(useRouter().locale)
 
   return (
     <>
-      <CommonHead />
+      <CommonHead title={title} description={description} />
       <main className="relative text-body bg-white" id="main">
         {children}
       </main>

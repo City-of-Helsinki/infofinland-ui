@@ -1,6 +1,7 @@
 import { getCommonApiContent } from '@/lib/ssr-api'
 import PageNotFound from './404'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import getConfig from 'next/config'
 
 const TEXTS = {
   fi: {
@@ -54,6 +55,8 @@ const TEXTS = {
 }
 
 export async function getStaticProps(context) {
+  const { serverRuntimeConfig } = getConfig()
+
   const common = await getCommonApiContent(context)
   return {
     props: {
@@ -61,7 +64,7 @@ export async function getStaticProps(context) {
       ...common,
       ...(await serverSideTranslations(context.defaultLocale, ['common'])),
     },
-    revalidate: process.env.REVALIDATE_TIME,
+    revalidate: serverRuntimeConfig.REVALIDATE_TIME,
   }
 }
 

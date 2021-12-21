@@ -29,6 +29,7 @@ export const CONTENT_TYPES = {
 
 //always use locale path for drupal api queries
 const NO_DEFAULT_LOCALE = 'dont-use'
+const LINK_TRANSLATION_MISSING = '--missing--'
 const disableDefaultLocale = (locale) => ({
   locale,
   defaultLocale: NO_DEFAULT_LOCALE,
@@ -61,6 +62,8 @@ export const resolvePath = async ({ path, context }) => {
 
 export const getPageById = async (id, { locale, defaultLocale }) => {
   const queryString = new DrupalJsonApiParams()
+    // //published pages only
+    // .addFilter("status", "1")
     //Relations
     .addInclude([
       // Image
@@ -124,10 +127,10 @@ export const getPageById = async (id, { locale, defaultLocale }) => {
 }
 
 export const getPageWithContentByPath = async ({ path, context }) => {
-  console.log('ENV VALUE IN BUILD & RUNTIME', {
-    siteid: process.env.DRUPAL_SITE_ID,
-    test: process.env.TEST,
-  })
+  // console.log('ENV VALUE IN BUILD & RUNTIME', {
+  //   siteid: process.env.DRUPAL_SITE_ID,
+  //   test: process.env.TEST,
+  // })
   const { data: pathNode } = await resolvePath({ path, context }).catch((e) => {
     console.error(
       'Router error for',
@@ -147,9 +150,9 @@ export const getPageWithContentByPath = async ({ path, context }) => {
 
   const { data: page } = await getPageById(id, context).catch((e) => {
     console.error('Error while resolving page node')
-    const {data,status,statusText} = e.response
+    const { data, status, statusText } = e.response
     // Error in resolving page node. returns 500 in getStaticProps
-    throw new Error({data,status,statusText})
+    throw new Error({ data, status, statusText })
   })
 
   const included = page.included || []
@@ -185,7 +188,7 @@ export const getPageWithContentByPath = async ({ path, context }) => {
 }
 
 export const getMainMenu = async (context) =>
-  getMenu(process.env.DRUPAL_MENUS.MAIN, context)
+  getMenu(getConfig().serverRuntimeConfig.DRUPAL_MENUS.MAIN, context)
 
 export const getContent = ({ field_content }, { locale }) =>
   Promise.all(
@@ -195,18 +198,21 @@ export const getContent = ({ field_content }, { locale }) =>
   )
 
 export const getFooterAboutMenu = async ({ locale }) =>
-  getMenu(process.env.DRUPAL_MENUS.FOOTER, disableDefaultLocale(locale))
+  getMenu(
+    getConfig().serverRuntimeConfig.DRUPAL_MENUS.FOOTER,
+    disableDefaultLocale(locale)
+  )
 
 export const getAboutMenu = async ({ locale }) =>
-  getMenu(process.env.DRUPAL_MENUS.ABOUT, {
+  getMenu(getConfig().serverRuntimeConfig.DRUPAL_MENUS.ABOUT, {
     locale,
     defaultLocale: NO_DEFAULT_LOCALE,
   })
 
 export const getCommonApiContent = async (
   { locale },
-  main = process.env.DRUPAL_MENUS.MAIN,
-  footer = process.env.DRUPAL_MENUS.FOOTER
+  main = getConfig().serverRuntimeConfig.DRUPAL_MENUS.MAIN,
+  footer = getConfig().serverRuntimeConfig.DRUPAL_MENUS.FOOTER
 ) => {
   const context = { locale, defaultLocale: NO_DEFAULT_LOCALE }
   const [menu, footerMenu, translations] = await Promise.all([
@@ -227,7 +233,7 @@ export const getCommonApiContent = async (
   return {
     menu,
     footerMenu,
-    color: sample(process.env.HERO_COLORS),
+    color: sample(getConfig().serverRuntimeConfig.HERO_COLORS),
     ...translations,
   }
 }
@@ -272,10 +278,13 @@ const getReadMoreLinks = async ({
               const { data: translation } = await axios.get(
                 `${relationships.field_language.links.related.href}?${queryString}`
               )
+              if (!translation) {
+                return { url, text: LINK_TRANSLATION_MISSING, locale: reqLang }
+              }
               return {
                 url,
-                text: translation.data.attributes.name,
-                locale: translation.data.attributes.field_locale,
+                text: translation?.data.attributes.name,
+                locale: translation?.data.attributes.field_locale,
               }
             }
           )
@@ -321,9 +330,11 @@ const getReadMoreLinks = async ({
 }
 
 export const addPrerenderLocalesToPaths = (paths) =>
-  process.env.PRERENDER_LOCALES.map((locale) =>
-    paths.map((path) => ({ ...path, locale }))
-  ).flat()
+  getConfig()
+    .serverRuntimeConfig.PRERENDER_LOCALES.map((locale) =>
+      paths.map((path) => ({ ...path, locale }))
+    )
+    .flat()
 
 const getImageForParagraphImage = ({
   item: { relationships },

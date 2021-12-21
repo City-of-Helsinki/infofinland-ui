@@ -7,16 +7,18 @@ import HomeAbout from '@/components/home/HomeAbout'
 import Block from '@/components/layout/Block'
 import { getCommonApiContent } from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import getConfig from 'next/config'
 
 export async function getStaticProps(context) {
   const common = await getCommonApiContent(context)
+  const { serverRuntimeConfig } = getConfig()
 
   return {
     props: {
       ...common,
       ...(await serverSideTranslations(context.locale, ['common'])),
     },
-    revalidate: process.env.REVALIDATE_TIME,
+    revalidate: serverRuntimeConfig.REVALIDATE_TIME,
   }
 }
 

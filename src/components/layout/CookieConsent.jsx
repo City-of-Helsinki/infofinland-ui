@@ -5,6 +5,7 @@ import { isCookieConsentSet, cookieConsent } from '@/src/store'
 import { useAtomValue, useUpdateAtom } from 'jotai/utils'
 import { useRouter } from 'next/router'
 import { CSSTransition } from 'react-transition-group'
+import getConfig from 'next/config'
 
 export function CookieConsentActions() {
   const { t } = useTranslation('common')
@@ -34,10 +35,11 @@ export function CookieConsentActions() {
 }
 
 export default function CookieConsentBar() {
+  const { publicRuntimeConfig } = getConfig()
   const { t } = useTranslation('common')
   const isConsentSet = useAtomValue(isCookieConsentSet)
   const isAboutPage = useRouter().asPath.startsWith(
-    process.env.COOKIE_PAGE_PATH
+    publicRuntimeConfig.COOKIE_PAGE_PATH
   )
   return (
     !isAboutPage && (
@@ -75,7 +77,7 @@ export default function CookieConsentBar() {
                 <Link
                   prefetch={false}
                   passHref
-                  href={process.env.COOKIE_PAGE_PATH}
+                  href={publicRuntimeConfig.COOKIE_PAGE_PATH}
                 >
                   <a className="font-bold text-black underline">
                     {t('cookies.readMore')}

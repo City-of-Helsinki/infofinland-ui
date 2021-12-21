@@ -6,14 +6,17 @@ import { useTranslation } from 'next-i18next'
 import TextLink from '@/components/TextLink'
 import * as DrupalApi from '@/lib/ssr-api'
 import Block from '@/components/layout/Block'
+import getConfig from 'next/config'
 
 export async function getStaticProps(context) {
+  const { serverRuntimeConfig } = getConfig()
+
   const common = await DrupalApi.getCommonApiContent(context)
   return {
     props: {
       ...common,
     },
-    revalidate: process.env.REVALIDATE_TIME,
+    revalidate: serverRuntimeConfig.REVALIDATE_TIME,
   }
 }
 

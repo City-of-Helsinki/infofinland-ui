@@ -8,8 +8,11 @@ import { i18n } from '@/next-i18next.config'
 import { map, omit } from 'lodash'
 import * as DrupalApi from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import getConfig from 'next/config'
 
 export async function getStaticProps(context) {
+  const { serverRuntimeConfig } = getConfig()
+
   const common = await DrupalApi.getCommonApiContent(context)
   return {
     props: {
@@ -17,7 +20,7 @@ export async function getStaticProps(context) {
       ...common,
       ...(await serverSideTranslations(context.defaultLocale, ['common'])),
     },
-    revalidate: process.env.REVALIDATE_TIME,
+    revalidate: serverRuntimeConfig.REVALIDATE_TIME,
   }
 }
 

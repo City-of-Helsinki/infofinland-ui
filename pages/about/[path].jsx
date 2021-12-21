@@ -1,6 +1,7 @@
 import AboutPage from '@/src/page-templates/AboutPage'
 import { getCommonApiContent } from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import getConfig from 'next/config'
 
 export async function getStaticPaths() {
   // context
@@ -14,12 +15,17 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
+  const { serverRuntimeConfig } = getConfig()
+
   return {
     props: {
       ...(await serverSideTranslations(context.defaultLocale, ['common'])),
-      ...(await getCommonApiContent(context, process.env.DRUPAL_MENUS.ABOUT)),
+      ...(await getCommonApiContent(
+        context,
+        serverRuntimeConfig.DRUPAL_MENUS.ABOUT
+      )),
     },
-    revalidate: process.env.REVALIDATE_TIME,
+    revalidate: serverRuntimeConfig.REVALIDATE_TIME,
   }
 }
 

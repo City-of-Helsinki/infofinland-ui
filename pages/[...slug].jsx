@@ -11,12 +11,12 @@ import {
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 export async function getStaticPaths() {
-  const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
-  console.log('env.TEST PRERENDER PATHS', {
-    ssr: serverRuntimeConfig.TEST,
-    public: publicRuntimeConfig.NEXT_PUBLIC_TEST,
-    direct: process.env.TEST,
-  })
+  // const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
+  // console.log('env.TEST PRERENDER PATHS', {
+  //   ssr: serverRuntimeConfig.TEST,
+  //   public: publicRuntimeConfig.NEXT_PUBLIC_TEST,
+  //   direct: process.env.TEST,
+  // })
   return {
     paths: [],
     fallback: 'blocking',
@@ -50,14 +50,17 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-  const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
-  console.log('env.TEST SSR', {
-    ssr: serverRuntimeConfig.TEST,
-    public: publicRuntimeConfig.NEXT_PUBLIC_TEST,
-    direct: process.env.TEST,
-  })
+  const { serverRuntimeConfig } = getConfig()
+  // console.log('env.TEST SSR', {
+  //   ssr: serverRuntimeConfig.TEST,
+  //   public: publicRuntimeConfig.NEXT_PUBLIC_TEST,
+  //   direct: process.env.TEST,
+  // })
   const { params, locale } = context
-  const path = params.slug.join('/')
+
+  const path = params.slug?.join('/') || params.slug
+
+  // else get Basic Page
   const [common, node] = await Promise.all([
     getCommonApiContent(context),
     getPageWithContentByPath({ path, context }),
@@ -74,7 +77,7 @@ export async function getStaticProps(context) {
       node,
       ...(await serverSideTranslations(context.locale, ['common'])),
     },
-    revalidate: process.env.REVALIDATE_TIME,
+    revalidate: serverRuntimeConfig.REVALIDATE_TIME,
   }
 }
 export default ArticlePage
