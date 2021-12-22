@@ -5,6 +5,7 @@ import { getResource } from 'next-drupal'
 import ArticlePage from '@/src/page-templates/ArticlePage'
 import AboutPage from '@/src/page-templates/AboutPage'
 import { i18n } from '@/next-i18next.config'
+import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import {
   getCommonApiContent,
   NOT_FOUND,
@@ -14,7 +15,6 @@ import {
   getPageQueryParams,
   getDefaultLocaleNode,
   getAboutMenu,
-  NODE_TYPES,
   // getPageWithContentByPath,
   resolvePath,
 } from '@/lib/ssr-api'

@@ -7,7 +7,6 @@ import useBreadCrumbs from '@/hooks/useBreadCrumbs'
 import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import ContentMapper from '@/components/article/ContentMapper'
 import useThemeList from '@/hooks/useThemeList'
-// import getConfig from 'next/config'
 import { getHeroFromNode } from '@/lib/ssr-api'
 
 const ArticlePage = ({ menu, footerMenu, node, color, fiNode }) => {

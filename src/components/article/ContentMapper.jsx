@@ -5,7 +5,8 @@ import { H2 } from '../Typo'
 import { BLOCK_MARGIN } from '../layout/Block'
 import Image from 'next/image'
 import ReadMoreBlock from './ReadMoreBlock'
-import { CONTENT_TYPES, getImage, getLinks } from '@/lib/ssr-api'
+import { CONTENT_TYPES } from '@/lib/DRUPAL_API_TYPES'
+import { getImage, getLinks } from '@/lib/ssr-api'
 import { getFit } from '@/lib/content-utils'
 import PVTBlock from './PVTBlock'
 const TEXT_HTML_FORMAT = 'full_html'
@@ -64,6 +65,11 @@ export default function ContentMapper({ content, locale }) {
 
       case CONTENT_TYPES.PARAGRAPH_IMAGE:
         return <ImageBlock key={key} {...getImage(item)} />
+
+      case CONTENT_TYPES.ACCORDION:
+        console.log('accordion', { item })
+        return null
+      // return <ImageBlock key={key} {...getImage(item)} />
 
       case CONTENT_TYPES.READMORE:
         return (
