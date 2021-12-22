@@ -1,22 +1,29 @@
-import ArticlePage from '@/src/page-templates/ArticlePage'
 import getConfig from 'next/config'
-
+import { sample } from 'lodash'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { getResource } from 'next-drupal'
+import ArticlePage from '@/src/page-templates/ArticlePage'
+import AboutPage from '@/src/page-templates/AboutPage'
+import { i18n } from '@/next-i18next.config'
 import {
   getCommonApiContent,
+  NOT_FOUND,
   // getMainMenu,
   // addPrerenderLocalesToPaths,
   // getPageByPath,
-  getPageWithContentByPath,
+  getPageQueryParams,
+  getDefaultLocaleNode,
+  getAboutMenu,
+  NODE_TYPES,
+  // getPageWithContentByPath,
+  resolvePath,
 } from '@/lib/ssr-api'
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+
+import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 
 export async function getStaticPaths() {
-  const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
-  console.log('env.TEST PRERENDER PATHS', {
-    ssr: serverRuntimeConfig.TEST,
-    public: publicRuntimeConfig.NEXT_PUBLIC_TEST,
-    direct: process.env.TEST,
-  })
+  // const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
+
   return {
     paths: [],
     fallback: 'blocking',
@@ -51,33 +58,74 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
-  // console.log('env.TEST SSR', {
-  //   ssr: serverRuntimeConfig.TEST,
-  //   public: publicRuntimeConfig.NEXT_PUBLIC_TEST,
-  //   direct: process.env.TEST,
-  // })
   const { params, locale } = context
-
   const path = params.slug?.join('/') || params.slug
-
-  // else get Basic Page
-  const [common, node] = await Promise.all([
-    getCommonApiContent(context),
-    getPageWithContentByPath({ path, context }),
-  ])
-  // console.log({node})
-
-  if (node === null) {
-    return { notFound: true }
+  //Resolve path, get node uuid
+  const { data } = await resolvePath({
+    path,
+    context: { locale },
+  }).catch((e) => {
+    if (e.response.status === 404) {
+      return { data: null }
+    }
+    console.error(e)
+    throw new Error('Unable to resolve path')
+  })
+  if (!data) {
+    return NOT_FOUND
   }
+  const id = data.entity.uuid
+  //get menus and page node
+  const [common, node, aboutMenu] = await Promise.all([
+    getCommonApiContent(context),
+    getResource(NODE_TYPES.PAGE, id, {
+      locale,
+      params: getPageQueryParams(),
+    }),
+    getAboutMenu(context),
+    // TODO catch?
+  ])
+
+  //Return 404 if node was null
+  if (!node) {
+    return NOT_FOUND
+  }
+
+  let fiNode = null
+  //Get finnish title if page is not in finnish
+  if (context.locale !== i18n.fallbackLocale) {
+    fiNode = await getDefaultLocaleNode(id).catch((e) => {
+      console.error('Error while getting Finnish title', e)
+      return null
+    })
+  }
+
   return {
     props: {
-      locale,
       ...common,
+      color: sample(getConfig().serverRuntimeConfig.HERO_COLORS),
+      aboutMenu,
       node,
+      fiNode,
       ...(await serverSideTranslations(context.locale, ['common'])),
     },
     revalidate: serverRuntimeConfig.REVALIDATE_TIME,
   }
 }
-export default ArticlePage
+
+/***
+ * Layout selector:
+ * if page is in aboutMenu, use AboutPage, otherwise use ArticlePage
+ */
+const Page = (props) => {
+  const { localePath } = useRouterWithLocalizedPath()
+  const { aboutMenu } = props
+  const isAboutPage =
+    aboutMenu.items.find(({ url }) => url === localePath) !== undefined
+  if (isAboutPage) {
+    return <AboutPage {...props} menu={aboutMenu} />
+  }
+  return <ArticlePage {...props} />
+}
+
+export default Page

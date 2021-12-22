@@ -1,6 +1,6 @@
 const { i18n } = require('./next-i18next.config')
 const env = {
-  COOKIE_PAGE_PATH: '/about/cookie-settings',
+  COOKIE_PAGE_PATH: '/cookie-settings',
   PRERENDER_LOCALES: ['fi', 'en', 'sv', 'ar', 'ru'],
   LANDING_PAGE_PATH: '/landingpage',
   DRUPAL_MENUS: {

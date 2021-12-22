@@ -2,7 +2,6 @@ import AboutPage from '@/src/page-templates/AboutPage'
 import { CookieConsentActions } from '@/components/layout/CookieConsent'
 import Block from '@/components/layout/Block'
 import { useTranslation } from 'next-i18next'
-
 import { getCommonApiContent } from '@/lib/ssr-api'
 import { useAtomValue, useUpdateAtom } from 'jotai/utils'
 import ToggleSwitch from '@/components/ToggleSwitch'
@@ -15,7 +14,7 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      ...(await serverSideTranslations(context.defaultLocale, ['common'])),
+      ...(await serverSideTranslations(context.locale, ['common'])),
       ...(await getCommonApiContent(
         context,
         serverRuntimeConfig.DRUPAL_MENUS.ABOUT
