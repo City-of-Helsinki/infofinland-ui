@@ -5,6 +5,7 @@ import { H2 } from '../Typo'
 import { BLOCK_MARGIN } from '../layout/Block'
 import Image from 'next/image'
 import ReadMoreBlock from './ReadMoreBlock'
+import Accordion from './Accordion'
 import { CONTENT_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import { getImage, getLinks } from '@/lib/ssr-api'
 import { getFit } from '@/lib/content-utils'
@@ -68,8 +69,8 @@ export default function ContentMapper({ content, locale }) {
 
       case CONTENT_TYPES.ACCORDION:
         console.log('accordion', { item })
-        return null
-      // return <ImageBlock key={key} {...getImage(item)} />
+
+        return <Accordion {...item} />
 
       case CONTENT_TYPES.READMORE:
         return (
