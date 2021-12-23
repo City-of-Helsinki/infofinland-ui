@@ -65,7 +65,7 @@ export async function getStaticProps(context) {
     path,
     context: { locale },
   }).catch((e) => {
-    if (e.response.status === 404) {
+    if (e?.response?.status === 404) {
       return { data: null }
     }
     console.error(e)

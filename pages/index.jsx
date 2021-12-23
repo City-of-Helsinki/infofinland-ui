@@ -14,7 +14,7 @@ import {
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import getConfig from 'next/config'
 import { getResource } from 'next-drupal'
-import { NODE_TYPES } from '@/lib/ssr-api'
+import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import ContentMapper from '@/components/article/ContentMapper'
 
 export async function getStaticProps(context) {
