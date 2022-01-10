@@ -18,21 +18,27 @@ export * from './query-params'
 
 export const NOT_FOUND = { notFound: true }
 
-export const getHeroFromNode = (node) => ({
-  url: `${getConfig().publicRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL}${
-    node?.field_hero?.field_hero_image.field_media_image.uri.url
-  }`,
+export const getHeroFromNode = (node) => {
+  const host = getConfig().publicRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL
+  const url =  node?.field_hero?.field_hero_image.field_media_image.uri.url
+  return ({
+  url: url?  `${host}${
+    url
+  }`: null ,
   title: node?.field_hero?.field_hero_title,
-})
+})}
 
-export const getImage = (item) => ({
-  src: `${getConfig().publicRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL}${
-    item.field_image?.field_media_image.uri.url
-  }`,
+export const getImage = (item) => {
+  const host = getConfig().publicRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL
+  const url = item.field_image?.field_media_image?.uri?.url
+  return ({
+  src: url ? `${host}${
+    url
+  }`: null,
   caption: item.field_image?.field_image_caption,
-  //alt,title,width,height
+  // ...meta:{alt,title,width,height}
   ...item.field_image?.field_media_image.resourceIdObjMeta,
-})
+})}
 
 export const getLinks = ({ collection, locale } = {}) => {
   if (!locale) {
