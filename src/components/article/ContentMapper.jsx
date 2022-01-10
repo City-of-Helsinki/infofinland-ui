@@ -68,7 +68,7 @@ export default function ContentMapper({ content, locale }) {
         return <ImageBlock key={key} {...getImage(item)} />
 
       case CONTENT_TYPES.ACCORDION:
-        return <AccordionItems {...item}/>
+        return <AccordionItems {...item} />
 
       case CONTENT_TYPES.READMORE:
         return (

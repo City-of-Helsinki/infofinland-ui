@@ -10,7 +10,6 @@
 @import './components.cookies.css';
 @import './components.accordion.css';
 
-
 @layer components {
   .ifu-layout__body {
     min-height: calc(100vh - 80px);

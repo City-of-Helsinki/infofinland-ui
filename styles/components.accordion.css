@@ -1,7 +1,5 @@
 @layer components {
-
   .ifu-accordion__item {
-
   }
 
   .ifu-accordion--enter {
@@ -18,10 +16,8 @@
   }
   .ifu-accordion--exit-active {
     @apply opacity-0;
-
   }
   .ifu-accordion--exit-done {
     @apply opacity-0;
   }
-
 }
