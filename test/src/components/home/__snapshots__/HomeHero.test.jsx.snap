@@ -3,7 +3,7 @@
 exports[`HomeHero should render the HomeHero component 1`] = `
 <DocumentFragment>
   <div
-    class="relative mb-14 h-homehero md:h-homeheroxl"
+    class="relative mb-14 h-homehero md:h-homeheroxl bg-blue-lighter"
   >
     <span
       style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
