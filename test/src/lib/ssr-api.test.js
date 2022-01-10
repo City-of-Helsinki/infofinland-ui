@@ -126,7 +126,7 @@ describe('ssr-api', () => {
       expect(links.at(0).languages.at(2).locale).toBe('en')
     })
 
-    it('should return default to english  if required locale is not translated', () => {
+    it('should default to english if required locale is not translated', () => {
       const links = getLinks({
         collection: [
           {
@@ -153,7 +153,7 @@ describe('ssr-api', () => {
       expect(links.at(0).languages).toHaveLength(1)
     })
 
-    it('should return fall back to finnish  if required locale and english are not translated', () => {
+    it('should fall back to finnish  if required locale and english are not translated', () => {
       const links = getLinks({
         collection: [
           {
