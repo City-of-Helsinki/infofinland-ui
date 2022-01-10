@@ -31,7 +31,7 @@ describe('ssr-api', () => {
     })
     it('should fail gracefully', () => {
       const image = getImage({})
-      expect(image.src).toBe(null)
+      expect(image.src).toBeUndefined()
       expect(image.alt).toBeUndefined()
       expect(image.width).toBeUndefined()
       expect(image.height).toBeUndefined()
@@ -55,7 +55,7 @@ describe('ssr-api', () => {
     })
     it('should fail gracefully', () => {
       const hero = getHeroFromNode()
-      expect(hero.url).toBe(null)
+      expect(hero.url).toBeUndefined()
       expect(hero.title).toBeUndefined()
     })
   })
