@@ -34,31 +34,22 @@ exports[`ReadMoreBlock should render the ReadMoreBlock 1`] = `
         <a
           class="inline-block mb-4 text-body font-bold leading-snug ifu-text-link"
           href="http://www.kela.fi/fi/"
-          lang="fi"
           rel="noreferrer"
           target="_blank"
-        >
-          Some random Kela page
-        </a>
+        />
         <div
-          class="flex flex-wrap divide-link divide-s lowercase"
+          class="flex flex-wrap divide-link divide-s"
         >
           <a
             class="text-small leading-snug ifu-text-link pe-2"
             href="http://www.kela.fi/fi/"
             rel="noreferrer"
-            title="Some random Kela page"
-          >
-            Suomi
-          </a>
+          />
           <a
             class="text-small leading-snug ifu-text-link pe-2 ps-2"
             href="http://www.kela.fi/sv/"
             rel="noreferrer"
-            title="Some random Kela page"
-          >
-            Ruotsi
-          </a>
+          />
         </div>
       </div>
     </div>

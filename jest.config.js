@@ -18,6 +18,7 @@ const customJestConfig = {
     '^@/public(.*)$': '<rootDir>/public$1',
     '^@/(.*)$': '<rootDir>/$1',
   },
+  globalSetup: '<rootDir>/test/setupEnv.js',
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
 }
 

@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import ThemeList from '@/components/home/ThemeList'
 import Block from '@/components/layout/Block'
 import Article from '@/components/article/Article'
@@ -8,10 +7,10 @@ import useBreadCrumbs from '@/hooks/useBreadCrumbs'
 import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import ContentMapper from '@/components/article/ContentMapper'
 import useThemeList from '@/hooks/useThemeList'
-// import getConfig from 'next/config'
+import { getHeroFromNode } from '@/lib/ssr-api'
 
-const ArticlePage = ({ menu, footerMenu, node, color }) => {
-  const { localePath } = useRouterWithLocalizedPath()
+const ArticlePage = ({ menu, footerMenu, node, color, fiNode }) => {
+  const { localePath, locale } = useRouterWithLocalizedPath()
   const breadcrumbs = useBreadCrumbs({
     items: menu.items,
     path: localePath,
@@ -21,25 +20,20 @@ const ArticlePage = ({ menu, footerMenu, node, color }) => {
     tree: menu.tree,
     path: localePath,
   })
-  // console.log({ node })
-  // const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
-  // console.log('env.TEST PAGE', {
-  //   ssr: serverRuntimeConfig.TEST,
-  //   public: publicRuntimeConfig.NEXT_PUBLIC_TEST,
-  //   direct: process.env.TEST,
-  // })
-  const { title, revision_timestamp, content, fiTitle, hero } = node
+
+  const { title, revision_timestamp, field_has_hero } = node
+  let hero = null
+  if (field_has_hero) {
+    hero = getHeroFromNode(node)
+  }
   return (
     <Layout menu={menu} footerMenu={footerMenu} node={node}>
-      <Head>
-        <title>{title}</title>
-      </Head>
       <Article
         title={title}
         color={color}
         breadcrumbs={breadcrumbs}
         date={revision_timestamp}
-        fiTitle={fiTitle}
+        fiTitle={fiNode?.title}
         heroImage={hero?.url}
       >
         {themes?.length > 0 && (
@@ -48,12 +42,13 @@ const ArticlePage = ({ menu, footerMenu, node, color }) => {
           </Block>
         )}
 
-        {content && <ContentMapper content={content} />}
+        {node.field_content?.length > 0 && (
+          <ContentMapper content={node.field_content} locale={locale} />
+        )}
         <p className="font-bold text-neon-pink">DEMO LOCAL INFO BLOCK</p>
         <LocalInformation readMoreUrl={'/test'} />
       </Article>
     </Layout>
   )
 }
-
 export default ArticlePage

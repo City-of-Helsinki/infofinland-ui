@@ -177,8 +177,7 @@ Use ` next/config` `getConfig().serverRuntimeConfig` and `getConfig().publicRunt
 
 ### Drupal Menus
 
-Basic pages use three menus from Drupal. These are configured as environment variables in next.config.js and accessed via getConfig(). You may pass them as env variables as well if you need to configure them by site. Just remove them from next.confing.js env object.
-next.config.js
+Basic pages use three menus from Drupal. These are configured as environment variables in next.config.js and accessed via getConfig(). You may pass them as env variables as well if you need to configure them by site. Just remove them from `next.confing.js` `env` object.
 
 ```js
 

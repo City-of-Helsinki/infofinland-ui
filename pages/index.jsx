@@ -1,55 +1,93 @@
-import Head from 'next/head'
 import HomeHero from '@/components/home/HomeHero'
 import Layout from '@/components/layout/Layout'
 import ThemeList from '@/components/home/ThemeList'
 import CitySelector from '@/components/home/CitySelector'
 import HomeAbout from '@/components/home/HomeAbout'
 import Block from '@/components/layout/Block'
-import { getCommonApiContent } from '@/lib/ssr-api'
+import {
+  getCommonApiContent,
+  getHeroFromNode,
+  resolvePath,
+  getLandingPageQueryParams,
+  NOT_FOUND,
+} from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import getConfig from 'next/config'
+import { getResource } from 'next-drupal'
+import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
+import ContentMapper from '@/components/article/ContentMapper'
 
 export async function getStaticProps(context) {
-  const common = await getCommonApiContent(context)
   const { serverRuntimeConfig } = getConfig()
+  const { locale } = context
+  const { data } = await resolvePath({
+    path: serverRuntimeConfig.LANDING_PAGE_PATH,
+    context: { locale },
+  }).catch((e) => {
+    if (e?.response?.status === 404) {
+      return { data: null }
+    }
+    console.error(e)
+    throw new Error('Unable to resolve landing page')
+  })
+  if (!data) {
+    return NOT_FOUND
+  }
 
+  const [node, common] = await Promise.all([
+    getResource(NODE_TYPES.LANDING_PAGE, data.entity.uuid, {
+      locale: context.locale,
+      params: getLandingPageQueryParams(),
+    }),
+    getCommonApiContent(context),
+  ])
+
+  if (!node) {
+    return NOT_FOUND
+  }
   return {
     props: {
       ...common,
+      node,
       ...(await serverSideTranslations(context.locale, ['common'])),
     },
     revalidate: serverRuntimeConfig.REVALIDATE_TIME,
   }
 }
 
-const HomePage = ({ menu, footerMenu }) => {
+const HomePage = ({ menu, footerMenu, node }) => {
+  const hero = getHeroFromNode(node)
+
   return (
-    <Layout menu={menu} footerMenu={footerMenu}>
-      <Head>
-        <title>Article demo page</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <Layout
+      menu={menu}
+      footerMenu={footerMenu}
+      title={node.title}
+      description={node.description}
+    >
       <HomeHero
-        title="Your source for living in Finland"
-        image="/images/home.png"
+        title={node.title || 'DEMO:Your source for living in Finland'}
+        image={hero?.url}
       />
-      {/* <div className="mx-6 lg:mx-12 xl:mx-24 2xl:mx-48 mb-16 4xl:max-w-6xl"> */}
-      <Block>
-        <p className="mb-8 text-body text-bodytext-color">
-          The education system includes early childhood education, preschool
-          education, comprehensive education, upper secondary education and
-          higher education. Adult education is intended for adults and it
-          includes a multitude of alternatives from comprehensive to higher
-          education.
-        </p>
-      </Block>
+
+      {node.field_description && (
+        <Block>
+          <p className="mb-8 text-body text-bodytext-color">
+            {node.field_description}
+          </p>
+        </Block>
+      )}
 
       <Block>
         <ThemeList themes={menu.tree} showImages />
       </Block>
+
       <CitySelector />
+
       <HomeAbout />
-      {/* </div> */}
+      {node.field_content?.length > 0 && (
+        <ContentMapper content={node.field_content} />
+      )}
     </Layout>
   )
 }
