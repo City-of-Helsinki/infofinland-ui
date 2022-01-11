@@ -42,7 +42,7 @@ export default function Columns({
 }) {
   return (
     <Block>
-      <div className="lg:grid grid-cols-2 gap-16">
+      <div className="lg:grid grid-cols-2 gap-16 my-16">
         <div className="mb-8 lg:mb-0">
           <ColumnMapper {...field_columns_left_column} />
         </div>

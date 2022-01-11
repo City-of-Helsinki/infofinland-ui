@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { CSSTransition } from 'react-transition-group'
-import { H2 } from '../Typo'
+import { H3 } from '../Typo'
 import Block from '../layout/Block'
 import ContentMapper from './ContentMapper'
 import { IconAngleDown, IconAngleUp } from '../Icons'
@@ -54,17 +54,20 @@ const Accordion = ({ content, heading, toggle, isOpen, last, id }) => {
     <>
       <Block className="">
         <div
-          className={cls('flex items-center py-6 border-t border-gray-hr', {
+          className={cls('flex items-center py-4 border-t border-gray-hr', {
             'border-b': last,
           })}
           ref={scrollRef}
         >
           <div className="flex-grow" id={titleId}>
-            <H2 className="">{heading}</H2>
+            <H3 className="">{heading}</H3>
           </div>
-          <button onClick={toggle} className="inline-block flex-none w-12 h-8">
-            {!isOpen && <IconAngleDown className=" w-4 h-4 fill-black" />}
-            {isOpen && <IconAngleUp className=" w-4 h-4 fill-black" />}
+          <button
+            onClick={toggle}
+            className="inline-block flex-none w-12 h-8 lg:h-12"
+          >
+            {!isOpen && <IconAngleDown className="w-3 h-3 fill-gray-medium" />}
+            {isOpen && <IconAngleUp className="w-3 h-3 fill-gray-medium" />}
           </button>
         </div>
       </Block>

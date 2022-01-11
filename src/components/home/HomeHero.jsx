@@ -9,6 +9,7 @@ const HomeHero = ({ title, image }) => (
         src={image}
         layout="fill"
         alt=""
+        priority
         objectFit="cover"
       />
     )}

@@ -110,7 +110,9 @@ export const getPageQueryParams = () =>
       // These content types are not avalable for landing page
       'field_content.field_link_collection.field_links.field_language',
       'field_content.field_contact_data',
-      'field_content.field_accordion_items.field_accordion_item_content',
+      'field_content.field_accordion_items.field_accordion_item_content.field_columns_left_column',
+      'field_content.field_accordion_items.field_accordion_item_content.field_columns_right_column.field_image.field_media_image',
+      // 'field_content.field_accordion_items.field_accordion_item_content',
     ])
     .addFields(NODE_TYPES.PAGE, [
       'id',

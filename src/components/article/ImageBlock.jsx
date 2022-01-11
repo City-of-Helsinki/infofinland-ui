@@ -1,7 +1,6 @@
 import Block from '@/components/layout/Block'
 import Image from 'next/image'
 import { getFit } from '@/lib/content-utils'
-
 export const ArticleImage = ({
   src,
   height,
@@ -19,11 +18,10 @@ export const ArticleImage = ({
         <Image
           alt={alt}
           src={src}
-          width={width}
-          height={height}
           title={title}
           layout={layout}
           objectFit={fit || getFit({ width, height })}
+          {...(layout==='fill' ? {}:{width,height})}
         />
       )}
     </div>
