@@ -20,7 +20,7 @@ export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
   const { locale } = context
   const { data } = await resolvePath({
-    path: serverRuntimeConfig.LANDING_PAGE_PATH,
+    path: serverRuntimeConfig.DRUPAL_LANDING_PAGE,
     context: { locale },
   }).catch((e) => {
     if (e?.response?.status === 404) {
