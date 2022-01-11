@@ -81,14 +81,10 @@
 
   .ifu-article__column-block h4 {
     @apply text-h4 md:text-h4xl my-4 font-bold;
-
   }
 
   .ifu-article__column-block p:first-child,
   .ifu-article__bodyblock p:first-child {
     @apply text-body-large mb-8;
   }
-
-
-
 }

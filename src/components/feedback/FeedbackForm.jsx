@@ -229,9 +229,7 @@ const FeedbackButtonBlock = () => {
           >
             {!isOpen && t('feedback.buttons.open')}
             {isOpen && t('feedback.buttons.close')}
-            {isOpen && (
-              <IconAngleUp className="fill-link h-6-w-6 ms-2" />
-            )}
+            {isOpen && <IconAngleUp className="fill-link h-6-w-6 ms-2" />}
           </span>
         </button>
       </div>

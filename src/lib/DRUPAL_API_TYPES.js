@@ -20,9 +20,9 @@ export const CONTENT_TYPES = {
   PVT: 'paragraph--ptv_contact',
   PVT_NODE: 'node--office_contact_info',
   MEDIA_IMAGE: 'media--image',
-  COLUMNS:'paragraph--columns',
-  COLUMN_LEFT:'field_columns_left_column',
-  COLUMN_RIGHT:'field_columns_right_column',
+  COLUMNS: 'paragraph--columns',
+  COLUMN_LEFT: 'field_columns_left_column',
+  COLUMN_RIGHT: 'field_columns_right_column',
 }
 
 export const TEXT_HTML_FORMAT = 'full_html'

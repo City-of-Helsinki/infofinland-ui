@@ -1,4 +1,3 @@
-
 import cls from 'classnames'
 import { H2 } from '../Typo'
 import { BLOCK_MARGIN } from '../layout/Block'
@@ -13,7 +12,6 @@ import { TEXT_HTML_FORMAT } from '@/lib/DRUPAL_API_TYPES'
 import Columns from './Columns'
 import HtmlBlock from './HtmlBlock'
 import ImageBlock from './ImageBlock'
-
 
 export default function ContentMapper({ content, locale }) {
   if (content?.length === 0) {
@@ -64,8 +62,7 @@ export default function ContentMapper({ content, locale }) {
         return <PVTBlock items={item.field_contact_data} key={key} />
 
       case CONTENT_TYPES.COLUMNS:
-        return <Columns {...item}/>
-
+        return <Columns {...item} />
     }
   })
 }

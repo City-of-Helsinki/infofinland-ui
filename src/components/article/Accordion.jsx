@@ -62,12 +62,9 @@ const Accordion = ({ content, heading, toggle, isOpen, last, id }) => {
           <div className="flex-grow" id={titleId}>
             <H2 className="">{heading}</H2>
           </div>
-          <button
-            onClick={toggle}
-            className="inline-block flex-none w-12 h-8"
-          >
-            {!isOpen && <IconAngleDown className="w-4 h-4 fill-black " />}
-            {isOpen && <IconAngleUp className="w-4 h-4 fill-black " />}
+          <button onClick={toggle} className="inline-block flex-none w-12 h-8">
+            {!isOpen && <IconAngleDown className=" w-4 h-4 fill-black" />}
+            {isOpen && <IconAngleUp className=" w-4 h-4 fill-black" />}
           </button>
         </div>
       </Block>
