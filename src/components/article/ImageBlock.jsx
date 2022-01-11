@@ -21,7 +21,7 @@ export const ArticleImage = ({
           title={title}
           layout={layout}
           objectFit={fit || getFit({ width, height })}
-          {...(layout==='fill' ? {}:{width,height})}
+          {...(layout === 'fill' ? {} : { width, height })}
         />
       )}
     </div>

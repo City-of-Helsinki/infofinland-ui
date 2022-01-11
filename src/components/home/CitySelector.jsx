@@ -20,14 +20,13 @@ const CitySelector = () => {
         </div>
         <div className="flex justify-center">
           <div className="">
-          <Image
-            src="/images/suomi-kartta.png"
-            alt=""
-            height="381"
-            width="219"
-            layout="intrinsic"
-
-          />
+            <Image
+              src="/images/suomi-kartta.png"
+              alt=""
+              height="381"
+              width="219"
+              layout="intrinsic"
+            />
           </div>
         </div>
       </div>
