@@ -1,12 +1,11 @@
 module.exports = {
   // mode: 'jit',
-  purge: ['./src/**/*.jsx', './pages/**/*.jsx'],
+  content: ['./src/**/*.jsx', './pages/**/*.jsx'],
   // purge: {
   //   enabled: process.env.production === true,
   //   content: ['./src/**/*.jsx', './pages/**/*.jsx'],
   //   defaultExtractor: (content) => content.match(/[\w-/:]+(?<!:)/g) || [],
   // },
-  darkMode: false, // or 'media' or 'class'
   theme: {
     fontSize: {
       h1xl: ['4.5rem', '1.2'],
@@ -102,7 +101,7 @@ module.exports = {
       sans: ['Noto Sans'],
     },
     extend: {
-      variants: { height: ['responsive'] },
+      // variants: { height: ['responsive'] },
       animation: ['hover', 'focus'],
       // boxShadow: {
       //   button: '0px 2px rgba(0, 0, 0, 0.15)',

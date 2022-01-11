@@ -43,7 +43,7 @@
     "rooks": "5.8.0",
     "sharp": "0.29.2",
     "swr": "1.0.1",
-    "tailwindcss": "2.x",
+    "tailwindcss": "3.x",
     "tailwindcss-rtl": "latest",
     "xml-loader": "1.2.1",
     "xml2js": "0.4.23"
@@ -55,6 +55,7 @@
     "@testing-library/jest-dom": "5.16.1",
     "@testing-library/react": "12.1.2",
     "babel-jest": "27.3.1",
+    "cssnano": "5.0.15",
     "eslint": "7.x",
     "eslint-config-next": "11.x",
     "eslint-config-prettier": "8.3.0",
@@ -66,7 +67,7 @@
     "postcss-loader": "6.1.1",
     "prettier": "2.x",
     "react-test-renderer": "17.0.2",
-    "tailwind-config-viewer": "1.6.2",
+    "tailwind-config-viewer": "1.6.3",
     "webpack": "5.60.0",
     "yarn": "1.22.15"
   }

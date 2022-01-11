@@ -92,16 +92,16 @@ const SubMenu = ({
       </Link>
       <div className="flex-none">
         <button
-          className="block w-14 h-12 text-gray-light me-2 title-start"
+          className="block w-14 h-12 me-2 title-start"
           onClick={toggle}
           aria-expanded={isOpen}
           // tabIndex="0"
         >
           {!isOpen && (
-            <IconAngleDown className="fill-current ifu-mainmenu__submenu-icon" />
+            <IconAngleDown className="fill-gray-light ifu-mainmenu__submenu-icon" />
           )}
           {isOpen && (
-            <IconAngleUp className="fill-current ifu-mainmenu__submenu-icon" />
+            <IconAngleUp className="fill-gray-light ifu-mainmenu__submenu-icon" />
           )}
         </button>
       </div>

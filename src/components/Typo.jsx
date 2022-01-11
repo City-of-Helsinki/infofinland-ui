@@ -32,7 +32,7 @@ export const H2 = ({ children, className }) => (
 export const H3 = ({ children, className }) => (
   <h3
     className={cls(
-      'text-bodytext-color font-sans text-h3 tmd:text-h3xl',
+      'text-bodytext-color font-sans text-h3 md:text-h3xl',
       className
     )}
   >

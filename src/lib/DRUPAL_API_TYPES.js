@@ -11,7 +11,6 @@ export const CONTENT_TYPES = {
   ACCORDION: 'paragraph--accordion',
   ACCORDION_ITEM: 'paragraph--accordion_item',
   HERO: 'paragraph--hero',
-  COLUMNS: 'columns',
   READMORE: 'paragraph--language_link_collection',
   READMORE_LINK_COLLECTION: 'node--link',
   READMORE_LINK: 'paragraph--language_link',
@@ -21,4 +20,9 @@ export const CONTENT_TYPES = {
   PVT: 'paragraph--ptv_contact',
   PVT_NODE: 'node--office_contact_info',
   MEDIA_IMAGE: 'media--image',
+  COLUMNS: 'paragraph--columns',
+  COLUMN_LEFT: 'field_columns_left_column',
+  COLUMN_RIGHT: 'field_columns_right_column',
 }
+
+export const TEXT_HTML_FORMAT = 'full_html'

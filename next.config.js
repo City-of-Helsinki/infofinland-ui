@@ -2,7 +2,7 @@ const { i18n } = require('./next-i18next.config')
 const env = {
   COOKIE_PAGE_PATH: '/cookie-settings',
   PRERENDER_LOCALES: ['fi', 'en', 'sv', 'ar', 'ru'],
-  LANDING_PAGE_PATH: '/landingpage',
+  // LANDING_PAGE_PATH: '/landingpage',
   DRUPAL_MENUS: {
     MAIN: 'main',
     FOOTER: 'footer-about',
@@ -33,6 +33,7 @@ module.exports = {
     DRUPAL_CLIENT_ID: process.env.DRUPAL_CLIENT_ID,
     DRUPAL_PREVIEW_SECRET: process.env.DRUPAL_PREVIEW_SECRET,
     DRUPAL_CLIENT_SECRET: process.env.DRUPAL_CLIENT_SECRET,
+    DRUPAL_LANDING_PAGE: process.env.DRUPAL_LANDING_PAGE,
     ...env,
   },
   images: {

@@ -23,7 +23,7 @@ exports[`Typography should render the h2 1`] = `
 exports[`Typography should render the h3 1`] = `
 <DocumentFragment>
   <h3
-    class="text-bodytext-color font-sans text-h3 tmd:text-h3xl"
+    class="text-bodytext-color font-sans text-h3 md:text-h3xl"
   >
     Heading 3
   </h3>

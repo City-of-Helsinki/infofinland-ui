@@ -28,6 +28,7 @@ const HeroImage = ({ heroImage, ...rest }) => {
             blurDataURL={blurPlaceholder}
             src={heroImage}
             alt=""
+            priority
             layout="fill"
             className="block w-full h-full rounded"
             objectFit="cover"
