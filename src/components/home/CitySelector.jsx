@@ -18,14 +18,17 @@ const CitySelector = () => {
 
           <Button onClick={goToCities}>Go to Cities</Button>
         </div>
-        <div className="">
+        <div className="flex justify-center">
+          <div className="">
           <Image
             src="/images/suomi-kartta.png"
             alt=""
             height="381"
             width="219"
             layout="intrinsic"
+
           />
+          </div>
         </div>
       </div>
     </Block>

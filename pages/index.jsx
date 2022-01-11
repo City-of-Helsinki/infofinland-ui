@@ -2,7 +2,6 @@ import HomeHero from '@/components/home/HomeHero'
 import Layout from '@/components/layout/Layout'
 import ThemeList from '@/components/home/ThemeList'
 import CitySelector from '@/components/home/CitySelector'
-import HomeAbout from '@/components/home/HomeAbout'
 import Block from '@/components/layout/Block'
 import {
   getCommonApiContent,
@@ -84,7 +83,6 @@ const HomePage = ({ menu, footerMenu, node }) => {
 
       <CitySelector />
 
-      <HomeAbout />
       {node.field_content?.length > 0 && (
         <ContentMapper content={node.field_content} />
       )}
