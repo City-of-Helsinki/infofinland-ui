@@ -1,41 +1,19 @@
-import ParseHtml from '../ParseHtml'
-import Block from '@/components/layout/Block'
+
 import cls from 'classnames'
 import { H2 } from '../Typo'
 import { BLOCK_MARGIN } from '../layout/Block'
-import Image from 'next/image'
+
 import ReadMoreBlock from './ReadMoreBlock'
 import AccordionItems from './Accordion'
 import { CONTENT_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import { getImage, getLinks } from '@/lib/ssr-api'
-import { getFit } from '@/lib/content-utils'
+
 import PVTBlock from './PVTBlock'
-const TEXT_HTML_FORMAT = 'full_html'
+import { TEXT_HTML_FORMAT } from '@/lib/DRUPAL_API_TYPES'
+import Columns from './Columns'
+import HtmlBlock from './HtmlBlock'
+import ImageBlock from './ImageBlock'
 
-export const HtmlBlock = ({ field_text }) => (
-  <Block className={cls('my-8 ifu-article__bodyblock', field_text?.format)}>
-    <ParseHtml html={field_text?.processed} />
-  </Block>
-)
-
-export const ImageBlock = ({ caption, src, height, width, title, alt }) => {
-  return (
-    <Block className="my-16" hero>
-      <div className="ifu-article__image--basic">
-        <Image
-          alt={alt}
-          src={src}
-          // width={width}
-          // height={height}
-          title={title}
-          layout="fill"
-          objectFit={getFit({ width, height })}
-        />
-      </div>
-      <p className="text-body-small text-gray-dark">{caption}</p>
-    </Block>
-  )
-}
 
 export default function ContentMapper({ content, locale }) {
   if (content?.length === 0) {
@@ -84,6 +62,10 @@ export default function ContentMapper({ content, locale }) {
 
       case CONTENT_TYPES.PVT:
         return <PVTBlock items={item.field_contact_data} key={key} />
+
+      case CONTENT_TYPES.COLUMNS:
+        return <Columns {...item}/>
+
     }
   })
 }

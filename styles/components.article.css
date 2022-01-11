@@ -1,8 +1,6 @@
 @layer components {
   :root {
     --gradientHeight: 250px;
-    --full-image-ratio: 16/9;
-    --square-image-ratio: 1/1;
   }
 
   .-translate-y-1px {
@@ -56,19 +54,19 @@
   /**
 * Article body styles for markup content from Drupal
 */
-
+  .ifu-article__column-block,
   .ifu-article__bodyblock {
     @apply text-bodytext-color;
   }
-
+  .ifu-article__column-block ul,
   .ifu-article__bodyblock ul {
     @apply list-disc list-outside py-4 mb-4 ms-4 ps-4;
   }
-
+  .ifu-article__column-block ul li,
   .ifu-article__bodyblock ul li {
     @apply ps-2;
   }
-
+  .ifu-article__column-block p,
   .ifu-article__bodyblock p {
     @apply text-body;
   }
@@ -81,16 +79,16 @@
     @apply text-h3 md:text-h3xl mb-8 mt-16;
   }
 
+  .ifu-article__column-block h4 {
+    @apply text-h4 md:text-h4xl my-4 font-bold;
+
+  }
+
+  .ifu-article__column-block p:first-child,
   .ifu-article__bodyblock p:first-child {
     @apply text-body-large mb-8;
   }
-}
 
-.ifu-article__image--basic {
-  @apply bg-gray-lighter-teal rounded relative overflow-hidden;
-  aspect-ratio: var(--full-image-ratio);
-}
 
-.ifu-article__image--basic::after {
-  content: '' @apply absolute inset-0 rounded border-red border-3;
+
 }

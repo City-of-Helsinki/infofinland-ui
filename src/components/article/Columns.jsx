@@ -1,9 +1,9 @@
 import Block from "../layout/Block"
 import { ArticleImage } from "./ImageBlock"
 import ParseHtml from "../ParseHtml"
-import { CONTENT_TYPES } from "@/lib/DRUPAL_API_TYPES"
-import { TEXT_HTML_FORMAT } from "./ContentMapper"
+import { CONTENT_TYPES,TEXT_HTML_FORMAT  } from "@/lib/DRUPAL_API_TYPES"
 import cls from 'classnames'
+import Image from 'next/image'
 import { getImage } from "@/lib/ssr-api"
 
 const ColumnMapper = ({type,field_text,field_image, field_image_caption})=> {
@@ -17,12 +17,12 @@ const ColumnMapper = ({type,field_text,field_image, field_image_caption})=> {
         return null
       }
       return (
-      <div className={cls('ifu-article__bodyblock', field_text?.format)}>
+      <div className={cls('ifu-article__column-block', field_text?.format)}>
         <ParseHtml html={field_text?.processed} />
       </div>)
 
     case CONTENT_TYPES.PARAGRAPH_IMAGE:
-      return <ArticleImage {...getImage({field_image})} caption={field_image_caption}/>
+      return <ArticleImage className="rounded relative overflow-hidden aspect-square" {...getImage({field_image})} caption={field_image_caption}/>
 
     default:
       return null
@@ -33,7 +33,7 @@ const ColumnMapper = ({type,field_text,field_image, field_image_caption})=> {
 export default function Columns({field_columns_left_column, field_columns_right_column})  {
   return (
     <Block>
-      <div className="lg:grid grid-cols-2 gap-6">
+      <div className="lg:grid grid-cols-2 gap-16">
         <div className="mb-8 lg:mb-0">
           <ColumnMapper {...field_columns_left_column}/>
         </div>

@@ -64,10 +64,10 @@ const Accordion = ({ content, heading, toggle, isOpen, last, id }) => {
           </div>
           <button
             onClick={toggle}
-            className="inline-block flex-none w-12 h-8 text-black"
+            className="inline-block flex-none w-12 h-8"
           >
-            {!isOpen && <IconAngleDown className="w-4 h-4 fill-current" />}
-            {isOpen && <IconAngleUp className="w-4 h-4 fill-current" />}
+            {!isOpen && <IconAngleDown className="w-4 h-4 fill-black " />}
+            {isOpen && <IconAngleUp className="w-4 h-4 fill-black " />}
           </button>
         </div>
       </Block>
