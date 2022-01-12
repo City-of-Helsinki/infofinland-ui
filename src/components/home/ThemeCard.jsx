@@ -20,6 +20,7 @@ const ThemeCard = ({ title, url, image, blue, green }) => (
             height={100}
             width={300}
             alt=""
+            objectFit="cover"
             layout="responsive"
             className="rounded-t"
           />

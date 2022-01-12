@@ -97,6 +97,7 @@ const AppLayout = ({
   node,
   title,
   description,
+  municipalities,
   className,
 }) => {
   const { locale } = useRouter()
@@ -113,7 +114,7 @@ const AppLayout = ({
         className={cls('relative text-body bg-white', className)}
         id={`node-${node?.id}`}
       >
-        <TopMenu menu={menu} />
+        <TopMenu menu={menu} municipalities={municipalities} />
         <div className=" md:flex md:items-stretch">
           <div className="md:hidden">
             <Messages />

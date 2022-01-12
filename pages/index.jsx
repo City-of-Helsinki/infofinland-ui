@@ -52,11 +52,15 @@ export async function getStaticProps(context) {
     context,
   })
 
-  console.log({ themeImages })
+  const themes = common.menu.tree.map(({ url, title, id }, i) => {
+    const image = themeImages.at(i)
+    return { url, title, id, image: image?.url || null }
+  })
 
   return {
     props: {
       ...common,
+      themes,
       node,
       ...(await serverSideTranslations(context.locale, ['common'])),
     },
@@ -64,13 +68,15 @@ export async function getStaticProps(context) {
   }
 }
 
-const HomePage = ({ menu, footerMenu, node }) => {
+const HomePage = ({ menu, footerMenu, node, themes, municipalities }) => {
   const hero = getHeroFromNode(node)
   const { field_description, field_content, title } = node
+
   return (
     <Layout
       node={node}
       menu={menu}
+      municipalities={municipalities}
       footerMenu={footerMenu}
       title={title}
       className="ifu-landing"
@@ -86,7 +92,7 @@ const HomePage = ({ menu, footerMenu, node }) => {
       )}
 
       <Block>
-        <ThemeList themes={menu.tree} showImages />
+        <ThemeList themes={themes} showImages />
       </Block>
 
       <CitySelector />

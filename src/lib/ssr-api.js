@@ -1,10 +1,10 @@
-import { getMenu, getResource } from 'next-drupal'
+import { getMenu, getResource, getResourceCollection } from 'next-drupal'
 import { i18n } from '../../next-i18next.config'
 import axios from 'axios'
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 import getConfig from 'next/config'
-import { NODE_TYPES } from './DRUPAL_API_TYPES'
-import { getThemeHeroParams } from './query-params'
+import { CONTENT_TYPES, NODE_TYPES } from './DRUPAL_API_TYPES'
+import { getMunicipalityParams, getThemeHeroParams } from './query-params'
 const ROUTER_PATH = '/router/translate-path'
 const NO_DEFAULT_LOCALE = 'dont-use'
 const disableDefaultLocale = (locale) => ({
@@ -20,11 +20,14 @@ export * from './query-params'
 export const NOT_FOUND = { notFound: true }
 
 export const getHeroFromNode = (node) => {
+  if (!node?.field_has_hero) {
+    return null
+  }
   const host = getConfig().publicRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL
   const url = node?.field_hero?.field_hero_image?.field_media_image?.uri?.url
   return {
-    url: url ? `${host}${url}` : undefined,
-    title: node?.field_hero?.field_hero_title,
+    url: url ? `${host}${url}` : null,
+    title: node?.field_hero.field_hero_title || null,
   }
 }
 
@@ -141,7 +144,7 @@ export const getAboutMenu = async ({ locale }) =>
 
 export const getCommonApiContent = async ({ locale }) => {
   const context = { locale, defaultLocale: NO_DEFAULT_LOCALE }
-  const [menu, footerMenu] = await Promise.all([
+  const [menu, footerMenu, municipalities] = await Promise.all([
     //Main menu or whatever is called
     getMainMenu(context).catch((e) => {
       console.error('menu error', e)
@@ -152,6 +155,11 @@ export const getCommonApiContent = async ({ locale }) => {
       console.error('footerMenu error', e)
       return menuErrorResponse(e)
     }),
+    //Municipalities
+    getMunicipalities(context).catch((e) => {
+      console.error('municipality list error', e)
+      return []
+    }),
   ]).catch((e) => {
     throw e
   })
@@ -159,6 +167,7 @@ export const getCommonApiContent = async ({ locale }) => {
   return {
     menu,
     footerMenu,
+    municipalities,
   }
 }
 
@@ -188,13 +197,7 @@ export const getThemeHeroImages = async ({ tree, context }) => {
     return null
   }
 
-  return nodes
-    .map(({ field_has_hero, field_hero }) => {
-
-      if(!field_has_hero) {return null}
-      return field_hero
-    })
-
+  return nodes.map(getHeroFromNode)
 }
 
 export const getDefaultLocaleNode = async (id) =>
@@ -212,3 +215,8 @@ export const addPrerenderLocalesToPaths = (paths) =>
       paths.map((path) => ({ ...path, locale }))
     )
     .flat()
+
+export const getMunicipalities = async () =>
+  getResourceCollection(CONTENT_TYPES.MUNICIPALITY, {
+    params: getMunicipalityParams(),
+  })
