@@ -4,6 +4,7 @@ import axios from 'axios'
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 import getConfig from 'next/config'
 import { NODE_TYPES } from './DRUPAL_API_TYPES'
+import { getThemeHeroParams } from './query-params'
 const ROUTER_PATH = '/router/translate-path'
 const NO_DEFAULT_LOCALE = 'dont-use'
 const disableDefaultLocale = (locale) => ({
@@ -159,6 +160,41 @@ export const getCommonApiContent = async ({ locale }) => {
     menu,
     footerMenu,
   }
+}
+
+export const getThemeHeroImages = async ({ tree, context }) => {
+  const responses = await Promise.all(
+    tree.map((page) => resolvePath({ path: page.url, context }))
+  )
+  if (!responses) {
+    return null
+  }
+  const ids = responses.map(({ data }) => data?.entity?.uuid)
+
+  if (!ids || ids.length === 0) {
+    return null
+  }
+
+  const nodes = await Promise.all(
+    ids.map((id) =>
+      getResource(NODE_TYPES.PAGE, id, {
+        locale: context.locale,
+        params: getThemeHeroParams(),
+      })
+    )
+  )
+
+  if (!nodes) {
+    return null
+  }
+
+  return nodes
+    .map(({ field_has_hero, field_hero }) => {
+
+      if(!field_has_hero) {return null}
+      return field_hero
+    })
+
 }
 
 export const getDefaultLocaleNode = async (id) =>

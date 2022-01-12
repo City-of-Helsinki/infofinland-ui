@@ -119,3 +119,14 @@ export const getPageQueryParams = () =>
       'field_metatags',
     ])
     .getQueryObject()
+
+export const getThemeHeroParams = () =>
+  new DrupalJsonApiParams()
+    .addFields(NODE_TYPES.PAGE, ['id', 'field_hero', 'field_has_hero'])
+    .addInclude([
+      // Hero
+      'field_hero.field_hero_image.field_media_image',
+    ])
+    .addFields(CONTENT_TYPES.MEDIA_IMAGE, ['field_media_image'])
+    .addFields(CONTENT_TYPES.FILE, ['uri', 'url'])
+    .getQueryObject()

@@ -8,6 +8,7 @@ import {
   getHeroFromNode,
   resolvePath,
   getLandingPageQueryParams,
+  getThemeHeroImages,
   NOT_FOUND,
 } from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -45,6 +46,14 @@ export async function getStaticProps(context) {
   if (!node) {
     return NOT_FOUND
   }
+
+  const themeImages = await getThemeHeroImages({
+    tree: common.menu.tree,
+    context,
+  })
+
+  console.log({ themeImages })
+
   return {
     props: {
       ...common,
