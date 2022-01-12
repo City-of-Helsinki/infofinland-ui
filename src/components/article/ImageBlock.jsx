@@ -1,6 +1,8 @@
 import Block from '@/components/layout/Block'
 import Image from 'next/image'
-import { getFit } from '@/lib/content-utils'
+
+const getFit = ({ width, height }) => (width < height ? 'contain' : 'cover')
+
 export const ArticleImage = ({
   src,
   height,

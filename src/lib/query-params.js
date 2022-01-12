@@ -10,21 +10,10 @@ const baseQueryParams = () =>
     .addInclude([
       // Image
       'field_content.field_image.field_media_image',
-      // Link Collectin
-      // 'field_content.field_link_collection.field_links.field_language',
       // Hero
       'field_hero.field_hero_image.field_media_image',
-      // PVT contact
-      // 'field_content.field_contact_data',
-      //Accordion
-
-      // 'field_content.field_accordion_items.field_accordion_item_content',
-      'field_hero.field_hero_image.field_media_image',
-      // 'field_content.field_columns_left_column',
-      // 'field_content.field_columns_left_column.field_image',
+      //Columns
       'field_content.field_columns_left_column.field_image.field_media_image',
-      // 'field_content.field_columns_right_column',
-      // 'field_content.field_columns_right_column.field_image',
       'field_content.field_columns_right_column.field_image.field_media_image',
     ])
     // Page node fields
@@ -108,11 +97,15 @@ export const getPageQueryParams = () =>
   baseQueryParams()
     .addInclude([
       // These content types are not avalable for landing page
+      //Link collections
       'field_content.field_link_collection.field_links.field_language',
+      //Contact information
       'field_content.field_contact_data',
+      //Accordion: text, images, links, contacts
       'field_content.field_accordion_items.field_accordion_item_content.field_columns_left_column.field_image.field_media_image',
       'field_content.field_accordion_items.field_accordion_item_content.field_columns_right_column.field_image.field_media_image',
       'field_content.field_accordion_items.field_accordion_item_content.field_link_collection.field_links.field_language',
+      // 'field_content.field_accordion_items.field_accordion_item_content.field_contact_data',
     ])
     .addFields(NODE_TYPES.PAGE, [
       'id',

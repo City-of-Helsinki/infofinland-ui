@@ -38,6 +38,9 @@ export const getImage = (item) => {
   }
 }
 
+const ERROR_MISSING_LANGUAGE = 'language id missing'
+const MISSING_ID_TOKEN = 'missing'
+
 export const getLinks = ({ collection, locale } = {}) => {
   if (!locale) {
     console.error('Cannot resolve main link without locale')
@@ -46,22 +49,32 @@ export const getLinks = ({ collection, locale } = {}) => {
   return collection?.map(
     ({ field_link_target_site: siteName, field_links, title }) => {
       //is there a link that matches request locale
-      let mainTranslation = field_links.find(
-        ({ field_language }) => field_language.field_locale === locale
-      )
+      let mainTranslation = field_links?.find(({ field_language, id }) => {
+        if (id === MISSING_ID_TOKEN) {
+          console.error(ERROR_MISSING_LANGUAGE)
+          return
+        }
+        return field_language.field_locale === locale
+      })
       //if not, is there a link that matches default locale EN
       if (!mainTranslation) {
-        mainTranslation = field_links?.find(
-          ({ field_language }) =>
-            field_language.field_locale === i18n.defaultLocale
-        )
+        mainTranslation = field_links?.find(({ field_language, id }) => {
+          if (id === MISSING_ID_TOKEN) {
+            console.error(ERROR_MISSING_LANGUAGE)
+            return
+          }
+          return field_language?.field_locale === i18n.defaultLocale
+        })
       }
       //if not, is there a link that matches fallback locale FI
       if (!mainTranslation) {
-        mainTranslation = field_links?.find(
-          ({ field_language }) =>
-            field_language.field_locale === i18n.fallbackLocale
-        )
+        mainTranslation = field_links?.find(({ field_language, id }) => {
+          if (id === MISSING_ID_TOKEN) {
+            console.error(ERROR_MISSING_LANGUAGE)
+            return
+          }
+          return field_language?.field_locale === i18n.fallbackLocale
+        })
       }
       mainTranslation = {
         locale: mainTranslation?.field_language?.field_locale,
@@ -69,10 +82,13 @@ export const getLinks = ({ collection, locale } = {}) => {
       }
 
       const languages = field_links
-        .filter(
-          ({ field_language }) =>
-            field_language.field_locale !== mainTranslation.locale
-        )
+        ?.filter(({ field_language, id }) => {
+          if (id === MISSING_ID_TOKEN) {
+            console.error(ERROR_MISSING_LANGUAGE)
+            return
+          }
+          return field_language.field_locale !== mainTranslation.locale
+        })
         .map(({ field_language, field_language_link }) => {
           return {
             url: field_language_link,
