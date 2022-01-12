@@ -2,9 +2,9 @@ import CategoryCard from '@/components/home/ThemeCard'
 
 const ThemeList = ({ showImages, themes }) => (
   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-28">
-    {themes.map(({ url, title }, i) => (
+    {themes.map(({ url, title ,id}, i) => (
       <CategoryCard
-        key={`theme-${i}`}
+        key={`theme-${id}`}
         url={url}
         //greens on left (odds), blues on right (evens)
         {...{

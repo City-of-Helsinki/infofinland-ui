@@ -8,8 +8,10 @@ import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import ContentMapper from '@/components/article/ContentMapper'
 import useThemeList from '@/hooks/useThemeList'
 import { getHeroFromNode } from '@/lib/ssr-api'
+import IngressBlock from '@/components/article/IngressBlock'
 
 const ArticlePage = ({ menu, footerMenu, node, color, fiNode }) => {
+  console.log({node})
   const { localePath, locale } = useRouterWithLocalizedPath()
   const breadcrumbs = useBreadCrumbs({
     items: menu.items,
@@ -21,7 +23,7 @@ const ArticlePage = ({ menu, footerMenu, node, color, fiNode }) => {
     path: localePath,
   })
 
-  const { title, revision_timestamp, field_has_hero } = node
+  const { title, revision_timestamp, field_has_hero ,field_description} = node
   let hero = null
   if (field_has_hero) {
     hero = getHeroFromNode(node)
@@ -42,10 +44,12 @@ const ArticlePage = ({ menu, footerMenu, node, color, fiNode }) => {
           </Block>
         )}
 
+        {field_description &&
+          <IngressBlock field_description={field_description}/>
+        }
         {node.field_content?.length > 0 && (
           <ContentMapper content={node.field_content} locale={locale} />
         )}
-        <p className="font-bold text-neon-pink">DEMO LOCAL INFO BLOCK</p>
         <LocalInformation readMoreUrl={'/test'} />
       </Article>
     </Layout>

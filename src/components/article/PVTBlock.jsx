@@ -12,10 +12,11 @@ export default function PVTBlock({ items }) {
         field_visiting_address,
         field_visiting_address_additional,
         title,
+        id
       },
-      i
+
     ) => (
-      <Block key={`pvt-${i}`}>
+      <Block key={`pvt-${id}`}>
         {title && <h4 className="mb-4 text-h4 font-bold">{title}</h4>}
 
         {field_visiting_address && (

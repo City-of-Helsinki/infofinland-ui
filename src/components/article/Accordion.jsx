@@ -40,10 +40,13 @@ export const AccordionItems = ({ field_accordion_items }) => {
   )
 }
 
+
+const SCROLL_OFFSET = 20 //px
+
 const Accordion = ({ content, heading, toggle, isOpen, last, id }) => {
   const titleId = `accordion-title-${id}`
   const scrollRef = useRef()
-  const scrollToRef = () => window.scrollTo(0, scrollRef.current.offsetTop)
+  const scrollToRef = () => window.scrollTo(0, scrollRef.current.offsetTop - SCROLL_OFFSET)
 
   useEffect(() => {
     if (isOpen) {

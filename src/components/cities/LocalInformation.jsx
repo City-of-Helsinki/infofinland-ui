@@ -81,6 +81,7 @@ const LocalInformation = ({ readMoreUrl }) => {
 const LocalReadMore = ({ content = [] }) => {
   return (
     <div className="p-4 bg-white rounded">
+      <p className="font-bold text-neon-pink">DEMO LOCAL INFO BLOCK</p>
       {content.map(({ siteUrl, siteName, pageUrl, pageName, languages }, i) => (
         <div
           className={cls({
@@ -108,6 +109,7 @@ const LocalReadMore = ({ content = [] }) => {
           </a>
 
           <div className="flex flex-wrap leading-4 divide-link divide-s">
+
             {languages.map(({ url, text, lang }, k) => (
               <a
                 title={pageName}

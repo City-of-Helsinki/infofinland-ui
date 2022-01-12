@@ -15,7 +15,7 @@ const ReadMoreBlock = ({ content = [], locale }) => {
             className={cls({
               'mb-3 pb-3 border-b border-gray-hr': i + 1 < content.length,
             })}
-            key={`${siteName}-${i}`}
+            key={`readmore-${siteName}`}
           >
             <span
               className="flex items-center text-small"
@@ -42,12 +42,12 @@ const ReadMoreBlock = ({ content = [], locale }) => {
                   lowercase: LOWERCASE_LOCALES.includes(locale),
                 })}
               >
-                {languages.map(({ url, title: langTitle, locale }, k) => (
+                {languages.map(({ url, title: langTitle, locale,id },k) => (
                   <a
                     title={langTitle}
                     rel="noreferrer"
                     href={url}
-                    key={`link-${langTitle}-${k}`}
+                    key={`link-${id}-${locale}`}
                     lang={locale}
                     className={cls(
                       'text-small leading-snug ifu-text-link pe-2',

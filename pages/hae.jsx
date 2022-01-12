@@ -82,8 +82,8 @@ const Result = ({ title, url, path, excerpt, q }) => (
     </h2>
     {path && (
       <p className="">
-        {path.map(({ title, url }, i) => (
-          <Link key={`result-${i}`} href={url} passHref prefetch={false}>
+        {path.map(({ title, url,id }, i) => (
+          <Link key={`result-link-${id}`} href={url} passHref prefetch={false}>
             <a className="text-tiny text-gray">
               {title}
               {i + 1 < path.length && <IconAngleRight className="mx-1" />}
@@ -102,7 +102,7 @@ const Result = ({ title, url, path, excerpt, q }) => (
   </section>
 )
 const SearchResults = ({ results, q }) => {
-  return results.map((r, i) => <Result key={`foo-${i}`} {...r} q={q} />)
+  return results.map( r => <Result key={`result-${r.id}`} {...r} q={q} />)
 }
 
 export const SearchPage = ({ q, results, menu, footerMenu }) => {

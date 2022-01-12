@@ -12,6 +12,7 @@ import Router, { useRouter } from 'next/router'
 import NProgress from 'nprogress'
 import CookieConsentBar from '@/components/layout/CookieConsent'
 import MainNavi, { MainNaviError } from '@/components/navi/MainNavi'
+
 export const FALLBACK_TITLE = 'infofinland.fi'
 /**
  *
