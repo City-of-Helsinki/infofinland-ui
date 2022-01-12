@@ -11,7 +11,6 @@ import { getHeroFromNode } from '@/lib/ssr-api'
 import IngressBlock from '@/components/article/IngressBlock'
 
 const ArticlePage = ({ menu, footerMenu, node, color, fiNode }) => {
-  console.log({ node })
   const { localePath, locale } = useRouterWithLocalizedPath()
   const breadcrumbs = useBreadCrumbs({
     items: menu.items,

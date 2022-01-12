@@ -2,7 +2,7 @@ import ParseHtml from '../ParseHtml'
 import Block from '@/components/layout/Block'
 
 const IngressBlock = ({ field_description }) => (
-  <Block className="ifu-article__ingress text-body-large my-16">
+  <Block className="my-16 text-body-large ifu-article__ingress">
     <ParseHtml html={field_description} />
   </Block>
 )

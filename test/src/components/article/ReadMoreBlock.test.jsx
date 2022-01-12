@@ -9,15 +9,19 @@ import ReadMoreBlock from '@/components/article/ReadMoreBlock'
 export const READMORE_CONTENT = [
   {
     siteName: 'DEMO:Kela',
-    mainTranslation: { locale: 'fi', url: 'http://www.kela.fi/fi/' ,id:'foooaa'},
+    mainTranslation: {
+      locale: 'fi',
+      url: 'http://www.kela.fi/fi/',
+      id: 'foooaa',
+    },
     pageName: 'Some random Kela page',
     languages: [
-      { url: 'http://www.kela.fi/fi/', text: 'Suomi', lang: 'fi', id:'foo',},
+      { url: 'http://www.kela.fi/fi/', text: 'Suomi', lang: 'fi', id: 'foo' },
       {
         url: 'http://www.kela.fi/sv/',
         text: 'Ruotsi',
         lang: 'sv',
-        id:'bar'
+        id: 'bar',
       },
     ],
   },
