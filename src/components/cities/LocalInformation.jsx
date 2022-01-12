@@ -109,7 +109,6 @@ const LocalReadMore = ({ content = [] }) => {
           </a>
 
           <div className="flex flex-wrap leading-4 divide-link divide-s">
-
             {languages.map(({ url, text, lang }, k) => (
               <a
                 title={pageName}

@@ -42,7 +42,7 @@ const ReadMoreBlock = ({ content = [], locale }) => {
                   lowercase: LOWERCASE_LOCALES.includes(locale),
                 })}
               >
-                {languages.map(({ url, title: langTitle, locale,id },k) => (
+                {languages.map(({ url, title: langTitle, locale, id }, k) => (
                   <a
                     title={langTitle}
                     rel="noreferrer"

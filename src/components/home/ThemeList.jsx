@@ -2,7 +2,7 @@ import CategoryCard from '@/components/home/ThemeCard'
 
 const ThemeList = ({ showImages, themes }) => (
   <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-28">
-    {themes.map(({ url, title ,id}, i) => (
+    {themes.map(({ url, title, id }, i) => (
       <CategoryCard
         key={`theme-${id}`}
         url={url}

@@ -56,7 +56,7 @@ const Breadcrumbs = ({ items }) => {
             </div>
           )}
           {showBreadcrumbs &&
-            items?.map(({ title, url,id }, i) => (
+            items?.map(({ title, url, id }, i) => (
               <div key={`crumb-${id}`} className="inline-block">
                 <Link href={url} passHref prefetch={false}>
                   <a

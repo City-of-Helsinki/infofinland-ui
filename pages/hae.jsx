@@ -82,7 +82,7 @@ const Result = ({ title, url, path, excerpt, q }) => (
     </h2>
     {path && (
       <p className="">
-        {path.map(({ title, url,id }, i) => (
+        {path.map(({ title, url, id }, i) => (
           <Link key={`result-link-${id}`} href={url} passHref prefetch={false}>
             <a className="text-tiny text-gray">
               {title}
@@ -102,7 +102,7 @@ const Result = ({ title, url, path, excerpt, q }) => (
   </section>
 )
 const SearchResults = ({ results, q }) => {
-  return results.map( r => <Result key={`result-${r.id}`} {...r} q={q} />)
+  return results.map((r) => <Result key={`result-${r.id}`} {...r} q={q} />)
 }
 
 export const SearchPage = ({ q, results, menu, footerMenu }) => {

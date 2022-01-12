@@ -41,8 +41,8 @@ export default function Columns({
   field_columns_right_column,
 }) {
   return (
-    <Block className="border-t border-black">
-      <div className="lg:grid grid-cols-2 gap-16 my-16">
+    <Block className="py-16 ifu-article__columns">
+      <div className="lg:grid grid-cols-2 gap-16">
         <div className="mb-8 lg:mb-0">
           <ColumnMapper {...field_columns_left_column} />
         </div>

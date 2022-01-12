@@ -5,12 +5,15 @@ import Block from '../layout/Block'
 import ContentMapper from './ContentMapper'
 import { IconAngleDown, IconAngleUp } from '../Icons'
 import cls from 'classnames'
+import { useRouter } from 'next/router'
 
 export const AccordionItems = ({ field_accordion_items }) => {
   const [openIndex, setOpenIndex] = useState(null)
   const accordionCount = field_accordion_items.length
+  const { locale } = useRouter()
+
   return (
-    <div className="my-16">
+    <div className="my-16 ifu-accordion">
       {field_accordion_items.map(
         (
           {
@@ -23,6 +26,7 @@ export const AccordionItems = ({ field_accordion_items }) => {
         ) => {
           return (
             <Accordion
+              locale={locale}
               id={id}
               key={`${type}-${id}`}
               last={i + 1 === accordionCount}
@@ -40,14 +44,13 @@ export const AccordionItems = ({ field_accordion_items }) => {
   )
 }
 
-
 const SCROLL_OFFSET = 20 //px
 
-const Accordion = ({ content, heading, toggle, isOpen, last, id }) => {
+const Accordion = ({ content, heading, toggle, isOpen, last, id, locale }) => {
   const titleId = `accordion-title-${id}`
   const scrollRef = useRef()
-  const scrollToRef = () => window.scrollTo(0, scrollRef.current.offsetTop - SCROLL_OFFSET)
-
+  const scrollToRef = () =>
+    window.scrollTo(0, scrollRef.current.offsetTop - SCROLL_OFFSET)
   useEffect(() => {
     if (isOpen) {
       setTimeout(scrollToRef, 10)
@@ -92,7 +95,7 @@ const Accordion = ({ content, heading, toggle, isOpen, last, id }) => {
         timeout={{ appear: 0, enter: 500, exit: 0 }}
       >
         <div className="ifu-accordion__item">
-          <ContentMapper content={content} />
+          <ContentMapper content={content} locale={locale} />
         </div>
       </CSSTransition>
     </>

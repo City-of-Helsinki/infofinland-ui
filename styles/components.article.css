@@ -3,10 +3,6 @@
     --gradientHeight: 250px;
   }
 
-  .-translate-y-1px {
-    transform: translateY(-1px);
-  }
-
   @screen md {
     :root {
       --gradientHeight: 440px;
@@ -51,6 +47,10 @@
     );
   }
 
+  .ifu-landing .ifu-article__columns {
+    @apply border-t border-black mt-16;
+  }
+
   /**
 * Article body styles for markup content from Drupal
 */
@@ -81,10 +81,5 @@
 
   .ifu-article__column-block h4 {
     @apply text-h4 md:text-h4xl my-4 font-bold;
-  }
-
-  .ifu-article__column-block p:first-child,
-  .ifu-article__bodyblock p:first-child {
-    @apply text-body-large mb-8;
   }
 }
