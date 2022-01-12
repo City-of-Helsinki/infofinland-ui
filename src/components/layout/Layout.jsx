@@ -12,6 +12,7 @@ import Router, { useRouter } from 'next/router'
 import NProgress from 'nprogress'
 import CookieConsentBar from '@/components/layout/CookieConsent'
 import MainNavi, { MainNaviError } from '@/components/navi/MainNavi'
+import cls from 'classnames'
 export const FALLBACK_TITLE = 'infofinland.fi'
 /**
  *
@@ -96,6 +97,7 @@ const AppLayout = ({
   node,
   title,
   description,
+  className,
 }) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
@@ -107,7 +109,10 @@ const AppLayout = ({
         title={title || node?.title}
       />
 
-      <div className="relative text-body bg-white" id={`node-${node?.id}`}>
+      <div
+        className={cls('relative text-body bg-white', className)}
+        id={`node-${node?.id}`}
+      >
         <TopMenu menu={menu} />
         <div className=" md:flex md:items-stretch">
           <div className="md:hidden">

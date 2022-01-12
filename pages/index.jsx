@@ -15,6 +15,7 @@ import getConfig from 'next/config'
 import { getResource } from 'next-drupal'
 import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import ContentMapper from '@/components/article/ContentMapper'
+import IngressBlock from '@/components/article/IngressBlock'
 
 export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
@@ -56,25 +57,23 @@ export async function getStaticProps(context) {
 
 const HomePage = ({ menu, footerMenu, node }) => {
   const hero = getHeroFromNode(node)
-
+  const { field_description, field_content, title } = node
   return (
     <Layout
+      node={node}
       menu={menu}
       footerMenu={footerMenu}
-      title={node.title}
-      description={node.description}
+      title={title}
+      className="ifu-landing"
+      description={node.description || field_description}
     >
       <HomeHero
         title={node.title || 'DEMO:Your source for living in Finland'}
         image={hero?.url}
       />
 
-      {node.field_description && (
-        <Block>
-          <p className="mb-8 text-body text-bodytext-color">
-            {node.field_description}
-          </p>
-        </Block>
+      {field_description && (
+        <IngressBlock field_description={field_description} />
       )}
 
       <Block>
@@ -83,9 +82,7 @@ const HomePage = ({ menu, footerMenu, node }) => {
 
       <CitySelector />
 
-      {node.field_content?.length > 0 && (
-        <ContentMapper content={node.field_content} />
-      )}
+      {field_content?.length > 0 && <ContentMapper content={field_content} />}
     </Layout>
   )
 }

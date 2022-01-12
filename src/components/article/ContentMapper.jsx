@@ -18,9 +18,9 @@ export default function ContentMapper({ content, locale }) {
     return null
   }
 
-  return content.map((item, i) => {
-    const { type } = item
-    const key = `paragraph--${i}-${type}`
+  return content.map((item) => {
+    const { type, id } = item
+    const key = `paragraph--${type}-${id}`
     switch (type) {
       case CONTENT_TYPES.TEXT:
         if (

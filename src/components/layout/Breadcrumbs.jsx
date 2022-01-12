@@ -56,8 +56,8 @@ const Breadcrumbs = ({ items }) => {
             </div>
           )}
           {showBreadcrumbs &&
-            items?.map(({ title, url }, i) => (
-              <div key={`crumb-${i}-${title}`} className="inline-block">
+            items?.map(({ title, url, id }, i) => (
+              <div key={`crumb-${id}`} className="inline-block">
                 <Link href={url} passHref prefetch={false}>
                   <a
                     className="text-small md:text-body-small hover:underline"

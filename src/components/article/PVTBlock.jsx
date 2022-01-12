@@ -2,20 +2,18 @@ import Block from '@/components/layout/Block'
 
 export default function PVTBlock({ items }) {
   return items.map(
-    (
-      {
-        field_email_address,
-        field_phonenumber,
-        field_postal_address,
-        field_postal_address_additional,
-        field_service_hours,
-        field_visiting_address,
-        field_visiting_address_additional,
-        title,
-      },
-      i
-    ) => (
-      <Block key={`pvt-${i}`}>
+    ({
+      field_email_address,
+      field_phonenumber,
+      field_postal_address,
+      field_postal_address_additional,
+      field_service_hours,
+      field_visiting_address,
+      field_visiting_address_additional,
+      title,
+      id,
+    }) => (
+      <Block key={`pvt-${id}`}>
         {title && <h4 className="mb-4 text-h4 font-bold">{title}</h4>}
 
         {field_visiting_address && (
