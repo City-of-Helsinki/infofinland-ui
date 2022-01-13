@@ -60,7 +60,13 @@ export const BlankLayout = ({ children, title, description }) => {
   )
 }
 
-export const SecondaryLayout = ({ children, menu, footerMenu, node }) => {
+export const SecondaryLayout = ({
+  children,
+  menu,
+  footerMenu,
+  node,
+  municipalities,
+}) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
   useShowLangMessage(locale)
@@ -68,7 +74,7 @@ export const SecondaryLayout = ({ children, menu, footerMenu, node }) => {
     <>
       <CommonHead description={node?.field_description} title={node?.title} />
       <div className=" relative text-body bg-white">
-        <TopMenu menu={menu} />
+        <TopMenu menu={menu} municipalities={municipalities} />
         <div className="md:mx-auto lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
           <div className=" md:flex md:items-stretch">
             <div className="hidden md:block fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop">

@@ -1,8 +1,8 @@
 import { SecondaryLayout } from '@/components/layout/Layout'
 
-export default function AboutPage({ menu, footerMenu, children }) {
+export default function AboutPage({ children, ...layout }) {
   return (
-    <SecondaryLayout menu={menu} footerMenu={footerMenu} secondary>
+    <SecondaryLayout {...layout} secondary>
       {children}
     </SecondaryLayout>
   )

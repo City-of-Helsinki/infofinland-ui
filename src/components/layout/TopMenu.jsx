@@ -42,7 +42,9 @@ const TopMenu = ({ menu, municipalities }) => {
         <div className="2xl:flex-none xl:flex-grow"></div>
         <Search />
         <MobileNavi menu={menu} />
-        <CityMenu municipalities={municipalities} />
+        {municipalities?.length > 0 && (
+          <CityMenu municipalities={municipalities} />
+        )}
       </div>
     </header>
   )
