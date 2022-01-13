@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { H2 } from '../Typo'
 import Block from '../layout/Block'
