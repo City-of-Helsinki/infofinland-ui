@@ -7,11 +7,11 @@ const AnchorLinksBlock = ({ field_content }) => {
   const headings = field_content.filter(
     ({ type }) => type === CONTENT_TYPES.HEADING
   )
-  const useAnchorLinks = headings.length >= ANCHORLINK_TRESHOLD
 
-  if (!useAnchorLinks) {
+  if (headings.length >= ANCHORLINK_TRESHOLD) {
     return null
   }
+
   return (
     <Block>
       <ul className="py-4 mb-4 list-disc list-outside ms-4 ps-4">
