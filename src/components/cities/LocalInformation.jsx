@@ -6,22 +6,21 @@ import { selectedCity, cityMenuVisibility } from '@/src/store'
 import Block from '@/components/layout/Block'
 import cls from 'classnames'
 import { IconExternalSite } from '@/components/Icons'
-
 import { useTranslation } from 'next-i18next'
 
 import TextLink from '../TextLink'
 const DEMOHTML = `
 <div>
-
 <p>Vocational training is aimed at both young people and adults. You can apply for vocational training all year round. You can study for an upper secondary education or increase your skills in vocational training. Vocational training in Vaasa is organised by Vamia and YA – Vocational College of Ostrobothnia (Yrkesakademin i Österbotten (YA)).</p>
 <p>YA and Vamia also organise preparatory training for basic vocational training, i.e. VALMA. The training lasts for a maximum of one academic year. YA’s VALMA training is in Swedish; Handledande utbildning för yrkesutbildning.</p>
 </div>
 `
 const LocalInformation = ({ readMoreUrl }) => {
-  const [city] = useAtom(selectedCity)
+  const [city, setCity] = useAtom(selectedCity)
   // eslint-disable-next-line no-unused-vars
   const [open, setOpen] = useAtom(cityMenuVisibility)
   const openMenu = () => setOpen(true)
+  const clearCity = () => setCity(null)
   const { t } = useTranslation('common')
 
   return (
@@ -50,6 +49,11 @@ const LocalInformation = ({ readMoreUrl }) => {
             </h3>
           )}
           <div className="md:flex-none mt-6 md:mt-0 mb-2 md:mb-0">
+            {city && (
+              <button className="pb-4 underline pe-4" onClick={clearCity}>
+                {t('localInfo.clear')}
+              </button>
+            )}
             <Button
               onClick={openMenu}
               aria-haspopup="dialog"

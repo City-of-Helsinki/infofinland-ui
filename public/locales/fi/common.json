@@ -53,7 +53,8 @@
   "localInfo": {
     "readMore": "Lue lisää",
     "select": "Valitse kunta",
-    "reselect": "Valitse toinen kunta"
+    "reselect": "Valitse toinen kunta",
+    "clear": "Tyhjennä"
   },
   "search": {
     "loading": "Haetaan...",

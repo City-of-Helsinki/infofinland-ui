@@ -1,6 +1,7 @@
 @layer components {
   :root {
     --gradientHeight: 250px;
+    --targetLinkOffset: -200px;
   }
 
   @screen md {
@@ -86,7 +87,7 @@
   .ifu-heading__h2--target:target {
     display: block;
     position: relative;
-    top: -180px;
+    top: var(--targetLinkOffset);
     visibility: hidden;
     height: 0;
     width: 0;

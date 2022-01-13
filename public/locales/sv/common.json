@@ -1,5 +1,5 @@
 {
-  "buttons": { "close": "!Sulje", "search": "Sök" },
+  "buttons": { "close": "Stäng", "search": "Sök" },
   "feedback": {
     "title": "Respons",
     "buttons": {
