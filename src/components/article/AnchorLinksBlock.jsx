@@ -1,4 +1,4 @@
-const ANCHORLINK_TRESHOLD = 0
+const ANCHORLINK_TRESHOLD = 1
 
 import { CONTENT_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import { headingHash } from './ContentMapper'
