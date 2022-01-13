@@ -13,9 +13,12 @@ exports[`Typography should render the h1 1`] = `
 exports[`Typography should render the h2 1`] = `
 <DocumentFragment>
   <h2
-    class="text-bodytext-color font-sans text-h2 md:text-h2xl"
+    class="text-bodytext-color font-sans text-h2 md:text-h2xl ifu-heading__h2"
   >
     Heading 2
+    <span
+      class="ifu-heading__h2--target"
+    />
   </h2>
 </DocumentFragment>
 `;

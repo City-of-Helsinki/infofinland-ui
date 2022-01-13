@@ -1,9 +1,10 @@
-import { getMenu, getResource } from 'next-drupal'
+import { getMenu, getResource, getResourceCollection } from 'next-drupal'
 import { i18n } from '../../next-i18next.config'
 import axios from 'axios'
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 import getConfig from 'next/config'
-import { NODE_TYPES } from './DRUPAL_API_TYPES'
+import { CONTENT_TYPES, NODE_TYPES } from './DRUPAL_API_TYPES'
+import { getMunicipalityParams, getThemeHeroParams } from './query-params'
 const ROUTER_PATH = '/router/translate-path'
 const NO_DEFAULT_LOCALE = 'dont-use'
 const disableDefaultLocale = (locale) => ({
@@ -19,11 +20,14 @@ export * from './query-params'
 export const NOT_FOUND = { notFound: true }
 
 export const getHeroFromNode = (node) => {
+  if (!node?.field_has_hero) {
+    return null
+  }
   const host = getConfig().publicRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL
   const url = node?.field_hero?.field_hero_image?.field_media_image?.uri?.url
   return {
-    url: url ? `${host}${url}` : undefined,
-    title: node?.field_hero?.field_hero_title,
+    url: url ? `${host}${url}` : null,
+    title: node?.field_hero.field_hero_title || null,
   }
 }
 
@@ -38,6 +42,9 @@ export const getImage = (item) => {
   }
 }
 
+const ERROR_MISSING_LANGUAGE = 'language id missing'
+const MISSING_ID_TOKEN = 'missing'
+
 export const getLinks = ({ collection, locale } = {}) => {
   if (!locale) {
     console.error('Cannot resolve main link without locale')
@@ -46,22 +53,32 @@ export const getLinks = ({ collection, locale } = {}) => {
   return collection?.map(
     ({ field_link_target_site: siteName, field_links, title }) => {
       //is there a link that matches request locale
-      let mainTranslation = field_links.find(
-        ({ field_language }) => field_language.field_locale === locale
-      )
+      let mainTranslation = field_links?.find(({ field_language, id }) => {
+        if (id === MISSING_ID_TOKEN) {
+          console.error(ERROR_MISSING_LANGUAGE)
+          return
+        }
+        return field_language.field_locale === locale
+      })
       //if not, is there a link that matches default locale EN
       if (!mainTranslation) {
-        mainTranslation = field_links?.find(
-          ({ field_language }) =>
-            field_language.field_locale === i18n.defaultLocale
-        )
+        mainTranslation = field_links?.find(({ field_language, id }) => {
+          if (id === MISSING_ID_TOKEN) {
+            console.error(ERROR_MISSING_LANGUAGE)
+            return
+          }
+          return field_language?.field_locale === i18n.defaultLocale
+        })
       }
       //if not, is there a link that matches fallback locale FI
       if (!mainTranslation) {
-        mainTranslation = field_links?.find(
-          ({ field_language }) =>
-            field_language.field_locale === i18n.fallbackLocale
-        )
+        mainTranslation = field_links?.find(({ field_language, id }) => {
+          if (id === MISSING_ID_TOKEN) {
+            console.error(ERROR_MISSING_LANGUAGE)
+            return
+          }
+          return field_language?.field_locale === i18n.fallbackLocale
+        })
       }
       mainTranslation = {
         locale: mainTranslation?.field_language?.field_locale,
@@ -69,10 +86,13 @@ export const getLinks = ({ collection, locale } = {}) => {
       }
 
       const languages = field_links
-        .filter(
-          ({ field_language }) =>
-            field_language.field_locale !== mainTranslation.locale
-        )
+        ?.filter(({ field_language, id }) => {
+          if (id === MISSING_ID_TOKEN) {
+            console.error(ERROR_MISSING_LANGUAGE)
+            return
+          }
+          return field_language.field_locale !== mainTranslation.locale
+        })
         .map(({ field_language, field_language_link }) => {
           return {
             url: field_language_link,
@@ -124,7 +144,7 @@ export const getAboutMenu = async ({ locale }) =>
 
 export const getCommonApiContent = async ({ locale }) => {
   const context = { locale, defaultLocale: NO_DEFAULT_LOCALE }
-  const [menu, footerMenu] = await Promise.all([
+  const [menu, footerMenu, municipalities] = await Promise.all([
     //Main menu or whatever is called
     getMainMenu(context).catch((e) => {
       console.error('menu error', e)
@@ -135,6 +155,11 @@ export const getCommonApiContent = async ({ locale }) => {
       console.error('footerMenu error', e)
       return menuErrorResponse(e)
     }),
+    //Municipalities
+    getMunicipalities(context).catch((e) => {
+      console.error('municipality list error', e)
+      return []
+    }),
   ]).catch((e) => {
     throw e
   })
@@ -142,7 +167,37 @@ export const getCommonApiContent = async ({ locale }) => {
   return {
     menu,
     footerMenu,
+    municipalities,
   }
+}
+
+export const getThemeHeroImages = async ({ tree, context }) => {
+  const responses = await Promise.all(
+    tree.map((page) => resolvePath({ path: page.url, context }))
+  )
+  if (!responses) {
+    return null
+  }
+  const ids = responses.map(({ data }) => data?.entity?.uuid)
+
+  if (!ids || ids.length === 0) {
+    return null
+  }
+
+  const nodes = await Promise.all(
+    ids.map((id) =>
+      getResource(NODE_TYPES.PAGE, id, {
+        locale: context.locale,
+        params: getThemeHeroParams(),
+      })
+    )
+  )
+
+  if (!nodes) {
+    return null
+  }
+
+  return nodes.map(getHeroFromNode)
 }
 
 export const getDefaultLocaleNode = async (id) =>
@@ -160,3 +215,8 @@ export const addPrerenderLocalesToPaths = (paths) =>
       paths.map((path) => ({ ...path, locale }))
     )
     .flat()
+
+export const getMunicipalities = async () =>
+  getResourceCollection(CONTENT_TYPES.MUNICIPALITY, {
+    params: getMunicipalityParams(),
+  })

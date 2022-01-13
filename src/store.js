@@ -13,6 +13,9 @@ export const COOKIE_CONSENT_KEY = 'infofinland-cc'
 
 /** localStorage key for storing municipality selection*/
 export const CITY_ATOM_KEY = 'city'
+
+// export const cities = atom([])
+
 /** Chosen municipality for local information blocks*/
 export const selectedCity = atomWithStorage(CITY_ATOM_KEY, undefined)
 /** Visibility state of municipality menu*/

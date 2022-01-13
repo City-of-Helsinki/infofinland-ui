@@ -5,20 +5,15 @@ import { CONTENT_TYPES, TEXT_HTML_FORMAT } from '@/lib/DRUPAL_API_TYPES'
 import cls from 'classnames'
 import { getImage } from '@/lib/ssr-api'
 
-const ColumnMapper = ({
-  type,
-  field_text,
-  field_image,
-  field_image_caption,
-}) => {
+const ColumnMapper = ({ type, field_text, field_image }) => {
   switch (type) {
     case CONTENT_TYPES.TEXT:
       if (field_text?.format !== TEXT_HTML_FORMAT || !field_text?.processed) {
         return null
       }
       return (
-        <div className={cls('ifu-article__column-block', field_text?.format)}>
-          <ParseHtml html={field_text?.processed} />
+        <div className={cls('ifu-article__column-block', field_text.format)}>
+          <ParseHtml html={field_text.processed} />
         </div>
       )
 
@@ -27,7 +22,6 @@ const ColumnMapper = ({
         <ArticleImage
           className="overflow-hidden relative rounded aspect-square"
           {...getImage({ field_image })}
-          caption={field_image_caption}
         />
       )
 

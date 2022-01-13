@@ -9,8 +9,16 @@ import ContentMapper from '@/components/article/ContentMapper'
 import useThemeList from '@/hooks/useThemeList'
 import { getHeroFromNode } from '@/lib/ssr-api'
 import IngressBlock from '@/components/article/IngressBlock'
+import AnchorLinksBlock from '@/components/article/AnchorLinksBlock'
 
-const ArticlePage = ({ menu, footerMenu, node, color, fiNode }) => {
+const ArticlePage = ({
+  menu,
+  footerMenu,
+  node,
+  color,
+  fiNode,
+  municipalities,
+}) => {
   const { localePath, locale } = useRouterWithLocalizedPath()
   const breadcrumbs = useBreadCrumbs({
     items: menu.items,
@@ -28,7 +36,12 @@ const ArticlePage = ({ menu, footerMenu, node, color, fiNode }) => {
     hero = getHeroFromNode(node)
   }
   return (
-    <Layout menu={menu} footerMenu={footerMenu} node={node}>
+    <Layout
+      menu={menu}
+      footerMenu={footerMenu}
+      node={node}
+      municipalities={municipalities}
+    >
       <Article
         title={title}
         color={color}
@@ -37,6 +50,8 @@ const ArticlePage = ({ menu, footerMenu, node, color, fiNode }) => {
         fiTitle={fiNode?.title}
         heroImage={hero?.url}
       >
+        <AnchorLinksBlock field_content={node.field_content} />
+
         {themes?.length > 0 && (
           <Block hero>
             <ThemeList themes={themes} />
@@ -46,6 +61,7 @@ const ArticlePage = ({ menu, footerMenu, node, color, fiNode }) => {
         {field_description && (
           <IngressBlock field_description={field_description} />
         )}
+
         {node.field_content?.length > 0 && (
           <ContentMapper content={node.field_content} locale={locale} />
         )}

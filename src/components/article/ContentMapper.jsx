@@ -13,6 +13,9 @@ import Columns from './Columns'
 import HtmlBlock from './HtmlBlock'
 import ImageBlock from './ImageBlock'
 
+export const headingId = (id) => `heading-${id}`
+export const headingHash = (id) => `#heading-${id}`
+
 export default function ContentMapper({ content, locale }) {
   if (content?.length === 0) {
     return null
@@ -21,6 +24,7 @@ export default function ContentMapper({ content, locale }) {
   return content.map((item) => {
     const { type, id } = item
     const key = `paragraph--${type}-${id}`
+
     switch (type) {
       case CONTENT_TYPES.TEXT:
         if (
@@ -33,6 +37,7 @@ export default function ContentMapper({ content, locale }) {
       case CONTENT_TYPES.HEADING:
         return (
           <H2
+            id={headingId(id)}
             key={key}
             className={cls(BLOCK_MARGIN, 'my-8 ifu-article__bodyblock')}
           >
