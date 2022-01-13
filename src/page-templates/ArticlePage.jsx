@@ -10,6 +10,7 @@ import useThemeList from '@/hooks/useThemeList'
 import { getHeroFromNode } from '@/lib/ssr-api'
 import IngressBlock from '@/components/article/IngressBlock'
 import AnchorLinksBlock from '@/components/article/AnchorLinksBlock'
+import VideoBlock from '@/components/article/VideoBlock'
 
 const ArticlePage = ({
   menu,
@@ -65,6 +66,13 @@ const ArticlePage = ({
         {node.field_content?.length > 0 && (
           <ContentMapper content={node.field_content} locale={locale} />
         )}
+        <VideoBlock url={'https://www.youtube.com/watch?v=efkqpext2Ik'} />
+        <VideoBlock
+          url={
+            'https://icareus-eu1-progressive.secure2.footprint.net/10154/31238760/285903.mp4/1.0.mp4'
+          }
+        />
+
         <LocalInformation readMoreUrl={'/test'} />
       </Article>
     </Layout>

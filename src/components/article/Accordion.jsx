@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react'
 import { CSSTransition } from 'react-transition-group'
-import { H3 } from '../Typo'
+import { H2 } from '../Typo'
 import Block from '../layout/Block'
 import ContentMapper from './ContentMapper'
 import { IconAngleDown, IconAngleUp } from '../Icons'
@@ -43,32 +43,22 @@ export const AccordionItems = ({ field_accordion_items }) => {
     </div>
   )
 }
-
-const SCROLL_OFFSET = 20 //px
-
 const Accordion = ({ content, heading, toggle, isOpen, last, id, locale }) => {
   const titleId = `accordion-title-${id}`
-  const scrollRef = useRef()
-  const scrollToRef = () =>
-    window.scrollTo(0, scrollRef.current.offsetTop - SCROLL_OFFSET)
-  useEffect(() => {
-    if (isOpen) {
-      setTimeout(scrollToRef, 10)
-    }
-  }, [isOpen])
+
   return (
     <>
-      <Block className="">
+      <Block>
         <div
           className={cls('flex items-center py-4 border-t border-gray-hr', {
             'border-b': last,
           })}
-          ref={scrollRef}
         >
           <div className="flex-grow" id={titleId}>
-            <H3 className="">{heading}</H3>
+            <H2>{heading}</H2>
           </div>
           <button
+            aria-expanded={isOpen}
             onClick={toggle}
             className="inline-block flex-none w-12 h-8 lg:h-12"
           >

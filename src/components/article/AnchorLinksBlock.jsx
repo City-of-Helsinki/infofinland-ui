@@ -8,7 +8,7 @@ const AnchorLinksBlock = ({ field_content }) => {
     ({ type }) => type === CONTENT_TYPES.HEADING
   )
 
-  if (headings.length >= ANCHORLINK_TRESHOLD) {
+  if (headings.length < ANCHORLINK_TRESHOLD) {
     return null
   }
 

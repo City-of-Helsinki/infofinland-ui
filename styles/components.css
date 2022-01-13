@@ -21,7 +21,7 @@
   }
 
   .ifu-button {
-    @apply text-black bg-white shadow-button hover:shadow-button-hover border-2 border-bodytext-color rounded px-4 py-2 leading-6  font-sans font-bold;
+    @apply text-black bg-white shadow-button hover:shadow-button-hover border-2 border-bodytext-color rounded px-4 py-2 leading-6  font-sans font-bold inline-block;
   }
 
   .ifu-button:focus-visible {
