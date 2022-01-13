@@ -131,7 +131,7 @@ export const getThemeHeroParams = () =>
     .addFields(CONTENT_TYPES.FILE, ['uri', 'url'])
     .getQueryObject()
 
-export const getMunicipalityParams = ()=>
+export const getMunicipalityParams = () =>
   new DrupalJsonApiParams()
     .addFields(CONTENT_TYPES.MUNICIPALITY, ['id', 'name'])
     .getQueryObject()

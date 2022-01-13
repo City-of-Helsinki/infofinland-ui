@@ -82,4 +82,13 @@
   .ifu-article__column-block h4 {
     @apply text-h4 md:text-h4xl my-4 font-bold;
   }
+
+  .ifu-heading__h2--target:target {
+    display: block;
+    position: relative;
+    top: -180px;
+    visibility: hidden;
+    height: 0;
+    width: 0;
+  }
 }

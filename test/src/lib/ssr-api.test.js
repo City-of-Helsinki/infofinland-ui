@@ -43,7 +43,7 @@ describe('ssr-api', () => {
   describe('getHeroFromNode', () => {
     it('should return url and title', () => {
       const hero = getHeroFromNode({
-        field_has_hero:true,
+        field_has_hero: true,
         field_hero: {
           field_hero_title: 'title',
           field_hero_image: {
@@ -55,9 +55,8 @@ describe('ssr-api', () => {
       expect(hero.title).toBe('title')
     })
     it('should return null if field_has_hero is not true is given', () => {
-      const hero = getHeroFromNode({field_has_hero:false})
+      const hero = getHeroFromNode({ field_has_hero: false })
       expect(hero).toBeNull()
-
     })
   })
 

@@ -9,6 +9,7 @@ import ContentMapper from '@/components/article/ContentMapper'
 import useThemeList from '@/hooks/useThemeList'
 import { getHeroFromNode } from '@/lib/ssr-api'
 import IngressBlock from '@/components/article/IngressBlock'
+import AnchorLinksBlock from '@/components/article/AnchorLinksBlock'
 
 const ArticlePage = ({
   menu,
@@ -49,6 +50,8 @@ const ArticlePage = ({
         fiTitle={fiNode?.title}
         heroImage={hero?.url}
       >
+        <AnchorLinksBlock field_content={node.field_content} />
+
         {themes?.length > 0 && (
           <Block hero>
             <ThemeList themes={themes} />
@@ -58,6 +61,7 @@ const ArticlePage = ({
         {field_description && (
           <IngressBlock field_description={field_description} />
         )}
+
         {node.field_content?.length > 0 && (
           <ContentMapper content={node.field_content} locale={locale} />
         )}
