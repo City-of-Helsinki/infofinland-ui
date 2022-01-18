@@ -36,7 +36,7 @@ const ReadMoreBlock = ({ content = [], locale }) => {
               {title}
             </a>
 
-            {languages.length > 0 && (
+            {languages?.length > 0 && (
               <div
                 className={cls('flex flex-wrap divide-link divide-s', {
                   lowercase: LOWERCASE_LOCALES.includes(locale),

@@ -43,7 +43,6 @@ describe('ssr-api', () => {
   describe('getHeroFromNode', () => {
     it('should return url and title', () => {
       const hero = getHeroFromNode({
-        field_has_hero: true,
         field_hero: {
           field_hero_title: 'title',
           field_hero_image: {
@@ -51,12 +50,14 @@ describe('ssr-api', () => {
           },
         },
       })
-      expect(hero.url).toBe('https://test.env/hero.png')
+      expect(hero.src).toBe('https://test.env/hero.png')
       expect(hero.title).toBe('title')
     })
-    it('should return null if field_has_hero is not true is given', () => {
-      const hero = getHeroFromNode({ field_has_hero: false })
-      expect(hero).toBeNull()
+    it('should return null values if field_hero is not complete', () => {
+      const hero = getHeroFromNode({ field_hero: {} })
+      expect(hero.color).toBeNull()
+      expect(hero.src).toBeNull()
+      expect(hero.title).toBeNull()
     })
   })
 

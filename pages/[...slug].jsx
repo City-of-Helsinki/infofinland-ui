@@ -1,5 +1,4 @@
 import getConfig from 'next/config'
-import { sample } from 'lodash'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { getResource } from 'next-drupal'
 import ArticlePage from '@/src/page-templates/ArticlePage'
@@ -17,6 +16,7 @@ import {
   getAboutMenu,
   // getPageWithContentByPath,
   resolvePath,
+  menuErrorResponse,
 } from '@/lib/ssr-api'
 
 import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
@@ -82,8 +82,10 @@ export async function getStaticProps(context) {
       locale,
       params: getPageQueryParams(),
     }),
-    getAboutMenu(context),
-    // TODO catch?
+    getAboutMenu(context).catch((e) => {
+      console.error('aboutMenu error', e)
+      return menuErrorResponse()
+    }),
   ])
 
   //Return 404 if node was null
@@ -103,7 +105,6 @@ export async function getStaticProps(context) {
   return {
     props: {
       ...common,
-      color: sample(getConfig().serverRuntimeConfig.HERO_COLORS),
       aboutMenu,
       node,
       fiNode,
@@ -118,10 +119,11 @@ export async function getStaticProps(context) {
  * if page is in aboutMenu, use AboutPage, otherwise use ArticlePage
  */
 const Page = (props) => {
+  console.log(props.node)
   const { localePath } = useRouterWithLocalizedPath()
   const { aboutMenu } = props
   const isAboutPage =
-    aboutMenu.items.find(({ url }) => url === localePath) !== undefined
+    aboutMenu?.items.find(({ url }) => url === localePath) !== undefined
   if (isAboutPage) {
     return <AboutPage {...props} menu={aboutMenu} />
   }

@@ -49,12 +49,8 @@ const LocalInformation = ({ readMoreUrl }) => {
             </h3>
           )}
           <div className="md:flex-none mt-6 md:mt-0 mb-2 md:mb-0">
-            {city && (
-              <button className="pb-4 underline pe-4" onClick={clearCity}>
-                {t('localInfo.clear')}
-              </button>
-            )}
             <Button
+              className="mt-4"
               onClick={openMenu}
               aria-haspopup="dialog"
               aria-expanded={open}
@@ -62,6 +58,14 @@ const LocalInformation = ({ readMoreUrl }) => {
               {!city && t('localInfo.select')}
               {city && t('localInfo.reselect')}
             </Button>
+            {city && (
+              <button
+                className="block lg:inline-block pt-4 font-bold lg:ps-8"
+                onClick={clearCity}
+              >
+                {t('localInfo.clear')}
+              </button>
+            )}
           </div>
         </div>
       </Block>

@@ -14,7 +14,7 @@ import HtmlBlock from './HtmlBlock'
 import ImageBlock from './ImageBlock'
 
 export const headingId = (id) => `heading-${id}`
-export const headingHash = (id) => `#heading-${id}`
+export const headingHash = (id) => `#${headingId(id)}`
 
 export default function ContentMapper({ content, locale }) {
   if (content?.length === 0) {

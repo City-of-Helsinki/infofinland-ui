@@ -6,7 +6,7 @@ import ContentMapper from './ContentMapper'
 import { IconAngleDown, IconAngleUp } from '../Icons'
 import cls from 'classnames'
 import { useRouter } from 'next/router'
-
+import { headingId } from './ContentMapper'
 export const AccordionItems = ({ field_accordion_items }) => {
   const [openIndex, setOpenIndex] = useState(null)
   const accordionCount = field_accordion_items.length
@@ -55,7 +55,7 @@ const Accordion = ({ content, heading, toggle, isOpen, last, id, locale }) => {
           })}
         >
           <div className="flex-grow" id={titleId}>
-            <H2>{heading}</H2>
+            <H2 id={headingId(id)}>{heading}</H2>
           </div>
           <button
             aria-expanded={isOpen}

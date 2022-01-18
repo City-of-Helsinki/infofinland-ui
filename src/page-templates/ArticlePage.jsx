@@ -12,14 +12,7 @@ import IngressBlock from '@/components/article/IngressBlock'
 import AnchorLinksBlock from '@/components/article/AnchorLinksBlock'
 import VideoBlock from '@/components/article/VideoBlock'
 
-const ArticlePage = ({
-  menu,
-  footerMenu,
-  node,
-  color,
-  fiNode,
-  municipalities,
-}) => {
+const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
   const { localePath, locale } = useRouterWithLocalizedPath()
   const breadcrumbs = useBreadCrumbs({
     items: menu.items,
@@ -31,11 +24,14 @@ const ArticlePage = ({
     path: localePath,
   })
 
-  const { title, revision_timestamp, field_has_hero, field_description } = node
-  let hero = null
-  if (field_has_hero) {
-    hero = getHeroFromNode(node)
-  }
+  const {
+    title,
+    revision_timestamp,
+    field_description,
+    field_use_anchor_links = true,
+  } = node
+  const hero = getHeroFromNode(node)
+
   return (
     <Layout
       menu={menu}
@@ -45,13 +41,15 @@ const ArticlePage = ({
     >
       <Article
         title={title}
-        color={color}
         breadcrumbs={breadcrumbs}
         date={revision_timestamp}
         fiTitle={fiNode?.title}
-        heroImage={hero?.url}
+        color={hero.color}
+        heroImage={hero.url}
       >
-        <AnchorLinksBlock field_content={node.field_content} />
+        {field_use_anchor_links && (
+          <AnchorLinksBlock field_content={node.field_content} />
+        )}
 
         {themes?.length > 0 && (
           <Block hero>

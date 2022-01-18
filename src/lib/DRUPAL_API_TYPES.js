@@ -24,6 +24,7 @@ export const CONTENT_TYPES = {
   COLUMN_RIGHT: 'field_columns_right_column',
   LANGUAGE: 'taxonomy_term--language',
   MUNICIPALITY: 'taxonomy_term--municipalitys',
+  HERO_COLOR: 'taxonomy_term--colors',
 }
 
 export const TEXT_HTML_FORMAT = 'full_html'

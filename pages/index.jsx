@@ -84,7 +84,7 @@ const HomePage = ({ menu, footerMenu, node, themes, municipalities }) => {
     >
       <HomeHero
         title={node.title || 'DEMO:Your source for living in Finland'}
-        image={hero?.url}
+        src={hero?.src}
       />
 
       {field_description && (
