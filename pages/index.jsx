@@ -54,7 +54,7 @@ export async function getStaticProps(context) {
 
   const themes = common.menu.tree.map(({ url, title, id }, i) => {
     const image = themeImages.at(i)
-    return { url, title, id, image: image?.url || null }
+    return { url, title, id, image: image?.src || null }
   })
 
   return {

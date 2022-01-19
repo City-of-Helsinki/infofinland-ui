@@ -4,33 +4,49 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs'
 import HeroImage from './HeroImage'
 import { HERO_MARGIN } from '@/components/layout/Block'
 
-// Tailwind color classes. Must be written out or css purge will remove them.
+// Tailwind color classes. Must be written out, not interpolated, for minification
+// Failsafe classes if dynamic color taxonomy is not set in Drupal or not given to page
 const BG_COLORS = {
-  punainen: 'bg-article-red',
-  vihreä: 'bg-article-green',
-  sininen: 'bg-article-blue',
-  oranssi: 'bg-article-orange',
-  red: 'bg-article-red',
-  green: 'bg-article-green',
-  blue: 'bg-article-blue',
-  orange: 'bg-article-orange',
+  punainen: 'ifu-article__bg--red',
+  vihreä: 'ifu-article__bg--green',
+  sininen: 'ifu-article__bg--blue',
+  oranssi: 'ifu-article__bg--orange',
+  red: 'ifu-article__bg--red',
+  green: 'ifu-article__bg--green',
+  blue: 'ifu-article__bg--blue',
+  orange: 'ifu-article__bg--orange',
 }
 
 const Article = ({ children, breadcrumbs, color, ...heroProps }) => {
+  const hex = color?.field_color_hex?.color
+  const colorName = color?.name?.toLowerCase()
+  let colorClass =
+    typeof hex !== 'undefined'
+      ? 'ifu-article__bg--dynamic'
+      : BG_COLORS[colorName]
+  colorClass = colorClass || BG_COLORS.red
   return (
-    <div className={cls(' relative', BG_COLORS[color])}>
-      {/* scrollable breadcrumbs  */}
-      <div
-        className={cls(HERO_MARGIN, {
-          'px-6 lg:px-12': !heroProps.heroImage,
-        })}
-      >
-        <Breadcrumbs items={breadcrumbs} />
-      </div>
+    <>
+      {colorName && (
+        <style global jsx>{`
+          :root {
+            --bgColor: ${hex};
+          }
+        `}</style>
+      )}
+      <div className={cls('relative', colorClass)}>
+        <div
+          className={cls(HERO_MARGIN, {
+            'px-6 lg:px-12': !heroProps.heroImage,
+          })}
+        >
+          <Breadcrumbs items={breadcrumbs} />
+        </div>
 
-      <HeroImage {...heroProps} />
-      {children}
-    </div>
+        <HeroImage {...heroProps} />
+        {children}
+      </div>
+    </>
   )
 }
 

@@ -2,10 +2,13 @@
   :root {
     --gradientHeight: 250px;
     --targetLinkOffset: -200px;
+    /*gradient colors in separate vars, for static use*/
     --bgRed: #eb6b5c;
-    --bgGreen: rgba(180, 222, 147, 1);
-    --bgBlue: rgba(127, 213, 249, 1);
-    --bgOrange: rgba(244, 163, 104, 1);
+    --bgGreen: #b4de93;
+    --bgBlue: #7fd5f9;
+    --bgOrange: #f4a368;
+    /* set this from Drupal*/
+    --bgColor: #7fd5f9;
   }
 
   @screen md {
@@ -15,8 +18,18 @@
   }
   /**
   * Hero area background colors
+
   */
-  .bg-article-red {
+
+  .ifu-article__bg--dynamic {
+    background: linear-gradient(
+      180deg,
+      var(--bgColor) var(--gradientHeight),
+      rgba(255, 255, 255, 1) var(--gradientHeight)
+    );
+  }
+
+  .ifu-article__bg--red {
     /* background: rgb(235,107,92); */
     background: linear-gradient(
       180deg,
@@ -25,7 +38,7 @@
     );
   }
 
-  .bg-article-green {
+  .ifu-article__bg--green {
     /* background: rgb(180,222,147); */
     background: linear-gradient(
       180deg,
@@ -34,7 +47,7 @@
     );
   }
 
-  .bg-article-blue {
+  .ifu-article__bg--blue {
     /* background: rgb(127,213,249); */
     background: linear-gradient(
       180deg,
@@ -43,7 +56,7 @@
     );
   }
 
-  .bg-article-orange {
+  .ifu-article__bg--orange {
     /* background: rgb(244,163,104); */
     background: linear-gradient(
       180deg,
@@ -52,6 +65,7 @@
     );
   }
 
+  /* Add stripe to columns in landing page */
   .ifu-landing .ifu-article__columns {
     @apply border-t border-black mt-16;
   }

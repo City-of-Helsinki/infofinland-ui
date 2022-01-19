@@ -8,7 +8,7 @@
     "skipTo": "Siirry sisältöön"
   },
   "feedback": {
-    "title": "Lähetä palutetta",
+    "title": "Lähetä palautetta",
     "urlLabel": "Sivun osoite",
     "buttons": {
       "send": "Lähetä",
@@ -44,14 +44,14 @@
   },
   "languageMessage": {
     "title": "Haluatko vaihtaa kieltä?",
-    "text": "Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
+    "text": "TODO: Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
   },
   "lang404": {
     "title": "Sivua ei löydy tällä kielellä",
     "text": "Valitettavasti sivua ei ole valitsemallasi kielellä. Löydät tietoa aiheesta seuraavilla kielillä: "
   },
   "localInfo": {
-    "readMore": "Lue lisää",
+    "readMore": "Lue lisää: TODO CHECK LANGS",
     "select": "Valitse kunta",
     "reselect": "Valitse toinen kunta",
     "clear": "Tyhjennä"

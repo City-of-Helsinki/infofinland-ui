@@ -42,12 +42,12 @@ const MessageCard = ({
 
   useEffect(() => setShow(isOpen), [isOpen])
 
-  const _confirm = () => {
+  const handleConfirm = () => {
     setShow(false)
     confirm && confirm()
   }
 
-  const _cancel = () => {
+  const handleCancel = () => {
     setShow(false)
     cancel && cancel()
   }
@@ -86,9 +86,9 @@ const MessageCard = ({
             {text && <div className=" text-message">{text}</div>}
             <div className="flex-grow">{children}</div>
             <div className="mt-2 text-right">
-              {!cancel && <MessageButton onClick={_confirm} />}
-              {cancel && <MessageButton onClick={_cancel} cancel />}
-              {cancel && <MessageButton onClick={_confirm} confirm />}
+              {!cancel && <MessageButton onClick={handleConfirm} />}
+              {cancel && <MessageButton onClick={handleCancel} cancel />}
+              {cancel && <MessageButton onClick={handleConfirm} confirm />}
             </div>
           </div>
         </div>

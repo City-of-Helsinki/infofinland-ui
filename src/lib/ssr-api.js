@@ -29,7 +29,7 @@ export const getHeroFromNode = (node) => {
   return {
     src: url ? `${host}${url}` : null,
     title: node?.field_hero?.field_hero_title || null,
-    color: node?.field_hero?.field_hero_bg_color?.name || null,
+    color: node?.field_hero?.field_hero_bg_color || null,
   }
 }
 

@@ -65,7 +65,7 @@ const SearchBar = ({ qw }) => {
           onChange={({ target: { value } }) => setQuery(value)}
           className=" inline-block flex-grow px-2 h-12"
         />
-        <button className="inline-block flex-none w-12 h-12">
+        <button className="flex-none w-12 h-12">
           <IconLookingGlass className="mx-2" />
         </button>
       </form>

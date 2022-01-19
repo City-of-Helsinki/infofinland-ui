@@ -41,8 +41,9 @@
   },
   "localInfo": {
     "readMore": "Read more",
-    "select": "Choose City",
-    "reselect": "Change City"
+    "select": "Select City",
+    "reselect": "Change City",
+    "clear": "Clear"
   },
   "languageSelector": {
     "button": "Languages"

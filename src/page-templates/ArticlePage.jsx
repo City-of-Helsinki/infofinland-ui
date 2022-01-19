@@ -30,6 +30,7 @@ const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
     field_description,
     field_use_anchor_links = true,
   } = node
+
   const hero = getHeroFromNode(node)
 
   return (
@@ -45,8 +46,12 @@ const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
         date={revision_timestamp}
         fiTitle={fiNode?.title}
         color={hero.color}
-        heroImage={hero.url}
+        heroImage={hero.src}
       >
+        {field_description && (
+          <IngressBlock field_description={field_description} />
+        )}
+
         {field_use_anchor_links && (
           <AnchorLinksBlock field_content={node.field_content} />
         )}
@@ -55,10 +60,6 @@ const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
           <Block hero>
             <ThemeList themes={themes} />
           </Block>
-        )}
-
-        {field_description && (
-          <IngressBlock field_description={field_description} />
         )}
 
         {node.field_content?.length > 0 && (
