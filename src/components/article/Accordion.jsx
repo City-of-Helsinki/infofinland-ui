@@ -1,4 +1,4 @@
-import { useState ,useRef} from 'react'
+import { useState, useRef } from 'react'
 import { CSSTransition } from 'react-transition-group'
 import { H2 } from '../Typo'
 import Block from '../layout/Block'
@@ -7,9 +7,10 @@ import { IconAngleDown, IconAngleUp } from '../Icons'
 import cls from 'classnames'
 import { useRouter } from 'next/router'
 import { headingId } from './ContentMapper'
+import { useIsVisible } from 'react-is-visible'
 
 export const AccordionItems = ({ field_accordion_items }) => {
-  const [openIndex, setOpenIndex] = useState(null)
+  const [openId, setOpenId] = useState(null)
   const accordionCount = field_accordion_items.length
   const { locale } = useRouter()
 
@@ -31,9 +32,9 @@ export const AccordionItems = ({ field_accordion_items }) => {
               id={id}
               key={`${type}-${id}`}
               last={i + 1 === accordionCount}
-              isOpen={openIndex === id}
+              isOpen={openId === id}
               toggle={() => {
-                setOpenIndex(id === openIndex ? null : id)
+                setOpenId(id === openId ? null : id)
               }}
               content={field_accordion_item_content}
               heading={field_accordion_item_heading}
@@ -44,9 +45,10 @@ export const AccordionItems = ({ field_accordion_items }) => {
     </div>
   )
 }
-const Accordion = ({ content, heading, toggle, isOpen, last, id, locale }) => {
+const Accordion = ({ content, heading, toggle,  isOpen, last, id, locale }) => {
   const panelId = `accordion-panel-${id}`
   const scrollRef = useRef()
+  const isInViewport = useIsVisible(scrollRef)
 
   return (
     <>
@@ -99,12 +101,15 @@ const Accordion = ({ content, heading, toggle, isOpen, last, id, locale }) => {
         }}
         appear
         onEntered={() => {
-          scrollRef.current?.scrollIntoView({
-            block: 'start',
-            behaviour: 'smooth',
-          })
+          console.log({isInViewport})
+          if (!isInViewport) {
+            scrollRef.current?.scrollIntoView({
+              block: 'start',
+              behaviour: 'auto',
+            })
+          }
         }}
-        timeout={{ appear: 0, enter: 150, exit: 50 }}
+        timeout={{ appear: 0, enter: 10, exit: 0 }}
       >
         <div className="overflow-hidden ifu-accordion__item" id={panelId}>
           <ContentMapper content={content} locale={locale} />

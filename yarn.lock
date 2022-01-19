@@ -4194,7 +4194,7 @@ highlight-words-core@^1.2.0:
   resolved "https://registry.yarnpkg.com/highlight-words-core/-/highlight-words-core-1.2.2.tgz#1eff6d7d9f0a22f155042a00791237791b1eeaaa"
   integrity sha512-BXUKIkUuh6cmmxzi5OIbUJxrG8OAk2MqoL1DtO3Wo9D2faJg2ph5ntyuQeLqaHJmzER6H5tllCDA9ZnNe9BVGg==
 
-hoist-non-react-statics@^3.2.0, hoist-non-react-statics@^3.3.0:
+hoist-non-react-statics@3.3.2, hoist-non-react-statics@^3.2.0, hoist-non-react-statics@^3.3.0:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz#ece0acaf71d62c2969c2ec59feff42a4b1a85b45"
   integrity sha512-/gGivxi8JPKWNm/W0jSmzcMPpfpPLc3dY/6GxhX2hQ9iGj3aDfklV4ET7NjKpSinLpJ5vafa9iiGIEZg10SfBw==
@@ -6748,6 +6748,14 @@ react-i18next@^11.8.13:
   dependencies:
     "@babel/runtime" "^7.14.5"
     html-parse-stringify "^3.0.1"
+
+react-is-visible@1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/react-is-visible/-/react-is-visible-1.1.2.tgz#c9476af93948dcb2d5ac0e3edf80188f13ae26c8"
+  integrity sha512-/QiX/OEGIY7JvlUUfgtKKBBDMZU5G2mkJRNVooD/hDvt8zsfMn07HXNT+rY5zAfxIHj/ZUPWy66A1xbXFyLvOg==
+  dependencies:
+    "@babel/runtime" "^7.12.5"
+    hoist-non-react-statics "3.3.2"
 
 react-is@17.0.2, "react-is@^16.12.0 || ^17.0.0", react-is@^17.0.1, react-is@^17.0.2:
   version "17.0.2"

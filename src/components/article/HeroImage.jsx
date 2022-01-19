@@ -25,13 +25,13 @@ const HeroImage = ({ heroImage, ...rest }) => {
             objectFit="cover"
           />
         </div>
-        <ArticleHeading forHeroImage={!!heroImage} {...rest} />
+        <ArticleHeading forHeroImage {...rest} />
       </>
     )
   } else {
     return (
       <div className={cls({ 'h-hero md:h-heroxl relative': !heroImage })}>
-        <ArticleHeading forHeroImage={!heroImage} {...rest} />
+        <ArticleHeading  {...rest} />
       </div>
     )
   }

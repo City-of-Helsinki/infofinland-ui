@@ -18,6 +18,8 @@ const BG_COLORS = {
 }
 
 const Article = ({ children, breadcrumbs, color, ...heroProps }) => {
+  // Set article background from drupal if color code is given
+  // Otherwise, use RED.
   const hex = color?.field_color_hex?.color
   const colorName = color?.name?.toLowerCase()
   let colorClass =
@@ -25,6 +27,7 @@ const Article = ({ children, breadcrumbs, color, ...heroProps }) => {
       ? 'ifu-article__bg--dynamic'
       : BG_COLORS[colorName]
   colorClass = colorClass || BG_COLORS.red
+
   return (
     <>
       {colorName && (
