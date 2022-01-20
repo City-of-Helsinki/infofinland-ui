@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import { BLOCK_MARGIN, HERO_MARGIN } from '@/components/layout/Block'
 
 export default function ArticleHeading({
-  forHeroImage=false,
+  forHeroImage = false,
   title,
   date,
   themeHero,

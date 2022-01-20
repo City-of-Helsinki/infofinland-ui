@@ -31,7 +31,7 @@ const HeroImage = ({ heroImage, ...rest }) => {
   } else {
     return (
       <div className={cls({ 'h-hero md:h-heroxl relative': !heroImage })}>
-        <ArticleHeading  {...rest} />
+        <ArticleHeading {...rest} />
       </div>
     )
   }

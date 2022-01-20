@@ -6,7 +6,7 @@ const Breadcrumbs = ({ items }) => {
   const parent = items?.at(-2)
   const showBreadcrumbs = items?.length > 1
   return (
-    <nav className="block relative pt-4 pb-2 mb-2 text-black">
+    <nav className="block relative pt-4 pb-2 mb-2 h-12 text-black">
       {/* Mobile */}
       {parent && (
         <Link href={parent.url} passHref prefetch={false}>

@@ -33,7 +33,15 @@ const baseQueryParams = () =>
     // Heading
     .addFields(CONTENT_TYPES.HEADING, ['field_title'])
     // paragraph image
-    .addFields(CONTENT_TYPES.MEDIA_IMAGE, ['field_media_image'])
+    .addFields(CONTENT_TYPES.PARAGRAPH_IMAGE, [
+      'field_image',
+      'field_image_caption',
+      'langcode',
+    ])
+    .addFields(CONTENT_TYPES.MEDIA_IMAGE, [
+      'field_media_image',
+      'field_photographer',
+    ])
     // Hero
     .addFields(CONTENT_TYPES.HERO, [
       'field_hero_title',
@@ -101,15 +109,15 @@ export const getPageQueryParams = () =>
   baseQueryParams()
     .addInclude([
       // These content types are not avalable for landing page
-      // //Link collections: link and translations including translated locale codes
+      //Link collections: link and translations including translated locale codes
       // 'field_content.field_link_collection.field_links.field_language',
-      // //Contact information fragments
+      //Contact information fragments
       'field_content.field_contact_data',
-      // //Accordion: text, images, links, columns
+      //Accordion: text, images, links, columns
       'field_content.field_accordion_items.field_accordion_item_content.field_columns_left_column.field_image.field_media_image',
       'field_content.field_accordion_items.field_accordion_item_content.field_columns_right_column.field_image.field_media_image',
       // 'field_content.field_accordion_items.field_accordion_item_content.field_link_collection.field_links.field_language',
-      // 'field_content.field_accordion_items.field_accordion_item_content.field_image.field_media_image',
+      'field_content.field_accordion_items.field_accordion_item_content.field_image.field_media_image',
     ])
     .addFields(NODE_TYPES.PAGE, [
       'id',

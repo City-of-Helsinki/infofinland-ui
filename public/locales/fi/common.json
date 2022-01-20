@@ -69,6 +69,7 @@
   "footer": {
     "helsinkiDisclaimer": "InfoFinland.fi-sivustoa julkaisee Helsingin kaupunki, ja sitä rahoittavat valtio ja InfoFinlandin jäsenkunnat."
   },
+  "images": { "photographer": "Kuva" },
   "cookies": {
     "title": "infoFinland.fi käyttää evästeitä",
     "text": "Tämä sivusto käyttää välttämättömiä evästeitä suorituskyvyn varmistamiseksi sekä yleisen käytön seurantaan. Lisäksi käytämme kohdennusevästeitä käyttäjäkokemuksen parantamiseksi.",

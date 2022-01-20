@@ -45,7 +45,7 @@ export const AccordionItems = ({ field_accordion_items }) => {
     </div>
   )
 }
-const Accordion = ({ content, heading, toggle,  isOpen, last, id, locale }) => {
+const Accordion = ({ content, heading, toggle, isOpen, last, id, locale }) => {
   const panelId = `accordion-panel-${id}`
   const scrollRef = useRef()
   const isInViewport = useIsVisible(scrollRef)
@@ -54,8 +54,8 @@ const Accordion = ({ content, heading, toggle,  isOpen, last, id, locale }) => {
     <>
       <Block>
         <div
-          className={cls('flex items-center py-4 border-t border-gray-hr', {
-            'border-b': last,
+          className={cls('flex items-center py-5 border-t border-gray-hr', {
+            'border-b': last && !isOpen,
           })}
         >
           <div className="relative flex-grow">
@@ -101,7 +101,7 @@ const Accordion = ({ content, heading, toggle,  isOpen, last, id, locale }) => {
         }}
         appear
         onEntered={() => {
-          console.log({isInViewport})
+          console.log({ isInViewport })
           if (!isInViewport) {
             scrollRef.current?.scrollIntoView({
               block: 'start',

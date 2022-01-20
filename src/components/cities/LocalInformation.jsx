@@ -27,7 +27,7 @@ const LocalInformation = ({ readMoreUrl }) => {
   return (
     <div className="mb-8">
       <Block className="flex items-center h-14 bg-green-lighter lg:rounded-t">
-        <h3 className="md:flex-grow text-body font-bold">
+        <h3 className="md:flex-grow text-body font-bold -translate-x-4">
           <IconMapMarker className="h-7 lg:h-8 me-3" />
           Local information
         </h3>
@@ -54,7 +54,9 @@ const LocalInformation = ({ readMoreUrl }) => {
             </button>
           )}
         </div>
-
+        {!city && (
+          <p className="mt-2">See related information to your local city.</p>
+        )}
         <CSSTransition
           in={isOpen}
           classNames={{

@@ -1,5 +1,6 @@
 import Block from '@/components/layout/Block'
 import Image from 'next/image'
+import { useTranslation } from 'next-i18next'
 
 const getFit = ({ width, height }) => (width < height ? 'contain' : 'cover')
 
@@ -10,29 +11,38 @@ export const ArticleImage = ({
   title,
   alt,
   caption,
+  photographer,
   className,
   fit,
   layout = 'fill',
-}) => (
-  <>
-    <div className={className}>
-      {src && (
-        <Image
-          alt={alt}
-          src={src}
-          title={title}
-          layout={layout}
-          objectFit={fit || getFit({ width, height })}
-          {...(layout === 'fill' ? {} : { width, height })}
-        />
-      )}
-    </div>
+}) => {
+  const { t } = useTranslation('common')
+  return (
+    <>
+      <div className={className}>
+        {src && (
+          <Image
+            alt={alt}
+            src={src}
+            title={title}
+            layout={layout}
+            objectFit={fit || getFit({ width, height })}
+            {...(layout === 'fill' ? {} : { width, height })}
+          />
+        )}
+      </div>
 
-    {caption && (
-      <p className="mt-2 text-body-small text-gray-dark">{caption}</p>
-    )}
-  </>
-)
+      {caption && (
+        <p className="mt-2 text-body-small text-gray-dark">{caption}</p>
+      )}
+      {photographer && (
+        <p className="mt-2 text-action text-gray-dark">
+          {t('images.photographer')}: {photographer}
+        </p>
+      )}
+    </>
+  )
+}
 
 const ImageBlock = ({ caption, src, height, width, title, alt }) => {
   return (

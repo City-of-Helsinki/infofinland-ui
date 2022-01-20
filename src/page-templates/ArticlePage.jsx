@@ -65,14 +65,14 @@ const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
         {node.field_content?.length > 0 && (
           <ContentMapper content={node.field_content} locale={locale} />
         )}
+
+        <LocalInformation readMoreUrl={'/test'} />
         <VideoBlock url={'https://www.youtube.com/watch?v=efkqpext2Ik'} />
         <VideoBlock
           url={
             'https://icareus-eu1-progressive.secure2.footprint.net/10154/31238760/285903.mp4/1.0.mp4'
           }
         />
-
-        <LocalInformation readMoreUrl={'/test'} />
       </Article>
     </Layout>
   )
