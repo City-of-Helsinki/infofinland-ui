@@ -119,7 +119,6 @@ export async function getStaticProps(context) {
  * if page is in aboutMenu, use AboutPage, otherwise use ArticlePage
  */
 const Page = (props) => {
-  console.log(props.node)
   const { localePath } = useRouterWithLocalizedPath()
   const { aboutMenu } = props
   const isAboutPage =

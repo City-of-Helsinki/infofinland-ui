@@ -72,7 +72,7 @@ const LocalInformation = ({ readMoreUrl }) => {
           }}
           mountOnEnter
           unmountOnExit
-          timeout={{ appear: 0, enter: 300, exit: 300 }}
+          timeout={{ appear: 0, enter: 300, exit: 100 }}
         >
           <div className="mt-8">
             <ParseHtml html={DEMOHTML} />
