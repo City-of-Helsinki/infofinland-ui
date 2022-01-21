@@ -7,7 +7,7 @@ import AccordionItems from './Accordion'
 import { CONTENT_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import { getImage, getLinks } from '@/lib/ssr-api'
 
-import PVTBlock from './PVTBlock'
+import PTVBlock from './PTVBlock'
 import { TEXT_HTML_FORMAT } from '@/lib/DRUPAL_API_TYPES'
 import Columns from './Columns'
 import HtmlBlock from './HtmlBlock'
@@ -63,8 +63,8 @@ export default function ContentMapper({ content, locale }) {
           />
         )
 
-      case CONTENT_TYPES.PVT:
-        return <PVTBlock items={item.field_contact_data} key={key} />
+      case CONTENT_TYPES.PTV:
+        return <PTVBlock items={item.field_contact_data} key={key} />
 
       case CONTENT_TYPES.COLUMNS:
         return <Columns {...item} />
