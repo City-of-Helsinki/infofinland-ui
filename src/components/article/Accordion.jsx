@@ -101,15 +101,15 @@ const Accordion = ({ content, heading, toggle, isOpen, last, id, locale }) => {
         }}
         appear
         onEntered={() => {
-          console.log({ isInViewport })
           if (!isInViewport) {
             scrollRef.current?.scrollIntoView({
               block: 'start',
-              behaviour: 'auto',
             })
           }
         }}
-        timeout={{ appear: 0, enter: 50, exit: 0 }}
+        // Note that enter-time is considerably shorter
+        // than animation time to prevent content from jumping when another pane is opened
+        timeout={{ appear: 0, enter: 10, exit: 0 }}
       >
         <div className="overflow-hidden ifu-accordion__item" id={panelId}>
           <ContentMapper content={content} locale={locale} />

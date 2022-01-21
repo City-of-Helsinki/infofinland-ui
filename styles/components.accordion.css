@@ -12,10 +12,10 @@
   }
 
   .ifu-accordion__item.ifu-accordion--enter-active {
-    @apply opacity-100 transition-opacity duration-300 max-h-full ease-in;
+    @apply opacity-20 transition-opacity duration-100 max-h-full ease-in;
   }
   .ifu-accordion__item.ifu-accordion--enter-done {
-    @apply opacity-100 transition-opacity duration-300 max-h-full ease-in;
+    @apply opacity-100 transition-opacity duration-500 max-h-full ease-out;
   }
   /* .ifu-accordion__item.ifu-accordion--exit {
     @apply opacity-100 max-h-full;

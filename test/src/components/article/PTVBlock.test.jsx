@@ -10,7 +10,7 @@ import PVTBlock from '@/components/article/PTVBlock'
 const ITEMS = [
   {
     field_email_address: 'aa@bb.com',
-    field_phonenumber: '+358 044 676 9539',
+    field_phonenumber: ['+358 044 676 9539'],
     field_postal_address: 'Osoite 1 A',
     field_postal_address_additional: 'Kolmas kerros',
     field_service_hours: 'ma-pe: 10-16, la:12-14',

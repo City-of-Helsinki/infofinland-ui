@@ -54,9 +54,7 @@ const LocalInformation = ({ readMoreUrl }) => {
             </button>
           )}
         </div>
-        {!city && (
-          <p className="mt-2">See related information to your local city.</p>
-        )}
+        {!city && <p className="mt-2">{t('localInfo.help')}</p>}
         <CSSTransition
           in={isOpen}
           classNames={{
@@ -72,7 +70,7 @@ const LocalInformation = ({ readMoreUrl }) => {
           }}
           mountOnEnter
           unmountOnExit
-          timeout={{ appear: 0, enter: 300, exit: 100 }}
+          timeout={{ appear: 0, enter: 300, exit: 0 }}
         >
           <div className="mt-8">
             <ParseHtml html={DEMOHTML} />

@@ -54,7 +54,8 @@
     "readMore": "Lue lisää: TODO CHECK LANGS",
     "select": "Valitse kunta",
     "reselect": "Valitse toinen kunta",
-    "clear": "Tyhjennä"
+    "clear": "Tyhjennä",
+    "help": "See more information related to your municipality."
   },
   "search": {
     "loading": "Haetaan...",

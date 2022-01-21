@@ -37,7 +37,7 @@ export const getImage = (item) => {
   const host = getConfig().publicRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL
   const url = item.field_image?.field_media_image?.uri?.url
   const caption = item.field_image_caption
-  const photographer = item.field_image.field_photographer
+  const photographer = item.field_image?.field_photographer
   return {
     src: url ? `${host}${url}` : undefined,
     caption,

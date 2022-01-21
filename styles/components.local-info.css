@@ -8,7 +8,7 @@
   .ifu-local-info__content--enter-done {
     @apply opacity-100;
   }
-  .ifu-local-info__content--exit {
+  /* .ifu-local-info__content--exit {
     @apply opacity-100;
   }
   .ifu-local-info__content--exit-active {
@@ -16,5 +16,5 @@
   }
   .ifu-local-info__content--exit-done {
     @apply opacity-0;
-  }
+  } */
 }
