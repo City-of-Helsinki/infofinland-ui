@@ -3,7 +3,7 @@
 exports[`Columns should render text and images 1`] = `
 <DocumentFragment>
   <div
-    class="px-6 lg:px-12 lg:mx-12  xl:mx-28 2xl:mx-48  3xl:ms-64  3xl:max-w-4xl py-16 ifu-article__columns"
+    class="px-6 lg:mx-12 xl:mx-28 2xl:mx-48 3xl:ms-64 3xl:max-w-4xl py-16 ifu-article__columns"
   >
     <div
       class="lg:grid grid-cols-2 gap-16"
@@ -21,7 +21,7 @@ exports[`Columns should render text and images 1`] = `
         class="mb-8 lg:mb-0"
       >
         <div
-          class="overflow-hidden relative rounded aspect-square"
+          class="overflow-hidden relative rounded aspect-video lg:aspect-square"
         >
           <span
             style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
@@ -35,11 +35,6 @@ exports[`Columns should render text and images 1`] = `
             <noscript />
           </span>
         </div>
-        <p
-          class="mt-2 text-body-small text-gray-dark"
-        >
-          Kuvatekstiä
-        </p>
       </div>
     </div>
   </div>

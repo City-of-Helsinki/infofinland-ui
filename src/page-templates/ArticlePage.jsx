@@ -12,14 +12,7 @@ import IngressBlock from '@/components/article/IngressBlock'
 import AnchorLinksBlock from '@/components/article/AnchorLinksBlock'
 import VideoBlock from '@/components/article/VideoBlock'
 
-const ArticlePage = ({
-  menu,
-  footerMenu,
-  node,
-  color,
-  fiNode,
-  municipalities,
-}) => {
+const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
   const { localePath, locale } = useRouterWithLocalizedPath()
   const breadcrumbs = useBreadCrumbs({
     items: menu.items,
@@ -31,11 +24,15 @@ const ArticlePage = ({
     path: localePath,
   })
 
-  const { title, revision_timestamp, field_has_hero, field_description } = node
-  let hero = null
-  if (field_has_hero) {
-    hero = getHeroFromNode(node)
-  }
+  const {
+    title,
+    revision_timestamp,
+    field_description,
+    field_use_anchor_links = true,
+  } = node
+
+  const hero = getHeroFromNode(node)
+
   return (
     <Layout
       menu={menu}
@@ -45,13 +42,19 @@ const ArticlePage = ({
     >
       <Article
         title={title}
-        color={color}
         breadcrumbs={breadcrumbs}
         date={revision_timestamp}
         fiTitle={fiNode?.title}
-        heroImage={hero?.url}
+        color={hero.color}
+        heroImage={hero.src}
       >
-        <AnchorLinksBlock field_content={node.field_content} />
+        {field_description && (
+          <IngressBlock field_description={field_description} />
+        )}
+
+        {field_use_anchor_links && (
+          <AnchorLinksBlock field_content={node.field_content} />
+        )}
 
         {themes?.length > 0 && (
           <Block hero>
@@ -59,21 +62,17 @@ const ArticlePage = ({
           </Block>
         )}
 
-        {field_description && (
-          <IngressBlock field_description={field_description} />
-        )}
-
         {node.field_content?.length > 0 && (
           <ContentMapper content={node.field_content} locale={locale} />
         )}
+
+        <LocalInformation readMoreUrl={'/test'} />
         <VideoBlock url={'https://www.youtube.com/watch?v=efkqpext2Ik'} />
         <VideoBlock
           url={
             'https://icareus-eu1-progressive.secure2.footprint.net/10154/31238760/285903.mp4/1.0.mp4'
           }
         />
-
-        <LocalInformation readMoreUrl={'/test'} />
       </Article>
     </Layout>
   )

@@ -1,23 +1,26 @@
 @layer components {
-  .ifu-accordion__item {
+  /*
+  Closed states, appear, enter, exit-done
+  */
+  .ifu-accordion__item,
+  .ifu-accordion__item.ifu-accordion--appear,
+  .ifu-accordion__item.ifu-accordion--appear-active,
+  .ifu-accordion__item.ifu-accordion--appear-done,
+  .ifu-accordion__item.ifu-accordion--enter,
+  .ifu-accordion__item.ifu-accordion--exit-done {
+    @apply opacity-0 max-h-0;
   }
 
-  .ifu-accordion--enter {
-    @apply opacity-0;
+  .ifu-accordion__item.ifu-accordion--enter-active {
+    @apply opacity-20 transition-opacity duration-100 max-h-full ease-in;
   }
-  .ifu-accordion--enter-active {
-    @apply opacity-100 transition-opacity duration-500;
+  .ifu-accordion__item.ifu-accordion--enter-done {
+    @apply opacity-100 transition-opacity duration-500 max-h-full ease-out;
   }
-  .ifu-accordion--enter-done {
-    @apply opacity-100;
+  /* .ifu-accordion__item.ifu-accordion--exit {
+    @apply opacity-100 max-h-full;
   }
-  .ifu-accordion--exit {
-    @apply opacity-100;
-  }
-  .ifu-accordion--exit-active {
-    @apply opacity-0;
-  }
-  .ifu-accordion--exit-done {
-    @apply opacity-0;
-  }
+  .ifu-accordion__item.ifu-accordion--exit-active {
+    @apply opacity-0 transition-opacity duration-100 max-h-full ease-in;
+  } */
 }

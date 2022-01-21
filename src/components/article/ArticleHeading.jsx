@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import { BLOCK_MARGIN, HERO_MARGIN } from '@/components/layout/Block'
 
 export default function ArticleHeading({
-  heroImage,
+  forHeroImage = false,
   title,
   date,
   themeHero,
@@ -17,13 +17,13 @@ export default function ArticleHeading({
   const titleMargin = themeHero ? HERO_MARGIN : BLOCK_MARGIN
   return (
     <div className={titleMargin}>
-      <div className={cls({ 'absolute bottom-5 md:bottom-8': !heroImage })}>
+      <div className={cls({ 'absolute bottom-5 md:bottom-8': !forHeroImage })}>
         {/* article category */}
         <span
           lang="fi"
           className={cls('block text-action mb-3', {
-            'text-gray-darker': heroImage,
-            'text-bodytext-color mt-6': !heroImage,
+            'text-gray-darker': forHeroImage,
+            'text-bodytext-color mt-6': !forHeroImage,
             invisible: locale === 'fi',
           })}
         >

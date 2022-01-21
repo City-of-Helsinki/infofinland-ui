@@ -3,7 +3,7 @@
 exports[`Block should render the Block 1`] = `
 <DocumentFragment>
   <div
-    class="px-6 lg:px-12 lg:mx-12  xl:mx-28 2xl:mx-48  3xl:ms-64  3xl:max-w-4xl"
+    class="px-6 lg:mx-12 xl:mx-28 2xl:mx-48 3xl:ms-64 3xl:max-w-4xl"
   >
     <p>
       Paragraph content

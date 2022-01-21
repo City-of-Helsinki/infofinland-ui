@@ -1,66 +1,55 @@
 import cls from 'classnames'
 // import Image from 'next/image'
 import Breadcrumbs from '@/components/layout/Breadcrumbs'
-import Image from 'next/image'
+import HeroImage from './HeroImage'
 import { HERO_MARGIN } from '@/components/layout/Block'
-import ArticleHeading from './ArticleHeading'
-import blurPlaceholder from '../blurPlaceholder'
-// Tailwind color classes. Must be written out or css purge will remove them.
-const BG_COLORS = {
-  red: 'bg-article-red',
-  green: 'bg-article-green',
-  blue: 'bg-article-blue',
-  orange: 'bg-article-orange',
-}
 
-const HeroImage = ({ heroImage, ...rest }) => {
-  if (heroImage) {
-    return (
-      <>
-        <div
-          className={cls(
-            HERO_MARGIN,
-            'overflow-hidden mb-6 h-hero  md:h-heroxl text-center rounded relative'
-          )}
-        >
-          <Image
-            placeholder="blur"
-            blurDataURL={blurPlaceholder}
-            src={heroImage}
-            alt=""
-            priority
-            layout="fill"
-            className="block w-full h-full rounded"
-            objectFit="cover"
-          />
-        </div>
-        <ArticleHeading heroImage={heroImage} {...rest} />
-      </>
-    )
-  } else {
-    return (
-      <div className={cls({ 'h-hero md:h-heroxl relative': !heroImage })}>
-        <ArticleHeading heroImage={heroImage} {...rest} />
-      </div>
-    )
-  }
+// Tailwind color classes. Must be written out, not interpolated, for minification
+// Failsafe classes if dynamic color taxonomy is not set in Drupal or not given to page
+const BG_COLORS = {
+  punainen: 'ifu-article__bg--red',
+  vihreä: 'ifu-article__bg--green',
+  sininen: 'ifu-article__bg--blue',
+  oranssi: 'ifu-article__bg--orange',
+  red: 'ifu-article__bg--red',
+  green: 'ifu-article__bg--green',
+  blue: 'ifu-article__bg--blue',
+  orange: 'ifu-article__bg--orange',
 }
 
 const Article = ({ children, breadcrumbs, color, ...heroProps }) => {
-  return (
-    <div className={cls(' relative', BG_COLORS[color])}>
-      {/* scrollable breadcrumbs  */}
-      <div
-        className={cls(HERO_MARGIN, {
-          'px-6 lg:px-12': !heroProps.heroImage,
-        })}
-      >
-        <Breadcrumbs items={breadcrumbs} />
-      </div>
+  // Set article background from drupal if color code is given
+  // Otherwise, use RED.
+  const hex = color?.field_color_hex?.color
+  const colorName = color?.name?.toLowerCase()
+  let colorClass =
+    typeof hex !== 'undefined'
+      ? 'ifu-article__bg--dynamic'
+      : BG_COLORS[colorName]
+  colorClass = colorClass || BG_COLORS.red
 
-      <HeroImage {...heroProps} />
-      {children}
-    </div>
+  return (
+    <>
+      {colorName && (
+        <style global jsx>{`
+          :root {
+            --bgColor: ${hex};
+          }
+        `}</style>
+      )}
+      <div className={cls('relative', colorClass)}>
+        <div
+          className={cls(HERO_MARGIN, {
+            'px-6 lg:px-12': !heroProps.heroImage,
+          })}
+        >
+          <Breadcrumbs items={breadcrumbs} />
+        </div>
+
+        <HeroImage {...heroProps} />
+        {children}
+      </div>
+    </>
   )
 }
 

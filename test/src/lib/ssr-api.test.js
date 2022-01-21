@@ -10,6 +10,7 @@ describe('ssr-api', () => {
     it('should return image props from paragraph--image item', () => {
       const image = getImage({
         field_image: {
+          field_photographer: 'Koe Kuvaaja',
           field_media_image: {
             uri: { url: '/foo.png' },
             resourceIdObjMeta: {
@@ -19,16 +20,18 @@ describe('ssr-api', () => {
               height: 200,
             },
           },
-          field_image_caption: 'kuvatekstiä',
         },
+        field_image_caption: 'kuvatekstiä',
       })
       expect(image.src).toBe('https://test.env/foo.png')
       expect(image.alt).toBe('alt')
       expect(image.width).toBe(100)
       expect(image.height).toBe(200)
       expect(image.title).toBe('title')
+      expect(image.photographer).toBe('Koe Kuvaaja')
       expect(image.caption).toBe('kuvatekstiä')
     })
+
     it('should fail gracefully', () => {
       const image = getImage({})
       expect(image.src).toBeUndefined()
@@ -37,13 +40,13 @@ describe('ssr-api', () => {
       expect(image.height).toBeUndefined()
       expect(image.title).toBeUndefined()
       expect(image.caption).toBeUndefined()
+      expect(image.photographer).toBeUndefined()
     })
   })
 
   describe('getHeroFromNode', () => {
     it('should return url and title', () => {
       const hero = getHeroFromNode({
-        field_has_hero: true,
         field_hero: {
           field_hero_title: 'title',
           field_hero_image: {
@@ -51,12 +54,15 @@ describe('ssr-api', () => {
           },
         },
       })
-      expect(hero.url).toBe('https://test.env/hero.png')
+      expect(hero.src).toBe('https://test.env/hero.png')
       expect(hero.title).toBe('title')
     })
-    it('should return null if field_has_hero is not true is given', () => {
-      const hero = getHeroFromNode({ field_has_hero: false })
-      expect(hero).toBeNull()
+
+    it('should return null values if field_hero is not complete', () => {
+      const hero = getHeroFromNode({ field_hero: {} })
+      expect(hero.color).toBeNull()
+      expect(hero.src).toBeNull()
+      expect(hero.title).toBeNull()
     })
   })
 

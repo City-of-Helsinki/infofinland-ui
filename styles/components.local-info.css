@@ -1,0 +1,20 @@
+@layer components {
+  .ifu-local-info__content--enter {
+    @apply opacity-0;
+  }
+  .ifu-local-info__content--enter-active {
+    @apply opacity-100 transition-opacity duration-300;
+  }
+  .ifu-local-info__content--enter-done {
+    @apply opacity-100;
+  }
+  /* .ifu-local-info__content--exit {
+    @apply opacity-100;
+  }
+  .ifu-local-info__content--exit-active {
+    @apply opacity-0 transition-opacity duration-300;
+  }
+  .ifu-local-info__content--exit-done {
+    @apply opacity-0;
+  } */
+}

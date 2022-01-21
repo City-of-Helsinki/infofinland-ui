@@ -12,7 +12,11 @@ const disableDefaultLocale = (locale) => ({
   defaultLocale: NO_DEFAULT_LOCALE,
 })
 
-const menuErrorResponse = () => ({ items: [], tree: [], error: 'menu-error' })
+export const menuErrorResponse = () => ({
+  items: [],
+  tree: [],
+  error: 'menu-error',
+})
 
 // Export query params through ssr-api for convenience
 export * from './query-params'
@@ -20,23 +24,24 @@ export * from './query-params'
 export const NOT_FOUND = { notFound: true }
 
 export const getHeroFromNode = (node) => {
-  if (!node?.field_has_hero) {
-    return null
-  }
   const host = getConfig().publicRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL
   const url = node?.field_hero?.field_hero_image?.field_media_image?.uri?.url
   return {
-    url: url ? `${host}${url}` : null,
-    title: node?.field_hero.field_hero_title || null,
+    src: url ? `${host}${url}` : null,
+    title: node?.field_hero?.field_hero_title || null,
+    color: node?.field_hero?.field_hero_bg_color || null,
   }
 }
 
 export const getImage = (item) => {
   const host = getConfig().publicRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL
   const url = item.field_image?.field_media_image?.uri?.url
+  const caption = item.field_image_caption
+  const photographer = item.field_image?.field_photographer
   return {
     src: url ? `${host}${url}` : undefined,
-    caption: item.field_image?.field_image_caption,
+    caption,
+    photographer,
     // ...meta:{alt,title,width,height}
     ...item.field_image?.field_media_image.resourceIdObjMeta,
   }

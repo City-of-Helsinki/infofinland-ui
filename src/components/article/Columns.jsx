@@ -5,7 +5,7 @@ import { CONTENT_TYPES, TEXT_HTML_FORMAT } from '@/lib/DRUPAL_API_TYPES'
 import cls from 'classnames'
 import { getImage } from '@/lib/ssr-api'
 
-const ColumnMapper = ({ type, field_text, field_image }) => {
+const ColumnMapper = ({ type, field_text, ...rest }) => {
   switch (type) {
     case CONTENT_TYPES.TEXT:
       if (field_text?.format !== TEXT_HTML_FORMAT || !field_text?.processed) {
@@ -20,8 +20,8 @@ const ColumnMapper = ({ type, field_text, field_image }) => {
     case CONTENT_TYPES.PARAGRAPH_IMAGE:
       return (
         <ArticleImage
-          className="overflow-hidden relative rounded aspect-square"
-          {...getImage({ field_image })}
+          className="overflow-hidden relative rounded aspect-video lg:aspect-square"
+          {...getImage(rest)}
         />
       )
 

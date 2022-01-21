@@ -2,6 +2,13 @@
   :root {
     --gradientHeight: 250px;
     --targetLinkOffset: -200px;
+    /*gradient colors in separate vars, for static use*/
+    --bgRed: #eb6b5c;
+    --bgGreen: #b4de93;
+    --bgBlue: #7fd5f9;
+    --bgOrange: #f4a368;
+    /* set this from Drupal*/
+    --bgColor: #7fd5f9;
   }
 
   @screen md {
@@ -11,43 +18,54 @@
   }
   /**
   * Hero area background colors
+
   */
-  .bg-article-red {
+
+  .ifu-article__bg--dynamic {
+    background: linear-gradient(
+      180deg,
+      var(--bgColor) var(--gradientHeight),
+      rgba(255, 255, 255, 1) var(--gradientHeight)
+    );
+  }
+
+  .ifu-article__bg--red {
     /* background: rgb(235,107,92); */
     background: linear-gradient(
       180deg,
-      #eb6b5c var(--gradientHeight),
+      var(--bgRed) var(--gradientHeight),
       rgba(255, 255, 255, 1) var(--gradientHeight)
     );
   }
 
-  .bg-article-green {
+  .ifu-article__bg--green {
     /* background: rgb(180,222,147); */
     background: linear-gradient(
       180deg,
-      rgba(180, 222, 147, 1) var(--gradientHeight),
+      var(--bgGreen) var(--gradientHeight),
       rgba(255, 255, 255, 1) var(--gradientHeight)
     );
   }
 
-  .bg-article-blue {
+  .ifu-article__bg--blue {
     /* background: rgb(127,213,249); */
     background: linear-gradient(
       180deg,
-      rgba(127, 213, 249, 1) var(--gradientHeight),
+      var(--bgBlue) var(--gradientHeight),
       rgba(255, 255, 255, 1) var(--gradientHeight)
     );
   }
 
-  .bg-article-orange {
+  .ifu-article__bg--orange {
     /* background: rgb(244,163,104); */
     background: linear-gradient(
       180deg,
-      rgba(244, 163, 104, 1) var(--gradientHeight),
+      var(--bgOrange) var(--gradientHeight),
       rgba(255, 255, 255, 1) var(--gradientHeight)
     );
   }
 
+  /* Add stripe to columns in landing page */
   .ifu-landing .ifu-article__columns {
     @apply border-t border-black mt-16;
   }
