@@ -8,9 +8,6 @@ const env = {
     FOOTER: 'footer-about',
     ABOUT: 'about',
   },
-  //Must match taxonomy_term--colors in drupal
-  HERO_COLORS: ['oranssi', 'vihreä', 'punainen', 'sininen'],
-  // HERO_COLORS: ['red', 'green', 'orange', 'blue'],
   REVALIDATE_TIME: 60, //seconds
   FB_URL: 'https://www.facebook.com/infofinland.fi',
   INSTAGRAM_URL: 'https://www.instagram.com/infofinland.fi/',
