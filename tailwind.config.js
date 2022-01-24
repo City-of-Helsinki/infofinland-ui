@@ -39,7 +39,17 @@ module.exports = {
     },
     colors: {
       'bodytext-color': { DEFAULT: '#333333' },
-      link: { DEFAULT: '#166485', hover: '#339DCA' },
+      link: {
+        DEFAULT:
+          /// AAA compliant with bg-blue-white
+          //  '#145A79',
+          /// AAA compliant
+          '#155F7F',
+        // '#166485',
+        hover:
+          //  '#339DCA'
+          '#145A79',
+      },
       orange: {
         DEFAULT: '#F4A368',
         light: '#FFC075',
