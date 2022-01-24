@@ -71,7 +71,7 @@ export async function getStaticProps(context) {
 const HomePage = ({ menu, footerMenu, node, themes, municipalities }) => {
   const hero = getHeroFromNode(node)
   const { field_description, field_content, title } = node
-
+  console.log({ node })
   return (
     <Layout
       node={node}

@@ -16,6 +16,9 @@ export default function PTVBlock({ items }) {
           id,
         }) => (
           <Block key={`pvt-${id}`} className="mb-8">
+            {/* potential low impact Accessibility issue with H4. Needs H3 to preceed it.
+            Possible solution is to use H3 as H2 is most likely present before contact block
+            */}
             {title && <h4 className="mb-4 text-h4 font-bold">{title}</h4>}
 
             {field_visiting_address && (
