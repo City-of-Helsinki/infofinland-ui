@@ -3,7 +3,7 @@ import { IconAngleDown, IconAngleUp } from '@/components/Icons'
 import Link from 'next/link'
 import cls from 'classnames'
 import useLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
-
+import { useTranslation } from 'next-i18next'
 const SubMenuItem = ({ title, url, selected, items, level, isOpen }) => (
   <li className=" block">
     <Link passHref href={url} prefetch={false}>
@@ -68,46 +68,51 @@ const SubMenu = ({
   selected,
   url,
   selectedIsHidden,
-}) => (
-  <>
-    <div
-      className={cls(
-        'flex items-center w-full text-body-small ps-8 border-s-5  hover:bg-gray-white',
-        {
-          'border-white ': !selected && !selectedIsHidden,
-          'border-blue': selectedIsHidden || selected,
-          'font-bold': selected,
-        }
-      )}
-    >
-      <Link passHref href={url} prefetch={false}>
-        <a
-          className="flex-grow py-4"
-          title={isOpen ? 'Open menu' : 'Close menu'}
-        >
-          <span className={cls('block', { 'font-bold': selected })}>
-            {title}
-          </span>
-        </a>
-      </Link>
-      <div className="flex-none">
-        <button
-          className="block w-14 h-12 me-2 title-start"
-          onClick={toggle}
-          aria-expanded={isOpen}
-          // tabIndex="0"
-        >
-          {!isOpen && (
-            <IconAngleDown className="fill-gray-light ifu-mainmenu__submenu-icon" />
-          )}
-          {isOpen && (
-            <IconAngleUp className="fill-gray-light ifu-mainmenu__submenu-icon" />
-          )}
-        </button>
+}) => {
+  const { t } = useTranslation('common')
+  const subMenuLabel = t(isOpen === true ? 'mainMenu.close' : 'mainMenu.open')
+  return (
+    <>
+      <div
+        className={cls(
+          'flex items-center w-full text-body-small ps-8 border-s-5  hover:bg-gray-white',
+          {
+            'border-white ': !selected && !selectedIsHidden,
+            'border-blue': selectedIsHidden || selected,
+            'font-bold': selected,
+          }
+        )}
+      >
+        <Link passHref href={url} prefetch={false}>
+          <a
+            className="flex-grow py-4"
+            title={isOpen ? 'Open menu' : 'Close menu'}
+          >
+            <span className={cls('block', { 'font-bold': selected })}>
+              {title}
+            </span>
+          </a>
+        </Link>
+        <div className="flex-none">
+          <button
+            className="block w-14 h-12 me-2"
+            onClick={toggle}
+            title={subMenuLabel}
+            aria-label={subMenuLabel}
+            aria-expanded={isOpen}
+          >
+            {!isOpen && (
+              <IconAngleDown className="fill-gray-light ifu-mainmenu__submenu-icon" />
+            )}
+            {isOpen && (
+              <IconAngleUp className="fill-gray-light ifu-mainmenu__submenu-icon" />
+            )}
+          </button>
+        </div>
       </div>
-    </div>
-    {items && <SubMenuItems items={items} isOpen={isOpen} level={1} />}
-  </>
-)
+      {items && <SubMenuItems items={items} isOpen={isOpen} level={1} />}
+    </>
+  )
+}
 
 export default SubMenu
