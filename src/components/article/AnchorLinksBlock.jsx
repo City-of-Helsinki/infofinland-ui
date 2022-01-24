@@ -22,7 +22,7 @@ const AnchorLinksBlock = ({ field_content }) => {
         {headings.map(({ id, title }) => {
           return (
             <li className="ps-2" key={`heading-anchor-${id}`}>
-              <a href={headingHash(id)} className="font-bold text-link">
+              <a href={headingHash(id)} className="ifu-text-link font-bold">
                 {title}
               </a>
             </li>

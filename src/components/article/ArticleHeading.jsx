@@ -32,7 +32,7 @@ export default function ArticleHeading({
         {/* article title / hero text */}
         <h1
           className={cls(
-            'mb-2 md:mb-6  max-w-article me-2 ifu-hero__title',
+            'mb-2 md:mb-6  max-w-article me-2 ifu-hero__title text-bodytext-color',
             longTextClass(title, {
               size: 40,
               classes: [
