@@ -64,7 +64,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
         {isSubmitSuccessful && (
           <h3 className="my-6 text-h3">{t('feedback.states.success')}</h3>
         )}
-
+        <SubmitLoader />
         {isSubmitting && <SubmitLoader />}
 
         <p className="mb-8 text-gray-dark break-words">

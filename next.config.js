@@ -37,6 +37,7 @@ module.exports = {
   },
   images: {
     // populate all envs here
+
     domains: [
       //local Stonehenge drupal instance
       'drupal-infofinland.docker.so',

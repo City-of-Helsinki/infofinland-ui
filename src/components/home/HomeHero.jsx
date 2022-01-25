@@ -1,13 +1,11 @@
 import Image from 'next/image'
-import blurPlaceholder from '../blurPlaceholder'
 
 const HomeHero = ({ title, src }) => (
-  <div className="relative mb-14 h-homehero md:h-homeheroxl bg-blue-lighter">
+  <div className="relative mb-14 h-homehero md:h-homeheroxl bg-blue-white animate-pulse">
     {src && (
       <Image
-        placeholder="blur"
-        blurDataURL={blurPlaceholder}
-        src={src}
+        // src={src}
+        src={'/foo.png'}
         layout="fill"
         alt=""
         priority

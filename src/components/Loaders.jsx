@@ -1,5 +1,10 @@
-import Loader from 'react-loader-spinner'
+export const DotsLoader = () => <p>TODO</p>
 
-export const DotsLoader = (
-  props = { height: 100, width: 100, color: '#00A3E8' }
-) => <Loader type="MutatingDots" {...props} />
+export const RingsLoader = () => (
+  <div className="flex absolute justify-items-center items-center w-full h-full">
+    <div className=" scale-75 lg:scale-100 lds-ripple">
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+)
