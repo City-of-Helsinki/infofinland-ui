@@ -1,6 +1,7 @@
 @layer base {
   html {
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
+    /*set base font family in tailwind.config.js */
   }
 
   /**
@@ -22,18 +23,23 @@
   }
 
   @font-face {
-    font-family: 'Noto Sans';
-    src: url('/fonts/NotoSans/NotoSans-Italic.ttf');
+    font-family: 'Noto Sans Chinese';
+    src: url('/fonts/NotoSans/NotoSansSC-Regular.otf');
+    font-weight: normal;
     font-display: swap;
-    font-style: italic;
   }
 
   @font-face {
-    font-family: 'Noto Sans';
-    src: url('/fonts/NotoSans/NotoSans-BoldItalic.ttf');
-    font-display: swap;
-    font-style: italic;
+    font-family: 'Noto Sans Chinese';
+    src: url('/fonts/NotoSans/NotoSansSC-Bold.otf');
     font-weight: bold;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Noto Sans Arabic';
+    src: url('/fonts/NotoSans/NotoSans-Arabic.ttf');
+    font-display: swap;
   }
 
   /* Focus outline style */
@@ -44,8 +50,4 @@
     outline-color: rgba(0, 0, 0, 0.3);
     outline-width: 2px;
   } */
-
-  body {
-    font-family: 'Noto Sans';
-  }
 }

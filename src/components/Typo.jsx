@@ -18,21 +18,22 @@ export const H1 = ({ children, text, className }) => (
   </h1>
 )
 
-export const H2 = ({ children, className }) => (
+export const H2 = ({ children, className, id }) => (
   <h2
     className={cls(
-      'text-bodytext-color font-sans text-h2 md:text-h2xl',
+      'text-bodytext-color font-sans text-h2 md:text-h2xl ifu-heading__h2',
       className
     )}
   >
     {children}
+    <span id={id} className="ifu-heading__h2--target" />
   </h2>
 )
 
 export const H3 = ({ children, className }) => (
   <h3
     className={cls(
-      'text-bodytext-color font-sans text-h3 tmd:text-h3xl',
+      'text-bodytext-color font-sans text-h3 md:text-h3xl',
       className
     )}
   >

@@ -1,90 +1,54 @@
-import Block from '@/components/article/Block'
+import Block from '@/components/layout/Block'
 import { IconExternalSite } from '@/components/Icons'
 import cls from 'classnames'
 
-export const READMORE_CONTENT = [
-  {
-    siteName: 'DEMO:Kela',
-    pageUrl: 'http://www.kela.fi/',
-    pageName: 'Some random Kela page',
-    languages: [
-      { url: 'http://www.kela.fi/fi/', text: 'Suomi', lang: 'fi' },
-      { url: 'http://www.kela.fi/sv/', text: 'Ruotsi', lang: 'fi' },
-    ],
-  },
-  {
-    siteName: 'DEMO:Kela',
-    pageUrl: 'http://www.kela.fi/',
-    pageName: 'Some random Kela page',
-    languages: [
-      { url: 'http://www.kela.fi/fi/', text: 'Suomi', lang: 'fi' },
-      { url: 'http://www.kela.fi/fi/', text: 'Suomi', lang: 'fi' },
-      {
-        url: 'http://www.kela.fi/sv/',
-        text: 'Ruotsi',
-        lang: 'sv',
-      },
-      {
-        url: 'http://www.kela.fi/sv/',
-        text: 'Ruotsi',
-        lang: 'sv',
-      },
-      { url: 'http://www.kela.fi/fi/', text: 'Suomi', lang: 'sv' },
-      {
-        url: 'http://www.kela.fi/sv/',
-        text: 'Ruotsi',
-        lang: 'sv',
-      },
-      { url: 'http://www.kela.fi/fi/', text: 'Suomi', lang: 'sv' },
-      { url: 'http://www.kela.fi/fi/', text: 'Suomi', lang: 'sv' },
-      {
-        url: 'http://www.kela.fi/sv/',
-        text: 'Ruotsi',
-        lang: 'sv',
-      },
-    ],
-  },
-]
-const ReadMoreBlock = ({ content = READMORE_CONTENT }) => {
+const LOWERCASE_LOCALES = ['fi', 'et', 'es', 'fr']
+const ReadMoreBlock = ({ content = [], locale }) => {
+  if (content?.length === 0) {
+    return null
+  }
   return (
     <Block className="mt-8 mb-8 bg-orange-white">
       <div className="py-6">
-        {content.map(
-          ({ siteUrl, siteName, pageUrl, pageName, languages }, i) => (
-            <div
-              className={cls({
-                'mb-3 pb-3 border-b border-gray-hr': i + 1 < content.length,
-              })}
-              key={`${siteName}-${i}`}
+        {content.map(({ title, siteName, mainTranslation, languages }, i) => (
+          <div
+            className={cls({
+              'mb-3 pb-3 border-b border-gray-hr': i + 1 < content.length,
+            })}
+            key={`readmore-${siteName}`}
+          >
+            <span
+              className="flex items-center text-small"
+              target="_blank"
+              rel="noreferrer"
             >
-              <span
-                className="flex items-center text-small"
-                href={siteUrl}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <IconExternalSite className="me-2" />
-                {siteName}
-              </span>
+              <IconExternalSite className="me-2" />
+              {siteName}
+            </span>
 
-              <a
-                rel="noreferrer"
-                href={pageUrl}
-                target="_blank"
-                className="inline-block mb-4 text-body font-bold ifu-text-link"
-              >
-                {pageName}
-              </a>
+            <a
+              rel="noreferrer"
+              lang={mainTranslation?.field_locale}
+              href={mainTranslation?.url}
+              target="_blank"
+              className="inline-block mb-4 text-body font-bold leading-snug ifu-text-link"
+            >
+              {title}
+            </a>
 
-              <div className="flex flex-wrap divide-link divide-s">
-                {languages.map(({ url, text, lang }, k) => (
+            {languages?.length > 0 && (
+              <div
+                className={cls('flex flex-wrap divide-link divide-s', {
+                  lowercase: LOWERCASE_LOCALES.includes(locale),
+                })}
+              >
+                {languages.map(({ url, title: langTitle, locale, id }, k) => (
                   <a
-                    title={pageName}
+                    title={langTitle}
                     rel="noreferrer"
                     href={url}
-                    key={`link-${text}-${k}`}
-                    target="_blank"
-                    lang={lang}
+                    key={`link-${id}-${locale}`}
+                    lang={locale}
                     className={cls(
                       'text-small leading-snug ifu-text-link pe-2',
                       {
@@ -92,13 +56,13 @@ const ReadMoreBlock = ({ content = READMORE_CONTENT }) => {
                       }
                     )}
                   >
-                    {text}
+                    {langTitle}
                   </a>
                 ))}
               </div>
-            </div>
-          )
-        )}
+            )}
+          </div>
+        ))}
       </div>
     </Block>
   )

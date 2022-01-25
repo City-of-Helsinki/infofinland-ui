@@ -1,7 +1,7 @@
-import useTranslation from 'next-translate/useTranslation'
+import { useTranslation } from 'next-i18next'
 import Layout from '@/components/layout/Layout'
 import Head from 'next/head'
-import Block from '@/components/article/Block'
+import Block from '@/components/layout/Block'
 
 import Link from 'next/link'
 import SEARCH_RESULTS from '@/MOCK_SEARCH'
@@ -10,16 +10,19 @@ import { IconLookingGlass } from '@/components/Icons'
 
 import useSearchRoute from '@/hooks/useSearchRoute'
 import { IconAngleRight } from '@/components/Icons'
+import * as DrupalApi from '@/lib/ssr-api'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import Highlighter from 'react-highlight-words'
 
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps(context) {
+  const { query } = context
   /*
    Scaffold for testing different UI states for search page.
    See page snapshot tests when real search is implemented and
   mock search results.
   */
-
+  const common = await DrupalApi.getCommonApiContent(context)
   const q = query.q || null
   let results = null
   // Mock no results witn '_'
@@ -29,6 +32,9 @@ export async function getServerSideProps({ query }) {
 
   return {
     props: {
+      ...common,
+      ...(await serverSideTranslations(context.defaultLocale, ['common'])),
+
       q,
       results,
     },
@@ -59,7 +65,7 @@ const SearchBar = ({ qw }) => {
           onChange={({ target: { value } }) => setQuery(value)}
           className=" inline-block flex-grow px-2 h-12"
         />
-        <button className="inline-block flex-none w-12 h-12">
+        <button className="flex-none w-12 h-12">
           <IconLookingGlass className="mx-2" />
         </button>
       </form>
@@ -70,14 +76,14 @@ const SearchBar = ({ qw }) => {
 const Result = ({ title, url, path, excerpt, q }) => (
   <section className="mxy-8">
     <h2 className="text-h5xl font-bold">
-      <Link href={url} passHref>
+      <Link href={url} passHref prefetch={false}>
         <a>{title}</a>
       </Link>
     </h2>
     {path && (
       <p className="">
-        {path.map(({ title, url }, i) => (
-          <Link key={`result-${i}`} href={url} passHref>
+        {path.map(({ title, url, id }, i) => (
+          <Link key={`result-link-${id}`} href={url} passHref prefetch={false}>
             <a className="text-tiny text-gray">
               {title}
               {i + 1 < path.length && <IconAngleRight className="mx-1" />}
@@ -88,7 +94,7 @@ const Result = ({ title, url, path, excerpt, q }) => (
     )}
     <p className="pb-8 mt-2 mb-8 text-body-small border-b border-gray-light">
       <Highlighter
-        highlightClassName="font-bold bg-green-lighter"
+        highlightClassName="bg-orange-light text-black"
         textToHighlight={excerpt}
         searchWords={[q]}
       />
@@ -96,10 +102,10 @@ const Result = ({ title, url, path, excerpt, q }) => (
   </section>
 )
 const SearchResults = ({ results, q }) => {
-  return results.map((r, i) => <Result key={`foo-${i}`} {...r} q={q} />)
+  return results.map((r) => <Result key={`result-${r.id}`} {...r} q={q} />)
 }
 
-export const SearchPage = ({ q, results }) => {
+export const SearchPage = ({ q, results, menu, footerMenu }) => {
   const { t } = useTranslation('common')
 
   let title
@@ -112,7 +118,7 @@ export const SearchPage = ({ q, results }) => {
   }
 
   return (
-    <Layout>
+    <Layout menu={menu} footerMenu={footerMenu}>
       <Head>
         <title>{title}</title>
       </Head>

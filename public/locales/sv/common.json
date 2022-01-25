@@ -1,0 +1,47 @@
+{
+  "buttons": { "close": "Stäng", "search": "Sök" },
+  "feedback": {
+    "title": "Respons",
+    "buttons": {
+      "send": "Skicka ny response",
+      "cancel": "Tillbaka",
+      "sendAgain": "Skicka igen",
+      "close": "Stäng",
+      "open": "Ge respons på denna sida"
+    },
+
+    "urlLabel": "Sidans adress:",
+    "labels": {
+      "name": "Namn",
+      "email": "E-post",
+      "feedback": "Respons"
+    },
+    "text": [
+      "TODO FROM DRUPAL Vi svarar på respons på följande språk: finska, svenska och engelska. Tyvärr kan vi inte svara på respons som är skriven på andra språk.",
+      "Responsformuläret har ett automatiskt skräppostfilter. Du får inte infoga länkar i responsen.",
+      "Vi svarar bara på respons som gäller sidan InfoFinland. Du märker väl att vi inte ger råd i hur du ska sköta dina ärenden. Rådgivningstjänster hittar du på InfoFinlands sida Ring och fråga om råd."
+    ],
+    "info1": "Formuläret innehåller tre fält.",
+    "info2": "Namn, e-post och responstext är obligatoriska fält.",
+    "states": {
+      "submitting": "!Lähetetään palautetta...",
+      "fail": "Fel när respons skulle skickas",
+      "success": "Tack för din respons",
+      "invalid": "!Pakollinen kenttä"
+    }
+  },
+  "languageMenu": {
+    "label": "!Valitse kieli"
+  },
+  "languageSelector": {
+    "button": "!Kielet"
+  },
+  "languageMessage": {
+    "title": "!Haluatko vaihtaa kieltä?",
+    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
+  },
+  "mainMenu": { "button": "!Päävalikko" },
+  "footer": {
+    "helsinkiDisclaimer": "Webbplatsen InfoFinland.fi publiceras av Helsingfors stad och finansieras av staten och InfoFinlands medlemskommuner."
+  }
+}

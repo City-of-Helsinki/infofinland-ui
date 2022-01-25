@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef, forwardRef } from 'react'
 import cls from 'classnames'
-import useTranslation from 'next-translate/useTranslation'
+
+import { useTranslation } from 'next-i18next'
 import { IconExclamationBubble, IconAngleUp } from '@/components/Icons'
-import { HERO_MARGIN } from '@/components/article/Article'
+import { HERO_MARGIN } from '@/components/layout/Block'
 import Button, { LinkButton } from '@/components/Button'
 import { useForm } from 'react-hook-form'
 import InfoBlock from '@/components/feedback/InfoBlock'
@@ -34,7 +35,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
   }
 
   const onError = (errors, e) => {
-    console.log({ errors, e })
+    console.error({ errors, e })
   }
 
   useEffect(() => {
@@ -52,9 +53,9 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
         ref={ref}
       >
         {!isSubmitting && (
-          <h2 className="mt-8 mb-4 font-sans text-h2 text-bodytext-color">
+          <h3 className="mt-8 mb-4 font-sans text-h2 text-bodytext-color">
             {t('feedback.title')}
-          </h2>
+          </h3>
         )}
         {isSubmitting && (
           <h3 className="my-6 text-h3">{t('feedback.states.submitting')}</h3>
@@ -195,7 +196,6 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
 const FeedbackButtonBlock = () => {
   const [isOpen, setVisibility] = useState(false)
   const toggle = () => setVisibility(!isOpen)
-  // const open = () => setVisibility(true)
   const close = () => setVisibility(false)
   const { t } = useTranslation('common')
   const scrollRef = useRef()
@@ -215,7 +215,7 @@ const FeedbackButtonBlock = () => {
           onClick={toggle}
           aria-expanded={isOpen}
         >
-          <IconExclamationBubble className="block mx-4 h-8 transform translate-y-0.5 ifu-feedbackbutton__icon" />
+          <IconExclamationBubble className="block mx-4 h-8 transform translate-y-0.5 lg:ms-0 ifu-feedbackbutton__icon" />
           <span
             className={cls(
               'block md:flex-none  font-bold ifu-text-link',
@@ -230,9 +230,7 @@ const FeedbackButtonBlock = () => {
           >
             {!isOpen && t('feedback.buttons.open')}
             {isOpen && t('feedback.buttons.close')}
-            {isOpen && (
-              <IconAngleUp className="text-link fill-current h-6-w-6 ms-2" />
-            )}
+            {isOpen && <IconAngleUp className="fill-link h-6-w-6 ms-2" />}
           </span>
         </button>
       </div>

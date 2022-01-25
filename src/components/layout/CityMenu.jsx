@@ -3,9 +3,8 @@ import { useAtom } from 'jotai'
 import { selectedCity, cityMenuVisibility } from '@/src/store'
 import { IconCheck } from '@/components/Icons'
 import cls from 'classnames'
-import CITIES from '@/MOCK_CITIES'
 
-const CityMenu = () => {
+const CityMenu = ({ municipalities }) => {
   const [open, setOpen] = useAtom(cityMenuVisibility)
   const [city, setCity] = useAtom(selectedCity)
   const close = () => setOpen(false)
@@ -15,11 +14,11 @@ const CityMenu = () => {
   }
   return (
     <Drawer close={close} isOpen={open} left>
-      <ul>
+      <ul className="mb-16">
         <li className="px-14 mb-4 text-body-large font-bold">Choose city</li>
-        {CITIES.map((cityName) => (
+        {municipalities.map(({ name: cityName, id }) => (
           <li
-            key={cityName}
+            key={`municipality-${id}`}
             className={cls('block', {
               // 'bg-gray-lighter-teal': city === cityName,
             })}

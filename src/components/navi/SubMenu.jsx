@@ -2,29 +2,30 @@ import { CSSTransition } from 'react-transition-group'
 import { IconAngleDown, IconAngleUp } from '@/components/Icons'
 import Link from 'next/link'
 import cls from 'classnames'
-import { useRouter } from 'next/router'
-
-const SubMenuItem = ({ text, url, selected, pages, level, isOpen }) => (
+import useLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
+import { useTranslation } from 'next-i18next'
+const SubMenuItem = ({ title, url, selected, items, level, isOpen }) => (
   <li className=" block">
-    <Link passHref href={url}>
+    <Link passHref href={url} prefetch={false}>
       <a
         tabIndex={isOpen ? '0' : '-1'}
-        className={cls('block py-4 text-body-small hover:bg-gray-white pe-4 ', {
+        className={cls('block py-3 text-body-small hover:bg-gray-white pe-4 ', {
           'ps-12 ': level === 1,
           'ps-16': level === 2,
           'border-s-5 border-blue  font-bold': selected,
           'border-s-5 border-white ': !selected,
         })}
       >
-        {text}
+        {title}
       </a>
     </Link>
-    {pages && <SubMenuItems pages={pages} level={level + 1} isOpen={isOpen} />}
+    {items && <SubMenuItems items={items} level={level + 1} isOpen={isOpen} />}
   </li>
 )
 
-const SubMenuItems = ({ pages, isOpen, level }) => {
-  const { asPath } = useRouter()
+const SubMenuItems = ({ items, isOpen, level }) => {
+  const { localePath } = useLocalizedPath()
+
   return (
     <CSSTransition
       timeout={{ appear: 0, enter: 400, exit: 0 }}
@@ -45,12 +46,12 @@ const SubMenuItems = ({ pages, isOpen, level }) => {
       }}
     >
       <ul className="ifu-mainmenu__submenu">
-        {pages.map((props, i) => (
+        {items.map((props, i) => (
           <SubMenuItem
-            key={`${props.text}-${i}`}
+            key={`${props.title}-${i}`}
             {...props}
             level={level}
-            selected={props.url === asPath}
+            selected={props.url === localePath}
             isOpen={isOpen}
           />
         ))}
@@ -60,53 +61,58 @@ const SubMenuItems = ({ pages, isOpen, level }) => {
 }
 
 const SubMenu = ({
-  pages,
-  text,
+  items,
+  title,
   isOpen,
   toggle,
   selected,
   url,
   selectedIsHidden,
-}) => (
-  <>
-    <div
-      className={cls(
-        'flex items-center w-full text-body-small ps-8 border-s-5  hover:bg-gray-white',
-        {
-          'border-white ': !selected && !selectedIsHidden,
-          'border-blue': selectedIsHidden || selected,
-          'font-bold': selected,
-        }
-      )}
-    >
-      <Link passHref href={url}>
-        <a
-          className="flex-grow py-4"
-          title={isOpen ? 'Open menu' : 'Close menu'}
-        >
-          <span className={cls('block', { 'font-bold': selected })}>
-            {text}
-          </span>
-        </a>
-      </Link>
-      <div className="flex-none">
-        <button
-          className="block w-14 h-12 text-gray-light me-2 text-start"
-          onClick={toggle}
-          aria-expanded={isOpen}
-          // tabIndex="0"
-        >
-          {!isOpen && (
-            <IconAngleDown className="fill-current ifu-mainmenu__submenu-icon" />
-          )}
-          {isOpen && (
-            <IconAngleUp className="fill-current ifu-mainmenu__submenu-icon" />
-          )}
-        </button>
+}) => {
+  const { t } = useTranslation('common')
+  const subMenuLabel = t(isOpen === true ? 'mainMenu.close' : 'mainMenu.open')
+  return (
+    <>
+      <div
+        className={cls(
+          'flex items-center w-full text-body-small ps-8 border-s-5  hover:bg-gray-white',
+          {
+            'border-white ': !selected && !selectedIsHidden,
+            'border-blue': selectedIsHidden || selected,
+            'font-bold': selected,
+          }
+        )}
+      >
+        <Link passHref href={url} prefetch={false}>
+          <a
+            className="flex-grow py-4"
+            title={isOpen ? 'Open menu' : 'Close menu'}
+          >
+            <span className={cls('block', { 'font-bold': selected })}>
+              {title}
+            </span>
+          </a>
+        </Link>
+        <div className="flex-none">
+          <button
+            className="block w-14 h-12 me-2"
+            onClick={toggle}
+            title={subMenuLabel}
+            aria-label={subMenuLabel}
+            aria-expanded={isOpen}
+          >
+            {!isOpen && (
+              <IconAngleDown className="fill-gray-light ifu-mainmenu__submenu-icon" />
+            )}
+            {isOpen && (
+              <IconAngleUp className="fill-gray-light ifu-mainmenu__submenu-icon" />
+            )}
+          </button>
+        </div>
       </div>
-    </div>
-    {pages && <SubMenuItems pages={pages} isOpen={isOpen} level={1} />}
-  </>
-)
+      {items && <SubMenuItems items={items} isOpen={isOpen} level={1} />}
+    </>
+  )
+}
 
 export default SubMenu

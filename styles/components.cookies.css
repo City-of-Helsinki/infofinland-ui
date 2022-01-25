@@ -1,0 +1,57 @@
+.ifu-cookies__banner--enter,
+.ifu-cookies__banner--appear {
+  @apply transform translate-y-24;
+}
+
+.ifu-cookies__banner--appear-active,
+.ifu-cookies__banner--enter-active {
+  @apply transition-all translate-y-0 duration-300;
+}
+
+.ifu-cookies__banner--appear-done,
+.ifu-cookies__banner--enter-done {
+  @apply transition-all translate-y-0 duration-300;
+}
+
+.ifu-cookies__banner--exit-active,
+.ifu-cookies__banner--exit-active {
+  @apply transition-all translate-y-48 duration-200 transform;
+}
+
+.ifu-cookies__banner--exit-done {
+  display: none;
+  @apply translate-y-48 transform;
+}
+.ifu-toggleswitch__label {
+  @apply relative pe-16;
+}
+
+.ifu-toggleswitch__label {
+  @apply inline-block;
+}
+
+.ifu-toggleswitch__input {
+  @apply invisible;
+}
+
+.ifu-toggleswitch__switch::before {
+  content: '';
+  border-radius: 4rem;
+  top: 5px;
+  @apply w-12 h-6  bg-red-light inline-block absolute right-0 shadow-input border border-black-op1.5 transition-all;
+}
+
+.ifu-toggleswitch__switch::after {
+  content: '';
+  border-radius: 4rem;
+  top: 5px;
+  @apply w-6 h-6 bg-white shadow-input inline-block absolute right-7 border border-black-op1.5 transition-all ease-in;
+}
+
+.ifu-toggleswitch__input:checked + .ifu-toggleswitch__switch::before {
+  @apply bg-green-light;
+}
+
+.ifu-toggleswitch__input:checked + .ifu-toggleswitch__switch::after {
+  @apply right-0;
+}

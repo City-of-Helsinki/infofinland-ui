@@ -1,10 +1,14 @@
 @layer components {
   :root {
     --gradientHeight: 250px;
-  }
-
-  .-translate-y-1px {
-    transform: translateY(-1px);
+    --targetLinkOffset: -200px;
+    /*gradient colors in separate vars, for static use*/
+    --bgRed: #eb6b5c;
+    --bgGreen: #b4de93;
+    --bgBlue: #7fd5f9;
+    --bgOrange: #f4a368;
+    /* set this from Drupal*/
+    --bgColor: #7fd5f9;
   }
 
   @screen md {
@@ -14,52 +18,78 @@
   }
   /**
   * Hero area background colors
+
   */
-  .bg-article-red {
+
+  .ifu-article__bg--dynamic {
+    background: linear-gradient(
+      180deg,
+      var(--bgColor) var(--gradientHeight),
+      rgba(255, 255, 255, 1) var(--gradientHeight)
+    );
+  }
+
+  .ifu-article__bg--red {
     /* background: rgb(235,107,92); */
     background: linear-gradient(
       180deg,
-      #eb6b5c var(--gradientHeight),
+      var(--bgRed) var(--gradientHeight),
       rgba(255, 255, 255, 1) var(--gradientHeight)
     );
   }
 
-  .bg-article-green {
+  .ifu-article__bg--green {
     /* background: rgb(180,222,147); */
     background: linear-gradient(
       180deg,
-      rgba(180, 222, 147, 1) var(--gradientHeight),
+      var(--bgGreen) var(--gradientHeight),
       rgba(255, 255, 255, 1) var(--gradientHeight)
     );
   }
 
-  .bg-article-blue {
+  .ifu-article__bg--blue {
     /* background: rgb(127,213,249); */
     background: linear-gradient(
       180deg,
-      rgba(127, 213, 249, 1) var(--gradientHeight),
+      var(--bgBlue) var(--gradientHeight),
       rgba(255, 255, 255, 1) var(--gradientHeight)
     );
   }
 
-  .bg-article-orange {
+  .ifu-article__bg--orange {
     /* background: rgb(244,163,104); */
     background: linear-gradient(
       180deg,
-      rgba(244, 163, 104, 1) var(--gradientHeight),
+      var(--bgOrange) var(--gradientHeight),
       rgba(255, 255, 255, 1) var(--gradientHeight)
     );
+  }
+
+  /* Add stripe to columns in landing page */
+  .ifu-landing .ifu-article__columns {
+    @apply border-t border-black mt-16;
   }
 
   /**
 * Article body styles for markup content from Drupal
 */
-  .ifu-article__bodyblock ul {
-    @apply list-disc list-inside py-4 mb-4 ms-4;
+  .ifu-article__column-block,
+  .ifu-article__bodyblock {
+    @apply text-bodytext-color;
   }
+  .ifu-article__column-block ul,
+  .ifu-article__bodyblock ul {
+    @apply list-disc list-outside py-4 mb-4 ms-4 ps-4;
+  }
+  .ifu-article__column-block ul li,
+  .ifu-article__bodyblock ul li {
+    @apply ps-2;
+  }
+  .ifu-article__column-block p,
   .ifu-article__bodyblock p {
     @apply text-body;
   }
+
   .ifu-article__bodyblock h2 {
     @apply text-h2 md:text-h2xl mb-8 mt-16;
   }
@@ -68,7 +98,16 @@
     @apply text-h3 md:text-h3xl mb-8 mt-16;
   }
 
-  .ifu-article__bodyblock p:first-child {
-    @apply text-body-large mb-8;
+  .ifu-article__column-block h4 {
+    @apply text-h4 md:text-h4xl my-4 font-bold;
+  }
+
+  .ifu-heading__h2--target:target {
+    display: block;
+    position: relative;
+    top: var(--targetLinkOffset);
+    visibility: hidden;
+    height: 0;
+    width: 0;
   }
 }

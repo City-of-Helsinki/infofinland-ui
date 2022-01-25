@@ -2,8 +2,9 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { IconGlobe } from '@/components/Icons'
 import cls from 'classnames'
-import useTranslation from 'next-translate/useTranslation'
-import { languages } from '@/i18n'
+
+import { useTranslation } from 'next-i18next'
+import { i18n } from '@/next-i18next.config'
 
 const LanguageSelector = ({ openMenu }) => {
   const { pathname, query, locale } = useRouter()
@@ -26,12 +27,13 @@ const LanguageSelector = ({ openMenu }) => {
           </span>
           <IconGlobe className="xl:hidden mx-2 xl:mx-0 w-5 h-5" />
         </button>
-        {languages.map(({ text, code }) => (
+        {i18n.languages.map(({ text, code }) => (
           <Link
             href={{ pathname, query }}
             locale={code}
             passHref
             scroll={false}
+            prefetch={false}
             key={`lang-${code}`}
           >
             <a
@@ -49,7 +51,7 @@ const LanguageSelector = ({ openMenu }) => {
               </span>
               <span
                 className={cls(
-                  'hidden xl:inline-block hover:border-black border-b-2',
+                  'hidden xl:inline-block hover:border-black border-b-2 transition-all ease-in-out duration-300',
                   {
                     'border-black': locale === code,
                     'border-white': locale !== code,

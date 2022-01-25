@@ -7,7 +7,8 @@ export const MESSAGE_TYPES = {
 
 import { useState, useEffect } from 'react'
 import { CSSTransition } from 'react-transition-group'
-import useTranslation from 'next-translate/useTranslation'
+
+import { useTranslation } from 'next-i18next'
 
 const MessageButton = ({ cancel, confirm, onClick }) => {
   const { t } = useTranslation('common')
@@ -41,12 +42,12 @@ const MessageCard = ({
 
   useEffect(() => setShow(isOpen), [isOpen])
 
-  const _confirm = () => {
+  const handleConfirm = () => {
     setShow(false)
     confirm && confirm()
   }
 
-  const _cancel = () => {
+  const handleCancel = () => {
     setShow(false)
     cancel && cancel()
   }
@@ -76,7 +77,7 @@ const MessageCard = ({
           <div
             className={cls('w-2 flex-none rounded-s ', {
               'bg-neon-green': type === MESSAGE_TYPES.MESSAGE,
-              'bg-neon-red': type === MESSAGE_TYPES.ALERT,
+              'bg-neon-pink': type === MESSAGE_TYPES.ALERT,
               'bg-neon-yellow': type === MESSAGE_TYPES.WARNING,
             })}
           />
@@ -85,9 +86,9 @@ const MessageCard = ({
             {text && <div className=" text-message">{text}</div>}
             <div className="flex-grow">{children}</div>
             <div className="mt-2 text-right">
-              {!cancel && <MessageButton onClick={_confirm} />}
-              {cancel && <MessageButton onClick={_cancel} cancel />}
-              {cancel && <MessageButton onClick={_confirm} confirm />}
+              {!cancel && <MessageButton onClick={handleConfirm} />}
+              {cancel && <MessageButton onClick={handleCancel} cancel />}
+              {cancel && <MessageButton onClick={handleConfirm} confirm />}
             </div>
           </div>
         </div>

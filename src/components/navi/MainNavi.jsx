@@ -1,59 +1,60 @@
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import cls from 'classnames'
-import { useRouter } from 'next/router'
 import SubMenu from '@/components/navi/SubMenu'
+import useLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
+import { findRootForPath, getRootPages } from '@/lib/menu-utils'
+import { IconExclamationCircle } from '../Icons'
 
-const getThemeIndexByPathName = ({ pages, path }) => {
+const getThemeIndexByPathName = ({ items, path }) => {
   let index
-
-  const findPageByUrl = (pages, rootIndex) =>
-    pages.find(({ url, pages }, i) => {
-      if (url === path) {
-        index = rootIndex || i
-        return
-      } else if (pages) {
-        findPageByUrl(pages, rootIndex || i)
-      }
-    })
-
-  findPageByUrl(pages)
+  const root = findRootForPath({ items, path })
+  if (!root) {
+    return -1
+  }
+  const themes = getRootPages(items)
+  themes.find(({ url }, i) => {
+    if (url === root.url) {
+      index = i
+      return true
+    }
+  })
   return index
 }
 
 const TopMenuItem = ({
-  text,
+  title,
   url,
-  pages,
+  items,
   isOpen,
   toggle,
   selected,
   selectedIsHidden,
 }) => (
-  <li className={cls(' block relative', {})}>
-    {!pages && (
-      <Link href={url}>
+  <li className={cls('block relative', {})}>
+    {!items && (
+      <Link href={url} prefetch={false}>
         <a
           className={cls(
-            'block text-body-small ps-8 py-4 border-s-5 hover:bg-gray-white',
+            'block text-body-small ps-8 py-4 border-s-5 hover:bg-gray-white pe-4',
             {
               'font-bold': selected,
               'border-white': !selected,
               'border-blue':
-                (selected && (!isOpen || !pages)) || selectedIsHidden,
+                (selected && (!isOpen || !items)) || selectedIsHidden,
             }
           )}
         >
-          {text}
+          {title}
         </a>
       </Link>
     )}
 
-    {pages && (
+    {items && (
       <SubMenu
         url={url}
-        pages={pages}
-        text={text}
+        items={items}
+        title={title}
         isOpen={isOpen}
         toggle={toggle}
         selected={selected}
@@ -63,9 +64,12 @@ const TopMenuItem = ({
   </li>
 )
 
-const MainNavi = ({ pages }) => {
-  const { asPath } = useRouter()
-  const indexFromRouter = getThemeIndexByPathName({ pages, path: asPath })
+const MainNavi = ({ menu: { items, tree } }) => {
+  const { localePath } = useLocalizedPath()
+  const indexFromRouter = getThemeIndexByPathName({
+    items,
+    path: localePath,
+  })
   const [openIndex, setVisibility] = useState(indexFromRouter)
   const setOpenIndex = (i) => setVisibility(i === openIndex ? null : i)
   /**
@@ -74,20 +78,22 @@ const MainNavi = ({ pages }) => {
    */
   useEffect(() => {
     setVisibility(indexFromRouter)
-  }, [asPath, indexFromRouter])
+  }, [localePath, indexFromRouter])
 
   return (
     <nav className={cls('mb-8  pt-8', {})}>
       <ul className="block">
-        {pages.map((props, i) => (
+        {tree.map((props, i) => (
           <TopMenuItem
-            key={`link-${props.text}`}
+            key={`link-${props.title}`}
             {...props}
-            selected={asPath === props.url}
+            selected={localePath === props.url}
             isOpen={i === openIndex}
             toggle={() => setOpenIndex(i)}
             selectedIsHidden={
-              i === indexFromRouter && openIndex !== i && asPath !== props.ur
+              i === indexFromRouter &&
+              openIndex !== i &&
+              localePath !== props.url
             }
           />
         ))}
@@ -96,4 +102,14 @@ const MainNavi = ({ pages }) => {
   )
 }
 
+export const MainNaviError = () => (
+  <>
+    <div className="flex relative justify-center items-center h-40 text-neon-red opacity-20 filter grayscale">
+      <IconExclamationCircle className="inline-block fill-current" />
+    </div>
+    <p className="mx-3 text-small text-center text-gray">
+      Oops. Could not load main navigation
+    </p>
+  </>
+)
 export default MainNavi

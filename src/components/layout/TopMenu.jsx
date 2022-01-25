@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import useTranslation from 'next-translate/useTranslation'
+
+import { useTranslation } from 'next-i18next'
 import useLangMenuToggle from '@/hooks/useLangMenuToggle'
 
 import MobileNavi from '@/components/navi/MobileNavi'
@@ -14,15 +15,15 @@ import Search from '../search/Search'
 const Logo = () => (
   <div
     className="relative z-20 flex-none py-3 md:py-4 px-3 bg-white transform translate-y-px md:ps-6 md:pe-2"
-    role="logo"
+    role="banner"
   >
-    <Link href="/" passHref>
+    <Link href="/" passHref prefetch={false}>
       <a className=" ifu-topmenu__logo" title="infofinland.fi"></a>
     </Link>
   </div>
 )
 
-const TopMenu = () => {
+const TopMenu = ({ menu, municipalities }) => {
   const [open, setLangMenuVisibility] = useLangMenuToggle()
   const toggleLangMenu = () => setLangMenuVisibility(!open)
   const closeMenu = () => setLangMenuVisibility(false)
@@ -38,9 +39,12 @@ const TopMenu = () => {
         <LanguageMenuButton onClick={toggleLangMenu} />
         <LanguageSelector openMenu={() => setLangMenuVisibility(true)} />
         <LangMenuDrawer closeMenu={closeMenu} isOpen={open} />
+        <div className="2xl:flex-none xl:flex-grow"></div>
         <Search />
-        <MobileNavi />
-        <CityMenu />
+        <MobileNavi menu={menu} />
+        {municipalities?.length > 0 && (
+          <CityMenu municipalities={municipalities} />
+        )}
       </div>
     </header>
   )

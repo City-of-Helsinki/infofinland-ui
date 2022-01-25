@@ -1,11 +1,14 @@
-module.exports = {
-  testEnvironment: 'jsdom',
-  setupFilesAfterEnv: ['./jest.setup.js'],
+// jest.config.js
+const nextJest = require('next/jest')
+
+const createJestConfig = nextJest({
+  // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
+  dir: './',
+})
+
+// Add any custom config to be passed to Jest
+const customJestConfig = {
   moduleNameMapper: {
-    // asset loaders
-    '\\.(css|less|sass|scss)$': '<rootDir>/test/mocks/styleMock.js',
-    '\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$':
-      '<rootDir>/test/mocks/fileMock.js',
     // jsconfig absolute path mappings
     '^@/components(.*)$': '<rootDir>/src/components$1',
     '^@/pages(.*)$': '<rootDir>/pages$1',
@@ -15,4 +18,9 @@ module.exports = {
     '^@/public(.*)$': '<rootDir>/public$1',
     '^@/(.*)$': '<rootDir>/$1',
   },
+  globalSetup: '<rootDir>/test/setupEnv.js',
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
 }
+
+// createJestConfig is exported this way to ensure that next/jest can load the Next.js config which is async
+module.exports = createJestConfig(customJestConfig)

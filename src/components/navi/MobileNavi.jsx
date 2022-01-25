@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
-import MainNavi from '@/components/navi/MainNavi'
+import MainNavi, { MainNaviError } from '@/components/navi/MainNavi'
+
 import { IconMenu } from '@/components/Icons'
 import Drawer from '@/components/layout/Drawer'
 import { useRouter } from 'next/router'
-import { PAGES } from '../MOCK_PAGES'
-import useTranslation from 'next-translate/useTranslation'
 
-const MobileNavi = () => {
+import { useTranslation } from 'next-i18next'
+
+const MobileNavi = ({ menu }) => {
   const [isOpen, setVisibility] = useState(false)
   const open = () => setVisibility(true)
   const close = () => setVisibility(false)
@@ -20,6 +21,7 @@ const MobileNavi = () => {
    on click event as the menu closes only after
    the route has changed.
   */
+
   useEffect(() => {
     router.events.on('routeChangeComplete', close)
     router.events.on('routeChangeError', close)
@@ -29,7 +31,13 @@ const MobileNavi = () => {
       router.events.off('routeChangeError', close)
     }
   }, [router])
-
+  if (menu.error) {
+    return (
+      <span className="md:hidden">
+        <MainNaviError />
+      </span>
+    )
+  }
   return (
     <>
       <div className="md:hidden md:mx-6 me-6 ms-2">
@@ -47,7 +55,7 @@ const MobileNavi = () => {
 
       <Drawer close={close} isOpen={isOpen}>
         <div className="bg-white">
-          <MainNavi pages={PAGES} />
+          <MainNavi menu={menu} />
         </div>
       </Drawer>
     </>

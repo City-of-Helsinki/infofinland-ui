@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Block should render the given HTML inside a Block 1`] = `
+<DocumentFragment>
+  <div
+    class="px-6 lg:mx-12 xl:mx-28 2xl:mx-48 3xl:ms-64 3xl:max-w-4xl ifu-article__bodyblock full_html tester"
+  >
+    <p
+      class="mb-8"
+    >
+      Paragraph content
+      <a
+        class="ifu-text-link font-bold"
+        href="http://link.ki/fi"
+      >
+        linkki
+      </a>
+    </p>
+  </div>
+</DocumentFragment>
+`;

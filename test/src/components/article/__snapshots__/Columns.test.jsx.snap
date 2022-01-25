@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Columns should render text and images 1`] = `
+<DocumentFragment>
+  <div
+    class="px-6 lg:mx-12 xl:mx-28 2xl:mx-48 3xl:ms-64 3xl:max-w-4xl py-16 ifu-article__columns"
+  >
+    <div
+      class="lg:grid grid-cols-2 gap-16"
+    >
+      <div
+        class="mb-8 lg:mb-0"
+      >
+        <div
+          class="ifu-article__column-block full_html"
+        >
+          Alkukartoituksessa arvioidaan, mitkä palvelut auttavat sinua kotoutumaan.
+        </div>
+      </div>
+      <div
+        class="mb-8 lg:mb-0"
+      >
+        <div
+          class="overflow-hidden relative rounded aspect-video lg:aspect-square"
+        >
+          <span
+            style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
+          >
+            <img
+              data-nimg="fill"
+              decoding="async"
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; object-fit: cover;"
+            />
+            <noscript />
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

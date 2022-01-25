@@ -1,5 +1,3 @@
-// import Head from 'next/head'
-
 const Favicons = () => (
   <>
     <link
@@ -72,6 +70,7 @@ const Favicons = () => (
       href="/images/favicon-128.png"
       sizes="128x128"
     />
+    <link rel="icon" href="/favicon.ico" />
     <meta name="application-name" content="&nbsp;" />
     <meta name="msapplication-TileColor" content="#FFFFFF" />
     <meta name="msapplication-TileImage" content="mstile-144x144.png" />

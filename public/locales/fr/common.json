@@ -1,0 +1,47 @@
+{
+  "buttons": { "close": "Fermer", "search": "Cherchez" },
+  "feedback": {
+    "title": "Remarques",
+    "urlLabel": "Adresse de la page",
+    "buttons": {
+      "send": "Envoyer",
+      "cancel": "Annuler",
+      "sendAgain": "Envoyer un nouveau",
+      "close": "Fermer",
+      "open": "Envoyez une rémarque sur cette page"
+    },
+    "labels": {
+      "name": "Nom",
+      "email": "E-mail",
+      "feedback": "Rémarques"
+    },
+    "text": [
+      "TODO FROM DRUPAL Vastaamme palautteisiin seuraavilla kielillä: suomi, ruotsi ja englanti. Valitettavasti emme voi vastata palautteisiin, jotka on kirjoitettu muilla kielillä.",
+      "Palautelomakkeessa on automaattinen roskapostisuodatin. Palautteeseen ei saa liittää linkkiä.",
+      "Vastaamme vain InfoFinland-sivustoa koskeviin palautteisiin. Ota huomioon, että emme anna neuvontaa omien asioiden hoitamisessa. Neuvontapalveluja löydät InfoFinlandin sivulta Soita ja kysy neuvoa."
+    ],
+    "info1": "Le formulaire comprend trois champs.",
+    "info2": "Le nom, l’e-mail et le texte de commentaires sont toutes des données obligatoires.",
+    "states": {
+      "submitting": "Envoi des commentaires",
+      "fail": "Erreur lors de l'envoi du formulaire",
+      "success": "Merci pour vos commentaires",
+      "invalid": "Champ obligatoire"
+    }
+  },
+  "languageMenu": {
+    "label": "Sélectionner la langue"
+  },
+  "languageSelector": {
+    "button": "Langues"
+  },
+  "languageMessage": {
+    "title": "!Haluatko vaihtaa kieltä?",
+    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
+  },
+
+  "mainMenu": { "button": "Menu principal" },
+  "footer": {
+    "helsinkiDisclaimer": "Le site InfoFinland.fi est publié par la ville de Helsinki, l’État et les communes membres d’InfoFinland prennent part à son financement."
+  }
+}

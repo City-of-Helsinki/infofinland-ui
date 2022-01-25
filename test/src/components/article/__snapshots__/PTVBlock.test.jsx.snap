@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Block should render the given contact fragments inside a Block 1`] = `
+<DocumentFragment>
+  <div
+    class="mb-16"
+  >
+    <div
+      class="px-6 lg:mx-12 xl:mx-28 2xl:mx-48 3xl:ms-64 3xl:max-w-4xl mb-8"
+    >
+      <h4
+        class="mb-4 text-h4 font-bold"
+      >
+        Testitiedot
+      </h4>
+      <p
+        class=""
+      >
+        Isompi tie 2
+        <br />
+        Pääovi
+      </p>
+      <p
+        class="mb-2"
+      >
+        Osoite 1 A
+        <br />
+        Kolmas kerros
+      </p>
+      <p
+        class=""
+      >
+        +358 044 676 9539
+      </p>
+      <p
+        class="mb-4"
+      >
+        aa@bb.com
+      </p>
+      <p
+        class=""
+      >
+        ma-pe: 10-16, la:12-14
+      </p>
+    </div>
+    <div
+      class="px-6 lg:mx-12 xl:mx-28 2xl:mx-48 3xl:ms-64 3xl:max-w-4xl mb-8"
+    />
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IngressBlock should render the given HTML inside a Block 1`] = `
+<DocumentFragment>
+  <div
+    class="px-6 lg:mx-12 xl:mx-28 2xl:mx-48 3xl:ms-64 3xl:max-w-4xl my-16 text-body-large ifu-article__ingress"
+  >
+    Alkukartoituksessa arvioidaan, mitkä palvelut auttavat sinua kotoutumaan.
+  </div>
+</DocumentFragment>
+`;

@@ -2,7 +2,7 @@ import Button from '@/components/Button'
 import { useRouter } from 'next/router'
 import Image from 'next/image'
 // import image from '@/public/images/suomi-kartta.png'
-import Block from '@/components/article/Block'
+import Block from '@/components/layout/Block'
 const CitySelector = () => {
   const { push } = useRouter()
   const goToCities = () => push('/cities')
@@ -18,14 +18,16 @@ const CitySelector = () => {
 
           <Button onClick={goToCities}>Go to Cities</Button>
         </div>
-        <div className="">
-          <Image
-            src="/images/suomi-kartta.png"
-            alt=""
-            height="381"
-            width="219"
-            layout="intrinsic"
-          />
+        <div className="flex justify-center">
+          <div className="">
+            <Image
+              src="/images/suomi-kartta.png"
+              alt=""
+              height="381"
+              width="219"
+              layout="intrinsic"
+            />
+          </div>
         </div>
       </div>
     </Block>

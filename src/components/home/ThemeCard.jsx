@@ -6,7 +6,7 @@ import { longTextClass } from '@/components/Typo'
 const MAX_TITLE_LENGTH = 40
 
 const ThemeCard = ({ title, url, image, blue, green }) => (
-  <Link passHref href={url}>
+  <Link passHref href={url} prefetch={false}>
     <a
       className={cls('rounded block', {
         'bg-blue-white hover:bg-blue-lighter shadow-themecard-blue': blue,
@@ -20,6 +20,7 @@ const ThemeCard = ({ title, url, image, blue, green }) => (
             height={100}
             width={300}
             alt=""
+            objectFit="cover"
             layout="responsive"
             className="rounded-t"
           />

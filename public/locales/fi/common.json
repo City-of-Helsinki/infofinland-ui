@@ -1,0 +1,93 @@
+{
+  "buttons": {
+    "close": "Sulje",
+    "search": "Hae",
+    "yes": "Kyllä",
+    "no": "Ei",
+    "ok": "OK",
+    "skipTo": "Siirry sisältöön"
+  },
+  "feedback": {
+    "title": "Lähetä palautetta",
+    "urlLabel": "Sivun osoite",
+    "buttons": {
+      "send": "Lähetä",
+      "cancel": "Peruuta",
+      "sendAgain": "Lähetä uusi",
+      "close": "Sulje",
+      "open": "Lähetä palautetta tästä sivusta"
+    },
+    "labels": {
+      "name": "Nimi",
+      "email": "Sähköposti",
+      "feedback": "Palautteesi"
+    },
+    "text": [
+      "TODO FROM DRUPAL!! Vastaamme palautteisiin seuraavilla kielillä: suomi, ruotsi ja englanti. Valitettavasti emme voi vastata palautteisiin, jotka on kirjoitettu muilla kielillä.",
+      "Palautelomakkeessa on automaattinen roskapostisuodatin. Palautteeseen ei saa liittää linkkiä.",
+      "Vastaamme vain InfoFinland-sivustoa koskeviin palautteisiin. Ota huomioon, että emme anna neuvontaa omien asioiden hoitamisessa. Neuvontapalveluja löydät InfoFinlandin sivulta Soita ja kysy neuvoa."
+    ],
+    "info1": "Lomakkeessa on kolme kenttää.",
+    "info2": "  Nimi, sähköposti ja palautteen teksti ovat kaikki pakollisia tietoja.",
+    "states": {
+      "submitting": "Lähetetään palautetta...",
+      "fail": "Lähetys epäonnistui. Yritä uudestaan.",
+      "success": "Kiitos palautteestasi",
+      "invalid": "Pakollinen kenttä"
+    }
+  },
+  "languageMenu": {
+    "label": "Valitse kieli"
+  },
+  "languageSelector": {
+    "button": "Kielet"
+  },
+  "languageMessage": {
+    "title": "Haluatko vaihtaa kieltä?",
+    "text": "TODO: Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
+  },
+  "lang404": {
+    "title": "Sivua ei löydy tällä kielellä",
+    "text": "Valitettavasti sivua ei ole valitsemallasi kielellä. Löydät tietoa aiheesta seuraavilla kielillä: "
+  },
+  "localInfo": {
+    "readMore": "Lue lisää: TODO CHECK LANGS",
+    "select": "Valitse kunta",
+    "reselect": "Valitse toinen kunta",
+    "clear": "Tyhjennä",
+    "help": "See more information related to your municipality."
+  },
+  "search": {
+    "loading": "Haetaan...",
+    "placeholder": "Hae hakusanalla..",
+    "title": {
+      "results": "Hakutulokset",
+      "start": "Hae sivustolta",
+      "noresults": "Ei hakutuloksia"
+    }
+  },
+  "mainMenu": {
+    "button": "Päävalikko",
+    "open": "Näytä alasivut",
+    "close": "Piilota alasivut"
+  },
+  "footer": {
+    "helsinkiDisclaimer": "InfoFinland.fi-sivustoa julkaisee Helsingin kaupunki, ja sitä rahoittavat valtio ja InfoFinlandin jäsenkunnat."
+  },
+  "images": { "photographer": "Kuva" },
+  "cookies": {
+    "title": "infoFinland.fi käyttää evästeitä",
+    "text": "Tämä sivusto käyttää välttämättömiä evästeitä suorituskyvyn varmistamiseksi sekä yleisen käytön seurantaan. Lisäksi käytämme kohdennusevästeitä käyttäjäkokemuksen parantamiseksi.",
+    "labels": {
+      "analytics": "Salli käyttöseuranta laatunvalvontatarkoituksiin"
+    },
+    "allowed": "Sallittu",
+    "denied": "Kielletty",
+    "allow": "Hyväksy kaikki evästeet",
+    "deny": "Vain välttämättömät",
+    "readMore": "Evästeasetukset",
+    "settings": {
+      "title": "Evästeasetukset"
+    }
+  }
+}
