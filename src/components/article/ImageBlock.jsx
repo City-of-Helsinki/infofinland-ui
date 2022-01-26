@@ -28,6 +28,7 @@ export const ArticleImage = ({
           <Image
             alt={alt}
             src={src}
+            // src="/foo.png"
             title={title}
             layout={layout}
             onLoadingComplete={() => setLoading(false)}

@@ -28,7 +28,7 @@ const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
     title,
     revision_timestamp,
     field_description,
-    field_use_anchor_links = true,
+    field_use_anchor_links,
   } = node
 
   const hero = getHeroFromNode(node)

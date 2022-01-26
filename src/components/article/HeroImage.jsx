@@ -21,6 +21,7 @@ const HeroImage = ({ heroImage, ...rest }) => {
             {loading && <RingsLoader />}
             <Image
               src={heroImage}
+              // src="/foo.png"
               alt=""
               priority
               layout="fill"

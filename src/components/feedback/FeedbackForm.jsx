@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef, forwardRef } from 'react'
 import cls from 'classnames'
-
 import { useTranslation } from 'next-i18next'
 import { IconExclamationBubble, IconAngleUp } from '@/components/Icons'
 import { HERO_MARGIN } from '@/components/layout/Block'
@@ -27,7 +26,8 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
   } = useForm()
 
   const onSubmit = (data) => {
-    console.log(data)
+    console.log('TODO send to mailer', data)
+    alert('TODO send to mailer')
     return new Promise((ok, fail) => {
       const action = data.fail ? fail : ok
       setTimeout(action, 1500)
@@ -64,7 +64,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
         {isSubmitSuccessful && (
           <h3 className="my-6 text-h3">{t('feedback.states.success')}</h3>
         )}
-        <SubmitLoader />
+
         {isSubmitting && <SubmitLoader />}
 
         <p className="mb-8 text-gray-dark break-words">
