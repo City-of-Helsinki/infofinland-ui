@@ -26,9 +26,9 @@ const LocalInformation = ({ readMoreUrl }) => {
   const { t } = useTranslation('common')
   return (
     <div className="mb-8">
-      <Block className="flex items-center h-14 bg-green-lighter lg:rounded-t">
+      <Block className="flex items-center h-14 lg:h-16 bg-green-lighter lg:rounded-t">
         <h3 className="md:flex-grow text-body font-bold -translate-x-4">
-          <IconMapMarker className="h-7 lg:h-8 me-3" />
+          <IconMapMarker className="h-7 me-2" />
           Local information
         </h3>
       </Block>

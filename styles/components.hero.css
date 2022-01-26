@@ -1,0 +1,8 @@
+@layer components {
+  .ifu-hero__loader-icon {
+    background-repeat: no-repeat;
+    background-image: url('/images/loader-icon-light.png');
+    background-position: center center;
+    background-size: 8%;
+  }
+}

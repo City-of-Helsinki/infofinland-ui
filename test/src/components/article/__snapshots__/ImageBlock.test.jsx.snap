@@ -3,8 +3,18 @@
 exports[`ArticleImage should render image alt, title, className and and caption 1`] = `
 <DocumentFragment>
   <div
-    class="test-class"
+    class="test-class ifu-loader__rings"
   >
+    <div
+      class="flex absolute justify-items-center items-center w-full h-full"
+    >
+      <div
+        class=" scale-75 lg:scale-100 ifu-loader__image--ripple"
+      >
+        <div />
+        <div />
+      </div>
+    </div>
     <span
       style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
     >
@@ -29,7 +39,19 @@ exports[`ArticleImage should render image alt, title, className and and caption 
 
 exports[`ArticleImage should render use layout="fill" as default and ignore heigh and width 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="ifu-loader__rings"
+  >
+    <div
+      class="flex absolute justify-items-center items-center w-full h-full"
+    >
+      <div
+        class=" scale-75 lg:scale-100 ifu-loader__image--ripple"
+      >
+        <div />
+        <div />
+      </div>
+    </div>
     <span
       style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
     >
@@ -47,7 +69,19 @@ exports[`ArticleImage should render use layout="fill" as default and ignore heig
 
 exports[`ArticleImage should require height and width for other layouts and throw an error if they are missing 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="ifu-loader__rings"
+  >
+    <div
+      class="flex absolute justify-items-center items-center w-full h-full"
+    >
+      <div
+        class=" scale-75 lg:scale-100 ifu-loader__image--ripple"
+      >
+        <div />
+        <div />
+      </div>
+    </div>
     <span
       style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative;"
     >
@@ -68,7 +102,19 @@ exports[`ArticleImage should require height and width for other layouts and thro
 
 exports[`ArticleImage should use objectFit="contain" if width < height 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="ifu-loader__rings"
+  >
+    <div
+      class="flex absolute justify-items-center items-center w-full h-full"
+    >
+      <div
+        class=" scale-75 lg:scale-100 ifu-loader__image--ripple"
+      >
+        <div />
+        <div />
+      </div>
+    </div>
     <span
       style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
     >
@@ -86,7 +132,19 @@ exports[`ArticleImage should use objectFit="contain" if width < height 1`] = `
 
 exports[`ArticleImage should use objectFit="hover" if width >= height 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="ifu-loader__rings"
+  >
+    <div
+      class="flex absolute justify-items-center items-center w-full h-full"
+    >
+      <div
+        class=" scale-75 lg:scale-100 ifu-loader__image--ripple"
+      >
+        <div />
+        <div />
+      </div>
+    </div>
     <span
       style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
     >
@@ -108,8 +166,18 @@ exports[`ImageBlock should render the given image inside a Block 1`] = `
     class="mx-6 lg:mx-12 xl:mx-28 2xl:mx-48 3xl:ms-64 3xl:max-w-4xl my-16"
   >
     <div
-      class="overflow-hidden relative bg-gray-lighter-teal rounded aspect-video"
+      class="overflow-hidden relative bg-gray-white rounded aspect-video ifu-loader__rings"
     >
+      <div
+        class="flex absolute justify-items-center items-center w-full h-full"
+      >
+        <div
+          class=" scale-75 lg:scale-100 ifu-loader__image--ripple"
+        >
+          <div />
+          <div />
+        </div>
+      </div>
       <span
         style="box-sizing: border-box; display: block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px;"
       >

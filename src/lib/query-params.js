@@ -111,14 +111,14 @@ export const getPageQueryParams = () =>
       // These content types are not avalable for landing page
       //Link collections: link and translations including translated locale codes
       // DISABLED DUE TO API REGRESSION
-      // 'field_content.field_link_collection.field_links.field_language',
+      'field_content.field_link_collection.field_links.field_language',
       //Contact information fragments
       'field_content.field_contact_data',
       //Accordion: text, images, links, columns
       'field_content.field_accordion_items.field_accordion_item_content.field_columns_left_column.field_image.field_media_image',
       'field_content.field_accordion_items.field_accordion_item_content.field_columns_right_column.field_image.field_media_image',
       // DISABLED DUE TO API REGRESSION
-      // 'field_content.field_accordion_items.field_accordion_item_content.field_link_collection.field_links.field_language',
+      'field_content.field_accordion_items.field_accordion_item_content.field_link_collection.field_links.field_language',
       'field_content.field_accordion_items.field_accordion_item_content.field_image.field_media_image',
     ])
     .addFields(NODE_TYPES.PAGE, [
@@ -130,6 +130,7 @@ export const getPageQueryParams = () =>
       'field_hero',
       'field_description',
       'field_metatags',
+      'field_use_anchor_links',
     ])
     .getQueryObject()
 

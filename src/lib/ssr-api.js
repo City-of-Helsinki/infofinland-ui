@@ -194,6 +194,8 @@ export const getThemeHeroImages = async ({ tree, context }) => {
       getResource(NODE_TYPES.PAGE, id, {
         locale: context.locale,
         params: getThemeHeroParams(),
+      }).catch((e) => {
+        console.error(e)
       })
     )
   )

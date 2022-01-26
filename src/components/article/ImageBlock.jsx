@@ -1,7 +1,9 @@
 import Block from '@/components/layout/Block'
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
-
+import cls from 'classnames'
+import { RingsLoader } from '../Loaders'
+import { useState } from 'react'
 const getFit = ({ width, height }) => (width < height ? 'contain' : 'cover')
 
 export const ArticleImage = ({
@@ -17,15 +19,19 @@ export const ArticleImage = ({
   layout = 'fill',
 }) => {
   const { t } = useTranslation('common')
+  const [loading, setLoading] = useState(true)
   return (
     <>
-      <div className={className}>
+      <div className={cls(className, 'ifu-loader__rings')}>
+        {loading && <RingsLoader />}
         {src && (
           <Image
             alt={alt}
             src={src}
+            // src="/foo.png"
             title={title}
             layout={layout}
+            onLoadingComplete={() => setLoading(false)}
             objectFit={fit || getFit({ width, height })}
             {...(layout === 'fill' ? {} : { width, height })}
           />
@@ -48,7 +54,7 @@ const ImageBlock = ({ caption, src, height, width, title, alt }) => {
   return (
     <Block className="my-16" hero>
       <ArticleImage
-        className="overflow-hidden relative bg-gray-lighter-teal rounded aspect-video"
+        className="overflow-hidden relative bg-gray-white rounded aspect-video"
         alt={alt}
         src={src}
         width={width}

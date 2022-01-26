@@ -1,5 +1,17 @@
-import Loader from 'react-loader-spinner'
+export const DotsLoader = () => (
+  <div className="ifu-loader__feeedback--ellipsis">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+)
 
-export const DotsLoader = (
-  props = { height: 100, width: 100, color: '#00A3E8' }
-) => <Loader type="MutatingDots" {...props} />
+export const RingsLoader = () => (
+  <div className="flex absolute justify-items-center items-center w-full h-full">
+    <div className=" scale-75 lg:scale-100 ifu-loader__image--ripple">
+      <div></div>
+      <div></div>
+    </div>
+  </div>
+)
