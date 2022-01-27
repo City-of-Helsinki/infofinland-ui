@@ -95,7 +95,8 @@ describe('ssr-api', () => {
       expect(links.at(0).mainTranslation.url).toBe('http://so.so')
       expect(links.at(0).siteName).toBe('sivusto')
       expect(links.at(0).title).toBe('title')
-      expect(links.at(0).languages).toHaveLength(2)
+      // Must include current language
+      expect(links.at(0).languages).toHaveLength(3)
     })
 
     it('should sort languages to the configured language order', () => {
@@ -156,7 +157,7 @@ describe('ssr-api', () => {
       expect(links.at(0).mainTranslation.url).toBe('http://en.en')
       expect(links.at(0).siteName).toBe('sivusto')
       expect(links.at(0).title).toBe('title')
-      expect(links.at(0).languages).toHaveLength(1)
+      expect(links.at(0).languages).toHaveLength(2)
     })
 
     it('should fall back to finnish  if required locale and english are not translated', () => {
@@ -179,7 +180,7 @@ describe('ssr-api', () => {
       expect(links.at(0).mainTranslation.url).toBe('http://fi.fi')
       expect(links.at(0).siteName).toBe('sivusto')
       expect(links.at(0).title).toBe('title')
-      expect(links.at(0).languages).toHaveLength(0)
+      expect(links.at(0).languages).toHaveLength(1)
     })
 
     it('should fail gracefully', () => {

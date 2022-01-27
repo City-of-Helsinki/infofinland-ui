@@ -71,9 +71,11 @@ export const alertMessageAtoms = splitAtom(alertMessages)
 /** the search keyword being typed to input */
 export const searchQueryValue = atom('')
 
-/** The search API url  */
+/** The Client API urls  */
 export const SEARCH_URL = '/api/search'
+export const LOCAL_INFO_URL = '/api/localinfo'
 
+// TODO move these to lib/browser-api.js ?
 /**
  * Get search results based on searchQueryValue
  * @param {string} q - the search term.
@@ -82,4 +84,9 @@ export const SEARCH_URL = '/api/search'
 export const getSearchResults = async (q) => {
   const { data } = await axios.get(SEARCH_URL, { params: { q } })
   return data.results
+}
+
+export const getLocalInformation = async (params) => {
+  const { data } = await axios.get(LOCAL_INFO_URL, { params })
+  return data.node
 }

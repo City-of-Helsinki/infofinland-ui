@@ -1,29 +1,56 @@
 import { IconMapMarker } from '@/components/Icons'
 import ParseHtml from '@/components/ParseHtml'
 import { useAtom } from 'jotai'
-import { selectedCity, cityMenuVisibility } from '@/src/store'
+import {
+  selectedCity,
+  cityMenuVisibility,
+  getLocalInformation,
+} from '@/src/store'
 import Block from '@/components/layout/Block'
 import cls from 'classnames'
 import { IconExternalSite, IconAngleDown } from '@/components/Icons'
 import { useTranslation } from 'next-i18next'
 import { CSSTransition } from 'react-transition-group'
+import useSWR from 'swr'
+import { CONTENT_TYPES } from '@/lib/DRUPAL_API_TYPES'
 
 import TextLink from '../TextLink'
-const DEMOHTML = `
-<div>
-<p>Vocational training is aimed at both young people and adults. You can apply for vocational training all year round. You can study for an upper secondary education or increase your skills in vocational training. Vocational training in Vaasa is organised by Vamia and YA – Vocational College of Ostrobothnia (Yrkesakademin i Österbotten (YA)).</p>
-<p>YA and Vamia also organise preparatory training for basic vocational training, i.e. VALMA. The training lasts for a maximum of one academic year. YA’s VALMA training is in Swedish; Handledande utbildning för yrkesutbildning.</p>
-</div>
-`
+import { DotsLoader } from '../Loaders'
+import { IconExclamationCircle } from '../Icons'
 
-const LocalInformation = ({ readMoreUrl }) => {
-  const [city, setCity] = useAtom(selectedCity)
-  const isOpen = !!city
+const useLocalInformation = ({ city, category }) => {
+  const cacheKey = !city ? null : `${city?.name}-${city?.uuid}`
+  const fetcher = !city
+    ? () => {}
+    : () => getLocalInformation({ ...city, category })
+
+  const { data, error } = useSWR(cacheKey, fetcher)
+  console.log({ data, error, cacheKey, city })
+  return {
+    node: data,
+    isLoading: !error && !data,
+    isError: error,
+  }
+}
+
+const LocalInformation = ({
+  cities = [
+    {
+      url: '/foo',
+      uuid: '17c46cd1-1cf9-449e-abb7-d568e21ff823',
+      name: 'Vantaa',
+    },
+  ],
+}) => {
+  const [selected, setCity] = useAtom(selectedCity)
+
   // eslint-disable-next-line no-unused-vars
   const [open, setOpen] = useAtom(cityMenuVisibility)
   const openMenu = () => setOpen(true)
   const clearCity = () => setCity(null)
   const { t } = useTranslation('common')
+  const city = cities.find(({ name }) => name === selected)
+  const isOpen = !!selected && !!city
   return (
     <div className="mb-8">
       <Block className="flex items-center h-14 lg:h-16 bg-green-lighter lg:rounded-t">
@@ -39,13 +66,13 @@ const LocalInformation = ({ readMoreUrl }) => {
             onClick={openMenu}
           >
             <span className="underline">
-              {!city && t('localInfo.select')}
-              {city && city}
+              {!selected && t('localInfo.select')}
+              {selected && selected}
             </span>
             <IconAngleDown className="w-3 h-3 fill-black ms-2" />
           </button>
           <div className="flex-grow"></div>
-          {city && (
+          {selected && (
             <button
               className="inline-block flex-none text-body"
               onClick={clearCity}
@@ -54,38 +81,78 @@ const LocalInformation = ({ readMoreUrl }) => {
             </button>
           )}
         </div>
-        {!city && <p className="mt-2">{t('localInfo.help')}</p>}
-        <CSSTransition
-          in={isOpen}
-          classNames={{
-            appear: 'ifu-local-info__content--appear',
-            appearActive: 'ifu-local-info__content--appear-active',
-            appearDone: 'ifu-local-info__content--appear-done',
-            enter: 'ifu-local-info__content--enter',
-            enterActive: 'ifu-local-info__content--enter-active',
-            enterDone: 'ifu-local-info__content--enter-done',
-            exit: 'ifu-local-info__content--exit',
-            exitActive: 'ifu-local-info__content--exit-active',
-            exitDone: 'ifu-local-info__content--exit-done',
-          }}
-          mountOnEnter
-          unmountOnExit
-          timeout={{ appear: 0, enter: 300, exit: 0 }}
-        >
-          <div className="mt-8">
-            <ParseHtml html={DEMOHTML} />
-            <LocalReadMore />
-            {readMoreUrl && (
-              <p className="mt-8">
-                <TextLink className="font-bold" href={readMoreUrl}>
-                  {t('localInfo.readMore')}
-                </TextLink>
-              </p>
-            )}
-          </div>
-        </CSSTransition>
+        {!selected && <p className="mt-2">{t('localInfo.help')}</p>}
+        {!city && selected && <p className="mt-2">{t('localInfo.noInfo')}</p>}
+        <SRWContent isOpen={isOpen} url={city?.url} city={city} />
       </Block>
     </div>
+  )
+}
+
+const SRWContent = ({ city, isOpen }) => {
+  const { t } = useTranslation('common')
+  const { node, isLoading, isError } = useLocalInformation({ city })
+
+  const content = node?.field_content
+    .slice(0, 2)
+    .filter(({ type }) => type === CONTENT_TYPES.TEXT)
+
+  return (
+    <CSSTransition
+      in={isOpen}
+      classNames={{
+        appear: 'ifu-local-info__content--appear',
+        appearActive: 'ifu-local-info__content--appear-active',
+        appearDone: 'ifu-local-info__content--appear-done',
+        enter: 'ifu-local-info__content--enter',
+        enterActive: 'ifu-local-info__content--enter-active',
+        enterDone: 'ifu-local-info__content--enter-done',
+        exit: 'ifu-local-info__content--exit',
+        exitActive: 'ifu-local-info__content--exit-active',
+        exitDone: 'ifu-local-info__content--exit-done',
+      }}
+      mountOnEnter
+      unmountOnExit
+      timeout={{ appear: 0, enter: 300, exit: 0 }}
+    >
+      <div className="mt-8">
+        {isLoading && (
+          <div className="flex items-center h-52">
+            <DotsLoader color="green" />
+          </div>
+        )}
+        {isError && (
+          <div className="flex items-center h-24">
+            <p className="m-auto mb-8 text-center text-gray-medium">
+              <IconExclamationCircle className="mb-4 fill-green-light" />
+              <br />
+              {t('localInfo.error')}
+            </p>
+          </div>
+        )}
+
+        {!isLoading && !isError && (
+          <>
+            {content?.map(({ field_text, id }) => {
+              return (
+                <ParseHtml
+                  html={field_text?.processed}
+                  key={`localinfo-text-${id}`}
+                />
+              )
+            })}
+
+            <LocalReadMore />
+
+            <p className="mt-8">
+              <TextLink className="font-bold" href={city?.url}>
+                {t('localInfo.readMore')}
+              </TextLink>
+            </p>
+          </>
+        )}
+      </div>
+    </CSSTransition>
   )
 }
 

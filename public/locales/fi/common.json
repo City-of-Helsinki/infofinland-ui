@@ -55,7 +55,9 @@
     "select": "Valitse kunta",
     "reselect": "Valitse toinen kunta",
     "clear": "Tyhjennä",
-    "help": "See more information related to your municipality."
+    "help": "See more information related to your municipality.",
+    "noInfo": "Tältä kunnalta ei ole paikallistietoa saatavilla",
+    "error": "Tietoa ei voitu ladata"
   },
   "search": {
     "loading": "Haetaan...",

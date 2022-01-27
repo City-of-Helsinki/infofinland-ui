@@ -91,14 +91,7 @@ export const getLinks = ({ collection, locale } = {}) => {
       }
 
       const languages = field_links
-        ?.filter(({ field_language, id }) => {
-          if (id === MISSING_ID_TOKEN) {
-            console.error(ERROR_MISSING_LANGUAGE)
-            return
-          }
-          return field_language.field_locale !== mainTranslation.locale
-        })
-        .map(({ field_language, field_language_link }) => {
+        ?.map(({ field_language, field_language_link }) => {
           return {
             url: field_language_link,
             title: field_language.name,
