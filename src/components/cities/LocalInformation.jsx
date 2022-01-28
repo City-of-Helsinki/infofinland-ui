@@ -36,11 +36,7 @@ const useLocalInformation = ({ city, category }) => {
 
 const LocalInformation = ({
   cities = [
-    {
-      url: '/foo',
-      uuid: '17c46cd1-1cf9-449e-abb7-d568e21ff823',
-      name: 'Vantaa',
-    },
+// TODO get cities from field_content
   ],
 }) => {
   const [selectedCity, setCity] = useAtom(selectedCityAtom)

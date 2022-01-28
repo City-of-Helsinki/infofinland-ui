@@ -10,7 +10,6 @@ const baseQueryParams = () =>
     .addInclude([
       // Image
       'field_content.field_image.field_media_image',
-      'field_content.field_remote_video',
       // Hero
       'field_hero.field_hero_image.field_media_image',
       'field_hero.field_hero_bg_color',
@@ -128,6 +127,8 @@ export const getPageQueryParams = () =>
       // These content types are not avalable for landing page
       //Link collections: link and translations including translated locale codes
       'field_content.field_link_collection.field_links.field_language',
+      // Video content
+      'field_content.field_remote_video',
       //Contact information fragments
       'field_content.field_contact_data',
       //Accordion: text, images, links, columns
