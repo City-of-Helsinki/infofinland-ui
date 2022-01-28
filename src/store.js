@@ -17,13 +17,13 @@ export const CITY_ATOM_KEY = 'city'
 // export const cities = atom([])
 
 /** Chosen municipality for local information blocks*/
-export const selectedCityAtom= atomWithStorage(CITY_ATOM_KEY, undefined)
+export const selectedCityAtom = atomWithStorage(CITY_ATOM_KEY, undefined)
 
 /** Visibility state of municipality menu*/
-export const cityMenuVisibilityAtomAtom = atom(false)
+export const cityMenuVisibilityAtom = atom(false)
 
 /** Visibility language menu*/
-export const languageMenuVisibilityAtom= atom(false)
+export const languageMenuVisibilityAtom = atom(false)
 
 /** Visibility of language popup*/
 export const languageMessageIsOpenAtom = atom(false)
@@ -62,9 +62,7 @@ export const messages = atom({
   ],
 })
 
-const alertMessagesAtom = focusAtom(messages, (optics) =>
-  optics.prop('alerts')
-)
+const alertMessagesAtom = focusAtom(messages, (optics) => optics.prop('alerts'))
 
 export const alertMessageAtoms = splitAtom(alertMessagesAtom)
 

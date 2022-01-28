@@ -47,6 +47,17 @@ export const getImage = (item) => {
   }
 }
 
+export const getVideo = ({
+  field_video_url,
+  field_remote_video,
+  field_video_title,
+}) => {
+  const url =
+    field_video_url?.uri || field_remote_video?.field_media_oembed_video
+  const title = field_video_url?.title || field_video_title
+  return { url, title }
+}
+
 const ERROR_MISSING_LANGUAGE = 'language id missing'
 const MISSING_ID_TOKEN = 'missing'
 

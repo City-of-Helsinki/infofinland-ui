@@ -3,7 +3,7 @@ import ParseHtml from '@/components/ParseHtml'
 import { useAtom } from 'jotai'
 import { useUpdateAtom } from 'jotai/utils'
 import {
-  selectedCity,
+  selectedCityAtom,
   cityMenuVisibilityAtom,
   getLocalInformation,
 } from '@/src/store'
@@ -43,15 +43,15 @@ const LocalInformation = ({
     },
   ],
 }) => {
-  const [selected, setCity] = useAtom(selectedCity)
+  const [selectedCity, setCity] = useAtom(selectedCityAtom)
 
   // eslint-disable-next-line no-unused-vars
   const setOpen = useUpdateAtom(cityMenuVisibilityAtom)
   const openMenu = () => setOpen(true)
   const clearCity = () => setCity(null)
   const { t } = useTranslation('common')
-  const city = cities.find(({ name }) => name === selected)
-  const isOpen = !!selected && !!city
+  const city = cities.find(({ name }) => name === selectedCity)
+  const isOpen = !!selectedCity && !!city
   return (
     <div className="mb-8">
       <Block className="flex items-center h-14 lg:h-16 bg-green-lighter lg:rounded-t">
@@ -67,13 +67,13 @@ const LocalInformation = ({
             onClick={openMenu}
           >
             <span className="underline">
-              {!selected && t('localInfo.select')}
-              {selected && selected}
+              {!selectedCity && t('localInfo.select')}
+              {selectedCity && selectedCity}
             </span>
             <IconAngleDown className="w-3 h-3 fill-black ms-2" />
           </button>
           <div className="flex-grow"></div>
-          {selected && (
+          {selectedCity && (
             <button
               className="inline-block flex-none text-body"
               onClick={clearCity}
@@ -82,8 +82,10 @@ const LocalInformation = ({
             </button>
           )}
         </div>
-        {!selected && <p className="mt-2">{t('localInfo.help')}</p>}
-        {!city && selected && <p className="mt-2">{t('localInfo.noInfo')}</p>}
+        {!selectedCity && <p className="mt-2">{t('localInfo.help')}</p>}
+        {!city && selectedCity && (
+          <p className="mt-2">{t('localInfo.noInfo')}</p>
+        )}
         <SRWContent isOpen={isOpen} url={city?.url} city={city} />
       </Block>
     </div>
@@ -91,7 +93,6 @@ const LocalInformation = ({
 }
 
 const SRWContent = ({ city, isOpen }) => {
-
   const { t } = useTranslation('common')
   const { node, isLoading, isError } = useLocalInformation({ city })
 

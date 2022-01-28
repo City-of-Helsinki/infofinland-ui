@@ -1,8 +1,6 @@
 import { useAtom } from 'jotai'
 import MessageCard, { MESSAGE_TYPES } from '@/components/messages/MessageCard'
-import {
-  alertMessageAtoms,
-} from '@/src/store'
+import { alertMessageAtoms } from '@/src/store'
 
 const AlertMessage = ({ atom }) => {
   const [message, setMessage] = useAtom(atom)
