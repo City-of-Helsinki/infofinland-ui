@@ -33,7 +33,7 @@ export const getHeroFromNode = (node) => {
   }
 }
 
-export const getImage = (item) => {
+export const getImage = (item = {}) => {
   const host = getConfig().publicRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL
   const url = item.field_image?.field_media_image?.uri?.url
   const caption = item.field_image_caption
@@ -51,7 +51,7 @@ export const getVideo = ({
   field_video_url,
   field_remote_video,
   field_video_title,
-}) => {
+} = {}) => {
   const url =
     field_video_url?.uri || field_remote_video?.field_media_oembed_video
   const title = field_video_url?.title || field_video_title
