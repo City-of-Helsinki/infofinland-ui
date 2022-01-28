@@ -21,7 +21,6 @@ export default async function handler(req, res) {
     throw e
   })
 
-  // TODO error handling for API query?
   if (node === null) {
     status = 404
   }

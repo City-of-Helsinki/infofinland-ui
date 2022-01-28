@@ -1,7 +1,7 @@
 import Button from '@/components/Button'
 import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
-import { isCookieConsentSet, cookieConsent } from '@/src/store'
+import { isCookieConsentSetAtom, cookieConsentAtom } from '@/src/store'
 import { useAtomValue, useUpdateAtom } from 'jotai/utils'
 import { useRouter } from 'next/router'
 import { CSSTransition } from 'react-transition-group'
@@ -9,8 +9,8 @@ import getConfig from 'next/config'
 
 export function CookieConsentActions() {
   const { t } = useTranslation('common')
-  const isConsentSet = useAtomValue(isCookieConsentSet)
-  const setConsent = useUpdateAtom(cookieConsent)
+  const isConsentSet = useAtomValue(isCookieConsentSetAtom)
+  const setConsent = useUpdateAtom(cookieConsentAtom)
   const allow = () => setConsent(true)
   const deny = () => setConsent(false)
   if (isConsentSet) {
@@ -37,7 +37,7 @@ export function CookieConsentActions() {
 export default function CookieConsentBar() {
   const { publicRuntimeConfig } = getConfig()
   const { t } = useTranslation('common')
-  const isConsentSet = useAtomValue(isCookieConsentSet)
+  const isConsentSet = useAtomValue(isCookieConsentSetAtom)
   const isAboutPage = useRouter().asPath.startsWith(
     publicRuntimeConfig.COOKIE_PAGE_PATH
   )

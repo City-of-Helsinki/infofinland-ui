@@ -1,9 +1,10 @@
 import { IconMapMarker } from '@/components/Icons'
 import ParseHtml from '@/components/ParseHtml'
 import { useAtom } from 'jotai'
+import { useUpdateAtom } from 'jotai/utils'
 import {
   selectedCity,
-  cityMenuVisibility,
+  cityMenuVisibilityAtom,
   getLocalInformation,
 } from '@/src/store'
 import Block from '@/components/layout/Block'
@@ -25,7 +26,7 @@ const useLocalInformation = ({ city, category }) => {
     : () => getLocalInformation({ ...city, category })
 
   const { data, error } = useSWR(cacheKey, fetcher)
-  console.log({ data, error, cacheKey, city })
+
   return {
     node: data,
     isLoading: !error && !data,
@@ -45,7 +46,7 @@ const LocalInformation = ({
   const [selected, setCity] = useAtom(selectedCity)
 
   // eslint-disable-next-line no-unused-vars
-  const [open, setOpen] = useAtom(cityMenuVisibility)
+  const setOpen = useUpdateAtom(cityMenuVisibilityAtom)
   const openMenu = () => setOpen(true)
   const clearCity = () => setCity(null)
   const { t } = useTranslation('common')
@@ -90,6 +91,7 @@ const LocalInformation = ({
 }
 
 const SRWContent = ({ city, isOpen }) => {
+
   const { t } = useTranslation('common')
   const { node, isLoading, isError } = useLocalInformation({ city })
 

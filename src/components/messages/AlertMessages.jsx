@@ -1,7 +1,6 @@
 import { useAtom } from 'jotai'
 import MessageCard, { MESSAGE_TYPES } from '@/components/messages/MessageCard'
 import {
-  // alertMessages,
   alertMessageAtoms,
 } from '@/src/store'
 

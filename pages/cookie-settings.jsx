@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next'
 import { getCommonApiContent } from '@/lib/ssr-api'
 import { useAtomValue, useUpdateAtom } from 'jotai/utils'
 import ToggleSwitch from '@/components/ToggleSwitch'
-import { cookieConsent } from '@/src/store'
+import { cookieConsentAtom } from '@/src/store'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import getConfig from 'next/config'
 
@@ -23,8 +23,8 @@ export async function getStaticProps(context) {
 
 export default function CookieConsentPage(props) {
   const { t } = useTranslation('common')
-  const isAnalyticsAllowed = useAtomValue(cookieConsent)
-  const setConsent = useUpdateAtom(cookieConsent)
+  const isAnalyticsAllowed = useAtomValue(cookieConsentAtom)
+  const setConsent = useUpdateAtom(cookieConsentAtom)
   const toggleConsent = () => setConsent(!isAnalyticsAllowed)
 
   return (

@@ -17,29 +17,32 @@ export const CITY_ATOM_KEY = 'city'
 // export const cities = atom([])
 
 /** Chosen municipality for local information blocks*/
-export const selectedCity = atomWithStorage(CITY_ATOM_KEY, undefined)
+export const selectedCityAtom= atomWithStorage(CITY_ATOM_KEY, undefined)
+
 /** Visibility state of municipality menu*/
-export const cityMenuVisibility = atom(false)
+export const cityMenuVisibilityAtomAtom = atom(false)
 
 /** Visibility language menu*/
-export const languageMenuVisibility = atom(false)
+export const languageMenuVisibilityAtom= atom(false)
 
 /** Visibility of language popup*/
-export const languageMessageIsOpen = atom(false)
+export const languageMessageIsOpenAtom = atom(false)
 
 /** Visibility state of feeback form */
-export const feedbackFormVisibility = atom(false)
+export const feedbackFormVisibilityAtom = atom(false)
 
 // const menu = atom({})
 
 /** Cookie consent atom */
 
-export const cookieConsent = atomWithStorage(COOKIE_CONSENT_KEY, undefined)
-export const isCookieConsentSet = atom(
-  (get) => typeof get(cookieConsent) !== 'undefined'
+export const cookieConsentAtom = atomWithStorage(COOKIE_CONSENT_KEY, undefined)
+export const isCookieConsentSetAtom = atom(
+  (get) => typeof get(cookieConsentAtom) !== 'undefined'
 )
 
 /** Message queue */
+
+// TODO  simplify this.
 export const messages = atom({
   messages: [
     {
@@ -59,10 +62,11 @@ export const messages = atom({
   ],
 })
 
-export const alertMessages = focusAtom(messages, (optics) =>
+const alertMessagesAtom = focusAtom(messages, (optics) =>
   optics.prop('alerts')
 )
-export const alertMessageAtoms = splitAtom(alertMessages)
+
+export const alertMessageAtoms = splitAtom(alertMessagesAtom)
 
 /**
  *  Searchbar store
