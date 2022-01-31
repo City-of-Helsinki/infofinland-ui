@@ -36,7 +36,7 @@ const useLocalInformation = ({ city, category }) => {
 
 const LocalInformation = ({
   cities = [
-// TODO get cities from field_content
+    // TODO get cities from field_content
   ],
 }) => {
   const [selectedCity, setCity] = useAtom(selectedCityAtom)
