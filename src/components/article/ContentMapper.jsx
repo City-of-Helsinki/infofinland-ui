@@ -5,13 +5,14 @@ import { BLOCK_MARGIN } from '../layout/Block'
 import ReadMoreBlock from './ReadMoreBlock'
 import AccordionItems from './Accordion'
 import { CONTENT_TYPES } from '@/lib/DRUPAL_API_TYPES'
-import { getImage, getLinks } from '@/lib/ssr-api'
+import { getImage, getLinks, getVideo } from '@/lib/ssr-api'
 
 import PTVBlock from './PTVBlock'
 import { TEXT_HTML_FORMAT } from '@/lib/DRUPAL_API_TYPES'
 import Columns from './Columns'
 import HtmlBlock from './HtmlBlock'
 import ImageBlock from './ImageBlock'
+import VideoBlock from './VideoBlock'
 
 export const headingId = (id) => `heading-${id}`
 export const headingHash = (id) => `#${headingId(id)}`
@@ -68,6 +69,12 @@ export default function ContentMapper({ content, locale }) {
 
       case CONTENT_TYPES.COLUMNS:
         return <Columns {...item} />
+
+      case CONTENT_TYPES.VIDEO_HELSINKI:
+        return <VideoBlock {...getVideo(item)} />
+
+      case CONTENT_TYPES.VIDEO_REMOTE:
+        return <VideoBlock {...getVideo(item)} />
     }
   })
 }

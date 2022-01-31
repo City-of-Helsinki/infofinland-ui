@@ -34,38 +34,46 @@
     }
   }
 
-  .ifu-loader__feeedback--ellipsis {
+  .ifu-loader__feedback--ellipsis {
     display: inline-block;
     position: relative;
     width: 80px;
     height: 80px;
   }
-  .ifu-loader__feeedback--ellipsis div {
+  .ifu-loader__feedback--ellipsis div {
     position: absolute;
     top: 33px;
     width: 13px;
     height: 13px;
     border-radius: 50%;
-    background: var(--bgBlue);
+    /* background: var(--bgBlue); */
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
   }
-  .ifu-loader__feeedback--ellipsis div:nth-child(1) {
-    left: 8px;
-    animation: ifu-loader__feeedback--ellipsis1 0.6s infinite;
+
+  .ifu-loader__feedback--ellipsis.green div {
+    background: var(--bgGreen);
   }
-  .ifu-loader__feeedback--ellipsis div:nth-child(2) {
-    left: 8px;
-    animation: ifu-loader__feeedback--ellipsis2 0.6s infinite;
+  .ifu-loader__feedback--ellipsis.blue div {
+    background: var(--bgBlue);
   }
-  .ifu-loader__feeedback--ellipsis div:nth-child(3) {
+
+  .ifu-loader__feedback--ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: ifu-loader__feedback--ellipsis1 0.6s infinite;
+  }
+  .ifu-loader__feedback--ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: ifu-loader__feedback--ellipsis2 0.6s infinite;
+  }
+  .ifu-loader__feedback--ellipsis div:nth-child(3) {
     left: 32px;
-    animation: ifu-loader__feeedback--ellipsis2 0.6s infinite;
+    animation: ifu-loader__feedback--ellipsis2 0.6s infinite;
   }
-  .ifu-loader__feeedback--ellipsis div:nth-child(4) {
+  .ifu-loader__feedback--ellipsis div:nth-child(4) {
     left: 56px;
-    animation: ifu-loader__feeedback--ellipsis3 0.6s infinite;
+    animation: ifu-loader__feedback--ellipsis3 0.6s infinite;
   }
-  @keyframes ifu-loader__feeedback--ellipsis1 {
+  @keyframes ifu-loader__feedback--ellipsis1 {
     0% {
       transform: scale(0);
     }
@@ -73,7 +81,7 @@
       transform: scale(1);
     }
   }
-  @keyframes ifu-loader__feeedback--ellipsis3 {
+  @keyframes ifu-loader__feedback--ellipsis3 {
     0% {
       transform: scale(1);
     }
@@ -81,7 +89,7 @@
       transform: scale(0);
     }
   }
-  @keyframes ifu-loader__feeedback--ellipsis2 {
+  @keyframes ifu-loader__feedback--ellipsis2 {
     0% {
       transform: translate(0, 0);
     }

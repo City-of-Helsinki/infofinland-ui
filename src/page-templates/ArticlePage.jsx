@@ -10,10 +10,10 @@ import useThemeList from '@/hooks/useThemeList'
 import { getHeroFromNode } from '@/lib/ssr-api'
 import IngressBlock from '@/components/article/IngressBlock'
 import AnchorLinksBlock from '@/components/article/AnchorLinksBlock'
-import VideoBlock from '@/components/article/VideoBlock'
 
 const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
   const { localePath, locale } = useRouterWithLocalizedPath()
+
   const breadcrumbs = useBreadCrumbs({
     items: menu.items,
     path: localePath,
@@ -67,12 +67,6 @@ const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
         )}
 
         <LocalInformation readMoreUrl={'/test'} />
-        <VideoBlock url={'https://www.youtube.com/watch?v=efkqpext2Ik'} />
-        <VideoBlock
-          url={
-            'https://icareus-eu1-progressive.secure2.footprint.net/10154/31238760/285903.mp4/1.0.mp4'
-          }
-        />
       </Article>
     </Layout>
   )

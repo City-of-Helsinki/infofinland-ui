@@ -22,10 +22,16 @@ export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
   const { locale } = context
   const { data } = await resolvePath({
-    path: serverRuntimeConfig.DRUPAL_LANDING_PAGE,
+    path: serverRuntimeConfig.DRUPAL_FRONT_PAGE,
     context: { locale },
   }).catch((e) => {
     if (e?.response?.status === 404) {
+      console.error(
+        `Landing page error for /${locale}/:`,
+        // Data can be a string or object apparently
+        e.response?.data?.message || e.response?.data,
+        e.response?.status
+      )
       return { data: null }
     }
     console.error(e)
@@ -64,7 +70,8 @@ export async function getStaticProps(context) {
       node,
       ...(await serverSideTranslations(context.locale, ['common'])),
     },
-    revalidate: serverRuntimeConfig.REVALIDATE_TIME,
+    // revalidate: serverRuntimeConfig.REVALIDATE_TIME,
+    revalidate: 10,
   }
 }
 

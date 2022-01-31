@@ -17,29 +17,32 @@ export const CITY_ATOM_KEY = 'city'
 // export const cities = atom([])
 
 /** Chosen municipality for local information blocks*/
-export const selectedCity = atomWithStorage(CITY_ATOM_KEY, undefined)
+export const selectedCityAtom = atomWithStorage(CITY_ATOM_KEY, undefined)
+
 /** Visibility state of municipality menu*/
-export const cityMenuVisibility = atom(false)
+export const cityMenuVisibilityAtom = atom(false)
 
 /** Visibility language menu*/
-export const languageMenuVisibility = atom(false)
+export const languageMenuVisibilityAtom = atom(false)
 
 /** Visibility of language popup*/
-export const languageMessageIsOpen = atom(false)
+export const languageMessageIsOpenAtom = atom(false)
 
 /** Visibility state of feeback form */
-export const feedbackFormVisibility = atom(false)
+export const feedbackFormVisibilityAtom = atom(false)
 
 // const menu = atom({})
 
 /** Cookie consent atom */
 
-export const cookieConsent = atomWithStorage(COOKIE_CONSENT_KEY, undefined)
-export const isCookieConsentSet = atom(
-  (get) => typeof get(cookieConsent) !== 'undefined'
+export const cookieConsentAtom = atomWithStorage(COOKIE_CONSENT_KEY, undefined)
+export const isCookieConsentSetAtom = atom(
+  (get) => typeof get(cookieConsentAtom) !== 'undefined'
 )
 
 /** Message queue */
+
+// TODO  simplify this.
 export const messages = atom({
   messages: [
     {
@@ -59,10 +62,9 @@ export const messages = atom({
   ],
 })
 
-export const alertMessages = focusAtom(messages, (optics) =>
-  optics.prop('alerts')
-)
-export const alertMessageAtoms = splitAtom(alertMessages)
+const alertMessagesAtom = focusAtom(messages, (optics) => optics.prop('alerts'))
+
+export const alertMessageAtoms = splitAtom(alertMessagesAtom)
 
 /**
  *  Searchbar store
@@ -71,9 +73,11 @@ export const alertMessageAtoms = splitAtom(alertMessages)
 /** the search keyword being typed to input */
 export const searchQueryValue = atom('')
 
-/** The search API url  */
+/** The Client API urls  */
 export const SEARCH_URL = '/api/search'
+export const LOCAL_INFO_URL = '/api/localinfo'
 
+// TODO move these to lib/browser-api.js ?
 /**
  * Get search results based on searchQueryValue
  * @param {string} q - the search term.
@@ -82,4 +86,9 @@ export const SEARCH_URL = '/api/search'
 export const getSearchResults = async (q) => {
   const { data } = await axios.get(SEARCH_URL, { params: { q } })
   return data.results
+}
+
+export const getLocalInformation = async (params) => {
+  const { data } = await axios.get(LOCAL_INFO_URL, { params })
+  return data.node
 }

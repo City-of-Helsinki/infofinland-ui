@@ -1,5 +1,7 @@
-export const DotsLoader = () => (
-  <div className="ifu-loader__feeedback--ellipsis">
+import cls from 'classnames'
+
+export const DotsLoader = ({ color = 'blue' }) => (
+  <div className={cls('ifu-loader__feedback--ellipsis m-auto block', color)}>
     <div></div>
     <div></div>
     <div></div>
