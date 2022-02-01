@@ -1,3 +1,4 @@
+import 'core-js/features/array/at';
 import HomeHero from '@/components/home/HomeHero'
 import Layout from '@/components/layout/Layout'
 import ThemeList from '@/components/home/ThemeList'

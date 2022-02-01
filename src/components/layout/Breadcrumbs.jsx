@@ -1,3 +1,4 @@
+import 'core-js/features/array/at';
 import Link from 'next/link'
 import cls from 'classnames'
 import Icon, { IconAngleRight } from '@/components/Icons'
