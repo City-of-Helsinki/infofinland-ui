@@ -6,8 +6,8 @@ export default function useRouterWithLocalizedPath() {
   const { asPath, locale } = router
   const localePathWithHash = `/${locale}${asPath}`
   const localePath = /#/.test(localePathWithHash)
-    ? localePathWithHash.split('#').at(0)
+    ? localePathWithHash.split('#')[0]
     : localePathWithHash
-  const hash = localePathWithHash.split('#').at(1)
+  const hash = localePathWithHash.split('#')[1]
   return { localePath, localePathWithHash, hash, ...router }
 }

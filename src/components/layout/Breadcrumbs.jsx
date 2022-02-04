@@ -1,10 +1,9 @@
-import 'core-js/features/array/at';
 import Link from 'next/link'
 import cls from 'classnames'
 import Icon, { IconAngleRight } from '@/components/Icons'
 
 const Breadcrumbs = ({ items }) => {
-  const parent = items?.at(-2)
+  const parent = items[items.length-2]
   const showBreadcrumbs = items?.length > 1
   return (
     <nav className="block relative pt-4 pb-2 mb-2 h-12 text-black">

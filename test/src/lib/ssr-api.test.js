@@ -6,6 +6,12 @@ import {
   addPrerenderLocalesToPaths,
 } from '@/lib/ssr-api'
 import getConfig from 'next/config'
+
+/**
+ *
+ * Sidenote: using array.at is safe because tests are run in node, not browser
+ */
+
 describe('ssr-api', () => {
   describe('getImage', () => {
     it('should return image props from paragraph--image item', () => {
