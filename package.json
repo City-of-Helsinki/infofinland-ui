@@ -3,6 +3,10 @@
   "engines": {
     "node": ">= 0.16"
   },
+   "browserslist": [
+      "defaults",
+      "not ie <= 11"
+   ],
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
