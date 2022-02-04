@@ -1,46 +1,72 @@
 {
-  "buttons": { "close": "Kapat", "search": "Ara" },
-  "feedback": {
-    "title": "Geribildirim",
-    "urlLabel": "Sayfanın adresi",
-    "buttons": {
-      "send": "Gönder",
-      "cancel": "İptal",
-      "sendAgain": "Yeni gönder",
-      "close": "Kapat",
-      "open": "Sayfa hakkında görüşlerinizi gönderin"
-    },
+  "buttons": {
+    "close": "Kapat",
+    "search": "Ara"
+  },
+  "cookies": {
+    "allow": "Bütün çerezleri onayla",
+    "allowed": "İzin verildi",
+    "denied": "İzin verilmedi",
+    "deny": "Yalnızca gerekli çerezler",
     "labels": {
-      "name": "Ad ve soyad",
+      "analytics": "Kalite kontrol amacıyla kullanımın takibine izin ver"
+    },
+    "readMore": "Çerez ayarları",
+    "settings": {
+      "title": "Çerez ayarları"
+    },
+    "text": "Bu sayfa, sitenin performansını sağlamak ve sitenin genel kullanımının takibi için gerekli çerezler kullanır. Ayrıca, kullanıcı deneyimini geliştirmek amacıyla hedefleme çerezleri kullanılmaktadır.",
+    "title": "InfoFinland.fi çerez kullanmaktadır"
+  },
+  "feedback": {
+    "buttons": {
+      "cancel": "İptal",
+      "close": "Kapat",
+      "open": "Sayfa hakkında görüşlerinizi gönderin",
+      "send": "Gönder",
+      "sendAgain": "Yeni gönder"
+    },
+    "info1": "Formda üç kısım bulunmaktadır.",
+    "info2": "İsim, e-posta adresi ve geri bildirim metninin tümü gerekli bilgilerdir.",
+    "labels": {
       "email": "Elektronik posta",
-      "feedback": "Geribildirim"
+      "feedback": "Geribildirim",
+      "name": "Ad ve soyad"
+    },
+    "states": {
+      "fail": "Yorum gönderilirken hata oluştu",
+      "invalid": "Zorunlu alan",
+      "submitting": "Geri bildirim gönderiliyor",
+      "success": "Geridönüm için teşekkürler"
     },
     "text": [
       "TODO FROM DRUPAL Vastaamme palautteisiin seuraavilla kielillä: suomi, ruotsi ja englanti. Valitettavasti emme voi vastata palautteisiin, jotka on kirjoitettu muilla kielillä.",
       "Palautelomakkeessa on automaattinen roskapostisuodatin. Palautteeseen ei saa liittää linkkiä.",
       "Vastaamme vain InfoFinland-sivustoa koskeviin palautteisiin. Ota huomioon, että emme anna neuvontaa omien asioiden hoitamisessa. Neuvontapalveluja löydät InfoFinlandin sivulta Soita ja kysy neuvoa."
     ],
-    "info1": "Formda üç kısım bulunmaktadır.",
-    "info2": "İsim, e-posta adresi ve geri bildirim metninin tümü gerekli bilgilerdir.",
-    "states": {
-      "submitting": "Geri bildirim gönderiliyor",
-      "fail": "Yorum gönderilirken hata oluştu",
-      "success": "Geridönüm için teşekkürler",
-      "invalid": "Zorunlu alan"
-    }
+    "title": "Geribildirim",
+    "urlLabel": "Sayfanın adresi"
+  },
+  "footer": {
+    "helsinkiDisclaimer": "InfoFinland.fi internet sitesi Helsinki Belediyesi tarafından yayınlanmakta; finansmanı da devlet ve InfoFinland'in üye belediyeleri tarafından sağlanmaktadır."
   },
   "languageMenu": {
     "label": "Dil seçin"
   },
+  "languageMessage": {
+    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?",
+    "title": "!Haluatko vaihtaa kieltä?"
+  },
   "languageSelector": {
     "button": "Diller"
   },
-  "languageMessage": {
-    "title": "!Haluatko vaihtaa kieltä?",
-    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
+  "localInfo": {
+    "clear": "Sil",
+    "reselect": "Başka bir belediye seçin",
+    "select": "Bir belediye seçin"
   },
-  "mainMenu": { "button": "Ana menü" },
-  "footer": {
-    "helsinkiDisclaimer": "InfoFinland.fi internet sitesi Helsinki Belediyesi tarafından yayınlanmakta; finansmanı da devlet ve InfoFinland'in üye belediyeleri tarafından sağlanmaktadır."
+
+  "mainMenu": {
+    "button": "Ana menü"
   }
 }

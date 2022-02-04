@@ -1,46 +1,72 @@
 {
-  "buttons": { "close": "关闭", "search": "搜索" },
-  "feedback": {
-    "title": "意见与建议反馈",
-    "urlLabel": "網址",
-    "buttons": {
-      "send": "发送",
-      "cancel": "取消",
-      "sendAgain": "发送新的反馈",
-      "close": "关闭",
-      "open": "发送对页面的回馈"
-    },
+  "buttons": {
+    "close": "关闭",
+    "search": "搜索"
+  },
+  "cookies": {
+    "allow": "同意所有cookie。",
+    "allowed": "已同意",
+    "denied": "不同意",
+    "deny": "仅限必要",
     "labels": {
-      "name": "姓名",
+      "analytics": "同意使用追踪，用于质量监督。"
+    },
+    "readMore": "cookie设置",
+    "settings": {
+      "title": "cookie设置"
+    },
+    "text": "该网站近使用必要的cookie，用于保证网站运作能力并追踪网站使用情况。我们还使用定向cookie，用于提高用户体验。",
+    "title": "Infofinland.fi使用 cookie。"
+  },
+  "feedback": {
+    "buttons": {
+      "cancel": "取消",
+      "close": "关闭",
+      "open": "发送对页面的回馈",
+      "send": "发送",
+      "sendAgain": "发送新的反馈"
+    },
+    "info1": "表格中有三个文本框",
+    "info2": "姓名、电子邮件和反馈内容为必填信息。",
+    "labels": {
       "email": "电子邮件",
-      "feedback": "意见与建议反馈"
+      "feedback": "意见与建议反馈",
+      "name": "姓名"
+    },
+    "states": {
+      "fail": "发送反馈错误",
+      "invalid": "必填",
+      "submitting": "正在发送反馈",
+      "success": "谢谢您的反馈！"
     },
     "text": [
       "TODO FROM DRUPAL Vastaamme palautteisiin seuraavilla kielillä: suomi, ruotsi ja englanti. Valitettavasti emme voi vastata palautteisiin, jotka on kirjoitettu muilla kielillä.",
       "Palautelomakkeessa on automaattinen roskapostisuodatin. Palautteeseen ei saa liittää linkkiä.",
       "Vastaamme vain InfoFinland-sivustoa koskeviin palautteisiin. Ota huomioon, että emme anna neuvontaa omien asioiden hoitamisessa. Neuvontapalveluja löydät InfoFinlandin sivulta Soita ja kysy neuvoa."
     ],
-    "info1": "表格中有三个文本框",
-    "info2": "姓名、电子邮件和反馈内容为必填信息。",
-    "states": {
-      "submitting": "正在发送反馈",
-      "fail": "发送反馈错误",
-      "success": "谢谢您的反馈！",
-      "invalid": "必填"
-    }
+    "title": "意见与建议反馈",
+    "urlLabel": "網址"
+  },
+  "footer": {
+    "helsinkiDisclaimer": "InfoFinland.fi网站由赫尔辛基市负责发布，运作资金由国家和成员市镇提供。"
   },
   "languageMenu": {
     "label": "选择语言"
   },
+  "languageMessage": {
+    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?",
+    "title": "!Haluatko vaihtaa kieltä?"
+  },
   "languageSelector": {
     "button": "语言"
   },
-  "languageMessage": {
-    "title": "!Haluatko vaihtaa kieltä?",
-    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
+  "localInfo": {
+    "clear": "清空",
+    "reselect": "选择另一地区",
+    "select": "选择地区"
   },
-  "mainMenu": { "button": "主菜单" },
-  "footer": {
-    "helsinkiDisclaimer": "InfoFinland.fi网站由赫尔辛基市负责发布，运作资金由国家和成员市镇提供。"
+
+  "mainMenu": {
+    "button": "主菜单"
   }
 }
