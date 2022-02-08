@@ -1,46 +1,84 @@
 {
-  "buttons": { "close": "أغلق", "search": "إبحث" },
-  "feedback": {
-    "title": "پیشنهادات و انتقادات",
-    "urlLabel": "آدرس سایت",
-    "buttons": {
-      "send": "ارسال کن",
-      "cancel": "ألغي",
-      "sendAgain": "أرسل جديد",
-      "close": "أغلق",
-      "open": "نظر خود را درباره این سایت ارسال کنید"
-    },
+  "buttons": {
+    "close": "أغلق",
+    "no": "لا",
+    "ok": "OK",
+    "search": "إبحث",
+    "skipTo": "انتقل إلى المحتوى",
+    "yes": "نعم"
+  },
+  "cookies": {
+    "allow": "وافق على جميع ملفات تعريف الارتباط",
+    "allowed": "مسموح به",
+    "denied": "ممنوع",
+    "deny": "الضرورية فقط",
     "labels": {
-      "name": "نام",
+      "analytics": "اسمح بمتابعة الاستخدام لأغراض مراقبة الجودة"
+    },
+    "readMore": "إعدادات ملفات تعريف الارتباط",
+    "settings": {
+      "title": "إعدادات ملفات تعريف الارتباط"
+    },
+    "text": "يستخدم هذا الموقع ملفات تعريف الارتباط الضرورية لضمان تواصل الأداء ومراقبة الاستخدام العام. نستخدم بالإضافة لذلك ملفات تعريف الارتباط الموجهة لتحسين تجربة المستخدم.",
+    "title": "يستخدم Infofinland.fi ملفات تعريف الارتباط"
+  },
+  "feedback": {
+    "buttons": {
+      "cancel": "ألغي",
+      "close": "أغلق",
+      "open": "نظر خود را درباره این سایت ارسال کنید",
+      "send": "ارسال کن",
+      "sendAgain": "أرسل جديد"
+    },
+    "info1": "در فرم سه جا وجود دارد. نام، آدرس پست اکترونیکی و متن پیشنهادات و انتقادات، همه اطلاعاتی هستند که باید حتماً داده شوند.",
+    "info2": "",
+    "labels": {
       "email": "پست الکترونیکی",
-      "feedback": "پیشنهادات و انتقادات"
+      "feedback": "پیشنهادات و انتقادات",
+      "name": "نام"
+    },
+    "states": {
+      "fail": "خطأ في إرسال التعليق",
+      "invalid": "خانة إجبارية",
+      "submitting": "نُرسل الرد",
+      "success": "از پیشنهادات و نظراتتان سپاسگزاریم"
     },
     "text": [
       "TODO FROM DRUPAL Vastaamme palautteisiin seuraavilla kielillä: suomi, ruotsi ja englanti. Valitettavasti emme voi vastata palautteisiin, jotka on kirjoitettu muilla kielillä.",
       "Palautelomakkeessa on automaattinen roskapostisuodatin. Palautteeseen ei saa liittää linkkiä.",
       "Vastaamme vain InfoFinland-sivustoa koskeviin palautteisiin. Ota huomioon, että emme anna neuvontaa omien asioiden hoitamisessa. Neuvontapalveluja löydät InfoFinlandin sivulta Soita ja kysy neuvoa."
     ],
-    "info1": "در فرم سه جا وجود دارد. نام، آدرس پست اکترونیکی و متن پیشنهادات و انتقادات، همه اطلاعاتی هستند که باید حتماً داده شوند.",
-    "info2": "",
-    "states": {
-      "submitting": "نُرسل الرد",
-      "fail": "خطأ في إرسال التعليق",
-      "success": "از پیشنهادات و نظراتتان سپاسگزاریم",
-      "invalid": "خانة إجبارية"
-    }
+    "title": "پیشنهادات و انتقادات",
+    "urlLabel": "آدرس سایت"
+  },
+  "footer": {
+    "helsinkiDisclaimer": "تنشر مدينة هلسنكي موقع InfoFinland.fi، وتموله الدولة والبلديات الأعضاء في InfoFinland."
   },
   "languageMenu": {
     "label": "اختر اللغة"
   },
+  "languageMessage": {
+    "text": "هل تُريد تغيير اللغة؟",
+    "title": "Infofinland.fi متوفر بـ 12 لغة. هل تُريد التغيير إلى لغة أخرى؟"
+  },
   "languageSelector": {
     "button": "اللغات"
   },
-  "languageMessage": {
-    "title": "!Haluatko vaihtaa kieltä?",
-    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
+  "localInfo": {
+    "clear": "أفرغ",
+    "readMore": "اقرأ المزيد",
+    "reselect": "اختر بلدية سكن أخرى",
+    "select": "اختر بلدية السكن"
   },
-  "mainMenu": { "button": "قائمة الخيارات الرئيسية" },
-  "footer": {
-    "helsinkiDisclaimer": "تنشر مدينة هلسنكي موقع InfoFinland.fi، وتموله الدولة والبلديات الأعضاء في InfoFinland."
+  "mainMenu": {
+    "button": "قائمة الخيارات الرئيسية"
+  },
+  "search": {
+    "placeholder": "ابحث من خلال كلمة البحث",
+    "title": {
+      "noresults": "لا تُوجد نتائج للبحث",
+      "results": "نتائج البحث:",
+      "start": "ابحث من الموقع"
+    }
   }
 }

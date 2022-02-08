@@ -1,46 +1,84 @@
 {
-  "buttons": { "close": "Xir", "search": "Raadi" },
-  "feedback": {
-    "title": "Jawaab-celin",
-    "urlLabel": "Cinwaanka bogga",
-    "buttons": {
-      "send": "Dir",
-      "cancel": "Ka noqo",
-      "sendAgain": "Dir mid cusub",
-      "close": "Xir",
-      "open": "Boggan war-celin ka soo dir"
-    },
+  "buttons": {
+    "close": "Xir",
+    "no": "Maya",
+    "ok": "OK",
+    "search": "Raadi",
+    "skipTo": "U gudub macluumaadka ku jira",
+    "yes": "Haa"
+  },
+  "cookies": {
+    "allow": "Oggolow dhammaan xogaha kambuyuutarka ku kaydsama",
+    "allowed": "Waa la oggolaaday",
+    "denied": "Waa la diiday",
+    "deny": "Kuwa aan laga maarmin oo kaliya",
     "labels": {
-      "name": "Magac",
+      "analytics": "Oggolow la socoshada isticmaalka ee looga golleeyahay ilaalinta tayada"
+    },
+    "readMore": "Habynta xogaha kambuyuutarka ku kaydsama",
+    "settings": {
+      "title": ""
+    },
+    "text": "Boggan wuxuu isticmaalayaa nidaamka xogaha kambuyuutarka ku kaydsama ee aan laga maarmin si loo xaqiijiyo awoodda waxqabad iyo la socoshada guud ee isticmaalka booga. Waxaa kale oo aan isticmaalnaa nidaamka xogaha kambuyuutarka ku kaydsama oo qoondaysan si loo hagaajiyo waayo-aragnimada isticmaalaha bogga.",
+    "title": "Infofinland.fi waxay isticmaashaa nidaamka xogaha kambuyuutarka ku kaydsama"
+  },
+  "feedback": {
+    "buttons": {
+      "cancel": "Ka noqo",
+      "close": "Xir",
+      "open": "Boggan war-celin ka soo dir",
+      "send": "Dir",
+      "sendAgain": "Dir mid cusub"
+    },
+    "info1": "Saddex qaanadood ayaa foomka ku jirta.",
+    "info2": "Magaca, iimaylka iyo qoraalka aragti-celintuba waa macluumaadyo dhammaantood qasab ah.",
+    "labels": {
       "email": "Emayl",
-      "feedback": "Jawaab-celin"
+      "feedback": "Jawaab-celin",
+      "name": "Magac"
+    },
+    "states": {
+      "fail": "Qaladka diritaanka jawaab-celinta",
+      "invalid": "Qaanadda qasabka ah",
+      "submitting": "Waxaa la dirayaa aragti-celinta",
+      "success": "Waad ku mahadsan tahay warcelinta"
     },
     "text": [
       "TODO FROM DRUPAL Vastaamme palautteisiin seuraavilla kielillä: suomi, ruotsi ja englanti. Valitettavasti emme voi vastata palautteisiin, jotka on kirjoitettu muilla kielillä.",
       "Palautelomakkeessa on automaattinen roskapostisuodatin. Palautteeseen ei saa liittää linkkiä.",
       "Vastaamme vain InfoFinland-sivustoa koskeviin palautteisiin. Ota huomioon, että emme anna neuvontaa omien asioiden hoitamisessa. Neuvontapalveluja löydät InfoFinlandin sivulta Soita ja kysy neuvoa."
     ],
-    "info1": "Saddex qaanadood ayaa foomka ku jirta.",
-    "info2": "Magaca, iimaylka iyo qoraalka aragti-celintuba waa macluumaadyo dhammaantood qasab ah.",
-    "states": {
-      "submitting": "Waxaa la dirayaa aragti-celinta",
-      "fail": "Qaladka diritaanka jawaab-celinta",
-      "success": "Waad ku mahadsan tahay warcelinta",
-      "invalid": "Qaanadda qasabka ah"
-    }
+    "title": "Jawaab-celin",
+    "urlLabel": "Cinwaanka bogga"
+  },
+  "footer": {
+    "helsinkiDisclaimer": "Bogga InfoFinland waxaa soosaara magaalada Helsinki waxaana maalgeliya dowladda iyo degmooyinka xubnaha ka ah InfoFinland."
   },
   "languageMenu": {
     "label": "Dooro luqadda"
   },
+  "languageMessage": {
+    "text": "InfoFinland waxaa lagu helaa 12 luqadood. Miyaad doonaysaa in aad u beddelato luqadda aad jeceshahy?",
+    "title": "Ma doonaysaa in aad luqadda beddesho?"
+  },
   "languageSelector": {
     "button": "Luqadaha"
   },
-  "languageMessage": {
-    "title": "!Haluatko vaihtaa kieltä?",
-    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
+  "localInfo": {
+    "clear": "Tirtir",
+    "readMore": "Faahfaahin dheeraad ah ka aqri",
+    "reselect": "Dooro degmo kale",
+    "select": "Dooro degmada"
   },
-  "mainMenu": { "button": "Liiska ugu weyn" },
-  "footer": {
-    "helsinkiDisclaimer": "Bogga InfoFinland waxaa soosaara magaalada Helsinki waxaana maalgeliya dowladda iyo degmooyinka xubnaha ka ah InfoFinland."
+  "mainMenu": {
+    "button": "Liiska ugu weyn"
+  },
+  "search": {
+    "placeholder": "Ku raadi erey",
+    "title": {
+      "noresults": "Natiijooyinka xog-raadinta lama hayo",
+      "results": "Natiijooyinka xog-raadinta:",
+      "start": "Ka raadi bogga"
+    }
   }
 }

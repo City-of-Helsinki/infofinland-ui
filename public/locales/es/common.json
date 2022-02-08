@@ -1,48 +1,84 @@
 {
-  "buttons": { "close": "Cerrar", "search": "Buscar" },
-
+  "buttons": {
+    "close": "Cerrar",
+    "no": "No",
+    "ok": "OK",
+    "search": "Buscar",
+    "skipTo": "Ir al contenido",
+    "yes": "Sí"
+  },
+  "cookies": {
+    "allow": "Permitir todas las cookies",
+    "allowed": "Permitir",
+    "denied": "Prohibir",
+    "deny": "Solo las imprescindibles",
+    "labels": {
+      "analytics": "Permitir el seguimiento para fines de análisis de calidad"
+    },
+    "readMore": "Configuración de cookies",
+    "settings": {
+      "title": "Configuración de cookies"
+    },
+    "text": "Este porta usa cookies imprescindibles para asegurar el funcionamiento y para el seguimiento del uso general. Además, usamos cookies de objetivos para mejorar la experiencia del usuario.",
+    "title": "InfoFinland.fi usa cookies."
+  },
   "feedback": {
-    "title": "Comentario",
-    "urlLabel": "Dirección de la página",
     "buttons": {
-      "open": "Enviar comentarios sobre esta página",
-      "close": "Cerrar",
-      "send": "Enviar",
       "cancel": "Cancelar",
+      "close": "Cerrar",
+      "open": "Enviar comentarios sobre esta página",
+      "send": "Enviar",
       "sendAgain": "Enviar nuevo"
     },
-
+    "info1": "El formulario tiene tres campos.",
+    "info2": "El nombre, el correo electrónico y el comentario son datos obligatorios.",
     "labels": {
-      "name": "Nombre",
       "email": "Correo electrónico",
-      "feedback": "Comentario"
+      "feedback": "Comentario",
+      "name": "Nombre"
+    },
+    "states": {
+      "fail": "Error al enviar el formulario",
+      "invalid": "Campo obligatorio",
+      "submitting": "!Lähetetään palautetta...",
+      "success": "Gracias por su comentario"
     },
     "text": [
       "TODO FROM DRUPAL Vastaamme palautteisiin seuraavilla kielillä: suomi, ruotsi ja englanti. Valitettavasti emme voi vastata palautteisiin, jotka on kirjoitettu muilla kielillä.",
       "Palautelomakkeessa on automaattinen roskapostisuodatin. Palautteeseen ei saa liittää linkkiä.",
       "Vastaamme vain InfoFinland-sivustoa koskeviin palautteisiin. Ota huomioon, että emme anna neuvontaa omien asioiden hoitamisessa. Neuvontapalveluja löydät InfoFinlandin sivulta Soita ja kysy neuvoa."
     ],
-    "info1": "El formulario tiene tres campos.",
-    "info2": "El nombre, el correo electrónico y el comentario son datos obligatorios.",
-    "states": {
-      "submitting": "!Lähetetään palautetta...",
-      "fail": "Error al enviar el formulario",
-      "success": "Gracias por su comentario",
-      "invalid": "Campo obligatorio"
-    }
+    "title": "Comentario",
+    "urlLabel": "Dirección de la página"
+  },
+  "footer": {
+    "helsinkiDisclaimer": "El portal InfoFinland.fi es publicado por la ciudad de Helsinki con financiación del Estado y de los municipios miembros de InfoFinland."
   },
   "languageMenu": {
     "label": "Elegir idioma"
   },
+  "languageMessage": {
+    "text": "InfoFinland está en 12 idiomas. ¿Quiere elegir otro idioma?",
+    "title": "¿Quiere cambiar de idioma?"
+  },
   "languageSelector": {
     "button": "Idiomas"
   },
-  "languageMessage": {
-    "title": "!Haluatko vaihtaa kieltä?",
-    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
+  "localInfo": {
+    "clear": "Vaciar",
+    "readMore": "Más información",
+    "reselect": "Elegir otro municipio",
+    "select": "Elegir municipio"
   },
-  "mainMenu": { "button": "Menú principal" },
-  "footer": {
-    "helsinkiDisclaimer": "El portal InfoFinland.fi es publicado por la ciudad de Helsinki con financiación del Estado y de los municipios miembros de InfoFinland."
+  "mainMenu": {
+    "button": "Menú principal"
+  },
+  "search": {
+    "placeholder": "Buscar por palabras claves",
+    "title": {
+      "noresults": "No hay resultados.",
+      "results": "Resultados de la búsqueda:",
+      "start": "Buscar en el portal"
+    }
   }
 }

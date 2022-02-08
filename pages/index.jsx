@@ -1,4 +1,3 @@
-import 'core-js/features/array/at';
 import HomeHero from '@/components/home/HomeHero'
 import Layout from '@/components/layout/Layout'
 import ThemeList from '@/components/home/ThemeList'
@@ -60,7 +59,7 @@ export async function getStaticProps(context) {
   })
 
   const themes = common.menu.tree.map(({ url, title, id }, i) => {
-    const image = themeImages.at(i)
+    const image = themeImages[i]
     return { url, title, id, image: image?.src || null }
   })
 

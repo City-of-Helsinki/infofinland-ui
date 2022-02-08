@@ -1,46 +1,84 @@
 {
-  "buttons": { "close": "Sulge", "search": "Otsi" },
-  "feedback": {
-    "title": "Tagasiside",
-    "urlLabel": "Lehekülje aadress",
-    "buttons": {
-      "send": "Saada",
-      "cancel": "Tühista",
-      "sendAgain": "Saada uus",
-      "close": "Sulge",
-      "open": "Saada selle lehe kohta tagasisidet"
-    },
+  "buttons": {
+    "close": "Sulge",
+    "search": "Otsi",
+    "no": "Ei",
+    "ok": "OK",
+    "skipTo": "Mine sisu juurde",
+    "yes": "Jah"
+  },
+  "cookies": {
+    "allow": "Nõustu kõigi küpsistega",
+    "allowed": "Lubatud",
+    "denied": "Keelatud",
+    "deny": "Ainult vältimatult vajalikud",
     "labels": {
-      "name": "Nimi",
+      "analytics": "Luba kasutuse jälgimist kvaliteedikontrolli eesmärgil"
+    },
+    "readMore": "Küpsiste seaded",
+    "settings": {
+      "title": "Küpsiste seaded"
+    },
+    "text": "See veebisait kasutab toimivuse tagamiseks ja üldise kasutuse jälgimiseks vältimatult vajalikke küpsiseid. Peale selle kasutame kasutajakogemuse parandamiseks sihtküpsiseid.",
+    "title": "Veebisait Infofinland.fi kasutab küpsiseid."
+  },
+  "feedback": {
+    "buttons": {
+      "cancel": "Tühista",
+      "close": "Sulge",
+      "open": "Saada selle lehe kohta tagasisidet",
+      "send": "Saada",
+      "sendAgain": "Saada uus"
+    },
+    "info1": "Küsitluslehel on kolm välja.",
+    "info2": "Nimi, e-posti aadress ja tagasiside tekst on kõik kohustusliku teabega väljad.",
+    "labels": {
       "email": "E-post",
-      "feedback": "Tagasiside"
+      "feedback": "Tagasiside",
+      "name": "Nimi"
+    },
+    "states": {
+      "fail": "Viga tagasiside saatmisel",
+      "invalid": "Kohustuslik väli",
+      "submitting": "!Lähetetään palautetta...",
+      "success": "Aitäh tagasiside eest"
     },
     "text": [
       "TODO FROM DRUPAL Vastaamme palautteisiin seuraavilla kielillä: suomi, ruotsi ja englanti. Valitettavasti emme voi vastata palautteisiin, jotka on kirjoitettu muilla kielillä.",
       "Palautelomakkeessa on automaattinen roskapostisuodatin. Palautteeseen ei saa liittää linkkiä.",
       "Vastaamme vain InfoFinland-sivustoa koskeviin palautteisiin. Ota huomioon, että emme anna neuvontaa omien asioiden hoitamisessa. Neuvontapalveluja löydät InfoFinlandin sivulta Soita ja kysy neuvoa."
     ],
-    "info1": "Küsitluslehel on kolm välja.",
-    "info2": "Nimi, e-posti aadress ja tagasiside tekst on kõik kohustusliku teabega väljad.",
-    "states": {
-      "submitting": "!Lähetetään palautetta...",
-      "fail": "Viga tagasiside saatmisel",
-      "success": "Aitäh tagasiside eest",
-      "invalid": "Kohustuslik väli"
-    }
+    "title": "Tagasiside",
+    "urlLabel": "Lehekülje aadress"
+  },
+  "footer": {
+    "helsinkiDisclaimer": "Veebisaiti InfoFinland.fi avaldab Helsingi linn ja seda finantseerivad riik ja InfoFinlandi liikmesomavalitsused."
   },
   "languageMenu": {
     "label": "Vali keel"
   },
+  "languageMessage": {
+    "text": "Veebisait InfoFinland.fi on 12 keeles. Kas soovid valida mõne muu keele?",
+    "title": "Kas soovid keelt muuta?"
+  },
   "languageSelector": {
     "button": "Keeled"
   },
-  "languageMessage": {
-    "title": "!Haluatko vaihtaa kieltä?",
-    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
+  "localInfo": {
+    "clear": "Tühjenda",
+    "readMore": "Loe edasi",
+    "reselect": "Vali teine omavalitsus",
+    "select": "Vali omavalitsus"
   },
-  "mainMenu": { "button": "Peamenüü" },
-  "footer": {
-    "helsinkiDisclaimer": "Veebisaiti InfoFinland.fi avaldab Helsingi linn ja seda finantseerivad riik ja InfoFinlandi liikmesomavalitsused."
+  "mainMenu": {
+    "button": "Peamenüü"
+  },
+  "search": {
+    "placeholder": "Otsi märksõnaga",
+    "title": {
+      "noresults": "Otsing ei andnud tulemusi",
+      "results": "Otsingutulemused:",
+      "start": "Otsi saidilt"
+    }
   }
 }

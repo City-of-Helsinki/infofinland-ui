@@ -1,47 +1,84 @@
 {
-  "buttons": { "close": "Fermer", "search": "Cherchez" },
-  "feedback": {
-    "title": "Remarques",
-    "urlLabel": "Adresse de la page",
-    "buttons": {
-      "send": "Envoyer",
-      "cancel": "Annuler",
-      "sendAgain": "Envoyer un nouveau",
-      "close": "Fermer",
-      "open": "Envoyez une rémarque sur cette page"
-    },
+  "buttons": {
+    "close": "Fermer",
+    "no": "Non",
+    "ok": "OK",
+    "search": "Cherchez",
+    "skipTo": "Passer au contenu",
+    "yes": "Oui"
+  },
+  "cookies": {
+    "allow": "Accepter tous les cookies",
+    "allowed": "Autorisé",
+    "denied": "Interdit",
+    "deny": "Uniquement les cookies indispensables",
     "labels": {
-      "name": "Nom",
+      "analytics": "Autoriser le suivi d’utilisation pour des fins de contrôle de la qualité"
+    },
+    "readMore": "Paramétrage cookies",
+    "settings": {
+      "title": "Paramétrage cookies"
+    },
+    "text": "Ce site utilise des cookies indispensables pour garantir la performance, ainsi que le suivi général de l’utilisation du site. De plus, nous utilisons des cookies ciblés pour améliorer l’expérience utilisateur.",
+    "title": "Infofinland.fi utilise des cookies"
+  },
+  "feedback": {
+    "buttons": {
+      "cancel": "Annuler",
+      "close": "Fermer",
+      "open": "Envoyez une rémarque sur cette page",
+      "send": "Envoyer",
+      "sendAgain": "Envoyer un nouveau"
+    },
+    "info1": "Le formulaire comprend trois champs.",
+    "info2": "Le nom, l’e-mail et le texte de commentaires sont toutes des données obligatoires.",
+    "labels": {
       "email": "E-mail",
-      "feedback": "Rémarques"
+      "feedback": "Rémarques",
+      "name": "Nom"
+    },
+    "states": {
+      "fail": "Erreur lors de l'envoi du formulaire",
+      "invalid": "Champ obligatoire",
+      "submitting": "Envoi des commentaires",
+      "success": "Merci pour vos commentaires"
     },
     "text": [
       "TODO FROM DRUPAL Vastaamme palautteisiin seuraavilla kielillä: suomi, ruotsi ja englanti. Valitettavasti emme voi vastata palautteisiin, jotka on kirjoitettu muilla kielillä.",
       "Palautelomakkeessa on automaattinen roskapostisuodatin. Palautteeseen ei saa liittää linkkiä.",
       "Vastaamme vain InfoFinland-sivustoa koskeviin palautteisiin. Ota huomioon, että emme anna neuvontaa omien asioiden hoitamisessa. Neuvontapalveluja löydät InfoFinlandin sivulta Soita ja kysy neuvoa."
     ],
-    "info1": "Le formulaire comprend trois champs.",
-    "info2": "Le nom, l’e-mail et le texte de commentaires sont toutes des données obligatoires.",
-    "states": {
-      "submitting": "Envoi des commentaires",
-      "fail": "Erreur lors de l'envoi du formulaire",
-      "success": "Merci pour vos commentaires",
-      "invalid": "Champ obligatoire"
-    }
+    "title": "Remarques",
+    "urlLabel": "Adresse de la page"
+  },
+  "footer": {
+    "helsinkiDisclaimer": "Le site InfoFinland.fi est publié par la ville de Helsinki, l’État et les communes membres d’InfoFinland prennent part à son financement."
   },
   "languageMenu": {
     "label": "Sélectionner la langue"
   },
+  "languageMessage": {
+    "text": "InfoFinland est disponible en 12 langues. Voulez-vous passer à une autre langue ?",
+    "title": "Voulez-vous changer de langue ?"
+  },
   "languageSelector": {
     "button": "Langues"
   },
-  "languageMessage": {
-    "title": "!Haluatko vaihtaa kieltä?",
-    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
+  "localInfo": {
+    "clear": "Effacer",
+    "readMore": "En savoir plus",
+    "reselect": "Sélectionnez une autre  commune",
+    "select": "Sélectionnez la commune"
   },
-
-  "mainMenu": { "button": "Menu principal" },
-  "footer": {
-    "helsinkiDisclaimer": "Le site InfoFinland.fi est publié par la ville de Helsinki, l’État et les communes membres d’InfoFinland prennent part à son financement."
+  "mainMenu": {
+    "button": "Menu principal"
+  },
+  "search": {
+    "placeholder": "Chercher avec le mot de recherche",
+    "title": {
+      "noresults": "Aucun résultat de recherche",
+      "results": "Résultats de la recherche:",
+      "start": "Rechercher sur la page"
+    }
   }
 }
