@@ -1,4 +1,7 @@
 {
+  "breadcrumbs": {
+    "frontpage": "Etusivu"
+  },
   "buttons": {
     "close": "Sulje",
     "no": "Ei",
@@ -57,15 +60,11 @@
   "images": {
     "photographer": "Kuva"
   },
-  "lang404": {
-    "text": "Valitettavasti sivua ei ole valitsemallasi kielellä. Löydät tietoa aiheesta seuraavilla kielillä: ",
-    "title": "Sivua ei löydy tällä kielellä"
-  },
   "languageMenu": {
     "label": "Valitse kieli"
   },
   "languageMessage": {
-    "text": "TODO: Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?",
+    "text": "Infofinland.fi:ssä on 12 kieltä. Haluatko valita toisen kielen?",
     "title": "Haluatko vaihtaa kieltä?"
   },
   "languageSelector": {

@@ -1,7 +1,11 @@
 {
   "buttons": {
     "close": "关闭",
-    "search": "搜索"
+    "no": "否",
+    "ok": "OK",
+    "search": "搜索",
+    "skipTo": "切换至内容",
+    "yes": "是"
   },
   "cookies": {
     "allow": "同意所有cookie。",
@@ -54,19 +58,27 @@
     "label": "选择语言"
   },
   "languageMessage": {
-    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?",
-    "title": "!Haluatko vaihtaa kieltä?"
+    "text": "Infofinland.fi支持12种不同语言。您是否想切换至另一语言？",
+    "title": "您是否想切换语言？"
   },
   "languageSelector": {
     "button": "语言"
   },
   "localInfo": {
     "clear": "清空",
+    "readMore": "了解详情",
     "reselect": "选择另一地区",
     "select": "选择地区"
   },
-
   "mainMenu": {
     "button": "主菜单"
+  },
+  "search": {
+    "placeholder": "通过关键词搜索",
+    "title": {
+      "noresults": "无搜索结果",
+      "results": "搜索结果：",
+      "start": "搜索网站"
+    }
   }
 }

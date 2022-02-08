@@ -1,7 +1,11 @@
 {
   "buttons": {
     "close": "Kapat",
-    "search": "Ara"
+    "no": "Hayır",
+    "ok": "OK",
+    "search": "Ara",
+    "skipTo": "İçeriğe geç",
+    "yes": "Evet"
   },
   "cookies": {
     "allow": "Bütün çerezleri onayla",
@@ -54,19 +58,27 @@
     "label": "Dil seçin"
   },
   "languageMessage": {
-    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?",
-    "title": "!Haluatko vaihtaa kieltä?"
+    "text": "InfoFinland.fi sayfası 12 dilde mevcuttur. Başka bir dil mi seçmek istiyorsunuz?",
+    "title": "Dili değiştirmek istiyor musunuz?"
   },
   "languageSelector": {
     "button": "Diller"
   },
   "localInfo": {
     "clear": "Sil",
+    "readMore": "Daha fazla bilgi için",
     "reselect": "Başka bir belediye seçin",
     "select": "Bir belediye seçin"
   },
-
   "mainMenu": {
     "button": "Ana menü"
+  },
+  "search": {
+    "placeholder": "Anahtar kelime ile arayın",
+    "title": {
+      "noresults": "Arama sonucu bulunamadı",
+      "results": "Arama sonuçları:",
+      "start": "Sitede arayın"
+    }
   }
 }

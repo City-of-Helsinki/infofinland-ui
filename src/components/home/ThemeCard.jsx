@@ -17,8 +17,8 @@ const ThemeCard = ({ title, url, image, blue, green }) => (
         <span className="hidden md:block rounded">
           <Image
             src={image}
-            height={100}
-            width={300}
+            height={220}
+            width={460}
             alt=""
             objectFit="cover"
             layout="responsive"

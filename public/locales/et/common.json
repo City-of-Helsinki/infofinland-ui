@@ -1,22 +1,26 @@
 {
   "buttons": {
     "close": "Sulge",
-    "search": "Otsi"
+    "search": "Otsi",
+    "no": "Ei",
+    "ok": "OK",
+    "skipTo": "Mine sisu juurde",
+    "yes": "Jah"
   },
   "cookies": {
-    "allow": "Hyväksy kaikki evästeet",
-    "allowed": "Sallittu",
-    "denied": "Kielletty",
-    "deny": "Vain välttämättömät",
+    "allow": "Nõustu kõigi küpsistega",
+    "allowed": "Lubatud",
+    "denied": "Keelatud",
+    "deny": "Ainult vältimatult vajalikud",
     "labels": {
-      "analytics": "Salli käyttöseuranta laatunvalvontatarkoituksiin"
+      "analytics": "Luba kasutuse jälgimist kvaliteedikontrolli eesmärgil"
     },
-    "readMore": "Evästeasetukset",
+    "readMore": "Küpsiste seaded",
     "settings": {
-      "title": "Evästeasetukset"
+      "title": "Küpsiste seaded"
     },
-    "text": "Tämä sivusto käyttää välttämättömiä evästeitä suorituskyvyn varmistamiseksi sekä yleisen käytön seurantaan. Lisäksi käytämme kohdennusevästeitä käyttäjäkokemuksen parantamiseksi.",
-    "title": "infoFinland.fi käyttää evästeitä"
+    "text": "See veebisait kasutab toimivuse tagamiseks ja üldise kasutuse jälgimiseks vältimatult vajalikke küpsiseid. Peale selle kasutame kasutajakogemuse parandamiseks sihtküpsiseid.",
+    "title": "Veebisait Infofinland.fi kasutab küpsiseid."
   },
   "feedback": {
     "buttons": {
@@ -54,22 +58,27 @@
     "label": "Vali keel"
   },
   "languageMessage": {
-    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?",
-    "title": "!Haluatko vaihtaa kieltä?"
+    "text": "Veebisait InfoFinland.fi on 12 keeles. Kas soovid valida mõne muu keele?",
+    "title": "Kas soovid keelt muuta?"
   },
   "languageSelector": {
     "button": "Keeled"
   },
   "localInfo": {
-    "clear": "Tyhjennä",
-    "error": "Tietoa ei voitu ladata",
-    "help": "See more information related to your municipality.",
-    "noInfo": "Tältä kunnalta ei ole paikallistietoa saatavilla",
-    "readMore": "Lue lisää",
-    "reselect": "Valitse toinen kunta",
-    "select": "Valitse kunta"
+    "clear": "Tühjenda",
+    "readMore": "Loe edasi",
+    "reselect": "Vali teine omavalitsus",
+    "select": "Vali omavalitsus"
   },
   "mainMenu": {
     "button": "Peamenüü"
+  },
+  "search": {
+    "placeholder": "Otsi märksõnaga",
+    "title": {
+      "noresults": "Otsing ei andnud tulemusi",
+      "results": "Otsingutulemused:",
+      "start": "Otsi saidilt"
+    }
   }
 }

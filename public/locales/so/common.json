@@ -1,7 +1,11 @@
 {
   "buttons": {
     "close": "Xir",
-    "search": "Raadi"
+    "no": "Maya",
+    "ok": "OK",
+    "search": "Raadi",
+    "skipTo": "U gudub macluumaadka ku jira",
+    "yes": "Haa"
   },
   "cookies": {
     "allow": "Oggolow dhammaan xogaha kambuyuutarka ku kaydsama",
@@ -54,18 +58,27 @@
     "label": "Dooro luqadda"
   },
   "languageMessage": {
-    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?",
-    "title": "!Haluatko vaihtaa kieltä?"
+    "text": "InfoFinland waxaa lagu helaa 12 luqadood. Miyaad doonaysaa in aad u beddelato luqadda aad jeceshahy?",
+    "title": "Ma doonaysaa in aad luqadda beddesho?"
   },
   "languageSelector": {
     "button": "Luqadaha"
   },
   "localInfo": {
     "clear": "Tirtir",
+    "readMore": "Faahfaahin dheeraad ah ka aqri",
     "reselect": "Dooro degmo kale",
     "select": "Dooro degmada"
   },
   "mainMenu": {
     "button": "Liiska ugu weyn"
+  },
+  "search": {
+    "placeholder": "Ku raadi erey",
+    "title": {
+      "noresults": "Natiijooyinka xog-raadinta lama hayo",
+      "results": "Natiijooyinka xog-raadinta:",
+      "start": "Ka raadi bogga"
+    }
   }
 }

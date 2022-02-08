@@ -1,7 +1,11 @@
 {
   "buttons": {
     "close": "Закрыть",
-    "search": "Поиск"
+    "no": "Нет",
+    "ok": "OK",
+    "search": "Поиск",
+    "skipTo": "Перейти к содержанию",
+    "yes": "Да"
   },
   "cookies": {
     "allow": "Разрешить все файлы cookie",
@@ -54,18 +58,27 @@
     "label": "Выбрать язык"
   },
   "languageMessage": {
-    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?",
-    "title": "!Haluatko vaihtaa kieltä?"
+    "text": "Сайт Infofinland.fi доступен на 12 языках. Выбрать другой язык?",
+    "title": "Поменять язык?"
   },
   "languageSelector": {
     "button": "Языки"
   },
   "localInfo": {
     "clear": "Очистить",
+    "readMore": "Подробнее",
     "reselect": "Выбрать другой муниципалитет",
     "select": "Выбрать муниципалитет"
   },
   "mainMenu": {
     "button": "Главное меню"
+  },
+  "search": {
+    "placeholder": "Поиск по ключевому слову",
+    "title": {
+      "noresults": "Нет результатов поиска",
+      "results": "Результаты поиска",
+      "start": "Поиск на сайте"
+    }
   }
 }

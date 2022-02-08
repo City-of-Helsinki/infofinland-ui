@@ -58,7 +58,7 @@
     "label": "Select language"
   },
   "languageMessage": {
-    "text": "Infofinland website is available in 12 languages. Would you like to change to your preferred language?",
+    "text": "Infofinland.fi is available in 12 languages. Would you like to choose another language?",
     "title": "Would you like to change the language?"
   },
   "languageSelector": {
@@ -67,9 +67,19 @@
   "localInfo": {
     "clear": "Clear",
     "reselect": "Select another municipality",
-    "select": "Select a municipality"
+    "select": "Select a municipality",
+    "readMore": "Read more"
   },
   "mainMenu": {
     "button": "Main menu"
+  },
+  "search": {
+    "loading": "Searching...",
+    "placeholder": "Search with a keyword",
+    "title": {
+      "noresults": "No search results",
+      "results": "Search results:",
+      "start": "Search the website"
+    }
   }
 }

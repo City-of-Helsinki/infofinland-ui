@@ -1,7 +1,11 @@
 {
   "buttons": {
     "close": "ببند",
-    "search": "جستجو کن"
+    "no": "خیر",
+    "ok": "OK",
+    "search": "جستجو کن",
+    "skipTo": "به محتویات منتقل شوید",
+    "yes": "بلی"
   },
   "cookies": {
     "allow": "همه کوکی ها را قبول کنید",
@@ -54,18 +58,27 @@
     "label": "زبان را انتخاب کن"
   },
   "languageMessage": {
-    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?",
-    "title": "!Haluatko vaihtaa kieltä?"
+    "text": "Infofinland.fi شامل 12 زبان مختلف است. آیا می خواهید زبان دیگری را انتخاب کنید؟",
+    "title": "آیا می خواهید زبان را عوض کنید؟"
   },
   "languageSelector": {
     "button": "زبانها"
   },
   "localInfo": {
     "clear": "خالی کنید",
+    "readMore": "اطلاعات بیشتر در این مورد",
     "reselect": "شهر دیگری را انتخاب کنید",
     "select": "شهر را انتخاب کنید"
   },
   "mainMenu": {
     "button": "لیست انتخاب اصلی"
+  },
+  "search": {
+    "placeholder": "با کلید واژه جستجو کنید",
+    "title": {
+      "noresults": "جستجو نتیجه نداد",
+      "results": "نتایج جستجو:",
+      "start": "از صفحات جستجو کنید"
+    }
   }
 }

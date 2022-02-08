@@ -1,7 +1,11 @@
 {
   "buttons": {
     "close": "Stäng",
-    "search": "Sök"
+    "no": "Nej",
+    "ok": "OK",
+    "search": "Sök",
+    "skipTo": "Gå till innehållet",
+    "yes": "Ja"
   },
   "cookies": {
     "allow": "Godkänn alla kakor",
@@ -54,18 +58,27 @@
     "label": "!Valitse kieli"
   },
   "languageMessage": {
-    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?",
-    "title": "!Haluatko vaihtaa kieltä?"
+    "text": "InfoFinland.fi finns på tolv språk. Vill du välja ett annat språk?",
+    "title": "Vill du byta språk?"
   },
   "languageSelector": {
-    "button": "!Kielet"
+    "button": "Språk"
   },
   "localInfo": {
     "clear": "Töm",
+    "readMore": "Läs mer",
     "reselect": "Välj annan kommun",
     "select": "Välj kommun"
   },
   "mainMenu": {
     "button": "!Päävalikko"
+  },
+  "search": {
+    "placeholder": "Sök med sökordet",
+    "title": {
+      "noresults": "Inga sökresultat",
+      "results": "Sökresultat:",
+      "start": "Sök på webbplatsen"
+    }
   }
 }
