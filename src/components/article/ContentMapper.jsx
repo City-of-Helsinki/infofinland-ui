@@ -1,7 +1,7 @@
 import cls from 'classnames'
 import { H2 } from '../Typo'
 import { BLOCK_MARGIN } from '../layout/Block'
-
+import LocalInformation from '@/components/cities/LocalInformation'
 import ReadMoreBlock from './ReadMoreBlock'
 import AccordionItems from './Accordion'
 import { CONTENT_TYPES } from '@/lib/DRUPAL_API_TYPES'
@@ -75,6 +75,10 @@ export default function ContentMapper({ content, locale }) {
 
       case CONTENT_TYPES.VIDEO_REMOTE:
         return <VideoBlock {...getVideo(item)} />
+
+      case CONTENT_TYPES.LOCALINFO:
+          return <LocalInformation cities={item.field_municipality_page.map( c => ({name:'Vantaa',...c})) } />
+
     }
   })
 }

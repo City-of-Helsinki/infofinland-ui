@@ -16,7 +16,7 @@ export const CONTENT_TYPES = {
   READMORE_LINK: 'paragraph--language_link',
   VIDEO_REMOTE: 'paragraph--remote_video',
   VIDEO_HELSINKI: 'paragraph--helsinki_kanava',
-  LOCALINFO: 'local',
+  LOCALINFO: 'paragraph--municipality_liftup',
   FILE: 'file--file',
   PTV: 'paragraph--ptv_contact',
   PTV_NODE: 'node--office_contact_info',

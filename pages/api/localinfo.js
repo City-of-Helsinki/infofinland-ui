@@ -4,10 +4,10 @@ import { getLocalInfoParams } from '@/lib/query-params'
 
 export default async function handler(req, res) {
   const { query } = req
-  const { uuid, name: city } = query
+  const { id, name: city } = query
 
   let status = 200
-  const node = await getResource(NODE_TYPES.PAGE, uuid, {
+  const node = await getResource(NODE_TYPES.PAGE, id, {
     params: getLocalInfoParams(),
   }).catch((e) => {
     if (e.message === 'Not Found') {

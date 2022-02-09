@@ -2,7 +2,6 @@ import ThemeList from '@/components/home/ThemeList'
 import Block from '@/components/layout/Block'
 import Article from '@/components/article/Article'
 import Layout from '@/components/layout/Layout'
-import LocalInformation from '@/components/cities/LocalInformation'
 import useBreadCrumbs from '@/hooks/useBreadCrumbs'
 import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import ContentMapper from '@/components/article/ContentMapper'
@@ -10,10 +9,11 @@ import useThemeList from '@/hooks/useThemeList'
 import { getHeroFromNode } from '@/lib/ssr-api'
 import IngressBlock from '@/components/article/IngressBlock'
 import AnchorLinksBlock from '@/components/article/AnchorLinksBlock'
+import Button from '@/components/Button'
 
 const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
   const { localePath, locale } = useRouterWithLocalizedPath()
-
+console.log({node})
   const breadcrumbs = useBreadCrumbs({
     items: menu.items,
     path: localePath,
@@ -52,6 +52,10 @@ const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
           <IngressBlock field_description={field_description} />
         )}
 
+        <Block className="mb-16 text-center">
+          <Button className="w-full">Valitse tämä kunta</Button>
+        </Block>
+
         {field_use_anchor_links && (
           <AnchorLinksBlock field_content={node.field_content} />
         )}
@@ -66,7 +70,7 @@ const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
           <ContentMapper content={node.field_content} locale={locale} />
         )}
 
-        <LocalInformation readMoreUrl={'/test'} />
+        {/* <LocalInformation readMoreUrl={'/test'} /> */}
       </Article>
     </Layout>
   )

@@ -106,6 +106,12 @@ const baseQueryParams = () =>
       'field_image',
     ])
 
+    //Local info Liftup block
+    .addFields(CONTENT_TYPES.LOCALINFO, [
+      'field_municipality_page',
+      'langcode',
+    ])
+
 export const getLandingPageQueryParams = () =>
   baseQueryParams()
     .addFields(NODE_TYPES.LANDING_PAGE, [
@@ -129,13 +135,14 @@ export const getPageQueryParams = () =>
       'field_content.field_link_collection.field_links.field_language',
       // Video content
       'field_content.field_remote_video',
-      //Contact information fragments
+      // Contact information fragments
       'field_content.field_contact_data',
-      //Accordion: text, images, links, columns
+      // Accordion: text, images, links, columns
       'field_content.field_accordion_items.field_accordion_item_content.field_columns_left_column.field_image.field_media_image',
       'field_content.field_accordion_items.field_accordion_item_content.field_columns_right_column.field_image.field_media_image',
       'field_content.field_accordion_items.field_accordion_item_content.field_link_collection.field_links.field_language',
       'field_content.field_accordion_items.field_accordion_item_content.field_image.field_media_image',
+      // Local info liftup
     ])
     .addFields(NODE_TYPES.PAGE, [
       'id',

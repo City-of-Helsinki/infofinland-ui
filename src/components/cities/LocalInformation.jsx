@@ -20,7 +20,7 @@ import { DotsLoader } from '../Loaders'
 import { IconExclamationCircle } from '../Icons'
 
 const useLocalInformation = ({ city, category }) => {
-  const cacheKey = !city ? null : `${city?.name}-${city?.uuid}`
+  const cacheKey = !city ? null : `${city?.name}-${city?.id}`
   const fetcher = !city
     ? () => {}
     : () => getLocalInformation({ ...city, category })
@@ -36,7 +36,7 @@ const useLocalInformation = ({ city, category }) => {
 
 const LocalInformation = ({
   cities = [
-    // TODO get cities from field_content
+
   ],
 }) => {
   const [selectedCity, setCity] = useAtom(selectedCityAtom)
@@ -144,7 +144,7 @@ const SRWContent = ({ city, isOpen }) => {
             <LocalReadMore />
 
             <p className="mt-8">
-              <TextLink className="font-bold" href={city?.url}>
+              <TextLink className="font-bold" href={city?.url||'#todo'}>
                 {t('localInfo.readMore')}
               </TextLink>
             </p>
