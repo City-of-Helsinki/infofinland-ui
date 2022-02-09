@@ -9,11 +9,11 @@ import useThemeList from '@/hooks/useThemeList'
 import { getHeroFromNode } from '@/lib/ssr-api'
 import IngressBlock from '@/components/article/IngressBlock'
 import AnchorLinksBlock from '@/components/article/AnchorLinksBlock'
-import Button from '@/components/Button'
+// import Button from '@/components/Button'
 
 const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
   const { localePath, locale } = useRouterWithLocalizedPath()
-console.log({node})
+  console.log({ node })
   const breadcrumbs = useBreadCrumbs({
     items: menu.items,
     path: localePath,
@@ -53,7 +53,9 @@ console.log({node})
         )}
 
         <Block className="mb-16 text-center">
-          <Button className="w-full">Valitse tämä kunta</Button>
+          <button className="p-2 w-full font-bold bg-green-white rounded border border-green-lighter">
+            Valitse tämä kunta{' '}
+          </button>
         </Block>
 
         {field_use_anchor_links && (

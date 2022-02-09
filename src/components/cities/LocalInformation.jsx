@@ -34,11 +34,7 @@ const useLocalInformation = ({ city, category }) => {
   }
 }
 
-const LocalInformation = ({
-  cities = [
-
-  ],
-}) => {
+const LocalInformation = ({ cities = [] }) => {
   const [selectedCity, setCity] = useAtom(selectedCityAtom)
 
   // eslint-disable-next-line no-unused-vars
@@ -144,7 +140,7 @@ const SRWContent = ({ city, isOpen }) => {
             <LocalReadMore />
 
             <p className="mt-8">
-              <TextLink className="font-bold" href={city?.url||'#todo'}>
+              <TextLink className="font-bold" href={city?.url || '#todo'}>
                 {t('localInfo.readMore')}
               </TextLink>
             </p>

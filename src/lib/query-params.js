@@ -18,18 +18,6 @@ const baseQueryParams = () =>
       'field_content.field_columns_right_column.field_image.field_media_image',
     ])
 
-    // Page node fields
-    .addFields(NODE_TYPES.PAGE, [
-      'id',
-      'title',
-      'revision_timestamp',
-      'langcode',
-      'field_content',
-      'field_hero',
-      'field_description',
-      'field_metatags',
-    ])
-
     // Text paragraph
     .addFields(CONTENT_TYPES.TEXT, ['field_text'])
 
@@ -107,9 +95,13 @@ const baseQueryParams = () =>
     ])
 
     //Local info Liftup block
-    .addFields(CONTENT_TYPES.LOCALINFO, [
-      'field_municipality_page',
-      'langcode',
+    .addFields(CONTENT_TYPES.LOCALINFO, ['field_municipality_page', 'langcode'])
+
+    // Columns
+    .addFields(CONTENT_TYPES.COLUMNS, [
+      'field_columns_left_column',
+      'field_columns_right_column',
+      'field_image',
     ])
 
 export const getLandingPageQueryParams = () =>
@@ -143,6 +135,8 @@ export const getPageQueryParams = () =>
       'field_content.field_accordion_items.field_accordion_item_content.field_link_collection.field_links.field_language',
       'field_content.field_accordion_items.field_accordion_item_content.field_image.field_media_image',
       // Local info liftup
+      'field_municipality_selection',
+      'field_municipality_info',
     ])
     .addFields(NODE_TYPES.PAGE, [
       'id',
@@ -154,6 +148,9 @@ export const getPageQueryParams = () =>
       'field_description',
       'field_metatags',
       'field_use_anchor_links',
+      'field_municipality_info',
+      'field_municipality_selection',
+      // 'field_use_theme_cards'
     ])
     .getQueryObject()
 

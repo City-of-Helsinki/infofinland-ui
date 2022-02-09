@@ -77,8 +77,14 @@ export default function ContentMapper({ content, locale }) {
         return <VideoBlock {...getVideo(item)} />
 
       case CONTENT_TYPES.LOCALINFO:
-          return <LocalInformation cities={item.field_municipality_page.map( c => ({name:'Vantaa',...c})) } />
-
+        return (
+          <LocalInformation
+            cities={item.field_municipality_page.map((c) => ({
+              name: 'Vantaa',
+              ...c,
+            }))}
+          />
+        )
     }
   })
 }
