@@ -18,6 +18,7 @@ export const CONTENT_TYPES = {
   VIDEO_HELSINKI: 'paragraph--helsinki_kanava',
   LOCALINFO: 'paragraph--municipality_liftup',
   LOCALINFO_CONTENT: 'paragraph--municipality_info',
+  LOCALINFO_CONTENT_ITEMS: 'paragraph--municipality_liftup_item',
   FILE: 'file--file',
   PTV: 'paragraph--ptv_contact',
   PTV_NODE: 'node--office_contact_info',

@@ -14,7 +14,7 @@ import useHydratePage from '@/hooks/useHydratePage'
 
 const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
   useHydratePage({ node, municipalities, footerMenu, menu })
-
+  console.log({ node })
   const { localePath, locale } = useRouterWithLocalizedPath()
 
   const breadcrumbs = useBreadCrumbs({

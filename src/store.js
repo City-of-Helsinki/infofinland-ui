@@ -103,5 +103,5 @@ export const getSearchResults = async (q) => {
 
 export const getLocalInformation = async (params) => {
   const { data } = await axios.get(LOCAL_INFO_URL, { params })
-  return data.node
+  return data?.node
 }

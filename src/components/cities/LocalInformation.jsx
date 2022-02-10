@@ -19,13 +19,13 @@ import useSWR from 'swr'
 import TextLink from '../TextLink'
 import { DotsLoader } from '../Loaders'
 import { IconExclamationCircle } from '../Icons'
+import PTVBlock from '../article/PTVBlock'
 
-const useLocalInformation = ({ city, category }) => {
-  const cacheKey = !city ? null : `${city?.name}-${city?.id}`
-  const fetcher = !city
-    ? () => {}
-    : () => getLocalInformation({ ...city, category })
+const useLocalInformation = ({ city, id }) => {
+  const cacheKey = !city ? null : `${city}-${id}`
+  const fetcher = !city ? () => {} : () => getLocalInformation({ id, city })
 
+  console.log({ city, id })
   const { data, error } = useSWR(cacheKey, fetcher)
 
   return {
@@ -43,8 +43,12 @@ const LocalInformation = ({ cities = [] }) => {
   const openMenu = () => setOpen(true)
   const clearCity = () => setCity(null)
   const { t } = useTranslation('common')
-  const city = cities.find(({ name }) => name === selectedCity)
+  console.log({ cities })
+  const city = cities.find(({ field_municipality }) => {
+    return field_municipality?.name === selectedCity
+  })
   const isOpen = !!selectedCity && !!city
+  console.log({ city })
   return (
     <div className="mb-8">
       <Block className="flex items-center h-14 lg:h-16 bg-green-lighter lg:rounded-t">
@@ -79,7 +83,7 @@ const LocalInformation = ({ cities = [] }) => {
         {!city && selectedCity && (
           <p className="mt-2">{t('localInfo.noInfo')}</p>
         )}
-        <SRWContent isOpen={isOpen} url={city?.url} city={city} />
+        <SRWContent isOpen={isOpen} city={city} />
       </Block>
     </div>
   )
@@ -87,7 +91,10 @@ const LocalInformation = ({ cities = [] }) => {
 
 const SRWContent = ({ city, isOpen }) => {
   const { t } = useTranslation('common')
-  const { node, isLoading, isError } = useLocalInformation({ city })
+  const { node, isLoading, isError } = useLocalInformation({
+    city: city?.field_municipality?.name,
+    id: city?.field_municipality_page?.id,
+  })
   const pageId = useAtomValue(nodeIdAtom)
   const { field_municipality_info, path } = node || {}
   const content = field_municipality_info?.find(
@@ -135,7 +142,11 @@ const SRWContent = ({ city, isOpen }) => {
               key={`localinfo-text-${content.id}`}
             />
 
-            <LocalReadMore />
+            {content?.field_municipality_info_links && <LocalReadMore />}
+
+            {content?.field_municipality_info_ptv && (
+              <PTVBlock items={[content?.field_municipality_info_ptv]} />
+            )}
 
             <p className="mt-8">
               <TextLink className="font-bold" href={path.alias}>
