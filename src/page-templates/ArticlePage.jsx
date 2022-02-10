@@ -9,11 +9,14 @@ import useThemeList from '@/hooks/useThemeList'
 import { getHeroFromNode } from '@/lib/ssr-api'
 import IngressBlock from '@/components/article/IngressBlock'
 import AnchorLinksBlock from '@/components/article/AnchorLinksBlock'
+import useHydratePage from '@/hooks/useHydratePage'
 // import Button from '@/components/Button'
 
 const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
+  useHydratePage({ node, municipalities, footerMenu, menu })
+
   const { localePath, locale } = useRouterWithLocalizedPath()
-  console.log({ node })
+
   const breadcrumbs = useBreadCrumbs({
     items: menu.items,
     path: localePath,
@@ -34,12 +37,7 @@ const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
   const hero = getHeroFromNode(node)
 
   return (
-    <Layout
-      menu={menu}
-      footerMenu={footerMenu}
-      node={node}
-      municipalities={municipalities}
-    >
+    <Layout>
       <Article
         title={title}
         breadcrumbs={breadcrumbs}

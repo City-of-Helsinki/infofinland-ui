@@ -227,9 +227,9 @@ export const addPrerenderLocalesToPaths = (paths) =>
     )
     .flat()
 
-export const getMunicipalities = async ({locale}) =>
+export const getMunicipalities = async ({ locale }) =>
   getResourceCollection(CONTENT_TYPES.MUNICIPALITY, {
     locale,
-    defaultLocale:NO_DEFAULT_LOCALE,
+    defaultLocale: NO_DEFAULT_LOCALE,
     params: getMunicipalityParams(),
   })

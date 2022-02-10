@@ -1,11 +1,12 @@
 import { IconMapMarker } from '@/components/Icons'
 import ParseHtml from '@/components/ParseHtml'
 import { useAtom } from 'jotai'
-import { useUpdateAtom } from 'jotai/utils'
+import { useUpdateAtom, useAtomValue } from 'jotai/utils'
 import {
   selectedCityAtom,
   cityMenuVisibilityAtom,
   getLocalInformation,
+  nodeIdAtom,
 } from '@/src/store'
 import Block from '@/components/layout/Block'
 import cls from 'classnames'
@@ -87,11 +88,11 @@ const LocalInformation = ({ cities = [] }) => {
 const SRWContent = ({ city, isOpen }) => {
   const { t } = useTranslation('common')
   const { node, isLoading, isError } = useLocalInformation({ city })
-
-  const {field_municipality_info,path} = node || {}
-
-  //.find(({field_national_page:{id}})=>id === node.id)
-
+  const pageId = useAtomValue(nodeIdAtom)
+  const { field_municipality_info, path } = node || {}
+  const content = field_municipality_info?.find(
+    ({ field_national_page: { id } }) => id === pageId
+  )
 
   return (
     <CSSTransition
@@ -127,16 +128,12 @@ const SRWContent = ({ city, isOpen }) => {
           </div>
         )}
 
-        {!isLoading && !isError && (
+        {!isLoading && !isError && content && (
           <>
-            {field_municipality_info?.map(({ field_municipality_info_text, id }) => {
-              return (
-                <ParseHtml
-                  html={field_municipality_info_text?.processed}
-                  key={`localinfo-text-${id}`}
-                />
-              )
-            })}
+            <ParseHtml
+              html={content.field_municipality_info_text?.processed}
+              key={`localinfo-text-${content.id}`}
+            />
 
             <LocalReadMore />
 

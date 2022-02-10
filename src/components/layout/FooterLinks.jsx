@@ -5,16 +5,20 @@ import cls from 'classnames'
 import getConfig from 'next/config'
 
 import { useTranslation } from 'next-i18next'
+import { useAtomValue } from 'jotai/utils'
+import { footerMenuAtom } from '@/src/store'
 
 /**
  * SOME Urls are defined in next.config.js
  * */
-const FooterLinks = ({ footerMenu, secondary }) => {
+const FooterLinks = ({ secondary }) => {
   const { t, language } = useTranslation('common')
   const margin = secondary ? ABOUT_MARGIN : HERO_MARGIN
   const {
     publicRuntimeConfig: { FB_URL, TWITTER_URL, YOUTUBE_URL, INSTAGRAM_URL },
   } = getConfig()
+
+  const footerMenu = useAtomValue(footerMenuAtom)
 
   return (
     <div className={cls(margin, 'mt-16 mb-16')}>
