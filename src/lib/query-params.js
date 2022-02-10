@@ -98,10 +98,8 @@ const baseQueryParams = () =>
     .addFields(CONTENT_TYPES.LOCALINFO, ['field_municipality_page', 'langcode'])
 
     // Columns
-    .addFields(CONTENT_TYPES.COLUMNS, [
-      'field_columns_left_column',
-      'field_columns_right_column',
-      'field_image',
+    .addFields(CONTENT_TYPES.MUNICIPALITY, [
+      'name',
     ])
 
 export const getLandingPageQueryParams = () =>
@@ -141,6 +139,7 @@ export const getPageQueryParams = () =>
     .addFields(NODE_TYPES.PAGE, [
       'id',
       'title',
+      'path',
       'revision_timestamp',
       'langcode',
       'field_content',
@@ -172,7 +171,8 @@ export const getMunicipalityParams = () =>
 
 export const getLocalInfoParams = () =>
   new DrupalJsonApiParams()
-    .addInclude(['field_content'])
-    .addFields(CONTENT_TYPES.TEXT, ['field_text'])
-    .addFields(NODE_TYPES.PAGE, ['field_content'])
+    .addInclude(['field_municipality_selection','field_municipality_info'])
+    // .addFields(CONTENT_TYPES.MU, ['field_text'])
+    .addFields(NODE_TYPES.PAGE, ['field_municipality_info','path','field_municipality_selection'])
+
     .getQueryObject()

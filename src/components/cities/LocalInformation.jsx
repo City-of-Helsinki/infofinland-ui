@@ -13,7 +13,7 @@ import { IconExternalSite, IconAngleDown } from '@/components/Icons'
 import { useTranslation } from 'next-i18next'
 import { CSSTransition } from 'react-transition-group'
 import useSWR from 'swr'
-import { CONTENT_TYPES } from '@/lib/DRUPAL_API_TYPES'
+// import { CONTENT_TYPES } from '@/lib/DRUPAL_API_TYPES'
 
 import TextLink from '../TextLink'
 import { DotsLoader } from '../Loaders'
@@ -88,9 +88,10 @@ const SRWContent = ({ city, isOpen }) => {
   const { t } = useTranslation('common')
   const { node, isLoading, isError } = useLocalInformation({ city })
 
-  const content = node?.field_content
-    .slice(0, 2)
-    .filter(({ type }) => type === CONTENT_TYPES.TEXT)
+  const {field_municipality_info,path} = node || {}
+
+  //.find(({field_national_page:{id}})=>id === node.id)
+
 
   return (
     <CSSTransition
@@ -128,10 +129,10 @@ const SRWContent = ({ city, isOpen }) => {
 
         {!isLoading && !isError && (
           <>
-            {content?.map(({ field_text, id }) => {
+            {field_municipality_info?.map(({ field_municipality_info_text, id }) => {
               return (
                 <ParseHtml
-                  html={field_text?.processed}
+                  html={field_municipality_info_text?.processed}
                   key={`localinfo-text-${id}`}
                 />
               )
@@ -140,7 +141,7 @@ const SRWContent = ({ city, isOpen }) => {
             <LocalReadMore />
 
             <p className="mt-8">
-              <TextLink className="font-bold" href={city?.url || '#todo'}>
+              <TextLink className="font-bold" href={path.alias}>
                 {t('localInfo.readMore')}
               </TextLink>
             </p>
