@@ -169,12 +169,13 @@ export const getMunicipalityParams = () =>
 
 export const getLocalInfoParams = () =>
   new DrupalJsonApiParams()
-    .addInclude(['field_municipality_selection', 'field_municipality_info'])
+    .addInclude(['field_municipality_info'])
     // .addFields(CONTENT_TYPES.MU, ['field_text'])
-    .addFields(NODE_TYPES.PAGE, [
-      'field_municipality_info',
-      'path',
-      'field_municipality_selection',
+    .addFields(NODE_TYPES.PAGE, ['field_municipality_info', 'path'])
+    .addFields(CONTENT_TYPES.LOCALINFO_CONTENT, [
+      'field_municipality_info_link',
+      'field_municipality_info_ptv',
+      'field_municipality_info_text',
+      'field_national_page',
     ])
-
     .getQueryObject()
