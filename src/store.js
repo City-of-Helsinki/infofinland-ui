@@ -35,7 +35,7 @@ export const feedbackFormVisibilityAtom = atom(false)
 
 /** Page atoms */
 
-export const pageAtom = atom({})
+export const pageAtom = atom({ node: { id: null } })
 export const municipalitiesAtom = focusAtom(pageAtom, (optics) =>
   optics.prop('municipalities')
 )

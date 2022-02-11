@@ -10,11 +10,10 @@ import { getHeroFromNode } from '@/lib/ssr-api'
 import IngressBlock from '@/components/article/IngressBlock'
 import AnchorLinksBlock from '@/components/article/AnchorLinksBlock'
 import useHydratePage from '@/hooks/useHydratePage'
-// import Button from '@/components/Button'
 
 const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
   useHydratePage({ node, municipalities, footerMenu, menu })
-  console.log({ node })
+
   const { localePath, locale } = useRouterWithLocalizedPath()
 
   const breadcrumbs = useBreadCrumbs({
@@ -50,11 +49,14 @@ const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
           <IngressBlock field_description={field_description} />
         )}
 
+        {/*
+
+        DEMO BUTTON: TODO connect to field_municipality_selection
         <Block className="mb-16 text-center">
           <button className="p-2 w-full font-bold bg-green-white rounded border border-green-lighter">
             Valitse tämä kunta{' '}
           </button>
-        </Block>
+        </Block> */}
 
         {field_use_anchor_links && (
           <AnchorLinksBlock field_content={node.field_content} />

@@ -23,8 +23,6 @@ import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 const useLocalInformation = ({ city, id }) => {
   const cacheKey = !city ? null : `${city}-${id}`
   const fetcher = !city ? () => {} : () => getLocalInformation({ id, city })
-
-  console.log({ city, id })
   const { data, error } = useSWR(cacheKey, fetcher)
 
   return {
@@ -46,7 +44,7 @@ const LocalInformation = ({ cities = [] }) => {
     return field_municipality?.name === selectedCity
   })
   const isOpen = !!selectedCity && !!city
-  console.log({ city })
+
   return (
     <div className="mb-8">
       <Block className="flex items-center h-14 lg:h-16 bg-green-lighter lg:rounded-t">
@@ -166,13 +164,10 @@ const SRWContent = ({ city, isOpen }) => {
   )
 }
 
-const LocalReadMore = ({ content = [], locale }) => {
-  console.log({ content })
-  return (
-    <div className="px-4 my-8 bg-white rounded">
-      <ExternalLinkCollection content={content} locale={locale} />
-    </div>
-  )
-}
+const LocalReadMore = ({ content = [], locale }) => (
+  <div className="px-4 my-8 bg-white rounded">
+    <ExternalLinkCollection content={content} locale={locale} />
+  </div>
+)
 
 export default LocalInformation

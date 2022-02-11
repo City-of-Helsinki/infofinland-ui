@@ -7,6 +7,7 @@ import TextLink from '@/components/TextLink'
 import * as DrupalApi from '@/lib/ssr-api'
 import Block from '@/components/layout/Block'
 import getConfig from 'next/config'
+import useHydratePage from '@/hooks/useHydratePage'
 
 export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
@@ -22,6 +23,7 @@ export async function getStaticProps(context) {
 
 export default function SiteMap(props) {
   const { t } = useTranslation('common')
+  useHydratePage({ ...props })
 
   return (
     <Layout {...props}>

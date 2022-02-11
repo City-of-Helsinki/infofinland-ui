@@ -77,8 +77,6 @@ export default function ContentMapper({ content, locale }) {
         return <VideoBlock {...getVideo(item)} />
 
       case CONTENT_TYPES.LOCALINFO:
-        console.log({ item })
-
         return <LocalInformation cities={item.field_municipality_liftup_item} />
     }
   })
