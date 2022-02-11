@@ -17,6 +17,7 @@ import { getResource } from 'next-drupal'
 import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import ContentMapper from '@/components/article/ContentMapper'
 import IngressBlock from '@/components/article/IngressBlock'
+import useHydratePage from '@/hooks/useHydratePage'
 
 export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
@@ -76,15 +77,13 @@ export async function getStaticProps(context) {
 }
 
 const HomePage = ({ menu, footerMenu, node, themes, municipalities }) => {
+  useHydratePage({ node, municipalities, footerMenu, menu })
+
   const hero = getHeroFromNode(node)
   const { field_description, field_content, title } = node
 
   return (
     <Layout
-      node={node}
-      menu={menu}
-      municipalities={municipalities}
-      footerMenu={footerMenu}
       title={title}
       className="ifu-landing"
       description={node.description || field_description}

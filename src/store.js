@@ -33,6 +33,19 @@ export const feedbackFormVisibilityAtom = atom(false)
 
 // const menu = atom({})
 
+/** Page atoms */
+
+export const pageAtom = atom({ node: { id: null } })
+export const municipalitiesAtom = focusAtom(pageAtom, (optics) =>
+  optics.prop('municipalities')
+)
+export const footerMenuAtom = focusAtom(pageAtom, (optics) =>
+  optics.prop('footerMenu')
+)
+export const mainMenuAtom = focusAtom(pageAtom, (optics) => optics.prop('menu'))
+export const nodeAtom = focusAtom(pageAtom, (optics) => optics.prop('node'))
+export const nodeIdAtom = focusAtom(nodeAtom, (optics) => optics.prop('id'))
+
 /** Cookie consent atom */
 
 export const cookieConsentAtom = atomWithStorage(COOKIE_CONSENT_KEY, undefined)
@@ -90,5 +103,5 @@ export const getSearchResults = async (q) => {
 
 export const getLocalInformation = async (params) => {
   const { data } = await axios.get(LOCAL_INFO_URL, { params })
-  return data.node
+  return data?.node
 }
