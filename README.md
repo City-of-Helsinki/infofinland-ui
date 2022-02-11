@@ -3,6 +3,7 @@
 ## Intro
 
 Infofinland Nextjs-frontend for headless drupal site.
+Drupal integration is implemented using [next-drupal](https://next-drupal.org) module.
 
 See also [https://github.com/City-of-Helsinki/drupal-infofinland](https://github.com/City-of-Helsinki/drupal-infofinland) for instructions on running corresponding Drupal site locally.
 
@@ -154,7 +155,7 @@ EXAMPLE:
 
 ### Tailwind Config viewer
 
-The project includes a [Tailwind config viewer](https://www.npmjs.com/package/tailwind-config-viewer).for inspecting and developing desing assets and tokens.
+The project includes a [Tailwind config viewer](https://www.npmjs.com/package/tailwind-config-viewer) for inspecting and developing desing assets and tokens.
 
 ```bash
 yarn twconfig
@@ -272,5 +273,11 @@ module.exports = {
     ],
   },
 
-
 ```
+
+## Landing page
+
+The root page of the site is mapped to a specific ```node``` in in drupal instance, configured by ```DRUPAL_LANDING_PAGE``` environment variable. The default value is ```/landingpage```, set in ```.env.production```.
+
+Make sure your drupal instance contains one ```Landing Page``` with matching url (```/landingpage``` by default).
+Remove the .env.production reference and set it in Azure pipeline configs and OpenShift configs if you need to change this value per site.
