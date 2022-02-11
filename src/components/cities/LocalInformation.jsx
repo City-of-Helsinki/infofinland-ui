@@ -9,18 +9,17 @@ import {
   nodeIdAtom,
 } from '@/src/store'
 import Block from '@/components/layout/Block'
-import cls from 'classnames'
-import { IconExternalSite, IconAngleDown } from '@/components/Icons'
+import { IconAngleDown } from '@/components/Icons'
 import { useTranslation } from 'next-i18next'
 import { CSSTransition } from 'react-transition-group'
 import useSWR from 'swr'
-// import { CONTENT_TYPES } from '@/lib/DRUPAL_API_TYPES'
-
+import { getLinks } from '@/lib/ssr-api'
 import TextLink from '../TextLink'
 import { DotsLoader } from '../Loaders'
 import { IconExclamationCircle } from '../Icons'
-import PTVBlock from '../article/PTVBlock'
-
+import { ContactInfoFields } from '../article/PTVBlock'
+import { ExternalLinkCollection } from '../article/ReadMoreBlock'
+import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 const useLocalInformation = ({ city, id }) => {
   const cacheKey = !city ? null : `${city}-${id}`
   const fetcher = !city ? () => {} : () => getLocalInformation({ id, city })
@@ -43,7 +42,6 @@ const LocalInformation = ({ cities = [] }) => {
   const openMenu = () => setOpen(true)
   const clearCity = () => setCity(null)
   const { t } = useTranslation('common')
-  console.log({ cities })
   const city = cities.find(({ field_municipality }) => {
     return field_municipality?.name === selectedCity
   })
@@ -91,6 +89,7 @@ const LocalInformation = ({ cities = [] }) => {
 
 const SRWContent = ({ city, isOpen }) => {
   const { t } = useTranslation('common')
+  const { locale } = useRouterWithLocalizedPath()
   const { node, isLoading, isError } = useLocalInformation({
     city: city?.field_municipality?.name,
     id: city?.field_municipality_page?.id,
@@ -142,10 +141,17 @@ const SRWContent = ({ city, isOpen }) => {
               key={`localinfo-text-${content.id}`}
             />
 
-            {content?.field_municipality_info_links && <LocalReadMore />}
+            {content?.field_municipality_info_link && (
+              <LocalReadMore
+                content={getLinks({
+                  collection: [content?.field_municipality_info_link],
+                  locale,
+                })}
+              />
+            )}
 
             {content?.field_municipality_info_ptv && (
-              <PTVBlock items={[content?.field_municipality_info_ptv]} />
+              <ContactInfoFields {...content?.field_municipality_info_ptv} />
             )}
 
             <p className="mt-8">
@@ -160,55 +166,11 @@ const SRWContent = ({ city, isOpen }) => {
   )
 }
 
-const LocalReadMore = ({ content = [] }) => {
+const LocalReadMore = ({ content = [], locale }) => {
+  console.log({ content })
   return (
-    <div className="p-4 bg-white rounded">
-      <p className="font-bold text-neon-pink">DEMO LOCAL INFO BLOCK</p>
-      {content.map(({ siteUrl, siteName, pageUrl, pageName, languages }, i) => (
-        <div
-          className={cls({
-            'mb-3 pb-3 border-b border-gray-hr': i + 1 < content.length,
-          })}
-          key={`${siteName}-${i}`}
-        >
-          <span
-            className="flex items-center text-small"
-            href={siteUrl}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <IconExternalSite className="me-2" />
-            {siteName}
-          </span>
-
-          <a
-            rel="noreferrer"
-            href={pageUrl}
-            target="_blank"
-            className="inline-block mb-4 text-body font-bold ifu-text-link"
-          >
-            {pageName}
-          </a>
-
-          <div className="flex flex-wrap leading-4 divide-link divide-s">
-            {languages.map(({ url, text, lang }, k) => (
-              <a
-                title={pageName}
-                rel="noreferrer"
-                href={url}
-                key={`link-${text}-${k}`}
-                target="_blank"
-                lang={lang}
-                className={cls('text-small leading-snug ifu-text-link pe-2', {
-                  'ps-2': k > 0,
-                })}
-              >
-                {text}
-              </a>
-            ))}
-          </div>
-        </div>
-      ))}
+    <div className="px-4 my-8 bg-white rounded">
+      <ExternalLinkCollection content={content} locale={locale} />
     </div>
   )
 }
