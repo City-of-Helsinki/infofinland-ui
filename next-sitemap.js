@@ -6,7 +6,13 @@ module.exports = {
   generateRobotsTxt: true,
   exclude: ['/lang404', '/*/lang404', '/404', '/*/404', 'article-sitemap.xml'],
   robotsTxtOptions: {
-    additionalSitemaps: [ARTICLE_SIDEMAP],
+    policies: [
+      {
+        userAgent: '*',
+        disallow: '/',
+      },
+    ],
+    // additionalSitemaps: [ARTICLE_SIDEMAP],
   },
   // changefreq: 'daily',
   // priority: 0.7,
