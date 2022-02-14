@@ -1,47 +1,84 @@
 {
-  "buttons": { "close": "Stäng", "search": "Sök" },
-  "feedback": {
-    "title": "Respons",
-    "buttons": {
-      "send": "Skicka ny response",
-      "cancel": "Tillbaka",
-      "sendAgain": "Skicka igen",
-      "close": "Stäng",
-      "open": "Ge respons på denna sida"
-    },
-
-    "urlLabel": "Sidans adress:",
+  "buttons": {
+    "close": "Stäng",
+    "no": "Nej",
+    "ok": "OK",
+    "search": "Sök",
+    "skipTo": "Gå till innehållet",
+    "yes": "Ja"
+  },
+  "cookies": {
+    "allow": "Godkänn alla kakor",
+    "allowed": "Tillåtet",
+    "denied": "Förbjudet",
+    "deny": "Endast nödvändiga",
     "labels": {
-      "name": "Namn",
+      "analytics": "Tillåt uppföljning av användning för kvalitetskontroll."
+    },
+    "readMore": "Kakinställningar",
+    "settings": {
+      "title": "Kakinställningar"
+    },
+    "text": "Denna webbplats använder nödvändiga kakor för att säkerställa prestanda och att följa upp allmän användning. Dessutom använder vi riktade kakor för förbättring av användarupplevelsen.",
+    "title": "Infofinland.fi använder kakor"
+  },
+  "feedback": {
+    "buttons": {
+      "cancel": "Tillbaka",
+      "close": "Stäng",
+      "open": "Ge respons på denna sida",
+      "send": "Skicka ny response",
+      "sendAgain": "Skicka igen"
+    },
+    "info1": "Formuläret innehåller tre fält.",
+    "info2": "Namn, e-post och responstext är obligatoriska fält.",
+    "labels": {
       "email": "E-post",
-      "feedback": "Respons"
+      "feedback": "Respons",
+      "name": "Namn"
+    },
+    "states": {
+      "fail": "Fel när respons skulle skickas",
+      "invalid": "!Pakollinen kenttä",
+      "submitting": "!Lähetetään palautetta...",
+      "success": "Tack för din respons"
     },
     "text": [
       "TODO FROM DRUPAL Vi svarar på respons på följande språk: finska, svenska och engelska. Tyvärr kan vi inte svara på respons som är skriven på andra språk.",
       "Responsformuläret har ett automatiskt skräppostfilter. Du får inte infoga länkar i responsen.",
       "Vi svarar bara på respons som gäller sidan InfoFinland. Du märker väl att vi inte ger råd i hur du ska sköta dina ärenden. Rådgivningstjänster hittar du på InfoFinlands sida Ring och fråga om råd."
     ],
-    "info1": "Formuläret innehåller tre fält.",
-    "info2": "Namn, e-post och responstext är obligatoriska fält.",
-    "states": {
-      "submitting": "!Lähetetään palautetta...",
-      "fail": "Fel när respons skulle skickas",
-      "success": "Tack för din respons",
-      "invalid": "!Pakollinen kenttä"
-    }
+    "title": "Respons",
+    "urlLabel": "Sidans adress:"
+  },
+  "footer": {
+    "helsinkiDisclaimer": "Webbplatsen InfoFinland.fi publiceras av Helsingfors stad och finansieras av staten och InfoFinlands medlemskommuner."
   },
   "languageMenu": {
     "label": "!Valitse kieli"
   },
-  "languageSelector": {
-    "button": "!Kielet"
-  },
   "languageMessage": {
-    "title": "!Haluatko vaihtaa kieltä?",
-    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
+    "text": "InfoFinland.fi finns på tolv språk. Vill du välja ett annat språk?",
+    "title": "Vill du byta språk?"
   },
-  "mainMenu": { "button": "!Päävalikko" },
-  "footer": {
-    "helsinkiDisclaimer": "Webbplatsen InfoFinland.fi publiceras av Helsingfors stad och finansieras av staten och InfoFinlands medlemskommuner."
+  "languageSelector": {
+    "button": "Språk"
+  },
+  "localInfo": {
+    "clear": "Töm",
+    "readMore": "Läs mer",
+    "reselect": "Välj annan kommun",
+    "select": "Välj kommun"
+  },
+  "mainMenu": {
+    "button": "!Päävalikko"
+  },
+  "search": {
+    "placeholder": "Sök med sökordet",
+    "title": {
+      "noresults": "Inga sökresultat",
+      "results": "Sökresultat:",
+      "start": "Sök på webbplatsen"
+    }
   }
 }

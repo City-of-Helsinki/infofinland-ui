@@ -38,11 +38,7 @@ const Article = ({ children, breadcrumbs, color, ...heroProps }) => {
         `}</style>
       )}
       <div className={cls('relative', colorClass)}>
-        <div
-          className={cls(HERO_MARGIN, {
-            'px-6 lg:px-12': !heroProps.heroImage,
-          })}
-        >
+        <div className={HERO_MARGIN}>
           <Breadcrumbs items={breadcrumbs} />
         </div>
 

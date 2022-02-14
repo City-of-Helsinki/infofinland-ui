@@ -1,47 +1,84 @@
 {
-  "buttons": { "close": "ببند", "search": "جستجو کن" },
-
-  "feedback": {
-    "title": "پیشنهادات و انتقادات",
-    "urlLabel": "آدرس سایت",
-    "buttons": {
-      "send": "ارسال کن",
-      "cancel": "لغو کن",
-      "sendAgain": "یک جدید را بفرست",
-      "close": "ببند",
-      "open": "نظر خود را درباره این سایت ارسال کنید"
-    },
+  "buttons": {
+    "close": "ببند",
+    "no": "خیر",
+    "ok": "OK",
+    "search": "جستجو کن",
+    "skipTo": "به محتویات منتقل شوید",
+    "yes": "بلی"
+  },
+  "cookies": {
+    "allow": "همه کوکی ها را قبول کنید",
+    "allowed": "اجازه داده شد",
+    "denied": "اجازه داده نشد",
+    "deny": "فقط ضروری ها را",
     "labels": {
-      "name": "نام",
+      "analytics": "به منظور نظارت بر کیفیت، اجازه دهید که از نظارت بر استفاده بهره گیری شود"
+    },
+    "readMore": "تنظیمات کوکی",
+    "settings": {
+      "title": "تنظیمات کوکی"
+    },
+    "text": "این صفحات برای اطمینان از کارایی بهینه و نظارت بر استفاده عمومی، از کوکی های ضروری استفاده می کند. علاوه بر این، برای بهبود تجربیات کاربر، از کوکی های اختصاصی استفاده می شود.",
+    "title": "Infofinland.fi از کوکی استفاده می کند"
+  },
+  "feedback": {
+    "buttons": {
+      "cancel": "لغو کن",
+      "close": "ببند",
+      "open": "نظر خود را درباره این سایت ارسال کنید",
+      "send": "ارسال کن",
+      "sendAgain": "یک جدید را بفرست"
+    },
+    "info1": "در فرم سه جا وجود دارد. نام، آدرس پست اکترونیکی و متن پیشنهادات و انتقادات، همه اطلاعاتی هستند که باید حتماً داده شوند.",
+    "info2": "",
+    "labels": {
       "email": "پست الکترونیکی",
-      "feedback": "پیشنهادات و انتقادات"
+      "feedback": "پیشنهادات و انتقادات",
+      "name": "نام"
+    },
+    "states": {
+      "fail": "خطا در ارسال مطالب.",
+      "invalid": "فیلد اجباری",
+      "submitting": "پیشنهاد فرستاده می شود",
+      "success": "از پیشنهادات و نظراتتان سپاسگزاریم"
     },
     "text": [
       "TODO FROM DRUPAL Vastaamme palautteisiin seuraavilla kielillä: suomi, ruotsi ja englanti. Valitettavasti emme voi vastata palautteisiin, jotka on kirjoitettu muilla kielillä.",
       "Palautelomakkeessa on automaattinen roskapostisuodatin. Palautteeseen ei saa liittää linkkiä.",
       "Vastaamme vain InfoFinland-sivustoa koskeviin palautteisiin. Ota huomioon, että emme anna neuvontaa omien asioiden hoitamisessa. Neuvontapalveluja löydät InfoFinlandin sivulta Soita ja kysy neuvoa."
     ],
-    "info1": "در فرم سه جا وجود دارد. نام، آدرس پست اکترونیکی و متن پیشنهادات و انتقادات، همه اطلاعاتی هستند که باید حتماً داده شوند.",
-    "info2": "",
-    "states": {
-      "submitting": "پیشنهاد فرستاده می شود",
-      "fail": "خطا در ارسال مطالب.",
-      "success": "از پیشنهادات و نظراتتان سپاسگزاریم",
-      "invalid": "فیلد اجباری"
-    }
+    "title": "پیشنهادات و انتقادات",
+    "urlLabel": "آدرس سایت"
+  },
+  "footer": {
+    "helsinkiDisclaimer": "صفحات InfoFinland.fi توسط شهر هلسینکی منتشر می شود و مخارج آن از طرف دولت و شهرهای عضو InfoFinland.fi تأمین می شود."
   },
   "languageMenu": {
     "label": "زبان را انتخاب کن"
   },
+  "languageMessage": {
+    "text": "Infofinland.fi شامل 12 زبان مختلف است. آیا می خواهید زبان دیگری را انتخاب کنید؟",
+    "title": "آیا می خواهید زبان را عوض کنید؟"
+  },
   "languageSelector": {
     "button": "زبانها"
   },
-  "languageMessage": {
-    "title": "!Haluatko vaihtaa kieltä?",
-    "text": "!Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?"
+  "localInfo": {
+    "clear": "خالی کنید",
+    "readMore": "اطلاعات بیشتر در این مورد",
+    "reselect": "شهر دیگری را انتخاب کنید",
+    "select": "شهر را انتخاب کنید"
   },
-  "mainMenu": { "button": "لیست انتخاب اصلی" },
-  "footer": {
-    "helsinkiDisclaimer": "صفحات InfoFinland.fi توسط شهر هلسینکی منتشر می شود و مخارج آن از طرف دولت و شهرهای عضو InfoFinland.fi تأمین می شود."
+  "mainMenu": {
+    "button": "لیست انتخاب اصلی"
+  },
+  "search": {
+    "placeholder": "با کلید واژه جستجو کنید",
+    "title": {
+      "noresults": "جستجو نتیجه نداد",
+      "results": "نتایج جستجو:",
+      "start": "از صفحات جستجو کنید"
+    }
   }
 }

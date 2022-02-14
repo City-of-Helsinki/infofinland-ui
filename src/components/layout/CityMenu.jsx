@@ -1,12 +1,18 @@
 import Drawer from './Drawer'
 import { useAtom } from 'jotai'
-import { selectedCity, cityMenuVisibility } from '@/src/store'
+import {
+  selectedCityAtom,
+  cityMenuVisibilityAtom,
+  municipalitiesAtom,
+} from '@/src/store'
 import { IconCheck } from '@/components/Icons'
 import cls from 'classnames'
+import { useAtomValue } from 'jotai/utils'
 
-const CityMenu = ({ municipalities }) => {
-  const [open, setOpen] = useAtom(cityMenuVisibility)
-  const [city, setCity] = useAtom(selectedCity)
+const CityMenu = () => {
+  const [open, setOpen] = useAtom(cityMenuVisibilityAtom)
+  const [city, setCity] = useAtom(selectedCityAtom)
+  const municipalities = useAtomValue(municipalitiesAtom)
   const close = () => setOpen(false)
   const chooseCity = ({ target: { value } }) => {
     value && value !== city && setCity(value)

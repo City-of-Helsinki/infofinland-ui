@@ -13,6 +13,8 @@ import NProgress from 'nprogress'
 import CookieConsentBar from '@/components/layout/CookieConsent'
 import MainNavi, { MainNaviError } from '@/components/navi/MainNavi'
 import cls from 'classnames'
+import { useAtomValue } from 'jotai/utils'
+import { mainMenuAtom, nodeAtom } from '@/src/store'
 export const FALLBACK_TITLE = 'infofinland.fi'
 /**
  *
@@ -60,31 +62,27 @@ export const BlankLayout = ({ children, title, description }) => {
   )
 }
 
-export const SecondaryLayout = ({
-  children,
-  menu,
-  footerMenu,
-  node,
-  municipalities,
-}) => {
+export const SecondaryLayout = ({ children }) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
   useShowLangMessage(locale)
+  const node = useAtomValue(nodeAtom)
+  const menu = useAtomValue(mainMenuAtom)
   return (
     <>
       <CommonHead description={node?.field_description} title={node?.title} />
       <div className=" relative text-body bg-white">
-        <TopMenu menu={menu} municipalities={municipalities} />
+        <TopMenu menu={menu} />
         <div className="md:mx-auto lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
           <div className=" md:flex md:items-stretch">
             <div className="hidden md:block fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop">
-              {menu.error ? <MainNaviError /> : <MainNavi menu={menu} />}
+              {menu?.error ? <MainNaviError /> : <MainNavi menu={menu} />}
             </div>
             <div className="hidden md:block flex-none w-navi border-black-op1 border-e-2"></div>
             <div className="ifu-layout__body">
               <main id="main">{children}</main>
               <footer className="ifu-footer" id="footer">
-                <FooterLinks footerMenu={footerMenu} secondary />
+                <FooterLinks secondary />
                 <FeedbackButtonBlock />
               </footer>
             </div>
@@ -96,31 +94,22 @@ export const SecondaryLayout = ({
   )
 }
 
-const AppLayout = ({
-  children,
-  menu,
-  footerMenu,
-  node,
-  title,
-  description,
-  municipalities,
-  className,
-}) => {
+const AppLayout = ({ children, className }) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
   useShowLangMessage(locale)
+  const node = useAtomValue(nodeAtom)
+  const menu = useAtomValue(mainMenuAtom)
+
   return (
     <>
-      <CommonHead
-        description={description || node?.field_description}
-        title={title || node?.title}
-      />
+      <CommonHead description={node?.field_description} title={node?.title} />
 
       <div
         className={cls('relative text-body bg-white', className)}
         id={`node-${node?.id}`}
       >
-        <TopMenu menu={menu} municipalities={municipalities} />
+        <TopMenu menu={menu} />
         <div className=" md:flex md:items-stretch">
           <div className="md:hidden">
             <Messages />
@@ -134,7 +123,7 @@ const AppLayout = ({
           <div className="ifu-layout__body">
             <main id="main">{children}</main>
             <footer className="ifu-footer" id="footer">
-              <FooterLinks footerMenu={footerMenu} />
+              <FooterLinks />
               <FeedbackButtonBlock />
             </footer>
           </div>

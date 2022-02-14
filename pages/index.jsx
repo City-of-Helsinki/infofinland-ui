@@ -17,15 +17,22 @@ import { getResource } from 'next-drupal'
 import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import ContentMapper from '@/components/article/ContentMapper'
 import IngressBlock from '@/components/article/IngressBlock'
+import useHydratePage from '@/hooks/useHydratePage'
 
 export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
   const { locale } = context
   const { data } = await resolvePath({
-    path: serverRuntimeConfig.DRUPAL_LANDING_PAGE,
+    path: serverRuntimeConfig.DRUPAL_FRONT_PAGE,
     context: { locale },
   }).catch((e) => {
     if (e?.response?.status === 404) {
+      console.error(
+        `Landing page error for /${locale}/:`,
+        // Data can be a string or object apparently
+        e.response?.data?.message || e.response?.data,
+        e.response?.status
+      )
       return { data: null }
     }
     console.error(e)
@@ -53,7 +60,7 @@ export async function getStaticProps(context) {
   })
 
   const themes = common.menu.tree.map(({ url, title, id }, i) => {
-    const image = themeImages.at(i)
+    const image = themeImages[i]
     return { url, title, id, image: image?.src || null }
   })
 
@@ -64,20 +71,19 @@ export async function getStaticProps(context) {
       node,
       ...(await serverSideTranslations(context.locale, ['common'])),
     },
-    revalidate: serverRuntimeConfig.REVALIDATE_TIME,
+    // revalidate: serverRuntimeConfig.REVALIDATE_TIME,
+    revalidate: 10,
   }
 }
 
 const HomePage = ({ menu, footerMenu, node, themes, municipalities }) => {
+  useHydratePage({ node, municipalities, footerMenu, menu })
+
   const hero = getHeroFromNode(node)
   const { field_description, field_content, title } = node
 
   return (
     <Layout
-      node={node}
-      menu={menu}
-      municipalities={municipalities}
-      footerMenu={footerMenu}
       title={title}
       className="ifu-landing"
       description={node.description || field_description}

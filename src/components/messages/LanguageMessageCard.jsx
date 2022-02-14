@@ -1,5 +1,5 @@
 import { useAtom } from 'jotai'
-import { languageMenuVisibility } from '@/src/store'
+import { languageMenuVisibilityAtom } from '@/src/store'
 import useLanguageMessage from '@/hooks/useLanguageMessage'
 import MessageCard, { MESSAGE_TYPES } from '@/components/messages/MessageCard'
 
@@ -9,7 +9,7 @@ const LanguageMessageCard = () => {
   const { hideMessage, setShownOnce, isShownOnce, isOpen } =
     useLanguageMessage()
 
-  const [, setLanguageMenu] = useAtom(languageMenuVisibility)
+  const [, setLanguageMenu] = useAtom(languageMenuVisibilityAtom)
   const confirm = () => {
     setLanguageMenu(true)
     setShownOnce()

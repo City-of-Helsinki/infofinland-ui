@@ -33,7 +33,7 @@ export const getHeroFromNode = (node) => {
   }
 }
 
-export const getImage = (item) => {
+export const getImage = (item = {}) => {
   const host = getConfig().publicRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL
   const url = item.field_image?.field_media_image?.uri?.url
   const caption = item.field_image_caption
@@ -45,6 +45,17 @@ export const getImage = (item) => {
     // ...meta:{alt,title,width,height}
     ...item.field_image?.field_media_image.resourceIdObjMeta,
   }
+}
+
+export const getVideo = ({
+  field_video_url,
+  field_remote_video,
+  field_video_title,
+} = {}) => {
+  const url =
+    field_video_url?.uri || field_remote_video?.field_media_oembed_video
+  const title = field_video_url?.title || field_video_title
+  return { url, title }
 }
 
 const ERROR_MISSING_LANGUAGE = 'language id missing'
@@ -91,14 +102,7 @@ export const getLinks = ({ collection, locale } = {}) => {
       }
 
       const languages = field_links
-        ?.filter(({ field_language, id }) => {
-          if (id === MISSING_ID_TOKEN) {
-            console.error(ERROR_MISSING_LANGUAGE)
-            return
-          }
-          return field_language.field_locale !== mainTranslation.locale
-        })
-        .map(({ field_language, field_language_link }) => {
+        ?.map(({ field_language, field_language_link }) => {
           return {
             url: field_language_link,
             title: field_language.name,
@@ -194,6 +198,8 @@ export const getThemeHeroImages = async ({ tree, context }) => {
       getResource(NODE_TYPES.PAGE, id, {
         locale: context.locale,
         params: getThemeHeroParams(),
+      }).catch((e) => {
+        console.error(e)
       })
     )
   )
@@ -221,7 +227,9 @@ export const addPrerenderLocalesToPaths = (paths) =>
     )
     .flat()
 
-export const getMunicipalities = async () =>
+export const getMunicipalities = async ({ locale }) =>
   getResourceCollection(CONTENT_TYPES.MUNICIPALITY, {
+    locale,
+    defaultLocale: NO_DEFAULT_LOCALE,
     params: getMunicipalityParams(),
   })

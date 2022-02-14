@@ -2,9 +2,16 @@ import {
   getImage,
   getHeroFromNode,
   getLinks,
+  getVideo,
   addPrerenderLocalesToPaths,
 } from '@/lib/ssr-api'
 import getConfig from 'next/config'
+
+/**
+ *
+ * Sidenote: using array.at is safe because tests are run in node, not browser
+ */
+
 describe('ssr-api', () => {
   describe('getImage', () => {
     it('should return image props from paragraph--image item', () => {
@@ -95,7 +102,8 @@ describe('ssr-api', () => {
       expect(links.at(0).mainTranslation.url).toBe('http://so.so')
       expect(links.at(0).siteName).toBe('sivusto')
       expect(links.at(0).title).toBe('title')
-      expect(links.at(0).languages).toHaveLength(2)
+      // Must include current language
+      expect(links.at(0).languages).toHaveLength(3)
     })
 
     it('should sort languages to the configured language order', () => {
@@ -156,7 +164,7 @@ describe('ssr-api', () => {
       expect(links.at(0).mainTranslation.url).toBe('http://en.en')
       expect(links.at(0).siteName).toBe('sivusto')
       expect(links.at(0).title).toBe('title')
-      expect(links.at(0).languages).toHaveLength(1)
+      expect(links.at(0).languages).toHaveLength(2)
     })
 
     it('should fall back to finnish  if required locale and english are not translated', () => {
@@ -179,7 +187,7 @@ describe('ssr-api', () => {
       expect(links.at(0).mainTranslation.url).toBe('http://fi.fi')
       expect(links.at(0).siteName).toBe('sivusto')
       expect(links.at(0).title).toBe('title')
-      expect(links.at(0).languages).toHaveLength(0)
+      expect(links.at(0).languages).toHaveLength(1)
     })
 
     it('should fail gracefully', () => {
@@ -196,6 +204,39 @@ describe('ssr-api', () => {
         serverRuntimeConfig.PRERENDER_LOCALES.length
       )
       expect(withLocales.at(0).locale).toBe('fi')
+    })
+  })
+
+  describe('getVideo', () => {
+    it('should return url and title for media--remote_video', () => {
+      const video = getVideo({
+        field_video_title: 'Remote embed url: Youtube, Vimeo',
+        field_remote_video: {
+          field_media_oembed_video: 'https://www.vi.deo/1',
+        },
+      })
+
+      expect(video.url).toBe('https://www.vi.deo/1')
+
+      expect(video.title).toBe('Remote embed url: Youtube, Vimeo')
+    })
+
+    it('should return url and title for paragraph--helsinki_kanava', () => {
+      const video = getVideo({
+        field_video_url: {
+          uri: 'https://www.vi.deo/2.mp4',
+          title: 'direct link to mp4 (helsinki kanava video)',
+        },
+      })
+
+      expect(video.url).toBe('https://www.vi.deo/2.mp4')
+
+      expect(video.title).toBe('direct link to mp4 (helsinki kanava video)')
+    })
+    it('should return undefined values if data is missing', () => {
+      const not = getVideo({})
+      expect(not.url).toBeUndefined()
+      expect(not.title).toBeUndefined()
     })
   })
 })

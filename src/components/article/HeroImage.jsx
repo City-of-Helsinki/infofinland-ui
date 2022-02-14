@@ -1,10 +1,13 @@
+import { useState } from 'react'
 import Image from 'next/image'
 import { HERO_MARGIN } from '@/components/layout/Block'
 import ArticleHeading from './ArticleHeading'
-import blurPlaceholder from '../blurPlaceholder'
 import cls from 'classnames'
+import { RingsLoader } from '../Loaders'
 
 const HeroImage = ({ heroImage, ...rest }) => {
+  const [loading, setLoading] = useState(true)
+
   if (heroImage) {
     return (
       <>
@@ -14,16 +17,21 @@ const HeroImage = ({ heroImage, ...rest }) => {
             'overflow-hidden mb-6 h-hero  md:h-heroxl text-center rounded relative'
           )}
         >
-          <Image
-            placeholder="blur"
-            blurDataURL={blurPlaceholder}
-            src={heroImage}
-            alt=""
-            priority
-            layout="fill"
-            className="block w-full h-full rounded"
-            objectFit="cover"
-          />
+          <div className="relative h-full bg-gray-white">
+            {loading && <RingsLoader />}
+            <Image
+              src={heroImage}
+              // src="/foo.png"
+              alt=""
+              priority
+              layout="fill"
+              onLoadingComplete={() => setLoading(false)}
+              className={cls('block w-full h-full roundedbg-gray-teal', {
+                ' animate-pulse': loading,
+              })}
+              objectFit="cover"
+            />
+          </div>
         </div>
         <ArticleHeading forHeroImage {...rest} />
       </>

@@ -2,7 +2,6 @@ import ThemeList from '@/components/home/ThemeList'
 import Block from '@/components/layout/Block'
 import Article from '@/components/article/Article'
 import Layout from '@/components/layout/Layout'
-import LocalInformation from '@/components/cities/LocalInformation'
 import useBreadCrumbs from '@/hooks/useBreadCrumbs'
 import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import ContentMapper from '@/components/article/ContentMapper'
@@ -10,10 +9,13 @@ import useThemeList from '@/hooks/useThemeList'
 import { getHeroFromNode } from '@/lib/ssr-api'
 import IngressBlock from '@/components/article/IngressBlock'
 import AnchorLinksBlock from '@/components/article/AnchorLinksBlock'
-import VideoBlock from '@/components/article/VideoBlock'
+import useHydratePage from '@/hooks/useHydratePage'
 
 const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
+  useHydratePage({ node, municipalities, footerMenu, menu })
+
   const { localePath, locale } = useRouterWithLocalizedPath()
+
   const breadcrumbs = useBreadCrumbs({
     items: menu.items,
     path: localePath,
@@ -28,18 +30,13 @@ const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
     title,
     revision_timestamp,
     field_description,
-    field_use_anchor_links = true,
+    field_use_anchor_links,
   } = node
 
   const hero = getHeroFromNode(node)
 
   return (
-    <Layout
-      menu={menu}
-      footerMenu={footerMenu}
-      node={node}
-      municipalities={municipalities}
-    >
+    <Layout>
       <Article
         title={title}
         breadcrumbs={breadcrumbs}
@@ -51,6 +48,15 @@ const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
         {field_description && (
           <IngressBlock field_description={field_description} />
         )}
+
+        {/*
+
+        DEMO BUTTON: TODO connect to field_municipality_selection
+        <Block className="mb-16 text-center">
+          <button className="p-2 w-full font-bold bg-green-white rounded border border-green-lighter">
+            Valitse tämä kunta{' '}
+          </button>
+        </Block> */}
 
         {field_use_anchor_links && (
           <AnchorLinksBlock field_content={node.field_content} />
@@ -66,13 +72,7 @@ const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
           <ContentMapper content={node.field_content} locale={locale} />
         )}
 
-        <LocalInformation readMoreUrl={'/test'} />
-        <VideoBlock url={'https://www.youtube.com/watch?v=efkqpext2Ik'} />
-        <VideoBlock
-          url={
-            'https://icareus-eu1-progressive.secure2.footprint.net/10154/31238760/285903.mp4/1.0.mp4'
-          }
-        />
+        {/* <LocalInformation readMoreUrl={'/test'} /> */}
       </Article>
     </Layout>
   )

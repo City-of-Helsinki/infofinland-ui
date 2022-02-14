@@ -1,12 +1,12 @@
 import { useAtom } from 'jotai'
-import { languageMessageIsOpen } from '../store'
+import { languageMessageIsOpenAtom } from '../store'
 import { i18n } from '../../next-i18next.config'
 const SESSION_KEY = 'langMessage'
 const SHOWN = 'shown'
 const NOT_SHOWN = 'not_shown'
 
 const useLanguageMessage = () => {
-  const [isOpen, setIsOpen] = useAtom(languageMessageIsOpen)
+  const [isOpen, setIsOpen] = useAtom(languageMessageIsOpenAtom)
   let userHasClosedMessage = NOT_SHOWN
 
   if (typeof sessionStorage !== 'undefined') {

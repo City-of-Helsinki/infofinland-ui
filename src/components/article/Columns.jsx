@@ -20,7 +20,7 @@ const ColumnMapper = ({ type, field_text, ...rest }) => {
     case CONTENT_TYPES.PARAGRAPH_IMAGE:
       return (
         <ArticleImage
-          className="overflow-hidden relative rounded aspect-video lg:aspect-square"
+          className="overflow-hidden relative bg-gray-white rounded aspect-video lg:aspect-square"
           {...getImage(rest)}
         />
       )

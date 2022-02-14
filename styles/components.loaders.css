@@ -1,0 +1,111 @@
+@layer components {
+  .ifu-loader__image--ripple {
+    margin: 0 auto;
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .ifu-loader__image--ripple div {
+    position: absolute;
+    border: 3px solid var(--bgColor);
+    opacity: 1;
+    border-radius: 50%;
+    animation: ifu-loader__image--ripple 2s cubic-bezier(0, 0.2, 0.8, 1)
+      infinite;
+  }
+
+  .ifu-loader__image--ripple.green div {
+    border: 3px solid var(--bgGreen);
+
+  }
+  .ifu-loader__image--ripple.blue div {
+    border: 3px solid var(--bgBlue);
+
+  }
+
+
+  .ifu-loader__image--ripple div:nth-child(2) {
+    animation-delay: -1s;
+  }
+  @keyframes ifu-loader__image--ripple {
+    0% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 1;
+    }
+    100% {
+      top: 0px;
+      left: 0px;
+      width: 72px;
+      height: 72px;
+      opacity: 0;
+    }
+  }
+
+  .ifu-loader__feedback--ellipsis {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+  .ifu-loader__feedback--ellipsis div {
+    position: absolute;
+    top: 33px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    /* background: var(--bgBlue); */
+    animation-timing-function: cubic-bezier(0, 1, 1, 0);
+  }
+
+  .ifu-loader__feedback--ellipsis.green div {
+    background: var(--bgGreen);
+  }
+  .ifu-loader__feedback--ellipsis.blue div {
+    background: var(--bgBlue);
+  }
+
+  .ifu-loader__feedback--ellipsis div:nth-child(1) {
+    left: 8px;
+    animation: ifu-loader__feedback--ellipsis1 0.6s infinite;
+  }
+  .ifu-loader__feedback--ellipsis div:nth-child(2) {
+    left: 8px;
+    animation: ifu-loader__feedback--ellipsis2 0.6s infinite;
+  }
+  .ifu-loader__feedback--ellipsis div:nth-child(3) {
+    left: 32px;
+    animation: ifu-loader__feedback--ellipsis2 0.6s infinite;
+  }
+  .ifu-loader__feedback--ellipsis div:nth-child(4) {
+    left: 56px;
+    animation: ifu-loader__feedback--ellipsis3 0.6s infinite;
+  }
+  @keyframes ifu-loader__feedback--ellipsis1 {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  @keyframes ifu-loader__feedback--ellipsis3 {
+    0% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(0);
+    }
+  }
+  @keyframes ifu-loader__feedback--ellipsis2 {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(24px, 0);
+    }
+  }
+}
