@@ -5,6 +5,7 @@ import { DateTime } from 'luxon'
 
 import { useRouter } from 'next/router'
 import { BLOCK_MARGIN, HERO_MARGIN } from '@/components/layout/Block'
+import { useTranslation } from 'next-i18next'
 
 export default function ArticleHeading({
   forHeroImage = false,
@@ -14,6 +15,8 @@ export default function ArticleHeading({
   fiTitle,
 }) {
   const { locale } = useRouter()
+  const { t } = useTranslation('common')
+
   const titleMargin = themeHero ? HERO_MARGIN : BLOCK_MARGIN
   return (
     <div className={titleMargin}>
@@ -36,7 +39,7 @@ export default function ArticleHeading({
             longTextClass(title, {
               size: 40,
               classes: [
-                ' text-h2 md:text-h1xl',
+                ' text-h2 md:text-h1 lg:text-h1xl',
                 'text-h3 md:text-h3 lg:text-h1',
               ],
             })
@@ -46,7 +49,10 @@ export default function ArticleHeading({
         </h1>
         {/* article date */}
         <div className="flex items-center mb-8 text-body-small text-bodytext-color">
-          <IconCalendar className="md:w-4 md:h-4 transform translate-y-px" />
+          <IconCalendar
+            className="md:w-4 md:h-4 transform translate-y-px"
+            title={t('article.published')}
+          />
           <span className="px-2 transform translate-y-px">
             {DateTime.fromISO(date).toFormat('dd.MM.yyyy')}
           </span>

@@ -97,6 +97,7 @@ export const getLinks = ({ collection, locale } = {}) => {
         })
       }
       mainTranslation = {
+        id: mainTranslation.id,
         locale: mainTranslation?.field_language?.field_locale,
         url: mainTranslation?.field_language_link,
       }

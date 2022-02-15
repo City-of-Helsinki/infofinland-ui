@@ -16,7 +16,9 @@ const CitySelector = () => {
             morbi neque.
           </p>
 
-          <Button onClick={goToCities}>Go to Cities</Button>
+          <Button onClick={goToCities} aria-haspopup="dialog">
+            Go to Cities
+          </Button>
         </div>
         <div className="flex justify-center">
           <div className="">

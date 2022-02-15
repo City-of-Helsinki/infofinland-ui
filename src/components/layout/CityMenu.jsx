@@ -31,6 +31,7 @@ const CityMenu = () => {
           >
             <button
               value={cityName}
+              aria-current={city === cityName}
               onClick={chooseCity}
               className="
             py-2 px-14 block  text-body-small text-bodytext-color w-full text-left"

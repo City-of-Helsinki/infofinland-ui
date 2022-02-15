@@ -1,6 +1,8 @@
 {
+  "article": { "published": "Julkaistu" },
   "breadcrumbs": {
-    "frontpage": "Etusivu"
+    "frontpage": "Etusivu",
+    "title": "Murupolku"
   },
   "buttons": {
     "close": "Sulje",
@@ -8,7 +10,10 @@
     "ok": "OK",
     "search": "Hae",
     "skipTo": "Siirry sisältöön",
-    "yes": "Kyllä"
+    "yes": "Kyllä",
+    "readMore": "Lue lisää",
+    "open": "Avaa",
+    "external": "Linkki johtaa palvelun ulkopuolelle"
   },
   "cookies": {
     "allow": "Hyväksy kaikki evästeet",
@@ -63,6 +68,9 @@
   "languageMenu": {
     "label": "Valitse kieli"
   },
+  "messages": {
+    "title": "Ilmoitukset"
+  },
   "languageMessage": {
     "text": "Infofinland.fi:ssä on 12 kieltä. Haluatko valita toisen kielen?",
     "title": "Haluatko vaihtaa kieltä?"
@@ -92,5 +100,6 @@
       "results": "Hakutulokset",
       "start": "Hae sivustolta"
     }
-  }
+  },
+  "video": { "button": "Avaa video" }
 }

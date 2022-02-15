@@ -16,7 +16,7 @@ const MessageButton = ({ cancel, confirm, onClick }) => {
     ? t('buttons.no')
     : confirm
     ? t('buttons.yes')
-    : t('buttons.ok')
+    : t('buttons.close')
   return (
     <button
       className="text-tiny font-bold hover:underline uppercase"

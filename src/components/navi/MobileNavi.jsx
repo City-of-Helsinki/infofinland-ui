@@ -46,7 +46,8 @@ const MobileNavi = ({ menu }) => {
             aria-haspopup="dialog"
             onClick={open}
             title={t('mainMenu.button')}
-            className="z-50 transform -translate-y-0.5"
+            className="z-50"
+            autoFocus={!isOpen}
           >
             <IconMenu />
           </button>

@@ -8,18 +8,24 @@ import { searchQueryValue } from '@/src/store'
 import { Suspense } from 'react'
 import Link from 'next/link'
 import useSearchRoute from '@/hooks/useSearchRoute'
+import cls from 'classnames'
+
+const SEARCH_BUTTON_LABEL_ID = 'ifu-searchbar__label'
 
 const Search = () => {
-  const [isDesktopOpen, setDesktopVisibility] = useState(false)
-  const [isMobileOpen, setMobileVisibility] = useState(false)
+  const [isSearchOpen, setVisibility] = useState({
+    desktop: false,
+    mobile: false,
+  })
   const [query, setQuery] = useAtom(searchQueryValue)
   const { t } = useTranslation('common')
-  const closeMobile = () => setMobileVisibility(false)
-  const closeDesktop = () => setDesktopVisibility(false)
-
+  // const closeMobile = () => setVisibility({false})
+  // const closeDesktop = () => setDesktopVisibility(false)
+  const closeAll = () => {
+    setVisibility({ desktop: false, mobile: false })
+  }
   const reset = () => {
-    closeMobile()
-    closeDesktop()
+    closeAll()
     // And reset top menu search bar query word
     setQuery('')
   }
@@ -31,46 +37,46 @@ const Search = () => {
     <>
       <div className="flex-none text-right md:w-26 md:pe-4">
         <button
-          onClick={() => setMobileVisibility(!isMobileOpen)}
+          onClick={() =>
+            setVisibility({ desktop: false, mobile: !isSearchOpen.mobile })
+          }
           className=" md:hidden w-8 h-8 text-action"
           title={t('buttons.search')}
-          aria-expanded={isMobileOpen}
+          aria-expanded={isSearchOpen.mobile}
           aria-haspopup="dialog"
         >
           <span className="px-2 transform translate-y-0.5">
-            {!isMobileOpen && <IconLookingGlass className="" />}
-            {isMobileOpen && <IconCross className="me-2" />}
+            {!isSearchOpen.mobile && <IconLookingGlass className="" />}
+            {isSearchOpen.mobile && <IconCross className="me-2" />}
           </span>
-          {!isMobileOpen && (
+        </button>
+        <button
+          onClick={() =>
+            setVisibility({ desktop: !isSearchOpen.desktop, mobile: false })
+          }
+          className=" hidden md:inline-block h-8 text-action text-right"
+          title={
+            isSearchOpen.desktop ? t('buttons.close') : t('buttons.search')
+          }
+        >
+          <span className="px-2 transform translate-y-0.5">
+            {!isSearchOpen.desktop && <IconLookingGlass className="" />}
+            {isSearchOpen.desktop && <IconCross className="me-2" />}
+          </span>
+          {!isSearchOpen.desktop && (
             <span className="hidden md:inline-block">
               {t('buttons.search')}
             </span>
           )}
         </button>
-        <button
-          onClick={() => setDesktopVisibility(!isDesktopOpen)}
-          className=" hidden md:inline-block h-8 text-action text-right"
-          title={isDesktopOpen ? t('buttons.close') : t('buttons.search')}
-          aria-expanded={isDesktopOpen}
-        >
-          <span className="px-2 transform translate-y-0.5">
-            {!isDesktopOpen && <IconLookingGlass className="" />}
-            {isDesktopOpen && <IconCross className="me-2" />}
-          </span>
-          {!isDesktopOpen && (
-            <span className="hidden md:inline-block">
-              {t('buttons.search')}
-            </span>
-          )}{' '}
-        </button>
       </div>
       {/* Mobile */}
-      <Drawer close={closeMobile} isOpen={isMobileOpen}>
+      <Drawer close={closeAll} isOpen={isSearchOpen.mobile}>
         <SearchBar onSubmit={onSubmit} onChange={onChange} query={query} />
       </Drawer>
 
       {/* Desktop */}
-      <SearchDesktopBar close={closeDesktop} isOpen={isDesktopOpen}>
+      <SearchDesktopBar close={closeAll} isOpen={isSearchOpen.desktop}>
         <SearchBar onSubmit={onSubmit} onChange={onChange} query={query} />
       </SearchDesktopBar>
     </>
@@ -79,25 +85,46 @@ const Search = () => {
 
 const SearchBar = ({ onSubmit, onChange, query }) => {
   const { t } = useTranslation('common')
-
   return (
     <>
-      <form className="max-w-topbar bg-white" action="/hae" onSubmit={onSubmit}>
-        <div className="flex items-center py-4 mx-2 md:mx-0">
-          <div className="overflow-hidden flex-grow h-14 md:h-16 border-b border-gray-lighter">
+      <form
+        className="pt-4 max-w-topbar bg-white"
+        action="/hae"
+        onSubmit={onSubmit}
+      >
+        <label
+          htmlFor={SEARCH_BUTTON_LABEL_ID}
+          className={cls(
+            ' mx-4 md:mx-6 text-gray-medium  transition-opacity ',
+            {
+              'opacity-0 duration-50': query.length === 0,
+              'opacity-100 duration-150': query.length > 0,
+            }
+          )}
+        >
+          {t('search.placeholder')}
+        </label>
+        <div className=" flex items-center mx-2">
+          <div className="overflow-hidden flex-grow h-14 border-b border-black-op5">
             <input
               type="text"
               name="q"
+              id={SEARCH_BUTTON_LABEL_ID}
               autoComplete="off"
               value={query}
               onChange={onChange}
               placeholder={t('search.placeholder')}
               autoFocus
-              className="py-3 px-1 w-full text-h3 outline-none ps-2 md:ps-4"
+              className="py-3 px-1 w-full text-h3 placeholder:text-gray-light outline-none ps-2 md:ps-4"
             />
           </div>
-          <div className="flex flex-none items-center h-14 md:h-16 border-b border-gray-lighter">
-            <button type="submit" className="me-2.5 md:pe-4">
+          <div className="flex flex-none items-center h-14 border-b border-gray-light">
+            <button
+              type="submit"
+              className="me-2.5 md:pe-2"
+              title={t('buttons.search')}
+              aria-label={t('buttons.search')}
+            >
               <IconLookingGlass className="mx-2" />
             </button>
           </div>
@@ -131,7 +158,7 @@ const Result = ({ title, url }) => (
 export const SWRResults = () => {
   const results = useSearchResults()
   return (
-    <div className="mx-4">
+    <div className="mx-4 md:mx-6 mt-4">
       {results.map((r, i) => (
         <Result {...r} key={`r-${i}`} />
       ))}
