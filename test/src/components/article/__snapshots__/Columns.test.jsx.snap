@@ -27,7 +27,7 @@ exports[`Columns should render text and images 1`] = `
             class="flex absolute justify-items-center items-center w-full h-full"
           >
             <div
-              class=" scale-75 lg:scale-100 ifu-loader__image--ripple"
+              class="scale-75 lg:scale-100 ifu-loader__image--ripple"
             >
               <div />
               <div />

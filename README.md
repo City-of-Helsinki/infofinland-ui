@@ -277,7 +277,6 @@ module.exports = {
 
 ## Landing page
 
-The root page of the site is mapped to a specific ```node``` in in drupal instance, configured by ```DRUPAL_LANDING_PAGE``` environment variable. The default value is ```/landingpage```, set in ```.env.production```.
+The root page of the site is mapped to a specific `node` in in drupal instance. The default value in drupal should be set to a Landing Page type, assumed `/landingpage`
 
-Make sure your drupal instance contains one ```Landing Page``` with matching url (```/landingpage``` by default).
-Remove the .env.production reference and set it in Azure pipeline configs and OpenShift configs if you need to change this value per site.
+Make sure your drupal instance contains one `Landing Page` with matching url to Drupal Basic Settings:: Front Page (`/landingpage` by convention).

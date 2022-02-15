@@ -71,12 +71,12 @@ export const LanguageMenuButton = ({ onClick }) => {
     <button
       aria-haspopup="dialog"
       title={t('languageMenu.label')}
-      className=" block lg:hidden h-8 transform -translate-y-0.5 md:me-2"
+      className=" block lg:hidden h-8 md:me-2"
       onClick={onClick}
     >
       {/* <span className=" inline-block text-action uppercase">{locale}</span> */}
       <span className="text-action uppercase">{text}</span>
-      <IconGlobe className="mx-2 xl:mx-0 w-4 md:w-5 h-4 md:h-5" />
+      <IconGlobe className="mx-2 xl:mx-0 w-4 md:w-5 md:h-5" />
     </button>
   )
 }

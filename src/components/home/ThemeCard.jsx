@@ -7,7 +7,7 @@ import { useState } from 'react'
 
 const MAX_TITLE_LENGTH = 40
 
-const ThemeImage = ({ src, color}) => {
+const ThemeImage = ({ src, color }) => {
   const [loading, setLoading] = useState(true)
 
   return (
@@ -36,7 +36,7 @@ const ThemeCard = ({ title, url, image, blue, green }) => (
         'bg-green-lighter hover:bg-green-light shadow-themecard-green': green,
       })}
     >
-      {image && <ThemeImage src={image} color={blue ? 'blue': 'green'} />}
+      {image && <ThemeImage src={image} color={blue ? 'blue' : 'green'} />}
       <span className="flex md:h-24">
         <span
           className={cls(

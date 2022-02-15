@@ -31,7 +31,7 @@ const useLocalInformation = ({ city, id }) => {
     isError: error,
   }
 }
-
+const CITY_BUTTON_ID = 'ifu-localinfo__button'
 const LocalInformation = ({ cities = [] }) => {
   const [selectedCity, setCity] = useAtom(selectedCityAtom)
 
@@ -56,6 +56,7 @@ const LocalInformation = ({ cities = [] }) => {
       <Block className="py-8 mb-4 bg-green-white">
         <div className="flex">
           <button
+            id={CITY_BUTTON_ID}
             className="inline-block flex-none text-body-large font-bold"
             onClick={openMenu}
           >
@@ -75,7 +76,11 @@ const LocalInformation = ({ cities = [] }) => {
             </button>
           )}
         </div>
-        {!selectedCity && <p className="mt-2">{t('localInfo.help')}</p>}
+        {!selectedCity && (
+          <p className="mt-2">
+            <label htmlFor={CITY_BUTTON_ID}>{t('localInfo.help')}</label>
+          </p>
+        )}
         {!city && selectedCity && (
           <p className="mt-2">{t('localInfo.noInfo')}</p>
         )}

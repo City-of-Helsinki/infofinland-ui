@@ -32,7 +32,7 @@ export const CloseButton = ({ close, className }) => {
       onClick={close}
     >
       <span className="inline-block px-1 text-small">{t('buttons.close')}</span>
-      <IconCross className="inline-block text-black transform -translate-y-0.5 fill-current" />
+      <IconCross className="inline-block text-black fill-current" />
     </button>
   )
 }

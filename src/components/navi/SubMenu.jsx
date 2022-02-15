@@ -84,10 +84,7 @@ const SubMenu = ({
         )}
       >
         <Link passHref href={url} prefetch={false}>
-          <a
-            className="flex-grow py-4"
-            title={isOpen ? 'Open menu' : 'Close menu'}
-          >
+          <a className="flex-grow py-4">
             <span className={cls('block', { 'font-bold': selected })}>
               {title}
             </span>
