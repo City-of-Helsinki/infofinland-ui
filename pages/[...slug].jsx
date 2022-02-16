@@ -8,13 +8,9 @@ import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import {
   getCommonApiContent,
   NOT_FOUND,
-  // getMainMenu,
-  // addPrerenderLocalesToPaths,
-  // getPageByPath,
   getPageQueryParams,
   getDefaultLocaleNode,
   getAboutMenu,
-  // getPageWithContentByPath,
   resolvePath,
   menuErrorResponse,
 } from '@/lib/ssr-api'

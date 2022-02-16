@@ -31,7 +31,11 @@ const TopMenuItem = ({
   selected,
   selectedIsHidden,
 }) => (
-  <li className={cls('block relative', {})}>
+  <li
+    className={cls('block relative', {
+      'mt-2 border-t border-gray-lighter': /cities/.test(url),
+    })}
+  >
     {!items && (
       <Link href={url} prefetch={false}>
         <a

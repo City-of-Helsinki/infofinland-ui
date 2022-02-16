@@ -42,6 +42,11 @@ export const municipalitiesAtom = focusAtom(pageAtom, (optics) =>
 export const footerMenuAtom = focusAtom(pageAtom, (optics) =>
   optics.prop('footerMenu')
 )
+
+export const citiesMenuAtom = focusAtom(pageAtom, (optics) =>
+  optics.prop('citiesMenu')
+)
+
 export const mainMenuAtom = focusAtom(pageAtom, (optics) => optics.prop('menu'))
 export const nodeAtom = focusAtom(pageAtom, (optics) => optics.prop('node'))
 export const nodeIdAtom = focusAtom(nodeAtom, (optics) => optics.prop('id'))
@@ -55,7 +60,7 @@ export const isCookieConsentSetAtom = atom(
 
 /** Message queue */
 
-// TODO  simplify this.
+// TODO  get this from page props when drupal serves it
 export const messages = atom({
   messages: [
     {

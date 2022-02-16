@@ -14,7 +14,7 @@ import CookieConsentBar from '@/components/layout/CookieConsent'
 import MainNavi, { MainNaviError } from '@/components/navi/MainNavi'
 import cls from 'classnames'
 import { useAtomValue } from 'jotai/utils'
-import { mainMenuAtom, nodeAtom } from '@/src/store'
+import { citiesMenuAtom, mainMenuAtom, nodeAtom } from '@/src/store'
 export const FALLBACK_TITLE = 'infofinland.fi'
 /**
  *
@@ -101,6 +101,8 @@ const AppLayout = ({ children, className }) => {
   const node = useAtomValue(nodeAtom)
   const menu = useAtomValue(mainMenuAtom)
 
+  const citiesMenu = useAtomValue(citiesMenuAtom)
+
   return (
     <>
       <CommonHead description={node?.field_description} title={node?.title} />
@@ -109,7 +111,7 @@ const AppLayout = ({ children, className }) => {
         className={cls('relative text-body bg-white', className)}
         id={`node-${node?.id}`}
       >
-        <TopMenu menu={menu} />
+        <TopMenu menus={{ menu, citiesMenu }} />
         <div className=" md:flex md:items-stretch">
           <div className="md:hidden">
             <Messages />
@@ -117,7 +119,11 @@ const AppLayout = ({ children, className }) => {
 
           <div className="hidden md:block overflow-y-auto fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop">
             <Messages />
-            {menu.error ? <MainNaviError /> : <MainNavi menu={menu} />}
+            {menu.error ? (
+              <MainNaviError />
+            ) : (
+              <MainNavi menu={menu} citiesMenu={citiesMenu} />
+            )}
           </div>
           <div className="hidden md:block flex-none w-navi border-black-op1 border-e-2"></div>
           <div className="ifu-layout__body">

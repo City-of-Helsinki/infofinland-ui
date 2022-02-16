@@ -6,13 +6,20 @@ import useBreadCrumbs from '@/hooks/useBreadCrumbs'
 import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import ContentMapper from '@/components/article/ContentMapper'
 import useThemeList from '@/hooks/useThemeList'
-import { getHeroFromNode } from '@/lib/ssr-api'
+import { getHeroFromNode } from '@/lib/ssr-helpers'
 import IngressBlock from '@/components/article/IngressBlock'
 import AnchorLinksBlock from '@/components/article/AnchorLinksBlock'
 import useHydratePage from '@/hooks/useHydratePage'
 
-const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
-  useHydratePage({ node, municipalities, footerMenu, menu })
+const ArticlePage = ({
+  menu,
+  footerMenu,
+  citiesMenu,
+  node,
+  fiNode,
+  municipalities,
+}) => {
+  useHydratePage({ node, municipalities, footerMenu, menu, citiesMenu })
 
   const { localePath, locale } = useRouterWithLocalizedPath()
 
@@ -71,8 +78,6 @@ const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
         {node.field_content?.length > 0 && (
           <ContentMapper content={node.field_content} locale={locale} />
         )}
-
-        {/* <LocalInformation readMoreUrl={'/test'} /> */}
       </Article>
     </Layout>
   )
