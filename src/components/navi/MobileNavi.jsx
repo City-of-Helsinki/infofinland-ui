@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import MainNavi, { MainNaviError } from '@/components/navi/MainNavi'
+import MainNavi, { MainNaviError } from '@/components/navi/MainMenu'
 
 import { IconMenu } from '@/components/Icons'
 import Drawer from '@/components/layout/Drawer'

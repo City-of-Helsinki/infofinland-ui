@@ -7,7 +7,4 @@ export default function useThemeList({ tree, path }) {
   } else {
     return theme.items
   }
-  // return tree.find(
-  //   ({ url, items }) => url === path && typeof items !== 'undefined'
-  // )?.items
 }

@@ -6,7 +6,7 @@ const env = {
     MAIN: 'main',
     FOOTER: 'footer-about',
     ABOUT: 'about',
-    CITIES: 'kaupungit',
+    CITIES: 'cities',
   },
   REVALIDATE_TIME: 60, //seconds
   FB_URL: 'https://www.facebook.com/infofinland.fi',

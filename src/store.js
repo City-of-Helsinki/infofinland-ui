@@ -1,5 +1,4 @@
 import { atom } from 'jotai'
-import axios from 'axios'
 import { focusAtom } from 'jotai/optics'
 import { atomWithStorage, splitAtom } from 'jotai/utils'
 
@@ -31,11 +30,10 @@ export const languageMessageIsOpenAtom = atom(false)
 /** Visibility state of feeback form */
 export const feedbackFormVisibilityAtom = atom(false)
 
-// const menu = atom({})
-
 /** Page atoms */
 
 export const pageAtom = atom({ node: { id: null } })
+
 export const municipalitiesAtom = focusAtom(pageAtom, (optics) =>
   optics.prop('municipalities')
 )
@@ -46,8 +44,8 @@ export const footerMenuAtom = focusAtom(pageAtom, (optics) =>
 export const citiesMenuAtom = focusAtom(pageAtom, (optics) =>
   optics.prop('citiesMenu')
 )
-
 export const mainMenuAtom = focusAtom(pageAtom, (optics) => optics.prop('menu'))
+
 export const nodeAtom = focusAtom(pageAtom, (optics) => optics.prop('node'))
 export const nodeIdAtom = focusAtom(nodeAtom, (optics) => optics.prop('id'))
 
@@ -90,23 +88,3 @@ export const alertMessageAtoms = splitAtom(alertMessagesAtom)
 
 /** the search keyword being typed to input */
 export const searchQueryValue = atom('')
-
-/** The Client API urls  */
-export const SEARCH_URL = '/api/search'
-export const LOCAL_INFO_URL = '/api/localinfo'
-
-// TODO move these to lib/browser-api.js ?
-/**
- * Get search results based on searchQueryValue
- * @param {string} q - the search term.
- */
-
-export const getSearchResults = async (q) => {
-  const { data } = await axios.get(SEARCH_URL, { params: { q } })
-  return data.results
-}
-
-export const getLocalInformation = async (params) => {
-  const { data } = await axios.get(LOCAL_INFO_URL, { params })
-  return data?.node
-}

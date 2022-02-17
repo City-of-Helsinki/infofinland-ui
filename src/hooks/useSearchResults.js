@@ -1,5 +1,6 @@
 import { useAtomValue } from 'jotai/utils'
-import { searchQueryValue, getSearchResults } from '../store'
+import { searchQueryValue } from '../store'
+import { getSearchResults } from '@/lib/client-api'
 import useSWR from 'swr'
 import { useDebouncedValue } from 'rooks'
 

@@ -9,39 +9,44 @@ import useThemeList from '@/hooks/useThemeList'
 import { getHeroFromNode } from '@/lib/ssr-helpers'
 import IngressBlock from '@/components/article/IngressBlock'
 import AnchorLinksBlock from '@/components/article/AnchorLinksBlock'
-import useHydratePage from '@/hooks/useHydratePage'
 
-const ArticlePage = ({
-  menu,
-  footerMenu,
-  citiesMenu,
-  node,
-  fiNode,
-  municipalities,
-}) => {
-  useHydratePage({ node, municipalities, footerMenu, menu, citiesMenu })
+import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
+import LocalInformationSelectCity from '@/components/cities/LocalInfoSelectCity'
 
+const ArticlePage = ({ menu, citiesMenu, node, fiNode }) => {
   const { localePath, locale } = useRouterWithLocalizedPath()
-
-  const breadcrumbs = useBreadCrumbs({
-    items: menu.items,
-    path: localePath,
-  })
-
-  const themes = useThemeList({
-    tree: menu.tree,
-    path: localePath,
-  })
-
   const {
     title,
     revision_timestamp,
     field_description,
     field_use_anchor_links,
+    field_municipality_selection,
   } = node
 
-  const hero = getHeroFromNode(node)
+  console.log({ node })
 
+  const themes = useThemeList({
+    tree: menu.tree,
+    path: localePath,
+  })
+  // first page is landing page, skip it
+  const [, ...citiesTree] = citiesMenu.tree
+
+  const breadcrumbs = useBreadCrumbs({
+    items: !field_municipality_selection ? menu.items : citiesMenu.items,
+    path: localePath,
+  })
+
+  let cityThemes = useThemeList({
+    tree: citiesTree,
+    path: localePath,
+  })
+
+  // (City) landingpage shows liftup cards from city menu
+  // Assumes there is only one landing page available and that it is the cities page
+
+  cityThemes = node.type === NODE_TYPES.LANDING_PAGE ? citiesTree : cityThemes
+  const hero = getHeroFromNode(node)
   return (
     <Layout>
       <Article
@@ -56,14 +61,11 @@ const ArticlePage = ({
           <IngressBlock field_description={field_description} />
         )}
 
-        {/*
-
-        DEMO BUTTON: TODO connect to field_municipality_selection
-        <Block className="mb-16 text-center">
-          <button className="p-2 w-full font-bold bg-green-white rounded border border-green-lighter">
-            Valitse tämä kunta{' '}
-          </button>
-        </Block> */}
+        {field_municipality_selection && (
+          <LocalInformationSelectCity
+            city={field_municipality_selection.name}
+          />
+        )}
 
         {field_use_anchor_links && (
           <AnchorLinksBlock field_content={node.field_content} />
@@ -72,6 +74,12 @@ const ArticlePage = ({
         {themes?.length > 0 && (
           <Block hero>
             <ThemeList themes={themes} />
+          </Block>
+        )}
+
+        {cityThemes?.length > 0 && (
+          <Block hero>
+            <ThemeList themes={cityThemes} />
           </Block>
         )}
 

@@ -8,7 +8,9 @@ const Messages = () => {
   return (
     <section
       aria-label={t('messages.title')}
-      className={cls('bg-gray-lighter grid grid-colums-1 ifu-messages')}
+      className={cls(
+        'bg-gray-lighter grid grid-colums-1 ifu-messages border-b border-gray-lighter'
+      )}
     >
       <LanguageMessageCard />
       <AlertMessages />

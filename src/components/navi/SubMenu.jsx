@@ -68,6 +68,7 @@ const SubMenu = ({
   selected,
   url,
   selectedIsHidden,
+  secondarySelection,
 }) => {
   const { t } = useTranslation('common')
   const subMenuLabel = t(isOpen === true ? 'mainMenu.close' : 'mainMenu.open')
@@ -90,7 +91,13 @@ const SubMenu = ({
             </span>
           </a>
         </Link>
-        <div className="flex-none">
+        <div
+          className={cls(
+            'flex-none',
+
+            { 'border-e-5 border-green-light': secondarySelection }
+          )}
+        >
           <button
             className="block w-14 h-12 me-2"
             onClick={toggle}

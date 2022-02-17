@@ -10,7 +10,7 @@ export const getRootPages = (items) =>
 export const findPageByPath = ({ items, path }) =>
   items.find(({ url }) => url === path)
 
-export const findRootForPath = ({ items, path }) => {
+export const findRootForPath = ({ items, path, root = '' }) => {
   const page = findPageByPath({ items, path })
   if (!page) {
     return
@@ -20,8 +20,12 @@ export const findRootForPath = ({ items, path }) => {
     return page
   }
   let parentItem = findParent({ items, parentId: page.parent })
+
+  if (!parentItem) {
+    return page
+  }
   // hmmm....this will crash if there is a circular parent reference in menu items. Not sure if this is possible.
-  while (parentItem.parent !== '') {
+  while (parentItem.parent !== root) {
     parentItem = findParent({ items, parentId: parentItem.parent })
   }
 
