@@ -4,7 +4,7 @@ import { getLocalInfoParams } from '@/lib/query-params'
 
 export default async function handler(req, res) {
   const { query } = req
-  const { id, name: city } = query
+  const { id } = query
 
   let status = 200
   const node = await getResource(NODE_TYPES.PAGE, id, {
@@ -22,6 +22,5 @@ export default async function handler(req, res) {
 
   res.status(status).json({
     node,
-    city,
   })
 }

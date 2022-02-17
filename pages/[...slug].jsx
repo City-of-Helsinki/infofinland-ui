@@ -1,6 +1,6 @@
 import getConfig from 'next/config'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { getResource } from 'next-drupal'
+import { getResource, getResourceTypeFromContext } from 'next-drupal'
 import ArticlePage from '@/src/page-templates/ArticlePage'
 import AboutPage from '@/src/page-templates/AboutPage'
 import { i18n } from '@/next-i18next.config'
@@ -8,7 +8,7 @@ import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import {
   getCommonApiContent,
   NOT_FOUND,
-  getPageQueryParams,
+  getQueryParamsFor,
   getDefaultLocaleNode,
   getAboutMenu,
   resolvePath,
@@ -72,11 +72,14 @@ export async function getStaticProps(context) {
   }
   const id = data.entity.uuid
   // get menus and page node
+
+  const type = await getResourceTypeFromContext(context)
+
   const [common, node, aboutMenu] = await Promise.all([
     getCommonApiContent(context),
-    getResource(NODE_TYPES.PAGE, id, {
+    getResource(type, id, {
       locale,
-      params: getPageQueryParams(),
+      params: getQueryParamsFor(type),
     }).catch((e) => {
       console.error('Error requesting node ', id, e)
       throw e
@@ -94,16 +97,19 @@ export async function getStaticProps(context) {
 
   let fiNode = null // Must be JSON compatible
 
-  // Get finnish title if page is not in finnish
-  if (context.locale !== i18n.fallbackLocale) {
-    fiNode = await getDefaultLocaleNode(id).catch((e) => {
-      console.error('Error while getting Finnish title', e)
-      return null
-    })
+  if (type === NODE_TYPES.PAGE) {
+    // Get finnish title if page is not in finnish
+    if (context.locale !== i18n.fallbackLocale) {
+      fiNode = await getDefaultLocaleNode(id).catch((e) => {
+        console.error('Error while getting Finnish title', e)
+        return null
+      })
+    }
   }
 
   return {
     props: {
+      type,
       ...common,
       aboutMenu,
       node,
