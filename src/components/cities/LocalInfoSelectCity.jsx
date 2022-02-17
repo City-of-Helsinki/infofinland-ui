@@ -37,17 +37,6 @@ const LocalInformationSelectCity = ({ city }) => {
             </button>
           )}
         </div>
-
-        {selectedCity !== city && selectedCity !== null && (
-          <p className="pt-2 mt-3 border-t border-green-light">
-            <button
-              className=" inline-block flex-none mb-2 text-body font-bold underline ms-8"
-              onClick={selectCurrentCity}
-            >
-              {t('localInfo.select_current', { city })}
-            </button>
-          </p>
-        )}
       </Block>
       {!selectedCity && (
         <Block className="py-8 mb-4 bg-green-white">

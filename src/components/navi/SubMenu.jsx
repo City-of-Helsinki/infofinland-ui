@@ -78,9 +78,10 @@ const SubMenu = ({
         className={cls(
           'flex items-center w-full text-body-small ps-8 border-s-5  hover:bg-gray-white',
           {
-            'border-white ': !selected && !selectedIsHidden,
-            'border-blue': selectedIsHidden || selected,
+            'border-l-white ': !selected && !selectedIsHidden,
+            'border-l-blue': selectedIsHidden || selected,
             'font-bold': selected,
+             'border-e-5 border-r-green-light': secondarySelection
           }
         )}
       >
@@ -95,7 +96,7 @@ const SubMenu = ({
           className={cls(
             'flex-none',
 
-            { 'border-e-5 border-green-light': secondarySelection }
+            // { 'border-e-5 border-green-light': secondarySelection }
           )}
         >
           <button
