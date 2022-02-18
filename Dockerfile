@@ -49,11 +49,10 @@ FROM node:16-alpine AS runner
 WORKDIR /app
 
 ENV NODE_ENV production
-# node process user should be able to write to .next/*
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S nextjs -u 1001
 
-COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
+
+
+COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/next.config.js ./next.config.js
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/node_modules ./node_modules
@@ -64,7 +63,10 @@ COPY --from=builder /app/next-i18next.config.js ./next-i18next.config.js
 # copy .env.production to runner so that runtime can have new env vars from repo if needed
 COPY --from=builder /app/.env.production .env.production
 
-USER nextjs
+
+# node process user should be able to write to .next/*
+RUN chmod -R a+rwx ./.next
+
 
 EXPOSE 8080
 ENV PORT=8080

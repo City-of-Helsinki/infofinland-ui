@@ -76,8 +76,8 @@ export async function getStaticProps(context) {
   const type = await getResourceTypeFromContext(context)
 
   //Allow only pages and landing pages to be queried
-  if(![NODE_TYPES.PAGE, NODE_TYPES.LANDING_PAGE].includes(type)) {
-    console.error('Error resolving page. Node type not allowed:',type)
+  if (![NODE_TYPES.PAGE, NODE_TYPES.LANDING_PAGE].includes(type)) {
+    console.error('Error resolving page. Node type not allowed:', type)
     return NOT_FOUND
   }
 
@@ -95,7 +95,6 @@ export async function getStaticProps(context) {
       return menuErrorResponse(e)
     }),
   ])
-
 
   // Return 404 if node was null
   if (!node) {
