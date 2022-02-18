@@ -41,7 +41,7 @@ const TopMenuItem = ({
       <Link href={url} prefetch={false}>
         <a
           className={cls(
-            'block text-body-small ps-8 py-4 border-s-5 hover:bg-gray-white pe-4',
+            'block text-body-small ps-8 py-3 border-s-5 hover:bg-gray-white pe-4',
             {
               'font-bold': selected,
               'border-white': !selected,
