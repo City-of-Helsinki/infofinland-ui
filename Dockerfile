@@ -64,8 +64,9 @@ COPY --from=builder /app/next-i18next.config.js ./next-i18next.config.js
 COPY --from=builder /app/.env.production .env.production
 
 
-RUN chmod -R a+rwx ./.next
 # node process user should be able to write to .next/*
+RUN chmod -R a+rwx ./.next
+
 
 EXPOSE 8080
 ENV PORT=8080
