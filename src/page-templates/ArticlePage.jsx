@@ -9,8 +9,6 @@ import useThemeList from '@/hooks/useThemeList'
 import { getHeroFromNode } from '@/lib/ssr-helpers'
 import IngressBlock from '@/components/article/IngressBlock'
 import AnchorLinksBlock from '@/components/article/AnchorLinksBlock'
-
-import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import LocalInformationSelectCity from '@/components/cities/LocalInfoSelectCity'
 
 const ArticlePage = ({ menu, citiesMenu, node, fiNode }) => {
@@ -23,13 +21,10 @@ const ArticlePage = ({ menu, citiesMenu, node, fiNode }) => {
     field_municipality_selection,
   } = node
 
-  console.log({ node })
-
   const themes = useThemeList({
     tree: menu.tree,
     path: localePath,
   })
-  // first page is landing page, skip it
 
   const breadcrumbs = useBreadCrumbs({
     items: !field_municipality_selection ? menu.items : citiesMenu.items,
@@ -41,10 +36,6 @@ const ArticlePage = ({ menu, citiesMenu, node, fiNode }) => {
     path: localePath,
   })
 
-  // (City) landingpage shows liftup cards from city menu
-  // Assumes there is only one landing page available and that it is the cities page
-
-  cityThemes = node.type === NODE_TYPES.LANDING_PAGE ? citiesTree : cityThemes
   const hero = getHeroFromNode(node)
   return (
     <Layout>
