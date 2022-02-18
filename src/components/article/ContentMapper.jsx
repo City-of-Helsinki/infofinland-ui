@@ -5,7 +5,7 @@ import LocalInformation from '@/components/cities/LocalInformation'
 import ReadMoreBlock from './ReadMoreBlock'
 import AccordionItems from './Accordion'
 import { CONTENT_TYPES } from '@/lib/DRUPAL_API_TYPES'
-import { getImage, getLinks, getVideo } from '@/lib/ssr-api'
+import { getImage, getLinks, getVideo } from '@/lib/ssr-helpers'
 
 import PTVBlock from './PTVBlock'
 import { TEXT_HTML_FORMAT } from '@/lib/DRUPAL_API_TYPES'

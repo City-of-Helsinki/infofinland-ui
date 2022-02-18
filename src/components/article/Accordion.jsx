@@ -8,6 +8,7 @@ import cls from 'classnames'
 import { useRouter } from 'next/router'
 import { headingId } from './ContentMapper'
 import { useIsVisible } from 'react-is-visible'
+import { useTranslation } from 'next-i18next'
 
 export const AccordionItems = ({ field_accordion_items }) => {
   const [openId, setOpenId] = useState(null)
@@ -49,41 +50,44 @@ const Accordion = ({ content, heading, toggle, isOpen, last, id, locale }) => {
   const panelId = `accordion-panel-${id}`
   const scrollRef = useRef()
   const isInViewport = useIsVisible(scrollRef)
+  const { t } = useTranslation('common')
 
   return (
     <>
       <Block>
         <div
-          className={cls('flex items-center py-5 border-t border-gray-hr', {
+          className={cls(' relative py-5 border-t border-gray-hr', {
             'border-b': last && !isOpen,
           })}
         >
-          <div className="relative flex-grow">
-            <div
-              className="absolute -top-24 lg:-top-28 invisible"
-              ref={scrollRef}
-            />
-            <H2 id={headingId(id)}>{heading}</H2>
-          </div>
-          <button
-            aria-expanded={isOpen}
-            onClick={toggle}
-            aria-controls={panelId}
-            className="inline-block flex-none w-12 h-8 lg:h-12"
-          >
-            {!isOpen && (
-              <IconAngleDown
-                aria-hidden="true"
-                className="w-3 h-3 fill-gray-medium"
-              />
-            )}
-            {isOpen && (
-              <IconAngleUp
-                aria-hidden="true"
-                className="w-3 h-3 fill-gray-medium"
-              />
-            )}
-          </button>
+          <div
+            className="absolute -top-24 lg:-top-28 invisible"
+            ref={scrollRef}
+          />
+          <H2 id={headingId(id)} className="flex items-center w-full">
+            <span className="inline-block flex-grow">{heading}</span>
+
+            <button
+              aria-expanded={isOpen}
+              onClick={toggle}
+              aria-controls={panelId}
+              aria-label={isOpen ? t('buttons.close') : t('buttons.readMore')}
+              className="flex flex-none justify-items-center items-center w-12 h-8 lg:h-12"
+            >
+              {!isOpen && (
+                <IconAngleDown
+                  aria-hidden="true"
+                  className="block w-3 h-3 fill-gray-medium"
+                />
+              )}
+              {isOpen && (
+                <IconAngleUp
+                  aria-hidden="true"
+                  className="block w-3 h-3 fill-gray-medium"
+                />
+              )}
+            </button>
+          </H2>
         </div>
       </Block>
       <CSSTransition
@@ -108,10 +112,15 @@ const Accordion = ({ content, heading, toggle, isOpen, last, id, locale }) => {
           }
         }}
         // Note that enter-time is considerably shorter
-        // than animation time to prevent content from jumping when another pane is opened
+        // than animation time in css to prevent content from jumping when another pane is opened
         timeout={{ appear: 0, enter: 10, exit: 0 }}
       >
-        <div className="overflow-hidden ifu-accordion__item" id={panelId}>
+        {/* Always print out accordion content for SEO purposes but hide them from screen readers if accordion is not opened */}
+        <div
+          aria-hidden={!isOpen}
+          className="overflow-hidden ifu-accordion__item"
+          id={panelId}
+        >
           <ContentMapper content={content} locale={locale} />
         </div>
       </CSSTransition>

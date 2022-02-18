@@ -17,13 +17,10 @@
 
   .ifu-loader__image--ripple.green div {
     border: 3px solid var(--bgGreen);
-
   }
   .ifu-loader__image--ripple.blue div {
     border: 3px solid var(--bgBlue);
-
   }
-
 
   .ifu-loader__image--ripple div:nth-child(2) {
     animation-delay: -1s;

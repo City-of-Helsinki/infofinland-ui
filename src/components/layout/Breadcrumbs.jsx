@@ -5,11 +5,11 @@ import { useTranslation } from 'next-i18next'
 const MobileLink = ({ url, title }) => (
   <Link href={url} passHref prefetch={false}>
     <a
-      className="md:hidden mb-4 text-small md:text-body-small hover:underline"
+      className="flex md:hidden items-center mb-4 text-small md:text-body-small hover:underline"
       title={title}
     >
       <IconAngleRight
-        className=" transform scale-150 rotate-180 -translate-y-px fill-current me-3 ifu-breadcrumb__arrow"
+        className=" transform scale-150 rotate-180 fill-current me-3 ifu-breadcrumb__arrow"
         aria-hidden
       />
 
@@ -23,7 +23,10 @@ const Breadcrumbs = ({ items }) => {
   const { t } = useTranslation('common')
 
   return (
-    <nav className="block relative pt-4 pb-2 mb-2 h-12 text-black">
+    <nav
+      className="block relative pt-4 pb-2 mb-2 h-12 text-black"
+      aria-label={t('breadcrumbs.title')}
+    >
       {/* Mobile */}
       {parent && <MobileLink url={parent.url} title={parent.title} />}
 

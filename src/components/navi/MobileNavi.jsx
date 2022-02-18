@@ -1,18 +1,22 @@
 import { useState, useEffect } from 'react'
-import MainNavi, { MainNaviError } from '@/components/navi/MainNavi'
-
+import { MainNaviError } from '@/components/navi/MainMenu'
+import MenuGroup from './MenuGroup'
 import { IconMenu } from '@/components/Icons'
 import Drawer from '@/components/layout/Drawer'
 import { useRouter } from 'next/router'
 
 import { useTranslation } from 'next-i18next'
+import { useAtomValue } from 'jotai/utils'
+import { menusAtom, selectedCityAtom } from '@/src/store'
 
-const MobileNavi = ({ menu }) => {
+const MobileNavi = () => {
   const [isOpen, setVisibility] = useState(false)
   const open = () => setVisibility(true)
   const close = () => setVisibility(false)
   const router = useRouter()
   const { t } = useTranslation('common')
+  const selectedCity = useAtomValue(selectedCityAtom)
+  const menus = useAtomValue(menusAtom)
 
   /*
   Ensure that mobile navi dialog is always closed when
@@ -31,7 +35,7 @@ const MobileNavi = ({ menu }) => {
       router.events.off('routeChangeError', close)
     }
   }, [router])
-  if (menu.error) {
+  if (menus.mainMenu.error) {
     return (
       <span className="md:hidden">
         <MainNaviError />
@@ -46,7 +50,8 @@ const MobileNavi = ({ menu }) => {
             aria-haspopup="dialog"
             onClick={open}
             title={t('mainMenu.button')}
-            className="z-50 transform -translate-y-0.5"
+            className="z-50"
+            autoFocus={!isOpen}
           >
             <IconMenu />
           </button>
@@ -55,7 +60,13 @@ const MobileNavi = ({ menu }) => {
 
       <Drawer close={close} isOpen={isOpen}>
         <div className="bg-white">
-          <MainNavi menu={menu} />
+          <MenuGroup
+            menulist={[
+              { menu: menus.mainMenu },
+              { menu: menus.citiesLandingMenu },
+              { menu: menus.citiesMenu, city: selectedCity },
+            ]}
+          />
         </div>
       </Drawer>
     </>

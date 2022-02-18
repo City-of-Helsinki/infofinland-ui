@@ -178,7 +178,7 @@ Use ` next/config` `getConfig().serverRuntimeConfig` and `getConfig().publicRunt
 
 ### Drupal Menus
 
-Basic pages use three menus from Drupal. These are configured as environment variables in next.config.js and accessed via getConfig(). You may pass them as env variables as well if you need to configure them by site. Just remove them from `next.confing.js` `env` object.
+Basic pages use a set of menus from Drupal. These are configured as environment variables in next.config.js and accessed via getConfig(). You may pass them as env variables as well if you need to configure them by site. Just remove them from `next.confing.js` `env` object.
 
 ```js
 
@@ -190,6 +190,8 @@ const env = {
     MAIN: 'main',
     FOOTER: 'footer-about',
     ABOUT: 'about',
+    CITIES:'cities',
+    CITIES_LANDING:'cities-landing'
   },
 
   serverRuntimeConfig: {
@@ -277,7 +279,6 @@ module.exports = {
 
 ## Landing page
 
-The root page of the site is mapped to a specific ```node``` in in drupal instance, configured by ```DRUPAL_LANDING_PAGE``` environment variable. The default value is ```/landingpage```, set in ```.env.production```.
+The root page of the site is mapped to a specific `node` in in drupal instance. The default value in drupal should be set to a Landing Page type, assumed `/landingpage`
 
-Make sure your drupal instance contains one ```Landing Page``` with matching url (```/landingpage``` by default).
-Remove the .env.production reference and set it in Azure pipeline configs and OpenShift configs if you need to change this value per site.
+Make sure your drupal instance contains one `Landing Page` with matching url to Drupal Basic Settings:: Front Page (`/landingpage` by convention).

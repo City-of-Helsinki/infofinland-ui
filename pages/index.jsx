@@ -5,19 +5,20 @@ import CitySelector from '@/components/home/CitySelector'
 import Block from '@/components/layout/Block'
 import {
   getCommonApiContent,
-  getHeroFromNode,
   resolvePath,
   getLandingPageQueryParams,
   getThemeHeroImages,
   NOT_FOUND,
 } from '@/lib/ssr-api'
+
+import { getHeroFromNode } from '@/lib/ssr-helpers'
+
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import getConfig from 'next/config'
 import { getResource } from 'next-drupal'
 import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import ContentMapper from '@/components/article/ContentMapper'
 import IngressBlock from '@/components/article/IngressBlock'
-import useHydratePage from '@/hooks/useHydratePage'
 
 export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
@@ -76,9 +77,7 @@ export async function getStaticProps(context) {
   }
 }
 
-const HomePage = ({ menu, footerMenu, node, themes, municipalities }) => {
-  useHydratePage({ node, municipalities, footerMenu, menu })
-
+const HomePage = ({ node, themes }) => {
   const hero = getHeroFromNode(node)
   const { field_description, field_content, title } = node
 

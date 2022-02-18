@@ -6,6 +6,8 @@ const env = {
     MAIN: 'main',
     FOOTER: 'footer-about',
     ABOUT: 'about',
+    CITIES: 'cities',
+    CITIES_LANDING: 'cities-landing',
   },
   REVALIDATE_TIME: 60, //seconds
   FB_URL: 'https://www.facebook.com/infofinland.fi',

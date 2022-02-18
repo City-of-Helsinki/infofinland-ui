@@ -29,6 +29,7 @@
     max-height: 0;
     opacity: 0;
   }
+
   /*
 Accordion arrows are using absolute positioning so
 that they wont move sideways when scrollbar becomes visible

@@ -3,7 +3,7 @@ import { ArticleImage } from './ImageBlock'
 import ParseHtml from '../ParseHtml'
 import { CONTENT_TYPES, TEXT_HTML_FORMAT } from '@/lib/DRUPAL_API_TYPES'
 import cls from 'classnames'
-import { getImage } from '@/lib/ssr-api'
+import { getImage } from '@/lib/ssr-helpers'
 
 const ColumnMapper = ({ type, field_text, ...rest }) => {
   switch (type) {
@@ -20,7 +20,7 @@ const ColumnMapper = ({ type, field_text, ...rest }) => {
     case CONTENT_TYPES.PARAGRAPH_IMAGE:
       return (
         <ArticleImage
-          className="overflow-hidden relative bg-gray-white rounded aspect-video lg:aspect-square"
+          className="overflow-hidden relative bg-white rounded aspect-video lg:aspect-square"
           {...getImage(rest)}
         />
       )

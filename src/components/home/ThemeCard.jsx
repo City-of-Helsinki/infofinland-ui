@@ -7,7 +7,7 @@ import { useState } from 'react'
 
 const MAX_TITLE_LENGTH = 40
 
-const ThemeImage = ({ src, color}) => {
+const ThemeImage = ({ src, color }) => {
   const [loading, setLoading] = useState(true)
 
   return (
@@ -15,7 +15,6 @@ const ThemeImage = ({ src, color}) => {
       {loading && <RingsLoader color={color} />}
       <Image
         src={src}
-        // src={'/fioo'}
         height={220}
         width={460}
         onLoadingComplete={() => setLoading(false)}
@@ -36,7 +35,7 @@ const ThemeCard = ({ title, url, image, blue, green }) => (
         'bg-green-lighter hover:bg-green-light shadow-themecard-green': green,
       })}
     >
-      {image && <ThemeImage src={image} color={blue ? 'blue': 'green'} />}
+      {image && <ThemeImage src={image} color={blue ? 'blue' : 'green'} />}
       <span className="flex md:h-24">
         <span
           className={cls(

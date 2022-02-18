@@ -4,22 +4,14 @@ import { alertMessageAtoms } from '@/src/store'
 
 const AlertMessage = ({ atom }) => {
   const [message, setMessage] = useAtom(atom)
-  const { confirm: _confirm, title, text, cancel: _cancel } = message
+  const { title, text } = message
 
-  const confirm = () => {
-    _confirm && _confirm()
-  }
-  const cancel = () => {
-    _cancel && _cancel()
-  }
   const onClose = () => setMessage({ waiting: false })
   const messageProps = {
     title,
     text,
     type: MESSAGE_TYPES.ALERT,
     isOpen: message.waiting,
-    confirm,
-    cancel,
     onClose,
   }
 

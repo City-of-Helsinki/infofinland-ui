@@ -9,7 +9,7 @@ exports[`ArticleImage should render image alt, title, className and and caption 
       class="flex absolute justify-items-center items-center w-full h-full"
     >
       <div
-        class=" scale-75 lg:scale-100 ifu-loader__image--ripple"
+        class="scale-75 lg:scale-100 ifu-loader__image--ripple"
       >
         <div />
         <div />
@@ -46,7 +46,7 @@ exports[`ArticleImage should render use layout="fill" as default and ignore heig
       class="flex absolute justify-items-center items-center w-full h-full"
     >
       <div
-        class=" scale-75 lg:scale-100 ifu-loader__image--ripple"
+        class="scale-75 lg:scale-100 ifu-loader__image--ripple"
       >
         <div />
         <div />
@@ -76,7 +76,7 @@ exports[`ArticleImage should require height and width for other layouts and thro
       class="flex absolute justify-items-center items-center w-full h-full"
     >
       <div
-        class=" scale-75 lg:scale-100 ifu-loader__image--ripple"
+        class="scale-75 lg:scale-100 ifu-loader__image--ripple"
       >
         <div />
         <div />
@@ -109,7 +109,7 @@ exports[`ArticleImage should use objectFit="contain" if width < height 1`] = `
       class="flex absolute justify-items-center items-center w-full h-full"
     >
       <div
-        class=" scale-75 lg:scale-100 ifu-loader__image--ripple"
+        class="scale-75 lg:scale-100 ifu-loader__image--ripple"
       >
         <div />
         <div />
@@ -139,7 +139,7 @@ exports[`ArticleImage should use objectFit="hover" if width >= height 1`] = `
       class="flex absolute justify-items-center items-center w-full h-full"
     >
       <div
-        class=" scale-75 lg:scale-100 ifu-loader__image--ripple"
+        class="scale-75 lg:scale-100 ifu-loader__image--ripple"
       >
         <div />
         <div />
@@ -172,7 +172,7 @@ exports[`ImageBlock should render the given image inside a Block 1`] = `
         class="flex absolute justify-items-center items-center w-full h-full"
       >
         <div
-          class=" scale-75 lg:scale-100 ifu-loader__image--ripple"
+          class="scale-75 lg:scale-100 ifu-loader__image--ripple"
         >
           <div />
           <div />

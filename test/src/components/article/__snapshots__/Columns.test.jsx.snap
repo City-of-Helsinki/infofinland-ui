@@ -21,13 +21,13 @@ exports[`Columns should render text and images 1`] = `
         class="mb-8 lg:mb-0"
       >
         <div
-          class="overflow-hidden relative bg-gray-white rounded aspect-video lg:aspect-square ifu-loader__rings"
+          class="overflow-hidden relative bg-white rounded aspect-video lg:aspect-square ifu-loader__rings"
         >
           <div
             class="flex absolute justify-items-center items-center w-full h-full"
           >
             <div
-              class=" scale-75 lg:scale-100 ifu-loader__image--ripple"
+              class="scale-75 lg:scale-100 ifu-loader__image--ripple"
             >
               <div />
               <div />

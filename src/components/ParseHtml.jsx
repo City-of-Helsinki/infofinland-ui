@@ -2,14 +2,14 @@ import parse, { domToReact, attributesToProps } from 'html-react-parser'
 import cls from 'classnames'
 import TextLink from '@/components/TextLink'
 import { H2, H3, H4, H5 } from './Typo'
-
+const MISSING_TOKEN = '#missing'
 const options = {
   replace: ({ name, attribs, children }) => {
     if (name === 'a') {
       const { href, class: className, ...rest } = attribs
       return (
         <TextLink
-          href={href}
+          href={href || MISSING_TOKEN}
           className={cls('font-bold', className)}
           {...attributesToProps(rest)}
         >

@@ -1,10 +1,9 @@
 # *
 User-agent: *
-Allow: /
+Disallow: /
 
 # Host
 Host: undefined
 
 # Sitemaps
 Sitemap: undefined/sitemap.xml
-Sitemap: undefined/article-sitemap.xml

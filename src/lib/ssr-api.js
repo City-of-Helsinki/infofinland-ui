@@ -5,6 +5,8 @@ import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 import getConfig from 'next/config'
 import { CONTENT_TYPES, NODE_TYPES } from './DRUPAL_API_TYPES'
 import { getMunicipalityParams, getThemeHeroParams } from './query-params'
+import { getHeroFromNode } from './ssr-helpers'
+
 const ROUTER_PATH = '/router/translate-path'
 const NO_DEFAULT_LOCALE = 'dont-use'
 const disableDefaultLocale = (locale) => ({
@@ -22,108 +24,6 @@ export const menuErrorResponse = () => ({
 export * from './query-params'
 
 export const NOT_FOUND = { notFound: true }
-
-export const getHeroFromNode = (node) => {
-  const host = getConfig().publicRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL
-  const url = node?.field_hero?.field_hero_image?.field_media_image?.uri?.url
-  return {
-    src: url ? `${host}${url}` : null,
-    title: node?.field_hero?.field_hero_title || null,
-    color: node?.field_hero?.field_hero_bg_color || null,
-  }
-}
-
-export const getImage = (item = {}) => {
-  const host = getConfig().publicRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL
-  const url = item.field_image?.field_media_image?.uri?.url
-  const caption = item.field_image_caption
-  const photographer = item.field_image?.field_photographer
-  return {
-    src: url ? `${host}${url}` : undefined,
-    caption,
-    photographer,
-    // ...meta:{alt,title,width,height}
-    ...item.field_image?.field_media_image.resourceIdObjMeta,
-  }
-}
-
-export const getVideo = ({
-  field_video_url,
-  field_remote_video,
-  field_video_title,
-} = {}) => {
-  const url =
-    field_video_url?.uri || field_remote_video?.field_media_oembed_video
-  const title = field_video_url?.title || field_video_title
-  return { url, title }
-}
-
-const ERROR_MISSING_LANGUAGE = 'language id missing'
-const MISSING_ID_TOKEN = 'missing'
-
-export const getLinks = ({ collection, locale } = {}) => {
-  if (!locale) {
-    console.error('Cannot resolve main link without locale')
-    return
-  }
-  return collection?.map(
-    ({ field_link_target_site: siteName, field_links, title }) => {
-      //is there a link that matches request locale
-      let mainTranslation = field_links?.find(({ field_language, id }) => {
-        if (id === MISSING_ID_TOKEN) {
-          console.error(ERROR_MISSING_LANGUAGE)
-          return
-        }
-        return field_language.field_locale === locale
-      })
-      //if not, is there a link that matches default locale EN
-      if (!mainTranslation) {
-        mainTranslation = field_links?.find(({ field_language, id }) => {
-          if (id === MISSING_ID_TOKEN) {
-            console.error(ERROR_MISSING_LANGUAGE)
-            return
-          }
-          return field_language?.field_locale === i18n.defaultLocale
-        })
-      }
-      //if not, is there a link that matches fallback locale FI
-      if (!mainTranslation) {
-        mainTranslation = field_links?.find(({ field_language, id }) => {
-          if (id === MISSING_ID_TOKEN) {
-            console.error(ERROR_MISSING_LANGUAGE)
-            return
-          }
-          return field_language?.field_locale === i18n.fallbackLocale
-        })
-      }
-      mainTranslation = {
-        locale: mainTranslation?.field_language?.field_locale,
-        url: mainTranslation?.field_language_link,
-      }
-
-      const languages = field_links
-        ?.map(({ field_language, field_language_link }) => {
-          return {
-            url: field_language_link,
-            title: field_language.name,
-            locale: field_language.field_locale,
-          }
-        })
-        .sort(
-          // According to configured language order, same as in language menu
-          (a, b) =>
-            i18n.locales.indexOf(a.locale) - i18n.locales.indexOf(b.locale)
-        )
-
-      return {
-        title,
-        siteName,
-        mainTranslation,
-        languages,
-      }
-    }
-  )
-}
 
 export const resolvePath = async ({ path, context }) => {
   const { serverRuntimeConfig } = getConfig()
@@ -151,31 +51,54 @@ export const getAboutMenu = async ({ locale }) =>
     defaultLocale: NO_DEFAULT_LOCALE,
   })
 
+export const getCitiesMenu = async ({ locale }) =>
+  getMenu(getConfig().serverRuntimeConfig.DRUPAL_MENUS.CITIES, {
+    locale,
+    defaultLocale: NO_DEFAULT_LOCALE,
+  })
+
+export const getCitiesLandingMenu = async (context) =>
+  getMenu(getConfig().serverRuntimeConfig.DRUPAL_MENUS.CITIES_LANDING, context)
+
 export const getCommonApiContent = async ({ locale }) => {
   const context = { locale, defaultLocale: NO_DEFAULT_LOCALE }
-  const [menu, footerMenu, municipalities] = await Promise.all([
-    //Main menu or whatever is called
-    getMainMenu(context).catch((e) => {
-      console.error('menu error', e)
-      return menuErrorResponse(e)
-    }),
-    //Footer Menu
-    getFooterAboutMenu(context).catch((e) => {
-      console.error('footerMenu error', e)
-      return menuErrorResponse(e)
-    }),
-    //Municipalities
-    getMunicipalities(context).catch((e) => {
-      console.error('municipality list error', e)
-      return []
-    }),
-  ]).catch((e) => {
-    throw e
-  })
+  const [menu, footerMenu, citiesLandingMenu, citiesMenu, municipalities] =
+    await Promise.all([
+      //Main menu or whatever is called
+      getMainMenu(context).catch((e) => {
+        console.error('menu error', e)
+        return menuErrorResponse(e)
+      }),
+      //Footer Menu
+      getFooterAboutMenu(context).catch((e) => {
+        console.error('footerMenu error', e)
+        return menuErrorResponse(e)
+      }),
+      //Cities landing-menu
+      getCitiesLandingMenu(context).catch((e) => {
+        console.error('city landing menu error', e)
+        return menuErrorResponse(e)
+      }),
+      //Cities menu
+      getCitiesMenu(context).catch((e) => {
+        console.error('city menu error', e)
+        return menuErrorResponse(e)
+      }),
+
+      //Municipalities
+      getMunicipalities(context).catch((e) => {
+        console.error('municipality list error', e)
+        return []
+      }),
+    ]).catch((e) => {
+      throw e
+    })
 
   return {
     menu,
     footerMenu,
+    citiesMenu,
+    citiesLandingMenu,
     municipalities,
   }
 }
@@ -219,13 +142,6 @@ export const getDefaultLocaleNode = async (id) =>
       .addFields(NODE_TYPES.PAGE, ['title'])
       .getQueryObject(),
   })
-
-export const addPrerenderLocalesToPaths = (paths) =>
-  getConfig()
-    .serverRuntimeConfig.PRERENDER_LOCALES.map((locale) =>
-      paths.map((path) => ({ ...path, locale }))
-    )
-    .flat()
 
 export const getMunicipalities = async ({ locale }) =>
   getResourceCollection(CONTENT_TYPES.MUNICIPALITY, {

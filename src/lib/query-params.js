@@ -1,11 +1,12 @@
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 import { NODE_TYPES, CONTENT_TYPES } from './DRUPAL_API_TYPES'
-// Common includes and fields.
+
+// Common includes and fields for all page level NODE types.
 const baseQueryParams = () =>
   new DrupalJsonApiParams()
 
     // //published pages only
-    // .addFilter("status", "1")
+    .addFilter('status', '1')
     //Relations
     .addInclude([
       // Image
@@ -104,9 +105,10 @@ const baseQueryParams = () =>
       'field_municipality',
       'field_municipality_liftup_item',
       'field_municipality_page',
+      'field_municipality_page_url',
     ])
 
-    // Columns
+    // Cities (Municipalities)
     .addFields(CONTENT_TYPES.MUNICIPALITY, ['name'])
 
 export const getLandingPageQueryParams = () =>
@@ -221,3 +223,14 @@ export const getLocalInfoParams = () =>
       'title',
     ])
     .getQueryObject()
+
+export const getQueryParamsFor = (type) => {
+  switch (type) {
+    case NODE_TYPES.PAGE:
+      return getPageQueryParams()
+  }
+  switch (type) {
+    case NODE_TYPES.LANDING_PAGE:
+      return getLandingPageQueryParams()
+  }
+}

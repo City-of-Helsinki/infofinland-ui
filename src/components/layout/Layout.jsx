@@ -11,10 +11,16 @@ import useShowLangMessage from '@/hooks/useShowLangMessage'
 import Router, { useRouter } from 'next/router'
 import NProgress from 'nprogress'
 import CookieConsentBar from '@/components/layout/CookieConsent'
-import MainNavi, { MainNaviError } from '@/components/navi/MainNavi'
+import MainMenu, { MainNaviError } from '@/components/navi/MainMenu'
 import cls from 'classnames'
 import { useAtomValue } from 'jotai/utils'
-import { mainMenuAtom, nodeAtom } from '@/src/store'
+import {
+  mainMenuAtom,
+  menusAtom,
+  nodeAtom,
+  selectedCityAtom,
+} from '@/src/store'
+import MenuGroup from '../navi/MenuGroup'
 export const FALLBACK_TITLE = 'infofinland.fi'
 /**
  *
@@ -76,7 +82,7 @@ export const SecondaryLayout = ({ children }) => {
         <div className="md:mx-auto lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
           <div className=" md:flex md:items-stretch">
             <div className="hidden md:block fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop">
-              {menu?.error ? <MainNaviError /> : <MainNavi menu={menu} />}
+              {menu?.error ? <MainNaviError /> : <MainMenu menu={menu} />}
             </div>
             <div className="hidden md:block flex-none w-navi border-black-op1 border-e-2"></div>
             <div className="ifu-layout__body">
@@ -99,7 +105,8 @@ const AppLayout = ({ children, className }) => {
   useSetLocalization(locale)
   useShowLangMessage(locale)
   const node = useAtomValue(nodeAtom)
-  const menu = useAtomValue(mainMenuAtom)
+  const menus = useAtomValue(menusAtom)
+  const selectedCity = useAtomValue(selectedCityAtom)
 
   return (
     <>
@@ -109,7 +116,7 @@ const AppLayout = ({ children, className }) => {
         className={cls('relative text-body bg-white', className)}
         id={`node-${node?.id}`}
       >
-        <TopMenu menu={menu} />
+        <TopMenu />
         <div className=" md:flex md:items-stretch">
           <div className="md:hidden">
             <Messages />
@@ -117,7 +124,17 @@ const AppLayout = ({ children, className }) => {
 
           <div className="hidden md:block overflow-y-auto fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop">
             <Messages />
-            {menu.error ? <MainNaviError /> : <MainNavi menu={menu} />}
+            {menus.mainMenu.error ? (
+              <MainNaviError />
+            ) : (
+              <MenuGroup
+                menulist={[
+                  { menu: menus.mainMenu },
+                  { menu: menus.citiesLandingMenu },
+                  { menu: menus.citiesMenu, city: selectedCity },
+                ]}
+              />
+            )}
           </div>
           <div className="hidden md:block flex-none w-navi border-black-op1 border-e-2"></div>
           <div className="ifu-layout__body">

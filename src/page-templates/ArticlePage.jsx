@@ -6,35 +6,37 @@ import useBreadCrumbs from '@/hooks/useBreadCrumbs'
 import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import ContentMapper from '@/components/article/ContentMapper'
 import useThemeList from '@/hooks/useThemeList'
-import { getHeroFromNode } from '@/lib/ssr-api'
+import { getHeroFromNode } from '@/lib/ssr-helpers'
 import IngressBlock from '@/components/article/IngressBlock'
 import AnchorLinksBlock from '@/components/article/AnchorLinksBlock'
-import useHydratePage from '@/hooks/useHydratePage'
+import LocalInformationSelectCity from '@/components/cities/LocalInfoSelectCity'
 
-const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
-  useHydratePage({ node, municipalities, footerMenu, menu })
-
+const ArticlePage = ({ menu, citiesMenu, node, fiNode }) => {
   const { localePath, locale } = useRouterWithLocalizedPath()
-
-  const breadcrumbs = useBreadCrumbs({
-    items: menu.items,
-    path: localePath,
-  })
+  const {
+    title,
+    revision_timestamp,
+    field_description,
+    field_use_anchor_links,
+    field_municipality_selection,
+  } = node
 
   const themes = useThemeList({
     tree: menu.tree,
     path: localePath,
   })
 
-  const {
-    title,
-    revision_timestamp,
-    field_description,
-    field_use_anchor_links,
-  } = node
+  const breadcrumbs = useBreadCrumbs({
+    items: !field_municipality_selection ? menu.items : citiesMenu.items,
+    path: localePath,
+  })
+
+  let cityThemes = useThemeList({
+    tree: citiesMenu.tree,
+    path: localePath,
+  })
 
   const hero = getHeroFromNode(node)
-
   return (
     <Layout>
       <Article
@@ -49,14 +51,11 @@ const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
           <IngressBlock field_description={field_description} />
         )}
 
-        {/*
-
-        DEMO BUTTON: TODO connect to field_municipality_selection
-        <Block className="mb-16 text-center">
-          <button className="p-2 w-full font-bold bg-green-white rounded border border-green-lighter">
-            Valitse tämä kunta{' '}
-          </button>
-        </Block> */}
+        {field_municipality_selection && (
+          <LocalInformationSelectCity
+            city={field_municipality_selection.name}
+          />
+        )}
 
         {field_use_anchor_links && (
           <AnchorLinksBlock field_content={node.field_content} />
@@ -68,11 +67,15 @@ const ArticlePage = ({ menu, footerMenu, node, fiNode, municipalities }) => {
           </Block>
         )}
 
+        {cityThemes?.length > 0 && (
+          <Block hero>
+            <ThemeList themes={cityThemes} />
+          </Block>
+        )}
+
         {node.field_content?.length > 0 && (
           <ContentMapper content={node.field_content} locale={locale} />
         )}
-
-        {/* <LocalInformation readMoreUrl={'/test'} /> */}
       </Article>
     </Layout>
   )
