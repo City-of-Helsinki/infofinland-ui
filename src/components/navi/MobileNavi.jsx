@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 
 import { useTranslation } from 'next-i18next'
 import { useAtomValue } from 'jotai/utils'
-import { citiesMenuAtom,mainMenuAtom, selectedCityAtom } from '@/src/store'
+import { citiesMenuAtom, mainMenuAtom, selectedCityAtom } from '@/src/store'
 
 const MobileNavi = () => {
   const [isOpen, setVisibility] = useState(false)

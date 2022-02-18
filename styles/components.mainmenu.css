@@ -34,11 +34,13 @@
     @apply border-white border-s-5 border-e-5 text-body-small ps-8  hover:bg-gray-white;
   }
 
-  .ifu-mainmenu__item--selected {}
+  .ifu-mainmenu__item--selected {
+  }
 
-  .ifu-mainmenu__item--selected-hidden {}
-  .ifu-mainmenu__item--selected-secondary {}
-
+  .ifu-mainmenu__item--selected-hidden {
+  }
+  .ifu-mainmenu__item--selected-secondary {
+  }
 
   /*
 Accordion arrows are using absolute positioning so

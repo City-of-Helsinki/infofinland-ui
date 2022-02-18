@@ -75,47 +75,48 @@ const SubMenu = ({
   return (
     <>
       <div
-        className={cls(
-          'text-body-small ps-8 border-s-5 hover:bg-gray-white',
-          {
-            'border-white ': !selected && !selectedIsHidden,
-            'border-blue/75 hover:border-blue': selectedIsHidden || selected,
-            'font-bold': selected,
-          }
-        )}
+        className={cls('text-body-small ps-8 border-s-5 hover:bg-gray-white', {
+          'border-white ': !selected && !selectedIsHidden,
+          'border-blue/75 hover:border-blue': selectedIsHidden || selected,
+          'font-bold': selected,
+        })}
       >
         {/*
           Shame hack: adding extra span so that border colors will switch
         accordingly in RTL without overly complicating the CSS works */}
-        <span  className={cls('border-e-5 w-full flex items-center hover:border-gray-white',{
-            'border-green-light/75 hover:border-green-light': secondarySelection,
-            'border-white': !secondarySelection
-          }
-        )}>
-        <Link passHref href={url} prefetch={false}>
-          <a className="flex-grow py-4">
-            <span className={cls('block', { 'font-bold': selected })}>
-              {title}
-            </span>
-          </a>
-        </Link>
-        <div className='flex-none' >
-          <button
-            className="block w-14 h-12 me-2"
-            onClick={toggle}
-            title={subMenuLabel}
-            aria-label={subMenuLabel}
-            aria-expanded={isOpen}
-          >
-            {!isOpen && (
-              <IconAngleDown className="fill-gray-light ifu-mainmenu__submenu-icon" />
-            )}
-            {isOpen && (
-              <IconAngleUp className="fill-gray-light ifu-mainmenu__submenu-icon" />
-            )}
-          </button>
-
-        </div>
+        <span
+          className={cls(
+            'border-e-5 w-full flex items-center hover:border-gray-white',
+            {
+              'border-green-light/75 hover:border-green-light':
+                secondarySelection,
+              'border-white': !secondarySelection,
+            }
+          )}
+        >
+          <Link passHref href={url} prefetch={false}>
+            <a className="flex-grow py-4">
+              <span className={cls('block', { 'font-bold': selected })}>
+                {title}
+              </span>
+            </a>
+          </Link>
+          <div className="flex-none">
+            <button
+              className="block w-14 h-12 me-2"
+              onClick={toggle}
+              title={subMenuLabel}
+              aria-label={subMenuLabel}
+              aria-expanded={isOpen}
+            >
+              {!isOpen && (
+                <IconAngleDown className="fill-gray-light ifu-mainmenu__submenu-icon" />
+              )}
+              {isOpen && (
+                <IconAngleUp className="fill-gray-light ifu-mainmenu__submenu-icon" />
+              )}
+            </button>
+          </div>
         </span>
       </div>
       {items && <SubMenuItems items={items} isOpen={isOpen} level={1} />}
