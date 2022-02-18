@@ -29,7 +29,6 @@ export const ExternalLinkCollection = ({ content = [], locale }) => {
             rel="noreferrer"
             lang={mainTranslation?.field_locale}
             href={mainTranslation?.url}
-            target="_blank"
             id={`ifu-external-link--${mainTranslation.id}`}
             className="inline-block mb-2 text-body font-bold leading-snug ifu-text-link"
           >
