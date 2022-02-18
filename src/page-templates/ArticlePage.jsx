@@ -30,7 +30,6 @@ const ArticlePage = ({ menu, citiesMenu, node, fiNode }) => {
     path: localePath,
   })
   // first page is landing page, skip it
-  const [, ...citiesTree] = citiesMenu.tree
 
   const breadcrumbs = useBreadCrumbs({
     items: !field_municipality_selection ? menu.items : citiesMenu.items,
@@ -38,7 +37,7 @@ const ArticlePage = ({ menu, citiesMenu, node, fiNode }) => {
   })
 
   let cityThemes = useThemeList({
-    tree: citiesTree,
+    tree: citiesMenu.tree,
     path: localePath,
   })
 

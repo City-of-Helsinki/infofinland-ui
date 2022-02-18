@@ -41,7 +41,7 @@ const TopMenuItem = ({
       <Link href={url} prefetch={false}>
         <a
           className={cls(
-            'block text-body-small ps-8 py-3 border-s-5 hover:bg-gray-white pe-4',
+            'block text-body-small ps-8 py-4 border-s-5 hover:bg-gray-white pe-4',
             {
               'font-bold': selected,
               'border-white': !selected,
@@ -87,10 +87,10 @@ const MainMenu = ({ menu: { items, tree }, useTopBorder, city }) => {
   }, [localePath, indexFromRouter])
 
   return (
-    <nav className={cls('mb-4', {})}>
+    <nav className={cls({})}>
       <ul
         className={cls('block', {
-          'mt-2 border-t border-gray-lighter': useTopBorder,
+          'border-t border-gray-lighter': useTopBorder,
         })}
       >
         {tree.map((props, i) => (

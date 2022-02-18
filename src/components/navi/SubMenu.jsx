@@ -85,14 +85,11 @@ const SubMenu = ({
           Shame hack: adding extra span so that border colors will switch
         accordingly in RTL without overly complicating the CSS works */}
         <span
-          className={cls(
-            'border-e-5 w-full flex items-center hover:border-gray-white',
-            {
-              'border-green-light/75 hover:border-green-light':
-                secondarySelection,
-              'border-white': !secondarySelection,
-            }
-          )}
+          className={cls('border-e-5 w-full flex items-center', {
+            'border-green-light/75 hover:border-green-light':
+              secondarySelection,
+            'border-white hover:border-gray-white': !secondarySelection,
+          })}
         >
           <Link passHref href={url} prefetch={false}>
             <a className="flex-grow py-4">

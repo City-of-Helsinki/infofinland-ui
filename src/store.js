@@ -37,14 +37,26 @@ export const pageAtom = atom({ node: { id: null } })
 export const municipalitiesAtom = focusAtom(pageAtom, (optics) =>
   optics.prop('municipalities')
 )
+
 export const footerMenuAtom = focusAtom(pageAtom, (optics) =>
   optics.prop('footerMenu')
 )
 
+export const citiesLandingMenuAtom = focusAtom(pageAtom, (optics) =>
+  optics.prop('citiesLandingMenu')
+)
 export const citiesMenuAtom = focusAtom(pageAtom, (optics) =>
   optics.prop('citiesMenu')
 )
 export const mainMenuAtom = focusAtom(pageAtom, (optics) => optics.prop('menu'))
+
+export const menusAtom = atom((get) => {
+  return {
+    mainMenu: get(mainMenuAtom),
+    citiesLandingMenu: get(citiesLandingMenuAtom),
+    citiesMenu: get(citiesMenuAtom),
+  }
+})
 
 export const nodeAtom = focusAtom(pageAtom, (optics) => optics.prop('node'))
 export const nodeIdAtom = focusAtom(nodeAtom, (optics) => optics.prop('id'))

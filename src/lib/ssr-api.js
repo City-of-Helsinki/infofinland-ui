@@ -6,6 +6,7 @@ import getConfig from 'next/config'
 import { CONTENT_TYPES, NODE_TYPES } from './DRUPAL_API_TYPES'
 import { getMunicipalityParams, getThemeHeroParams } from './query-params'
 import { getHeroFromNode } from './ssr-helpers'
+
 const ROUTER_PATH = '/router/translate-path'
 const NO_DEFAULT_LOCALE = 'dont-use'
 const disableDefaultLocale = (locale) => ({
@@ -56,38 +57,48 @@ export const getCitiesMenu = async ({ locale }) =>
     defaultLocale: NO_DEFAULT_LOCALE,
   })
 
+export const getCitiesLandingMenu = async (context) =>
+  getMenu(getConfig().serverRuntimeConfig.DRUPAL_MENUS.CITIES_LANDING, context)
+
 export const getCommonApiContent = async ({ locale }) => {
   const context = { locale, defaultLocale: NO_DEFAULT_LOCALE }
-  const [menu, footerMenu, citiesMenu, municipalities] = await Promise.all([
-    //Main menu or whatever is called
-    getMainMenu(context).catch((e) => {
-      console.error('menu error', e)
-      return menuErrorResponse(e)
-    }),
-    //Footer Menu
-    getFooterAboutMenu(context).catch((e) => {
-      console.error('footerMenu error', e)
-      return menuErrorResponse(e)
-    }),
-    //Cities menu
-    getCitiesMenu(context).catch((e) => {
-      console.error('city menu error', e)
-      return menuErrorResponse(e)
-    }),
+  const [menu, footerMenu, citiesLandingMenu, citiesMenu, municipalities] =
+    await Promise.all([
+      //Main menu or whatever is called
+      getMainMenu(context).catch((e) => {
+        console.error('menu error', e)
+        return menuErrorResponse(e)
+      }),
+      //Footer Menu
+      getFooterAboutMenu(context).catch((e) => {
+        console.error('footerMenu error', e)
+        return menuErrorResponse(e)
+      }),
+      //Cities landing-menu
+      getCitiesLandingMenu(context).catch((e) => {
+        console.error('city landing menu error', e)
+        return menuErrorResponse(e)
+      }),
+      //Cities menu
+      getCitiesMenu(context).catch((e) => {
+        console.error('city menu error', e)
+        return menuErrorResponse(e)
+      }),
 
-    //Municipalities
-    getMunicipalities(context).catch((e) => {
-      console.error('municipality list error', e)
-      return []
-    }),
-  ]).catch((e) => {
-    throw e
-  })
+      //Municipalities
+      getMunicipalities(context).catch((e) => {
+        console.error('municipality list error', e)
+        return []
+      }),
+    ]).catch((e) => {
+      throw e
+    })
 
   return {
     menu,
     footerMenu,
     citiesMenu,
+    citiesLandingMenu,
     municipalities,
   }
 }

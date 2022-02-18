@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 
 import { useTranslation } from 'next-i18next'
 import { useAtomValue } from 'jotai/utils'
-import { citiesMenuAtom, mainMenuAtom, selectedCityAtom } from '@/src/store'
+import { menusAtom, selectedCityAtom } from '@/src/store'
 
 const MobileNavi = () => {
   const [isOpen, setVisibility] = useState(false)
@@ -15,9 +15,9 @@ const MobileNavi = () => {
   const close = () => setVisibility(false)
   const router = useRouter()
   const { t } = useTranslation('common')
-  const menu = useAtomValue(mainMenuAtom)
-  const citiesMenu = useAtomValue(citiesMenuAtom)
   const selectedCity = useAtomValue(selectedCityAtom)
+  const menus = useAtomValue(menusAtom)
+
   /*
   Ensure that mobile navi dialog is always closed when
    route has changes.
@@ -35,7 +35,7 @@ const MobileNavi = () => {
       router.events.off('routeChangeError', close)
     }
   }, [router])
-  if (menu.error) {
+  if (menus.mainMenu.error) {
     return (
       <span className="md:hidden">
         <MainNaviError />
@@ -61,7 +61,11 @@ const MobileNavi = () => {
       <Drawer close={close} isOpen={isOpen}>
         <div className="bg-white">
           <MenuGroup
-            menulist={[{ menu }, { menu: citiesMenu, city: selectedCity }]}
+            menulist={[
+              { menu: menus.mainMenu },
+              { menu: menus.citiesLandingMenu },
+              { menu: menus.citiesMenu, city: selectedCity },
+            ]}
           />
         </div>
       </Drawer>
