@@ -79,13 +79,17 @@
     "button": "Kielet"
   },
   "localInfo": {
+    "title": "Paikallistietoa",
     "clear": "Tyhjennä",
     "error": "Tietoa ei voitu ladata",
     "help": "See more information related to your municipality.",
+    "help_current_city": "Haluatko nähdä tietoja omasta kunnastasi? Valitsemalla kunnan näet kuntakohtaisia tietoja tästä kunnasta valtakunnallisilla sivuilla.",
     "noInfo": "Tältä kunnalta ei ole paikallistietoa saatavilla",
     "readMore": "Lue lisää",
     "reselect": "Valitse toinen kunta",
-    "select": "Valitse kunta"
+    "select": "Valitse kunta",
+    "select_current": "Valitse {{city}}",
+    "selected_city": "Oma kunta: {{city}}"
   },
   "mainMenu": {
     "button": "Päävalikko",

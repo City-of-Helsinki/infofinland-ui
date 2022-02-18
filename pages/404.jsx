@@ -9,7 +9,6 @@ import { map, omit } from 'lodash'
 import * as DrupalApi from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import getConfig from 'next/config'
-import useHydratePage from '@/hooks/useHydratePage'
 
 export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
@@ -73,10 +72,10 @@ const TEXTS_404 = {
   },
 }
 
-const PageNotFound = ({ texts, ...props }) => {
+const PageNotFound = ({ texts }) => {
   const { locale } = useRouter()
   const content = omit(texts, locale)
-  useHydratePage(props)
+
   return (
     <Layout>
       <Head>

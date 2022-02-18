@@ -4,7 +4,7 @@ import {
   getLinks,
   getVideo,
   addPrerenderLocalesToPaths,
-} from '@/lib/ssr-api'
+} from '@/lib/ssr-helpers'
 import getConfig from 'next/config'
 
 /**

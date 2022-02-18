@@ -15,7 +15,6 @@ const ThemeImage = ({ src, color }) => {
       {loading && <RingsLoader color={color} />}
       <Image
         src={src}
-        // src={'/fioo'}
         height={220}
         width={460}
         onLoadingComplete={() => setLoading(false)}

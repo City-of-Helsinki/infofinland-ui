@@ -1,6 +1,6 @@
 import getConfig from 'next/config'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { getResource } from 'next-drupal'
+import { getResource, getResourceTypeFromContext } from 'next-drupal'
 import ArticlePage from '@/src/page-templates/ArticlePage'
 import AboutPage from '@/src/page-templates/AboutPage'
 import { i18n } from '@/next-i18next.config'
@@ -8,13 +8,9 @@ import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import {
   getCommonApiContent,
   NOT_FOUND,
-  // getMainMenu,
-  // addPrerenderLocalesToPaths,
-  // getPageByPath,
-  getPageQueryParams,
+  getQueryParamsFor,
   getDefaultLocaleNode,
   getAboutMenu,
-  // getPageWithContentByPath,
   resolvePath,
   menuErrorResponse,
 } from '@/lib/ssr-api'
@@ -76,11 +72,20 @@ export async function getStaticProps(context) {
   }
   const id = data.entity.uuid
   // get menus and page node
+
+  const type = await getResourceTypeFromContext(context)
+
+  //Allow only pages and landing pages to be queried
+  if(![NODE_TYPES.PAGE, NODE_TYPES.LANDING_PAGE].includes(type)) {
+    console.error('Error resolving page. Node type not allowed:',type)
+    return NOT_FOUND
+  }
+
   const [common, node, aboutMenu] = await Promise.all([
     getCommonApiContent(context),
-    getResource(NODE_TYPES.PAGE, id, {
+    getResource(type, id, {
       locale,
-      params: getPageQueryParams(),
+      params: getQueryParamsFor(type),
     }).catch((e) => {
       console.error('Error requesting node ', id, e)
       throw e
@@ -91,6 +96,7 @@ export async function getStaticProps(context) {
     }),
   ])
 
+
   // Return 404 if node was null
   if (!node) {
     return NOT_FOUND
@@ -98,16 +104,19 @@ export async function getStaticProps(context) {
 
   let fiNode = null // Must be JSON compatible
 
-  // Get finnish title if page is not in finnish
-  if (context.locale !== i18n.fallbackLocale) {
-    fiNode = await getDefaultLocaleNode(id).catch((e) => {
-      console.error('Error while getting Finnish title', e)
-      return null
-    })
+  if (type === NODE_TYPES.PAGE) {
+    // Get finnish title if page is not in finnish
+    if (context.locale !== i18n.fallbackLocale) {
+      fiNode = await getDefaultLocaleNode(id).catch((e) => {
+        console.error('Error while getting Finnish title', e)
+        return null
+      })
+    }
   }
 
   return {
     props: {
+      type,
       ...common,
       aboutMenu,
       node,

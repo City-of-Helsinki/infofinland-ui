@@ -24,7 +24,7 @@ const AnchorLinksBlock = ({ field_content }) => {
 
   return (
     <Block>
-      <ul className="py-4 mb-4 list-disc list-outside ms-4 ps-4">
+      <ul className="py-4 mb-4 list-disc list-outside ms-2 lg:ms-4 ps-4">
         {headings.map(({ id, title }) => {
           return (
             <li className="ps-2" key={`heading-anchor-${id}`}>

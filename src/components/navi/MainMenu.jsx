@@ -30,8 +30,13 @@ const TopMenuItem = ({
   toggle,
   selected,
   selectedIsHidden,
+  secondarySelection,
 }) => (
-  <li className={cls('block relative', {})}>
+  <li
+    className={cls('block relative', {
+      'border-e-5 border-orange-light': secondarySelection && !items,
+    })}
+  >
     {!items && (
       <Link href={url} prefetch={false}>
         <a
@@ -52,6 +57,7 @@ const TopMenuItem = ({
 
     {items && (
       <SubMenu
+        secondarySelection={secondarySelection}
         url={url}
         items={items}
         title={title}
@@ -64,7 +70,7 @@ const TopMenuItem = ({
   </li>
 )
 
-const MainNavi = ({ menu: { items, tree } }) => {
+const MainMenu = ({ menu: { items, tree }, useTopBorder, city }) => {
   const { localePath } = useLocalizedPath()
   const indexFromRouter = getThemeIndexByPathName({
     items,
@@ -81,11 +87,16 @@ const MainNavi = ({ menu: { items, tree } }) => {
   }, [localePath, indexFromRouter])
 
   return (
-    <nav className={cls('mb-8  pt-8', {})}>
-      <ul className="block">
+    <nav className={cls({})}>
+      <ul
+        className={cls('block', {
+          'border-t border-gray-lighter': useTopBorder,
+        })}
+      >
         {tree.map((props, i) => (
           <TopMenuItem
             key={`link-${props.title}`}
+            secondarySelection={city === props.title}
             {...props}
             selected={localePath === props.url}
             isOpen={i === openIndex}
@@ -112,4 +123,4 @@ export const MainNaviError = () => (
     </p>
   </>
 )
-export default MainNavi
+export default MainMenu
