@@ -37,7 +37,6 @@ exports[`ReadMoreBlock should render the ReadMoreBlock 1`] = `
           href="http://www.kela.fi/fi/"
           id="ifu-external-link--foooaa"
           rel="noreferrer"
-          target="_blank"
         >
           <span
             class="block overflow-hidden absolute w-0 h-0"
