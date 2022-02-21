@@ -47,7 +47,6 @@ export const ExternalLinkCollection = ({ content = [], locale }) => {
               {languages.map(({ url, title: langTitle, locale, id }, k) => (
                 <a
                   title={langTitle}
-                  rel="noreferrer"
                   href={url}
                   key={`link-${id}-${locale}`}
                   lang={locale}
