@@ -26,7 +26,6 @@ export const ExternalLinkCollection = ({ content = [], locale }) => {
           </h3>
 
           <a
-            rel="noreferrer"
             lang={mainTranslation?.field_locale}
             href={mainTranslation?.url}
             id={`ifu-external-link--${mainTranslation.id}`}
