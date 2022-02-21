@@ -37,15 +37,8 @@ module.exports = {
   },
   images: {
     // populate all envs here
-
     domains: [
-      //local Stonehenge drupal instance
-      'drupal-infofinland.docker.so',
-      //dev
-      'nginx-infofinland-drupal-dev.agw.arodevtest.hel.fi',
-      'nginx-infofinland-drupal-test.agw.arodevtest.hel.fi',
-      //staging is missing
-      //production is missing
+       process.env.NEXT_IMAGE_DOMAIN,
     ],
   },
   webpack: (config) => {
