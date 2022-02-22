@@ -50,13 +50,11 @@ exports[`ReadMoreBlock should render the ReadMoreBlock 1`] = `
             aria-describedby="ifu-external-link--foooaa"
             class="text-small leading-snug ifu-text-link pe-2"
             href="http://www.kela.fi/fi/"
-            rel="noreferrer"
           />
           <a
             aria-describedby="ifu-external-link--foooaa"
             class="text-small leading-snug ifu-text-link pe-2 ps-2"
             href="http://www.kela.fi/sv/"
-            rel="noreferrer"
           />
         </div>
       </div>

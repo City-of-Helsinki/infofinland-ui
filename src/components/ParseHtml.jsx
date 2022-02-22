@@ -18,7 +18,7 @@ const options = {
       )
     } else if (name === 'p') {
       // const { href, class: className, ...rest } = attribs
-      return <p className="mb-8">{domToReact(children, options)}</p>
+      return <p className="mb-6">{domToReact(children, options)}</p>
     } else if (name === 'h2') {
       // const { href, class: className, ...rest } = attribs
       return <H2 className="mb-8">{domToReact(children, options)}</H2>

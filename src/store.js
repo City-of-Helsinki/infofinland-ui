@@ -1,6 +1,6 @@
 import { atom } from 'jotai'
 import { focusAtom } from 'jotai/optics'
-import { atomWithStorage, splitAtom } from 'jotai/utils'
+import { atomWithStorage } from 'jotai/utils'
 
 /** @module store */
 
@@ -11,9 +11,9 @@ export const name = 'store'
 export const COOKIE_CONSENT_KEY = 'infofinland-cc'
 
 /** localStorage key for storing municipality selection*/
-export const CITY_ATOM_KEY = 'city'
+const CITY_ATOM_KEY = 'city'
 
-// export const cities = atom([])
+const SHOWN_MESSAGES_KEY = 'shown-messages'
 
 /** Chosen municipality for local information blocks*/
 export const selectedCityAtom = atomWithStorage(CITY_ATOM_KEY, undefined)
@@ -36,6 +36,16 @@ export const pageAtom = atom({ node: { id: null } })
 
 export const municipalitiesAtom = focusAtom(pageAtom, (optics) =>
   optics.prop('municipalities')
+)
+
+export const messagesAtom = focusAtom(pageAtom, (optics) =>
+  optics.prop('messages')
+)
+
+export const shownMessagesAtom = atomWithStorage(SHOWN_MESSAGES_KEY, {})
+
+export const feedbackPageAtom = focusAtom(pageAtom, (optics) =>
+  optics.prop('feedback')
 )
 
 export const footerMenuAtom = focusAtom(pageAtom, (optics) =>
@@ -67,32 +77,6 @@ export const cookieConsentAtom = atomWithStorage(COOKIE_CONSENT_KEY, undefined)
 export const isCookieConsentSetAtom = atom(
   (get) => typeof get(cookieConsentAtom) !== 'undefined'
 )
-
-/** Message queue */
-
-// TODO  get this from page props when drupal serves it
-export const messages = atom({
-  messages: [
-    {
-      title: 'Haluatko vaihtaa kieltä?',
-      text: 'Infofinland-sivusto on saatavilla 12 eri kielellä. Haluatko vaihtaa käyttökieltä?',
-      waiting: false,
-    },
-  ],
-  warnings: [],
-  alerts: [
-    {
-      waiting: true,
-      title: 'Alert',
-      text: 'some stuff withouth html, maybe try that later',
-      confirm: () => null,
-    },
-  ],
-})
-
-const alertMessagesAtom = focusAtom(messages, (optics) => optics.prop('alerts'))
-
-export const alertMessageAtoms = splitAtom(alertMessagesAtom)
 
 /**
  *  Searchbar store

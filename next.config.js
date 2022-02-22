@@ -1,6 +1,7 @@
 const { i18n } = require('./next-i18next.config')
 const env = {
   COOKIE_PAGE_PATH: '/cookie-settings',
+  FEEDBACK_PAGE_PATH: '/feedback',
   PRERENDER_LOCALES: ['fi', 'en', 'sv', 'ar', 'ru'],
   DRUPAL_MENUS: {
     MAIN: 'main',
@@ -37,9 +38,7 @@ module.exports = {
   },
   images: {
     // populate all envs here
-    domains: [
-       process.env.NEXT_IMAGE_DOMAIN,
-    ],
+    domains: [process.env.NEXT_IMAGE_DOMAIN],
   },
   webpack: (config) => {
     config.module.rules.push({ test: /\.xml$/, loader: 'xml-loader' })
