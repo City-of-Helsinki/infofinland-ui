@@ -42,13 +42,13 @@ export async function getStaticProps(context) {
   if (!data) {
     return NOT_FOUND
   }
-
+  const id = data.entity.uuid
   const [node, common] = await Promise.all([
     getResource(NODE_TYPES.LANDING_PAGE, data.entity.uuid, {
       locale: context.locale,
       params: getLandingPageQueryParams(),
     }),
-    getCommonApiContent(context),
+    getCommonApiContent({ ...context, id }),
   ])
 
   if (!node) {
@@ -72,8 +72,7 @@ export async function getStaticProps(context) {
       node,
       ...(await serverSideTranslations(context.locale, ['common'])),
     },
-    // revalidate: serverRuntimeConfig.REVALIDATE_TIME,
-    revalidate: 10,
+    revalidate: serverRuntimeConfig.REVALIDATE_TIME,
   }
 }
 
@@ -87,10 +86,7 @@ const HomePage = ({ node, themes }) => {
       className="ifu-landing"
       description={node.description || field_description}
     >
-      <HomeHero
-        title={node.title || 'DEMO:Your source for living in Finland'}
-        src={hero?.src}
-      />
+      <HomeHero title={node.title} src={hero?.src} />
 
       {field_description && (
         <IngressBlock field_description={field_description} />

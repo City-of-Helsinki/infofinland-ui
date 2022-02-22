@@ -1,10 +1,14 @@
 import cls from 'classnames'
 import LanguageMessageCard from '@/components/messages/LanguageMessageCard'
-import AlertMessages from '@/components/messages/AlertMessages'
+import MessageCard from './MessageCard'
+
 import { useTranslation } from 'next-i18next'
+import { useAtomValue } from 'jotai/utils'
+import { messagesAtom } from '@/src/store'
 
 const Messages = () => {
   const { t } = useTranslation('common')
+  const messages = useAtomValue(messagesAtom)
   return (
     <section
       aria-label={t('messages.title')}
@@ -13,7 +17,17 @@ const Messages = () => {
       )}
     >
       <LanguageMessageCard />
-      <AlertMessages />
+      {messages.map(({ body, title, field_message_type, id }) => {
+        return (
+          <MessageCard
+            key={`message-${id}`}
+            type={field_message_type}
+            title={title}
+            body={body}
+            id={id}
+          />
+        )
+      })}
     </section>
   )
 }

@@ -1,29 +1,38 @@
-import { useAtom } from 'jotai'
+import { useUpdateAtom } from 'jotai/utils'
 import { languageMenuVisibilityAtom } from '@/src/store'
-import useLanguageMessage from '@/hooks/useLanguageMessage'
+
 import MessageCard, { MESSAGE_TYPES } from '@/components/messages/MessageCard'
 
 import { useTranslation } from 'next-i18next'
-
+import useLanguageMessage from '@/hooks/useLanguageMessage'
+const LANG_MESSAGE_ID = 'langmessage'
 const LanguageMessageCard = () => {
-  const { hideMessage, setShownOnce, isShownOnce, isOpen } =
+  const { isShownOnce, setShownOnce, isOpen, hideMessage } =
     useLanguageMessage()
-
-  const [, setLanguageMenu] = useAtom(languageMenuVisibilityAtom)
+  const setLanguageMenu = useUpdateAtom(languageMenuVisibilityAtom)
   const confirm = () => {
     setLanguageMenu(true)
     setShownOnce()
+    hideMessage()
   }
+  const cancel = () => {
+    setShownOnce()
+    hideMessage()
+  }
+
   const { t } = useTranslation('common')
+  if (isShownOnce) {
+    return null
+  }
 
   const messageProps = {
     title: t('languageMessage.title'),
     text: t('languageMessage.text'),
     type: MESSAGE_TYPES.MESSAGE,
-    isOpen: !isShownOnce && isOpen,
+    isOpen: isOpen,
     confirm,
-    cancel: setShownOnce,
-    onClose: hideMessage,
+    cancel,
+    id: LANG_MESSAGE_ID,
   }
 
   return <MessageCard {...messageProps} />

@@ -62,11 +62,13 @@ export async function getStaticProps(context) {
     context: { locale },
   }).catch((e) => {
     if (e?.response?.status === 404) {
+      console.error('Error resolving path', { path })
       return { data: null }
     }
     console.error(e)
     throw new Error('Unable to resolve path')
   })
+
   if (!data) {
     return NOT_FOUND
   }
@@ -82,7 +84,7 @@ export async function getStaticProps(context) {
   }
 
   const [common, node, aboutMenu] = await Promise.all([
-    getCommonApiContent(context),
+    getCommonApiContent({ ...context, id }),
     getResource(type, id, {
       locale,
       params: getQueryParamsFor(type),
