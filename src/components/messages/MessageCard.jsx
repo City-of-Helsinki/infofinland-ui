@@ -40,6 +40,10 @@ const MessageCard = ({
   isOpen,
   id,
 }) => {
+
+
+  const [shownMessages, setShownMessages] = useAtom(shownMessagesAtom)
+
   const handleConfirm = () => {
     setShownMessages({ ...shownMessages, [id]: true })
     confirm && confirm()
@@ -50,7 +54,6 @@ const MessageCard = ({
     cancel && cancel()
   }
 
-  const [shownMessages, setShownMessages] = useAtom(shownMessagesAtom)
 
   return (
     <CSSTransition
