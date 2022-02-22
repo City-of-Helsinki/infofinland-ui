@@ -4,9 +4,6 @@ import { NODE_TYPES, CONTENT_TYPES } from './DRUPAL_API_TYPES'
 // Common includes and fields for all page level NODE types.
 const baseQueryParams = () =>
   new DrupalJsonApiParams()
-
-    // //published pages only
-    .addFilter('status', '1')
     //Relations
     .addInclude([
       // Image
@@ -123,7 +120,6 @@ export const getLandingPageQueryParams = () =>
       'field_description',
       'field_metatags',
     ])
-
     .getQueryObject()
 
 export const getPageQueryParams = () =>

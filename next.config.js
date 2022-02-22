@@ -1,6 +1,7 @@
 const { i18n } = require('./next-i18next.config')
 const env = {
   COOKIE_PAGE_PATH: '/cookie-settings',
+  FEEDBACK_PAGE_PATH: '/feedback',
   PRERENDER_LOCALES: ['fi', 'en', 'sv', 'ar', 'ru'],
   DRUPAL_MENUS: {
     MAIN: 'main',
@@ -37,16 +38,7 @@ module.exports = {
   },
   images: {
     // populate all envs here
-
-    domains: [
-      //local Stonehenge drupal instance
-      'drupal-infofinland.docker.so',
-      //dev
-      'nginx-infofinland-drupal-dev.agw.arodevtest.hel.fi',
-      'nginx-infofinland-drupal-test.agw.arodevtest.hel.fi',
-      //staging is missing
-      //production is missing
-    ],
+    domains: [process.env.NEXT_IMAGE_DOMAIN],
   },
   webpack: (config) => {
     config.module.rules.push({ test: /\.xml$/, loader: 'xml-loader' })

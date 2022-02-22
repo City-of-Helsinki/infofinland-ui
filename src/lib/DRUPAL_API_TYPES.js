@@ -2,6 +2,7 @@ export const NODE_TYPES = {
   PAGE: 'node--page',
   LANDING_PAGE: 'node--landing_page',
   PVT_NODE: 'node--office_contact_info',
+  MESSAGE: 'node--message',
 }
 
 export const CONTENT_TYPES = {

@@ -1,14 +1,16 @@
 import cls from 'classnames'
 export const MESSAGE_TYPES = {
-  MESSAGE: 'message',
-  ALERT: 'alert',
+  MESSAGE: 'notice',
   WARNING: 'warning',
 }
 
-import { useState, useEffect } from 'react'
+import { keys } from 'lodash'
 import { CSSTransition } from 'react-transition-group'
+import { useAtom } from 'jotai'
 
 import { useTranslation } from 'next-i18next'
+import ParseHtml from '../ParseHtml'
+import { shownMessagesAtom } from '@/src/store'
 
 const MessageButton = ({ cancel, confirm, onClick }) => {
   const { t } = useTranslation('common')
@@ -30,27 +32,28 @@ const MessageButton = ({ cancel, confirm, onClick }) => {
 
 const MessageCard = ({
   title,
-  children,
+  body,
   text,
   confirm = () => null,
   cancel,
   type,
   isOpen,
-  onClose,
+  id,
 }) => {
-  const [showCard, setShow] = useState(isOpen)
 
-  useEffect(() => setShow(isOpen), [isOpen])
+
+  const [shownMessages, setShownMessages] = useAtom(shownMessagesAtom)
 
   const handleConfirm = () => {
-    setShow(false)
+    setShownMessages({ ...shownMessages, [id]: true })
     confirm && confirm()
   }
 
   const handleCancel = () => {
-    setShow(false)
+    setShownMessages({ ...shownMessages, [id]: true })
     cancel && cancel()
   }
+
 
   return (
     <CSSTransition
@@ -65,9 +68,8 @@ const MessageCard = ({
         exitActive: 'ifu-messages__card--exit-active',
         exitDone: 'ifu-messages__card--exit-done',
       }}
-      onExited={onClose}
       timeout={{ appear: 0, enter: 500, exit: 200 }}
-      in={showCard}
+      in={isOpen || !keys(shownMessages).includes(id)}
       appear
       unmountOnExit
       mountOnEnter
@@ -77,14 +79,18 @@ const MessageCard = ({
           <div
             className={cls('w-2 flex-none rounded-s ', {
               'bg-neon-green': type === MESSAGE_TYPES.MESSAGE,
-              'bg-neon-pink': type === MESSAGE_TYPES.ALERT,
-              'bg-neon-yellow': type === MESSAGE_TYPES.WARNING,
+              'bg-neon-pink': type === MESSAGE_TYPES.WARNING,
+              // 'bg-neon-yellow': type === MESSAGE_TYPES.WARNING,
             })}
           />
           <div className=" flex flex-col flex-1 flex-grow p-4 min-h-card ifu-messages__card-body">
             <h2 className="flex-none mb-2 text-message font-bold">{title}</h2>
             {text && <div className=" text-message">{text}</div>}
-            <div className="flex-grow">{children}</div>
+            {body && (
+              <div className=" text-message">
+                <ParseHtml html={body?.processed} />
+              </div>
+            )}
             <div className="mt-2 text-right">
               {!cancel && <MessageButton onClick={handleConfirm} />}
               {cancel && <MessageButton onClick={handleCancel} cancel />}
