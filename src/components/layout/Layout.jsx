@@ -15,7 +15,7 @@ import MainMenu, { MainNaviError } from '@/components/navi/MainMenu'
 import cls from 'classnames'
 import { useAtomValue } from 'jotai/utils'
 import {
-  mainMenuAtom,
+  aboutMenuAtom,
   menusAtom,
   nodeAtom,
   selectedCityAtom,
@@ -73,7 +73,8 @@ export const SecondaryLayout = ({ children }) => {
   useSetLocalization(locale)
   useShowLangMessage(locale)
   const node = useAtomValue(nodeAtom)
-  const menu = useAtomValue(mainMenuAtom)
+  const menu = useAtomValue(aboutMenuAtom)
+
   return (
     <>
       <CommonHead description={node?.field_description} title={node?.title} />

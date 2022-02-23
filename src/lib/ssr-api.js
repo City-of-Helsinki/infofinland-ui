@@ -71,6 +71,7 @@ export const getCommonApiContent = async ({ locale, id }) => {
     municipalities,
     feedback,
     messages,
+    aboutMenu,
   ] = await Promise.all([
     //Main menu or whatever is called
     getMainMenu(context).catch((e) => {
@@ -105,6 +106,11 @@ export const getCommonApiContent = async ({ locale, id }) => {
       console.error('Messages error', e)
       return []
     }),
+    //Footer Menu
+    getAboutMenu(context).catch((e) => {
+      console.error('aboutMenu error', e)
+      return menuErrorResponse(e)
+    }),
   ]).catch((e) => {
     throw e
   })
@@ -117,6 +123,7 @@ export const getCommonApiContent = async ({ locale, id }) => {
     municipalities,
     feedback,
     messages,
+    aboutMenu
   }
 }
 
@@ -209,6 +216,7 @@ export const getMessages = async ({ locale, id }) => {
     .addFields(NODE_TYPES.PAGE, ['title', 'field_content'])
     // Show warnings first, then notifications
     .addSort('field_message_type', 'DESC')
+    .addSort('id', 'ASC')
     .addFilter('field_page.id', [id, globalsId?.entity.uuid], 'IN')
     .getQueryObject()
 

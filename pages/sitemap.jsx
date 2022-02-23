@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Layout from '@/components/layout/Layout'
+import {SecondaryLayout} from '@/components/layout/Layout'
 import sitemap from '-!xml-loader!../public/sitemap.xml'
 
 import { useTranslation } from 'next-i18next'
@@ -24,7 +24,7 @@ export default function SiteMap(props) {
   const { t } = useTranslation('common')
 
   return (
-    <Layout {...props}>
+    <SecondaryLayout {...props}>
       <Head>
         <title>{t('sitemap.title')}</title>
       </Head>
@@ -40,6 +40,6 @@ export default function SiteMap(props) {
           ))}
         </ul>
       </Block>
-    </Layout>
+    </SecondaryLayout>
   )
 }

@@ -10,9 +10,7 @@ import {
   NOT_FOUND,
   getQueryParamsFor,
   getDefaultLocaleNode,
-  getAboutMenu,
   resolvePath,
-  menuErrorResponse,
 } from '@/lib/ssr-api'
 
 import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
@@ -83,7 +81,7 @@ export async function getStaticProps(context) {
     return NOT_FOUND
   }
 
-  const [common, node, aboutMenu] = await Promise.all([
+  const [common, node] = await Promise.all([
     getCommonApiContent({ ...context, id }),
     getResource(type, id, {
       locale,
@@ -91,11 +89,7 @@ export async function getStaticProps(context) {
     }).catch((e) => {
       console.error('Error requesting node ', id, e)
       throw e
-    }),
-    getAboutMenu(context).catch((e) => {
-      console.error('Error requesting About-menu with node ', id, e)
-      return menuErrorResponse(e)
-    }),
+    })
   ])
 
   // Return 404 if node was null
@@ -119,7 +113,6 @@ export async function getStaticProps(context) {
     props: {
       type,
       ...common,
-      aboutMenu,
       node,
       fiNode,
       ...(await serverSideTranslations(context.locale, ['common'])),
@@ -138,7 +131,7 @@ const Page = (props) => {
   const isAboutPage =
     aboutMenu?.items.find(({ url }) => url === localePath) !== undefined
   if (isAboutPage) {
-    return <AboutPage {...props} menu={aboutMenu} />
+    return <AboutPage {...props}  />
   }
   return <ArticlePage {...props} />
 }

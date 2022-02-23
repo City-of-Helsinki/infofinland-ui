@@ -1,16 +1,14 @@
 import cls from 'classnames'
+import { CSSTransition } from 'react-transition-group'
+import { useTranslation } from 'next-i18next'
+import ParseHtml from '../ParseHtml'
+
+
 export const MESSAGE_TYPES = {
   MESSAGE: 'notice',
   WARNING: 'warning',
 }
 
-import { keys } from 'lodash'
-import { CSSTransition } from 'react-transition-group'
-import { useAtom } from 'jotai'
-
-import { useTranslation } from 'next-i18next'
-import ParseHtml from '../ParseHtml'
-import { shownMessagesAtom } from '@/src/store'
 
 const MessageButton = ({ cancel, confirm, onClick }) => {
   const { t } = useTranslation('common')
@@ -36,24 +34,24 @@ const MessageCard = ({
   text,
   confirm = () => null,
   cancel,
+  onClose,
   type,
   isOpen,
-  id,
 }) => {
 
 
-  const [shownMessages, setShownMessages] = useAtom(shownMessagesAtom)
+
 
   const handleConfirm = () => {
-    setShownMessages({ ...shownMessages, [id]: true })
     confirm && confirm()
   }
 
   const handleCancel = () => {
-    setShownMessages({ ...shownMessages, [id]: true })
     cancel && cancel()
   }
 
+  const isWarning = type === MESSAGE_TYPES.WARNING
+  const isMessage = type === MESSAGE_TYPES.MESSAGE
 
   return (
     <CSSTransition
@@ -69,23 +67,24 @@ const MessageCard = ({
         exitDone: 'ifu-messages__card--exit-done',
       }}
       timeout={{ appear: 0, enter: 500, exit: 200 }}
-      in={isOpen || !keys(shownMessages).includes(id)}
+      in={isOpen}
       appear
       unmountOnExit
       mountOnEnter
+      onExited={onClose}
     >
       <section className={cls('bg-gray-lighter')}>
         <div className=" flex my-2 bg-white rounded shadow-md me-2 ms-2">
           <div
             className={cls('w-2 flex-none rounded-s ', {
-              'bg-neon-green': type === MESSAGE_TYPES.MESSAGE,
-              'bg-neon-pink': type === MESSAGE_TYPES.WARNING,
-              // 'bg-neon-yellow': type === MESSAGE_TYPES.WARNING,
+              'bg-neon-green': isMessage,
+              'bg-neon-pink': isWarning,
             })}
           />
           <div className=" flex flex-col flex-1 flex-grow p-4 min-h-card ifu-messages__card-body">
             <h2 className="flex-none mb-2 text-message font-bold">{title}</h2>
             {text && <div className=" text-message">{text}</div>}
+
             {body && (
               <div className=" text-message">
                 <ParseHtml html={body?.processed} />
@@ -99,7 +98,7 @@ const MessageCard = ({
           </div>
         </div>
       </section>
-    </CSSTransition>
+     </CSSTransition>
   )
 }
 

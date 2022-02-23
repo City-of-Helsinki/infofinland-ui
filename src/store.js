@@ -1,6 +1,7 @@
 import { atom } from 'jotai'
 import { focusAtom } from 'jotai/optics'
-import { atomWithStorage } from 'jotai/utils'
+import { atomWithStorage, splitAtom } from 'jotai/utils'
+import { LANG_MESSAGE_ID } from './components/messages/LanguageMessageCard'
 
 /** @module store */
 
@@ -33,6 +34,7 @@ export const feedbackFormVisibilityAtom = atom(false)
 /** Page atoms */
 
 export const pageAtom = atom({ node: { id: null } })
+pageAtom.debugLabel = 'page props root atom'
 
 export const municipalitiesAtom = focusAtom(pageAtom, (optics) =>
   optics.prop('municipalities')
@@ -42,7 +44,11 @@ export const messagesAtom = focusAtom(pageAtom, (optics) =>
   optics.prop('messages')
 )
 
-export const shownMessagesAtom = atomWithStorage(SHOWN_MESSAGES_KEY, {})
+export const messageAtoms = splitAtom(messagesAtom)
+
+// set lang message as shown. It is controlled separately.
+// slight haxor. maybe fix this
+export const shownMessagesAtom = atomWithStorage(SHOWN_MESSAGES_KEY, {[LANG_MESSAGE_ID]:true})
 
 export const feedbackPageAtom = focusAtom(pageAtom, (optics) =>
   optics.prop('feedback')
@@ -60,11 +66,14 @@ export const citiesMenuAtom = focusAtom(pageAtom, (optics) =>
 )
 export const mainMenuAtom = focusAtom(pageAtom, (optics) => optics.prop('menu'))
 
+export const aboutMenuAtom = focusAtom(pageAtom, (optics) => optics.prop('aboutMenu'))
+
 export const menusAtom = atom((get) => {
   return {
     mainMenu: get(mainMenuAtom),
     citiesLandingMenu: get(citiesLandingMenuAtom),
     citiesMenu: get(citiesMenuAtom),
+    aboutMenu:get(aboutMenuAtom)
   }
 })
 

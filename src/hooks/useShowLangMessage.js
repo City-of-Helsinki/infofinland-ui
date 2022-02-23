@@ -5,7 +5,7 @@ export default function useShowLangMessage(locale) {
   const { showMessage, hideMessage, userLocale, locales } = useLanguageMessage()
   // Show Language message if route's locale doe1s not match user agent locale
   useEffect(() => {
-    if (userLocale !== locale && locales.includes(userLocale)) {
+   if (userLocale !== locale && locales.includes(userLocale)) {
       showMessage()
     } else {
       hideMessage()

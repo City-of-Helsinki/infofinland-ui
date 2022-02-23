@@ -13,8 +13,11 @@ const useLanguageMessage = () => {
     userHasClosedMessage = sessionStorage.getItem(SESSION_KEY)
   }
 
-  const showMessage = () => setIsOpen(true)
-  const hideMessage = () => setIsOpen(false)
+  const showMessage = () => {
+    setIsOpen(true)}
+
+  const hideMessage = () => {
+    setIsOpen(false)}
 
   const userLocale =
     typeof window !== 'undefined'
