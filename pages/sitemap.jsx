@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import { SecondaryLayout } from '@/components/layout/Layout'
 import sitemap from '-!xml-loader!../public/sitemap.xml'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import { useTranslation } from 'next-i18next'
 import TextLink from '@/components/TextLink'
@@ -15,6 +16,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       ...common,
+      ...(await serverSideTranslations(context.locale, ['common'])),
     },
     revalidate: serverRuntimeConfig.REVALIDATE_TIME,
   }

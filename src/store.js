@@ -52,10 +52,17 @@ export const shownMessagesAtom = atomWithStorage(SHOWN_MESSAGES_KEY, {
   [LANG_MESSAGE_ID]: true,
 })
 
+/**
+ * Feedback form info page atom
+ *
+ */
 export const feedbackPageAtom = focusAtom(pageAtom, (optics) =>
   optics.prop('feedback')
 )
 
+/**
+ * Menu atoms
+ */
 export const footerMenuAtom = focusAtom(pageAtom, (optics) =>
   optics.prop('footerMenu')
 )
@@ -72,20 +79,10 @@ export const aboutMenuAtom = focusAtom(pageAtom, (optics) =>
   optics.prop('aboutMenu')
 )
 
-export const menusAtom = atom((get) => {
-  return {
-    mainMenu: get(mainMenuAtom),
-    citiesLandingMenu: get(citiesLandingMenuAtom),
-    citiesMenu: get(citiesMenuAtom),
-    aboutMenu: get(aboutMenuAtom),
-  }
-})
-
 export const nodeAtom = focusAtom(pageAtom, (optics) => optics.prop('node'))
 export const nodeIdAtom = focusAtom(nodeAtom, (optics) => optics.prop('id'))
 
 /** Cookie consent atom */
-
 export const cookieConsentAtom = atomWithStorage(COOKIE_CONSENT_KEY, undefined)
 export const isCookieConsentSetAtom = atom(
   (get) => typeof get(cookieConsentAtom) !== 'undefined'

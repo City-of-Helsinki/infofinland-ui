@@ -11,12 +11,14 @@ import useShowLangMessage from '@/hooks/useShowLangMessage'
 import Router, { useRouter } from 'next/router'
 import NProgress from 'nprogress'
 import CookieConsentBar from '@/components/layout/CookieConsent'
-import MainMenu, { MainNaviError } from '@/components/navi/MainMenu'
+import MainMenu from '@/components/navi/MainMenu' // { MainNaviError }
 import cls from 'classnames'
 import { useAtomValue } from 'jotai/utils'
 import {
   aboutMenuAtom,
-  menusAtom,
+  mainMenuAtom,
+  citiesLandingMenuAtom,
+  citiesMenuAtom,
   nodeAtom,
   selectedCityAtom,
 } from '@/src/store'
@@ -79,11 +81,11 @@ export const SecondaryLayout = ({ children }) => {
     <>
       <CommonHead description={node?.field_description} title={node?.title} />
       <div className=" relative text-body bg-white">
-        <TopMenu menu={menu} />
+        <TopMenu />
         <div className="md:mx-auto lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
           <div className=" md:flex md:items-stretch">
             <div className="hidden md:block fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop">
-              {menu?.error ? <MainNaviError /> : <MainMenu menu={menu} />}
+              <MainMenu menu={menu} />
             </div>
             <div className="hidden md:block flex-none w-navi border-black-op1 border-e-2"></div>
             <div className="ifu-layout__body">
@@ -106,7 +108,9 @@ const AppLayout = ({ children, className }) => {
   useSetLocalization(locale)
   useShowLangMessage(locale)
   const node = useAtomValue(nodeAtom)
-  const menus = useAtomValue(menusAtom)
+  const mainMenu = useAtomValue(mainMenuAtom)
+  const citiesMenu = useAtomValue(citiesMenuAtom)
+  const citiesLandingMenu = useAtomValue(citiesLandingMenuAtom)
   const selectedCity = useAtomValue(selectedCityAtom)
 
   return (
@@ -125,17 +129,14 @@ const AppLayout = ({ children, className }) => {
 
           <div className="hidden md:block overflow-y-auto fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop">
             <Messages />
-            {menus.mainMenu.error ? (
-              <MainNaviError />
-            ) : (
-              <MenuGroup
-                menulist={[
-                  { menu: menus.mainMenu },
-                  { menu: menus.citiesLandingMenu },
-                  { menu: menus.citiesMenu, city: selectedCity },
-                ]}
-              />
-            )}
+
+            <MenuGroup
+              menulist={[
+                { menu: mainMenu },
+                { menu: citiesLandingMenu },
+                { menu: citiesMenu, city: selectedCity },
+              ]}
+            />
           </div>
           <div className="hidden md:block flex-none w-navi border-black-op1 border-e-2"></div>
           <div className="ifu-layout__body">
