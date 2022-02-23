@@ -25,7 +25,6 @@ export default function ContentMapper({ content, locale }) {
   return content.map((item) => {
     const { type, id } = item
     const key = `paragraph--${type}-${id}`
-
     switch (type) {
       case CONTENT_TYPES.TEXT:
         if (
@@ -68,16 +67,21 @@ export default function ContentMapper({ content, locale }) {
         return <PTVBlock items={item.field_contact_data} key={key} />
 
       case CONTENT_TYPES.COLUMNS:
-        return <Columns {...item} />
+        return <Columns {...item} key={key} />
 
       case CONTENT_TYPES.VIDEO_HELSINKI:
-        return <VideoBlock {...getVideo(item)} />
+        return <VideoBlock {...getVideo(item)} key={key} />
 
       case CONTENT_TYPES.VIDEO_REMOTE:
-        return <VideoBlock {...getVideo(item)} />
+        return <VideoBlock {...getVideo(item)} key={key} />
 
       case CONTENT_TYPES.LOCALINFO:
-        return <LocalInformation cities={item.field_municipality_liftup_item} />
+        return (
+          <LocalInformation
+            cities={item.field_municipality_liftup_item}
+            key={key}
+          />
+        )
     }
   })
 }

@@ -44,9 +44,6 @@ const MessageCard = ({
     cancel && cancel()
   }
 
-  const isWarning = type === MESSAGE_TYPES.WARNING
-  const isMessage = type === MESSAGE_TYPES.MESSAGE
-
   return (
     <CSSTransition
       classNames={{
@@ -71,8 +68,8 @@ const MessageCard = ({
         <div className=" flex my-2 bg-white rounded shadow-md me-2 ms-2">
           <div
             className={cls('w-2 flex-none rounded-s ', {
-              'bg-neon-green': isMessage,
-              'bg-neon-pink': isWarning,
+              'bg-neon-green': type === MESSAGE_TYPES.MESSAGE,
+              'bg-neon-pink': type === MESSAGE_TYPES.WARNING,
             })}
           />
           <div className=" flex flex-col flex-1 flex-grow p-4 min-h-card ifu-messages__card-body">
