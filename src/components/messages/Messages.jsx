@@ -10,12 +10,11 @@ import MessageCard from './MessageCard'
 import { messageAtoms } from '@/src/store'
 // import { MESSAGE_TYPES } from './MessageCard'
 
-
-const MessageWithAtom = ({atom})=> {
+const MessageWithAtom = ({ atom }) => {
   const [shownMessages, setShownMessages] = useAtom(shownMessagesAtom)
 
-  const { body, title, field_message_type, id }  = useAtomValue(atom)
-  const close = ()=> setShownMessages({...shownMessages,[id]:true})
+  const { body, title, field_message_type, id } = useAtomValue(atom)
+  const close = () => setShownMessages({ ...shownMessages, [id]: true })
   return (
     <MessageCard
       type={field_message_type}
@@ -28,7 +27,6 @@ const MessageWithAtom = ({atom})=> {
     />
   )
 }
-
 
 const Messages = () => {
   const { t } = useTranslation('common')
@@ -43,11 +41,8 @@ const Messages = () => {
     >
       <LanguageMessageCard />
       {messagesAsAtoms.map((atom) => {
-        return (
-          <MessageWithAtom atom={atom} key={`message-${atom}`}
-          />
-        )}
-      )}
+        return <MessageWithAtom atom={atom} key={`message-${atom}`} />
+      })}
     </section>
   )
 }

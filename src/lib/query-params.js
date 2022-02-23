@@ -220,7 +220,6 @@ export const getLocalInfoParams = () =>
     ])
     .getQueryObject()
 
-
 // export const getMessageParams = ({pageId, globalsId})=> new DrupalJsonApiParams()
 // .addFields(NODE_TYPES.MESSAGE, [
 //   'body',

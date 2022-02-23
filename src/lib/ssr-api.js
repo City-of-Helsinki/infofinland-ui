@@ -123,7 +123,7 @@ export const getCommonApiContent = async ({ locale, id }) => {
     municipalities,
     feedback,
     messages,
-    aboutMenu
+    aboutMenu,
   }
 }
 

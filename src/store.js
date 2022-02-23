@@ -48,7 +48,9 @@ export const messageAtoms = splitAtom(messagesAtom)
 
 // set lang message as shown. It is controlled separately.
 // slight haxor. maybe fix this
-export const shownMessagesAtom = atomWithStorage(SHOWN_MESSAGES_KEY, {[LANG_MESSAGE_ID]:true})
+export const shownMessagesAtom = atomWithStorage(SHOWN_MESSAGES_KEY, {
+  [LANG_MESSAGE_ID]: true,
+})
 
 export const feedbackPageAtom = focusAtom(pageAtom, (optics) =>
   optics.prop('feedback')
@@ -66,14 +68,16 @@ export const citiesMenuAtom = focusAtom(pageAtom, (optics) =>
 )
 export const mainMenuAtom = focusAtom(pageAtom, (optics) => optics.prop('menu'))
 
-export const aboutMenuAtom = focusAtom(pageAtom, (optics) => optics.prop('aboutMenu'))
+export const aboutMenuAtom = focusAtom(pageAtom, (optics) =>
+  optics.prop('aboutMenu')
+)
 
 export const menusAtom = atom((get) => {
   return {
     mainMenu: get(mainMenuAtom),
     citiesLandingMenu: get(citiesLandingMenuAtom),
     citiesMenu: get(citiesMenuAtom),
-    aboutMenu:get(aboutMenuAtom)
+    aboutMenu: get(aboutMenuAtom),
   }
 })
 

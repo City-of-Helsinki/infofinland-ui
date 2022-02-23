@@ -3,12 +3,10 @@ import { CSSTransition } from 'react-transition-group'
 import { useTranslation } from 'next-i18next'
 import ParseHtml from '../ParseHtml'
 
-
 export const MESSAGE_TYPES = {
   MESSAGE: 'notice',
   WARNING: 'warning',
 }
-
 
 const MessageButton = ({ cancel, confirm, onClick }) => {
   const { t } = useTranslation('common')
@@ -38,10 +36,6 @@ const MessageCard = ({
   type,
   isOpen,
 }) => {
-
-
-
-
   const handleConfirm = () => {
     confirm && confirm()
   }
@@ -98,7 +92,7 @@ const MessageCard = ({
           </div>
         </div>
       </section>
-     </CSSTransition>
+    </CSSTransition>
   )
 }
 

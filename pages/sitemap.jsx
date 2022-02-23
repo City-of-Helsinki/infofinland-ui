@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import {SecondaryLayout} from '@/components/layout/Layout'
+import { SecondaryLayout } from '@/components/layout/Layout'
 import sitemap from '-!xml-loader!../public/sitemap.xml'
 
 import { useTranslation } from 'next-i18next'

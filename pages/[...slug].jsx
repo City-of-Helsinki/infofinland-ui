@@ -89,7 +89,7 @@ export async function getStaticProps(context) {
     }).catch((e) => {
       console.error('Error requesting node ', id, e)
       throw e
-    })
+    }),
   ])
 
   // Return 404 if node was null
@@ -131,7 +131,7 @@ const Page = (props) => {
   const isAboutPage =
     aboutMenu?.items.find(({ url }) => url === localePath) !== undefined
   if (isAboutPage) {
-    return <AboutPage {...props}  />
+    return <AboutPage {...props} />
   }
   return <ArticlePage {...props} />
 }

@@ -14,10 +14,12 @@ const useLanguageMessage = () => {
   }
 
   const showMessage = () => {
-    setIsOpen(true)}
+    setIsOpen(true)
+  }
 
   const hideMessage = () => {
-    setIsOpen(false)}
+    setIsOpen(false)
+  }
 
   const userLocale =
     typeof window !== 'undefined'
