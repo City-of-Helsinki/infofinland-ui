@@ -23,6 +23,8 @@ module.exports = {
   env,
   publicRuntimeConfig: {
     NEXT_PUBLIC_DRUPAL_BASE_URL: process.env.NEXT_PUBLIC_DRUPAL_BASE_URL,
+    MATOMO_URL: process.env.MATOMO_URL,
+    MATOMO_SITE_ID: process.env.MATOMO_SITE_ID,
     ...env,
   },
   serverRuntimeConfig: {

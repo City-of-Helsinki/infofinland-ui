@@ -1,10 +1,11 @@
-import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect'
+// import useIsomorphicLayoutEffect from './useIsomorphicLayoutEffect'
+import { useEffect } from 'react'
 import useLanguageMessage from './useLanguageMessage'
 
 export default function useShowLangMessage(locale) {
   const { showMessage, hideMessage, userLocale, locales } = useLanguageMessage()
   // Show Language message if route's locale doe1s not match user agent locale
-  useIsomorphicLayoutEffect(() => {
+  useEffect(() => {
     if (userLocale !== locale && locales.includes(userLocale)) {
       showMessage()
     } else {

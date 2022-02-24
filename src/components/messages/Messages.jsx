@@ -6,13 +6,14 @@ import { messagesAtom, shownMessagesAtom } from '@/src/store'
 import { keys } from 'lodash'
 import LanguageMessageCard from '@/components/messages/LanguageMessageCard'
 import MessageCard from './MessageCard'
+import { isSSR } from '@/hooks/useIsomorphicLayoutEffect'
 
 const Messages = () => {
   const { t } = useTranslation('common')
   const messages = useAtomValue(messagesAtom)
   const [shownMessages, setShownMessages] = useAtom(shownMessagesAtom)
 
-  if (typeof window === 'undefined') {
+  if (isSSR()) {
     //dont render this on server side due to weird render mismatch bug
     return null
   }

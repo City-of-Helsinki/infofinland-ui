@@ -8,7 +8,7 @@ import ToggleSwitch from '@/components/ToggleSwitch'
 import { cookieConsentAtom } from '@/src/store'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import getConfig from 'next/config'
-
+import { isSSR } from '@/hooks/useIsomorphicLayoutEffect'
 export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
 
@@ -36,19 +36,21 @@ export default function CookieConsentPage(props) {
         <p className="mb-16">{t('cookies.text')}</p>
       </Block>
       <form>
-        <Block className="pb-16 mt-16" about>
-          <ToggleSwitch
-            checked={isAnalyticsAllowed}
-            text={t('cookies.labels.analytics')}
-            id="ifu-cc-analytics"
-            value="analytics"
-            onChange={toggleConsent}
-            className=""
-          />
-          <span className="inline-block mx-4">
-            {t(isAnalyticsAllowed ? 'cookies.allowed' : 'cookies.denied')}
-          </span>
-        </Block>
+        {!isSSR() && (
+          <Block about>
+            <ToggleSwitch
+              checked={isAnalyticsAllowed}
+              text={t('cookies.labels.analytics')}
+              id="ifu-cc-analytics"
+              value="analytics"
+              onChange={toggleConsent}
+              className="pb-16"
+            />
+            <span className="inline-block mx-4">
+              {t(isAnalyticsAllowed ? 'cookies.allowed' : 'cookies.denied')}
+            </span>
+          </Block>
+        )}
         <Block about>
           <p className="pt-8 text-center border-t border-bodytext-color">
             <CookieConsentActions />

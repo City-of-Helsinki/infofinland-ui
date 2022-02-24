@@ -10,6 +10,7 @@ import SubmitLoader from '@/components/feedback/SubmitLoader'
 import { CSSTransition } from 'react-transition-group'
 import { IconExclamationCircle } from '@/components/Icons'
 import { longTextClass } from '@/components/Typo'
+import { isSSR } from '@/hooks/useIsomorphicLayoutEffect'
 
 const INPUT_CLASS =
   'py-2 px-3 w-full block border-black border rounded shadow-input text-body-small'
@@ -17,7 +18,7 @@ const INPUT_CLASS =
 // eslint-disable-next-line react/display-name
 const FeedbackForm = forwardRef(({ onCancel }, ref) => {
   const { t } = useTranslation('common')
-  const pageUrl = typeof window !== 'undefined' ? window.location.href : ''
+  const pageUrl = isSSR() === false ? window.location.href : ''
   const {
     register,
     reset,
