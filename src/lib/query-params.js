@@ -158,7 +158,8 @@ export const getPageQueryParams = () =>
       'field_use_anchor_links',
       'field_municipality_info',
       'field_municipality_selection',
-      'field_theme_menu',
+      // 'field_theme_menu',
+      'field_theme_menu_machine_name',
       // 'field_use_theme_cards'
     ])
     .getQueryObject()

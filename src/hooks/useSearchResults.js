@@ -23,9 +23,10 @@ const TRESHOLD_CACHE_KEY = '-'
  */
 export default function useSearchResults() {
   const _q = useAtomValue(searchQueryValue)
-  const [q] = useDebouncedValue(_q, 200)
-  const cacheKey = () => (q.length < TRESHOLD ? TRESHOLD_CACHE_KEY : q)
-  const fetcher = q.length < TRESHOLD ? () => [] : getSearchResults
+  const [search] = useDebouncedValue(_q, 200)
+  const cacheKey = () =>
+    search.length < TRESHOLD ? TRESHOLD_CACHE_KEY : search
+  const fetcher = search.length < TRESHOLD ? () => [] : getSearchResults
   const { data: results } = useSWR(cacheKey, fetcher, { suspense: true })
   return results
 }

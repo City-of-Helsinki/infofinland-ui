@@ -2,12 +2,13 @@ import { useTranslation } from 'next-i18next'
 import Layout from '@/components/layout/Layout'
 import Head from 'next/head'
 import Block from '@/components/layout/Block'
-
+import { searchResultsCountAtom } from '@/src/store'
 import Link from 'next/link'
 import SEARCH_RESULTS from '@/MOCK_SEARCH'
 import { useEffect, useState } from 'react'
 import { IconLookingGlass } from '@/components/Icons'
-
+import { Analytics } from '@/hooks/useAnalytics'
+import { useAtomValue } from 'jotai/utils'
 import useSearchRoute from '@/hooks/useSearchRoute'
 import { IconAngleRight } from '@/components/Icons'
 import * as DrupalApi from '@/lib/ssr-api'
@@ -23,11 +24,11 @@ export async function getServerSideProps(context) {
   mock search results.
   */
   const common = await DrupalApi.getCommonApiContent(context)
-  const q = query.q || null
+  const search = query.search || null
   let results = null
   // Mock no results witn '_'
-  if (q) {
-    results = q === '_' ? [] : SEARCH_RESULTS
+  if (search) {
+    results = search === '_' ? [] : SEARCH_RESULTS
   }
 
   return {
@@ -35,7 +36,7 @@ export async function getServerSideProps(context) {
       ...common,
       ...(await serverSideTranslations(context.defaultLocale, ['common'])),
 
-      q,
+      search,
       results,
     },
   }
@@ -44,8 +45,8 @@ export async function getServerSideProps(context) {
 const SearchBar = ({ qw }) => {
   // Sync search field with URL
   const { t } = useTranslation('common')
-  const [q, setQuery] = useState(qw)
-  const goToSearch = useSearchRoute({ q })
+  const [search, setQuery] = useState(qw)
+  const goToSearch = useSearchRoute({ search })
 
   useEffect(() => {
     setQuery(qw)
@@ -60,8 +61,8 @@ const SearchBar = ({ qw }) => {
         <input
           type="text"
           placeholder={t('search.placeholder')}
-          name="q"
-          value={q === null ? '' : q}
+          name="search"
+          value={search === null ? '' : search}
           onChange={({ target: { value } }) => setQuery(value)}
           className=" inline-block flex-grow px-2 h-12"
         />
@@ -73,7 +74,7 @@ const SearchBar = ({ qw }) => {
   )
 }
 
-const Result = ({ title, url, path, excerpt, q }) => (
+const Result = ({ title, url, path, excerpt, search }) => (
   <section className="mxy-8">
     <h2 className="text-h5xl font-bold">
       <Link href={url} passHref prefetch={false}>
@@ -96,20 +97,28 @@ const Result = ({ title, url, path, excerpt, q }) => (
       <Highlighter
         highlightClassName="bg-orange-light text-black"
         textToHighlight={excerpt}
-        searchWords={[q]}
+        searchWords={[search]}
       />
     </p>
   </section>
 )
-const SearchResults = ({ results, q }) => {
-  return results.map((r) => <Result key={`result-${r.id}`} {...r} q={q} />)
+const SearchResults = ({ results, search }) => {
+  return results.map((r) => (
+    <Result key={`result-${r.id}`} {...r} search={search} />
+  ))
 }
 
-export const SearchPage = ({ q, results, menu, footerMenu }) => {
+export const SearchPage = ({ search, results }) => {
   const { t } = useTranslation('common')
+  const searchCount = useAtomValue(searchResultsCountAtom)
+
+  // Set search count for analytics
+  useEffect(() => {
+    Analytics._searchCount = searchCount
+  }, [searchCount])
 
   let title
-  if (!q) {
+  if (!search) {
     title = t('search.title.start')
   } else if (results.length === 0) {
     title = t('search.title.noresults')
@@ -118,14 +127,14 @@ export const SearchPage = ({ q, results, menu, footerMenu }) => {
   }
 
   return (
-    <Layout menu={menu} footerMenu={footerMenu}>
+    <Layout>
       <Head>
         <title>{title}</title>
       </Head>
       <Block hero>
         <h1 className="mt-16 text-h2 md:text-h3xl">{title}</h1>
-        <SearchBar qw={q} />
-        {results && <SearchResults q={q} results={results} />}
+        <SearchBar qw={search} />
+        {results && <SearchResults search={search} results={results} />}
       </Block>
     </Layout>
   )

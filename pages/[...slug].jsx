@@ -1,6 +1,6 @@
 import getConfig from 'next/config'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { getResource, getResourceTypeFromContext } from 'next-drupal'
+import { getMenu, getResource, getResourceTypeFromContext } from 'next-drupal'
 import ArticlePage from '@/src/page-templates/ArticlePage'
 import AboutPage from '@/src/page-templates/AboutPage'
 import { i18n } from '@/next-i18next.config'
@@ -11,6 +11,7 @@ import {
   getQueryParamsFor,
   getDefaultLocaleNode,
   resolvePath,
+  menuErrorResponse,
 } from '@/lib/ssr-api'
 
 import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
@@ -108,12 +109,21 @@ export async function getStaticProps(context) {
       })
     }
   }
+  let themeMenu = menuErrorResponse()
+  const { field_theme_menu_machine_name } = node
+  if (field_theme_menu_machine_name) {
+    themeMenu = common.menus[node.field_theme_menu_machine_name]
+    if (!themeMenu) {
+      themeMenu = await getMenu(field_theme_menu_machine_name)
+    }
+  }
 
   return {
     props: {
       type,
       ...common,
       node,
+      themeMenu,
       fiNode,
       ...(await serverSideTranslations(context.locale, ['common'])),
     },
@@ -127,7 +137,9 @@ export async function getStaticProps(context) {
  */
 const Page = (props) => {
   const { localePath } = useRouterWithLocalizedPath()
-  const { aboutMenu } = props
+  const {
+    menus: { about: aboutMenu },
+  } = props
   const isAboutPage =
     aboutMenu?.items.find(({ url }) => url === localePath) !== undefined
   if (isAboutPage) {

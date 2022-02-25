@@ -5,15 +5,15 @@ import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 import getConfig from 'next/config'
 import { CONTENT_TYPES, NODE_TYPES } from './DRUPAL_API_TYPES'
 import { getMunicipalityParams, getThemeHeroParams } from './query-params'
-
+import { values } from 'lodash'
 import { getHeroFromNode } from './ssr-helpers'
 
 const ROUTER_PATH = '/router/translate-path'
 const NO_DEFAULT_LOCALE = 'dont-use'
-const disableDefaultLocale = (locale) => ({
-  locale,
-  defaultLocale: NO_DEFAULT_LOCALE,
-})
+// const disableDefaultLocale = (locale) => ({
+//   locale,
+//   defaultLocale: NO_DEFAULT_LOCALE,
+// })
 
 export const menuErrorResponse = () => ({
   items: [],
@@ -37,63 +37,32 @@ export const resolvePath = async ({ path, context }) => {
   })
 }
 
-export const getMainMenu = async (context) =>
-  getMenu(getConfig().serverRuntimeConfig.DRUPAL_MENUS.MAIN, context)
+export const getMenus = async ({ locale }) => {
+  const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
 
-export const getFooterAboutMenu = async ({ locale }) =>
-  getMenu(
-    getConfig().serverRuntimeConfig.DRUPAL_MENUS.FOOTER,
-    disableDefaultLocale(locale)
+  const menuNames = values(DRUPAL_MENUS)
+  const menus = await Promise.all(
+    menuNames.map(async (menu) => {
+      const menuItems = await getMenu(menu, {
+        locale,
+        defaultLocale: NO_DEFAULT_LOCALE,
+      }).catch((e) => {
+        console.error('Error fetching menu:', menu, e)
+        return menuErrorResponse(e)
+      })
+      return { menuItems: menuItems, menu }
+    })
   )
 
-export const getAboutMenu = async ({ locale }) =>
-  getMenu(getConfig().serverRuntimeConfig.DRUPAL_MENUS.ABOUT, {
-    locale,
-    defaultLocale: NO_DEFAULT_LOCALE,
-  })
-
-export const getCitiesMenu = async ({ locale }) =>
-  getMenu(getConfig().serverRuntimeConfig.DRUPAL_MENUS.CITIES, {
-    locale,
-    defaultLocale: NO_DEFAULT_LOCALE,
-  })
-
-export const getCitiesLandingMenu = async (context) =>
-  getMenu(getConfig().serverRuntimeConfig.DRUPAL_MENUS.CITIES_LANDING, context)
+  return menus.reduce((menuObj, { menu, menuItems }) => {
+    return { ...menuObj, [menu]: menuItems }
+  }, {})
+}
 
 export const getCommonApiContent = async ({ locale, id }) => {
   const context = { locale, defaultLocale: NO_DEFAULT_LOCALE }
-  const [
-    menu,
-    footerMenu,
-    citiesLandingMenu,
-    citiesMenu,
-    municipalities,
-    feedback,
-    messages,
-    aboutMenu,
-  ] = await Promise.all([
-    //Main menu or whatever is called
-    getMainMenu(context).catch((e) => {
-      console.error('menu error', e)
-      return menuErrorResponse(e)
-    }),
-    //Footer Menu
-    getFooterAboutMenu(context).catch((e) => {
-      console.error('footerMenu error', e)
-      return menuErrorResponse(e)
-    }),
-    //Cities landing-menu
-    getCitiesLandingMenu(context).catch((e) => {
-      console.error('city landing menu error', e)
-      return menuErrorResponse(e)
-    }),
-    //Cities menu
-    getCitiesMenu(context).catch((e) => {
-      console.error('city menu error', e)
-      return menuErrorResponse(e)
-    }),
-    //Municipalities
+  const [menus, municipalities, feedback, messages] = await Promise.all([
+    getMenus(context),
     getMunicipalities(context).catch((e) => {
       console.error('municipality list error', e)
       return []
@@ -106,24 +75,14 @@ export const getCommonApiContent = async ({ locale, id }) => {
       console.error('Messages error', e)
       return []
     }),
-    //Footer Menu
-    getAboutMenu(context).catch((e) => {
-      console.error('aboutMenu error', e)
-      return menuErrorResponse(e)
-    }),
   ]).catch((e) => {
     throw e
   })
-
   return {
-    menu,
-    footerMenu,
-    citiesMenu,
-    citiesLandingMenu,
+    menus,
     municipalities,
     feedback,
     messages,
-    aboutMenu,
   }
 }
 

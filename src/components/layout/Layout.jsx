@@ -8,8 +8,7 @@ import TopMenu from '@/components/layout/TopMenu'
 import ReactModal from 'react-modal'
 import useSetLocalization from '@/hooks/useSetLocalization'
 import useShowLangMessage from '@/hooks/useShowLangMessage'
-import Router, { useRouter } from 'next/router'
-import NProgress from 'nprogress'
+import { useRouter } from 'next/router'
 import CookieConsentBar from '@/components/layout/CookieConsent'
 import MainMenu from '@/components/navi/MainMenu' // { MainNaviError }
 import cls from 'classnames'
@@ -36,14 +35,6 @@ export const FALLBACK_TITLE = 'infofinland.fi'
 if (process.env.NODE_ENV !== 'test') {
   ReactModal.setAppElement('#__next')
 }
-/**
- * Subscribe NProgress loader bar to Router events
- *
- */
-NProgress.configure({ showSpinner: false })
-Router.events.on('routeChangeStart', () => NProgress.start())
-Router.events.on('routeChangeComplete', () => NProgress.done())
-Router.events.on('routeChangeError', () => NProgress.done())
 
 const CommonHead = ({ title = FALLBACK_TITLE, description = '', children }) => (
   <Head>
@@ -74,14 +65,15 @@ export const SecondaryLayout = ({ children }) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
   useShowLangMessage(locale)
-  const node = useAtomValue(nodeAtom)
+
   const menu = useAtomValue(aboutMenuAtom)
+  const { field_description, title } = useAtomValue(nodeAtom)
 
   return (
     <>
-      <CommonHead description={node?.field_description} title={node?.title} />
+      <CommonHead description={field_description} title={title} />
       <div className=" relative text-body bg-white">
-        <TopMenu />
+        <TopMenu menu={menu} />
         <div className="md:mx-auto lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
           <div className=" md:flex md:items-stretch">
             <div className="hidden md:block fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop">

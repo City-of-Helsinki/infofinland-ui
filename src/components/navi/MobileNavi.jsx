@@ -4,21 +4,30 @@ import MenuGroup from './MenuGroup'
 import { IconMenu } from '@/components/Icons'
 import Drawer from '@/components/layout/Drawer'
 import { useRouter } from 'next/router'
+import { useAtomValue } from 'jotai/utils'
 
 import { useTranslation } from 'next-i18next'
+import {
+  // aboutMenuAtom,
+  mainMenuAtom,
+  citiesLandingMenuAtom,
+  citiesMenuAtom,
+  // nodeAtom,
+  selectedCityAtom,
+} from '@/src/store'
 
-const MobileNavi = ({
-  citiesLandingMenu,
-  citiesMenu,
-  mainMenu,
-  aboutMenu,
-  selectedCity,
-}) => {
+const MobileNavi = ({ menu }) => {
   const [isOpen, setVisibility] = useState(false)
   const open = () => setVisibility(true)
   const close = () => setVisibility(false)
   const router = useRouter()
   const { t } = useTranslation('common')
+  // const aboutMenu = useAtomValue(mainMenuAtom)
+
+  const mainMenu = useAtomValue(mainMenuAtom)
+  const citiesMenu = useAtomValue(citiesMenuAtom)
+  const citiesLandingMenu = useAtomValue(citiesLandingMenuAtom)
+  const selectedCity = useAtomValue(selectedCityAtom)
 
   /*
   Ensure that mobile navi dialog is always closed when
@@ -46,17 +55,11 @@ const MobileNavi = ({
   // }
   const menulist = []
 
-  if (aboutMenu) {
-    menulist.push({ menu: aboutMenu })
+  if (menu) {
+    menulist.push({ menu })
   } else {
     menulist.push({ menu: mainMenu })
-  }
-
-  if (citiesLandingMenu) {
     menulist.push({ menu: citiesLandingMenu })
-  }
-
-  if (citiesMenu) {
     menulist.push({ menu: citiesMenu, city: selectedCity })
   }
 

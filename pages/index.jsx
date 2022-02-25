@@ -56,11 +56,11 @@ export async function getStaticProps(context) {
   }
 
   const themeImages = await getThemeHeroImages({
-    tree: common.menu.tree,
+    tree: common.menus.main.tree,
     context,
   })
 
-  const themes = common.menu.tree.map(({ url, title, id }, i) => {
+  const themes = common.menus.main.tree.map(({ url, title, id }, i) => {
     const image = themeImages[i]
     return { url, title, id, image: image?.src || null }
   })

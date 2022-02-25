@@ -31,11 +31,20 @@ export const languageMessageIsOpenAtom = atom(false)
 /** Visibility state of feeback form */
 export const feedbackFormVisibilityAtom = atom(false)
 
-/** Page atoms */
+/**
+ * Page atoms
+ */
 
 export const pageAtom = atom({ node: { id: null } })
 pageAtom.debugLabel = 'page props root atom'
 
+export const searchResultsAtom = focusAtom(pageAtom, (optics) =>
+  optics.prop('results')
+)
+
+export const searchResultsCountAtom = atom(
+  (get) => get(searchResultsAtom)?.length
+)
 export const municipalitiesAtom = focusAtom(pageAtom, (optics) =>
   optics.prop('municipalities')
 )
@@ -54,31 +63,41 @@ export const shownMessagesAtom = atomWithStorage(SHOWN_MESSAGES_KEY, {
 
 /**
  * Feedback form info page atom
- *
  */
 export const feedbackPageAtom = focusAtom(pageAtom, (optics) =>
   optics.prop('feedback')
 )
 
 /**
- * Menu atoms
+ * Menu atom collection
  */
-export const footerMenuAtom = focusAtom(pageAtom, (optics) =>
-  optics.prop('footerMenu')
+export const menusAtom = focusAtom(pageAtom, (optics) => optics.prop('menus'))
+
+export const footerMenuAtom = focusAtom(menusAtom, (optics) =>
+  optics.prop('footer-about')
 )
 
-export const citiesLandingMenuAtom = focusAtom(pageAtom, (optics) =>
-  optics.prop('citiesLandingMenu')
+export const citiesLandingMenuAtom = focusAtom(menusAtom, (optics) =>
+  optics.prop('cities-landing')
 )
-export const citiesMenuAtom = focusAtom(pageAtom, (optics) =>
-  optics.prop('citiesMenu')
+export const citiesMenuAtom = focusAtom(menusAtom, (optics) =>
+  optics.prop('cities')
 )
-export const mainMenuAtom = focusAtom(pageAtom, (optics) => optics.prop('menu'))
-
-export const aboutMenuAtom = focusAtom(pageAtom, (optics) =>
-  optics.prop('aboutMenu')
+export const mainMenuAtom = focusAtom(menusAtom, (optics) =>
+  optics.prop('main')
 )
 
+export const aboutMenuAtom = focusAtom(menusAtom, (optics) =>
+  optics.prop('about')
+)
+
+export const themeMenuAtom = focusAtom(pageAtom, (optics) =>
+  optics.prop('themeMenu')
+)
+
+/**
+ * Node atom collection
+ */
 export const nodeAtom = focusAtom(pageAtom, (optics) => optics.prop('node'))
 export const nodeIdAtom = focusAtom(nodeAtom, (optics) => optics.prop('id'))
 
