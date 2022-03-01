@@ -1,10 +1,19 @@
-import { getMenu, getResource, getResourceCollection } from 'next-drupal'
+import {
+  getMenu,
+  getResource,
+  getResourceCollection,
+  getResourceTypeFromContext,
+} from 'next-drupal'
 import { i18n } from '../../next-i18next.config'
 import axios from 'axios'
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 import getConfig from 'next/config'
 import { CONTENT_TYPES, NODE_TYPES } from './DRUPAL_API_TYPES'
-import { getMunicipalityParams, getThemeHeroParams } from './query-params'
+import {
+  getMunicipalityParams,
+  getThemeHeroParams,
+  getQueryParamsFor,
+} from './query-params'
 import { values } from 'lodash'
 import { getHeroFromNode } from './ssr-helpers'
 
@@ -35,6 +44,36 @@ export const resolvePath = async ({ path, context }) => {
   return axios.get(URL, {
     params: { path, _format: 'json' },
   })
+}
+
+export const getIdFromPath = async ({ path, context: { locale } }) => {
+  const { data } = await resolvePath({
+    path,
+    context: { locale },
+  }).catch((e) => {
+    if (e?.response?.status === 404) {
+      console.error('Error resolving path', { path })
+      return { data: null }
+    }
+    console.error(e)
+    throw new Error('Unable to resolve path')
+  })
+
+  return data?.entity?.uuid
+}
+
+export const getNodeFromPath = async ({ path, context, type }) => {
+  const id = await getIdFromPath({ path, context })
+  const _type = type || (await getResourceTypeFromContext(context))
+  const node = await getResource(_type, id, {
+    locale: context.locale,
+    defaultLocale: NO_DEFAULT_LOCALE,
+    params: getQueryParamsFor(type),
+  }).catch((e) => {
+    console.error('Error requesting node ', id, e)
+    throw e
+  })
+  return node
 }
 
 export const getMenus = async ({ locale }) => {

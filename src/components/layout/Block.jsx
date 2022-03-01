@@ -6,8 +6,18 @@ export const HERO_MARGIN =
 export const ABOUT_MARGIN = `px-6 md:max-w-screen-md lg:max-w-screen-lg`
 
 const Block = ({ children, className, hero, about }) => {
-  const margin = about ? ABOUT_MARGIN : hero ? HERO_MARGIN : BLOCK_MARGIN
-  return <div className={cls(margin, className)}>{children}</div>
+  // const margin = about ? ABOUT_MARGIN : hero ? HERO_MARGIN : BLOCK_MARGIN
+  return (
+    <div
+      className={cls(className, {
+        'ifu-block--article': !hero && !about,
+        'ifu-block--hero': hero,
+        'ifu-block--secondary': about,
+      })}
+    >
+      {children}
+    </div>
+  )
 }
 
 export default Block

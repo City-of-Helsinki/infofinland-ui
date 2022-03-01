@@ -5,10 +5,10 @@ import CitySelector from '@/components/home/CitySelector'
 import Block from '@/components/layout/Block'
 import {
   getCommonApiContent,
-  resolvePath,
   getLandingPageQueryParams,
   getThemeHeroImages,
   NOT_FOUND,
+  getIdFromPath,
 } from '@/lib/ssr-api'
 
 import { getHeroFromNode } from '@/lib/ssr-helpers'
@@ -22,29 +22,16 @@ import IngressBlock from '@/components/article/IngressBlock'
 
 export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
-  const { locale } = context
-  const { data } = await resolvePath({
+  const id = await getIdFromPath({
     path: serverRuntimeConfig.DRUPAL_FRONT_PAGE,
-    context: { locale },
-  }).catch((e) => {
-    if (e?.response?.status === 404) {
-      console.error(
-        `Landing page error for /${locale}/:`,
-        // Data can be a string or object apparently
-        e.response?.data?.message || e.response?.data,
-        e.response?.status
-      )
-      return { data: null }
-    }
-    console.error(e)
-    throw new Error('Unable to resolve landing page')
+    context,
   })
-  if (!data) {
+
+  if (!id) {
     return NOT_FOUND
   }
-  const id = data.entity.uuid
   const [node, common] = await Promise.all([
-    getResource(NODE_TYPES.LANDING_PAGE, data.entity.uuid, {
+    getResource(NODE_TYPES.LANDING_PAGE, id, {
       locale: context.locale,
       params: getLandingPageQueryParams(),
     }),

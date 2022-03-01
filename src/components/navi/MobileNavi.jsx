@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react'
 // import { MainNaviError } from '@/components/navi/MainMenu'
 import MenuGroup from './MenuGroup'
-import { IconMenu } from '@/components/Icons'
+import { IconMenu, IconAngleRight } from '@/components/Icons'
 import Drawer from '@/components/layout/Drawer'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
 import { useAtomValue } from 'jotai/utils'
 
 import { useTranslation } from 'next-i18next'
@@ -14,6 +15,7 @@ import {
   citiesMenuAtom,
   // nodeAtom,
   selectedCityAtom,
+  isAboutPageAtom,
 } from '@/src/store'
 
 const MobileNavi = ({ menu }) => {
@@ -28,6 +30,7 @@ const MobileNavi = ({ menu }) => {
   const citiesMenu = useAtomValue(citiesMenuAtom)
   const citiesLandingMenu = useAtomValue(citiesLandingMenuAtom)
   const selectedCity = useAtomValue(selectedCityAtom)
+  const isAboutPage = useAtomValue(isAboutPageAtom)
 
   /*
   Ensure that mobile navi dialog is always closed when
@@ -46,13 +49,7 @@ const MobileNavi = ({ menu }) => {
       router.events.off('routeChangeError', close)
     }
   }, [router])
-  // if (menus.mainMenu.error) {
-  //   return (
-  //     <span className="md:hidden">
-  //       <MainNaviError />
-  //     </span>
-  //   )
-  // }
+
   const menulist = []
 
   if (menu) {
@@ -81,6 +78,14 @@ const MobileNavi = ({ menu }) => {
 
       <Drawer close={close} isOpen={isOpen}>
         <div className="bg-white">
+          {isAboutPage && (
+            <Link href="/">
+              <a className="block pb-4 mb-2 font-bold border-b border-gray-lighter">
+                <IconAngleRight className="scale-150 rotate-180 ms-4 me-2" />
+                {t('breadcrumbs.frontpage')}
+              </a>
+            </Link>
+          )}
           <MenuGroup menulist={menulist} />
         </div>
       </Drawer>

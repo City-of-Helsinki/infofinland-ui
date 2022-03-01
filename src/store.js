@@ -2,6 +2,7 @@ import { atom } from 'jotai'
 import { focusAtom } from 'jotai/optics'
 import { atomWithStorage, splitAtom } from 'jotai/utils'
 import { LANG_MESSAGE_ID } from './components/messages/LanguageMessageCard'
+import { menuErrorResponse } from './lib/ssr-api'
 
 /** @module store */
 
@@ -35,8 +36,13 @@ export const feedbackFormVisibilityAtom = atom(false)
  * Page atoms
  */
 
-export const pageAtom = atom({ node: { id: null } })
+export const pageAtom = atom({
+  node: { id: null },
+  themeMenu: menuErrorResponse(),
+})
 pageAtom.debugLabel = 'page props root atom'
+
+export const isAboutPageAtom = atom((get) => get(pageAtom).isAboutPage)
 
 export const searchResultsAtom = focusAtom(pageAtom, (optics) =>
   optics.prop('results')

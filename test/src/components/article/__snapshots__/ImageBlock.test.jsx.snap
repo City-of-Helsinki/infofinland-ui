@@ -163,7 +163,7 @@ exports[`ArticleImage should use objectFit="hover" if width >= height 1`] = `
 exports[`ImageBlock should render the given image inside a Block 1`] = `
 <DocumentFragment>
   <div
-    class="mx-6 lg:mx-12 xl:mx-28 2xl:mx-48 3xl:ms-64 3xl:max-w-4xl my-16"
+    class="my-16 ifu-block--hero"
   >
     <div
       class="overflow-hidden relative bg-gray-white rounded aspect-video ifu-loader__rings"

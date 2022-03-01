@@ -61,18 +61,26 @@ export const BlankLayout = ({ children, title, description }) => {
   )
 }
 
-export const SecondaryLayout = ({ children }) => {
+export const SecondaryLayout = ({ children, className }) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
   useShowLangMessage(locale)
 
   const menu = useAtomValue(aboutMenuAtom)
-  const { field_description, title } = useAtomValue(nodeAtom)
+  const node = useAtomValue(nodeAtom)
+
+  // const { field_description, title } = useAtomValue(nodeAtom)
 
   return (
     <>
-      <CommonHead description={field_description} title={title} />
-      <div className=" relative text-body bg-white">
+      <CommonHead description={node?.field_description} title={node?.title} />
+      <div
+        className={cls(
+          'relative text-body bg-white ifu-layout--secondary',
+          className
+        )}
+        id={`node-${node?.id}`}
+      >
         <TopMenu menu={menu} />
         <div className="md:mx-auto lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
           <div className=" md:flex md:items-stretch">
@@ -110,7 +118,10 @@ const AppLayout = ({ children, className }) => {
       <CommonHead description={node?.field_description} title={node?.title} />
 
       <div
-        className={cls('relative text-body bg-white', className)}
+        className={cls(
+          'relative text-body bg-white ifu-layout--article',
+          className
+        )}
         id={`node-${node?.id}`}
       >
         <TopMenu />

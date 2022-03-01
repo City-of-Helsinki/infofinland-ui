@@ -10,10 +10,10 @@ import { getHeroFromNode } from '@/lib/ssr-helpers'
 import IngressBlock from '@/components/article/IngressBlock'
 import AnchorLinksBlock from '@/components/article/AnchorLinksBlock'
 import LocalInformationSelectCity from '@/components/cities/LocalInfoSelectCity'
-import { useAtomValue } from 'jotai/utils'
-import { themeMenuAtom } from '../store'
+// import { useAtomValue } from 'jotai/utils'
+// import { themeMenuAtom } from '../store'
 
-const ArticlePage = ({ node, fiNode }) => {
+const ArticlePage = ({ node, fiNode, themeMenu }) => {
   const { localePath, locale } = useRouterWithLocalizedPath()
   const {
     title,
@@ -23,7 +23,6 @@ const ArticlePage = ({ node, fiNode }) => {
     field_municipality_selection,
   } = node
 
-  const themeMenu = useAtomValue(themeMenuAtom)
   const themes = useThemeList({
     tree: themeMenu.tree,
     path: localePath,

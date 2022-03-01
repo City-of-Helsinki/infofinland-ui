@@ -14,8 +14,8 @@ export default function AboutPage() {
   const isCookiePage = asPath === COOKIE_PAGE_PATH
   return (
     <SecondaryLayout>
-      <Block about>
-        <H1 className="mt-16 mb-16">{title}</H1>
+      <Block>
+        <H1 className="mt-16 mb-10">{title}</H1>
       </Block>
       {field_content?.length > 0 && (
         <ContentMapper content={field_content} locale={locale} />

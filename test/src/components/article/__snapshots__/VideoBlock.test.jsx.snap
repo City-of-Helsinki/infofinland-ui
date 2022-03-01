@@ -3,7 +3,7 @@
 exports[`VideoBlock should render a ReactPlayer with given url  and title inside a Block 1`] = `
 <DocumentFragment>
   <div
-    class="px-6 lg:mx-12 xl:mx-28 2xl:mx-48 3xl:ms-64 3xl:max-w-4xl my-16"
+    class="my-16 ifu-block--article"
   >
     <h3
       class="text-bodytext-color font-sans text-h3 md:text-h3xl"

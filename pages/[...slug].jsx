@@ -10,11 +10,9 @@ import {
   NOT_FOUND,
   getQueryParamsFor,
   getDefaultLocaleNode,
-  resolvePath,
   menuErrorResponse,
+  getIdFromPath,
 } from '@/lib/ssr-api'
-
-import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 
 export async function getStaticPaths() {
   // const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
@@ -55,26 +53,12 @@ export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
   const { params, locale } = context
   const path = params.slug?.join('/') || params.slug
+
   // Resolve path, get node uuid
-  const { data } = await resolvePath({
-    path,
-    context: { locale },
-  }).catch((e) => {
-    if (e?.response?.status === 404) {
-      console.error('Error resolving path', { path })
-      return { data: null }
-    }
-    console.error(e)
-    throw new Error('Unable to resolve path')
-  })
-
-  if (!data) {
-    return NOT_FOUND
-  }
-  const id = data.entity.uuid
-  // get menus and page node
-
-  const type = await getResourceTypeFromContext(context)
+  const [id, type] = await Promise.all([
+    getIdFromPath({ path, context }),
+    getResourceTypeFromContext(context),
+  ])
 
   //Allow only pages and landing pages to be queried
   if (![NODE_TYPES.PAGE, NODE_TYPES.LANDING_PAGE].includes(type)) {
@@ -110,6 +94,7 @@ export async function getStaticProps(context) {
     }
   }
   let themeMenu = menuErrorResponse()
+
   const { field_theme_menu_machine_name } = node
   if (field_theme_menu_machine_name) {
     themeMenu = common.menus[node.field_theme_menu_machine_name]
@@ -117,7 +102,9 @@ export async function getStaticProps(context) {
       themeMenu = await getMenu(field_theme_menu_machine_name)
     }
   }
-
+  const isAboutPage =
+    common.menus.about.items.find(({ url }) => url === `/${locale}/${path}`) !==
+    undefined
   return {
     props: {
       type,
@@ -125,6 +112,7 @@ export async function getStaticProps(context) {
       node,
       themeMenu,
       fiNode,
+      isAboutPage,
       ...(await serverSideTranslations(context.locale, ['common'])),
     },
     revalidate: serverRuntimeConfig.REVALIDATE_TIME,
@@ -136,13 +124,7 @@ export async function getStaticProps(context) {
  * if page is in aboutMenu, use AboutPage, otherwise use ArticlePage
  */
 const Page = (props) => {
-  const { localePath } = useRouterWithLocalizedPath()
-  const {
-    menus: { about: aboutMenu },
-  } = props
-  const isAboutPage =
-    aboutMenu?.items.find(({ url }) => url === localePath) !== undefined
-  if (isAboutPage) {
+  if (props?.isAboutPage) {
     return <AboutPage {...props} />
   }
   return <ArticlePage {...props} />

@@ -24,9 +24,6 @@ const CookieConsentForm = () => {
             onChange={toggleConsent}
             className="pb-16"
           />
-          <span className="inline-block mx-4">
-            {t(isAnalyticsAllowed ? 'cookies.allowed' : 'cookies.denied')}
-          </span>
         </Block>
       )}
       <Block about>

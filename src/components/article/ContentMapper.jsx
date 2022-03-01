@@ -1,6 +1,6 @@
 import cls from 'classnames'
 import { H2 } from '../Typo'
-import { BLOCK_MARGIN } from '../layout/Block'
+// import { BLOCK_MARGIN } from '../layout/Block'
 import LocalInformation from '@/components/cities/LocalInformation'
 import ReadMoreBlock from './ReadMoreBlock'
 import AccordionItems from './Accordion'
@@ -39,7 +39,7 @@ export default function ContentMapper({ content, locale }) {
           <H2
             id={headingId(id)}
             key={key}
-            className={cls(BLOCK_MARGIN, 'my-8 ifu-article__bodyblock')}
+            className={cls('ifu-block--article', 'my-8')}
           >
             {item.field_title}
           </H2>

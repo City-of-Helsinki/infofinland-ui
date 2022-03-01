@@ -12,13 +12,7 @@ import { defer } from 'lodash'
 import { SEARCH_PAGE } from './useSearchRoute'
 const DEV = process.env.NODE_ENV === 'development'
 
-function initAnalyticsTracking({
-  enabled = false,
-  url = '//webanalytics.digiaiiris.com/js/',
-  siteId = '628',
-  domains = '*.www.infofinland.fi',
-  // searchCount,
-}) {
+function initAnalyticsTracking({ enabled = false, url, siteId, domains }) {
   // init only once
   if (Analytics._paq) {
     return Analytics
@@ -38,6 +32,8 @@ function initAnalyticsTracking({
   _paq.push(['setDomains', [domains]])
   _paq.push(['setDoNotTrack', !enabled])
   DEV && console.log('initial page track')
+  //Comment this out from matomo code. Initial page tracking is done
+  // afterwards to ensure search is tracked properly as well
   // _paq.push(['trackPageView']);
   _paq.push(['enableLinkTracking'])
   ;(function () {
@@ -52,9 +48,9 @@ function initAnalyticsTracking({
     g.src = u + 'piwik.min.js'
     s.parentNode.insertBefore(g, s)
   })()
+
   /**And here we are back to our implementation */
   Analytics._paq = window._paq
-  // Analytics._searchCount = searchCount
   Analytics.trackPageOrSearch(window.location.pathname)
 
   return Analytics
@@ -122,12 +118,16 @@ const useAnalytics = () => {
       return
     }
     DEV && console.log('init tracker')
-    const { MATOMO_URL: url, MATOMO_SITE_ID: siteId } =
-      getConfig().publicRuntimeConfig
+    const {
+      MATOMO_URL: url,
+      MATOMO_SITE_ID: siteId,
+      MATOMO_DOMAINS: domains,
+    } = getConfig().publicRuntimeConfig
 
     Analytics.init({
       url,
       siteId,
+      domains,
       //type conversion for potential undefined value
       enabled: !!isAnalyticsAllowed,
       searchCount,

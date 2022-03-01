@@ -158,9 +158,7 @@ export const getPageQueryParams = () =>
       'field_use_anchor_links',
       'field_municipality_info',
       'field_municipality_selection',
-      // 'field_theme_menu',
       'field_theme_menu_machine_name',
-      // 'field_use_theme_cards'
     ])
     .getQueryObject()
 
@@ -222,17 +220,6 @@ export const getLocalInfoParams = () =>
       'title',
     ])
     .getQueryObject()
-
-// export const getMessageParams = ({pageId, globalsId})=> new DrupalJsonApiParams()
-// .addFields(NODE_TYPES.MESSAGE, [
-//   'body',
-//   'field_page',
-//   'title',
-//   'field_message_type',
-// ])
-// .addFields(NODE_TYPES.PAGE, ['title', 'field_content'])
-// .addFilter('field_page.id', [pageId, globalsId], 'IN')
-// .getQueryObject()
 
 export const getQueryParamsFor = (type) => {
   switch (type) {

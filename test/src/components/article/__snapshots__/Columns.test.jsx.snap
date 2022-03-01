@@ -3,7 +3,7 @@
 exports[`Columns should render text and images 1`] = `
 <DocumentFragment>
   <div
-    class="px-6 lg:mx-12 xl:mx-28 2xl:mx-48 3xl:ms-64 3xl:max-w-4xl py-16 ifu-article__columns"
+    class="py-16 ifu-article__columns ifu-block--article"
   >
     <div
       class="lg:grid grid-cols-2 gap-16"
