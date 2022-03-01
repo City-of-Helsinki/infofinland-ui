@@ -2,7 +2,6 @@ import cls from 'classnames'
 // import Image from 'next/image'
 import Breadcrumbs from '@/components/layout/Breadcrumbs'
 import HeroImage from './HeroImage'
-import { HERO_MARGIN } from '@/components/layout/Block'
 
 // Tailwind color classes. Must be written out, not interpolated, for minification
 // Failsafe classes if dynamic color taxonomy is not set in Drupal or not given to page
@@ -38,7 +37,7 @@ const Article = ({ children, breadcrumbs, color, ...heroProps }) => {
         `}</style>
       )}
       <div className={cls('relative', colorClass)}>
-        <div className={HERO_MARGIN}>
+        <div className="ifu-block--hero">
           <Breadcrumbs items={breadcrumbs} />
         </div>
 

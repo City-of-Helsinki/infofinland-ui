@@ -2,7 +2,7 @@ import { useState, useEffect, useRef, forwardRef } from 'react'
 import cls from 'classnames'
 import { useTranslation } from 'next-i18next'
 import { IconExclamationBubble, IconAngleUp } from '@/components/Icons'
-import { HERO_MARGIN } from '@/components/layout/Block'
+
 import Button, { LinkButton } from '@/components/Button'
 import { useForm } from 'react-hook-form'
 import InfoBlock from '@/components/feedback/InfoBlock'
@@ -236,7 +236,7 @@ const FeedbackButtonBlock = () => {
         </button>
       </div>
 
-      <div className={cls(HERO_MARGIN, 'overflow-hidden')}>
+      <div className="overflow-hidden ifu-block--hero">
         <CSSTransition
           timeout={{ appear: 0, enter: 400, exit: 300 }}
           in={isOpen}

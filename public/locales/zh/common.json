@@ -1,4 +1,7 @@
 {
+  "breadcrumb": {
+    "frontpage": "首页"
+  },
   "buttons": {
     "close": "关闭",
     "no": "否",
@@ -54,6 +57,9 @@
   "footer": {
     "helsinkiDisclaimer": "InfoFinland.fi网站由赫尔辛基市负责发布，运作资金由国家和成员市镇提供。"
   },
+  "images": {
+    "photographer": "图片"
+  },
   "languageMenu": {
     "label": "选择语言"
   },
@@ -66,6 +72,9 @@
   },
   "localInfo": {
     "clear": "清空",
+    "error": "无法下载当地信息",
+    "help": "了解当地信息",
+    "noInfo": "无法提供当地信息",
     "readMore": "了解详情",
     "reselect": "选择另一地区",
     "select": "选择地区"
@@ -74,6 +83,7 @@
     "button": "主菜单"
   },
   "search": {
+    "loading": "搜索结果",
     "placeholder": "通过关键词搜索",
     "title": {
       "noresults": "无搜索结果",

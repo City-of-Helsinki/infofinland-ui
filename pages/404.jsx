@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Layout from '@/components/layout/Layout'
-import { HERO_MARGIN } from '@/components/layout/Block'
 import { useRouter } from 'next/router'
 import cls from 'classnames'
 import { longTextClass } from '@/components/Typo'
@@ -108,11 +107,7 @@ const PageNotFound = ({ texts }) => {
         </h1>
       </div>
       <div
-        className={cls(
-          'lg:grid md:grid-rows-6 md:grid-flow-col md:gap-y-8 md:gap-x-32 mt-8 md:mt-16 mb-8 md:mb-16',
-          HERO_MARGIN
-        )}
-      >
+        className="lg:grid md:grid-rows-6 md:grid-flow-col md:gap-y-8 md:gap-x-32 mt-8 md:mt-16 mb-8 md:mb-16 ifu-block--hero">
         <p className="block md:hidden mb-8 text-body-small">
           {texts[locale].help}
         </p>

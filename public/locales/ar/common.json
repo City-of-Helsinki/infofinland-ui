@@ -1,4 +1,7 @@
 {
+  "breadcrumbs": {
+    "frontpage": "الصفحة الرئيسية"
+  },
   "buttons": {
     "close": "أغلق",
     "no": "لا",
@@ -54,6 +57,9 @@
   "footer": {
     "helsinkiDisclaimer": "تنشر مدينة هلسنكي موقع InfoFinland.fi، وتموله الدولة والبلديات الأعضاء في InfoFinland."
   },
+  "images": {
+    "photographer": "صورة"
+  },
   "languageMenu": {
     "label": "اختر اللغة"
   },
@@ -66,6 +72,9 @@
   },
   "localInfo": {
     "clear": "أفرغ",
+    "error": "لم يُتمكن من تحميل معلومات البلدية",
+    "help": "انظر معلومات البلدية التي تتبع لها",
+    "noInfo": "لا تتوفر معلومات بشأن البلدية",
     "readMore": "اقرأ المزيد",
     "reselect": "اختر بلدية سكن أخرى",
     "select": "اختر بلدية السكن"
@@ -74,6 +83,7 @@
     "button": "قائمة الخيارات الرئيسية"
   },
   "search": {
+    "loading": "نبحث عن النتائج",
     "placeholder": "ابحث من خلال كلمة البحث",
     "title": {
       "noresults": "لا تُوجد نتائج للبحث",

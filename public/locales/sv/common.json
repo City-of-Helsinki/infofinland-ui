@@ -1,4 +1,7 @@
 {
+  "breadcrumbs": {
+    "frontpage": "Etusivu"
+  },
   "buttons": {
     "close": "Stäng",
     "no": "Nej",
@@ -54,6 +57,9 @@
   "footer": {
     "helsinkiDisclaimer": "Webbplatsen InfoFinland.fi publiceras av Helsingfors stad och finansieras av staten och InfoFinlands medlemskommuner."
   },
+  "images": {
+    "photographer": "Bild"
+  },
   "languageMenu": {
     "label": "!Valitse kieli"
   },
@@ -66,6 +72,9 @@
   },
   "localInfo": {
     "clear": "Töm",
+    "error": "De kommunspecifika uppgifterna kunde inte laddas",
+    "help": "Se din egen kommuns uppgifter",
+    "noInfo": "Inga uppgifter om kommunen finns tillgängliga",
     "readMore": "Läs mer",
     "reselect": "Välj annan kommun",
     "select": "Välj kommun"
@@ -74,6 +83,7 @@
     "button": "!Päävalikko"
   },
   "search": {
+    "loading": "Resultat söks",
     "placeholder": "Sök med sökordet",
     "title": {
       "noresults": "Inga sökresultat",

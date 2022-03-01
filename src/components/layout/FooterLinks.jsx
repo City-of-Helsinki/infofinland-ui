@@ -1,5 +1,4 @@
 import { IconFacebook, IconInstagram, IconTwitter, IconYoutube } from '../Icons'
-import { HERO_MARGIN, ABOUT_MARGIN } from '@/components/layout/Block'
 import Link from 'next/link'
 import cls from 'classnames'
 import getConfig from 'next/config'
@@ -13,7 +12,7 @@ import { footerMenuAtom } from '@/src/store'
  * */
 const FooterLinks = ({ secondary }) => {
   const { t, language } = useTranslation('common')
-  const margin = secondary ? ABOUT_MARGIN : HERO_MARGIN
+  const margin = secondary ? 'ifu-block--secondary' : 'ifu-block--article'
   const {
     publicRuntimeConfig: { FB_URL, TWITTER_URL, YOUTUBE_URL, INSTAGRAM_URL },
   } = getConfig()
