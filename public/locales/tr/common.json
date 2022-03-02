@@ -1,9 +1,14 @@
 {
+  "article": {
+    "published": "Yayınlandı"
+  },
   "breadcrumb": {
-    "frontpage": "Ana sayfa"
+    "frontpage": "Ana sayfa",
+    "title": "Ekmek kırıntısı"
   },
   "buttons": {
     "close": "Kapat",
+    "external": "Bağlantı adresi sizi başka bir sayfaya yönlendirecektir.",
     "no": "Hayır",
     "ok": "OK",
     "search": "Ara",
@@ -74,13 +79,20 @@
     "clear": "Sil",
     "error": "Belediyeye ait bilgiler yüklenemedi",
     "help": "Kendi belediyeniz hakkındaki bilgilere göz atın",
+    "help_current_city": "Yerel hizmetler hakkındaki bilgileri görebilmek için sitede gezinirken bir belediye seçin.",
     "noInfo": "Belediyeniz hakkında bilgi yok",
     "readMore": "Daha fazla bilgi için",
     "reselect": "Başka bir belediye seçin",
-    "select": "Bir belediye seçin"
+    "select": "Bir belediye seçin",
+    "select_city": "Seç: {{city}}",
+    "selected_city": "Kendi belediyeniz: {{city}}",
+    "title": "Yerel bilgiler"
   },
   "mainMenu": {
     "button": "Ana menü"
+  },
+  "messages": {
+    "title": "Bildirimler"
   },
   "search": {
     "loading": "Sonuç aranıyor",
@@ -90,5 +102,8 @@
       "results": "Arama sonuçları:",
       "start": "Sitede arayın"
     }
+  },
+  "video": {
+    "button": "Videoyu aç"
   }
 }

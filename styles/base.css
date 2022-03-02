@@ -42,6 +42,9 @@
     font-display: swap;
   }
 
+  /* img:-moz-broken {
+    opacity: 0
+  } */
   /* Focus outline style */
   /* input:focus-visible {
     @apply rounded;

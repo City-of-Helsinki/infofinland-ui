@@ -21,7 +21,7 @@ const ThemeImage = ({ src, color }) => {
         alt=""
         objectFit="cover"
         layout="responsive"
-        className="rounded-t"
+        className="rounded-t border-0 outline-0"
       />
     </span>
   )

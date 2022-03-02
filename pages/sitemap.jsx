@@ -20,8 +20,8 @@ export async function getStaticProps(context) {
     type: NODE_TYPES.PAGE,
   })
 
-  // Return 404 if node was null
-  if (!node) {
+  // Return 404 if node was null or sitemap doesnt exist
+  if (!node || !sitemap) {
     return NOT_FOUND
   }
 
