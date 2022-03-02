@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import Image from 'next/image'
-import { HERO_MARGIN } from '@/components/layout/Block'
 import ArticleHeading from './ArticleHeading'
 import cls from 'classnames'
 import { RingsLoader } from '../Loaders'
@@ -11,12 +10,7 @@ const HeroImage = ({ heroImage, ...rest }) => {
   if (heroImage) {
     return (
       <>
-        <div
-          className={cls(
-            HERO_MARGIN,
-            'overflow-hidden mb-6 h-hero  md:h-heroxl text-center rounded relative'
-          )}
-        >
+        <div className="overflow-hidden relative mb-6 h-hero md:h-heroxl text-center rounded ifu-block--hero">
           <div className="relative h-full bg-gray-white">
             {loading && <RingsLoader />}
             <Image

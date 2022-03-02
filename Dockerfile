@@ -21,13 +21,23 @@ ARG DRUPAL_CLIENT_ID
 ARG DRUPAL_PREVIEW_SECRET
 ARG DRUPAL_CLIENT_SECRET
 
+ARG MATOMO_SITE_ID
+ARG MATOMO_URL
+ARG MATOMO_DOMAINS
+
 ENV NEXT_PUBLIC_DRUPAL_BASE_URL=$NEXT_PUBLIC_DRUPAL_BASE_URL
 ENV NEXT_IMAGE_DOMAIN=$NEXT_IMAGE_DOMAIN
 ENV DRUPAL_FRONT_PAGE=$DRUPAL_FRONT_PAGE
 ENV DRUPAL_SITE_ID=$DRUPAL_SITE_ID
 ENV DRUPAL_CLIENT_ID=$DRUPAL_CLIENT_ID
+
 ENV DRUPAL_PREVIEW_SECRET=$DRUPAL_PREVIEW_SECRET
 ENV DRUPAL_CLIENT_SECRET=$DRUPAL_CLIENT_SECRET
+
+ENV MATOMO_SITE_ID=$MATOMO_SITE_ID
+ENV MATOMO_URL=$MATOMO_URL
+ENV MATOMO_DOMAINS=$MATOMO_DOMAINS
+
 ENV NEXT_TELEMETRY_DISABLED 1
 
 WORKDIR /app
@@ -58,6 +68,7 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/next-i18next.config.js ./next-i18next.config.js
+
 # env debug line for debugging environment variables in Azure.
 # If you are sure if all env vars are available in both build- and runtime,
 # copy .env.production to runner so that runtime can have new env vars from repo if needed
@@ -70,6 +81,7 @@ RUN chmod -R a+rwx ./.next
 
 EXPOSE 8080
 ENV PORT=8080
+
 # Next.js collects completely anonymous telemetry data about general usage.
 # Learn more here: https://nextjs.org/telemetry
 # We don't use it.

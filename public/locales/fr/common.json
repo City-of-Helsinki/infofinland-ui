@@ -1,4 +1,7 @@
 {
+  "breadcrumb": {
+    "frontpage": "Page principale"
+  },
   "buttons": {
     "close": "Fermer",
     "no": "Non",
@@ -54,6 +57,9 @@
   "footer": {
     "helsinkiDisclaimer": "Le site InfoFinland.fi est publié par la ville de Helsinki, l’État et les communes membres d’InfoFinland prennent part à son financement."
   },
+  "images": {
+    "photographer": "Photo"
+  },
   "languageMenu": {
     "label": "Sélectionner la langue"
   },
@@ -66,6 +72,9 @@
   },
   "localInfo": {
     "clear": "Effacer",
+    "error": "Impossible de télécharger les informations de la commune",
+    "help": "Voir les informations concernant votre commune",
+    "noInfo": "Aucune information sur la commune n’est disponible",
     "readMore": "En savoir plus",
     "reselect": "Sélectionnez une autre  commune",
     "select": "Sélectionnez la commune"
@@ -74,6 +83,7 @@
     "button": "Menu principal"
   },
   "search": {
+    "loading": "Recherche de résultats",
     "placeholder": "Chercher avec le mot de recherche",
     "title": {
       "noresults": "Aucun résultat de recherche",

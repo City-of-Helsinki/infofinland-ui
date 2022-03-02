@@ -142,6 +142,7 @@ export const getPageQueryParams = () =>
       'field_content.field_accordion_items.field_accordion_item_content.field_image.field_media_image',
       // Local info liftup
       'field_municipality_selection',
+      'field_theme_menu',
       // 'field_municipality_info',
     ])
     .addFields(NODE_TYPES.PAGE, [
@@ -157,7 +158,7 @@ export const getPageQueryParams = () =>
       'field_use_anchor_links',
       'field_municipality_info',
       'field_municipality_selection',
-      // 'field_use_theme_cards'
+      'field_theme_menu_machine_name',
     ])
     .getQueryObject()
 

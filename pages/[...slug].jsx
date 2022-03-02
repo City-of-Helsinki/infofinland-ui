@@ -1,6 +1,6 @@
 import getConfig from 'next/config'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { getResource, getResourceTypeFromContext } from 'next-drupal'
+import { getMenu, getResource, getResourceTypeFromContext } from 'next-drupal'
 import ArticlePage from '@/src/page-templates/ArticlePage'
 import AboutPage from '@/src/page-templates/AboutPage'
 import { i18n } from '@/next-i18next.config'
@@ -10,12 +10,9 @@ import {
   NOT_FOUND,
   getQueryParamsFor,
   getDefaultLocaleNode,
-  getAboutMenu,
-  resolvePath,
   menuErrorResponse,
+  getIdFromPath,
 } from '@/lib/ssr-api'
-
-import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 
 export async function getStaticPaths() {
   // const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
@@ -56,26 +53,12 @@ export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
   const { params, locale } = context
   const path = params.slug?.join('/') || params.slug
+
   // Resolve path, get node uuid
-  const { data } = await resolvePath({
-    path,
-    context: { locale },
-  }).catch((e) => {
-    if (e?.response?.status === 404) {
-      console.error('Error resolving path', { path })
-      return { data: null }
-    }
-    console.error(e)
-    throw new Error('Unable to resolve path')
-  })
-
-  if (!data) {
-    return NOT_FOUND
-  }
-  const id = data.entity.uuid
-  // get menus and page node
-
-  const type = await getResourceTypeFromContext(context)
+  const [id, type] = await Promise.all([
+    getIdFromPath({ path, context }),
+    getResourceTypeFromContext(context),
+  ])
 
   //Allow only pages and landing pages to be queried
   if (![NODE_TYPES.PAGE, NODE_TYPES.LANDING_PAGE].includes(type)) {
@@ -83,7 +66,7 @@ export async function getStaticProps(context) {
     return NOT_FOUND
   }
 
-  const [common, node, aboutMenu] = await Promise.all([
+  const [common, node] = await Promise.all([
     getCommonApiContent({ ...context, id }),
     getResource(type, id, {
       locale,
@@ -91,10 +74,6 @@ export async function getStaticProps(context) {
     }).catch((e) => {
       console.error('Error requesting node ', id, e)
       throw e
-    }),
-    getAboutMenu(context).catch((e) => {
-      console.error('Error requesting About-menu with node ', id, e)
-      return menuErrorResponse(e)
     }),
   ])
 
@@ -114,14 +93,26 @@ export async function getStaticProps(context) {
       })
     }
   }
+  let themeMenu = menuErrorResponse()
 
+  const { field_theme_menu_machine_name } = node
+  if (field_theme_menu_machine_name) {
+    themeMenu = common.menus[node.field_theme_menu_machine_name]
+    if (!themeMenu) {
+      themeMenu = await getMenu(field_theme_menu_machine_name)
+    }
+  }
+  const isAboutPage =
+    common.menus.about.items.find(({ url }) => url === `/${locale}/${path}`) !==
+    undefined
   return {
     props: {
       type,
       ...common,
-      aboutMenu,
       node,
+      themeMenu,
       fiNode,
+      isAboutPage,
       ...(await serverSideTranslations(context.locale, ['common'])),
     },
     revalidate: serverRuntimeConfig.REVALIDATE_TIME,
@@ -133,12 +124,8 @@ export async function getStaticProps(context) {
  * if page is in aboutMenu, use AboutPage, otherwise use ArticlePage
  */
 const Page = (props) => {
-  const { localePath } = useRouterWithLocalizedPath()
-  const { aboutMenu } = props
-  const isAboutPage =
-    aboutMenu?.items.find(({ url }) => url === localePath) !== undefined
-  if (isAboutPage) {
-    return <AboutPage {...props} menu={aboutMenu} />
+  if (props?.isAboutPage) {
+    return <AboutPage {...props} />
   }
   return <ArticlePage {...props} />
 }

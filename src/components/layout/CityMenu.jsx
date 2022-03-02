@@ -22,7 +22,7 @@ const CityMenu = () => {
     <Drawer close={close} isOpen={open} left>
       <ul className="mb-16">
         <li className="px-14 mb-4 text-body-large font-bold">Choose city</li>
-        {municipalities.map(({ name: cityName, id }) => (
+        {municipalities?.map(({ name: cityName, id }) => (
           <li
             key={`municipality-${id}`}
             className={cls('block', {

@@ -2,6 +2,10 @@
 import { useLayoutEffect, useEffect } from 'react'
 
 const useIsomorphicLayoutEffect =
-  typeof window !== 'undefined' ? useLayoutEffect : useEffect
+  isSSR() === false ? useLayoutEffect : useEffect
 
 export default useIsomorphicLayoutEffect
+
+export function isSSR() {
+  return typeof window === 'undefined'
+}

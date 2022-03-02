@@ -5,11 +5,12 @@ import MessageCard, { MESSAGE_TYPES } from '@/components/messages/MessageCard'
 
 import { useTranslation } from 'next-i18next'
 import useLanguageMessage from '@/hooks/useLanguageMessage'
-const LANG_MESSAGE_ID = 'langmessage'
+export const LANG_MESSAGE_ID = 'langmessage'
 const LanguageMessageCard = () => {
   const { isShownOnce, setShownOnce, isOpen, hideMessage } =
     useLanguageMessage()
   const setLanguageMenu = useUpdateAtom(languageMenuVisibilityAtom)
+
   const confirm = () => {
     setLanguageMenu(true)
     setShownOnce()

@@ -23,7 +23,7 @@
   @apply translate-y-48 transform;
 }
 .ifu-toggleswitch__label {
-  @apply relative pe-16;
+  @apply relative pe-16 cursor-pointer hover:underline;
 }
 
 .ifu-toggleswitch__label {

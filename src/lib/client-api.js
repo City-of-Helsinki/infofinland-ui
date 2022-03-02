@@ -9,8 +9,8 @@ export const LOCAL_INFO_URL = '/api/localinfo'
  * @param {string} q - the search term.
  */
 
-export const getSearchResults = async (q) => {
-  const { data } = await axios.get(SEARCH_URL, { params: { q } })
+export const getSearchResults = async (search) => {
+  const { data } = await axios.get(SEARCH_URL, { params: { search } })
   return data.results
 }
 

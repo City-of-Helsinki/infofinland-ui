@@ -8,15 +8,16 @@ import TopMenu from '@/components/layout/TopMenu'
 import ReactModal from 'react-modal'
 import useSetLocalization from '@/hooks/useSetLocalization'
 import useShowLangMessage from '@/hooks/useShowLangMessage'
-import Router, { useRouter } from 'next/router'
-import NProgress from 'nprogress'
+import { useRouter } from 'next/router'
 import CookieConsentBar from '@/components/layout/CookieConsent'
-import MainMenu, { MainNaviError } from '@/components/navi/MainMenu'
+import MainMenu from '@/components/navi/MainMenu' // { MainNaviError }
 import cls from 'classnames'
 import { useAtomValue } from 'jotai/utils'
 import {
+  aboutMenuAtom,
   mainMenuAtom,
-  menusAtom,
+  citiesLandingMenuAtom,
+  citiesMenuAtom,
   nodeAtom,
   selectedCityAtom,
 } from '@/src/store'
@@ -34,14 +35,6 @@ export const FALLBACK_TITLE = 'infofinland.fi'
 if (process.env.NODE_ENV !== 'test') {
   ReactModal.setAppElement('#__next')
 }
-/**
- * Subscribe NProgress loader bar to Router events
- *
- */
-NProgress.configure({ showSpinner: false })
-Router.events.on('routeChangeStart', () => NProgress.start())
-Router.events.on('routeChangeComplete', () => NProgress.done())
-Router.events.on('routeChangeError', () => NProgress.done())
 
 const CommonHead = ({ title = FALLBACK_TITLE, description = '', children }) => (
   <Head>
@@ -68,21 +61,31 @@ export const BlankLayout = ({ children, title, description }) => {
   )
 }
 
-export const SecondaryLayout = ({ children }) => {
+export const SecondaryLayout = ({ children, className }) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
   useShowLangMessage(locale)
+
+  const menu = useAtomValue(aboutMenuAtom)
   const node = useAtomValue(nodeAtom)
-  const menu = useAtomValue(mainMenuAtom)
+
+  // const { field_description, title } = useAtomValue(nodeAtom)
+
   return (
     <>
       <CommonHead description={node?.field_description} title={node?.title} />
-      <div className=" relative text-body bg-white">
+      <div
+        className={cls(
+          'relative text-body bg-white ifu-layout--secondary',
+          className
+        )}
+        id={`node-${node?.id}`}
+      >
         <TopMenu menu={menu} />
         <div className="md:mx-auto lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
           <div className=" md:flex md:items-stretch">
             <div className="hidden md:block fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop">
-              {menu?.error ? <MainNaviError /> : <MainMenu menu={menu} />}
+              <MainMenu menu={menu} />
             </div>
             <div className="hidden md:block flex-none w-navi border-black-op1 border-e-2"></div>
             <div className="ifu-layout__body">
@@ -105,7 +108,9 @@ const AppLayout = ({ children, className }) => {
   useSetLocalization(locale)
   useShowLangMessage(locale)
   const node = useAtomValue(nodeAtom)
-  const menus = useAtomValue(menusAtom)
+  const mainMenu = useAtomValue(mainMenuAtom)
+  const citiesMenu = useAtomValue(citiesMenuAtom)
+  const citiesLandingMenu = useAtomValue(citiesLandingMenuAtom)
   const selectedCity = useAtomValue(selectedCityAtom)
 
   return (
@@ -113,7 +118,10 @@ const AppLayout = ({ children, className }) => {
       <CommonHead description={node?.field_description} title={node?.title} />
 
       <div
-        className={cls('relative text-body bg-white', className)}
+        className={cls(
+          'relative text-body bg-white ifu-layout--article',
+          className
+        )}
         id={`node-${node?.id}`}
       >
         <TopMenu />
@@ -124,17 +132,14 @@ const AppLayout = ({ children, className }) => {
 
           <div className="hidden md:block overflow-y-auto fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop">
             <Messages />
-            {menus.mainMenu.error ? (
-              <MainNaviError />
-            ) : (
-              <MenuGroup
-                menulist={[
-                  { menu: menus.mainMenu },
-                  { menu: menus.citiesLandingMenu },
-                  { menu: menus.citiesMenu, city: selectedCity },
-                ]}
-              />
-            )}
+
+            <MenuGroup
+              menulist={[
+                { menu: mainMenu },
+                { menu: citiesLandingMenu },
+                { menu: citiesMenu, city: selectedCity },
+              ]}
+            />
           </div>
           <div className="hidden md:block flex-none w-navi border-black-op1 border-e-2"></div>
           <div className="ifu-layout__body">

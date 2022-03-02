@@ -1,19 +1,21 @@
 {
-  "article": { "published": "Julkaistu" },
+  "article": {
+    "published": "Julkaistu"
+  },
   "breadcrumbs": {
     "frontpage": "Etusivu",
     "title": "Murupolku"
   },
   "buttons": {
     "close": "Sulje",
+    "external": "Linkki johtaa palvelun ulkopuolelle",
     "no": "Ei",
     "ok": "OK",
+    "open": "Avaa",
+    "readMore": "Lue lisää",
     "search": "Hae",
     "skipTo": "Siirry sisältöön",
-    "yes": "Kyllä",
-    "readMore": "Lue lisää",
-    "open": "Avaa",
-    "external": "Linkki johtaa palvelun ulkopuolelle"
+    "yes": "Kyllä"
   },
   "cookies": {
     "allow": "Hyväksy kaikki evästeet",
@@ -68,9 +70,6 @@
   "languageMenu": {
     "label": "Valitse kieli"
   },
-  "messages": {
-    "title": "Ilmoitukset"
-  },
   "languageMessage": {
     "text": "Infofinland.fi:ssä on 12 kieltä. Haluatko valita toisen kielen?",
     "title": "Haluatko vaihtaa kieltä?"
@@ -79,25 +78,28 @@
     "button": "Kielet"
   },
   "localInfo": {
-    "title": "Paikallistietoa",
     "clear": "Tyhjennä",
-    "error": "Tietoa ei voitu ladata",
-    "help": "See more information related to your municipality.",
+    "error": "Kuntatietoja ei voitu ladata",
+    "help": "Katso oman kuntasi tiedot",
     "help_current_city": "Haluatko nähdä tietoja omasta kunnastasi? Valitsemalla kunnan näet kuntakohtaisia tietoja tästä kunnasta valtakunnallisilla sivuilla.",
-    "noInfo": "Tältä kunnalta ei ole paikallistietoa saatavilla",
+    "noInfo": "Kunnasta ei ole saatavilla tietoja",
     "readMore": "Lue lisää",
     "reselect": "Valitse toinen kunta",
     "select": "Valitse kunta",
     "select_current": "Valitse {{city}}",
-    "selected_city": "Oma kunta: {{city}}"
+    "selected_city": "Oma kunta: {{city}}",
+    "title": "Paikallistietoa"
   },
   "mainMenu": {
     "button": "Päävalikko",
     "close": "Piilota alasivut",
     "open": "Näytä alasivut"
   },
+  "messages": {
+    "title": "Ilmoitukset"
+  },
   "search": {
-    "loading": "Haetaan...",
+    "loading": "Haetaan tuloksia",
     "placeholder": "Hae hakusanalla..",
     "title": {
       "noresults": "Ei hakutuloksia",
@@ -105,5 +107,7 @@
       "start": "Hae sivustolta"
     }
   },
-  "video": { "button": "Avaa video" }
+  "video": {
+    "button": "Avaa video"
+  }
 }

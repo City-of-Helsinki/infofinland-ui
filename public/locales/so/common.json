@@ -1,4 +1,7 @@
 {
+  "breadcrumbs": {
+    "frontpage": "Bogga hore"
+  },
   "buttons": {
     "close": "Xir",
     "no": "Maya",
@@ -54,6 +57,9 @@
   "footer": {
     "helsinkiDisclaimer": "Bogga InfoFinland waxaa soosaara magaalada Helsinki waxaana maalgeliya dowladda iyo degmooyinka xubnaha ka ah InfoFinland."
   },
+  "images": {
+    "photographer": "Sawir"
+  },
   "languageMenu": {
     "label": "Dooro luqadda"
   },
@@ -66,6 +72,9 @@
   },
   "localInfo": {
     "clear": "Tirtir",
+    "error": "Macluumaad degmada waa la dejin waayay",
+    "help": "Fiiri macluumaadka degamadaada",
+    "noInfo": "Lama hayo macluumaadyo degmada ku saabsan",
     "readMore": "Faahfaahin dheeraad ah ka aqri",
     "reselect": "Dooro degmo kale",
     "select": "Dooro degmada"
@@ -74,6 +83,7 @@
     "button": "Liiska ugu weyn"
   },
   "search": {
+    "loading": "Natiijooyin ayaa la raadinayaa",
     "placeholder": "Ku raadi erey",
     "title": {
       "noresults": "Natiijooyinka xog-raadinta lama hayo",
