@@ -72,7 +72,7 @@ COPY --from=builder /app/next-i18next.config.js ./next-i18next.config.js
 # env debug line for debugging environment variables in Azure.
 # If you are sure if all env vars are available in both build- and runtime,
 # copy .env.production to runner so that runtime can have new env vars from repo if needed
-COPY --from=builder /app/.env.production .env.production
+#COPY --from=builder /app/.env.production .env.production
 
 
 # node process user should be able to write to .next/*
