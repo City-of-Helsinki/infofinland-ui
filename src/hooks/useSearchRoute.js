@@ -1,14 +1,14 @@
 import { useRouter } from 'next/router'
 
-const SEARCH_PAGE = '/hae'
+export const SEARCH_PAGE = '/search'
 
-const useSearchRoute = ({ q, onSubmit }) => {
+const useSearchRoute = ({ search, onSubmit }) => {
   const { push } = useRouter()
   const goToSearch = (e) => {
     e.preventDefault()
     push({
       pathname: SEARCH_PAGE,
-      query: { q },
+      query: { search },
     })
     onSubmit && onSubmit()
   }

@@ -29,7 +29,7 @@ const Search = () => {
     // And reset top menu search bar query word
     setQuery('')
   }
-  const onSubmit = useSearchRoute({ onSubmit: reset, q: query })
+  const onSubmit = useSearchRoute({ onSubmit: reset, search: query })
 
   const onChange = ({ target: { value } }) => setQuery(value)
 

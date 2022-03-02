@@ -1,4 +1,7 @@
 {
+  "breadcrumb": {
+    "frontpage": "Ana sayfa"
+  },
   "buttons": {
     "close": "Kapat",
     "no": "Hayır",
@@ -54,6 +57,9 @@
   "footer": {
     "helsinkiDisclaimer": "InfoFinland.fi internet sitesi Helsinki Belediyesi tarafından yayınlanmakta; finansmanı da devlet ve InfoFinland'in üye belediyeleri tarafından sağlanmaktadır."
   },
+  "images": {
+    "breadcrumb": "Resim"
+  },
   "languageMenu": {
     "label": "Dil seçin"
   },
@@ -66,6 +72,9 @@
   },
   "localInfo": {
     "clear": "Sil",
+    "error": "Belediyeye ait bilgiler yüklenemedi",
+    "help": "Kendi belediyeniz hakkındaki bilgilere göz atın",
+    "noInfo": "Belediyeniz hakkında bilgi yok",
     "readMore": "Daha fazla bilgi için",
     "reselect": "Başka bir belediye seçin",
     "select": "Bir belediye seçin"
@@ -74,6 +83,7 @@
     "button": "Ana menü"
   },
   "search": {
+    "loading": "Sonuç aranıyor",
     "placeholder": "Anahtar kelime ile arayın",
     "title": {
       "noresults": "Arama sonucu bulunamadı",

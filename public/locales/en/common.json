@@ -1,4 +1,7 @@
 {
+  "breadcrumb": {
+    "frontpage": "Front page"
+  },
   "buttons": {
     "close": "Close",
     "no": "No",
@@ -54,6 +57,9 @@
   "footer": {
     "helsinkiDisclaimer": "The InfoFinland website is published by the City of Helsinki, and it is funded by the state and the InfoFinland member municipalities."
   },
+  "images": {
+    "photographer": "Image"
+  },
   "languageMenu": {
     "label": "Select language"
   },
@@ -66,15 +72,18 @@
   },
   "localInfo": {
     "clear": "Clear",
+    "error": "Municipality’s information could not be loaded",
+    "help": "See your municipality’s information",
+    "noInfo": "No information available for the municipality",
+    "readMore": "Read more",
     "reselect": "Select another municipality",
-    "select": "Select a municipality",
-    "readMore": "Read more"
+    "select": "Select a municipality"
   },
   "mainMenu": {
     "button": "Main menu"
   },
   "search": {
-    "loading": "Searching...",
+    "loading": "Searching for results",
     "placeholder": "Search with a keyword",
     "title": {
       "noresults": "No search results",

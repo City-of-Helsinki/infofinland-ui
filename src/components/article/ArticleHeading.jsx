@@ -4,7 +4,6 @@ import { IconCalendar } from '@/components/Icons'
 import { DateTime } from 'luxon'
 
 import { useRouter } from 'next/router'
-import { BLOCK_MARGIN, HERO_MARGIN } from '@/components/layout/Block'
 import { useTranslation } from 'next-i18next'
 
 export default function ArticleHeading({
@@ -17,7 +16,7 @@ export default function ArticleHeading({
   const { locale } = useRouter()
   const { t } = useTranslation('common')
 
-  const titleMargin = themeHero ? HERO_MARGIN : BLOCK_MARGIN
+  const titleMargin = themeHero ? 'ifu-block--article' : 'ifu-block--hero'
   return (
     <div className={titleMargin}>
       <div className={cls({ 'absolute bottom-5 md:bottom-8': !forHeroImage })}>

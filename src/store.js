@@ -1,6 +1,8 @@
 import { atom } from 'jotai'
 import { focusAtom } from 'jotai/optics'
-import { atomWithStorage } from 'jotai/utils'
+import { atomWithStorage, splitAtom } from 'jotai/utils'
+import { LANG_MESSAGE_ID } from './components/messages/LanguageMessageCard'
+import { menuErrorResponse } from './lib/ssr-api'
 
 /** @module store */
 
@@ -30,10 +32,25 @@ export const languageMessageIsOpenAtom = atom(false)
 /** Visibility state of feeback form */
 export const feedbackFormVisibilityAtom = atom(false)
 
-/** Page atoms */
+/**
+ * Page atoms
+ */
 
-export const pageAtom = atom({ node: { id: null } })
+export const pageAtom = atom({
+  node: { id: null },
+  themeMenu: menuErrorResponse(),
+})
+pageAtom.debugLabel = 'page props root atom'
 
+export const isAboutPageAtom = atom((get) => get(pageAtom).isAboutPage)
+
+export const searchResultsAtom = focusAtom(pageAtom, (optics) =>
+  optics.prop('results')
+)
+
+export const searchResultsCountAtom = atom(
+  (get) => get(searchResultsAtom)?.length
+)
 export const municipalitiesAtom = focusAtom(pageAtom, (optics) =>
   optics.prop('municipalities')
 )
@@ -42,37 +59,55 @@ export const messagesAtom = focusAtom(pageAtom, (optics) =>
   optics.prop('messages')
 )
 
-export const shownMessagesAtom = atomWithStorage(SHOWN_MESSAGES_KEY, {})
+export const messageAtoms = splitAtom(messagesAtom)
 
+// set lang message as shown. It is controlled separately.
+// slight haxor. maybe fix this
+export const shownMessagesAtom = atomWithStorage(SHOWN_MESSAGES_KEY, {
+  [LANG_MESSAGE_ID]: true,
+})
+
+/**
+ * Feedback form info page atom
+ */
 export const feedbackPageAtom = focusAtom(pageAtom, (optics) =>
   optics.prop('feedback')
 )
 
-export const footerMenuAtom = focusAtom(pageAtom, (optics) =>
-  optics.prop('footerMenu')
+/**
+ * Menu atom collection
+ */
+export const menusAtom = focusAtom(pageAtom, (optics) => optics.prop('menus'))
+
+export const footerMenuAtom = focusAtom(menusAtom, (optics) =>
+  optics.prop('footer-about')
 )
 
-export const citiesLandingMenuAtom = focusAtom(pageAtom, (optics) =>
-  optics.prop('citiesLandingMenu')
+export const citiesLandingMenuAtom = focusAtom(menusAtom, (optics) =>
+  optics.prop('cities-landing')
 )
-export const citiesMenuAtom = focusAtom(pageAtom, (optics) =>
-  optics.prop('citiesMenu')
+export const citiesMenuAtom = focusAtom(menusAtom, (optics) =>
+  optics.prop('cities')
 )
-export const mainMenuAtom = focusAtom(pageAtom, (optics) => optics.prop('menu'))
+export const mainMenuAtom = focusAtom(menusAtom, (optics) =>
+  optics.prop('main')
+)
 
-export const menusAtom = atom((get) => {
-  return {
-    mainMenu: get(mainMenuAtom),
-    citiesLandingMenu: get(citiesLandingMenuAtom),
-    citiesMenu: get(citiesMenuAtom),
-  }
-})
+export const aboutMenuAtom = focusAtom(menusAtom, (optics) =>
+  optics.prop('about')
+)
 
+export const themeMenuAtom = focusAtom(pageAtom, (optics) =>
+  optics.prop('themeMenu')
+)
+
+/**
+ * Node atom collection
+ */
 export const nodeAtom = focusAtom(pageAtom, (optics) => optics.prop('node'))
 export const nodeIdAtom = focusAtom(nodeAtom, (optics) => optics.prop('id'))
 
 /** Cookie consent atom */
-
 export const cookieConsentAtom = atomWithStorage(COOKIE_CONSENT_KEY, undefined)
 export const isCookieConsentSetAtom = atom(
   (get) => typeof get(cookieConsentAtom) !== 'undefined'

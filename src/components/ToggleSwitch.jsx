@@ -3,7 +3,7 @@ import cls from 'classnames'
 export default function ToggleSwitch({ text, id, className, ...inputProps }) {
   return (
     <label htmlFor={id} className={cls('ifu-toggleswitch__label', className)}>
-      {text}
+      <span>{text}</span>
 
       <input
         type="checkbox"

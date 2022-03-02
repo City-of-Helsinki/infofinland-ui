@@ -1,9 +1,12 @@
 {
+  "breadcrumbs": {
+    "frontpage": "Avaleht"
+  },
   "buttons": {
     "close": "Sulge",
-    "search": "Otsi",
     "no": "Ei",
     "ok": "OK",
+    "search": "Otsi",
     "skipTo": "Mine sisu juurde",
     "yes": "Jah"
   },
@@ -29,6 +32,9 @@
       "open": "Saada selle lehe kohta tagasisidet",
       "send": "Saada",
       "sendAgain": "Saada uus"
+    },
+    "image": {
+      "photographer": "Pilt"
     },
     "info1": "Küsitluslehel on kolm välja.",
     "info2": "Nimi, e-posti aadress ja tagasiside tekst on kõik kohustusliku teabega väljad.",
@@ -66,6 +72,9 @@
   },
   "localInfo": {
     "clear": "Tühjenda",
+    "error": "Teavet kohaliku omavalitsuse kohta ei saanud laadida",
+    "help": "Vaata teavet oma kohaliku omavalitsuse kohta",
+    "noInfo": "Teave kohaliku omavalitsuse kohta puudub",
     "readMore": "Loe edasi",
     "reselect": "Vali teine omavalitsus",
     "select": "Vali omavalitsus"
@@ -74,6 +83,7 @@
     "button": "Peamenüü"
   },
   "search": {
+    "loading": "Tulemuste otsimine",
     "placeholder": "Otsi märksõnaga",
     "title": {
       "noresults": "Otsing ei andnud tulemusi",

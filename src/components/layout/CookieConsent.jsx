@@ -6,6 +6,7 @@ import { useAtomValue, useUpdateAtom } from 'jotai/utils'
 import { useRouter } from 'next/router'
 import { CSSTransition } from 'react-transition-group'
 import getConfig from 'next/config'
+import { isSSR } from '@/hooks/useIsomorphicLayoutEffect'
 
 export function CookieConsentActions() {
   const { t } = useTranslation('common')
@@ -13,9 +14,11 @@ export function CookieConsentActions() {
   const setConsent = useUpdateAtom(cookieConsentAtom)
   const allow = () => setConsent(true)
   const deny = () => setConsent(false)
-  if (isConsentSet) {
+  // no serverside rendering or when user has acknowledged the banner
+  if (isSSR() || isConsentSet) {
     return null
   }
+
   return (
     <>
       <Button

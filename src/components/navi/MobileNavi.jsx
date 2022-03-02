@@ -1,22 +1,36 @@
 import { useState, useEffect } from 'react'
-import { MainNaviError } from '@/components/navi/MainMenu'
+// import { MainNaviError } from '@/components/navi/MainMenu'
 import MenuGroup from './MenuGroup'
-import { IconMenu } from '@/components/Icons'
+import { IconMenu, IconAngleRight } from '@/components/Icons'
 import Drawer from '@/components/layout/Drawer'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
+import { useAtomValue } from 'jotai/utils'
 
 import { useTranslation } from 'next-i18next'
-import { useAtomValue } from 'jotai/utils'
-import { menusAtom, selectedCityAtom } from '@/src/store'
+import {
+  // aboutMenuAtom,
+  mainMenuAtom,
+  citiesLandingMenuAtom,
+  citiesMenuAtom,
+  // nodeAtom,
+  selectedCityAtom,
+  isAboutPageAtom,
+} from '@/src/store'
 
-const MobileNavi = () => {
+const MobileNavi = ({ menu }) => {
   const [isOpen, setVisibility] = useState(false)
   const open = () => setVisibility(true)
   const close = () => setVisibility(false)
   const router = useRouter()
   const { t } = useTranslation('common')
+  // const aboutMenu = useAtomValue(mainMenuAtom)
+
+  const mainMenu = useAtomValue(mainMenuAtom)
+  const citiesMenu = useAtomValue(citiesMenuAtom)
+  const citiesLandingMenu = useAtomValue(citiesLandingMenuAtom)
   const selectedCity = useAtomValue(selectedCityAtom)
-  const menus = useAtomValue(menusAtom)
+  const isAboutPage = useAtomValue(isAboutPageAtom)
 
   /*
   Ensure that mobile navi dialog is always closed when
@@ -35,13 +49,17 @@ const MobileNavi = () => {
       router.events.off('routeChangeError', close)
     }
   }, [router])
-  if (menus.mainMenu.error) {
-    return (
-      <span className="md:hidden">
-        <MainNaviError />
-      </span>
-    )
+
+  const menulist = []
+
+  if (menu) {
+    menulist.push({ menu })
+  } else {
+    menulist.push({ menu: mainMenu })
+    menulist.push({ menu: citiesLandingMenu })
+    menulist.push({ menu: citiesMenu, city: selectedCity })
   }
+
   return (
     <>
       <div className="md:hidden md:mx-6 me-6 ms-2">
@@ -60,13 +78,15 @@ const MobileNavi = () => {
 
       <Drawer close={close} isOpen={isOpen}>
         <div className="bg-white">
-          <MenuGroup
-            menulist={[
-              { menu: menus.mainMenu },
-              { menu: menus.citiesLandingMenu },
-              { menu: menus.citiesMenu, city: selectedCity },
-            ]}
-          />
+          {isAboutPage && (
+            <Link href="/">
+              <a className="block pb-4 mb-2 font-bold border-b border-gray-lighter">
+                <IconAngleRight className="scale-150 rotate-180 ms-4 me-2" />
+                {t('breadcrumbs.frontpage')}
+              </a>
+            </Link>
+          )}
+          <MenuGroup menulist={menulist} />
         </div>
       </Drawer>
     </>
