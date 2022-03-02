@@ -106,8 +106,7 @@ const PageNotFound = ({ texts }) => {
           </span>
         </h1>
       </div>
-      <div
-        className="lg:grid md:grid-rows-6 md:grid-flow-col md:gap-y-8 md:gap-x-32 mt-8 md:mt-16 mb-8 md:mb-16 ifu-block--hero">
+      <div className="lg:grid md:grid-rows-6 md:grid-flow-col md:gap-x-32 md:gap-y-8 mt-8 md:mt-16 mb-8 md:mb-16 ifu-block--hero">
         <p className="block md:hidden mb-8 text-body-small">
           {texts[locale].help}
         </p>

@@ -1,7 +1,6 @@
 import cls from 'classnames'
 
 const Block = ({ children, className, hero, about }) => {
-
   return (
     <div
       className={cls(className, {

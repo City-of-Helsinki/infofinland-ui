@@ -10,8 +10,7 @@ const HeroImage = ({ heroImage, ...rest }) => {
   if (heroImage) {
     return (
       <>
-        <div
-          className="ifu-block--hero overflow-hidden mb-6 h-hero  md:h-heroxl text-center rounded relative">
+        <div className="overflow-hidden relative mb-6 h-hero md:h-heroxl text-center rounded ifu-block--hero">
           <div className="relative h-full bg-gray-white">
             {loading && <RingsLoader />}
             <Image

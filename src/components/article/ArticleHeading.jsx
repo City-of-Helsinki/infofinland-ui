@@ -16,7 +16,7 @@ export default function ArticleHeading({
   const { locale } = useRouter()
   const { t } = useTranslation('common')
 
-  const titleMargin = themeHero ? 'ifu-block--article':'ifu-block--hero'
+  const titleMargin = themeHero ? 'ifu-block--article' : 'ifu-block--hero'
   return (
     <div className={titleMargin}>
       <div className={cls({ 'absolute bottom-5 md:bottom-8': !forHeroImage })}>
