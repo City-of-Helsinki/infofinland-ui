@@ -1,9 +1,14 @@
 {
+  "article": {
+    "published": "Publicado"
+  },
   "breadcrumbs": {
-    "frontpage": "Inicio"
+    "frontpage": "Inicio",
+    "title": "Rastro de migas"
   },
   "buttons": {
     "close": "Cerrar",
+    "external": "El enlace lleva a un servicio externo.",
     "no": "No",
     "ok": "OK",
     "search": "Buscar",
@@ -74,13 +79,20 @@
     "clear": "Vaciar",
     "error": "No se han podido cargar los datos del municipio",
     "help": "Consulte los datos de su municipio",
+    "help_current": "Seleccione un municipio para poder ver la información sobre los servicios locales cuando vaya al portal.",
     "noInfo": "No hay datos disponibles del municipio",
     "readMore": "Más información",
     "reselect": "Elegir otro municipio",
-    "select": "Elegir municipio"
+    "select": "Elegir municipio",
+    "select_current": "Seleccionar: {{city}}",
+    "selected_city": "Su municipio: {{city}}",
+    "title": "Información local"
   },
   "mainMenu": {
     "button": "Menú principal"
+  },
+  "messages": {
+    "title": "Mensajes"
   },
   "search": {
     "loading": "Buscando resultados",
@@ -90,5 +102,8 @@
       "results": "Resultados de la búsqueda:",
       "start": "Buscar en el portal"
     }
+  },
+  "video": {
+    "button": "Abrir vídeo"
   }
 }

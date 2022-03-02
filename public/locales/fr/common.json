@@ -1,9 +1,14 @@
 {
+  "article": {
+    "published": "Publié"
+  },
   "breadcrumb": {
-    "frontpage": "Page principale"
+    "frontpage": "Page principale",
+    "title": "Fil d'Ariane"
   },
   "buttons": {
     "close": "Fermer",
+    "external": "Lien",
     "no": "Non",
     "ok": "OK",
     "search": "Cherchez",
@@ -74,13 +79,20 @@
     "clear": "Effacer",
     "error": "Impossible de télécharger les informations de la commune",
     "help": "Voir les informations concernant votre commune",
+    "help_current_city": "Sélectionner la commune pour voir les informations sur les services locaux lorsque vous naviguez sur le site.",
     "noInfo": "Aucune information sur la commune n’est disponible",
     "readMore": "En savoir plus",
     "reselect": "Sélectionnez une autre  commune",
-    "select": "Sélectionnez la commune"
+    "select": "Sélectionnez la commune",
+    "select_current": "Sélectionner : {{city}}",
+    "selected_city": "Votre commune : {{city}}",
+    "title": "Informations locales"
   },
   "mainMenu": {
     "button": "Menu principal"
+  },
+  "messages": {
+    "title": "Annonces"
   },
   "search": {
     "loading": "Recherche de résultats",
@@ -90,5 +102,8 @@
       "results": "Résultats de la recherche:",
       "start": "Rechercher sur la page"
     }
+  },
+  "video": {
+    "button": "Ouvrir la vidéo"
   }
 }

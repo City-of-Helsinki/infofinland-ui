@@ -1,9 +1,14 @@
 {
+  "article": {
+    "published": "Waa la daabacay"
+  },
   "breadcrumbs": {
-    "frontpage": "Bogga hore"
+    "frontpage": "Bogga hore",
+    "title": "Dhabbaha isku-xirka (Murupolku)"
   },
   "buttons": {
     "close": "Xir",
+    "external": "Linkigu wuxuu ku geynayaa adeegga bannaakiisa",
     "no": "Maya",
     "ok": "OK",
     "search": "Raadi",
@@ -74,13 +79,20 @@
     "clear": "Tirtir",
     "error": "Macluumaad degmada waa la dejin waayay",
     "help": "Fiiri macluumaadka degamadaada",
+    "help_current": "Dooro degmo, waxaad markaas arki kartaa macluumaad ku saabsan adeegyada deegaanka, marka aad bogga ku dhex-jirto.",
     "noInfo": "Lama hayo macluumaadyo degmada ku saabsan",
     "readMore": "Faahfaahin dheeraad ah ka aqri",
     "reselect": "Dooro degmo kale",
-    "select": "Dooro degmada"
+    "select": "Dooro degmada",
+    "select_current": "Dooro: {{city}}",
+    "selected_city": "Degmadaada: {{city}}",
+    "title": "Macluumaadka deegaanka"
   },
   "mainMenu": {
     "button": "Liiska ugu weyn"
+  },
+  "messages": {
+    "title": "Wargelinnada"
   },
   "search": {
     "loading": "Natiijooyin ayaa la raadinayaa",
@@ -90,5 +102,8 @@
       "results": "Natiijooyinka xog-raadinta:",
       "start": "Ka raadi bogga"
     }
+  },
+  "video": {
+    "button": "Fur fiidiyowga"
   }
 }

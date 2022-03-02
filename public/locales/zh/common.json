@@ -1,9 +1,14 @@
 {
+  "article": {
+    "published": "已发布"
+  },
   "breadcrumb": {
-    "frontpage": "首页"
+    "frontpage": "首页",
+    "title": "面包屑导航"
   },
   "buttons": {
     "close": "关闭",
+    "external": "链接转向至另一网站",
     "no": "否",
     "ok": "OK",
     "search": "搜索",
@@ -74,13 +79,20 @@
     "clear": "清空",
     "error": "无法下载当地信息",
     "help": "了解当地信息",
+    "help_current_city": "选择您的市以在浏览站点时查看关于本地服务的信息。",
     "noInfo": "无法提供当地信息",
     "readMore": "了解详情",
     "reselect": "选择另一地区",
-    "select": "选择地区"
+    "select": "选择地区",
+    "select_current": "选择： {{city}}",
+    "selected_city": "我的市： {{city}}",
+    "title": "本地信息"
   },
   "mainMenu": {
     "button": "主菜单"
+  },
+  "messages": {
+    "title": "消息"
   },
   "search": {
     "loading": "搜索结果",
@@ -90,5 +102,8 @@
       "results": "搜索结果：",
       "start": "搜索网站"
     }
+  },
+  "video": {
+    "button": "打开视频"
   }
 }

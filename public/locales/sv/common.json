@@ -1,9 +1,14 @@
 {
+  "article": {
+    "published": "Publicerad"
+  },
   "breadcrumbs": {
-    "frontpage": "Etusivu"
+    "frontpage": "Etusivu",
+    "title": "Synlig sökväg"
   },
   "buttons": {
     "close": "Stäng",
+    "external": "Länken tar dig utanför tjänsten",
     "no": "Nej",
     "ok": "OK",
     "search": "Sök",
@@ -74,13 +79,20 @@
     "clear": "Töm",
     "error": "De kommunspecifika uppgifterna kunde inte laddas",
     "help": "Se din egen kommuns uppgifter",
+    "help_current_city": "Välj kommun, så får du information om lokala tjänster på webbplatsen.",
     "noInfo": "Inga uppgifter om kommunen finns tillgängliga",
     "readMore": "Läs mer",
     "reselect": "Välj annan kommun",
-    "select": "Välj kommun"
+    "select": "Välj kommun",
+    "select_current": "Välj {{city}}",
+    "selected_city": "Din kommun: {{city}}",
+    "title": "Lokalinformation"
   },
   "mainMenu": {
     "button": "!Päävalikko"
+  },
+  "messages": {
+    "title": "Meddelanden"
   },
   "search": {
     "loading": "Resultat söks",
@@ -90,5 +102,8 @@
       "results": "Sökresultat:",
       "start": "Sök på webbplatsen"
     }
+  },
+  "video": {
+    "button": "Öppna video"
   }
 }

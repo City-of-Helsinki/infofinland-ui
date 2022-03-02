@@ -81,7 +81,7 @@
     "clear": "Tyhjennä",
     "error": "Kuntatietoja ei voitu ladata",
     "help": "Katso oman kuntasi tiedot",
-    "help_current_city": "Haluatko nähdä tietoja omasta kunnastasi? Valitsemalla kunnan näet kuntakohtaisia tietoja tästä kunnasta valtakunnallisilla sivuilla.",
+    "help_current_city": "Valitse kunta, niin voit nähdä tietoa paikallisista palveluista, kun liikut sivustolla.",
     "noInfo": "Kunnasta ei ole saatavilla tietoja",
     "readMore": "Lue lisää",
     "reselect": "Valitse toinen kunta",

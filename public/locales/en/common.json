@@ -1,9 +1,14 @@
 {
+  "article": {
+    "published": "Published"
+  },
   "breadcrumb": {
-    "frontpage": "Front page"
+    "frontpage": "Front page",
+    "title": "Breadcrum trail"
   },
   "buttons": {
     "close": "Close",
+    "external": "Link redirects to another website",
     "no": "No",
     "ok": "OK",
     "search": "Search",
@@ -74,13 +79,19 @@
     "clear": "Clear",
     "error": "Municipality’s information could not be loaded",
     "help": "See your municipality’s information",
+    "help_current_city": "Select your municipality in order to see information about local services when browsing the site.",
     "noInfo": "No information available for the municipality",
     "readMore": "Read more",
     "reselect": "Select another municipality",
-    "select": "Select a municipality"
+    "select": "Select a municipality",
+    "select_current": "Select {{city}}",
+    "selected_city": "My municipality: {{city}}"
   },
   "mainMenu": {
     "button": "Main menu"
+  },
+  "messages": {
+    "title": "Messages"
   },
   "search": {
     "loading": "Searching for results",
@@ -90,5 +101,8 @@
       "results": "Search results:",
       "start": "Search the website"
     }
+  },
+  "video": {
+    "button": "Open video"
   }
 }

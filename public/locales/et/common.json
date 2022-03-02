@@ -1,9 +1,14 @@
 {
+  "article": {
+    "published": "Avaldatud"
+  },
   "breadcrumbs": {
-    "frontpage": "Avaleht"
+    "frontpage": "Avaleht",
+    "title": "Jäljerida"
   },
   "buttons": {
     "close": "Sulge",
+    "external": "Link viib saidilt välja",
     "no": "Ei",
     "ok": "OK",
     "search": "Otsi",
@@ -74,13 +79,20 @@
     "clear": "Tühjenda",
     "error": "Teavet kohaliku omavalitsuse kohta ei saanud laadida",
     "help": "Vaata teavet oma kohaliku omavalitsuse kohta",
+    "help_current_city": "Vali omavalitsus, et näha saidil liikudes teavet kohalike teenuste kohta.",
     "noInfo": "Teave kohaliku omavalitsuse kohta puudub",
     "readMore": "Loe edasi",
     "reselect": "Vali teine omavalitsus",
-    "select": "Vali omavalitsus"
+    "select": "Vali omavalitsus",
+    "select_city": "Vali: {{city}}",
+    "selected_city": "Minu omavalitsus: {{}}",
+    "title": "Kohalik teave"
   },
   "mainMenu": {
     "button": "Peamenüü"
+  },
+  "messages": {
+    "title": "Teavitused"
   },
   "search": {
     "loading": "Tulemuste otsimine",
@@ -90,5 +102,8 @@
       "results": "Otsingutulemused:",
       "start": "Otsi saidilt"
     }
+  },
+  "video": {
+    "button": "Ava video"
   }
 }
