@@ -102,6 +102,7 @@ export async function getStaticProps(context) {
       themeMenu = await getMenu(field_theme_menu_machine_name)
     }
   }
+  //if page is in about-menu, use secondary layout
   const isAboutPage =
     common.menus.about.items.find(({ url }) => url === `/${locale}/${path}`) !==
     undefined
