@@ -12,30 +12,30 @@ import { defer } from 'lodash'
 import { SEARCH_PAGE } from './useSearchRoute'
 const DEV = process.env.NODE_ENV === 'development'
 
-function initAnalyticsTracking({ enabled = false, url, siteId, domains }) {
+function initAnalyticsTracking({
+  // enabled = false,
+  url,
+  siteId,
+}) {
   // init only once
-  if (Analytics._paq) {
+  if (Analytics.hasStarted) {
     return Analytics
   }
 
   var _paq = (window._paq = window._paq || [])
 
   // Don't send anything in dev mode. just log it instead
-  if (process.env.NODE_ENV === 'development') {
-    _paq.push = console.log
-  }
+  // if (process.env.NODE_ENV === 'development') {
+  //   _paq.push = console.log
+  // }
 
   //** This part we get from the matomo instance */
 
   /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  // _paq.push(['setDomains', ['*.www.infofinland.fi', '*.www.infofinland.fi']])
-  _paq.push(['setDomains', [domains]])
-  _paq.push(['setDoNotTrack', !enabled])
-  DEV && console.log('initial page track')
-  //Comment this out from matomo code. Initial page tracking is done
-  // afterwards to ensure search is tracked properly as well
-  // _paq.push(['trackPageView']);
+  // _paq.push(["setDoNotTrack", !enabled]);
+  // _paq.push(["disableCookies"]);
   _paq.push(['enableLinkTracking'])
+  _paq.push(['trackPageView'])
   ;(function () {
     var u = url
     _paq.push(['setTrackerUrl', u + 'tracker.php'])
@@ -50,26 +50,28 @@ function initAnalyticsTracking({ enabled = false, url, siteId, domains }) {
   })()
 
   /**And here we are back to our implementation */
-  Analytics._paq = window._paq
-  Analytics.trackPageOrSearch(window.location.pathname)
+  DEV && console.log('initial page track')
+  // Analytics._paq = window._paq
+  // Analytics.trackPageOrSearch(window.location.pathname)
 
   return Analytics
 }
 
 export const Analytics = {
-  _paq: undefined,
+  hasStarted: false,
+  // _paq: undefined,
   _searchCount: false,
   init: initAnalyticsTracking,
   setEnabled: (enabled) => {
-    Analytics._paq.push(['setDoNotTrack', !enabled])
+    window._paq.push(['setDoNotTrack', !enabled])
     return Analytics
   },
   trackPage: () => {
-    Analytics._paq.push(['trackPageView'])
+    window._paq.push(['trackPageView'])
     return Analytics
   },
   trackSearch: ({ keyword, category = false, searchCount = false }) => {
-    Analytics._paq.push(['tracSiteSearch', keyword, category, searchCount])
+    window._paq.push(['trackSiteSearch', keyword, category, searchCount])
     return Analytics
   },
   trackPageOrSearch: (path) => {
@@ -103,7 +105,7 @@ const trackPageFromRoute = (path) => {
   // Initial tracking uses title from server html
   defer(() => {
     DEV && console.log('track from router', document.title)
-    Analytics._paq.push(['setDocumentTitle', document.title])
+    window._paq.push(['setDocumentTitle', document.title])
     Analytics.trackPageOrSearch(path)
   })
 }
@@ -128,8 +130,7 @@ const useAnalytics = () => {
       url,
       siteId,
       domains,
-      //type conversion for potential undefined value
-      enabled: !!isAnalyticsAllowed,
+      enabled: navigator.doNotTrack !== '1' && !!isAnalyticsAllowed,
       searchCount,
     }).connect()
 

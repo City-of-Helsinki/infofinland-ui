@@ -4,7 +4,6 @@ import { appWithTranslation } from 'next-i18next'
 import useHydratePage from '@/hooks/useHydratePage'
 import { useAtomDevtools } from 'jotai/devtools'
 import { pageAtom } from '@/src/store'
-// import { init, push } from "@socialgouv/matomo-next";
 import Router from 'next/router'
 import NProgress from 'nprogress'
 import useAnalytics from '@/hooks/useAnalytics'
