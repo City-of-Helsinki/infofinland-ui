@@ -1,5 +1,5 @@
 @layer utilities {
-  [dir='rtl'] .ifu-breadcrumb__arrow {
+  [dir='rtl'] .ifu-breadcrumb__icon--arrow {
     transform: rotate(180deg);
   }
 

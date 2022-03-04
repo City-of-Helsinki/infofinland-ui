@@ -33,7 +33,7 @@ const Breadcrumbs = ({ items }) => {
       {!parent && <MobileLink url="/" title={t('breadcrumbs.frontpage')} />}
       {/* Desktop navi */}
       <div className="hidden md:block justify-items-start">
-        <div className="flex-none w-8 float-start">
+        {/* <div className="flex-none w-8 float-start">
           <Link href="/" passHref prefetch={false}>
             <a
               className="inline-block relative flex-none mt-1 text-small md:text-body-small"
@@ -45,15 +45,26 @@ const Breadcrumbs = ({ items }) => {
               />
             </a>
           </Link>
-        </div>
+        </div> */}
 
         <div className="flex-wrap leading-5 ps-4">
-          <div className="inline-block">
+        <Link href="/" passHref prefetch={false}>
+            <a
+              className="flex-none md:text-body-small me-3"
+              title={t('breadcrumbs.frontpage')}
+            >
+              <Icon
+                icon="home"
+                className="ifu-breadcrumb__icon--home"
+              />
+            </a>
+          </Link>
+
             <IconAngleRight
-              className=" transform scale-150 fill-current me-3 ifu-breadcrumb__arrow"
+              className="me-3 ifu-breadcrumb__icon--arrow"
               aria-hidden
             />
-          </div>
+
           {items?.map(({ title, url, id }, i) => (
             <div key={`crumb-${id}`} className="inline-block">
               <Link href={url} passHref prefetch={false}>
@@ -66,7 +77,7 @@ const Breadcrumbs = ({ items }) => {
               </Link>
               {i + 1 < items.length && (
                 <IconAngleRight
-                  className=" mx-3 transform scale-150 fill-current ifu-breadcrumb__arrow"
+                  className=" mx-3 ifu-breadcrumb__icon--arrow"
                   aria-hidden
                 />
               )}
