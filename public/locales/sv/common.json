@@ -6,6 +6,12 @@
     "frontpage": "Etusivu",
     "title": "Synlig sökväg"
   },
+  "frontpage": {
+    "cities": {
+      "text": "På InfoFinland hittar du information även om lokala tjänster.",
+      "button": "Se Städer"
+    }
+  },
   "buttons": {
     "close": "Stäng",
     "external": "Länken tar dig utanför tjänsten",

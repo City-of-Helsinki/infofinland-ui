@@ -3,6 +3,7 @@ const env = {
   COOKIE_PAGE_PATH: '/cookie-settings',
   FEEDBACK_PAGE_PATH: '/feedback',
   SITEMAP_PAGE_PATH: '/sitemap',
+  CITIES_PAGE_PATH: '/cities',
   PRERENDER_LOCALES: ['fi', 'en', 'sv', 'ar', 'ru'],
   DRUPAL_MENUS: {
     MAIN: 'main',

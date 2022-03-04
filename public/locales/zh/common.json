@@ -2,6 +2,12 @@
   "article": {
     "published": "已发布"
   },
+  "frontpage": {
+    "cities": {
+      "text": "InfoFinland还为您提供许多地方服务信息。",
+      "button": "了解城市"
+    }
+  },
   "breadcrumb": {
     "frontpage": "首页",
     "title": "面包屑导航"

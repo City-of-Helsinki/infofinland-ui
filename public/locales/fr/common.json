@@ -75,6 +75,12 @@
   "languageSelector": {
     "button": "Langues"
   },
+  "frontpage": {
+    "cities": {
+      "text": "InfoFinlandista donne également des informations sur les services locaux",
+      "button": "Voir Villes"
+    }
+  },
   "localInfo": {
     "clear": "Effacer",
     "error": "Impossible de télécharger les informations de la commune",

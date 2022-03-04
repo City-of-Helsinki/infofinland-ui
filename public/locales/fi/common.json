@@ -6,6 +6,12 @@
     "frontpage": "Etusivu",
     "title": "Murupolku"
   },
+  "frontpage": {
+    "cities": {
+      "text": "InfoFinlandista löydät tietoa myös paikallisista palveluista.",
+      "button": "Katso Kaupungit"
+    }
+  },
   "buttons": {
     "close": "Sulje",
     "external": "Linkki johtaa palvelun ulkopuolelle",

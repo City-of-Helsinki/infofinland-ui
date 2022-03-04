@@ -2,6 +2,12 @@
   "article": {
     "published": "Опубликовано"
   },
+  "frontpage": {
+    "cities": {
+      "text": "На сайте InfoFinland вы также найдёте информацию о местных службах.",
+      "button": "Просмотреть Города"
+    }
+  },
   "breadcrumbs": {
     "frontpage": "Главная страница",
     "title": "Навигационная цепочка"

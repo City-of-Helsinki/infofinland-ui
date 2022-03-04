@@ -6,6 +6,12 @@
     "frontpage": "Inicio",
     "title": "Rastro de migas"
   },
+  "frontpage": {
+    "cities": {
+      "text": "En InfoFinland también encontrará información sobre servicios locales.",
+      "button": "Ver ciudades"
+    }
+  },
   "buttons": {
     "close": "Cerrar",
     "external": "El enlace lleva a un servicio externo.",

@@ -6,6 +6,12 @@
     "frontpage": "Avaleht",
     "title": "Jäljerida"
   },
+  "frontpage": {
+    "cities": {
+      "text": "InfoFinlandist leiad teavet ka kohalike teenuste kohta.",
+      "button": "Mine lehele Linnad"
+    }
+  },
   "buttons": {
     "close": "Sulge",
     "external": "Link viib saidilt välja",

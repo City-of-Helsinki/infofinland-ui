@@ -34,13 +34,13 @@
     outline-width: 3px;
   }
 
-.ifu-breadcrumb__icon--arrow {
-  @apply transform scale-150;
-  --tw-translate-y: -0.04rem;
-}
+  .ifu-breadcrumb__icon--arrow {
+    @apply transform scale-150;
+    --tw-translate-y: -0.04rem;
+  }
 
   .ifu-breadcrumb__icon--home {
     @apply transform scale-125;
     --tw-translate-y: -0.22rem;
-    }
+  }
 }

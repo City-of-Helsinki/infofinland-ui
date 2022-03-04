@@ -2,6 +2,12 @@
   "article": {
     "published": "Published"
   },
+  "frontpage": {
+    "cities": {
+      "text": "InfoFinland also provides information about local services.",
+      "button": "Go to Cities"
+    }
+  },
   "breadcrumb": {
     "frontpage": "Front page",
     "title": "Breadcrum trail"

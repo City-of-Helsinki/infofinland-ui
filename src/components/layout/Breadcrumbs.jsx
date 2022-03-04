@@ -48,22 +48,19 @@ const Breadcrumbs = ({ items }) => {
         </div> */}
 
         <div className="flex-wrap leading-5 ps-4">
-        <Link href="/" passHref prefetch={false}>
+          <Link href="/" passHref prefetch={false}>
             <a
               className="flex-none md:text-body-small me-3"
               title={t('breadcrumbs.frontpage')}
             >
-              <Icon
-                icon="home"
-                className="ifu-breadcrumb__icon--home"
-              />
+              <Icon icon="home" className="ifu-breadcrumb__icon--home" />
             </a>
           </Link>
 
-            <IconAngleRight
-              className="me-3 ifu-breadcrumb__icon--arrow"
-              aria-hidden
-            />
+          <IconAngleRight
+            className="me-3 ifu-breadcrumb__icon--arrow"
+            aria-hidden
+          />
 
           {items?.map(({ title, url, id }, i) => (
             <div key={`crumb-${id}`} className="inline-block">

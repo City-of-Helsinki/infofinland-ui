@@ -2,6 +2,12 @@
   "article": {
     "published": "Waa la daabacay"
   },
+  "frontpage": {
+    "cities": {
+      "text": "Waxaa kale oo aad InfoFinland ka heleysaa macluumaad ku saabsan adeegyada deegaannada.",
+      "button": "Fiiri magaalooyinka"
+    }
+  },
   "breadcrumbs": {
     "frontpage": "Bogga hore",
     "title": "Dhabbaha isku-xirka (Murupolku)"

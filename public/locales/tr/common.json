@@ -6,6 +6,13 @@
     "frontpage": "Ana sayfa",
     "title": "Ekmek kırıntısı"
   },
+  "frontpage": {
+    "cities": {
+      "text": "InfoFinland sitesinde yerel hizmetler hakkında da bilgi bulabilirsiniz.",
+      "button": "Şehirlere bakın"
+    }
+  },
+
   "buttons": {
     "close": "Kapat",
     "external": "Bağlantı adresi sizi başka bir sayfaya yönlendirecektir.",
