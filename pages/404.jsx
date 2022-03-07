@@ -8,7 +8,8 @@ import { map, omit } from 'lodash'
 import * as DrupalApi from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import getConfig from 'next/config'
-
+import use404Locales from '@/hooks/use404Locales'
+import Link from 'next/link'
 export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
 
@@ -71,8 +72,70 @@ const TEXTS_404 = {
   },
 }
 
-const PageNotFound = ({ texts }) => {
-  const { locale } = useRouter()
+const TEXTS_LANG_404 = {
+  fi: {
+    title: 'Sivua ei löydy tällä kielellä',
+    help: 'Valitettavasti sivua ei ole valitsemallasi kielellä.',
+  },
+  sv: {
+    title: 'Sidan finns inte på detta språk',
+    help: 'Tyvärr finns sidan inte på det språk du har valt.',
+  },
+  en: {
+    title: 'Page not found in this language',
+    help: 'Unfortunately, the page does not exist in the language of your choice.',
+  },
+  ru: {
+    title: 'Страница на данном языке не найдена',
+    help: 'К сожалению, страницы на выбранном вами языке, не существует.',
+  },
+  et: {
+    title: 'Leht ei ole selles keeles saadaval',
+    help: 'Kahjuks ei ole leht sinu valitud keeles saadaval.',
+  },
+  fr: {
+    title: 'La page est introuvable dans cette langue',
+    help: 'Malheureusement, cette page n’est pas disponible dans la langue sélectionnée.',
+  },
+  so: {
+    title: 'Luqaddan bogga laguma helo',
+    help: 'Nasiibdarro luqadda aad dooratay kuma jirto bogga.',
+  },
+  es: {
+    title: 'La página no existe en este idioma',
+    help: 'Lamentablemente, la página no existe en el idioma que ha elegido.',
+  },
+  tr: {
+    title: 'Sayfa bu dilde mevcut değil',
+    help: 'Ne yazık ki sayfa seçtiğiniz dilde mevcut değil.',
+  },
+  zh: {
+    title: '本页不支持该语言',
+    help: '很遗憾！本页不支持您所选的语言您可通过下列语言了解相关信息：',
+  },
+  fa: {
+    title: 'ین صفحه در حال حاضر در دسترس نیست',
+    help: 'می توانید در مورد این موضوع به زبان های زیر اطلاعات کسب کنید.',
+  },
+  ar: {
+    title: 'الصفحة غير متوفرة بهذه اللغة',
+    help: 'تجد معلومات عن الموضوع باللغات التالية',
+  },
+}
+
+export const PageNotFound = () => {
+  const { locale, asPath } = useRouter()
+  const { data, error } = use404Locales({ path: asPath })
+
+  if (!data) {
+    return 'loading'
+  }
+
+  if (error) {
+    return 'error'
+  }
+
+  const texts = data.length === 0 ? TEXTS_404 : TEXTS_LANG_404
   const content = omit(texts, locale)
 
   return (
@@ -87,7 +150,10 @@ const PageNotFound = ({ texts }) => {
           'mx-2 md:px-6 lg:px-12 lg:mx-12  xl:mx-28 2xl:mx-48  3xl:ms-64  3xl:max-w-4xl'
         )}
       >
-        <span className="flex-none px-4 text-h2 md:text-h1xl font-bold">
+        <span
+          className="flex-none px-4 text-h2 md:text-h1xl font-bold"
+          aria-hidden
+        >
           404
         </span>
 
@@ -120,6 +186,21 @@ const PageNotFound = ({ texts }) => {
             >
               <p className="text-body-small font-bold">{title}</p>
               <p className="text-body-small">{help}</p>
+              <p>
+                {data.map(({ locale, path, id }) => {
+                  console.log({ locale, path, id })
+                  return (
+                    <Link
+                      key={`langlink-${id}`}
+                      locale={locale}
+                      href={`/${path}`}
+                      passHref
+                    >
+                      <a>{locale}</a>
+                    </Link>
+                  )
+                })}
+              </p>
             </div>
           )
         })}

@@ -7,7 +7,7 @@ import { useTranslation } from 'next-i18next'
 import { i18n } from '@/next-i18next.config'
 
 const LanguageSelector = ({ openMenu }) => {
-  const { pathname, query, locale } = useRouter()
+  const { locale, asPath } = useRouter()
 
   const { t } = useTranslation('common')
 
@@ -29,7 +29,8 @@ const LanguageSelector = ({ openMenu }) => {
         </button>
         {i18n.languages.map(({ text, code }) => (
           <Link
-            href={{ pathname, query }}
+            href={`${asPath}`}
+            // href={{ pathname, query }}
             locale={code}
             passHref
             scroll={false}

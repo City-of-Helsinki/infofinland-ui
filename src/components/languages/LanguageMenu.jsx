@@ -11,7 +11,7 @@ import { i18n } from '@/next-i18next.config'
 export const LanguageMenu = ({ closeMenu }) => {
   const { t } = useTranslation('common')
 
-  const { pathname, query, locale } = useRouter()
+  const { asPath, query, locale } = useRouter()
   return (
     <div>
       <label className="block px-14 mb-8 text-body-large font-bold">
@@ -30,7 +30,7 @@ export const LanguageMenu = ({ closeMenu }) => {
           >
             <Link
               passHref
-              href={{ pathname, query }}
+              href={{ asPath, query }}
               locale={code}
               scroll={false}
               prefetch={false}
