@@ -4,6 +4,7 @@ import Link from 'next/link'
 import cls from 'classnames'
 import useLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import { useTranslation } from 'next-i18next'
+// import { useRouter } from 'next/router'
 const SubMenuItem = ({ title, url, selected, items, level, isOpen }) => (
   <li className=" block">
     <Link passHref href={url} prefetch={false}>
@@ -100,7 +101,7 @@ const SubMenu = ({
           </Link>
           <div className="flex-none">
             <button
-              className="block w-14 h-12 me-2"
+              className="block w-16 h-12"
               onClick={toggle}
               title={subMenuLabel}
               aria-label={subMenuLabel}

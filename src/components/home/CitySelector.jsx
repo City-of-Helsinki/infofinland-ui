@@ -3,25 +3,28 @@ import { useRouter } from 'next/router'
 import Image from 'next/image'
 // import image from '@/public/images/suomi-kartta.png'
 import Block from '@/components/layout/Block'
+import getConfig from 'next/config'
+import { useTranslation } from 'next-i18next'
+
 const CitySelector = () => {
+  const { CITIES_PAGE_PATH } = getConfig().publicRuntimeConfig
   const { push } = useRouter()
-  const goToCities = () => push('/cities')
+  const goToCities = () => push(CITIES_PAGE_PATH)
+  const { t } = useTranslation('common')
+
   return (
     <Block className="pt-8 border-t border-gray-darker">
-      <div className="grid grid-cols-2 pb-8">
+      <div className="lg:grid grid-cols-2 pb-8">
         <div className="foo">
-          <h2 className="mb-4 text-h2">Cities</h2>
-          <p className="mb-8">
-            Purus non blandit sem consectetur et dignissim arcu pellentesque
-            morbi neque.
-          </p>
+          <h2 className="mb-4 text-h2">{t('frontpage.cities.title')}</h2>
+          <p className="mb-8">{t('frontpage.cities.text')}</p>
 
           <Button onClick={goToCities} aria-haspopup="dialog">
-            Go to Cities
+            {t('frontpage.cities.button')}
           </Button>
         </div>
         <div className="flex justify-center">
-          <div className="">
+          <div className="hidden lg:block">
             <Image
               src="/images/suomi-kartta.png"
               alt=""

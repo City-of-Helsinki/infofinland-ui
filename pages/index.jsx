@@ -19,6 +19,8 @@ import { getResource } from 'next-drupal'
 import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import ContentMapper from '@/components/article/ContentMapper'
 import IngressBlock from '@/components/article/IngressBlock'
+import Columns from '@/components/article/Columns'
+import Image from 'next/image'
 
 export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
@@ -63,9 +65,22 @@ export async function getStaticProps(context) {
   }
 }
 
+const AboutImage = () => (
+  <div className="flex justify-center items-center pt-8 mx-auto lg:mt-0">
+    <Image
+      src="/images/logo-verticalpng-2.png"
+      alt=""
+      width={155}
+      height={125}
+      layout="fixed"
+    />
+  </div>
+)
+
 const HomePage = ({ node, themes }) => {
   const hero = getHeroFromNode(node)
   const { field_description, field_content, title } = node
+  const [aboutText, ...restOfContent] = field_content
 
   return (
     <Layout
@@ -85,7 +100,13 @@ const HomePage = ({ node, themes }) => {
 
       <CitySelector />
 
-      {field_content?.length > 0 && <ContentMapper content={field_content} />}
+      {aboutText && (
+        <Columns
+          field_columns_left_column={aboutText}
+          RightColumnComponent={AboutImage}
+        />
+      )}
+      {restOfContent?.length > 0 && <ContentMapper content={restOfContent} />}
     </Layout>
   )
 }

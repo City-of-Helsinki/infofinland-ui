@@ -1,9 +1,15 @@
 import { atom } from 'jotai'
 import { focusAtom } from 'jotai/optics'
-import { atomWithStorage, splitAtom } from 'jotai/utils'
+import { atomWithStorage, splitAtom, createJSONStorage } from 'jotai/utils'
 import { LANG_MESSAGE_ID } from './components/messages/LanguageMessageCard'
 import { menuErrorResponse } from './lib/ssr-api'
 
+/**
+ * Ensure browser-only atoms are not causing render mismatches on SSR
+ * https://github.com/pmndrs/jotai/discussions/910
+ */
+const storage = createJSONStorage(() => localStorage)
+storage.delayInit = true
 /** @module store */
 
 /** The name of the module. */
@@ -18,7 +24,7 @@ const CITY_ATOM_KEY = 'city'
 const SHOWN_MESSAGES_KEY = 'shown-messages'
 
 /** Chosen municipality for local information blocks*/
-export const selectedCityAtom = atomWithStorage(CITY_ATOM_KEY, undefined)
+export const selectedCityAtom = atomWithStorage(CITY_ATOM_KEY, false, storage)
 
 /** Visibility state of municipality menu*/
 export const cityMenuVisibilityAtom = atom(false)
@@ -63,9 +69,13 @@ export const messageAtoms = splitAtom(messagesAtom)
 
 // set lang message as shown. It is controlled separately.
 // slight haxor. maybe fix this
-export const shownMessagesAtom = atomWithStorage(SHOWN_MESSAGES_KEY, {
-  [LANG_MESSAGE_ID]: true,
-})
+export const shownMessagesAtom = atomWithStorage(
+  SHOWN_MESSAGES_KEY,
+  {
+    [LANG_MESSAGE_ID]: true,
+  },
+  storage
+)
 
 /**
  * Feedback form info page atom
@@ -108,7 +118,11 @@ export const nodeAtom = focusAtom(pageAtom, (optics) => optics.prop('node'))
 export const nodeIdAtom = focusAtom(nodeAtom, (optics) => optics.prop('id'))
 
 /** Cookie consent atom */
-export const cookieConsentAtom = atomWithStorage(COOKIE_CONSENT_KEY, undefined)
+export const cookieConsentAtom = atomWithStorage(
+  COOKIE_CONSENT_KEY,
+  undefined,
+  storage
+)
 export const isCookieConsentSetAtom = atom(
   (get) => typeof get(cookieConsentAtom) !== 'undefined'
 )

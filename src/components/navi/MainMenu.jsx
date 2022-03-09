@@ -34,7 +34,7 @@ const TopMenuItem = ({
 }) => (
   <li
     className={cls('block relative', {
-      'border-e-5 border-orange-light': secondarySelection && !items,
+      'border-e-5 border-green-light': secondarySelection && !items,
     })}
   >
     {!items && (

@@ -8,7 +8,9 @@ import { map, omit } from 'lodash'
 import * as DrupalApi from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import getConfig from 'next/config'
-
+import usePageLocales from '@/hooks/usePageLocales'
+import TextLink from '@/components/TextLink'
+import { DotsLoader } from '@/components/Loaders'
 export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
 
@@ -71,12 +73,103 @@ const TEXTS_404 = {
   },
 }
 
-const PageNotFound = ({ texts }) => {
-  const { locale } = useRouter()
-  const content = omit(texts, locale)
+const TEXTS_LANG_404 = {
+  fi: {
+    title: 'Sivua ei löydy tällä kielellä',
+    help: 'Valitettavasti sivua ei ole valitsemallasi kielellä.',
+    languages: 'Löydät tietoa aiheesta seuraavilla kielillä:',
+  },
+  sv: {
+    title: 'Sidan finns inte på detta språk',
+    help: 'Tyvärr finns sidan inte på det språk du har valt.',
+    languages: 'Du hittar information om ärendet på följande språk:',
+  },
+  en: {
+    title: 'Page not found in this language',
+    help: 'Unfortunately, the page does not exist in the language of your choice.',
+    languages: 'Information is available in the following languages:',
+  },
+  ru: {
+    title: 'Страница на данном языке не найдена',
+    help: 'К сожалению, страницы на выбранном вами языке, не существует.',
+    languages: 'Информация по теме доступна на следующих языках:',
+  },
+  et: {
+    title: 'Leht ei ole selles keeles saadaval',
+    help: 'Kahjuks ei ole leht sinu valitud keeles saadaval.',
+    languages: 'Leiad teema kohta teavet järgmistes keeltes:',
+  },
+  fr: {
+    title: 'La page est introuvable dans cette langue',
+    help: 'Malheureusement, cette page n’est pas disponible dans la langue sélectionnée.',
+    languages:
+      'Vous trouverez davantage d’informations sur le sujet dans les langues suivantes :',
+  },
+  so: {
+    title: 'Luqaddan bogga laguma helo',
+    help: 'Nasiibdarro luqadda aad dooratay kuma jirto bogga.',
+    languages:
+      'Macluumaadka ku saabsan mowduucan waxaad ku heleysaa luqadaha soo socda:',
+  },
+  es: {
+    title: 'La página no existe en este idioma',
+    help: 'Lamentablemente, la página no existe en el idioma que ha elegido.',
+    languages:
+      'Encontrará información sobre este tema en los siguientes idiomas:',
+  },
+  tr: {
+    title: 'Sayfa bu dilde mevcut değil',
+    help: 'Ne yazık ki sayfa seçtiğiniz dilde mevcut değil.',
+    languages: 'Konuyla ilgili bilgiyi aşağıdaki dillerde bulabilirsiniz:',
+  },
+  zh: {
+    title: '本页不支持该语言',
+    help: '很遗憾！',
+    languages: '本页不支持您所选的语言您可通过下列语言了解相关信息：',
+  },
+  fa: {
+    title: 'ین صفحه در حال حاضر در دسترس نیست',
+    help: 'متأسفانه این صفحه به زبانی که انتخاب کردید وجود ندارد. ',
+    languages: 'می توانید در مورد این موضوع به زبان های زیر اطلاعات کسب کنید:',
+  },
+  ar: {
+    title: 'الصفحة غير متوفرة بهذه اللغة',
+    help: 'للأسف الصفحة غير متوفرة باللغة التي اخترتها. ',
+    languages: 'تجد معلومات عن الموضوع باللغات التالية:',
+  },
+}
 
+const LocalesLinks = ({ locales, dir }) => {
   return (
-    <Layout>
+    <p className="mt-2 leading-loose">
+      {locales.map(({ locale, path, id }, i) => {
+        const language = i18n.languages.find(({ code }) => code === locale)
+        return (
+          <TextLink
+            dir={dir}
+            key={`langlink-for-${locale}-${id}`}
+            locale={locale}
+            href={path}
+            className={cls({
+              'pe-2': i === 0,
+              'px-2 border-black': i > 0,
+              'border-s': dir === i18n.DIRECTION_LTR && i > 0,
+              'border-r': dir === i18n.DIRECTION_RTL && i > 0,
+            })}
+          >
+            {language.text}
+          </TextLink>
+        )
+      })}
+    </p>
+  )
+}
+
+const Texts404 = ({ locales = [], locale }) => {
+  const texts = locales.length > 0 ? TEXTS_LANG_404 : TEXTS_404
+  const content = omit(texts, locale)
+  return (
+    <>
       <Head>
         <title>{texts[locale].title}</title>
       </Head>
@@ -87,7 +180,10 @@ const PageNotFound = ({ texts }) => {
           'mx-2 md:px-6 lg:px-12 lg:mx-12  xl:mx-28 2xl:mx-48  3xl:ms-64  3xl:max-w-4xl'
         )}
       >
-        <span className="flex-none px-4 text-h2 md:text-h1xl font-bold">
+        <span
+          className="flex-none px-4 text-h2 md:text-h1xl font-bold"
+          aria-hidden
+        >
           404
         </span>
 
@@ -102,28 +198,70 @@ const PageNotFound = ({ texts }) => {
               })
             )}
           >
-            {texts[locale].help}
+            {locales.length === 0 && texts[locale].help}
           </span>
         </h1>
       </div>
-      <div className="lg:grid md:grid-rows-6 md:grid-flow-col md:gap-x-32 md:gap-y-8 mt-8 md:mt-16 mb-8 md:mb-16 ifu-block--hero">
-        <p className="block md:hidden mb-8 text-body-small">
-          {texts[locale].help}
-        </p>
-        {map(content, ({ title, help }, locale) => {
+      <div className="pb-8 mt-10 border-b border-gray-lighter ifu-block--hero">
+        {locales.length > 0 && (
+          <>
+            <p className="mb-2 lg:mb-0 lg:text-body-large font-bold leading-snug lg:leading-normal">
+              {texts[locale].help}
+            </p>
+
+            {texts[locale].languages}
+            <LocalesLinks
+              locales={locales}
+              dir={
+                i18n.rtlLocales.includes(locale)
+                  ? i18n.DIRECTION_RTL
+                  : i18n.DIRECTION_LTR
+              }
+            />
+          </>
+        )}
+      </div>
+
+      <div className="lg:grid md:grid-rows-6 md:grid-flow-col md:gap-x-32 md:gap-y-8 mt-8 mb-8 md:mb-16 ifu-block--hero">
+        {map(content, ({ title, help }, additionalLocale) => {
+          const dir = i18n.rtlLocales.includes(additionalLocale)
+            ? i18n.DIRECTION_RTL
+            : i18n.DIRECTION_LTR
           return (
             <div
-              key={`${locale}-content`}
-              lang={locale}
-              className="mb-8 lg:mb-0"
-              dir={i18n.rtlLocales.includes(locale) ? 'rtl' : 'ltr'}
+              key={`${additionalLocale}-content`}
+              lang={additionalLocale}
+              className="mb-8 lg:mb-0 text-body-small"
+              dir={dir}
             >
-              <p className="text-body-small font-bold">{title}</p>
-              <p className="text-body-small">{help}</p>
+              <p className="font-bold leading-loose">{title}</p>
+              <p className="">{help}</p>
+
+              {locales.length > 0 && <p>{texts[additionalLocale].languages}</p>}
+
+              {locales.length > 0 && (
+                <LocalesLinks locales={locales} dir={dir} />
+              )}
             </div>
           )
         })}
       </div>
+    </>
+  )
+}
+
+export const PageNotFound = () => {
+  const { locale, asPath } = useRouter()
+  const { data: locales, error } = usePageLocales({ path: asPath })
+  return (
+    <Layout>
+      {!locales && !error && (
+        <div className="flex justify-center items-center h-64">
+          <DotsLoader />
+        </div>
+      )}
+
+      {(locales || error) && <Texts404 locales={locales} locale={locale} />}
     </Layout>
   )
 }

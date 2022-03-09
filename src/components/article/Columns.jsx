@@ -33,15 +33,23 @@ const ColumnMapper = ({ type, field_text, ...rest }) => {
 export default function Columns({
   field_columns_left_column,
   field_columns_right_column,
+  LeftColumnComponent,
+  RightColumnComponent,
 }) {
   return (
     <Block className="py-16 ifu-article__columns">
       <div className="lg:grid grid-cols-2 gap-16">
         <div className="mb-8 lg:mb-0">
-          <ColumnMapper {...field_columns_left_column} />
+          {!LeftColumnComponent && (
+            <ColumnMapper {...field_columns_left_column} />
+          )}
+          {LeftColumnComponent && <LeftColumnComponent />}
         </div>
         <div className="mb-8 lg:mb-0">
-          <ColumnMapper {...field_columns_right_column} />
+          {!RightColumnComponent && (
+            <ColumnMapper {...field_columns_right_column} />
+          )}
+          {RightColumnComponent && <RightColumnComponent />}
         </div>
       </div>
     </Block>

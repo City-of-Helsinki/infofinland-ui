@@ -93,6 +93,7 @@ export async function getStaticProps(context) {
       })
     }
   }
+
   let themeMenu = menuErrorResponse()
 
   const { field_theme_menu_machine_name } = node

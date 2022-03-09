@@ -1,37 +1,35 @@
 import { CookieConsentActions } from '@/components/layout/CookieConsent'
 import Block from '@/components/layout/Block'
 import { useTranslation } from 'next-i18next'
-import { useAtomValue, useUpdateAtom } from 'jotai/utils'
+import { useAtom } from 'jotai'
 import ToggleSwitch from '@/components/ToggleSwitch'
 import { cookieConsentAtom } from '@/src/store'
-import { isSSR } from '@/hooks/useIsomorphicLayoutEffect'
+import cls from 'classnames'
 
 const CookieConsentForm = () => {
   const { t } = useTranslation('common')
-  const isAnalyticsAllowed = useAtomValue(cookieConsentAtom)
-  const setConsent = useUpdateAtom(cookieConsentAtom)
+  const [isAnalyticsAllowed, setConsent] = useAtom(cookieConsentAtom)
   const toggleConsent = () => setConsent(!isAnalyticsAllowed)
 
   return (
-    <form>
-      {!isSSR() && (
-        <Block about>
-          <ToggleSwitch
-            checked={isAnalyticsAllowed}
-            text={t('cookies.labels.analytics')}
-            id="ifu-cc-analytics"
-            value="analytics"
-            onChange={toggleConsent}
-            className="pb-16"
-          />
-        </Block>
-      )}
+    <>
       <Block about>
+        <ToggleSwitch
+          // type coersion for SSR rendering when value is only in client.
+          checked={!!isAnalyticsAllowed}
+          text={t('cookies.labels.analytics')}
+          id="ifu-cc-analytics"
+          value="analytics"
+          onChange={toggleConsent}
+          className="pb-16"
+        />
+      </Block>
+      <Block about className={cls(' h-42')}>
         <p className="pt-8 text-center border-t border-bodytext-color">
-          <CookieConsentActions />
+          {<CookieConsentActions />}
         </p>
       </Block>
-    </form>
+    </>
   )
 }
 export default CookieConsentForm

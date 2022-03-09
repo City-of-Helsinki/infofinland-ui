@@ -8,10 +8,10 @@ import CookieConsentForm from '@/components/layout/CookieConsentForm'
 import Block from '@/components/layout/Block'
 import { H1 } from '@/components/Typo'
 export default function AboutPage() {
-  const { locale, asPath } = useRouter()
+  const { locale } = useRouter()
   const { field_content, title } = useAtomValue(nodeAtom)
   const { COOKIE_PAGE_PATH } = getConfig().publicRuntimeConfig
-  const isCookiePage = asPath === COOKIE_PAGE_PATH
+  const isCookiePage = new RegExp(COOKIE_PAGE_PATH).test(COOKIE_PAGE_PATH)
   return (
     <SecondaryLayout>
       <Block>

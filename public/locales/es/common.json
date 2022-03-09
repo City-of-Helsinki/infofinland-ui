@@ -48,19 +48,21 @@
     "states": {
       "fail": "Error al enviar el formulario",
       "invalid": "Campo obligatorio",
-      "submitting": "!Lähetetään palautetta...",
+      "submitting": "Enviando comentario",
       "success": "Gracias por su comentario"
     },
-    "text": [
-      "TODO FROM DRUPAL Vastaamme palautteisiin seuraavilla kielillä: suomi, ruotsi ja englanti. Valitettavasti emme voi vastata palautteisiin, jotka on kirjoitettu muilla kielillä.",
-      "Palautelomakkeessa on automaattinen roskapostisuodatin. Palautteeseen ei saa liittää linkkiä.",
-      "Vastaamme vain InfoFinland-sivustoa koskeviin palautteisiin. Ota huomioon, että emme anna neuvontaa omien asioiden hoitamisessa. Neuvontapalveluja löydät InfoFinlandin sivulta Soita ja kysy neuvoa."
-    ],
     "title": "Comentario",
     "urlLabel": "Dirección de la página"
   },
   "footer": {
     "helsinkiDisclaimer": "El portal InfoFinland.fi es publicado por la ciudad de Helsinki con financiación del Estado y de los municipios miembros de InfoFinland."
+  },
+  "frontpage": {
+    "cities": {
+      "button": "Ver ciudades",
+      "text": "En InfoFinland también encontrará información sobre servicios locales.",
+      "title": "Ciudades"
+    }
   },
   "image": {
     "photographer": "Imagen"
