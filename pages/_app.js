@@ -8,21 +8,24 @@ import Router from 'next/router'
 import NProgress from 'nprogress'
 import useAnalytics from '@/hooks/useAnalytics'
 
-// import App from 'next/app'
 /**
  * Subscribe NProgress loader bar to Router events
  *
  */
+
 NProgress.configure({ showSpinner: false })
 Router.events.on('routeChangeStart', () => NProgress.start())
 Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
 function App({ Component, pageProps }) {
+  // only works if process.env.NODE_ENV !== 'production'
+  useAtomDevtools(pageAtom, 'ssr props')
+
+  // store all props to atom store
   useHydratePage(pageProps)
 
-  useAtomDevtools(pageAtom)
-
+  //Initiate analytics
   useAnalytics()
 
   return <Component {...pageProps} />

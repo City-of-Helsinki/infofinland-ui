@@ -3,14 +3,8 @@
     "published": "Publicerad"
   },
   "breadcrumbs": {
-    "frontpage": "Etusivu",
+    "frontpage": "Framsida",
     "title": "Synlig sökväg"
-  },
-  "frontpage": {
-    "cities": {
-      "text": "På InfoFinland hittar du information även om lokala tjänster.",
-      "button": "Se Städer"
-    }
   },
   "buttons": {
     "close": "Stäng",
@@ -53,26 +47,28 @@
     },
     "states": {
       "fail": "Fel när respons skulle skickas",
-      "invalid": "!Pakollinen kenttä",
-      "submitting": "!Lähetetään palautetta...",
+      "invalid": "Obligatoriskt fält",
+      "submitting": "Responsen skickas in",
       "success": "Tack för din respons"
     },
-    "text": [
-      "TODO FROM DRUPAL Vi svarar på respons på följande språk: finska, svenska och engelska. Tyvärr kan vi inte svara på respons som är skriven på andra språk.",
-      "Responsformuläret har ett automatiskt skräppostfilter. Du får inte infoga länkar i responsen.",
-      "Vi svarar bara på respons som gäller sidan InfoFinland. Du märker väl att vi inte ger råd i hur du ska sköta dina ärenden. Rådgivningstjänster hittar du på InfoFinlands sida Ring och fråga om råd."
-    ],
     "title": "Respons",
     "urlLabel": "Sidans adress:"
   },
   "footer": {
     "helsinkiDisclaimer": "Webbplatsen InfoFinland.fi publiceras av Helsingfors stad och finansieras av staten och InfoFinlands medlemskommuner."
   },
+  "frontpage": {
+    "cities": {
+      "button": "Se Städer",
+      "text": "På InfoFinland hittar du information även om lokala tjänster.",
+      "title": "Städer"
+    }
+  },
   "images": {
     "photographer": "Bild"
   },
   "languageMenu": {
-    "label": "!Valitse kieli"
+    "label": "Välj språk"
   },
   "languageMessage": {
     "text": "InfoFinland.fi finns på tolv språk. Vill du välja ett annat språk?",

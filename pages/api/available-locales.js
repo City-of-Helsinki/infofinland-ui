@@ -6,19 +6,27 @@ export default async function handler(req, res) {
   const { path } = query
 
   let status = 200
+  let response = []
 
   const localeIds = await Promise.all(
     i18n.locales.map((locale) => getIdFromPath({ path, context: { locale } }))
-  )
+  ).catch((e) => {
+    console.error('Error while resolving locales for', path, e)
+    throw e
+  })
 
-  const locales = localeIds
-    .map((id, i) => {
-      if (!id) {
-        return
-      }
-      return { locale: i18n.locales[i], id, path }
-    })
-    .filter((l) => !!l)
+  if (localeIds === null) {
+    status = 404
+  } else {
+    response = localeIds
+      .map((id, i) => {
+        if (!id) {
+          return
+        }
+        return { locale: i18n.locales[i], id, path }
+      })
+      .filter((l) => !!l)
+  }
 
-  res.status(status).json(locales)
+  res.status(status).json(response)
 }

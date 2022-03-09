@@ -6,18 +6,12 @@ import { useAtomValue, useUpdateAtom } from 'jotai/utils'
 import { useRouter } from 'next/router'
 import { CSSTransition } from 'react-transition-group'
 import getConfig from 'next/config'
-import { isSSR } from '@/hooks/useIsomorphicLayoutEffect'
 
 export function CookieConsentActions() {
   const { t } = useTranslation('common')
-  const isConsentSet = useAtomValue(isCookieConsentSetAtom)
   const setConsent = useUpdateAtom(cookieConsentAtom)
   const allow = () => setConsent(true)
   const deny = () => setConsent(false)
-  // no serverside rendering or when user has acknowledged the banner
-  if (isSSR() || isConsentSet) {
-    return null
-  }
 
   return (
     <>
@@ -45,7 +39,8 @@ export default function CookieConsentBar() {
     publicRuntimeConfig.COOKIE_PAGE_PATH
   )
   return (
-    !isAboutPage && (
+    !isAboutPage &&
+    !isConsentSet && (
       <CSSTransition
         classNames={{
           appear: 'ifu-cookies__banner--appear',

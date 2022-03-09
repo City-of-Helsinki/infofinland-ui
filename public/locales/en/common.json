@@ -2,13 +2,7 @@
   "article": {
     "published": "Published"
   },
-  "frontpage": {
-    "cities": {
-      "text": "InfoFinland also provides information about local services.",
-      "button": "Go to Cities"
-    }
-  },
-  "breadcrumb": {
+  "breadcrumbs": {
     "frontpage": "Front page",
     "title": "Breadcrum trail"
   },
@@ -57,16 +51,18 @@
       "submitting": "Submitting your message",
       "success": "Thank you for your feedback"
     },
-    "text": [
-      "TODO FROM DRUPAL We respond to feedback submitted in Finnish, Swedish or English. Unfortunately, we cannot reply to feedback written in other languages.",
-      "The feedback form has an automatic spam filter. Do not include links in feedback.",
-      "We will only respond to feedback concerning the InfoFinland website. Please understand that we do not provide advice or counselling on the management of your affairs. Counselling services are listed on the InfoFinland page Call and ask for advice."
-    ],
     "title": "Send Feedback",
     "urlLabel": "URL of the page:"
   },
   "footer": {
     "helsinkiDisclaimer": "The InfoFinland website is published by the City of Helsinki, and it is funded by the state and the InfoFinland member municipalities."
+  },
+  "frontpage": {
+    "cities": {
+      "button": "Go to Cities",
+      "text": "InfoFinland also provides information about local services.",
+      "title": "Cities"
+    }
   },
   "images": {
     "photographer": "Image"
@@ -91,7 +87,8 @@
     "reselect": "Select another municipality",
     "select": "Select a municipality",
     "select_current": "Select {{city}}",
-    "selected_city": "My municipality: {{city}}"
+    "selected_city": "My municipality: {{city}}",
+    "title": "Local information"
   },
   "mainMenu": {
     "button": "Main menu"

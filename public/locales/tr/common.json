@@ -2,17 +2,10 @@
   "article": {
     "published": "Yayınlandı"
   },
-  "breadcrumb": {
+  "breadcrumbs": {
     "frontpage": "Ana sayfa",
     "title": "Ekmek kırıntısı"
   },
-  "frontpage": {
-    "cities": {
-      "text": "InfoFinland sitesinde yerel hizmetler hakkında da bilgi bulabilirsiniz.",
-      "button": "Şehirlere bakın"
-    }
-  },
-
   "buttons": {
     "close": "Kapat",
     "external": "Bağlantı adresi sizi başka bir sayfaya yönlendirecektir.",
@@ -58,16 +51,18 @@
       "submitting": "Geri bildirim gönderiliyor",
       "success": "Geridönüm için teşekkürler"
     },
-    "text": [
-      "TODO FROM DRUPAL Vastaamme palautteisiin seuraavilla kielillä: suomi, ruotsi ja englanti. Valitettavasti emme voi vastata palautteisiin, jotka on kirjoitettu muilla kielillä.",
-      "Palautelomakkeessa on automaattinen roskapostisuodatin. Palautteeseen ei saa liittää linkkiä.",
-      "Vastaamme vain InfoFinland-sivustoa koskeviin palautteisiin. Ota huomioon, että emme anna neuvontaa omien asioiden hoitamisessa. Neuvontapalveluja löydät InfoFinlandin sivulta Soita ja kysy neuvoa."
-    ],
     "title": "Geribildirim",
     "urlLabel": "Sayfanın adresi"
   },
   "footer": {
     "helsinkiDisclaimer": "InfoFinland.fi internet sitesi Helsinki Belediyesi tarafından yayınlanmakta; finansmanı da devlet ve InfoFinland'in üye belediyeleri tarafından sağlanmaktadır."
+  },
+  "frontpage": {
+    "cities": {
+      "button": "Şehirlere bakın",
+      "text": "InfoFinland sitesinde yerel hizmetler hakkında da bilgi bulabilirsiniz.",
+      "title": "Şehirler"
+    }
   },
   "images": {
     "breadcrumb": "Resim"

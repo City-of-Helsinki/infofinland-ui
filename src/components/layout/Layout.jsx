@@ -13,6 +13,8 @@ import CookieConsentBar from '@/components/layout/CookieConsent'
 import MainMenu from '@/components/navi/MainMenu' // { MainNaviError }
 import cls from 'classnames'
 import { useAtomValue } from 'jotai/utils'
+import { useAtomDevtools } from 'jotai/devtools'
+
 import {
   aboutMenuAtom,
   mainMenuAtom,
@@ -22,11 +24,8 @@ import {
   selectedCityAtom,
 } from '@/src/store'
 import MenuGroup from '../navi/MenuGroup'
+
 export const FALLBACK_TITLE = 'infofinland.fi'
-/**
- *
- * Site component configuration
- */
 
 /**
  * Set ReactModal root element for a18y
@@ -49,7 +48,6 @@ const CommonHead = ({ title = FALLBACK_TITLE, description = '', children }) => (
 
 export const BlankLayout = ({ children, title, description }) => {
   useSetLocalization(useRouter().locale)
-
   return (
     <>
       <CommonHead title={title} description={description} />
@@ -65,11 +63,8 @@ export const SecondaryLayout = ({ children, className }) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
   useShowLangMessage(locale)
-
   const menu = useAtomValue(aboutMenuAtom)
   const node = useAtomValue(nodeAtom)
-
-  // const { field_description, title } = useAtomValue(nodeAtom)
 
   return (
     <>
@@ -105,6 +100,8 @@ export const SecondaryLayout = ({ children, className }) => {
 
 const AppLayout = ({ children, className }) => {
   const { locale } = useRouter()
+  useAtomDevtools(selectedCityAtom, 'selected city')
+
   useSetLocalization(locale)
   useShowLangMessage(locale)
   const node = useAtomValue(nodeAtom)

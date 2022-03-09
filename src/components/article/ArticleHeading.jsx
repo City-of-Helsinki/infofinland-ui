@@ -49,7 +49,7 @@ export default function ArticleHeading({
         {/* article date */}
         <div className="flex items-center mb-8 text-body-small text-bodytext-color">
           <IconCalendar
-            className="md:w-4 md:h-4 transform translate-y-px"
+            className="md:w-4 md:h-4 transform translate-y-px lg:ms-2"
             title={t('article.published')}
           />
           <span className="px-2 transform translate-y-px">

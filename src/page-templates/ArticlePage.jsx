@@ -11,7 +11,7 @@ import IngressBlock from '@/components/article/IngressBlock'
 import AnchorLinksBlock from '@/components/article/AnchorLinksBlock'
 import LocalInformationSelectCity from '@/components/cities/LocalInfoSelectCity'
 
-const ArticlePage = ({ node, fiNode, themeMenu }) => {
+const ArticlePage = ({ node, fiNode, themeMenu, menus }) => {
   const { localePath, locale } = useRouterWithLocalizedPath()
   const {
     title,
@@ -34,7 +34,7 @@ const ArticlePage = ({ node, fiNode, themeMenu }) => {
   const hero = getHeroFromNode(node)
 
   return (
-    <Layout>
+    <Layout menus={menus}>
       <Article
         title={title}
         breadcrumbs={breadcrumbs}

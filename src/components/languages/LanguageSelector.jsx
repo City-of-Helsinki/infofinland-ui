@@ -2,14 +2,14 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { IconGlobe } from '@/components/Icons'
 import cls from 'classnames'
-
+import usePageLocales from '@/hooks/usePageLocales'
 import { useTranslation } from 'next-i18next'
 import { i18n } from '@/next-i18next.config'
 
 const LanguageSelector = ({ openMenu }) => {
-  const { locale, asPath } = useRouter()
-
+  const { locale, asPath: path } = useRouter()
   const { t } = useTranslation('common')
+  const { data: locales, error } = usePageLocales({ path })
 
   return (
     <>
@@ -27,43 +27,53 @@ const LanguageSelector = ({ openMenu }) => {
           </span>
           <IconGlobe className="xl:hidden mx-2 xl:mx-0 w-5 h-5" />
         </button>
-        {i18n.languages.map(({ text, code }) => (
-          <Link
-            href={`${asPath}`}
-            // href={{ pathname, query }}
-            locale={code}
-            passHref
-            scroll={false}
-            prefetch={false}
-            key={`lang-${code}`}
-          >
-            <a
-              className="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase"
-              title={text}
-              hrefLang={code}
-              lang={code}
+        {i18n.languages.map(({ text, code }) => {
+          const isLocalized =
+            locales?.find((page) => page.locale === code) !== undefined
+
+          return (
+            <Link
+              href={path}
+              locale={code}
+              passHref
+              scroll={false}
+              prefetch={false}
+              key={`lang-${code}`}
             >
-              <span
-                className={cls('xl:hidden', {
-                  ' border-b-2 border-black': locale === code,
-                })}
-              >
-                {code}
-              </span>
-              <span
+              <a
                 className={cls(
-                  'hidden xl:inline-block hover:border-black border-b-2 transition-all ease-in-out duration-300',
+                  'xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase ',
                   {
-                    'border-black': locale === code,
-                    'border-white': locale !== code,
+                    'text-black': error || !locales || isLocalized,
+                    'text-gray': locales?.length > 0 && !isLocalized && !error,
                   }
                 )}
+                title={text}
+                hrefLang={code}
+                lang={code}
               >
-                {text}
-              </span>
-            </a>
-          </Link>
-        ))}
+                <span
+                  className={cls('xl:hidden', {
+                    ' border-b-2 border-black': locale === code,
+                  })}
+                >
+                  {code}
+                </span>
+                <span
+                  className={cls(
+                    'hidden xl:inline-block hover:border-black border-b-2 transition-all ease duration-150',
+                    {
+                      'border-black': locale === code,
+                      'border-white': locale !== code,
+                    }
+                  )}
+                >
+                  {text}
+                </span>
+              </a>
+            </Link>
+          )
+        })}
       </div>
     </>
   )

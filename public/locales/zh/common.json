@@ -2,13 +2,7 @@
   "article": {
     "published": "已发布"
   },
-  "frontpage": {
-    "cities": {
-      "text": "InfoFinland还为您提供许多地方服务信息。",
-      "button": "了解城市"
-    }
-  },
-  "breadcrumb": {
+  "breadcrumbs": {
     "frontpage": "首页",
     "title": "面包屑导航"
   },
@@ -57,16 +51,18 @@
       "submitting": "正在发送反馈",
       "success": "谢谢您的反馈！"
     },
-    "text": [
-      "TODO FROM DRUPAL Vastaamme palautteisiin seuraavilla kielillä: suomi, ruotsi ja englanti. Valitettavasti emme voi vastata palautteisiin, jotka on kirjoitettu muilla kielillä.",
-      "Palautelomakkeessa on automaattinen roskapostisuodatin. Palautteeseen ei saa liittää linkkiä.",
-      "Vastaamme vain InfoFinland-sivustoa koskeviin palautteisiin. Ota huomioon, että emme anna neuvontaa omien asioiden hoitamisessa. Neuvontapalveluja löydät InfoFinlandin sivulta Soita ja kysy neuvoa."
-    ],
     "title": "意见与建议反馈",
     "urlLabel": "網址"
   },
   "footer": {
     "helsinkiDisclaimer": "InfoFinland.fi网站由赫尔辛基市负责发布，运作资金由国家和成员市镇提供。"
+  },
+  "frontpage": {
+    "cities": {
+      "button": "了解城市",
+      "text": "InfoFinland还为您提供许多地方服务信息。",
+      "title": "城市"
+    }
   },
   "images": {
     "photographer": "图片"

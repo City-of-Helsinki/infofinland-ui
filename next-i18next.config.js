@@ -14,15 +14,19 @@ const languages = [
 ]
 const rtlLocales = ['ar', 'fa']
 const locales = languages.map(({ code }) => code)
+const DIRECTION_LTR = 'ltr'
+const DIRECTION_RTL = 'rtl'
 
 module.exports = {
   i18n: {
-    reloadOnPrerender: typeof process.env.development !== 'undefined',
+    reloadOnPrerender: process.env.NODE_ENV === 'development',
     locales,
     languages,
     rtlLocales,
     defaultLocale: 'en',
     fallbackLocale: 'fi',
+    DIRECTION_LTR,
+    DIRECTION_RTL,
     // localeDetection: false,
   },
 }

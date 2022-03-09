@@ -16,7 +16,7 @@ const CitySelector = () => {
     <Block className="pt-8 border-t border-gray-darker">
       <div className="lg:grid grid-cols-2 pb-8">
         <div className="foo">
-          <h2 className="mb-4 text-h2">Cities</h2>
+          <h2 className="mb-4 text-h2">{t('frontpage.cities.title')}</h2>
           <p className="mb-8">{t('frontpage.cities.text')}</p>
 
           <Button onClick={goToCities} aria-haspopup="dialog">

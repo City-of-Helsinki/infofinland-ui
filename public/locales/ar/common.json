@@ -6,12 +6,6 @@
     "frontpage": "الصفحة الرئيسية",
     "title": "مسار التنقل الرئيسي"
   },
-  "frontpage": {
-    "cities": {
-      "text": "تجد من خلال InfoFinland معلومات عن الخدمات المحلية أيضًا.",
-      "button": "انظر المدن"
-    }
-  },
   "buttons": {
     "close": "أغلق",
     "external": "يؤدي الرابط إلى خارج الخدمة",
@@ -67,6 +61,13 @@
   },
   "footer": {
     "helsinkiDisclaimer": "تنشر مدينة هلسنكي موقع InfoFinland.fi، وتموله الدولة والبلديات الأعضاء في InfoFinland."
+  },
+  "frontpage": {
+    "cities": {
+      "button": "انظر المدن",
+      "text": "تجد من خلال InfoFinland معلومات عن الخدمات المحلية أيضًا.",
+      "title": "المدن"
+    }
   },
   "images": {
     "photographer": "صورة"

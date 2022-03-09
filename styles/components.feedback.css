@@ -17,7 +17,7 @@
   }
   .ifu-feedback__form--exit-active {
     opacity: 0;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease;
   }
   .ifu-feedback__form--exit-done {
     opacity: 0;
