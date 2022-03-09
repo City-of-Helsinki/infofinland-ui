@@ -116,20 +116,20 @@ const useAnalytics = () => {
   const searchCount = useAtomValue(searchResultsCountAtom)
   // Initialize analytics
   useEffect(() => {
+    //but not in server side render cycles
     if (isSSR()) {
       return
     }
     DEV && console.log('init tracker')
+
     const {
       MATOMO_URL: url,
       MATOMO_SITE_ID: siteId,
-      MATOMO_DOMAINS: domains,
     } = getConfig().publicRuntimeConfig
 
     Analytics.init({
       url,
       siteId,
-      domains,
       enabled: navigator.doNotTrack !== '1' && !!isAnalyticsAllowed,
       searchCount,
     }).connect()
