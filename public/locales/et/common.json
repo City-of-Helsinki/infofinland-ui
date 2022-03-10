@@ -6,6 +6,13 @@
     "frontpage": "Avaleht",
     "title": "Jäljerida"
   },
+  "frontpage": {
+    "cities": {
+      "title": "Linnad",
+      "text": "InfoFinlandist leiad teavet ka kohalike teenuste kohta.",
+      "button": "Mine lehele Linnad"
+    }
+  },
   "buttons": {
     "close": "Sulge",
     "external": "Link viib saidilt välja",
@@ -51,7 +58,7 @@
     "states": {
       "fail": "Viga tagasiside saatmisel",
       "invalid": "Kohustuslik väli",
-      "submitting": "!Lähetetään palautetta...",
+      "submitting": "Tagasiside saatmine",
       "success": "Aitäh tagasiside eest"
     },
     "text": [
@@ -85,7 +92,7 @@
     "reselect": "Vali teine omavalitsus",
     "select": "Vali omavalitsus",
     "select_city": "Vali: {{city}}",
-    "selected_city": "Minu omavalitsus: {{}}",
+    "selected_city": "Minu omavalitsus: {{city}}",
     "title": "Kohalik teave"
   },
   "mainMenu": {

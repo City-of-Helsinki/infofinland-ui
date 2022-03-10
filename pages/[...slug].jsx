@@ -15,19 +15,16 @@ import {
 } from '@/lib/ssr-api'
 
 export async function getStaticPaths() {
-  // const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
-
   return {
     paths: [],
     fallback: 'blocking',
   }
 
-  // const { items } = await getMainMenu(context).catch((e) => {
-  //   console.error('Error while getting main menu', e)
-  //   // if (process.env.development) {
-  //   //   console.error(e)
-  //   // }
-  //   return { items: [] }
+  // const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
+
+  // const { items } = await getMenu(DRUPAL_MENUS.MAIN, {
+  //   locale:'en',
+  //   defaultLocale:'-',
   // })
   // const paths = items
   //   // Filter out theme pages
@@ -35,16 +32,17 @@ export async function getStaticPaths() {
   //   // Parse to theme and path slug
   //   .map(({ url }) => {
   //     //remove root slash and language code
-  //     const [, , ...path] = url.split('/')
+  //     const [, , ...slug] = url.split('/')
   //     return {
   //       params: {
-  //         path,
+  //         slug,
   //       },
   //     }
   //   })
 
   // return {
-  //   paths: addPrerenderLocalesToPaths(paths),
+  //   paths,
+  //   // paths: addPrerenderLocalesToPaths(paths),
   //   fallback: 'blocking',
   // }
 }
@@ -93,6 +91,7 @@ export async function getStaticProps(context) {
       })
     }
   }
+
   let themeMenu = menuErrorResponse()
 
   const { field_theme_menu_machine_name } = node

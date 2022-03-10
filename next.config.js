@@ -1,8 +1,10 @@
 const { i18n } = require('./next-i18next.config')
+
 const env = {
   COOKIE_PAGE_PATH: '/cookie-settings',
   FEEDBACK_PAGE_PATH: '/feedback',
   SITEMAP_PAGE_PATH: '/sitemap',
+  CITIES_PAGE_PATH: '/cities',
   PRERENDER_LOCALES: ['fi', 'en', 'sv', 'ar', 'ru'],
   DRUPAL_MENUS: {
     MAIN: 'main',
@@ -17,6 +19,7 @@ const env = {
   YOUTUBE_URL: 'https://www.youtube.com/c/infofinland',
   TWITTER_URL: 'https://twitter.com/InfoFinlandfi',
 }
+
 module.exports = {
   i18n,
   reactStrictMode: true,
@@ -41,7 +44,8 @@ module.exports = {
     ...env,
   },
   images: {
-    // populate all envs here
+    // populate static common image domains envs here manually
+    // or via ENV variables
     domains: [process.env.NEXT_IMAGE_DOMAIN],
   },
   webpack: (config) => {

@@ -2,7 +2,7 @@
   "article": {
     "published": "منتشر شده"
   },
-  "breadcrumb": {
+  "breadcrumbs": {
     "frontpage": "صفحه اول",
     "title": "مسیر راهنما"
   },
@@ -51,16 +51,18 @@
       "submitting": "پیشنهاد فرستاده می شود",
       "success": "از پیشنهادات و نظراتتان سپاسگزاریم"
     },
-    "text": [
-      "TODO FROM DRUPAL Vastaamme palautteisiin seuraavilla kielillä: suomi, ruotsi ja englanti. Valitettavasti emme voi vastata palautteisiin, jotka on kirjoitettu muilla kielillä.",
-      "Palautelomakkeessa on automaattinen roskapostisuodatin. Palautteeseen ei saa liittää linkkiä.",
-      "Vastaamme vain InfoFinland-sivustoa koskeviin palautteisiin. Ota huomioon, että emme anna neuvontaa omien asioiden hoitamisessa. Neuvontapalveluja löydät InfoFinlandin sivulta Soita ja kysy neuvoa."
-    ],
     "title": "پیشنهادات و انتقادات",
     "urlLabel": "آدرس سایت"
   },
   "footer": {
     "helsinkiDisclaimer": "صفحات InfoFinland.fi توسط شهر هلسینکی منتشر می شود و مخارج آن از طرف دولت و شهرهای عضو InfoFinland.fi تأمین می شود."
+  },
+  "frontpage": {
+    "cities": {
+      "button": "به شهرها نگاه کنید",
+      "text": "در InfoFinland اطلاعاتی در مورد خدمات محلی هم وجود دارد.",
+      "title": "شهرها"
+    }
   },
   "images": {
     "photographer": "عکس"

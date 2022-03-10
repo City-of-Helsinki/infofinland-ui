@@ -10,10 +10,8 @@ import { getHeroFromNode } from '@/lib/ssr-helpers'
 import IngressBlock from '@/components/article/IngressBlock'
 import AnchorLinksBlock from '@/components/article/AnchorLinksBlock'
 import LocalInformationSelectCity from '@/components/cities/LocalInfoSelectCity'
-// import { useAtomValue } from 'jotai/utils'
-// import { themeMenuAtom } from '../store'
 
-const ArticlePage = ({ node, fiNode, themeMenu }) => {
+const ArticlePage = ({ node, fiNode, themeMenu, menus }) => {
   const { localePath, locale } = useRouterWithLocalizedPath()
   const {
     title,
@@ -27,13 +25,16 @@ const ArticlePage = ({ node, fiNode, themeMenu }) => {
     tree: themeMenu.tree,
     path: localePath,
   })
+
   const breadcrumbs = useBreadCrumbs({
     items: themeMenu.items,
     path: localePath,
   })
+
   const hero = getHeroFromNode(node)
+
   return (
-    <Layout>
+    <Layout menus={menus}>
       <Article
         title={title}
         breadcrumbs={breadcrumbs}

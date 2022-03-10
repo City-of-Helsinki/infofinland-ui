@@ -2,7 +2,7 @@
   "article": {
     "published": "Publié"
   },
-  "breadcrumb": {
+  "breadcrumbs": {
     "frontpage": "Page principale",
     "title": "Fil d'Ariane"
   },
@@ -51,16 +51,18 @@
       "submitting": "Envoi des commentaires",
       "success": "Merci pour vos commentaires"
     },
-    "text": [
-      "TODO FROM DRUPAL Vastaamme palautteisiin seuraavilla kielillä: suomi, ruotsi ja englanti. Valitettavasti emme voi vastata palautteisiin, jotka on kirjoitettu muilla kielillä.",
-      "Palautelomakkeessa on automaattinen roskapostisuodatin. Palautteeseen ei saa liittää linkkiä.",
-      "Vastaamme vain InfoFinland-sivustoa koskeviin palautteisiin. Ota huomioon, että emme anna neuvontaa omien asioiden hoitamisessa. Neuvontapalveluja löydät InfoFinlandin sivulta Soita ja kysy neuvoa."
-    ],
     "title": "Remarques",
     "urlLabel": "Adresse de la page"
   },
   "footer": {
     "helsinkiDisclaimer": "Le site InfoFinland.fi est publié par la ville de Helsinki, l’État et les communes membres d’InfoFinland prennent part à son financement."
+  },
+  "frontpage": {
+    "cities": {
+      "button": "Voir Villes",
+      "text": "InfoFinlandista donne également des informations sur les services locaux",
+      "title": "Villes"
+    }
   },
   "images": {
     "photographer": "Photo"
