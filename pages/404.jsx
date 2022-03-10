@@ -169,7 +169,10 @@ const Texts404 = ({ locales = [], locale }) => {
   // if there are no localizations, show basic-404
   // if all localizations exist, page is not shown for other reasons. Show basic 404
   // if some localizations exist, show available-languages-404
-  const texts = (locales.length > 0 || locales.length === i18n.locales.length) ? TEXTS_LANG_404 : TEXTS_404
+  const texts =
+    locales.length > 0 || locales.length === i18n.locales.length
+      ? TEXTS_LANG_404
+      : TEXTS_404
   const content = omit(texts, locale)
   return (
     <>

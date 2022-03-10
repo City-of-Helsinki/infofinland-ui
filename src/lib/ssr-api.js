@@ -101,7 +101,7 @@ export const getMenus = async ({ locale }) => {
 export const getCommonApiContent = async ({ locale, id }) => {
   const context = { locale, defaultLocale: NO_DEFAULT_LOCALE }
 
-  const menus = await getMenus(context);
+  const menus = await getMenus(context)
 
   const municipalities = await getMunicipalities(context).catch((e) => {
     console.error('municipality list error', e)
@@ -109,9 +109,9 @@ export const getCommonApiContent = async ({ locale, id }) => {
   })
 
   const feedback = await getFeedbackPage(context).catch((e) => {
-      console.error('Feedback content error', e)
-      return null
-    })
+    console.error('Feedback content error', e)
+    return null
+  })
 
   const messages = await getMessages({ ...context, id }).catch((e) => {
     console.error('Messages error', e)

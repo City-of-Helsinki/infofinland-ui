@@ -31,7 +31,7 @@ const TopMenuItem = ({
   selected,
   selectedIsHidden,
   secondarySelection,
-  locale
+  locale,
 }) => (
   <li
     className={cls('block relative', {
@@ -72,7 +72,7 @@ const TopMenuItem = ({
 )
 
 const MainMenu = ({ menu: { items, tree }, useTopBorder, city }) => {
-  const { localePath,locale } = useLocalizedPath()
+  const { localePath, locale } = useLocalizedPath()
   const indexFromRouter = getThemeIndexByPathName({
     items,
     path: localePath,

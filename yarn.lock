@@ -2894,11 +2894,6 @@ core-js-pure@^3.16.0:
   resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.17.3.tgz#98ea3587188ab7ef4695db6518eeb71aec42604a"
   integrity sha512-YusrqwiOTTn8058JDa0cv9unbXdIiIgcgI9gXso0ey4WgkFLd3lYlV9rp9n7nDCsYxXsMDTjA4m1h3T348mdlQ==
 
-core-js@3.20.3:
-  version "3.20.3"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.20.3.tgz#c710d0a676e684522f3db4ee84e5e18a9d11d69a"
-  integrity sha512-vVl8j8ph6tRS3B8qir40H7yw7voy17xL0piAjlbBUsH7WIfzoedL/ZOr1OV9FyZQLWXsayOJyV4tnRyXR85/ag==
-
 core-js@^3:
   version "3.19.1"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.19.1.tgz#f6f173cae23e73a7d88fa23b6e9da329276c6641"
@@ -5999,11 +5994,6 @@ open@^7.0.4:
   dependencies:
     is-docker "^2.0.0"
     is-wsl "^2.1.1"
-
-optics-ts@2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/optics-ts/-/optics-ts-2.2.0.tgz#978efa19e23f2a484bbbf82d9401930875223119"
-  integrity sha512-1rkFaX3z7xqYsBSgOP9q8DDIidwWoUMr1dBa9m5gR0fNyEBELATo2W8VSZ6/mCJprJQTt3F1FLj3HDYTE7/P2Q==
 
 optionator@^0.8.1:
   version "0.8.3"
