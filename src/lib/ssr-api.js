@@ -87,7 +87,7 @@ export const getMenus = async ({ locale }) => {
         defaultLocale: NO_DEFAULT_LOCALE,
       }).catch((e) => {
         console.error('Error fetching menu:', menu, e)
-        return menuErrorResponse(e)
+        return menuErrorResponse()
       })
       return { menuItems: menuItems, menu }
     })
@@ -100,23 +100,41 @@ export const getMenus = async ({ locale }) => {
 
 export const getCommonApiContent = async ({ locale, id }) => {
   const context = { locale, defaultLocale: NO_DEFAULT_LOCALE }
-  const [menus, municipalities, feedback, messages] = await Promise.all([
-    getMenus(context),
-    getMunicipalities(context).catch((e) => {
-      console.error('municipality list error', e)
-      return []
-    }),
-    getFeedbackPage(context).catch((e) => {
+
+  const menus = await getMenus(context);
+
+  const municipalities = await getMunicipalities(context).catch((e) => {
+    console.error('municipality list error', e)
+    return []
+  })
+
+  const feedback = await getFeedbackPage(context).catch((e) => {
       console.error('Feedback content error', e)
       return null
-    }),
-    getMessages({ ...context, id }).catch((e) => {
-      console.error('Messages error', e)
-      return []
-    }),
-  ]).catch((e) => {
-    throw e
+    })
+
+  const messages = await getMessages({ ...context, id }).catch((e) => {
+    console.error('Messages error', e)
+    return []
   })
+
+  // const [menus, municipalities, feedback, messages] = await Promise.all([
+  //   getMenus(context),
+  //   getMunicipalities(context).catch((e) => {
+  //     console.error('municipality list error', e)
+  //     return []
+  //   }),
+  //   getFeedbackPage(context).catch((e) => {
+  //     console.error('Feedback content error', e)
+  //     return null
+  //   }),
+  //   getMessages({ ...context, id }).catch((e) => {
+  //     console.error('Messages error', e)
+  //     return []
+  //   }),
+  // ]).catch((e) => {
+  //   throw e
+  // })
   return {
     menus,
     municipalities,

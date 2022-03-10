@@ -13,7 +13,6 @@ import CookieConsentBar from '@/components/layout/CookieConsent'
 import MainMenu from '@/components/navi/MainMenu' // { MainNaviError }
 import cls from 'classnames'
 import { useAtomValue } from 'jotai/utils'
-import { useAtomDevtools } from 'jotai/devtools'
 
 import {
   aboutMenuAtom,
@@ -100,8 +99,6 @@ export const SecondaryLayout = ({ children, className }) => {
 
 const AppLayout = ({ children, className }) => {
   const { locale } = useRouter()
-  useAtomDevtools(selectedCityAtom, 'selected city')
-
   useSetLocalization(locale)
   useShowLangMessage(locale)
   const node = useAtomValue(nodeAtom)

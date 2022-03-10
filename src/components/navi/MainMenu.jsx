@@ -31,6 +31,7 @@ const TopMenuItem = ({
   selected,
   selectedIsHidden,
   secondarySelection,
+  locale
 }) => (
   <li
     className={cls('block relative', {
@@ -38,7 +39,7 @@ const TopMenuItem = ({
     })}
   >
     {!items && (
-      <Link href={url} prefetch={false}>
+      <Link href={url} locale={locale} prefetch={false}>
         <a
           className={cls(
             'block text-body-small ps-8 py-4 border-s-5 hover:bg-gray-white pe-4',
@@ -71,11 +72,12 @@ const TopMenuItem = ({
 )
 
 const MainMenu = ({ menu: { items, tree }, useTopBorder, city }) => {
-  const { localePath } = useLocalizedPath()
+  const { localePath,locale } = useLocalizedPath()
   const indexFromRouter = getThemeIndexByPathName({
     items,
     path: localePath,
   })
+
   const [openIndex, setVisibility] = useState(indexFromRouter)
   const setOpenIndex = (i) => setVisibility(i === openIndex ? null : i)
   /**
@@ -98,6 +100,7 @@ const MainMenu = ({ menu: { items, tree }, useTopBorder, city }) => {
             key={`link-${props.title}`}
             secondarySelection={city === props.title}
             {...props}
+            locale={locale}
             selected={localePath === props.url}
             isOpen={i === openIndex}
             toggle={() => setOpenIndex(i)}

@@ -45,6 +45,13 @@ export const feedbackFormVisibilityAtom = atom(false)
 export const pageAtom = atom({
   node: { id: null },
   themeMenu: menuErrorResponse(),
+  menus:{
+    main:{},
+    about:{},
+    'footer-about':{},
+    cities:{},
+    'cities-landing':{}
+  }
 })
 pageAtom.debugLabel = 'page props root atom'
 
@@ -88,6 +95,9 @@ export const feedbackPageAtom = focusAtom(pageAtom, (optics) =>
  * Menu atom collection
  */
 export const menusAtom = focusAtom(pageAtom, (optics) => optics.prop('menus'))
+
+// export const footerMenuAtom = atom(get=>get(menusAtom)['footer-about'])
+
 
 export const footerMenuAtom = focusAtom(menusAtom, (optics) =>
   optics.prop('footer-about')
