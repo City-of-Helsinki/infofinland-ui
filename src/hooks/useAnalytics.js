@@ -122,10 +122,8 @@ const useAnalytics = () => {
     }
     DEV && console.log('init tracker')
 
-    const {
-      MATOMO_URL: url,
-      MATOMO_SITE_ID: siteId,
-    } = getConfig().publicRuntimeConfig
+    const { MATOMO_URL: url, MATOMO_SITE_ID: siteId } =
+      getConfig().publicRuntimeConfig
 
     Analytics.init({
       url,
