@@ -12,7 +12,6 @@ import {
 } from '@/lib/ssr-api'
 
 import { getHeroFromNode } from '@/lib/ssr-helpers'
-
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import getConfig from 'next/config'
 import { getResource } from 'next-drupal'
@@ -77,18 +76,19 @@ const AboutImage = () => (
   </div>
 )
 
-const HomePage = ({ node, themes }) => {
+const HomePage = ({
+  node,
+  themes
+}) => {
   const hero = getHeroFromNode(node)
-  const { field_description, field_content, title } = node
+  const {field_description, field_content, title} = node
   const [aboutText, ...restOfContent] = field_content
 
   return (
     <Layout
-      title={title}
       className="ifu-landing"
-      description={node.description || field_description}
     >
-      <HomeHero title={node.title} src={hero?.src} />
+      <HomeHero title={title} src={hero?.src} />
 
       {field_description && (
         <IngressBlock field_description={field_description} />
