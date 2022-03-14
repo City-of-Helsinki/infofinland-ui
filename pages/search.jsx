@@ -2,7 +2,11 @@ import { useTranslation } from 'next-i18next'
 import Layout from '@/components/layout/Layout'
 import Head from 'next/head'
 import Block from '@/components/layout/Block'
-import { searchResultsAtom, searchResultsCountAtom,searchResultsTermAtom } from '@/src/store'
+import {
+  searchResultsAtom,
+  searchResultsCountAtom,
+  searchResultsTermAtom,
+} from '@/src/store'
 
 import { useEffect, useState } from 'react'
 import { IconLookingGlass } from '@/components/Icons'
@@ -41,7 +45,7 @@ export async function getServerSideProps(context) {
       ...common,
       ...(await serverSideTranslations(context.defaultLocale, ['common'])),
       q,
-      search
+      search,
     },
   }
 }
@@ -78,21 +82,32 @@ const SearchBar = ({ qw }) => {
   )
 }
 
-
-const HilightedResult = ({text,search}) => (
+const HilightedResult = ({ text, search }) => (
   <p className="mb-4 text-body-small">
-      <Highlighter
-        highlightClassName="bg-orange-light text-black"
-        textToHighlight={text.length> RESULT_MAX_LENGTH ? `${text.substr(0,RESULT_MAX_LENGTH)}...`: text}
-        searchWords={[search]}
-      />
+    <Highlighter
+      highlightClassName="bg-orange-light text-black"
+      textToHighlight={
+        text.length > RESULT_MAX_LENGTH
+          ? `${text.substr(0, RESULT_MAX_LENGTH)}...`
+          : text
+      }
+      searchWords={[search]}
+    />
   </p>
 )
 
-const Result = ({ title, url, language, field_description, field_text, search ,id}) => (
+const Result = ({
+  title,
+  url,
+  language,
+  field_description,
+  field_text,
+  search,
+  id,
+}) => (
   <section className="pb-8 mt-8 border-b border-gray-light" lang={language}>
     <h2 className="mb-4 text-h5xl font-bold">
-      <TextLink href={url} >{title}</TextLink>
+      <TextLink href={url}>{title}</TextLink>
       {/* <Link href={url} locale={language} passHref prefetch={false}>
         <a></a>
       </Link> */}
@@ -111,9 +126,16 @@ const Result = ({ title, url, language, field_description, field_text, search ,i
     )} */}
 
     {field_description &&
-    field_description.map(  (text,i) => <HilightedResult search={search} key={`result-${id}-highlight-${i}`} text={striptags(text)}/>   )
-    }
-    {field_text?.length>0 && <HilightedResult text={field_text[0]} search={search} />}
+      field_description.map((text, i) => (
+        <HilightedResult
+          search={search}
+          key={`result-${id}-highlight-${i}`}
+          text={striptags(text)}
+        />
+      ))}
+    {field_text?.length > 0 && (
+      <HilightedResult text={field_text[0]} search={search} />
+    )}
   </section>
 )
 
@@ -121,13 +143,13 @@ const SearchResults = () => {
   const search = useAtomValue(searchResultsTermAtom)
   const results = useAtomValue(searchResultsAtom)
 
-  if(results?.length < 1 ){
+  if (results?.length < 1) {
     return null
   }
 
-  return results?.map(getSearchResult).map((r) => (
-    <Result key={`result-${r.id}`} {...r} search={search} />
-  ))
+  return results
+    ?.map(getSearchResult)
+    .map((r) => <Result key={`result-${r.id}`} {...r} search={search} />)
 }
 
 export const SearchPage = () => {
@@ -147,7 +169,7 @@ export const SearchPage = () => {
   } else {
     title = t('search.title.results')
   }
-  console.log({mockResults})
+  console.log({ mockResults })
 
   return (
     <Layout>
@@ -157,7 +179,7 @@ export const SearchPage = () => {
       <Block hero>
         <h1 className="mt-16 text-h2 md:text-h3xl">{title}</h1>
         <SearchBar qw={search} />
-         <SearchResults />
+        <SearchResults />
       </Block>
     </Layout>
   )

@@ -41,20 +41,20 @@ export const feedbackFormVisibilityAtom = atom(false)
  * Page atoms
  */
 
-export const pageAtom = atom({}
-//   {
-//   search:{},
-//   node: { id: null },
-//   themeMenu: menuErrorResponse(),
-//   menus: {
-//     main: {},
-//     about: {},
-//     'footer-about': {},
-//     cities: {},
-//     'cities-landing': {},
-//   },
-// }
-
+export const pageAtom = atom(
+  {}
+  //   {
+  //   search:{},
+  //   node: { id: null },
+  //   themeMenu: menuErrorResponse(),
+  //   menus: {
+  //     main: {},
+  //     about: {},
+  //     'footer-about': {},
+  //     cities: {},
+  //     'cities-landing': {},
+  //   },
+  // }
 )
 
 pageAtom.debugLabel = 'page props root atom'
@@ -63,9 +63,12 @@ export const isAboutPageAtom = atom((get) => get(pageAtom).isAboutPage)
 
 export const searchResultsAtom = atom((get) => get(pageAtom).search?.hits?.hits)
 
-export const searchResultsTermAtom = selectAtom(pageAtom, p => p.q )
+export const searchResultsTermAtom = selectAtom(pageAtom, (p) => p.q)
 
-export const searchResultsCountAtom = selectAtom(searchResultsAtom, h => h?.length || 0)
+export const searchResultsCountAtom = selectAtom(
+  searchResultsAtom,
+  (h) => h?.length || 0
+)
 
 export const municipalitiesAtom = atom((get) => get(pageAtom).municipalities)
 
@@ -90,19 +93,25 @@ export const feedbackPageAtom = atom((get) => get(pageAtom).feedback)
  */
 export const menusAtom = atom((get) => get(pageAtom).menus)
 
-export const footerMenuAtom = selectAtom(menusAtom,menus=> menus && menus['footer-about'])
-export const citiesLandingMenuAtom = selectAtom(menusAtom, menus=> menus && menus['cities-landing'])
-export const citiesMenuAtom = selectAtom(menusAtom, menus => menus?.cities)
-export const mainMenuAtom = selectAtom(menusAtom,menu=>menu?.main)
-export const aboutMenuAtom = selectAtom(menusAtom, menu=>menu?.about)
+export const footerMenuAtom = selectAtom(
+  menusAtom,
+  (menus) => menus && menus['footer-about']
+)
+export const citiesLandingMenuAtom = selectAtom(
+  menusAtom,
+  (menus) => menus && menus['cities-landing']
+)
+export const citiesMenuAtom = selectAtom(menusAtom, (menus) => menus?.cities)
+export const mainMenuAtom = selectAtom(menusAtom, (menu) => menu?.main)
+export const aboutMenuAtom = selectAtom(menusAtom, (menu) => menu?.about)
 export const themeMenuAtom = atom((get) => get(pageAtom).themeMenu)
 
 /**
  * Node atom collection
  */
 
-export const nodeAtom = selectAtom(pageAtom, page=>page?.node)
-export const nodeIdAtom = selectAtom(pageAtom, page=>page?.node?.id)
+export const nodeAtom = selectAtom(pageAtom, (page) => page?.node)
+export const nodeIdAtom = selectAtom(pageAtom, (page) => page?.node?.id)
 
 /** Cookie consent atom */
 export const cookieConsentAtom = atomWithStorage(

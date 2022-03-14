@@ -64,7 +64,7 @@ export async function getStaticProps(context) {
     return NOT_FOUND
   }
 
-  if(!id) {
+  if (!id) {
     return NOT_FOUND
   }
 

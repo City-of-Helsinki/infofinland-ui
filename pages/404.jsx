@@ -18,7 +18,7 @@ export async function getStaticProps(context) {
   return {
     props: {
       texts: TEXTS_404,
-    //  ...common,
+      //  ...common,
       ...(await serverSideTranslations(context.defaultLocale, ['common'])),
     },
     revalidate: serverRuntimeConfig.REVALIDATE_TIME,
@@ -256,10 +256,12 @@ const Texts404 = ({ locales = [], locale }) => {
   )
 }
 
-export const PageNotFound = ({foo}) => {
+export const PageNotFound = ({ foo }) => {
   const { locale, asPath } = useRouter()
   const { data: locales, error } = usePageLocales({ path: asPath })
-  if(!foo){return '404 minimal'}
+  if (!foo) {
+    return '404 minimal'
+  }
   return (
     <Layout>
       {!locales && !error && (

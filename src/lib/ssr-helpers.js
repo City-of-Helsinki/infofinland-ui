@@ -111,24 +111,26 @@ export const getLinks = ({ collection, locale } = {}) => {
   )
 }
 
-
-
-const elasticNodeIdToUrl = id => {
-
-  const [,node,] = id.split(':')
+const elasticNodeIdToUrl = (id) => {
+  const [, node] = id.split(':')
   return node
 }
 
-export const getSearchResult = hit => {
-  const {title, field_description,field_text,_language:language} = hit._source
-  const result=  {
+export const getSearchResult = (hit) => {
+  const {
+    title,
+    field_description,
+    field_text,
+    _language: language,
+  } = hit._source
+  const result = {
     language,
     title,
     field_description,
     field_text,
     id: hit?._id,
-    url: elasticNodeIdToUrl(hit?._id)
+    url: elasticNodeIdToUrl(hit?._id),
   }
-console.log(result)
+  console.log(result)
   return result
 }

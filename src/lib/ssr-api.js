@@ -242,5 +242,3 @@ export const getMessages = async ({ locale, id }) => {
     params,
   })
 }
-
-

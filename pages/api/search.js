@@ -29,12 +29,11 @@
 // import SEARCH_RESULTS from '@/MOCK_SEARCH'
 
 export default function handler(req, res) {
-
-  const { search:q } = req?.query
+  const { search: q } = req?.query
   // Mocking empty results for page testing
   // Change test implementation when we have real search API
 
-  const results = q === '_' ? [] :  []
+  const results = q === '_' ? [] : []
 
   // const results = getClient().search({q})
 
