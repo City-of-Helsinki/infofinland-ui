@@ -52,7 +52,7 @@ export const getIdFromPath = async ({ path, context: { locale } }) => {
     context: { locale },
   }).catch((e) => {
     if (e?.response?.status === 404) {
-      console.error('Error resolving path', { path })
+      console.error('Error 404 while resolving path:', { path })
       return { data: null }
     }
     console.error(e)
@@ -242,3 +242,5 @@ export const getMessages = async ({ locale, id }) => {
     params,
   })
 }
+
+

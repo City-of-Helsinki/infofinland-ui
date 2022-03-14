@@ -71,7 +71,14 @@ const TopMenuItem = ({
   </li>
 )
 
-const MainMenu = ({ menu: { items, tree }, useTopBorder, city }) => {
+const MainMenu = ({ menu={}, useTopBorder, city }) => {
+  const {items,tree} = menu;
+
+  if(!items || !tree) {
+    throw 'NO MENU'
+  }
+
+
   const { localePath, locale } = useLocalizedPath()
   const indexFromRouter = getThemeIndexByPathName({
     items,

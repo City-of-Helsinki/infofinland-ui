@@ -5,7 +5,7 @@ import cls from 'classnames'
 import { longTextClass } from '@/components/Typo'
 import { i18n } from '@/next-i18next.config'
 import { map, omit } from 'lodash'
-import * as DrupalApi from '@/lib/ssr-api'
+// import {getCommonApiContent} from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import getConfig from 'next/config'
 import usePageLocales from '@/hooks/usePageLocales'
@@ -14,11 +14,11 @@ import { DotsLoader } from '@/components/Loaders'
 
 export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
-  const common = await DrupalApi.getCommonApiContent(context)
+  //const common = await DrupalApi.getCommonApiContent(context)
   return {
     props: {
       texts: TEXTS_404,
-      ...common,
+    //  ...common,
       ...(await serverSideTranslations(context.defaultLocale, ['common'])),
     },
     revalidate: serverRuntimeConfig.REVALIDATE_TIME,
@@ -256,9 +256,10 @@ const Texts404 = ({ locales = [], locale }) => {
   )
 }
 
-export const PageNotFound = () => {
+export const PageNotFound = ({foo}) => {
   const { locale, asPath } = useRouter()
   const { data: locales, error } = usePageLocales({ path: asPath })
+  if(!foo){return '404 minimal'}
   return (
     <Layout>
       {!locales && !error && (
