@@ -64,21 +64,23 @@ export async function getStaticProps(context) {
     return NOT_FOUND
   }
 
-  const [common, node] = await Promise.all([
-    getCommonApiContent({ ...context, id }),
-    getResource(type, id, {
-      locale,
-      params: getQueryParamsFor(type),
-    }).catch((e) => {
-      console.error('Error requesting node ', id, e)
-      throw e
-    }),
-  ])
+  if (!id) {
+    return NOT_FOUND
+  }
+
+  const node = await getResource(type, id, {
+    locale,
+    params: getQueryParamsFor(type),
+  }).catch((e) => {
+    console.error('Error requesting node ', id, e)
+    // throw e
+  })
 
   // Return 404 if node was null
   if (!node) {
     return NOT_FOUND
   }
+  const common = await getCommonApiContent({ ...context, id })
 
   let fiNode = null // Must be JSON compatible
 

@@ -12,7 +12,6 @@ import {
 } from '@/lib/ssr-api'
 
 import { getHeroFromNode } from '@/lib/ssr-helpers'
-
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import getConfig from 'next/config'
 import { getResource } from 'next-drupal'
@@ -22,7 +21,7 @@ import IngressBlock from '@/components/article/IngressBlock'
 import Columns from '@/components/article/Columns'
 import Image from 'next/image'
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const { serverRuntimeConfig } = getConfig()
   const id = await getIdFromPath({
     path: serverRuntimeConfig.DRUPAL_FRONT_PAGE,
@@ -61,7 +60,7 @@ export async function getStaticProps(context) {
       node,
       ...(await serverSideTranslations(context.locale, ['common'])),
     },
-    revalidate: serverRuntimeConfig.REVALIDATE_TIME,
+    // revalidate: serverRuntimeConfig.REVALIDATE_TIME,
   }
 }
 
@@ -69,7 +68,7 @@ const AboutImage = () => (
   <div className="flex justify-center items-center pt-8 mx-auto lg:mt-0">
     <Image
       src="/images/logo-verticalpng-2.png"
-      alt=""
+      alt="Infofinland.fi"
       width={155}
       height={125}
       layout="fixed"
@@ -83,12 +82,8 @@ const HomePage = ({ node, themes }) => {
   const [aboutText, ...restOfContent] = field_content
 
   return (
-    <Layout
-      title={title}
-      className="ifu-landing"
-      description={node.description || field_description}
-    >
-      <HomeHero title={node.title} src={hero?.src} />
+    <Layout className="ifu-landing">
+      <HomeHero title={title} src={hero?.src} />
 
       {field_description && (
         <IngressBlock field_description={field_description} />

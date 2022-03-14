@@ -6,7 +6,8 @@ import { BlankLayout } from '@/components/layout/Layout'
 import { longTextClass } from '@/components/Typo'
 import { i18n } from '@/next-i18next.config'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-
+import { IconExclamationBubble } from '@/components/Icons'
+import InfoFinlandLogoSVG from '@/components/logo'
 export async function getStaticProps(context) {
   return {
     props: {
@@ -72,15 +73,22 @@ const Error500 = () => {
       <Head>
         <title>{TEXTS[locale].title}</title>
       </Head>
-
+      <div className="py-4 border-t border-b border-gray-lighter fmb-8">
+        <div className="md:mx-auto md:max-w-4xl">
+          {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
+          <a href="/">
+            <InfoFinlandLogoSVG />
+          </a>
+        </div>
+      </div>
       <div
         className={cls(
           'flex items-center border-s-10 border-neon-pink shadow-404title rounded h-32 mt-6 md:mt-12',
           'mx-2 md:px-6 md:mx-auto md:max-w-4xl'
         )}
       >
-        <span className="flex-none px-4 text-h2 md:text-h1xl font-bold">
-          500
+        <span className="flex-none px-4 font-bold">
+          <IconExclamationBubble className=" h-56 scale-150 fill-red me-4 lg:me-0" />
         </span>
 
         <h1 className="flex-grow text-body md:text-body-large md:ms-6 lg:ms-12">
@@ -101,7 +109,7 @@ const Error500 = () => {
       <div
         className={cls(
           'lg:grid md:grid-rows-6 md:grid-flow-col md:gap-y-8 md:gap-x-32 mt-8 md:mt-16 mb-8 md:mb-16',
-          'mx-2 md:px-6 md:mx-auto md:max-w-4xl'
+          'mx-4 md:px-6 md:mx-auto md:max-w-4xl'
         )}
       >
         <p className="block md:hidden mb-8 text-body-small">

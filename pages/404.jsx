@@ -5,20 +5,20 @@ import cls from 'classnames'
 import { longTextClass } from '@/components/Typo'
 import { i18n } from '@/next-i18next.config'
 import { map, omit } from 'lodash'
-import * as DrupalApi from '@/lib/ssr-api'
+// import {getCommonApiContent} from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import getConfig from 'next/config'
 import usePageLocales from '@/hooks/usePageLocales'
 import TextLink from '@/components/TextLink'
 import { DotsLoader } from '@/components/Loaders'
+
 export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
-
-  const common = await DrupalApi.getCommonApiContent(context)
+  //const common = await DrupalApi.getCommonApiContent(context)
   return {
     props: {
       texts: TEXTS_404,
-      ...common,
+      //  ...common,
       ...(await serverSideTranslations(context.defaultLocale, ['common'])),
     },
     revalidate: serverRuntimeConfig.REVALIDATE_TIME,
@@ -166,7 +166,13 @@ const LocalesLinks = ({ locales, dir }) => {
 }
 
 const Texts404 = ({ locales = [], locale }) => {
-  const texts = locales.length > 0 ? TEXTS_LANG_404 : TEXTS_404
+  // if there are no localizations, show basic-404
+  // if all localizations exist, page is not shown for other reasons. Show basic 404
+  // if some localizations exist, show available-languages-404
+  const texts =
+    locales.length > 0 || locales.length === i18n.locales.length
+      ? TEXTS_LANG_404
+      : TEXTS_404
   const content = omit(texts, locale)
   return (
     <>
@@ -250,9 +256,12 @@ const Texts404 = ({ locales = [], locale }) => {
   )
 }
 
-export const PageNotFound = () => {
+export const PageNotFound = ({ foo }) => {
   const { locale, asPath } = useRouter()
   const { data: locales, error } = usePageLocales({ path: asPath })
+  if (!foo) {
+    return '404 minimal'
+  }
   return (
     <Layout>
       {!locales && !error && (

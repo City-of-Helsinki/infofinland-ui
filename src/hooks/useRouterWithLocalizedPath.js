@@ -1,4 +1,3 @@
-import 'core-js/features/array/at'
 import { useRouter } from 'next/router'
 
 export default function useRouterWithLocalizedPath() {
