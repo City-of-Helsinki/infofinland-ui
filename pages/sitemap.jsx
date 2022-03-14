@@ -10,7 +10,7 @@ import Block from '@/components/layout/Block'
 import getConfig from 'next/config'
 import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const { serverRuntimeConfig } = getConfig()
   const path = serverRuntimeConfig.SITEMAP_PAGE_PATH
   const common = await DrupalApi.getCommonApiContent(context)
@@ -31,7 +31,7 @@ export async function getStaticProps(context) {
       ...common,
       ...(await serverSideTranslations(context.locale, ['common'])),
     },
-    revalidate: serverRuntimeConfig.REVALIDATE_TIME,
+    // revalidate: serverRuntimeConfig.REVALIDATE_TIME,
   }
 }
 

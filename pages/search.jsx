@@ -2,42 +2,50 @@ import { useTranslation } from 'next-i18next'
 import Layout from '@/components/layout/Layout'
 import Head from 'next/head'
 import Block from '@/components/layout/Block'
-import { searchResultsCountAtom } from '@/src/store'
-import Link from 'next/link'
-import SEARCH_RESULTS from '@/MOCK_SEARCH'
+import {
+  searchResultsAtom,
+  searchResultsCountAtom,
+  searchResultsTermAtom,
+} from '@/src/store'
+
 import { useEffect, useState } from 'react'
 import { IconLookingGlass } from '@/components/Icons'
 import { Analytics } from '@/hooks/useAnalytics'
 import { useAtomValue } from 'jotai/utils'
 import useSearchRoute from '@/hooks/useSearchRoute'
-import { IconAngleRight } from '@/components/Icons'
-import * as DrupalApi from '@/lib/ssr-api'
+// import { IconAngleRight } from '@/components/Icons'
+import { getCommonApiContent } from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-
 import Highlighter from 'react-highlight-words'
+import mockResults from '@/DEMO-elastic'
+import { getSearchResult } from '@/lib/ssr-helpers'
+import striptags from 'striptags'
+import TextLink from '@/components/TextLink'
 
+const RESULT_MAX_LENGTH = 500 //characters before truncating with ...
 export async function getServerSideProps(context) {
-  const { query } = context
   /*
    Scaffold for testing different UI states for search page.
    See page snapshot tests when real search is implemented and
   mock search results.
   */
-  const common = await DrupalApi.getCommonApiContent(context)
-  const search = query.search || null
-  let results = null
-  // Mock no results witn '_'
-  if (search) {
-    results = search === '_' ? [] : SEARCH_RESULTS
-  }
+  const common = await getCommonApiContent(context)
+  const q = context.query?.search
+  let search = mockResults
+
+  // // Mock no results witn '_'
+  // if (q) {
+  // //  search = await getClient().search({q})
+
+  //   search = mockResults
+  // }
 
   return {
     props: {
       ...common,
       ...(await serverSideTranslations(context.defaultLocale, ['common'])),
-
+      q,
       search,
-      results,
     },
   }
 }
@@ -74,14 +82,37 @@ const SearchBar = ({ qw }) => {
   )
 }
 
-const Result = ({ title, url, path, excerpt, search }) => (
-  <section className="mxy-8">
-    <h2 className="text-h5xl font-bold">
-      <Link href={url} passHref prefetch={false}>
-        <a>{title}</a>
-      </Link>
+const HilightedResult = ({ text, search }) => (
+  <p className="mb-4 text-body-small">
+    <Highlighter
+      highlightClassName="bg-orange-light text-black"
+      textToHighlight={
+        text.length > RESULT_MAX_LENGTH
+          ? `${text.substr(0, RESULT_MAX_LENGTH)}...`
+          : text
+      }
+      searchWords={[search]}
+    />
+  </p>
+)
+
+const Result = ({
+  title,
+  url,
+  language,
+  field_description,
+  field_text,
+  search,
+  id,
+}) => (
+  <section className="pb-8 mt-8 border-b border-gray-light" lang={language}>
+    <h2 className="mb-4 text-h5xl font-bold">
+      <TextLink href={url}>{title}</TextLink>
+      {/* <Link href={url} locale={language} passHref prefetch={false}>
+        <a></a>
+      </Link> */}
     </h2>
-    {path && (
+    {/* {path && (
       <p className="">
         {path.map(({ title, url, id }, i) => (
           <Link key={`result-link-${id}`} href={url} passHref prefetch={false}>
@@ -92,26 +123,39 @@ const Result = ({ title, url, path, excerpt, search }) => (
           </Link>
         ))}
       </p>
+    )} */}
+
+    {field_description &&
+      field_description.map((text, i) => (
+        <HilightedResult
+          search={search}
+          key={`result-${id}-highlight-${i}`}
+          text={striptags(text)}
+        />
+      ))}
+    {field_text?.length > 0 && (
+      <HilightedResult text={field_text[0]} search={search} />
     )}
-    <p className="pb-8 mt-2 mb-8 text-body-small border-b border-gray-light">
-      <Highlighter
-        highlightClassName="bg-orange-light text-black"
-        textToHighlight={excerpt}
-        searchWords={[search]}
-      />
-    </p>
   </section>
 )
-const SearchResults = ({ results, search }) => {
-  return results.map((r) => (
-    <Result key={`result-${r.id}`} {...r} search={search} />
-  ))
+
+const SearchResults = () => {
+  const search = useAtomValue(searchResultsTermAtom)
+  const results = useAtomValue(searchResultsAtom)
+
+  if (results?.length < 1) {
+    return null
+  }
+
+  return results
+    ?.map(getSearchResult)
+    .map((r) => <Result key={`result-${r.id}`} {...r} search={search} />)
 }
 
-export const SearchPage = ({ search, results }) => {
+export const SearchPage = () => {
   const { t } = useTranslation('common')
   const searchCount = useAtomValue(searchResultsCountAtom)
-
+  const search = useAtomValue(searchResultsTermAtom)
   // Set search count for analytics
   useEffect(() => {
     Analytics._searchCount = searchCount
@@ -120,11 +164,12 @@ export const SearchPage = ({ search, results }) => {
   let title
   if (!search) {
     title = t('search.title.start')
-  } else if (results.length === 0) {
+  } else if (searchCount === 0) {
     title = t('search.title.noresults')
   } else {
     title = t('search.title.results')
   }
+  console.log({ mockResults })
 
   return (
     <Layout>
@@ -134,7 +179,7 @@ export const SearchPage = ({ search, results }) => {
       <Block hero>
         <h1 className="mt-16 text-h2 md:text-h3xl">{title}</h1>
         <SearchBar qw={search} />
-        {results && <SearchResults search={search} results={results} />}
+        <SearchResults />
       </Block>
     </Layout>
   )

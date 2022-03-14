@@ -21,7 +21,7 @@ import IngressBlock from '@/components/article/IngressBlock'
 import Columns from '@/components/article/Columns'
 import Image from 'next/image'
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const { serverRuntimeConfig } = getConfig()
   const id = await getIdFromPath({
     path: serverRuntimeConfig.DRUPAL_FRONT_PAGE,
@@ -60,7 +60,7 @@ export async function getStaticProps(context) {
       node,
       ...(await serverSideTranslations(context.locale, ['common'])),
     },
-    revalidate: serverRuntimeConfig.REVALIDATE_TIME,
+    // revalidate: serverRuntimeConfig.REVALIDATE_TIME,
   }
 }
 
@@ -68,7 +68,7 @@ const AboutImage = () => (
   <div className="flex justify-center items-center pt-8 mx-auto lg:mt-0">
     <Image
       src="/images/logo-verticalpng-2.png"
-      alt=""
+      alt="Infofinland.fi"
       width={155}
       height={125}
       layout="fixed"
@@ -76,18 +76,13 @@ const AboutImage = () => (
   </div>
 )
 
-const HomePage = ({
-  node,
-  themes
-}) => {
+const HomePage = ({ node, themes }) => {
   const hero = getHeroFromNode(node)
-  const {field_description, field_content, title} = node
+  const { field_description, field_content, title } = node
   const [aboutText, ...restOfContent] = field_content
 
   return (
-    <Layout
-      className="ifu-landing"
-    >
+    <Layout className="ifu-landing">
       <HomeHero title={title} src={hero?.src} />
 
       {field_description && (

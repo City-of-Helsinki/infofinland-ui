@@ -70,19 +70,16 @@ const Error500 = () => {
 
   return (
     <BlankLayout>
-
       <Head>
         <title>{TEXTS[locale].title}</title>
       </Head>
       <div className="py-4 border-t border-b border-gray-lighter fmb-8">
-
         <div className="md:mx-auto md:max-w-4xl">
           {/* eslint-disable-next-line @next/next/no-html-link-for-pages */}
           <a href="/">
             <InfoFinlandLogoSVG />
           </a>
         </div>
-
       </div>
       <div
         className={cls(
@@ -91,7 +88,7 @@ const Error500 = () => {
         )}
       >
         <span className="flex-none px-4 font-bold">
-          <IconExclamationBubble className=" h-56 scale-150 fill-red me-4 lg:me-0"/>
+          <IconExclamationBubble className=" h-56 scale-150 fill-red me-4 lg:me-0" />
         </span>
 
         <h1 className="flex-grow text-body md:text-body-large md:ms-6 lg:ms-12">
@@ -132,7 +129,7 @@ const Error500 = () => {
           )
         })}
       </div>
-   </BlankLayout>
+    </BlankLayout>
   )
 }
 

@@ -8,6 +8,7 @@ const useHydratePage = (pageProps) => {
     [cookieConsentAtom, undefined],
     [selectedCityAtom, undefined],
   ])
+
   const setPage = useUpdateAtom(pageAtom)
 
   useEffect(() => {

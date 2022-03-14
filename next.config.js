@@ -34,6 +34,10 @@ module.exports = {
   },
   serverRuntimeConfig: {
     // Will only be available on the server side
+    ELASTICSEARCH_URL: process.env.ELASTICSEARCH_URL,
+    elasticsearch_password: process.env.elasticsearch_password,
+    elasticsearch_certificate: process.env.elasticsearch_certificate,
+
     NEXT_PUBLIC_DRUPAL_BASE_URL: process.env.NEXT_PUBLIC_DRUPAL_BASE_URL,
     NEXT_IMAGE_DOMAIN: process.env.NEXT_IMAGE_DOMAIN,
     DRUPAL_FRONT_PAGE: process.env.DRUPAL_FRONT_PAGE,
