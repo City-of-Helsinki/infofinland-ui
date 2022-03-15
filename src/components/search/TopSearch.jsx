@@ -9,6 +9,8 @@ import { Suspense } from 'react'
 import Link from 'next/link'
 import useSearchRoute from '@/hooks/useSearchRoute'
 import cls from 'classnames'
+import { getSearchResult } from '@/lib/ssr-helpers'
+import { useAtomValue } from 'jotai/utils'
 
 const SEARCH_BUTTON_LABEL_ID = 'ifu-searchbar__label'
 
@@ -156,12 +158,24 @@ const Result = ({ title, url }) => (
 )
 
 export const SWRResults = () => {
-  const results = useSearchResults()
+  const q = useAtomValue(searchQueryValue)
+  const { data, error, TRESHOLD } = useSearchResults()
+  const extraResults = data?.results?.hits?.total?.value - data?.size
+  console.log(extraResults)
+  if (error) {
+    console.error('error in search', error)
+    return 'error'
+  }
+
   return (
     <div className="mx-4 md:mx-6 mt-4">
-      {results.map((r, i) => (
+      {data?.results?.hits?.hits?.length < 1 && data.q !== '' && 'No results'}
+
+      {q.length < TRESHOLD && q.length > 0 && 'type more'}
+      {data?.results?.hits?.hits?.map(getSearchResult).map((r, i) => (
         <Result {...r} key={`r-${i}`} />
       ))}
+      {extraResults > 0 && `and ${extraResults} more...`}
     </div>
   )
 }

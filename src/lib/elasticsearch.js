@@ -1,7 +1,7 @@
 import getConfig from 'next/config'
 import { Client } from '@elastic/elasticsearch'
-export const DEFAULT_SIZE = 10
-export const DEFAULT_FROM = 0
+const DEFAULT_SIZE = 10
+const DEFAULT_FROM = 0
 export const getSearchClient = () => {
   const config = getConfig().serverRuntimeConfig
   // process.env.elasticsearch_certificate
@@ -29,4 +29,19 @@ export const getSearchClient = () => {
       rejectUnauthorized: false,
     },
   })
+}
+
+export function getSearchParamsFromQuery({ query }) {
+  const q = query?.search || ''
+  const size = query?.size || DEFAULT_SIZE
+  let from = DEFAULT_FROM
+  const page = Number(query?.page)
+  if (!isNaN(page)) {
+    from = (page - 1) * size
+  }
+
+  if (query?.from) {
+    from = query.from
+  }
+  return { size, q, from }
 }

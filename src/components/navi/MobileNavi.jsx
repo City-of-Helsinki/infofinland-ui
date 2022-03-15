@@ -1,6 +1,4 @@
 import { useState, useEffect } from 'react'
-// import { MainNaviError } from '@/components/navi/MainMenu'
-import MenuGroup from './MenuGroup'
 import { IconMenu, IconAngleRight } from '@/components/Icons'
 import Drawer from '@/components/layout/Drawer'
 import { useRouter } from 'next/router'

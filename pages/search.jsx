@@ -10,21 +10,16 @@ import {
   searchResultsCountAtom,
   searchResultsTermAtom,
 } from '@/src/store'
+import getConfig from 'next/config'
 
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { Analytics } from '@/hooks/useAnalytics'
 import { useAtomValue } from 'jotai/utils'
-// import { IconAngleRight } from '@/components/Icons'
 import { getCommonApiContent } from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { getSearchResult } from '@/lib/ssr-helpers'
-
-import {
-  DEFAULT_FROM,
-  DEFAULT_SIZE,
-  getSearchClient,
-} from '@/lib/elasticsearch'
+import { getSearchParamsFromQuery, getSearchClient } from '@/lib/elasticsearch'
 import ReactPaginate from 'react-paginate'
 import SearchBar from '@/components/search/SearchBar'
 import Result from '@/components/search/Result'
@@ -36,18 +31,7 @@ export async function getServerSideProps(context) {
   mock search results.
   */
   const common = await getCommonApiContent(context)
-  const q = context.query?.search || ''
-  const size = DEFAULT_SIZE
-  let from = DEFAULT_FROM
-  const page = Number(context.query?.page)
-  if (!isNaN(page)) {
-    from = (page - 1) * 10
-  }
-
-  if (context.query?.from) {
-    from = context.query.from
-  }
-
+  const { size, q, from } = getSearchParamsFromQuery(context)
   let results = null
 
   if (q) {
@@ -87,24 +71,23 @@ const SearchResults = () => {
 }
 
 const pageUrl = ({ page, q }) => {
-  let url = new URL('http://a.b/search')
+  const { SEARCH_PAGE_PATH } = getConfig().publicRuntimeConfig
+  let url = new URL(SEARCH_PAGE_PATH, new URL('http://a.b'))
   url.searchParams.set('search', q)
-  url.searchParams.set('page', page - 1)
+  url.searchParams.set('page', page)
   const { pathname, search } = url
   return `${pathname}${search}`
 }
 
 export const SearchPage = () => {
   const { t } = useTranslation('common')
-
   const searchCount = useAtomValue(searchResultsCountAtom)
   const q = useAtomValue(searchResultsTermAtom)
   const pageSize = useAtomValue(searchResultPageSizeAtom)
   const currentPage = useAtomValue(searchResultCurrentPageAtom)
-  // const pageCount = Math.ceil(searchCount / pageSize)
   const pageCount = useAtomValue(searchResultPageCountAtom)
-  console.log({ pageCount, currentPage })
   const { push } = useRouter()
+
   // Set search count for analytics
   useEffect(() => {
     Analytics._searchCount = searchCount
@@ -118,9 +101,8 @@ export const SearchPage = () => {
   } else {
     title = t('search.title.results')
   }
-  // const pageCount = Math.ceil(searchCount / pageSize)
-  const pageUrlWithSearchTerm = (page) => pageUrl({ page, q })
 
+  const pageUrlWithSearchTerm = (page) => pageUrl({ page, q })
   const changePage = ({ selected }) =>
     push({ query: { search: q, page: selected + 1 } })
 

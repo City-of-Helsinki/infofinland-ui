@@ -1,17 +1,18 @@
-import { getSearchClient } from '@/lib/elasticsearch'
-// import SEARCH_RESULTS from '@/MOCK_SEARCH'
+import { getSearchParamsFromQuery, getSearchClient } from '@/lib/elasticsearch'
 
-export default function handler(req, res) {
-  const { search: q } = req?.query
-  // Mocking empty results for page testing
-  // Change test implementation when we have real search API
+export default async function handler(req, res) {
+  const { size, q, from } = getSearchParamsFromQuery(req)
 
-  // const results = q === '_' ? [] : []
+  let results = { q: '', results: {} }
 
-  const results = getSearchClient().search({ q })
+  if (q) {
+    results = await getSearchClient().search({ q, size, from })
+  }
 
   res.status(200).json({
-    // search,
+    q,
+    size,
+    from,
     results,
   })
 }

@@ -5,6 +5,7 @@ const env = {
   FEEDBACK_PAGE_PATH: '/feedback',
   SITEMAP_PAGE_PATH: '/sitemap',
   CITIES_PAGE_PATH: '/cities',
+  SEARCH_PAGE_PATH: '/search',
   PRERENDER_LOCALES: ['fi', 'en', 'sv', 'ar', 'ru'],
   DRUPAL_MENUS: {
     MAIN: 'main',
