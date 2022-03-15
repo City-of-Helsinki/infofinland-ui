@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import Icon, { IconAngleRight } from '@/components/Icons'
 import { useTranslation } from 'next-i18next'
+import { useRouter } from 'next/router'
 
 const MobileLink = ({ url, title }) => (
-  <Link href={url} passHref prefetch={false}>
+  <Link href={url} passHref locale={false} prefetch={false}>
     <a
       className="flex md:hidden items-center mb-4 text-small md:text-body-small hover:underline"
       title={title}
@@ -21,6 +22,7 @@ const MobileLink = ({ url, title }) => (
 const Breadcrumbs = ({ items }) => {
   const parent = items[items.length - 2]
   const { t } = useTranslation('common')
+  const { locale } = useRouter()
 
   return (
     <nav
@@ -33,22 +35,8 @@ const Breadcrumbs = ({ items }) => {
       {!parent && <MobileLink url="/" title={t('breadcrumbs.frontpage')} />}
       {/* Desktop navi */}
       <div className="hidden md:block justify-items-start">
-        {/* <div className="flex-none w-8 float-start">
-          <Link href="/" passHref prefetch={false}>
-            <a
-              className="inline-block relative flex-none mt-1 text-small md:text-body-small"
-              title="home"
-            >
-              <Icon
-                icon="home"
-                className=" absolute -top-1 transform scale-125 translate-y-1"
-              />
-            </a>
-          </Link>
-        </div> */}
-
         <div className="flex-wrap leading-5 ps-4">
-          <Link href="/" passHref prefetch={false}>
+          <Link href="/" passHref prefetch={false} locale={locale}>
             <a
               className="flex-none md:text-body-small me-3"
               title={t('breadcrumbs.frontpage')}
@@ -64,7 +52,7 @@ const Breadcrumbs = ({ items }) => {
 
           {items?.map(({ title, url, id }, i) => (
             <div key={`crumb-${id}`} className="inline-block">
-              <Link href={url} passHref prefetch={false}>
+              <Link href={url} passHref prefetch={false} locale={false}>
                 <a
                   className="text-small md:text-body-small hover:underline"
                   title={title}

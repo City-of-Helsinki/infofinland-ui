@@ -1,14 +1,14 @@
 export const findParent = ({ items, parentId }) =>
-  items.find(({ id }) => id === parentId)
+  items?.find(({ id }) => id === parentId)
 
 export const findTheme = ({ tree, path }) =>
-  tree.find(({ url }) => url === path)
+  tree?.find(({ url }) => url === path)
 
 export const getRootPages = (items) =>
-  items.filter(({ parent }) => parent === '')
+  items?.filter(({ parent }) => parent === '')
 
 export const findPageByPath = ({ items, path }) =>
-  items.find(({ url }) => url === path)
+  items?.find(({ url }) => url === path)
 
 export const findRootForPath = ({ items, path, root = '' }) => {
   const page = findPageByPath({ items, path })

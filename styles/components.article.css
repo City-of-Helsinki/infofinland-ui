@@ -81,6 +81,12 @@
   .ifu-block__html ul {
     @apply list-disc list-outside py-4 mb-4 ms-4 ps-4;
   }
+
+  .ifu-article__column-block ol,
+  .ifu-block__html ol {
+    @apply list-decimal list-outside py-4 mb-4 ms-4 ps-4;
+  }
+
   .ifu-article__column-block ul li,
   .ifu-block__html ul li {
     @apply ps-2;

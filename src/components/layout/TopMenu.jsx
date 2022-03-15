@@ -8,20 +8,24 @@ import {
   LangMenuDrawer,
 } from '@/components/languages/LanguageMenu'
 import CityMenu from '@/components/layout/CityMenu'
-import Search from '../search/Search'
+import TopSearch from '../search/TopSearch'
+import { useRouter } from 'next/router'
 
-const Logo = () => (
-  <div
-    className="relative z-20 flex-none py-3 md:py-4 px-3 bg-white transform translate-y-px md:ps-6 md:pe-2"
-    role="banner"
-  >
-    <Link href="/" passHref prefetch={false}>
-      <a className=" ifu-topmenu__logo" title="infofinland.fi"></a>
-    </Link>
-  </div>
-)
+const Logo = () => {
+  const { locale } = useRouter()
+  return (
+    <div
+      className="relative z-20 flex-none py-3 md:py-4 px-3 bg-white transform translate-y-px md:ps-6 md:pe-2"
+      role="banner"
+    >
+      <Link href="/" passHref prefetch={false} locale={locale}>
+        <a className=" ifu-topmenu__logo" title="infofinland.fi"></a>
+      </Link>
+    </div>
+  )
+}
 
-const TopMenu = ({ menu }) => {
+const TopMenu = () => {
   const [open, setLangMenuVisibility] = useLangMenuToggle()
   const toggleLangMenu = () => setLangMenuVisibility(!open)
   const closeMenu = () => setLangMenuVisibility(false)
@@ -38,8 +42,8 @@ const TopMenu = ({ menu }) => {
         <LanguageSelector openMenu={() => setLangMenuVisibility(true)} />
         <LangMenuDrawer closeMenu={closeMenu} isOpen={open} />
         <div className="2xl:flex-none xl:flex-grow"></div>
-        <Search />
-        <MobileNavi menu={menu} />
+        <TopSearch />
+        <MobileNavi />
         <CityMenu />
       </div>
     </header>

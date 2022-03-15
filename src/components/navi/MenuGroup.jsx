@@ -1,4 +1,4 @@
-import MainMenu from './MainMenu'
+import MainMenu from './Menu'
 
 const MenuGroup = ({ menulist }) => {
   return menulist.map((menu, i) => {
