@@ -3,26 +3,32 @@ import Layout from '@/components/layout/Layout'
 import Head from 'next/head'
 import Block from '@/components/layout/Block'
 import {
+  searchResultCurrentPageAtom,
+  searchResultPageCountAtom,
+  searchResultPageSizeAtom,
   searchResultsAtom,
   searchResultsCountAtom,
   searchResultsTermAtom,
 } from '@/src/store'
 
-import { useEffect, useState } from 'react'
-import { IconLookingGlass } from '@/components/Icons'
+import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import { Analytics } from '@/hooks/useAnalytics'
 import { useAtomValue } from 'jotai/utils'
-import useSearchRoute from '@/hooks/useSearchRoute'
 // import { IconAngleRight } from '@/components/Icons'
 import { getCommonApiContent } from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import Highlighter from 'react-highlight-words'
-import mockResults from '@/DEMO-elastic'
 import { getSearchResult } from '@/lib/ssr-helpers'
-import striptags from 'striptags'
-import TextLink from '@/components/TextLink'
 
-const RESULT_MAX_LENGTH = 500 //characters before truncating with ...
+import {
+  DEFAULT_FROM,
+  DEFAULT_SIZE,
+  getSearchClient,
+} from '@/lib/elasticsearch'
+import ReactPaginate from 'react-paginate'
+import SearchBar from '@/components/search/SearchBar'
+import Result from '@/components/search/Result'
+
 export async function getServerSideProps(context) {
   /*
    Scaffold for testing different UI states for search page.
@@ -30,120 +36,48 @@ export async function getServerSideProps(context) {
   mock search results.
   */
   const common = await getCommonApiContent(context)
-  const q = context.query?.search
-  let search = mockResults
+  const q = context.query?.search || ''
+  const size = DEFAULT_SIZE
+  let from = DEFAULT_FROM
+  const page = Number(context.query?.page)
+  if (!isNaN(page)) {
+    from = (page - 1) * 10
+  }
 
-  // // Mock no results witn '_'
-  // if (q) {
-  // //  search = await getClient().search({q})
+  if (context.query?.from) {
+    from = context.query.from
+  }
 
-  //   search = mockResults
-  // }
+  let results = null
+
+  if (q) {
+    results = await getSearchClient().search({
+      //  index:context.locale,
+      q,
+      size,
+      from,
+    })
+  }
 
   return {
     props: {
       ...common,
-      ...(await serverSideTranslations(context.defaultLocale, ['common'])),
-      q,
-      search,
+      ...(await serverSideTranslations(context.locale, ['common'])),
+      search: {
+        q,
+        size,
+        from,
+        results,
+      },
     },
   }
 }
-
-const SearchBar = ({ qw }) => {
-  // Sync search field with URL
-  const { t } = useTranslation('common')
-  const [search, setQuery] = useState(qw)
-  const goToSearch = useSearchRoute({ search })
-
-  useEffect(() => {
-    setQuery(qw)
-  }, [qw, setQuery])
-
-  return (
-    <div className="mt-8 mb-16">
-      <form
-        className="flex items-center border border-black"
-        onSubmit={goToSearch}
-      >
-        <input
-          type="text"
-          placeholder={t('search.placeholder')}
-          name="search"
-          value={search === null ? '' : search}
-          onChange={({ target: { value } }) => setQuery(value)}
-          className=" inline-block flex-grow px-2 h-12"
-        />
-        <button className="flex-none w-12 h-12">
-          <IconLookingGlass className="mx-2" />
-        </button>
-      </form>
-    </div>
-  )
-}
-
-const HilightedResult = ({ text, search }) => (
-  <p className="mb-4 text-body-small">
-    <Highlighter
-      highlightClassName="bg-orange-light text-black"
-      textToHighlight={
-        text.length > RESULT_MAX_LENGTH
-          ? `${text.substr(0, RESULT_MAX_LENGTH)}...`
-          : text
-      }
-      searchWords={[search]}
-    />
-  </p>
-)
-
-const Result = ({
-  title,
-  url,
-  language,
-  field_description,
-  field_text,
-  search,
-  id,
-}) => (
-  <section className="pb-8 mt-8 border-b border-gray-light" lang={language}>
-    <h2 className="mb-4 text-h5xl font-bold">
-      <TextLink href={url}>{title}</TextLink>
-      {/* <Link href={url} locale={language} passHref prefetch={false}>
-        <a></a>
-      </Link> */}
-    </h2>
-    {/* {path && (
-      <p className="">
-        {path.map(({ title, url, id }, i) => (
-          <Link key={`result-link-${id}`} href={url} passHref prefetch={false}>
-            <a className="text-tiny text-gray">
-              {title}
-              {i + 1 < path.length && <IconAngleRight className="mx-1" />}
-            </a>
-          </Link>
-        ))}
-      </p>
-    )} */}
-
-    {field_description &&
-      field_description.map((text, i) => (
-        <HilightedResult
-          search={search}
-          key={`result-${id}-highlight-${i}`}
-          text={striptags(text)}
-        />
-      ))}
-    {field_text?.length > 0 && (
-      <HilightedResult text={field_text[0]} search={search} />
-    )}
-  </section>
-)
 
 const SearchResults = () => {
   const search = useAtomValue(searchResultsTermAtom)
   const results = useAtomValue(searchResultsAtom)
 
-  if (results?.length < 1) {
+  if (!results || results?.length < 1) {
     return null
   }
 
@@ -152,24 +86,43 @@ const SearchResults = () => {
     .map((r) => <Result key={`result-${r.id}`} {...r} search={search} />)
 }
 
+const pageUrl = ({ page, q }) => {
+  let url = new URL('http://a.b/search')
+  url.searchParams.set('search', q)
+  url.searchParams.set('page', page - 1)
+  const { pathname, search } = url
+  return `${pathname}${search}`
+}
+
 export const SearchPage = () => {
   const { t } = useTranslation('common')
+
   const searchCount = useAtomValue(searchResultsCountAtom)
-  const search = useAtomValue(searchResultsTermAtom)
+  const q = useAtomValue(searchResultsTermAtom)
+  const pageSize = useAtomValue(searchResultPageSizeAtom)
+  const currentPage = useAtomValue(searchResultCurrentPageAtom)
+  // const pageCount = Math.ceil(searchCount / pageSize)
+  const pageCount = useAtomValue(searchResultPageCountAtom)
+  console.log({ pageCount, currentPage })
+  const { push } = useRouter()
   // Set search count for analytics
   useEffect(() => {
     Analytics._searchCount = searchCount
   }, [searchCount])
 
   let title
-  if (!search) {
+  if (!q) {
     title = t('search.title.start')
   } else if (searchCount === 0) {
     title = t('search.title.noresults')
   } else {
     title = t('search.title.results')
   }
-  console.log({ mockResults })
+  // const pageCount = Math.ceil(searchCount / pageSize)
+  const pageUrlWithSearchTerm = (page) => pageUrl({ page, q })
+
+  const changePage = ({ selected }) =>
+    push({ query: { search: q, page: selected + 1 } })
 
   return (
     <Layout>
@@ -178,8 +131,26 @@ export const SearchPage = () => {
       </Head>
       <Block hero>
         <h1 className="mt-16 text-h2 md:text-h3xl">{title}</h1>
-        <SearchBar qw={search} />
+        <SearchBar qw={q} />
+        size: {pageSize} | hits: {searchCount}
         <SearchResults />
+        {pageSize < searchCount && (
+          <ReactPaginate
+            breakLabel="..."
+            hrefBuilder={pageUrlWithSearchTerm}
+            pageCount={pageCount}
+            pageRangeDisplayed={3}
+            forcePage={currentPage}
+            onPageChange={changePage}
+            activeClassName="ifu-pagination__page--active"
+            containerClassName="ifu-pagination"
+            pageClassName="ifu-pagination__page"
+            previousClassName="ifu-pagination__prev"
+            breakClassName="ifu-pagination__break"
+            nextClassName="ifu-pagination__next"
+            renderOnZeroPageCount={null}
+          />
+        )}
       </Block>
     </Layout>
   )

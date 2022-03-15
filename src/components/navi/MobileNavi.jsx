@@ -8,28 +8,18 @@ import Link from 'next/link'
 import { useAtomValue } from 'jotai/utils'
 
 import { useTranslation } from 'next-i18next'
-import {
-  // aboutMenuAtom,
-  mainMenuAtom,
-  citiesLandingMenuAtom,
-  citiesMenuAtom,
-  // nodeAtom,
-  selectedCityAtom,
-  isAboutPageAtom,
-} from '@/src/store'
+import { isAboutPageAtom } from '@/src/store'
+import MainMenu from './MainMenu'
+import AboutMenu from '../layout/AboutMenu'
 
-const MobileNavi = ({ menu }) => {
+const MobileNavi = () => {
   const [isOpen, setVisibility] = useState(false)
   const open = () => setVisibility(true)
   const close = () => setVisibility(false)
   const router = useRouter()
   const { t } = useTranslation('common')
-  // const aboutMenu = useAtomValue(mainMenuAtom)
+  const { locale } = useRouter()
 
-  const mainMenu = useAtomValue(mainMenuAtom)
-  const citiesMenu = useAtomValue(citiesMenuAtom)
-  const citiesLandingMenu = useAtomValue(citiesLandingMenuAtom)
-  const selectedCity = useAtomValue(selectedCityAtom)
   const isAboutPage = useAtomValue(isAboutPageAtom)
 
   /*
@@ -50,16 +40,6 @@ const MobileNavi = ({ menu }) => {
     }
   }, [router])
 
-  const menulist = []
-
-  if (menu) {
-    menulist.push({ menu })
-  } else {
-    menulist.push({ menu: mainMenu })
-    menulist.push({ menu: citiesLandingMenu })
-    menulist.push({ menu: citiesMenu, city: selectedCity })
-  }
-
   return (
     <>
       <div className="md:hidden md:mx-6 me-6 ms-2">
@@ -79,14 +59,14 @@ const MobileNavi = ({ menu }) => {
       <Drawer close={close} isOpen={isOpen}>
         <div className="bg-white">
           {isAboutPage && (
-            <Link href="/">
+            <Link href="/" locale={locale}>
               <a className="block pb-4 mb-2 font-bold border-b border-gray-lighter">
                 <IconAngleRight className="scale-150 rotate-180 ms-4 me-2" />
                 {t('breadcrumbs.frontpage')}
               </a>
             </Link>
           )}
-          <MenuGroup menulist={menulist} />
+          {isAboutPage === true ? <AboutMenu /> : <MainMenu />}
         </div>
       </Drawer>
     </>

@@ -80,7 +80,6 @@ const HomePage = ({ node, themes }) => {
   const hero = getHeroFromNode(node)
   const { field_description, field_content, title } = node
   const [aboutText, ...restOfContent] = field_content
-
   return (
     <Layout className="ifu-landing">
       <HomeHero title={title} src={hero?.src} />

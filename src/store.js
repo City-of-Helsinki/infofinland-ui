@@ -41,33 +41,36 @@ export const feedbackFormVisibilityAtom = atom(false)
  * Page atoms
  */
 
-export const pageAtom = atom(
-  {}
-  //   {
-  //   search:{},
-  //   node: { id: null },
-  //   themeMenu: menuErrorResponse(),
-  //   menus: {
-  //     main: {},
-  //     about: {},
-  //     'footer-about': {},
-  //     cities: {},
-  //     'cities-landing': {},
-  //   },
-  // }
-)
+export const pageAtom = atom({})
 
 pageAtom.debugLabel = 'page props root atom'
 
 export const isAboutPageAtom = atom((get) => get(pageAtom).isAboutPage)
 
-export const searchResultsAtom = atom((get) => get(pageAtom).search?.hits?.hits)
+export const searchAtom = atom((get) => get(pageAtom).search)
 
-export const searchResultsTermAtom = selectAtom(pageAtom, (p) => p.q)
+export const searchResultsAtom = selectAtom(
+  searchAtom,
+  (search) => search?.results?.hits?.hits
+)
 
-export const searchResultsCountAtom = selectAtom(
-  searchResultsAtom,
-  (h) => h?.length || 0
+export const searchResultsTermAtom = selectAtom(searchAtom, (s) => s?.q)
+
+export const searchResultPageSizeAtom = selectAtom(searchAtom, (s) =>
+  Number(s?.size)
+)
+export const searchResultPageFromAtom = selectAtom(searchAtom, (s) =>
+  Number(s?.from)
+)
+export const searchResultCurrentPageAtom = atom(
+  (get) => get(searchResultPageFromAtom) / get(searchResultPageSizeAtom)
+)
+export const searchResultPageCountAtom = atom((get) =>
+  Math.ceil(get(searchResultsCountAtom) / get(searchResultPageSizeAtom))
+)
+
+export const searchResultsCountAtom = selectAtom(searchAtom, (s) =>
+  Number(s?.results?.hits.total.value)
 )
 
 export const municipalitiesAtom = atom((get) => get(pageAtom).municipalities)

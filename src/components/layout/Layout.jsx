@@ -10,19 +10,13 @@ import useSetLocalization from '@/hooks/useSetLocalization'
 import useShowLangMessage from '@/hooks/useShowLangMessage'
 import { useRouter } from 'next/router'
 import CookieConsentBar from '@/components/layout/CookieConsent'
-import MainMenu from '@/components/navi/MainMenu' // { MainNaviError }
+import MainMenu from '@/components/navi/MainMenu'
 import cls from 'classnames'
 import { useAtomValue } from 'jotai/utils'
 
-import {
-  aboutMenuAtom,
-  mainMenuAtom,
-  citiesLandingMenuAtom,
-  citiesMenuAtom,
-  nodeAtom,
-  selectedCityAtom,
-} from '@/src/store'
-import MenuGroup from '../navi/MenuGroup'
+import { nodeAtom } from '@/src/store'
+
+import AboutMenu from './AboutMenu'
 
 export const FALLBACK_TITLE = 'infofinland.fi'
 
@@ -62,7 +56,6 @@ export const SecondaryLayout = ({ children, className }) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
   useShowLangMessage(locale)
-  const menu = useAtomValue(aboutMenuAtom)
   const node = useAtomValue(nodeAtom)
 
   return (
@@ -75,11 +68,11 @@ export const SecondaryLayout = ({ children, className }) => {
         )}
         id={`node-${node?.id}`}
       >
-        <TopMenu menu={menu} />
+        <TopMenu />
         <div className="md:mx-auto lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
           <div className=" md:flex md:items-stretch">
             <div className="hidden md:block fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop">
-              <MainMenu menu={menu} />
+              <AboutMenu />
             </div>
             <div className="hidden md:block flex-none w-navi border-black-op1 border-e-2"></div>
             <div className="ifu-layout__body">
@@ -102,10 +95,6 @@ const AppLayout = ({ children, className }) => {
   useSetLocalization(locale)
   useShowLangMessage(locale)
   const node = useAtomValue(nodeAtom)
-  const mainMenu = useAtomValue(mainMenuAtom)
-  const citiesMenu = useAtomValue(citiesMenuAtom)
-  const citiesLandingMenu = useAtomValue(citiesLandingMenuAtom)
-  const selectedCity = useAtomValue(selectedCityAtom)
 
   return (
     <>
@@ -126,14 +115,7 @@ const AppLayout = ({ children, className }) => {
 
           <div className="hidden md:block overflow-y-auto fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop">
             <Messages />
-
-            <MenuGroup
-              menulist={[
-                { menu: mainMenu },
-                { menu: citiesLandingMenu },
-                { menu: citiesMenu, city: selectedCity },
-              ]}
-            />
+            <MainMenu />
           </div>
           <div className="hidden md:block flex-none w-navi border-black-op1 border-e-2"></div>
           <div className="ifu-layout__body">

@@ -21,10 +21,10 @@ export default function ContentMapper({ content, locale }) {
   if (content?.length === 0) {
     return null
   }
-
   return content.map((item) => {
     const { type, id } = item
-    const key = `paragraph--${type}-${id}`
+    const key = `${type}-${id}`
+
     switch (type) {
       case CONTENT_TYPES.TEXT:
         if (
@@ -49,7 +49,7 @@ export default function ContentMapper({ content, locale }) {
         return <ImageBlock key={key} {...getImage(item)} />
 
       case CONTENT_TYPES.ACCORDION:
-        return <AccordionItems {...item} />
+        return <AccordionItems {...item} key={key} />
 
       case CONTENT_TYPES.READMORE:
         return (

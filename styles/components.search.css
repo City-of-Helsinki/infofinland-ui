@@ -12,4 +12,24 @@
       right: 0;
     }
   }
+
+  .ifu-pagination {
+    @apply block mt-8 text-center relative;
+  }
+
+  .ifu-pagination__page,
+  .ifu-pagination__break {
+    @apply inline-block mx-2;
+  }
+  .ifu-pagination__page--active {
+    @apply font-bold;
+  }
+
+  .ifu-pagination__prev {
+    @apply inline-block me-2 font-bold shrink-0 lg:absolute lg:left-0;
+  }
+
+  .ifu-pagination__next {
+    @apply inline-block ms-2 font-bold shrink-0 lg:absolute lg:right-0;
+  }
 }

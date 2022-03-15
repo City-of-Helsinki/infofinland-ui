@@ -1,7 +1,8 @@
 import getConfig from 'next/config'
 import { Client } from '@elastic/elasticsearch'
-
-export const getClient = () => {
+export const DEFAULT_SIZE = 10
+export const DEFAULT_FROM = 0
+export const getSearchClient = () => {
   const config = getConfig().serverRuntimeConfig
   // process.env.elasticsearch_certificate
   // process.env.elasticsearch_certificate
@@ -10,7 +11,7 @@ export const getClient = () => {
     ELASTICSEARCH_URL,
     elasticsearch_certificate,
   } = config
-  console.log(config)
+
   if (!ELASTICSEARCH_URL) throw 'Set ELASTICSEARCH_URL'
 
   if (!config.elasticsearch_password && !config.elasticsearch_password) {

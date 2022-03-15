@@ -149,7 +149,7 @@ const SearchDesktopBar = ({ children, isOpen }) => {
 
 const Result = ({ title, url }) => (
   <p className="mb-4">
-    <Link passHref href={url} prefetch={false}>
+    <Link passHref href={url} locale={false} prefetch={false}>
       <a> {title}</a>
     </Link>
   </p>
