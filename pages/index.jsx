@@ -21,7 +21,7 @@ import IngressBlock from '@/components/article/IngressBlock'
 import Columns from '@/components/article/Columns'
 import Image from 'next/image'
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
   const id = await getIdFromPath({
     path: serverRuntimeConfig.DRUPAL_FRONT_PAGE,
@@ -60,7 +60,7 @@ export async function getServerSideProps(context) {
       node,
       ...(await serverSideTranslations(context.locale, ['common'])),
     },
-    // revalidate: serverRuntimeConfig.REVALIDATE_TIME,
+    revalidate: serverRuntimeConfig.REVALIDATE_TIME,
   }
 }
 

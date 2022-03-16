@@ -4,19 +4,38 @@ import Highlighter from 'react-highlight-words'
 
 const RESULT_MAX_LENGTH = 500 //characters before truncating with ...
 
-const HilightedResult = ({ text, search }) => (
-  <p className="mb-4 text-body-small">
-    <Highlighter
-      highlightClassName="bg-orange-light text-black"
-      textToHighlight={
-        text.length > RESULT_MAX_LENGTH
-          ? `${text.substr(0, RESULT_MAX_LENGTH)}...`
-          : text
-      }
-      searchWords={[search]}
-    />
-  </p>
-)
+const HilightedResult = ({ text, search }) => {
+  // let matcher = search
+  let matcher = search.trim().replace(new RegExp('\\*', 'gim'), '')
+  // let pre = ''
+  // let post = ''
+  // let wordFlag = '\\w*'
+  // if(/^\*/.test(search)) {
+  //   pre = wordFlag
+
+  // }
+
+  // if(/\*$/.test(search)) {
+  //   post = wordFlag
+
+  // }
+  // matcher = new RegExp(`${pre}${search.trim().replace(new RegExp('\\*','gim'),'')}${post}`,'gim')
+  // console.log(matcher)
+  return (
+    <p className="mb-4 text-body-small">
+      <Highlighter
+        highlightClassName="bg-orange-light text-black"
+        // autoEscape
+        textToHighlight={
+          text.length > RESULT_MAX_LENGTH
+            ? `${text.substr(0, RESULT_MAX_LENGTH)}...`
+            : text
+        }
+        searchWords={[matcher]}
+      />
+    </p>
+  )
+}
 
 const Result = ({
   title,
@@ -27,7 +46,7 @@ const Result = ({
   search,
   id,
 }) => (
-  <section className="pb-8 mt-8 border-b border-gray-light" lang={language}>
+  <section className="pb-8 mt-8 border-b border-gray-hr" lang={language}>
     <h2 className="mb-4 text-h5xl font-bold">
       <TextLink href={url} locale={language}>
         {title}

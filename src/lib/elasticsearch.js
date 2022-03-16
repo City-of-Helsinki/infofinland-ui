@@ -2,6 +2,7 @@ import getConfig from 'next/config'
 import { Client } from '@elastic/elasticsearch'
 const DEFAULT_SIZE = 10
 const DEFAULT_FROM = 0
+export const ERROR = 'Error in Elastic Search query:'
 export const getSearchClient = () => {
   const config = getConfig().serverRuntimeConfig
   // process.env.elasticsearch_certificate
@@ -38,6 +39,7 @@ export function getSearchParamsFromQuery({ query }) {
   const page = Number(query?.page)
   if (!isNaN(page)) {
     from = (page - 1) * size
+    from = from < 0 ? DEFAULT_FROM : from
   }
 
   if (query?.from) {

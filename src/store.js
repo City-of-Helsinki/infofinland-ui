@@ -56,21 +56,29 @@ export const searchResultsAtom = selectAtom(
 
 export const searchResultsTermAtom = selectAtom(searchAtom, (s) => s?.q)
 
-export const searchResultPageSizeAtom = selectAtom(searchAtom, (s) =>
-  Number(s?.size)
+export const searchResultPageSizeAtom = selectAtom(
+  searchAtom,
+  (s) => Number(s?.size) || 0
 )
-export const searchResultPageFromAtom = selectAtom(searchAtom, (s) =>
-  Number(s?.from)
+export const searchResultPageFromAtom = selectAtom(
+  searchAtom,
+  (s) => Number(s?.from) || 0
 )
-export const searchResultCurrentPageAtom = atom(
+export const searchResultCurrentPageZeroIndexAtom = atom(
   (get) => get(searchResultPageFromAtom) / get(searchResultPageSizeAtom)
 )
-export const searchResultPageCountAtom = atom((get) =>
-  Math.ceil(get(searchResultsCountAtom) / get(searchResultPageSizeAtom))
+
+// export const searchResultCurrentPageAtom = selectAtom(searchResultCurrentPageZeroIndexAtom,  page =>
+//   page + 1
+// )
+
+export const searchResultsCountAtom = selectAtom(
+  searchAtom,
+  (s) => Number(s?.results?.hits?.total?.value) || 0
 )
 
-export const searchResultsCountAtom = selectAtom(searchAtom, (s) =>
-  Number(s?.results?.hits.total.value)
+export const searchResultPageCountAtom = atom((get) =>
+  Math.ceil(get(searchResultsCountAtom) / get(searchResultPageSizeAtom))
 )
 
 export const municipalitiesAtom = atom((get) => get(pageAtom).municipalities)
