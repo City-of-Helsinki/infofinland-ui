@@ -12,7 +12,6 @@ export const LOCALES_URL = '/api/available-locales'
 
 export const getSearchResults = async (search) => {
   const { data } = await axios.get(SEARCH_URL, { params: { search } })
-  console.log('search from api', data)
   return data
 }
 

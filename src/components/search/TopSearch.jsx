@@ -11,6 +11,8 @@ import useSearchRoute from '@/hooks/useSearchRoute'
 import cls from 'classnames'
 import { getSearchResult } from '@/lib/ssr-helpers'
 import { useAtomValue } from 'jotai/utils'
+import { LinkButton } from '../Button'
+import { DotsLoader } from '../Loaders'
 
 const SEARCH_BUTTON_LABEL_ID = 'ifu-searchbar__label'
 
@@ -21,8 +23,7 @@ const Search = () => {
   })
   const [query, setQuery] = useAtom(searchQueryValue)
   const { t } = useTranslation('common')
-  // const closeMobile = () => setVisibility({false})
-  // const closeDesktop = () => setDesktopVisibility(false)
+
   const closeAll = () => {
     setVisibility({ desktop: false, mobile: false })
   }
@@ -109,8 +110,8 @@ const SearchBar = ({ onSubmit, onChange, query }) => {
         <div className=" flex items-center mx-2">
           <div className="overflow-hidden flex-grow h-14 border-b border-black-op5">
             <input
-              type="text"
-              name="q"
+              type="search"
+              name="search"
               id={SEARCH_BUTTON_LABEL_ID}
               autoComplete="off"
               value={query}
@@ -133,9 +134,13 @@ const SearchBar = ({ onSubmit, onChange, query }) => {
         </div>
       </form>
       <Suspense
-        fallback={<div className="mx-4 h-40">{t('search.loading')}</div>}
+        fallback={
+          <div className="flex items-center mx-4 h-16">
+            <DotsLoader />
+          </div>
+        }
       >
-        <SWRResults />
+        <SWRResults onShowResults={onSubmit} />
       </Suspense>
     </>
   )
@@ -157,25 +162,30 @@ const Result = ({ title, url }) => (
   </p>
 )
 
-export const SWRResults = () => {
+export const SWRResults = ({ onShowResults }) => {
   const q = useAtomValue(searchQueryValue)
   const { data, error, TRESHOLD } = useSearchResults()
   const extraResults = data?.results?.hits?.total?.value - data?.size
-  console.log(extraResults)
-  if (error) {
-    console.error('error in search', error)
-    return 'error'
-  }
-
   return (
     <div className="mx-4 md:mx-6 mt-4">
-      {data?.results?.hits?.hits?.length < 1 && data.q !== '' && 'No results'}
+      {data?.results?.hits?.hits?.length < 1 && data.q !== '' && (
+        <p className="h-12">TODO: No results</p>
+      )}
 
-      {q.length < TRESHOLD && q.length > 0 && 'type more'}
+      {error && <p className="h-12">TODO: ERROR</p>}
+
+      {q.length < TRESHOLD && q.length > 0 && (
+        <p className="h-12">TODO: type more</p>
+      )}
+
       {data?.results?.hits?.hits?.map(getSearchResult).map((r, i) => (
         <Result {...r} key={`r-${i}`} />
       ))}
-      {extraResults > 0 && `and ${extraResults} more...`}
+      {extraResults > 0 && (
+        <LinkButton onClick={onShowResults}>
+          and {extraResults} more...
+        </LinkButton>
+      )}
     </div>
   )
 }

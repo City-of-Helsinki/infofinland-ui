@@ -14,22 +14,35 @@
   }
 
   .ifu-pagination {
-    @apply block mt-8 text-center relative;
+    @apply flex text-center relative justify-center  mx-0;
   }
 
   .ifu-pagination__page,
-  .ifu-pagination__break {
-    @apply inline-block mx-2;
+  .ifu-pagination__button--break {
+    @apply text-center inline-block;
   }
+
+  .ifu-pagination__page {
+    @apply inline-block flex-grow lg:flex-none lg:mx-3;
+  }
+
   .ifu-pagination__page--active {
     @apply font-bold;
   }
 
-  .ifu-pagination__prev {
-    @apply inline-block me-2 font-bold shrink-0 lg:absolute lg:left-0;
+  .ifu-pagination__page--active a {
+    @apply cursor-default;
+  }
+  .ifu-pagination__page--disabled,
+  .ifu-pagination__button--disabled {
+    @apply text-gray-dark cursor-default;
   }
 
-  .ifu-pagination__next {
-    @apply inline-block ms-2 font-bold shrink-0 lg:absolute lg:right-0;
+  .ifu-pagination__button--prev {
+    @apply flex-none  lg:flex-grow inline-block font-bold text-left pe-1 lg:basis-1/5;
+  }
+
+  .ifu-pagination__button--next {
+    @apply flex-none lg:flex-grow inline-block font-bold text-right ps-1 lg:basis-1/5;
   }
 }

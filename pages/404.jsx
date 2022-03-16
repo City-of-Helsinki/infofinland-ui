@@ -256,12 +256,10 @@ const Texts404 = ({ locales = [], locale }) => {
   )
 }
 
-export const PageNotFound = ({ foo }) => {
+export const PageNotFound = () => {
   const { locale, asPath } = useRouter()
   const { data: locales, error } = usePageLocales({ path: asPath })
-  if (!foo) {
-    return '404 minimal'
-  }
+
   return (
     <Layout>
       {!locales && !error && (

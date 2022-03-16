@@ -53,7 +53,7 @@ const FooterLinks = ({ secondary }) => {
       </div>
 
       <div className="mb-4 text-center sm:text-left divide-black divide-s">
-        {footerMenu.tree.map(({ title, url }, i) => {
+        {footerMenu?.tree?.map(({ title, url }, i) => {
           return (
             <Link
               href={url}
