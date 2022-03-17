@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, forwardRef } from 'react'
 import cls from 'classnames'
 import { useTranslation } from 'next-i18next'
-import { IconExclamationBubble, IconAngleUp } from '@/components/Icons'
+import { IconExclamationBubble } from '@/components/Icons'
 
 import Button, { LinkButton } from '@/components/Button'
 import { useForm } from 'react-hook-form'
@@ -11,6 +11,7 @@ import { CSSTransition } from 'react-transition-group'
 import { IconExclamationCircle } from '@/components/Icons'
 import { longTextClass } from '@/components/Typo'
 import { isSSR } from '@/hooks/useIsomorphicLayoutEffect'
+import { IconAngleDown } from '../Icons'
 
 const INPUT_CLASS =
   'py-2 px-3 w-full block border-black border rounded shadow-input text-body-small'
@@ -232,7 +233,7 @@ const FeedbackButtonBlock = () => {
           >
             {!isOpen && t('feedback.buttons.open')}
             {isOpen && t('feedback.buttons.close')}
-            {isOpen && <IconAngleUp className="fill-link h-6-w-6 ms-2" />}
+            {isOpen && <IconAngleDown className="fill-link h-6-w-6 ms-2" />}
           </span>
         </button>
       </div>

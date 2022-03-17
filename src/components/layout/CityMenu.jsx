@@ -8,8 +8,10 @@ import {
 import { IconCheck } from '@/components/Icons'
 import cls from 'classnames'
 import { useAtomValue } from 'jotai/utils'
+import { useTranslation } from 'next-i18next'
 
 const CityMenu = () => {
+  const { t } = useTranslation('common')
   const [open, setOpen] = useAtom(cityMenuVisibilityAtom)
   const [city, setCity] = useAtom(selectedCityAtom)
   const municipalities = useAtomValue(municipalitiesAtom)
@@ -21,7 +23,9 @@ const CityMenu = () => {
   return (
     <Drawer close={close} isOpen={open} left>
       <ul className="mb-16">
-        <li className="px-14 mb-4 text-body-large font-bold">Choose city</li>
+        <li className="px-14 mb-4 text-body-large font-bold">
+          {t('localInfo.select')}
+        </li>
         {municipalities?.map(({ name: cityName, id }) => (
           <li
             key={`municipality-${id}`}

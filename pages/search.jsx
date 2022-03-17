@@ -9,6 +9,7 @@ import {
   searchResultsAtom,
   searchResultsCountAtom,
   searchResultsTermAtom,
+  searchErrorAtom,
 } from '@/src/store'
 import getConfig from 'next/config'
 import cls from 'classnames'
@@ -26,14 +27,10 @@ import Result from '@/components/search/Result'
 import { DotsLoader } from '@/components/Loaders'
 
 export async function getServerSideProps(context) {
-  /*
-   Scaffold for testing different UI states for search page.
-   See page snapshot tests when real search is implemented and
-  mock search results.
-  */
   const common = await getCommonApiContent(context)
   const { size, q, from } = Elastic.getSearchParamsFromQuery(context)
   let results = null
+  let error = null
 
   if (q) {
     results = await Elastic.getSearchClient()
@@ -44,8 +41,12 @@ export async function getServerSideProps(context) {
         from,
       })
       .catch((e) => {
-        console.error(Elastic.ERROR, e.meta.body.error.root_cause)
-        return { results: {}, error: e.meta.statusCode }
+        console.error(
+          Elastic.ERROR,
+          e?.meta?.body?.error?.root_cause || e?.name || e
+        )
+        error = e?.meta?.statusCode || e?.name || e
+        return {}
       })
   }
 
@@ -58,12 +59,14 @@ export async function getServerSideProps(context) {
         size,
         from,
         results,
+        error,
       },
     },
   }
 }
 
 const Pagination = ({ className }) => {
+  const { t } = useTranslation('common')
   const { push } = useRouter()
   const searchCount = useAtomValue(searchResultsCountAtom)
   const q = useAtomValue(searchResultsTermAtom)
@@ -82,6 +85,8 @@ const Pagination = ({ className }) => {
   return (
     <ReactPaginate
       breakLabel="..."
+      nextLabel={t('search.next')}
+      previousLabel={t('search.prev')}
       hrefBuilder={pageUrlWithSearchTerm}
       pageCount={pageCount}
       pageRangeDisplayed={3}
@@ -103,18 +108,14 @@ const Pagination = ({ className }) => {
 const SearchResults = () => {
   const q = useAtomValue(searchResultsTermAtom)
   const results = useAtomValue(searchResultsAtom)
-
+  //No results, no output
   if (!results || results?.length < 1) {
     return null
   }
 
-  return (
-    <div className="mb-8">
-      {results?.map(getSearchResult).map((r) => (
-        <Result key={`result-${r.id}`} {...r} search={q} />
-      ))}
-    </div>
-  )
+  return results
+    ?.map(getSearchResult)
+    .map((r) => <Result key={`result-${r.id}`} {...r} search={q} />)
 }
 
 const pageUrl = ({ page, q }) => {
@@ -130,6 +131,7 @@ export const SearchPage = () => {
   const { t } = useTranslation('common')
   const searchCount = useAtomValue(searchResultsCountAtom)
   const q = useAtomValue(searchResultsTermAtom)
+  const error = useAtomValue(searchErrorAtom)
   const [loading, setLoading] = useState(false)
   const loadingOff = () => setLoading(false)
   const loadingOn = () => setLoading(true)
@@ -168,23 +170,28 @@ export const SearchPage = () => {
         <h1 className="mt-16 text-h2 md:text-h3xl">{title}</h1>
         <SearchBar search={q} />
 
-        {q && (
+        {q && !error && (
           <div className="pb-4 border-b border-gray">
-            <dl className="mb-2 text-body">
-              <dd className="inline-block">Osumia:</dd>
-              <dt className="inline-block font-bold ms-1">{searchCount}</dt>
+            <dl className="mb-2 text-body text-gray-dark">
+              <dd className="inline-block">{t('search.count')}</dd>
+              <dt className="inline-block font-bold ms-1">{searchCount} </dt>
             </dl>
             {searchCount > 0 && <Pagination />}
           </div>
         )}
 
-        {searchCount === 0 && loading && (
-          <div className="flex absolute items-center lg:mt-5 w-full lg:h-96 -translate-x-6 -translate-y-2">
-            <DotsLoader />
-          </div>
-        )}
-        {searchCount > 0 && <SearchResults />}
-        {searchCount > 0 && <Pagination />}
+        <div className="mt-4 min-h-[4rem]">
+          {loading && searchCount === 0 && (
+            <div className="flex items-center -translate-y-4">
+              <DotsLoader />
+            </div>
+          )}
+          {!loading && error && (
+            <h3 className="mb-8 text-h4 translate-y-3">{t('search.error')} </h3>
+          )}
+          {searchCount > 0 && <SearchResults />}
+          {searchCount > 0 && <Pagination />}
+        </div>
       </Block>
     </Layout>
   )

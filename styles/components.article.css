@@ -88,7 +88,9 @@
   }
 
   .ifu-article__column-block ul li,
-  .ifu-block__html ul li {
+  .ifu-article__column-block ol li,
+  .ifu-block__html ul li,
+  .ifu-block__html ol li {
     @apply ps-2;
   }
   .ifu-article__column-block p,

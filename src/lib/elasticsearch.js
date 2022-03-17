@@ -1,7 +1,8 @@
 import getConfig from 'next/config'
 import { Client } from '@elastic/elasticsearch'
-const DEFAULT_SIZE = 10
+const DEFAULT_SIZE = 30
 const DEFAULT_FROM = 0
+
 export const ERROR = 'Error in Elastic Search query:'
 export const getSearchClient = () => {
   const config = getConfig().serverRuntimeConfig

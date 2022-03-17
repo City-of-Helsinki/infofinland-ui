@@ -1,5 +1,10 @@
 import { atom } from 'jotai'
-import { atomWithStorage, createJSONStorage, selectAtom } from 'jotai/utils'
+import {
+  atomWithStorage,
+  createJSONStorage,
+  selectAtom,
+  splitAtom,
+} from 'jotai/utils'
 import { LANG_MESSAGE_ID } from './components/messages/LanguageMessageCard'
 
 /** @module store */
@@ -8,6 +13,13 @@ import { LANG_MESSAGE_ID } from './components/messages/LanguageMessageCard'
  * Ensure browser-only atoms are not causing render mismatches on SSR
  * https://github.com/pmndrs/jotai/discussions/910
  */
+
+/**
+ * TODO: see if sessionStorage atom works with separate delayed storage,
+ * use for language switcher
+ *
+ */
+
 const storage = createJSONStorage(() => localStorage)
 storage.delayInit = true
 
@@ -49,10 +61,14 @@ export const isAboutPageAtom = atom((get) => get(pageAtom).isAboutPage)
 
 export const searchAtom = atom((get) => get(pageAtom).search)
 
+export const searchErrorAtom = selectAtom(searchAtom, (search) => search?.error)
+
 export const searchResultsAtom = selectAtom(
   searchAtom,
   (search) => search?.results?.hits?.hits
 )
+
+export const searchResultsAtoms = splitAtom(searchAtom)
 
 export const searchResultsTermAtom = selectAtom(searchAtom, (s) => s?.q)
 

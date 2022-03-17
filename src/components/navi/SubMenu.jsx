@@ -108,10 +108,10 @@ const SubMenu = ({
               aria-expanded={isOpen}
             >
               {!isOpen && (
-                <IconAngleDown className="fill-gray-light ifu-mainmenu__submenu-icon" />
+                <IconAngleUp className="rotate-90 fill-gray-light ifu-mainmenu__submenu-icon" />
               )}
               {isOpen && (
-                <IconAngleUp className="fill-gray-light ifu-mainmenu__submenu-icon" />
+                <IconAngleDown className="fill-gray-light ifu-mainmenu__submenu-icon rotate" />
               )}
             </button>
           </div>
