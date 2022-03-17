@@ -28,7 +28,7 @@ const ThemeImage = ({ src, color }) => {
 }
 
 const ThemeCard = ({ title, url, image, blue, green }) => (
-  <Link passHref href={url} prefetch={false}>
+  <Link passHref href={url} prefetch={false} locale={false}>
     <a
       className={cls('rounded block', {
         'bg-blue-white hover:bg-blue-lighter shadow-themecard-blue': blue,

@@ -12,7 +12,7 @@ export const LOCALES_URL = '/api/available-locales'
 
 export const getSearchResults = async (search) => {
   const { data } = await axios.get(SEARCH_URL, { params: { search } })
-  return data?.results
+  return data
 }
 
 export const getLocalInformation = async (params) => {

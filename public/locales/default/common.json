@@ -1,0 +1,111 @@
+{
+  "article": {
+    "published": "Published"
+  },
+  "breadcrumbs": {
+    "frontpage": "Front page",
+    "title": "Breadcrum trail"
+  },
+  "buttons": {
+    "close": "Close",
+    "external": "Link redirects to another website",
+    "no": "No",
+    "ok": "OK",
+    "search": "Search",
+    "skipTo": "Skip to content",
+    "yes": "Yes"
+  },
+  "cookies": {
+    "allow": "Accept all cookies",
+    "allowed": "Enabled",
+    "denied": "Disabled",
+    "deny": "Only necessary cookies",
+    "labels": {
+      "analytics": "Allow usage monitoring for quality control purposes"
+    },
+    "readMore": "Cookie settings",
+    "settings": {
+      "title": "Cookie settings"
+    },
+    "text": "This site uses necessary cookies to ensure performance and to monitor general usage. In addition, we use targeting cookies to improve the user experience.",
+    "title": "Infofinland.fi uses cookies"
+  },
+  "feedback": {
+    "buttons": {
+      "cancel": "Cancel",
+      "close": "Close",
+      "open": "Send feedback about this page",
+      "send": "Send",
+      "sendAgain": "Send a new message"
+    },
+    "info1": "The form has three fields.",
+    "info2": "Name, email and feedback text are all required information.",
+    "labels": {
+      "email": "Email",
+      "feedback": "Feedback",
+      "name": "Name"
+    },
+    "states": {
+      "fail": "We were unable to send your message. Please try again",
+      "invalid": "Required",
+      "submitting": "Submitting your message",
+      "success": "Thank you for your feedback"
+    },
+    "title": "Send Feedback",
+    "urlLabel": "URL of the page:"
+  },
+  "footer": {
+    "helsinkiDisclaimer": "The InfoFinland website is published by the City of Helsinki, and it is funded by the state and the InfoFinland member municipalities."
+  },
+  "frontpage": {
+    "cities": {
+      "button": "Go to Cities",
+      "text": "InfoFinland also provides information about local services.",
+      "title": "Cities"
+    }
+  },
+  "images": {
+    "photographer": "Image"
+  },
+  "languageMenu": {
+    "label": "Select language"
+  },
+  "languageMessage": {
+    "text": "Infofinland.fi is available in 12 languages. Would you like to choose another language?",
+    "title": "Would you like to change the language?"
+  },
+  "languageSelector": {
+    "button": "Languages"
+  },
+  "localInfo": {
+    "clear": "Clear",
+    "error": "Municipality’s information could not be loaded",
+    "help": "See your municipality’s information",
+    "help_current_city": "Select your municipality in order to see information about local services when browsing the site.",
+    "noInfo": "No information available for the municipality",
+    "readMore": "Read more",
+    "reselect": "Select another municipality",
+    "select": "Select a municipality",
+    "select_current": "Select {{city}}",
+    "selected_city": "My municipality: {{city}}",
+    "title": "Local information"
+  },
+  "mainMenu": {
+    "button": "Main menu"
+  },
+  "messages": {
+    "title": "Messages"
+  },
+  "search": {
+    "loading": "Searching for results",
+    "placeholder": "Search with a keyword",
+    "title": {
+      "noresults": "No search results",
+      "results": "Search results:",
+      "start": "Search the website"
+    }
+  },
+  "video": {
+    "button": "Open video"
+  }
+}

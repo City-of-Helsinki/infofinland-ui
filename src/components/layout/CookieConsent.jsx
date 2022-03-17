@@ -35,9 +35,8 @@ export default function CookieConsentBar() {
   const { publicRuntimeConfig } = getConfig()
   const { t } = useTranslation('common')
   const isConsentSet = useAtomValue(isCookieConsentSetAtom)
-  const isAboutPage = useRouter().asPath.startsWith(
-    publicRuntimeConfig.COOKIE_PAGE_PATH
-  )
+  const { asPath, locale } = useRouter()
+  const isAboutPage = asPath.startsWith(publicRuntimeConfig.COOKIE_PAGE_PATH)
   return (
     !isAboutPage &&
     !isConsentSet && (
@@ -73,6 +72,7 @@ export default function CookieConsentBar() {
               <CookieConsentActions />
               {!isConsentSet && (
                 <Link
+                  locale={locale}
                   prefetch={false}
                   passHref
                   href={publicRuntimeConfig.COOKIE_PAGE_PATH}

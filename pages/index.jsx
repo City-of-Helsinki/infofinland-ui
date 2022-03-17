@@ -21,7 +21,7 @@ import IngressBlock from '@/components/article/IngressBlock'
 import Columns from '@/components/article/Columns'
 import Image from 'next/image'
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
   const id = await getIdFromPath({
     path: serverRuntimeConfig.DRUPAL_FRONT_PAGE,
@@ -60,7 +60,7 @@ export async function getServerSideProps(context) {
       node,
       ...(await serverSideTranslations(context.locale, ['common'])),
     },
-    // revalidate: serverRuntimeConfig.REVALIDATE_TIME,
+    revalidate: serverRuntimeConfig.REVALIDATE_TIME,
   }
 }
 
@@ -80,7 +80,6 @@ const HomePage = ({ node, themes }) => {
   const hero = getHeroFromNode(node)
   const { field_description, field_content, title } = node
   const [aboutText, ...restOfContent] = field_content
-
   return (
     <Layout className="ifu-landing">
       <HomeHero title={title} src={hero?.src} />

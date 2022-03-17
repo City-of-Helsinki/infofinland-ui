@@ -18,6 +18,7 @@ const INPUT_CLASS =
 // eslint-disable-next-line react/display-name
 const FeedbackForm = forwardRef(({ onCancel }, ref) => {
   const { t } = useTranslation('common')
+
   const pageUrl = isSSR() === false ? window.location.href : ''
   const {
     register,

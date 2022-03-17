@@ -6,6 +6,7 @@ import getConfig from 'next/config'
 import { useTranslation } from 'next-i18next'
 import { useAtomValue } from 'jotai/utils'
 import { footerMenuAtom } from '@/src/store'
+import { useRouter } from 'next/router'
 
 /**
  * SOME Urls are defined in next.config.js
@@ -18,6 +19,8 @@ const FooterLinks = ({ secondary }) => {
   } = getConfig()
 
   const footerMenu = useAtomValue(footerMenuAtom)
+
+  const { locale } = useRouter()
 
   return (
     <div className={cls(margin, 'mt-16 mb-16')}>
@@ -50,9 +53,15 @@ const FooterLinks = ({ secondary }) => {
       </div>
 
       <div className="mb-4 text-center sm:text-left divide-black divide-s">
-        {footerMenu.tree.map(({ title, url }, i) => {
+        {footerMenu?.tree?.map(({ title, url }, i) => {
           return (
-            <Link href={url} passHref key={`footer-link-${i}`} prefetch={false}>
+            <Link
+              href={url}
+              passHref
+              key={`footer-link-${i}`}
+              locale={locale}
+              prefetch={false}
+            >
               <a className="ifu-footer__link">{title}</a>
             </Link>
           )

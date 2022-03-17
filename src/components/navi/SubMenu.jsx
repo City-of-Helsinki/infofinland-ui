@@ -5,9 +5,10 @@ import cls from 'classnames'
 import useLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import { useTranslation } from 'next-i18next'
 // import { useRouter } from 'next/router'
+
 const SubMenuItem = ({ title, url, selected, items, level, isOpen }) => (
   <li className=" block">
-    <Link passHref href={url} prefetch={false}>
+    <Link passHref href={url} locale={false} prefetch={false}>
       <a
         tabIndex={isOpen ? '0' : '-1'}
         className={cls('block py-3 text-body-small hover:bg-gray-white pe-4 ', {
@@ -25,8 +26,7 @@ const SubMenuItem = ({ title, url, selected, items, level, isOpen }) => (
 )
 
 const SubMenuItems = ({ items, isOpen, level }) => {
-  const { localePath } = useLocalizedPath()
-
+  const { localePath, locale } = useLocalizedPath()
   return (
     <CSSTransition
       timeout={{ appear: 0, enter: 400, exit: 0 }}
@@ -47,9 +47,9 @@ const SubMenuItems = ({ items, isOpen, level }) => {
       }}
     >
       <ul className="ifu-mainmenu__submenu">
-        {items.map((props, i) => (
+        {items.map((props) => (
           <SubMenuItem
-            key={`${props.title}-${i}`}
+            key={`${props.url}-${props.id}-${locale}`}
             {...props}
             level={level}
             selected={props.url === localePath}
@@ -92,7 +92,7 @@ const SubMenu = ({
             'border-white hover:border-gray-white': !secondarySelection,
           })}
         >
-          <Link passHref href={url} prefetch={false}>
+          <Link passHref href={url} prefetch={false} locale={false}>
             <a className="flex-grow py-4">
               <span className={cls('block', { 'font-bold': selected })}>
                 {title}
