@@ -39,6 +39,23 @@ export async function getServerSideProps(context) {
         q,
         size,
         from,
+        body: {
+          // q
+          // query:{multi_match:{
+          //   query:q,
+          //   fields:Elastic.FIELDS
+          // }},
+          highlight: {
+            number_of_fragments: Elastic.HIGHLIGHT_NUM_OF_FRAGMENTS,
+            fragment_size: Elastic.HIGHLIGHT_FRAGMENT_SIZE,
+            fields: {
+              field_description: Elastic.HIGHLIGHTER,
+              url: Elastic.HIGHLIGHTER,
+              field_text: Elastic.HIGHLIGHTER,
+              title: Elastic.HIGHLIGHTER,
+            },
+          },
+        },
       })
       .catch((e) => {
         console.error(
@@ -83,25 +100,27 @@ const Pagination = ({ className }) => {
   }
 
   return (
-    <ReactPaginate
-      breakLabel="..."
-      nextLabel={t('search.next')}
-      previousLabel={t('search.prev')}
-      hrefBuilder={pageUrlWithSearchTerm}
-      pageCount={pageCount}
-      pageRangeDisplayed={3}
-      forcePage={currentPage}
-      onPageChange={changePage}
-      renderOnZeroPageCount={null}
-      containerClassName={cls('ifu-pagination', className)}
-      activeClassName="ifu-pagination__page--active"
-      pageClassName="ifu-pagination__page"
-      previousClassName="ifu-pagination__button--prev"
-      breakClassName="ifu-pagination__button--break"
-      nextClassName="ifu-pagination__button--next"
-      disabledClassName=".ifu-pagination__button--disabled"
-      disabledLinkClassName="ifu-pagination__page--disabled"
-    />
+    <>
+      <ReactPaginate
+        breakLabel="..."
+        nextLabel={t('search.next')}
+        previousLabel={t('search.prev')}
+        hrefBuilder={pageUrlWithSearchTerm}
+        pageCount={pageCount}
+        pageRangeDisplayed={3}
+        forcePage={currentPage}
+        onPageChange={changePage}
+        renderOnZeroPageCount={null}
+        containerClassName={cls('ifu-pagination', className)}
+        activeClassName="ifu-pagination__page--active"
+        pageClassName="ifu-pagination__page"
+        previousClassName="ifu-pagination__button--prev"
+        breakClassName="ifu-pagination__button--break"
+        nextClassName="ifu-pagination__button--next"
+        disabledClassName=".ifu-pagination__button--disabled"
+        disabledLinkClassName="ifu-pagination__page--disabled"
+      />
+    </>
   )
 }
 
@@ -113,6 +132,7 @@ const SearchResults = () => {
     return null
   }
 
+  // const search = parseLucene(q);
   return results
     ?.map(getSearchResult)
     .map((r) => <Result key={`result-${r.id}`} {...r} search={q} />)
@@ -171,12 +191,12 @@ export const SearchPage = () => {
         <SearchBar search={q} />
 
         {q && !error && (
-          <div className="pb-4 border-b border-gray">
+          <div className="pb-4">
             <dl className="mb-2 text-body text-gray-dark">
               <dd className="inline-block">{t('search.count')}</dd>
               <dt className="inline-block font-bold ms-1">{searchCount} </dt>
             </dl>
-            {searchCount > 0 && <Pagination />}
+            {searchCount > 0 && <Pagination className="mt-8" />}
           </div>
         )}
 
@@ -190,7 +210,7 @@ export const SearchPage = () => {
             <h3 className="mb-8 text-h4 translate-y-3">{t('search.error')} </h3>
           )}
           {searchCount > 0 && <SearchResults />}
-          {searchCount > 0 && <Pagination />}
+          {searchCount > 0 && <Pagination className="mt-16 mb-4" />}
         </div>
       </Block>
     </Layout>

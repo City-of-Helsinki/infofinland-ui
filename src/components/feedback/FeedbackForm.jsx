@@ -13,9 +13,6 @@ import { longTextClass } from '@/components/Typo'
 import { isSSR } from '@/hooks/useIsomorphicLayoutEffect'
 import { IconAngleDown } from '../Icons'
 
-const INPUT_CLASS =
-  'py-2 px-3 w-full block border-black border rounded shadow-input text-body-small'
-
 // eslint-disable-next-line react/display-name
 const FeedbackForm = forwardRef(({ onCancel }, ref) => {
   const { t } = useTranslation('common')
@@ -111,7 +108,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
                 type="text"
                 aria-required="true"
                 id="ifu-feedback-name"
-                className={cls(INPUT_CLASS)}
+                className="ifu-feedback__input"
                 {...register('name', { required: true })}
               />
             </div>
@@ -132,7 +129,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
                 type="text"
                 id="ifu-feedback-email"
                 aria-required="true"
-                className={cls(INPUT_CLASS)}
+                className="ifu-feedback__input"
                 {...register('email', {
                   required: true,
 
@@ -161,7 +158,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
                 cols="30"
                 rows="6"
                 aria-required="true"
-                className={cls(INPUT_CLASS)}
+                className="ifu-feedback__input"
                 {...register('feedback', { required: true })}
               ></textarea>
             </div>

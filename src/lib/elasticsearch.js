@@ -2,8 +2,21 @@ import getConfig from 'next/config'
 import { Client } from '@elastic/elasticsearch'
 const DEFAULT_SIZE = 30
 const DEFAULT_FROM = 0
-
+import { HIGHLIGHT_CLASS } from '@/components/search/Result'
+export const HIGHLIGHT_FRAGMENT_SIZE = 300
+export const HIGHLIGHT_NUM_OF_FRAGMENTS = 5
 export const ERROR = 'Error in Elastic Search query:'
+export const FIELDS = Object.freeze([
+  'url',
+  'title',
+  'field_description',
+  'field_text',
+  'field_title',
+])
+export const HIGHLIGHTER = Object.freeze({
+  pre_tags: [`<em class="${HIGHLIGHT_CLASS}">`],
+  post_tags: ['</em>'],
+})
 export const getSearchClient = () => {
   const config = getConfig().serverRuntimeConfig
   // process.env.elasticsearch_certificate
