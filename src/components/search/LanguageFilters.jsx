@@ -10,6 +10,7 @@ const LanguageFilters = () => {
   const { query, locale } = useRouter()
   const { languages } = query
   const [selectedLanguages, setLanguages] = useState(getLangMap(languages))
+
   useEffect(() => {
     setLanguages(getLangMap(languages))
   }, [languages])

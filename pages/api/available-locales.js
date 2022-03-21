@@ -2,6 +2,11 @@ import { i18n } from '@/next-i18next.config'
 import { getIdFromPath } from '@/lib/ssr-api'
 
 export default async function handler(req, res) {
+  // No posts allowed
+  if (req.method !== 'GET') {
+    res.status(400).end()
+    return
+  }
   const { query } = req
   const { path } = query
 
