@@ -2,37 +2,31 @@ import { useState, useEffect, useRef, forwardRef } from 'react'
 import cls from 'classnames'
 import { useTranslation } from 'next-i18next'
 import { IconExclamationBubble } from '@/components/Icons'
-
 import Button, { LinkButton } from '@/components/Button'
 import { useForm } from 'react-hook-form'
 import InfoBlock from '@/components/feedback/InfoBlock'
-import SubmitLoader from '@/components/feedback/SubmitLoader'
 import { CSSTransition } from 'react-transition-group'
-import { IconExclamationCircle } from '@/components/Icons'
 import { longTextClass } from '@/components/Typo'
 import { isSSR } from '@/hooks/useIsomorphicLayoutEffect'
 import { IconAngleDown } from '../Icons'
-
+import axios from 'axios'
+import { feedbackEmailAtom } from '@/src/store'
+import { useAtomValue } from 'jotai/utils'
 // eslint-disable-next-line react/display-name
 const FeedbackForm = forwardRef(({ onCancel }, ref) => {
   const { t } = useTranslation('common')
-
+  const feedbackEmail = useAtomValue(feedbackEmailAtom)
   const pageUrl = isSSR() === false ? window.location.href : ''
   const {
     register,
     reset,
+
     formState: { errors, isSubmitting, isSubmitted, isSubmitSuccessful },
     handleSubmit,
   } = useForm()
 
-  const onSubmit = (data) => {
-    console.log('TODO send to mailer', data)
-    alert('TODO send to mailer')
-    return new Promise((ok, fail) => {
-      const action = data.fail ? fail : ok
-      setTimeout(action, 1500)
-    })
-  }
+  const onSubmit = async (data) =>
+    axios.post('/api/feedback', { ...data, feedback_email: feedbackEmail })
 
   const onError = (errors, e) => {
     console.error({ errors, e })
@@ -52,46 +46,41 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
         className="text-body-small border-b xl:border-b-0 border-gray-darker-op2"
         ref={ref}
       >
-        {!isSubmitting && (
-          <h3 className="mt-8 mb-4 font-sans text-h2 text-bodytext-color">
-            {t('feedback.title')}
-          </h3>
-        )}
-        {isSubmitting && (
-          <h3 className="my-6 text-h3">{t('feedback.states.submitting')}</h3>
-        )}
-
-        {isSubmitSuccessful && (
-          <h3 className="my-6 text-h3">{t('feedback.states.success')}</h3>
-        )}
-
-        {isSubmitting && <SubmitLoader />}
+        <h3 className="mt-8 mb-4 font-sans text-h2 text-bodytext-color">
+          {t('feedback.title')}
+        </h3>
 
         <p className="mb-8 text-gray-dark break-words">
           <b>{t('feedback.urlLabel')}:</b> {pageUrl}
         </p>
       </div>
       <div className="xl:grid grid-cols-2 gap-x-8">
-        <InfoBlock {...{ isSubmitSuccessful, isSubmitted, isSubmitting }} />
-        <div className="">
+        <InfoBlock />
+        <div ref={scrollTarget}>
           {!isSubmitting && isSubmitted && !isSubmitSuccessful && (
-            <p
-              ref={scrollTarget}
-              className="flex items-center pb-4 mt-8 md:mt-0 font-sans text-body font-bold text-bodytext-color lg:border-b-0 border-gray-darker-op2"
-            >
-              <IconExclamationCircle className="inline-block flex-none text-neon-pink fill-current me-4" />
+            <p className="flex items-center py-2 pb-4 mt-8 md:mt-0 mb-4 font-sans text-body-small font-bold text-bodytext-color bg-white rounded border-l-5 border-neon-pink lg:min-h-[4rem] ps-4">
               <span className="inline-block">{t('feedback.states.fail')}</span>
             </p>
           )}
 
-          <form
-            className={cls({
-              hidden: isSubmitting || isSubmitSuccessful,
-            })}
-            onSubmit={handleSubmit(onSubmit, onError)}
-          >
-            <input type="hidden" {...register('url')} value={pageUrl} />
+          {!isSubmitting && isSubmitted && isSubmitSuccessful && (
+            <p className="flex items-center py-2 pb-4 mt-8 md:mt-0 mb-4 font-sans text-body-small font-bold text-bodytext-color bg-white rounded border-l-5 border-neon-green lg:min-h-[4rem] ps-4">
+              <span className="inline-block">
+                {t('feedback.states.success')}
+              </span>
+            </p>
+          )}
 
+          {isSubmitting && (
+            <p className="flex items-center py-2 pb-4 mt-8 md:mt-0 mb-4 font-sans text-body-small font-bold text-bodytext-color bg-white rounded border-l-5 border-blue lg:min-h-[4rem] ps-4">
+              <span className="inline-block">
+                {t('feedback.states.submitting')}
+              </span>
+            </p>
+          )}
+
+          <form onSubmit={handleSubmit(onSubmit, onError)}>
+            <input type="hidden" {...register('page')} value={pageUrl} />
             <div className="mb-2">
               <label
                 htmlFor="ifu-feedback-name"
@@ -109,6 +98,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
                 aria-required="true"
                 id="ifu-feedback-name"
                 className="ifu-feedback__input"
+                disable={isSubmitting}
                 {...register('name', { required: true })}
               />
             </div>
@@ -119,24 +109,20 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
                 className="flex mb-1 text-tight"
               >
                 <div className="flex-grow"> {t('feedback.labels.email')}</div>
-                {errors.email && (
+                {errors.sender_email && (
                   <div className="flex-none text-tight font-bold text-neon-red break-all">
                     {t('feedback.states.invalid')}
                   </div>
                 )}
               </label>
               <input
-                type="text"
+                type="email"
                 id="ifu-feedback-email"
                 aria-required="true"
+                disable={isSubmitting}
                 className="ifu-feedback__input"
-                {...register('email', {
+                {...register('sender_email', {
                   required: true,
-
-                  pattern: {
-                    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    // message: "invalid email address"
-                  },
                 })}
               />
             </div>
@@ -147,7 +133,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
                 className="flex mb-1 text-tight"
               >
                 <div className="flex-grow">{t('feedback.labels.feedback')}</div>
-                {errors.feedback && (
+                {errors.message && (
                   <div className="flex-none text-tight font-bold text-neon-red">
                     {t('feedback.states.invalid')}
                   </div>
@@ -159,13 +145,27 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
                 rows="6"
                 aria-required="true"
                 className="ifu-feedback__input"
-                {...register('feedback', { required: true })}
+                disable={isSubmitting}
+                {...register('message', { required: true })}
               ></textarea>
             </div>
             <div className="mb-16">
-              <Button type="submit" value="ok" className="me-2">
-                {t('feedback.buttons.send')}
-              </Button>
+              {(!isSubmitted || !isSubmitSuccessful) && (
+                <Button
+                  type="submit"
+                  value="ok"
+                  className="me-2"
+                  disable={isSubmitting}
+                >
+                  {t('feedback.buttons.send')}
+                </Button>
+              )}
+
+              {isSubmitted && isSubmitSuccessful && (
+                <Button onClick={() => reset()} className="me-2" type="button">
+                  {t('feedback.buttons.sendAgain')}
+                </Button>
+              )}
               <LinkButton
                 onClick={onCancel}
                 type="button"
@@ -177,18 +177,6 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
           </form>
         </div>
       </div>
-      {isSubmitSuccessful && (
-        <div className="lg:flex gap-x-4 items-center mb-16 lg:border-t border-gray-darker-op2">
-          <div className="mt-8 lg:mt-0">
-            <Button onClick={() => reset()} className="mt-4 me-6">
-              {t('feedback.buttons.sendAgain')}
-            </Button>
-            <LinkButton onClick={() => onCancel()} className="mt-4">
-              {t('feedback.buttons.close')}
-            </LinkButton>
-          </div>
-        </div>
-      )}
     </div>
   )
 })

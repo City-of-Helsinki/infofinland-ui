@@ -20,7 +20,6 @@ export const FIELDS = Object.freeze([
   'field_title',
 ])
 
-
 export const HIGHLIGHTER = Object.freeze({
   type: 'plain',
   pre_tags: [`<em class="${HIGHLIGHT_CLASS}">`],
@@ -28,7 +27,7 @@ export const HIGHLIGHTER = Object.freeze({
 })
 
 export const HIGHLIGHT_FIELDS = Object.freeze({
-  field_description:HIGHLIGHTER,
+  field_description: HIGHLIGHTER,
   field_text: HIGHLIGHTER,
   title: HIGHLIGHTER,
 })
@@ -37,12 +36,11 @@ export const HIGHLIGHT_RULES = Object.freeze({
   encoder: 'html',
   number_of_fragments: HIGHLIGHT_NUM_OF_FRAGMENTS,
   fragment_size: HIGHLIGHT_FRAGMENT_SIZE,
-  fields: HIGHLIGHT_FIELDS
+  fields: HIGHLIGHT_FIELDS,
 })
 
-
-export const getIndexWarning = ({index,q})=> `WARNING: Index ${index} not found. Searching from all indeces with term "${q}"`
-
+export const getIndexWarning = ({ index, q }) =>
+  `WARNING: Index ${index} not found. Searching from all indeces with term "${q}"`
 
 export const getSearchClient = () => {
   const config = getConfig().serverRuntimeConfig
@@ -72,7 +70,7 @@ export const getSearchClient = () => {
 }
 
 export function getSearchParamsFromQuery({ query, locale }) {
-  const q = query?.search || ''
+  const q = query?.search || query.q || ''
   const size = query?.size || DEFAULT_SIZE
   let languages = Array.isArray(query?.languages)
     ? query?.languages

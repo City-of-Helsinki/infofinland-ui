@@ -22,8 +22,7 @@ import {
 
 export async function getServerSideProps(context) {
   const common = await getCommonApiContent(context)
-  const { size, q, from, index } =
-    Elastic.getSearchParamsFromQuery(context)
+  const { size, q, from, index } = Elastic.getSearchParamsFromQuery(context)
   let results = null
   let error = null
   const searchParams = {
@@ -31,7 +30,7 @@ export async function getServerSideProps(context) {
     size,
     from,
     body: {
-      highlight: Elastic.HIGHLIGHT_RULES
+      highlight: Elastic.HIGHLIGHT_RULES,
     },
   }
   const elastic = Elastic.getSearchClient()
@@ -43,7 +42,7 @@ export async function getServerSideProps(context) {
   if (indexExists) {
     searchParams.index = index
   } else {
-    console.warn(Elastic.getIndexWarning({index,q}))
+    console.warn(Elastic.getIndexWarning({ index, q }))
   }
 
   if (q) {

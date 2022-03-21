@@ -3,6 +3,12 @@ import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import { getLocalInfoParams } from '@/lib/query-params'
 
 export default async function handler(req, res) {
+  // No posts allowed
+  if (req.method !== 'GET') {
+    res.status(400).end()
+    return
+  }
+
   const { query } = req
   const { id } = query
 
