@@ -109,6 +109,8 @@
     "count": "Tuloksia",
     "placeholder": "Hae hakusanalla..",
     "showmore": "Lisää tuloksia: {{more}}",
+    "prev": "Edelllinen",
+    "next": "Seuraava",
     "title": {
       "noresults": "Ei hakutuloksia",
       "results": "Hakutulokset",

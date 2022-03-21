@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 /** The Client API urls  */
-export const SEARCH_URL = '/api/search'
+export const SEARCH_URL = '/api/search/'
 export const LOCAL_INFO_URL = '/api/localinfo'
 export const LOCALES_URL = '/api/available-locales'
 
@@ -10,8 +10,9 @@ export const LOCALES_URL = '/api/available-locales'
  * @param {string} search - the search term.
  */
 
-export const getSearchResults = async (search) => {
-  const { data } = await axios.get(SEARCH_URL, { params: { search } })
+export const getSearchResults = async ({ search, locale }) => {
+  console.log({ search, locale })
+  const { data } = await axios(`${SEARCH_URL}${locale}`, { params: { search } })
   return data
 }
 

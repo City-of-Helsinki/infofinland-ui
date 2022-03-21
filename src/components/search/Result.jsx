@@ -1,6 +1,7 @@
 import TextLink from '@/components/TextLink'
 import ParseHtml from '../ParseHtml'
-// must be present in clientside code, or it will be purged from final css
+
+// highligher class must be present in clientside code, or it will be purged from final css in build process
 export const HIGHLIGHT_CLASS = 'ifu-search__highlight'
 const Result = ({
   title,
@@ -14,8 +15,7 @@ const Result = ({
     <section className="pb-8 mt-8 border-b border-gray-light" lang={language}>
       <h2 className="mb-4 text-h5xl font-bold">
         <TextLink href={url} locale={language}>
-          {/* <ParseHtml html={title||''}/> */}
-          {title}
+          <ParseHtml html={title[0]} />
         </TextLink>
       </h2>
 

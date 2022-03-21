@@ -2,6 +2,8 @@ import { IconLookingGlass } from '@/components/Icons'
 import useSearchRoute from '@/hooks/useSearchRoute'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next'
+import LanguageFilters from '@/components/search/LanguageFilters'
+import { IconGlobe } from '../Icons'
 
 const SearchBar = ({ search }) => {
   // Sync search field with URL
@@ -16,7 +18,7 @@ const SearchBar = ({ search }) => {
   return (
     <div className="my-8">
       <form
-        className="flex items-center border border-black"
+        className="flex relative items-center mb-24 lg:mb-12 border border-black"
         onSubmit={goToSearch}
       >
         <input
@@ -25,11 +27,15 @@ const SearchBar = ({ search }) => {
           name="search"
           value={qw}
           onChange={({ target: { value } }) => setQuery(value)}
-          className=" inline-block flex-grow px-2 h-12"
+          className="ifu-search__input--page"
         />
-        <button className="flex-none w-12 h-12">
+        <button className="inline-flex flex-none items-center w-12 h-12">
           <IconLookingGlass className="mx-2" />
         </button>
+        <div className="flex absolute -bottom-24 lg:-bottom-10 left-0 flex-wrap items-center">
+          <IconGlobe className="w-6 h-6 me-2" title={t('languageMenu.label')} />
+          <LanguageFilters />
+        </div>
       </form>
     </div>
   )

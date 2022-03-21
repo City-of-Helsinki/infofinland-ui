@@ -1,4 +1,8 @@
 @layer components {
+  :root {
+    --paginationButtonSize: 35px;
+  }
+
   .ifu-search__overlay {
     @apply fixed inset-0 bg-black-op3 z-50;
   }
@@ -12,7 +16,39 @@
       right: 0;
     }
   }
+  .ifu-search__input--checkbox {
+    @apply mx-1 translate-y-[0.05rem];
+  }
+  .ifu-search__input--topsearch {
+    @apply py-3 px-1 w-full text-h3 placeholder:text-gray-light outline-none ps-2 md:ps-4;
+  }
 
+  .ifu-search__input--topsearch::-webkit-search-cancel-button {
+    /* Remove default */
+    -webkit-appearance: none;
+    transform: translate(5px, -1px);
+    height: 25px;
+    width: 25px;
+    background-image: url('/images/icons/close-button.svg');
+    background-repeat: no-repeat;
+
+    background-size: cover;
+  }
+  .ifu-search__input--page::-webkit-search-cancel-button {
+    /* Remove default */
+    -webkit-appearance: none;
+    transform: translateX(11px);
+    height: 30px;
+    width: 30px;
+    background-image: url('/images/icons/close-button.svg');
+    background-repeat: no-repeat;
+
+    background-size: cover;
+  }
+
+  .ifu-search__input--page {
+    @apply inline-block flex-grow px-2 h-12;
+  }
   .ifu-pagination {
     @apply flex text-center relative justify-center  mx-0;
   }
@@ -23,7 +59,7 @@
   }
 
   .ifu-pagination__page {
-    @apply inline-block flex-grow lg:flex-none lg:mx-3;
+    @apply inline-block flex-none mx-2 lg:mx-4;
   }
 
   .ifu-pagination__page--active {
@@ -39,30 +75,37 @@
   }
 
   .ifu-pagination__button--prev {
-    @apply flex-none  lg:flex-grow inline-block font-bold text-left pe-1 lg:basis-1/5 me-2;
-    background-image: url('/images/icon-circle-arrow-left.png');
+    @apply w-8 flex-grow inline-block font-bold text-left pe-1 lg:basis-1/5 me-2 relative;
+  }
+
+  .ifu-pagination__button--prev a {
+    position: absolute;
+    display: block;
+    background-image: url('/images/icons/circle-arrow-left.svg');
     background-repeat: no-repeat;
-    background-position: top left;
-    height: 30px;
-    width: 30px;
+    background-position: center center;
+    background-size: cover;
+    height: var(--paginationButtonSize);
+    width: var(--paginationButtonSize);
+    font-size: 0;
+    filter: blur(0.5px);
   }
 
   .ifu-pagination__button--next {
-    @apply flex-none lg:flex-grow inline-block font-bold text-right ps-1 lg:basis-1/5 ms-2;
-    background-image: url('/images/icon-circle-arrow-right.png');
-    background-repeat: no-repeat;
-    background-position: top right;
-    height: 30px;
-    width: 30px;
+    @apply w-8 flex-grow inline-block font-bold text-right ps-1 lg:basis-1/5 ms-2 relative;
   }
-
-  .ifu-pagination__button--prev a,
   .ifu-pagination__button--next a {
-    height: 0;
-    width: 0;
-    position: absolute;
     display: block;
-    overflow: hidden;
+    position: absolute;
+    right: 0;
+    background-image: url('/images/icons/circle-arrow-right.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    height: var(--paginationButtonSize);
+    width: var(--paginationButtonSize);
+    font-size: 0;
+    filter: blur(0.5px);
   }
 
   .ifu-search__highlight {

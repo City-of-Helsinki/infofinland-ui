@@ -4,7 +4,7 @@ import Drawer from '@/components/search/SearchDrawer'
 import { useState } from 'react'
 import { useAtom } from 'jotai'
 import { searchQueryValue } from '@/src/store'
-import Link from 'next/link'
+import TextLink from '../TextLink'
 import useSearchRoute from '@/hooks/useSearchRoute'
 import cls from 'classnames'
 import { getSearchResult } from '@/lib/ssr-helpers'
@@ -14,6 +14,7 @@ import { DotsLoader } from '../Loaders'
 import { getSearchResults } from '@/lib/client-api'
 import useSWR from 'swr'
 import { useDebouncedValue } from 'rooks'
+import { useRouter } from 'next/router'
 /**
  * Start search only after TRESHOLD is exceeded to reduce
  * ambiquous search terms like 'a'
@@ -127,7 +128,7 @@ const SearchBar = ({ onSubmit, onChange, query }) => {
               onChange={onChange}
               placeholder={t('search.placeholder')}
               autoFocus
-              className="py-3 px-1 w-full text-h3 placeholder:text-gray-light outline-none ps-2 md:ps-4"
+              className="ifu-search__input--topsearch"
             />
           </div>
           <div className="flex flex-none items-center h-14 border-b border-gray-light">
@@ -137,7 +138,7 @@ const SearchBar = ({ onSubmit, onChange, query }) => {
               title={t('buttons.search')}
               aria-label={t('buttons.search')}
             >
-              <IconLookingGlass className="mx-2" />
+              <IconLookingGlass className="mx-2 -translate-y-0.5" />
             </button>
           </div>
         </div>
@@ -156,10 +157,10 @@ const SearchDesktopBar = ({ children, isOpen }) => {
 }
 
 const Result = ({ title, url }) => (
-  <p className="mb-4">
-    <Link passHref href={url} locale={false} prefetch={false}>
-      <a> {title}</a>
-    </Link>
+  <p className="mb-3">
+    <TextLink href={url} locale={false}>
+      {title}
+    </TextLink>
   </p>
 )
 
@@ -167,18 +168,21 @@ export const SWRResults = ({ onShowResults }) => {
   const { t } = useTranslation('common')
   const _q = useAtomValue(searchQueryValue)
   const [search] = useDebouncedValue(_q, 100)
+  const { locale } = useRouter()
   const cacheKey = () => {
     if (search?.length < TRESHOLD) {
       return TRESHOLD_CACHE_KEY
     }
-    return search
+    return `/${locale}/${search}`
   }
 
   const fetcher =
-    search.length < TRESHOLD ? () => ({ results: {} }) : getSearchResults
+    search.length < TRESHOLD
+      ? () => ({ results: {} })
+      : (search) => getSearchResults({ search, locale })
   const { data, error, isValidating } = useSWR(cacheKey, fetcher)
-
   const extraResults = data?.hits?.total?.value - data?.size
+
   if (isValidating) {
     return (
       <div className="flex items-center mx-4 h-16">
@@ -203,9 +207,11 @@ export const SWRResults = ({ onShowResults }) => {
           ?.map(getSearchResult)
           .map((r, i) => <Result {...r} key={`r-${i}`} />)}
       {!error && extraResults > 0 && (
-        <LinkButton className="-translate-x-4" onClick={onShowResults}>
-          {t('search.showmore', { more: extraResults })}
-        </LinkButton>
+        <div className="pt-2 border-t border-gray-hr">
+          <LinkButton className="-translate-x-4" onClick={onShowResults}>
+            {t('search.showmore', { more: extraResults })}
+          </LinkButton>
+        </div>
       )}
     </div>
   )
