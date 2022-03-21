@@ -113,7 +113,7 @@ export const getCommonApiContent = async ({ locale, id }) => {
 
   const feedback = await getFeedbackPage(context).catch((e) => {
     console.error(
-      'Feedback content error',
+      'Feedback content error',context.locale,
       e?.response?.status,
       e?.response?.data
     )
