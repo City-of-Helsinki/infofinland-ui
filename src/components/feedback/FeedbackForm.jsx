@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, forwardRef } from 'react'
 import cls from 'classnames'
 import { useTranslation } from 'next-i18next'
-import { IconExclamationBubble, IconAngleUp } from '@/components/Icons'
+import { IconExclamationBubble } from '@/components/Icons'
 
 import Button, { LinkButton } from '@/components/Button'
 import { useForm } from 'react-hook-form'
@@ -11,9 +11,7 @@ import { CSSTransition } from 'react-transition-group'
 import { IconExclamationCircle } from '@/components/Icons'
 import { longTextClass } from '@/components/Typo'
 import { isSSR } from '@/hooks/useIsomorphicLayoutEffect'
-
-const INPUT_CLASS =
-  'py-2 px-3 w-full block border-black border rounded shadow-input text-body-small'
+import { IconAngleDown } from '../Icons'
 
 // eslint-disable-next-line react/display-name
 const FeedbackForm = forwardRef(({ onCancel }, ref) => {
@@ -110,7 +108,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
                 type="text"
                 aria-required="true"
                 id="ifu-feedback-name"
-                className={cls(INPUT_CLASS)}
+                className="ifu-feedback__input"
                 {...register('name', { required: true })}
               />
             </div>
@@ -131,7 +129,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
                 type="text"
                 id="ifu-feedback-email"
                 aria-required="true"
-                className={cls(INPUT_CLASS)}
+                className="ifu-feedback__input"
                 {...register('email', {
                   required: true,
 
@@ -160,7 +158,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
                 cols="30"
                 rows="6"
                 aria-required="true"
-                className={cls(INPUT_CLASS)}
+                className="ifu-feedback__input"
                 {...register('feedback', { required: true })}
               ></textarea>
             </div>
@@ -232,7 +230,7 @@ const FeedbackButtonBlock = () => {
           >
             {!isOpen && t('feedback.buttons.open')}
             {isOpen && t('feedback.buttons.close')}
-            {isOpen && <IconAngleUp className="fill-link h-6-w-6 ms-2" />}
+            {isOpen && <IconAngleDown className="fill-link h-6-w-6 ms-2" />}
           </span>
         </button>
       </div>

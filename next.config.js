@@ -21,7 +21,19 @@ const env = {
   TWITTER_URL: 'https://twitter.com/InfoFinlandfi',
 }
 
+/**
+ *
+ * Export next.config.js values
+ */
 module.exports = {
+  // async headers () {
+
+  //   return  [
+  //       // Apply these headers to all routes in your application.
+  //       {source: '/:path*',
+  //       headers: securityHeaders,}
+  //   ]
+  // },
   i18n,
   reactStrictMode: true,
   poweredByHeader: false,

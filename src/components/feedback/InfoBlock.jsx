@@ -5,7 +5,7 @@ import { feedbackPageAtom } from '@/src/store'
 import ParseHtml from '../ParseHtml'
 
 const InfoBlock = ({ isSubmitting, isSubmitted, isSubmitSuccessful }) => {
-  const { field_content } = useAtomValue(feedbackPageAtom)
+  const { field_content } = useAtomValue(feedbackPageAtom) || []
   return (
     <div
       className={cls('mt-8 xl:mt-0 text-body-small', {
@@ -13,7 +13,7 @@ const InfoBlock = ({ isSubmitting, isSubmitted, isSubmitSuccessful }) => {
         'hidden :md:block': isSubmitted && isSubmitSuccessful,
       })}
     >
-      {field_content.map(({ field_text, id }) => {
+      {field_content?.map(({ field_text, id }) => {
         if (!field_text?.processed) {
           return null
         }

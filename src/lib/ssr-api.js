@@ -55,8 +55,11 @@ export const getIdFromPath = async ({ path, context: { locale } }) => {
       console.error('Error 404 while resolving path:', { path })
       return { data: null }
     }
-    console.error(e)
-    throw new Error('Unable to resolve path')
+    const error = new Error('Unable to resolve path')
+    error.status = e?.response?.status
+    error.data = e?.response?.data
+    console.error(error)
+    throw error
   })
 
   return data?.entity?.uuid
@@ -109,7 +112,11 @@ export const getCommonApiContent = async ({ locale, id }) => {
   })
 
   const feedback = await getFeedbackPage(context).catch((e) => {
-    console.error('Feedback content error', e)
+    console.error(
+      'Feedback content error',
+      e?.response?.status,
+      e?.response?.data
+    )
     return null
   })
 
@@ -118,23 +125,6 @@ export const getCommonApiContent = async ({ locale, id }) => {
     return []
   })
 
-  // const [menus, municipalities, feedback, messages] = await Promise.all([
-  //   getMenus(context),
-  //   getMunicipalities(context).catch((e) => {
-  //     console.error('municipality list error', e)
-  //     return []
-  //   }),
-  //   getFeedbackPage(context).catch((e) => {
-  //     console.error('Feedback content error', e)
-  //     return null
-  //   }),
-  //   getMessages({ ...context, id }).catch((e) => {
-  //     console.error('Messages error', e)
-  //     return []
-  //   }),
-  // ]).catch((e) => {
-  //   throw e
-  // })
   return {
     menus,
     municipalities,
@@ -206,8 +196,6 @@ export const getFeedbackPage = async (context) => {
       .addInclude(['field_content'])
       .addFields(NODE_TYPES.PAGE, ['title', 'field_content'])
       .getQueryObject(),
-
-    // params:  getPageQueryParams()
   })
 
   return node

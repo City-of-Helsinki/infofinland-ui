@@ -2,17 +2,27 @@ import { useTranslation } from 'next-i18next'
 import { IconLookingGlass, IconCross } from '@/components/Icons'
 import Drawer from '@/components/search/SearchDrawer'
 import { useState } from 'react'
-import useSearchResults from '@/hooks/useSearchResults'
 import { useAtom } from 'jotai'
 import { searchQueryValue } from '@/src/store'
-import { Suspense } from 'react'
-import Link from 'next/link'
+import TextLink from '../TextLink'
 import useSearchRoute from '@/hooks/useSearchRoute'
 import cls from 'classnames'
 import { getSearchResult } from '@/lib/ssr-helpers'
 import { useAtomValue } from 'jotai/utils'
 import { LinkButton } from '../Button'
 import { DotsLoader } from '../Loaders'
+import { getSearchResults } from '@/lib/client-api'
+import useSWR from 'swr'
+import { useDebouncedValue } from 'rooks'
+import { useRouter } from 'next/router'
+/**
+ * Start search only after TRESHOLD is exceeded to reduce
+ * ambiquous search terms like 'a'
+ */
+const TRESHOLD = 3
+
+/** use common cache key for all query terms that do not exceed the TRESHOLD*/
+const TRESHOLD_CACHE_KEY = '-'
 
 const SEARCH_BUTTON_LABEL_ID = 'ifu-searchbar__label'
 
@@ -118,7 +128,7 @@ const SearchBar = ({ onSubmit, onChange, query }) => {
               onChange={onChange}
               placeholder={t('search.placeholder')}
               autoFocus
-              className="py-3 px-1 w-full text-h3 placeholder:text-gray-light outline-none ps-2 md:ps-4"
+              className="ifu-search__input--topsearch"
             />
           </div>
           <div className="flex flex-none items-center h-14 border-b border-gray-light">
@@ -128,20 +138,12 @@ const SearchBar = ({ onSubmit, onChange, query }) => {
               title={t('buttons.search')}
               aria-label={t('buttons.search')}
             >
-              <IconLookingGlass className="mx-2" />
+              <IconLookingGlass className="mx-2 -translate-y-0.5" />
             </button>
           </div>
         </div>
       </form>
-      <Suspense
-        fallback={
-          <div className="flex items-center mx-4 h-16">
-            <DotsLoader />
-          </div>
-        }
-      >
-        <SWRResults onShowResults={onSubmit} />
-      </Suspense>
+      <SWRResults onShowResults={onSubmit} />
     </>
   )
 }
@@ -155,36 +157,61 @@ const SearchDesktopBar = ({ children, isOpen }) => {
 }
 
 const Result = ({ title, url }) => (
-  <p className="mb-4">
-    <Link passHref href={url} locale={false} prefetch={false}>
-      <a> {title}</a>
-    </Link>
+  <p className="mb-3">
+    <TextLink href={url} locale={false}>
+      {title}
+    </TextLink>
   </p>
 )
 
 export const SWRResults = ({ onShowResults }) => {
-  const q = useAtomValue(searchQueryValue)
-  const { data, error, TRESHOLD } = useSearchResults()
-  const extraResults = data?.results?.hits?.total?.value - data?.size
+  const { t } = useTranslation('common')
+  const _q = useAtomValue(searchQueryValue)
+  const [search] = useDebouncedValue(_q, 100)
+  const { locale } = useRouter()
+  const cacheKey = () => {
+    if (search?.length < TRESHOLD) {
+      return TRESHOLD_CACHE_KEY
+    }
+    return `/${locale}/${search}`
+  }
+
+  const fetcher =
+    search.length < TRESHOLD
+      ? () => ({ results: {} })
+      : (search) => getSearchResults({ search, locale })
+  const { data, error, isValidating } = useSWR(cacheKey, fetcher)
+  const extraResults = data?.hits?.total?.value - data?.size
+
+  if (isValidating) {
+    return (
+      <div className="flex items-center mx-4 h-16">
+        <DotsLoader />{' '}
+      </div>
+    )
+  }
   return (
     <div className="mx-4 md:mx-6 mt-4">
-      {data?.results?.hits?.hits?.length < 1 && data.q !== '' && (
-        <p className="h-12">TODO: No results</p>
+      {data?.hits?.hits?.length < 1 && data.q !== '' && (
+        <p className="h-12">{t('search.title.noresults')}</p>
       )}
 
-      {error && <p className="h-12">TODO: ERROR</p>}
+      {error && <p className="h-12">{t('search.error')}</p>}
 
-      {q.length < TRESHOLD && q.length > 0 && (
-        <p className="h-12">TODO: type more</p>
+      {search.length < TRESHOLD && search.length > 0 && (
+        <p className="h-12">{t('search.typemore')}</p>
       )}
 
-      {data?.results?.hits?.hits?.map(getSearchResult).map((r, i) => (
-        <Result {...r} key={`r-${i}`} />
-      ))}
-      {extraResults > 0 && (
-        <LinkButton onClick={onShowResults}>
-          and {extraResults} more...
-        </LinkButton>
+      {!error &&
+        data?.hits?.hits
+          ?.map(getSearchResult)
+          .map((r, i) => <Result {...r} key={`r-${i}`} />)}
+      {!error && extraResults > 0 && (
+        <div className="pt-2 border-t border-gray-hr">
+          <LinkButton className="-translate-x-4" onClick={onShowResults}>
+            {t('search.showmore', { more: extraResults })}
+          </LinkButton>
+        </div>
       )}
     </div>
   )

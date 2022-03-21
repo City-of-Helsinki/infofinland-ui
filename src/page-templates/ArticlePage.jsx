@@ -10,6 +10,7 @@ import { getHeroFromNode } from '@/lib/ssr-helpers'
 import IngressBlock from '@/components/article/IngressBlock'
 import AnchorLinksBlock from '@/components/article/AnchorLinksBlock'
 import LocalInformationSelectCity from '@/components/cities/LocalInfoSelectCity'
+import { isRootPage } from '@/lib/menu-utils'
 
 const ArticlePage = ({ node, fiNode, themeMenu, menus }) => {
   const { localePath, locale } = useRouterWithLocalizedPath()
@@ -32,6 +33,7 @@ const ArticlePage = ({ node, fiNode, themeMenu, menus }) => {
   })
 
   const hero = getHeroFromNode(node)
+  const isThemePage = isRootPage({ items: themeMenu.items, path: localePath })
 
   return (
     <Layout menus={menus}>
@@ -57,7 +59,7 @@ const ArticlePage = ({ node, fiNode, themeMenu, menus }) => {
           <AnchorLinksBlock field_content={node.field_content} />
         )}
 
-        {themes?.length > 0 && (
+        {isThemePage && themes?.length > 0 && (
           <Block hero>
             <ThemeList themes={themes} />
           </Block>

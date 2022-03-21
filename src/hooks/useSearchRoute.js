@@ -15,9 +15,12 @@ const useSearchRoute = ({ search, onSubmit }) => {
 
   const goToSearch = (e) => {
     e.preventDefault()
+    const languages = [...e.target.querySelectorAll('input:checked')].map(
+      ({ value }) => value
+    )
     push({
       pathname: SEARCH_PAGE,
-      query: { search },
+      query: { search, languages },
     })
     onSubmit && onSubmit()
   }
