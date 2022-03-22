@@ -12,59 +12,13 @@ import { defer } from 'lodash'
 import { SEARCH_PAGE } from './useSearchRoute'
 const DEV = process.env.NODE_ENV === 'development'
 
-function initAnalyticsTracking({ enabled = false, url, siteId }) {
-  // init only once
-
-  if (Analytics.hasStarted) {
-    console.log('started already')
-    return Analytics
-  }
-
-  Analytics._paq = window._paq = window._paq || []
-  Analytics.setEnabled(enabled)
-  // // Don't send anything in dev mode. just log it instead
-  // if (process.env.NODE_ENV === 'development') {
-  //   _paq.push = console.log
-  // }
-
-  if (Analytics.hasStarted) {
-    console.log('started already')
-    return Analytics
-  }
-
-  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-
-  Analytics._paq.push(['disableCookies'])
-  Analytics._paq.push(['enableLinkTracking'])
-  ;(function () {
-    var u = url
-    Analytics._paq.push(['setTrackerUrl', u + 'tracker.php'])
-    Analytics._paq.push(['setSiteId', siteId])
-    var d = document,
-      g = d.createElement('script'),
-      s = d.getElementsByTagName('script')[0]
-    g.type = 'text/javascript'
-    g.async = true
-    g.src = u + 'piwik.min.js'
-    s.parentNode.insertBefore(g, s)
-  })()
-
-  /**And here we are back to our implementation */
-  DEV && console.log('initial page track')
-  // Analytics._paq = window._paq
-  Analytics.trackPageOrSearch(window.location.pathname)
-
-  return Analytics
-}
-
 export const Analytics = {
   hasStarted: false,
   _paq: undefined,
   _searchCount: false,
-  init: initAnalyticsTracking,
   setEnabled: (enabled) => {
     DEV && console.log('setting tracking permission to', enabled)
-    Analytics._paq?.push(['setDoNotTrack', !enabled])
+    Analytics._paq.push(['setDoNotTrack', !enabled])
     return Analytics
   },
   trackPage: () => {
@@ -87,28 +41,70 @@ export const Analytics = {
     }
     return Analytics
   },
-
+  trackPageFromRoute: (path) => {
+    // Defer tracking so that document.title has been updated to new
+    // Set document title manually only when route change is called.
+    // Initial tracking uses title from server html
+    defer(() => {
+      DEV && console.log('track from router', document.title)
+      Analytics._paq?.push(['setDocumentTitle', document.title])
+      Analytics.trackPageOrSearch(path)
+    })
+  },
   connect: () => {
     DEV && console.log('connect analytics to router')
-    Router.events.on('routeChangeComplete', trackPageFromRoute)
+    Router.events.on('routeChangeComplete', Analytics.trackPageFromRoute)
     return Analytics
   },
   disconnect: () => {
     DEV && console.log('disconnect analytics to router')
-    Router.events.off('routeChangeComplete', trackPageFromRoute)
+    Router.events.off('routeChangeComplete', Analytics.trackPageFromRoute)
     return Analytics
   },
-}
+  init: ({ enabled = false, url, siteId }) => {
+    // init only once
 
-const trackPageFromRoute = (path) => {
-  // Defer tracking so that document.title has been updated to new
-  // Set document title manually only when route change is called.
-  // Initial tracking uses title from server html
-  defer(() => {
-    DEV && console.log('track from router', document.title)
-    Analytics._paq?.push(['setDocumentTitle', document.title])
-    Analytics.trackPageOrSearch(path)
-  })
+    if (Analytics.hasStarted) {
+      console.log('started already')
+      return Analytics
+    }
+
+    Analytics._paq = window._paq = window._paq || []
+    Analytics.setEnabled(enabled)
+    // // Don't send anything in dev mode. just log it instead
+    if (process.env.NODE_ENV === 'development') {
+      Analytics._paq.push = console.log
+    }
+
+    if (Analytics.hasStarted) {
+      console.log('started already')
+      return Analytics
+    }
+
+    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+
+    Analytics._paq.push(['disableCookies'])
+    Analytics._paq.push(['enableLinkTracking'])
+    ;(function () {
+      var u = url
+      Analytics._paq.push(['setTrackerUrl', u + 'tracker.php'])
+      Analytics._paq.push(['setSiteId', siteId])
+      var d = document,
+        g = d.createElement('script'),
+        s = d.getElementsByTagName('script')[0]
+      g.type = 'text/javascript'
+      g.async = true
+      g.src = u + 'piwik.min.js'
+      s.parentNode.insertBefore(g, s)
+    })()
+
+    /**And here we are back to our implementation */
+    DEV && console.log('initial page track')
+    // Analytics._paq = window._paq
+    Analytics.trackPageOrSearch(window.location.pathname)
+
+    return Analytics
+  },
 }
 
 const useAnalytics = () => {
@@ -142,9 +138,14 @@ const useAnalytics = () => {
   // Set enabled if already enabled by user, and when value changes
   useEffect(() => {
     if (isSSR() || !isCookieConsentSet) {
+      DEV && console.log('analytics consent is not yet acknowledged')
       return
     }
-    // DEV && console.log('set analytics allowed', isAnalyticsAllowed)
+    DEV &&
+      console.log(
+        'set analytics allowed from useEffect when consent changes',
+        isAnalyticsAllowed
+      )
     Analytics.setEnabled(isAnalyticsAllowed)
   }, [isCookieConsentSet, isAnalyticsAllowed])
 
