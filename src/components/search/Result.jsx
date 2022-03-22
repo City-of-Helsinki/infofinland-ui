@@ -1,85 +1,31 @@
-import striptags from 'striptags'
 import TextLink from '@/components/TextLink'
-import Highlighter from 'react-highlight-words'
+import ParseHtml from '../ParseHtml'
 
-const RESULT_MAX_LENGTH = 500 //characters before truncating with ...
-
-const HilightedResult = ({ text, search }) => {
-  // let matcher = search
-  let matcher = search.trim().replace(new RegExp('\\*', 'gim'), '')
-  // let pre = ''
-  // let post = ''
-  // let wordFlag = '\\w*'
-  // if(/^\*/.test(search)) {
-  //   pre = wordFlag
-
-  // }
-
-  // if(/\*$/.test(search)) {
-  //   post = wordFlag
-
-  // }
-  // matcher = new RegExp(`${pre}${search.trim().replace(new RegExp('\\*','gim'),'')}${post}`,'gim')
-  // console.log(matcher)
-  return (
-    <p className="mb-4 text-body-small">
-      <Highlighter
-        highlightClassName="bg-orange-light text-black"
-        // autoEscape
-        textToHighlight={
-          text.length > RESULT_MAX_LENGTH
-            ? `${text.substr(0, RESULT_MAX_LENGTH)}...`
-            : text
-        }
-        searchWords={[matcher]}
-      />
-    </p>
-  )
-}
-
+// highligher class must be present in clientside code, or it will be purged from final css in build process
+export const HIGHLIGHT_CLASS = 'ifu-search__highlight'
 const Result = ({
   title,
   url,
   language,
-  field_description,
-  field_text,
-  search,
+  field_description = [],
+  field_text = [],
   id,
-}) => (
-  <section className="pb-8 mt-8 border-b border-gray-hr" lang={language}>
-    <h2 className="mb-4 text-h5xl font-bold">
-      <TextLink href={url} locale={language}>
-        {title}
-      </TextLink>
-      {/* <Link href={url} locale={language} passHref prefetch={false}>
-        <a></a>
-      </Link> */}
-    </h2>
-    {/* {path && (
-      <p className="">
-        {path.map(({ title, url, id }, i) => (
-          <Link key={`result-link-${id}`} href={url} passHref prefetch={false}>
-            <a className="text-tiny text-gray">
-              {title}
-              {i + 1 < path.length && <IconAngleRight className="mx-1" />}
-            </a>
-          </Link>
-        ))}
-      </p>
-    )} */}
+}) => {
+  return (
+    <section className="pb-8 mt-8 border-b border-gray-light" lang={language}>
+      <h2 className="mb-4 text-h5xl font-bold">
+        <TextLink href={url} locale={language}>
+          <ParseHtml html={title[0]} />
+        </TextLink>
+      </h2>
 
-    {field_description &&
-      field_description.map((text, i) => (
-        <HilightedResult
-          search={search}
-          key={`result-${id}-highlight-${i}`}
-          text={striptags(text)}
-        />
+      {[...field_description, ...field_text].map((html, i) => (
+        <p className="mb-4 text-body-small" key={`result-${id}-highlight-${i}`}>
+          ... <ParseHtml html={html} /> ...
+        </p>
       ))}
-    {field_text?.length > 0 && (
-      <HilightedResult text={field_text[0]} search={search} />
-    )}
-  </section>
-)
+    </section>
+  )
+}
 
 export default Result

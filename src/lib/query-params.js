@@ -107,6 +107,9 @@ const baseQueryParams = () =>
 
     // Cities (Municipalities)
     .addFields(CONTENT_TYPES.MUNICIPALITY, ['name'])
+// Feedback email address
+// .addFields(NODE_TYPES.PAGE, ['field_feedback_email'])
+// .addFields(NODE_TYPES.LANDING_PAGE, ['field_feedback_email'])
 
 export const getLandingPageQueryParams = () =>
   baseQueryParams()
@@ -159,6 +162,7 @@ export const getPageQueryParams = () =>
       'field_municipality_info',
       'field_municipality_selection',
       'field_theme_menu_machine_name',
+      'field_feedback_email',
     ])
     .getQueryObject()
 

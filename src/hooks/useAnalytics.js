@@ -12,34 +12,34 @@ import { defer } from 'lodash'
 import { SEARCH_PAGE } from './useSearchRoute'
 const DEV = process.env.NODE_ENV === 'development'
 
-function initAnalyticsTracking({
-  // enabled = false,
-  url,
-  siteId,
-}) {
+function initAnalyticsTracking({ enabled = false, url, siteId }) {
   // init only once
+
   if (Analytics.hasStarted) {
+    console.log('started already')
     return Analytics
   }
 
-  var _paq = (window._paq = window._paq || [])
-
-  // Don't send anything in dev mode. just log it instead
+  Analytics._paq = window._paq = window._paq || []
+  Analytics.setEnabled(enabled)
+  // // Don't send anything in dev mode. just log it instead
   // if (process.env.NODE_ENV === 'development') {
   //   _paq.push = console.log
   // }
 
-  //** This part we get from the matomo instance */
+  if (Analytics.hasStarted) {
+    console.log('started already')
+    return Analytics
+  }
 
   /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-  // _paq.push(["setDoNotTrack", !enabled]);
-  // _paq.push(["disableCookies"]);
-  _paq.push(['enableLinkTracking'])
-  _paq.push(['trackPageView'])
+
+  Analytics._paq.push(['disableCookies'])
+  Analytics._paq.push(['enableLinkTracking'])
   ;(function () {
     var u = url
-    _paq.push(['setTrackerUrl', u + 'tracker.php'])
-    _paq.push(['setSiteId', siteId])
+    Analytics._paq.push(['setTrackerUrl', u + 'tracker.php'])
+    Analytics._paq.push(['setSiteId', siteId])
     var d = document,
       g = d.createElement('script'),
       s = d.getElementsByTagName('script')[0]
@@ -52,26 +52,27 @@ function initAnalyticsTracking({
   /**And here we are back to our implementation */
   DEV && console.log('initial page track')
   // Analytics._paq = window._paq
-  // Analytics.trackPageOrSearch(window.location.pathname)
+  Analytics.trackPageOrSearch(window.location.pathname)
 
   return Analytics
 }
 
 export const Analytics = {
   hasStarted: false,
-  // _paq: undefined,
+  _paq: undefined,
   _searchCount: false,
   init: initAnalyticsTracking,
   setEnabled: (enabled) => {
-    window._paq.push(['setDoNotTrack', !enabled])
+    DEV && console.log('setting tracking permission to', enabled)
+    Analytics._paq?.push(['setDoNotTrack', !enabled])
     return Analytics
   },
   trackPage: () => {
-    window._paq.push(['trackPageView'])
+    Analytics._paq?.push(['trackPageView'])
     return Analytics
   },
   trackSearch: ({ keyword, category = false, searchCount = false }) => {
-    window._paq.push(['trackSiteSearch', keyword, category, searchCount])
+    Analytics._paq?.push(['trackSiteSearch', keyword, category, searchCount])
     return Analytics
   },
   trackPageOrSearch: (path) => {
@@ -105,7 +106,7 @@ const trackPageFromRoute = (path) => {
   // Initial tracking uses title from server html
   defer(() => {
     DEV && console.log('track from router', document.title)
-    window._paq.push(['setDocumentTitle', document.title])
+    Analytics._paq?.push(['setDocumentTitle', document.title])
     Analytics.trackPageOrSearch(path)
   })
 }
@@ -143,7 +144,7 @@ const useAnalytics = () => {
     if (isSSR() || !isCookieConsentSet) {
       return
     }
-    DEV && console.log('set analytics allowed', isAnalyticsAllowed)
+    // DEV && console.log('set analytics allowed', isAnalyticsAllowed)
     Analytics.setEnabled(isAnalyticsAllowed)
   }, [isCookieConsentSet, isAnalyticsAllowed])
 

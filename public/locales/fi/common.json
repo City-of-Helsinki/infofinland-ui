@@ -17,6 +17,9 @@
     "skipTo": "Siirry sisältöön",
     "yes": "Kyllä"
   },
+  "cities": {
+    "title": "Valitse kunta"
+  },
   "cookies": {
     "allow": "Hyväksy kaikki evästeet",
     "allowed": "Sallittu",
@@ -101,13 +104,19 @@
     "title": "Ilmoitukset"
   },
   "search": {
+    "error": "Haussa tapahtui virhe",
     "loading": "Haetaan tuloksia",
+    "count": "Tuloksia",
     "placeholder": "Hae hakusanalla..",
+    "showmore": "Lisää tuloksia: {{more}}",
+    "prev": "Edelllinen",
+    "next": "Seuraava",
     "title": {
       "noresults": "Ei hakutuloksia",
       "results": "Hakutulokset",
       "start": "Hae sivustolta"
-    }
+    },
+    "typemore": "Kirjoita lisää"
   },
   "video": {
     "button": "Avaa video"

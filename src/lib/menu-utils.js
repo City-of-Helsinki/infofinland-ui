@@ -4,6 +4,9 @@ export const findParent = ({ items, parentId }) =>
 export const findTheme = ({ tree, path }) =>
   tree?.find(({ url }) => url === path)
 
+export const isRootPage = ({ items, path }) =>
+  items.find(({ url }) => url === path)?.parent === '' || false
+
 export const getRootPages = (items) =>
   items?.filter(({ parent }) => parent === '')
 

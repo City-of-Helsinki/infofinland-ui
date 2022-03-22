@@ -24,7 +24,7 @@ const FooterLinks = ({ secondary }) => {
 
   return (
     <div className={cls(margin, 'mt-16 mb-16')}>
-      <div className="py-10 border-t border-b border-gray ifu-footer__brand">
+      <div className="py-10 border-t border-b border-gray-light ifu-footer__brand">
         <div
           className="mx-auto sm:mx-0 mb-5 ifu-footer__hki-logo"
           lang={language}

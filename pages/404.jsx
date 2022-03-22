@@ -5,7 +5,7 @@ import cls from 'classnames'
 import { longTextClass } from '@/components/Typo'
 import { i18n } from '@/next-i18next.config'
 import { map, omit } from 'lodash'
-// import {getCommonApiContent} from '@/lib/ssr-api'
+import { getCommonApiContent } from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import getConfig from 'next/config'
 import usePageLocales from '@/hooks/usePageLocales'
@@ -14,11 +14,11 @@ import { DotsLoader } from '@/components/Loaders'
 
 export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
-  //const common = await DrupalApi.getCommonApiContent(context)
+  const common = await getCommonApiContent(context)
   return {
     props: {
       texts: TEXTS_404,
-      //  ...common,
+      ...common,
       ...(await serverSideTranslations(context.defaultLocale, ['common'])),
     },
     revalidate: serverRuntimeConfig.REVALIDATE_TIME,
