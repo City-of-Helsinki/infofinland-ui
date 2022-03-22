@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import LanguageFilters from '@/components/search/LanguageFilters'
 
-
 const SearchBar = ({ search }) => {
   // Sync search field with URL
   const { t } = useTranslation('common')
@@ -24,14 +23,14 @@ const SearchBar = ({ search }) => {
           type="search"
           placeholder={t('search.placeholder')}
           name="search"
-          value={qw}
+          value={qw || ''}
           onChange={({ target: { value } }) => setQuery(value)}
           className="ifu-search__input--page"
         />
         <button className="inline-flex flex-none items-center w-12 h-12">
           <IconLookingGlass className="mx-2" />
         </button>
-      <LanguageFilters />
+        <LanguageFilters />
       </form>
     </div>
   )

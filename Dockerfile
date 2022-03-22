@@ -46,11 +46,10 @@ COPY --from=deps /app/node_modules ./node_modules
 
 
 RUN yarn build
-# Prune dev & build deps until we can use Yarn 2 which does it on the next line a
+# Prune dev & build deps until we can use Yarn 2 which does it on the next line
 RUN rm -rf node_modules
 # Install only production runtime deps
 RUN yarn install --production --ignore-scripts --prefer-offline
-# Use Azure env variables
 
 # =======================================
 FROM node:16-alpine AS runner
@@ -60,6 +59,8 @@ WORKDIR /app
 
 ENV NODE_ENV production
 
+#DEBUG add curl to container for network debugging purposes
+RUN apk --no-cache add curl
 
 
 COPY --from=builder /app/.next ./.next

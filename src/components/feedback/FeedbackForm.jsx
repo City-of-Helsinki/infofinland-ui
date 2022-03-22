@@ -81,6 +81,11 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
 
           <form onSubmit={handleSubmit(onSubmit, onError)}>
             <input type="hidden" {...register('page')} value={pageUrl} />
+            <input
+              type="hidden"
+              {...register('subject')}
+              value={`Palautetta sivusta: ${pageUrl}`}
+            />
             <div className="mb-2">
               <label
                 htmlFor="ifu-feedback-name"

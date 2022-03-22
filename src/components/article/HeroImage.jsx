@@ -10,12 +10,11 @@ const HeroImage = ({ heroImage, ...rest }) => {
   if (heroImage) {
     return (
       <>
-        <div className="overflow-hidden relative mb-6 h-hero md:h-heroxl text-center rounded ifu-block--hero">
+        <div className="overflow-hidden relative mb-6 h-hero lg:h-auto text-center rounded lg:aspect-video ifu-block--hero">
           <div className="relative h-full bg-gray-white">
             {loading && <RingsLoader />}
             <Image
               src={heroImage}
-              // src="/foo.png"
               alt=""
               priority
               layout="fill"

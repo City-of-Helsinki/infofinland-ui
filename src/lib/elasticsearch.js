@@ -50,12 +50,18 @@ export const getSearchClient = () => {
     elasticsearch_certificate,
   } = config
 
-  if (!ELASTICSEARCH_URL) throw 'ERROR: ELASTICSEARCH_URL not set'
+  if (!ELASTICSEARCH_URL) {
+    throw 'ERROR: ELASTICSEARCH_URL not set'
+  }
+
+  console.log({
+    elasticsearch_certificate,
+    elasticsearch_password,
+    ELASTICSEARCH_URL,
+  })
 
   if (!config.elasticsearch_password && !config.elasticsearch_password) {
     console.warn('Warning: Elasticsearch client running in userless mode')
-    console.log({elasticsearch_certificate,elasticsearch_password,ELASTICSEARCH_URL})
-
     return new Client({ node: ELASTICSEARCH_URL })
   }
 

@@ -14,7 +14,7 @@ const env = {
     CITIES: 'cities',
     CITIES_LANDING: 'cities-landing',
   },
-  REVALIDATE_TIME: 60, //seconds
+  REVALIDATE_TIME: 600, //seconds , 10 minutes
   FB_URL: 'https://www.facebook.com/infofinland.fi',
   INSTAGRAM_URL: 'https://www.instagram.com/infofinland.fi/',
   YOUTUBE_URL: 'https://www.youtube.com/c/infofinland',
