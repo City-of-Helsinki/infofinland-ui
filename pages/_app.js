@@ -25,7 +25,6 @@ function App({ Component, pageProps }) {
   // store all props to atom store
   useHydratePage(pageProps)
 
-  //Initiate analytics
   useAnalytics()
 
   return <Component {...pageProps} />

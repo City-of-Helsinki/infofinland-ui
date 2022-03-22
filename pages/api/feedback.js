@@ -11,11 +11,19 @@ export default async function handler(request, response) {
     if (!request.method === 'POST') {
       throw new Error(NOT_ALLOWED)
     }
-    const { sender_email, message, page, name, feedback_email } = request?.body
+    const {
+      sender_email,
+      message,
+      page,
+      name,
+      feedback_email,
+      subject = 'Palautetta sivustolta: <otsikko puuttuu>',
+    } = request?.body
     const form_response = await axios.post(POST_URL, {
       sender_email,
       message,
       page,
+      subject,
       name,
       feedback_email,
       webform_id: WEBFORM_ID,

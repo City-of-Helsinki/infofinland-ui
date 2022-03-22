@@ -5738,10 +5738,10 @@ next-absolute-url@1.2.2:
   resolved "https://registry.yarnpkg.com/next-absolute-url/-/next-absolute-url-1.2.2.tgz#9aba5adcee8effcffd63271d99e13213ad04c23b"
   integrity sha512-Z2+LZXQTthhw2je9u4eq8QWXxXd57a6b54x9exBfQX4Dct6YxaMjcXZWNLHd9AOlCue84EsMpdSGP7wACqUnPg==
 
-next-drupal@1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/next-drupal/-/next-drupal-1.1.1.tgz#3732c5fc6ef204bef7e10895ca3f4039ec05c0b4"
-  integrity sha512-rwnTQKsaP1dBJJsKziqtvhKMIwwJ+HP2/9Hdt24tkb9klJmJ6cyNkcxz2/JvqfHCUF5dVIsuh0Dv6R8tG9xbIg==
+next-drupal@1.2:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/next-drupal/-/next-drupal-1.2.0.tgz#fe8258d93038376a3d22bf3503d7eb888d1f994b"
+  integrity sha512-JL6R47aRGS4z8lwCUUehXqYbJfrjCOgCnCEteDrEFdR0WTgILYaz8yA+suUSGt6USc/yGCgHcgSW2WcILi1gDQ==
   dependencies:
     jsona "^1.8.0"
     node-cache "^5.1.2"
