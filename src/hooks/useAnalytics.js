@@ -18,7 +18,7 @@ export const Analytics = {
   _searchCount: false,
   setEnabled: (enabled) => {
     DEV && console.log('setting tracking permission to', enabled)
-    Analytics._paq.push(['setDoNotTrack', !enabled])
+    Analytics._paq?.push(['setDoNotTrack', !enabled])
     return Analytics
   },
   trackPage: () => {
