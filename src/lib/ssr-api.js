@@ -19,10 +19,6 @@ import { getHeroFromNode } from './ssr-helpers'
 
 const ROUTER_PATH = '/router/translate-path'
 const NO_DEFAULT_LOCALE = 'dont-use'
-// const disableDefaultLocale = (locale) => ({
-//   locale,
-//   defaultLocale: NO_DEFAULT_LOCALE,
-// })
 
 export const menuErrorResponse = () => ({
   items: [],
@@ -81,8 +77,8 @@ export const getNodeFromPath = async ({ path, context, type }) => {
 }
 
 export const getMenus = async ({ locale }) => {
-  const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
-
+  const { DRUPAL_MENUS,NEXT_PUBLIC_DRUPAL_BASE_URL } = getConfig().serverRuntimeConfig
+  console.error(NEXT_PUBLIC_DRUPAL_BASE_URL)
   const menuNames = values(DRUPAL_MENUS)
   const menus = await Promise.all(
     menuNames.map(async (menu) => {
