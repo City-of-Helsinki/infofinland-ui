@@ -64,10 +64,10 @@ export const Analytics = {
   init: ({ enabled = false, url, siteId }) => {
     // init only once
 
-    if (Analytics.hasStarted) {
-      console.log('started already')
-      return Analytics
-    }
+    // if (Analytics.hasStarted) {
+    //   console.log('started already')
+    //   return Analytics
+    // }
 
     Analytics._paq = window._paq = window._paq || []
     Analytics.setEnabled(enabled)
