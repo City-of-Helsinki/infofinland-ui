@@ -7,13 +7,13 @@ import { i18n } from '@/next-i18next.config'
 import { map, omit } from 'lodash'
 import { getCommonApiContent } from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import getConfig from 'next/config'
+// import getConfig from 'next/config'
 import usePageLocales from '@/hooks/usePageLocales'
 import TextLink from '@/components/TextLink'
 import { DotsLoader } from '@/components/Loaders'
 
 export async function getStaticProps(context) {
-  const { serverRuntimeConfig } = getConfig()
+  // const { serverRuntimeConfig } = getConfig()
   const common = await getCommonApiContent(context)
   return {
     props: {
@@ -21,7 +21,10 @@ export async function getStaticProps(context) {
       ...common,
       ...(await serverSideTranslations(context.defaultLocale, ['common'])),
     },
-    revalidate: serverRuntimeConfig.REVALIDATE_TIME,
+    //once a day should do for 404
+    revalidate: 60 * 60 * 24 //seconds
+    // Number(serverRuntimeConfig.REVALIDATE_TIME) * 60 * 24
+
   }
 }
 
