@@ -77,7 +77,7 @@ export const Analytics = {
     }
 
     if (Analytics.hasStarted) {
-      console.log('started already')
+      // console.log('started already')
       return Analytics
     }
 

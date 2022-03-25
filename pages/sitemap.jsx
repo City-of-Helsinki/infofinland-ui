@@ -9,10 +9,27 @@ import * as DrupalApi from '@/lib/ssr-api'
 import Block from '@/components/layout/Block'
 import getConfig from 'next/config'
 import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
+import { getMenus } from '@/lib/ssr-api'
+import { i18n } from '@/next-i18next.config'
+import { siteUrl } from '@/next-sitemap'
+import { useRouter } from 'next/router'
 
 export async function getStaticProps(context) {
+
+
   const { serverRuntimeConfig } = getConfig()
   const path = serverRuntimeConfig.SITEMAP_PAGE_PATH
+
+  const menus =  (await Promise.all(i18n.locales.map( locale=>{ console.log({locale}); return getMenus({locale})} ))).map(menu => {
+    return [...menu.main.items, ...menu['cities-landing'].items, ...menu.cities.items, ...menu.about.items].map(({url})=>url)
+  }).flat()
+
+  const urls = menus
+    .flat()
+    // .map(({ params, locale }) => [locale, ...params.slug].join('/'))
+    .map((path) => new URL(path, siteUrl).toString())
+    // .map((loc) => ({ loc, lastmod: new Date().toISOString() }))
+
   const common = await DrupalApi.getCommonApiContent(context)
   const node = await DrupalApi.getNodeFromPath({
     path,
@@ -27,6 +44,7 @@ export async function getStaticProps(context) {
   // TODO Dont fetch common, only about-menu and footer menu and municipalities
   return {
     props: {
+      urls,
       node,
       ...common,
       ...(await serverSideTranslations(context.locale, ['common'])),
@@ -37,7 +55,8 @@ export async function getStaticProps(context) {
 
 export default function SiteMap(props) {
   const { t } = useTranslation('common')
-
+  const {locale} = useRouter()
+  const localeTester  = new RegExp(`/${locale}/`)
   return (
     <SecondaryLayout {...props}>
       <Head>
@@ -48,9 +67,11 @@ export default function SiteMap(props) {
           <h1 className="mt-8 mb-16 text-h1 md:text-h1xl">
             {t('sitemap.title')}
           </h1>
-          {sitemap.urlset.url.map(({ loc }, i) => (
-            <li key={`page-${i}`}>
-              <TextLink href={loc}>{loc}</TextLink>
+          {props?.urls
+            .filter( url=> localeTester.test(url) )
+            .map((url) => (
+            <li key={`page-${url}`}>
+              <TextLink href={url}>{url}</TextLink>
             </li>
           ))}
         </ul>
