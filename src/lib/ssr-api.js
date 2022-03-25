@@ -37,7 +37,7 @@ export const resolvePath = async ({ path, context }) => {
   const URL = `${serverRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL}/${
     locale || defaultLocale
   }${ROUTER_PATH}`
-  console.log('resolving ', path, 'from', URL)
+  // console.log('resolving ', path, 'from', URL)
   return axios.get(URL, {
     params: { path, _format: 'json' },
   })

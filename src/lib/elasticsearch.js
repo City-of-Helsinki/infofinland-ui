@@ -47,7 +47,7 @@ export const getSearchClient = () => {
   const {
     elasticsearch_password,
     ELASTICSEARCH_URL,
-    elasticsearch_certificate,
+    // elasticsearch_certificate,
   } = config
 
   if (!ELASTICSEARCH_URL) {
@@ -65,10 +65,10 @@ export const getSearchClient = () => {
       username: 'elastic',
       password: elasticsearch_password || 'changeme',
     },
-    tls: {
-      ca: elasticsearch_certificate,
-      rejectUnauthorized: false
-    }
+    // tls: {
+    //   ca: elasticsearch_certificate,
+    //   rejectUnauthorized: false
+    // }
     // ssl: {
     //   ca: elasticsearch_certificate,
     //   rejectUnauthorized: false,
