@@ -77,8 +77,8 @@ export const getNodeFromPath = async ({ path, context, type }) => {
 }
 
 export const getMenus = async ({ locale }) => {
-  const { DRUPAL_MENUS,NEXT_PUBLIC_DRUPAL_BASE_URL } = getConfig().serverRuntimeConfig
-  console.error(NEXT_PUBLIC_DRUPAL_BASE_URL)
+  const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
+
   const menuNames = values(DRUPAL_MENUS)
   const menus = await Promise.all(
     menuNames.map(async (menu) => {

@@ -3,7 +3,8 @@ User-agent: *
 Disallow: /
 
 # Host
-Host: undefined
+Host: https://www.infofinland.fi
 
 # Sitemaps
-Sitemap: undefined/sitemap.xml
+Sitemap: https://www.infofinland.fi/sitemap.xml
+Sitemap: https://www.infofinland.fi/article-sitemap.xml
