@@ -16,10 +16,10 @@ import useSWR from 'swr'
 import { useDebouncedValue } from 'rooks'
 import { useRouter } from 'next/router'
 /**
- * Start search only after TRESHOLD is exceeded to reduce
+ * Start search only after search string length is equal or greater to TRESHOLD to reduce
  * ambiquous search terms like 'a'
  */
-const TRESHOLD = 3
+const TRESHOLD = 2
 
 /** use common cache key for all query terms that do not exceed the TRESHOLD*/
 const TRESHOLD_CACHE_KEY = '-'

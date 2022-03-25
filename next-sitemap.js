@@ -1,10 +1,13 @@
-const siteUrl = process.env.SITE_URL
+// const siteUrl = process.env.SITE_URL || 'https://www.infofinland.fi'
+const siteUrl = 'https://www.infofinland.fi'
 const ARTICLE_SIDEMAP = `${siteUrl}/article-sitemap.xml`
+// const ARTICLE_SIDEMAP = '/article-sitemap.xml'
 
 module.exports = {
   siteUrl,
   generateRobotsTxt: true,
-  exclude: ['/lang404', '/*/lang404', '/404', '/*/404', 'article-sitemap.xml'],
+  // include:['/search'],
+  // exclude: ['/lang404', '/*/lang404', '/404', '/*/404', 'article-sitemap.xml','500'],
   robotsTxtOptions: {
     policies: [
       {
@@ -12,7 +15,7 @@ module.exports = {
         disallow: '/',
       },
     ],
-    // additionalSitemaps: [ARTICLE_SIDEMAP],
+    additionalSitemaps: [ARTICLE_SIDEMAP],
   },
   // changefreq: 'daily',
   // priority: 0.7,
@@ -63,3 +66,4 @@ module.exports = {
   //   ],
   // },
 }
+
