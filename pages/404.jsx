@@ -22,9 +22,8 @@ export async function getStaticProps(context) {
       ...(await serverSideTranslations(context.defaultLocale, ['common'])),
     },
     //once a day should do for 404
-    revalidate: 60 * 60 * 24 //seconds
+    revalidate: 60 * 60 * 24, //seconds
     // Number(serverRuntimeConfig.REVALIDATE_TIME) * 60 * 24
-
   }
 }
 
