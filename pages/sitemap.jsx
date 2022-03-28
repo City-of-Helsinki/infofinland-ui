@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import { SecondaryLayout } from '@/components/layout/Layout'
-import sitemap from '-!xml-loader!../public/sitemap.xml'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { NOT_FOUND } from '@/lib/ssr-api'
 import { useTranslation } from 'next-i18next'
@@ -15,20 +14,28 @@ import { siteUrl } from '@/next-sitemap'
 import { useRouter } from 'next/router'
 
 export async function getStaticProps(context) {
-
-
   const { serverRuntimeConfig } = getConfig()
   const path = serverRuntimeConfig.SITEMAP_PAGE_PATH
 
-  const menus =  (await Promise.all(i18n.locales.map( locale=>{ console.log({locale}); return getMenus({locale})} ))).map(menu => {
-    return [...menu.main.items, ...menu['cities-landing'].items, ...menu.cities.items, ...menu.about.items].map(({url})=>url)
-  }).flat()
-
-  const urls = menus
+  const menus = (
+    await Promise.all(
+      i18n.locales.map((locale) => {
+        console.log({ locale })
+        return getMenus({ locale })
+      })
+    )
+  )
+    .map((menu) => {
+      return [
+        ...menu.main.items,
+        ...menu['cities-landing'].items,
+        ...menu.cities.items,
+        ...menu.about.items,
+      ].map(({ url }) => url)
+    })
     .flat()
-    // .map(({ params, locale }) => [locale, ...params.slug].join('/'))
-    .map((path) => new URL(path, siteUrl).toString())
-    // .map((loc) => ({ loc, lastmod: new Date().toISOString() }))
+
+  const urls = menus.flat().map((path) => new URL(path, siteUrl).toString())
 
   const common = await DrupalApi.getCommonApiContent(context)
   const node = await DrupalApi.getNodeFromPath({
@@ -36,11 +43,14 @@ export async function getStaticProps(context) {
     context,
     type: NODE_TYPES.PAGE,
   })
-
-  // Return 404 if node was null or sitemap doesnt exist
-  if (!node || !sitemap) {
+  if (!node) {
     return NOT_FOUND
   }
+  // Return 404 if node was null or sitemap doesnt exist
+
+  // if (!node || !sitemap) {
+  //   return NOT_FOUND
+  // }
   // TODO Dont fetch common, only about-menu and footer menu and municipalities
   return {
     props: {
@@ -55,8 +65,8 @@ export async function getStaticProps(context) {
 
 export default function SiteMap(props) {
   const { t } = useTranslation('common')
-  const {locale} = useRouter()
-  const localeTester  = new RegExp(`/${locale}/`)
+  const { locale } = useRouter()
+  const localeTester = new RegExp(`/${locale}/`)
   return (
     <SecondaryLayout {...props}>
       <Head>
@@ -68,12 +78,12 @@ export default function SiteMap(props) {
             {t('sitemap.title')}
           </h1>
           {props?.urls
-            .filter( url=> localeTester.test(url) )
+            .filter((url) => localeTester.test(url))
             .map((url) => (
-            <li key={`page-${url}`}>
-              <TextLink href={url}>{url}</TextLink>
-            </li>
-          ))}
+              <li key={`page-${url}`}>
+                <TextLink href={url}>{url}</TextLink>
+              </li>
+            ))}
         </ul>
       </Block>
     </SecondaryLayout>

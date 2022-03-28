@@ -43,6 +43,7 @@ module.exports = {
     MATOMO_URL: process.env.MATOMO_URL,
     MATOMO_SITE_ID: process.env.MATOMO_SITE_ID,
     MATOMO_DOMAINS: process.env.MATOMO_DOMAINS,
+    HOST: process.env.HOST,
     ...env,
   },
   serverRuntimeConfig: {
@@ -50,7 +51,7 @@ module.exports = {
     ELASTICSEARCH_URL: process.env.ELASTICSEARCH_URL,
     elasticsearch_password: process.env.elasticsearch_password,
     elasticsearch_certificate: process.env.elasticsearch_certificate,
-
+    HOST: process.env.HOST,
     NEXT_PUBLIC_DRUPAL_BASE_URL: process.env.NEXT_PUBLIC_DRUPAL_BASE_URL,
     NEXT_IMAGE_DOMAIN: process.env.NEXT_IMAGE_DOMAIN,
     DRUPAL_FRONT_PAGE: process.env.DRUPAL_FRONT_PAGE,

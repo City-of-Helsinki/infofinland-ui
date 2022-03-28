@@ -8,12 +8,10 @@ import { getServerSideSitemap } from 'next-sitemap'
 // import getConfig from 'next/config'
 // import { values } from 'lodash'
 
-
 export const getServerSideProps = async (ctx) => {
-
-const fields =[]
-    // const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
-    // const menuNames = values(DRUPAL_MENUS)
+  const fields = []
+  // const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
+  // const menuNames = values(DRUPAL_MENUS)
   //   // // only main navigation menus are used in sitemap
 
   //   // const sitemapMenus = menuNames.filter(name => name ==! 'footer-about')

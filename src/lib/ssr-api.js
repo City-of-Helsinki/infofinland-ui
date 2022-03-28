@@ -32,12 +32,12 @@ export * from './query-params'
 export const NOT_FOUND = { notFound: true }
 
 export const resolvePath = async ({ path, context }) => {
-  const { serverRuntimeConfig } = getConfig()
+  const {NEXT_PUBLIC_DRUPAL_BASE_URL,HOST } = getConfig().serverRuntimeConfig
   const { locale, defaultLocale } = context
-  const URL = `${serverRuntimeConfig.NEXT_PUBLIC_DRUPAL_BASE_URL}/${
+  const URL = `${NEXT_PUBLIC_DRUPAL_BASE_URL}/${
     locale || defaultLocale
   }${ROUTER_PATH}`
-  // console.log('resolving ', path, 'from', URL)
+  console.log('resolving ', path, 'from', URL, 'for', HOST)
   return axios.get(URL, {
     params: { path, _format: 'json' },
   })
