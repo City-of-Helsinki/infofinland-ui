@@ -10,7 +10,6 @@ export default async function handler(request, response) {
 
   //Get feedback content from Drupal
   if (request.method === 'GET') {
-    console.log('get feedback info')
     const { locale } = request.query
     const feedback = await getFeedbackPage({ locale }).catch((e) => {
       console.error(

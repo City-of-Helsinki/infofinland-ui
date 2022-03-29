@@ -1,21 +1,19 @@
 import Head from 'next/head'
 import { SecondaryLayout } from '@/components/layout/Layout'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { NOT_FOUND } from '@/lib/ssr-api'
 import { useTranslation } from 'next-i18next'
 import TextLink from '@/components/TextLink'
 import * as DrupalApi from '@/lib/ssr-api'
 import Block from '@/components/layout/Block'
-import getConfig from 'next/config'
-import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
+// import getConfig from 'next/config'
 import { getMenus } from '@/lib/ssr-api'
 import { i18n } from '@/next-i18next.config'
 import { siteUrl } from '@/next-sitemap'
 import { useRouter } from 'next/router'
 
 export async function getServerSideProps(context) {
-  const { serverRuntimeConfig } = getConfig()
-  const path = serverRuntimeConfig.SITEMAP_PAGE_PATH
+  // const { serverRuntimeConfig } = getConfig()
+  // const path = serverRuntimeConfig.SITEMAP_PAGE_PATH
 
   const allmenus = (
     await Promise.all(
@@ -37,14 +35,14 @@ export async function getServerSideProps(context) {
   const urls = allmenus.flat().map((path) => new URL(path, siteUrl).toString())
 
   const menus = await DrupalApi.getMenus(context)
-  const node = await DrupalApi.getNodeFromPath({
-    path,
-    context,
-    type: NODE_TYPES.PAGE,
-  })
-  if (!node) {
-    return NOT_FOUND
-  }
+  // const node = await DrupalApi.getNodeFromPath({
+  //   path,
+  //   context,
+  //   type: NODE_TYPES.PAGE,
+  // })
+  // if (!node) {
+  //   return NOT_FOUND
+  // }
   // Return 404 if node was null or sitemap doesnt exist
 
   // if (!node || !sitemap) {
@@ -54,11 +52,10 @@ export async function getServerSideProps(context) {
   return {
     props: {
       urls,
-      node,
       menus,
       ...(await serverSideTranslations(context.locale, ['common'])),
     },
-    revalidate: serverRuntimeConfig.REVALIDATE_TIME,
+    // revalidate: serverRuntimeConfig.REVALIDATE_TIME,
   }
 }
 
