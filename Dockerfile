@@ -3,16 +3,16 @@ FROM node:16-alpine AS deps
 # =======================================
 
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
+USER node:0
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
-# USER joo:0
 
 # =======================================
 FROM node:16-alpine AS builder
 # =======================================
-# USER joo:0
+USER node:0
 ARG NEXT_PUBLIC_DRUPAL_BASE_URL
 ARG NEXT_IMAGE_DOMAIN
 ARG DRUPAL_FRONT_PAGE
@@ -59,7 +59,7 @@ FROM node:16-alpine AS runner
 # =======================================
 
 WORKDIR /app
-
+USER node:0
 ENV NODE_ENV production
 
 #DEBUG add curl to container for network debugging purposes
