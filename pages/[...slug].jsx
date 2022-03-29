@@ -6,7 +6,7 @@ import AboutPage from '@/src/page-templates/AboutPage'
 import { i18n } from '@/next-i18next.config'
 import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import {
-  getCommonApiContent,
+  getMenus,
   NOT_FOUND,
   getQueryParamsFor,
   getDefaultLocaleNode,
@@ -80,7 +80,7 @@ export async function getStaticProps(context) {
   if (!node) {
     return NOT_FOUND
   }
-  const common = await getCommonApiContent({ ...context, id })
+  const menus = await getMenus({ ...context, id })
 
   let fiNode = null // Must be JSON compatible
 
@@ -98,19 +98,19 @@ export async function getStaticProps(context) {
 
   const { field_theme_menu_machine_name } = node
   if (field_theme_menu_machine_name) {
-    themeMenu = common.menus[node.field_theme_menu_machine_name]
+    themeMenu = menus[node.field_theme_menu_machine_name]
     if (!themeMenu) {
       themeMenu = await getMenu(field_theme_menu_machine_name)
     }
   }
   //if page is in about-menu, use secondary layout
   const isAboutPage =
-    common.menus.about.items.find(({ url }) => url === `/${locale}/${path}`) !==
+    menus.about.items.find(({ url }) => url === `/${locale}/${path}`) !==
     undefined
   return {
     props: {
       type,
-      ...common,
+      menus,
       node,
       themeMenu,
       fiNode,

@@ -84,10 +84,6 @@ export const searchResultCurrentPageZeroIndexAtom = atom(
   (get) => get(searchResultPageFromAtom) / get(searchResultPageSizeAtom)
 )
 
-// export const searchResultCurrentPageAtom = selectAtom(searchResultCurrentPageZeroIndexAtom,  page =>
-//   page + 1
-// )
-
 export const searchResultsCountAtom = selectAtom(
   searchAtom,
   (s) => Number(s?.results?.hits?.total?.value) || 0
@@ -97,12 +93,11 @@ export const searchResultPageCountAtom = atom((get) =>
   Math.ceil(get(searchResultsCountAtom) / get(searchResultPageSizeAtom))
 )
 
-export const municipalitiesAtom = atom((get) => get(pageAtom).municipalities)
+// export const municipalitiesAtom = atom((get) => get(pageAtom).municipalities)
 
-export const messagesAtom = atom((get) => get(pageAtom).messages)
+// export const messagesAtom = atom((get) => get(pageAtom).messages)
 
-// set lang message as shown. It is controlled separately.
-// slight haxor. maybe fix this
+// set lang message as shown.
 export const shownMessagesAtom = atomWithStorage(
   SHOWN_MESSAGES_KEY,
   {
@@ -111,10 +106,6 @@ export const shownMessagesAtom = atomWithStorage(
   storage
 )
 
-/**
- * Feedback form info page atom
- */
-export const feedbackPageAtom = atom((get) => get(pageAtom).feedback)
 /**
  * Menu atom collection
  */

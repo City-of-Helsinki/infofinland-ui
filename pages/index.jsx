@@ -4,7 +4,7 @@ import ThemeList from '@/components/home/ThemeList'
 import CitySelector from '@/components/home/CitySelector'
 import Block from '@/components/layout/Block'
 import {
-  getCommonApiContent,
+  getMenus,
   getLandingPageQueryParams,
   getThemeHeroImages,
   NOT_FOUND,
@@ -23,6 +23,7 @@ import Image from 'next/image'
 
 export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
+
   const id = await getIdFromPath({
     path: serverRuntimeConfig.DRUPAL_FRONT_PAGE,
     context,
@@ -31,12 +32,12 @@ export async function getStaticProps(context) {
   if (!id) {
     return NOT_FOUND
   }
-  const [node, common] = await Promise.all([
+  const [node, menus] = await Promise.all([
     getResource(NODE_TYPES.LANDING_PAGE, id, {
       locale: context.locale,
       params: getLandingPageQueryParams(),
     }),
-    getCommonApiContent({ ...context, id }),
+    getMenus({ locale: context.locale }),
   ])
 
   if (!node) {
@@ -44,18 +45,18 @@ export async function getStaticProps(context) {
   }
 
   const themeImages = await getThemeHeroImages({
-    tree: common.menus.main.tree,
+    tree: menus.main.tree,
     context,
   })
 
-  const themes = common.menus.main.tree.map(({ url, title, id }, i) => {
+  const themes = menus.main.tree.map(({ url, title, id }, i) => {
     const image = themeImages[i]
     return { url, title, id, image: image?.src || null }
   })
 
   return {
     props: {
-      ...common,
+      menus,
       themes,
       node,
       ...(await serverSideTranslations(context.locale, ['common'])),

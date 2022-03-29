@@ -13,14 +13,13 @@ import { i18n } from '@/next-i18next.config'
 import { siteUrl } from '@/next-sitemap'
 import { useRouter } from 'next/router'
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const { serverRuntimeConfig } = getConfig()
   const path = serverRuntimeConfig.SITEMAP_PAGE_PATH
 
-  const menus = (
+  const allmenus = (
     await Promise.all(
       i18n.locales.map((locale) => {
-        console.log({ locale })
         return getMenus({ locale })
       })
     )
@@ -35,9 +34,9 @@ export async function getStaticProps(context) {
     })
     .flat()
 
-  const urls = menus.flat().map((path) => new URL(path, siteUrl).toString())
+  const urls = allmenus.flat().map((path) => new URL(path, siteUrl).toString())
 
-  const common = await DrupalApi.getCommonApiContent(context)
+  const menus = await DrupalApi.getMenus(context)
   const node = await DrupalApi.getNodeFromPath({
     path,
     context,
@@ -56,7 +55,7 @@ export async function getStaticProps(context) {
     props: {
       urls,
       node,
-      ...common,
+      menus,
       ...(await serverSideTranslations(context.locale, ['common'])),
     },
     revalidate: serverRuntimeConfig.REVALIDATE_TIME,

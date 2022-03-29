@@ -32,12 +32,12 @@ export * from './query-params'
 export const NOT_FOUND = { notFound: true }
 
 export const resolvePath = async ({ path, context }) => {
-  const {NEXT_PUBLIC_DRUPAL_BASE_URL,HOST } = getConfig().serverRuntimeConfig
+  const { NEXT_PUBLIC_DRUPAL_BASE_URL } = getConfig().serverRuntimeConfig
   const { locale, defaultLocale } = context
   const URL = `${NEXT_PUBLIC_DRUPAL_BASE_URL}/${
     locale || defaultLocale
   }${ROUTER_PATH}`
-  console.log('resolving ', path, 'from', URL, 'for', HOST)
+
   return axios.get(URL, {
     params: { path, _format: 'json' },
   })
@@ -98,39 +98,6 @@ export const getMenus = async ({ locale }) => {
   }, {})
 }
 
-export const getCommonApiContent = async ({ locale, id }) => {
-  const context = { locale, defaultLocale: NO_DEFAULT_LOCALE }
-
-  const menus = await getMenus(context)
-
-  const municipalities = await getMunicipalities(context).catch((e) => {
-    console.error('municipality list error', e)
-    return []
-  })
-
-  const feedback = await getFeedbackPage(context).catch((e) => {
-    console.error(
-      'Feedback content error',
-      context.locale,
-      e?.response?.status,
-      e?.response?.data
-    )
-    return null
-  })
-
-  const messages = await getMessages({ ...context, id }).catch((e) => {
-    console.error('Messages error', e)
-    return []
-  })
-
-  return {
-    menus,
-    municipalities,
-    feedback,
-    messages,
-  }
-}
-
 export const getThemeHeroImages = async ({ tree, context }) => {
   const responses = await Promise.all(
     tree.map((page) => resolvePath({ path: page.url, context }))
@@ -178,17 +145,17 @@ export const getMunicipalities = async ({ locale }) =>
     params: getMunicipalityParams(),
   })
 
-export const getFeedbackPage = async (context) => {
+export const getFeedbackPage = async ({ locale }) => {
   const { data } = await resolvePath({
     path: getConfig().serverRuntimeConfig.FEEDBACK_PAGE_PATH,
-    context,
+    context: { locale },
   })
   if (!data) {
     return null
   }
   const id = data?.entity?.uuid
   const node = await getResource(NODE_TYPES.PAGE, id, {
-    locale: context.locale,
+    locale: locale,
     defaultLocale: NO_DEFAULT_LOCALE,
     params: new DrupalJsonApiParams()
       .addInclude(['field_content'])
