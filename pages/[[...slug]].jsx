@@ -17,7 +17,7 @@ import {
   menuErrorResponse,
   getThemeHeroImages,
 } from '@/lib/ssr-api'
-import HomePage from './_index'
+import HomePage from '@/src/page-templates/HomePage'
 
 export async function getStaticPaths() {
   return {
@@ -56,7 +56,6 @@ export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
   const { params } = context
   params.slug = params.slug || ['/']
-  // const path = params.slug?.join('/') || params.slug
 
   const type = await getResourceTypeFromContext({ ...context, params })
 
@@ -69,7 +68,7 @@ export async function getStaticProps(context) {
   const node = await getResourceFromContext(type, context, {
     params: getQueryParamsFor(type),
   }).catch((e) => {
-    console.error('Error requesting node ', e)
+    console.error('Error requesting node ', type, e)
     // throw e
   })
 
@@ -98,7 +97,6 @@ export async function getStaticProps(context) {
   } else {
     menus = await getMenus({ ...context, id: node.id })
   }
-  // const menus = await getMenus({ ...context, id: node.id })
 
   let themeMenu = menuErrorResponse()
   let themes = null
