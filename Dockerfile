@@ -7,11 +7,12 @@ RUN apk add --no-cache libc6-compat
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
+# USER joo:0
 
 # =======================================
 FROM node:16-alpine AS builder
 # =======================================
-
+# USER joo:0
 ARG NEXT_PUBLIC_DRUPAL_BASE_URL
 ARG NEXT_IMAGE_DOMAIN
 ARG DRUPAL_FRONT_PAGE

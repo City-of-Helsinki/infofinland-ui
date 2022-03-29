@@ -5,7 +5,7 @@ import Router from 'next/router'
 import { useEffect, useState } from 'react'
 import { useAtomValue } from 'jotai/utils'
 import { Analytics } from '@/hooks/useAnalytics'
-import { getCommonApiContent } from '@/lib/ssr-api'
+import { getMenus } from '@/lib/ssr-api'
 import * as Elastic from '@/lib/elasticsearch'
 import SearchBar from '@/components/search/SearchBar'
 import { DotsLoader } from '@/components/Loaders'
@@ -21,7 +21,7 @@ import {
 } from '@/src/store'
 
 export async function getServerSideProps(context) {
-  const common = await getCommonApiContent(context)
+  const menus = await getMenus(context)
   const { size, q, from, index } = Elastic.getSearchParamsFromQuery(context)
   let results = null
   let error = null
@@ -58,7 +58,7 @@ export async function getServerSideProps(context) {
 
   return {
     props: {
-      ...common,
+      menus,
       ...(await serverSideTranslations(context.locale, ['common'])),
       search: {
         q,

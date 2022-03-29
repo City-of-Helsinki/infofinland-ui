@@ -5,7 +5,7 @@ import cls from 'classnames'
 import { longTextClass } from '@/components/Typo'
 import { i18n } from '@/next-i18next.config'
 import { map, omit } from 'lodash'
-import { getCommonApiContent } from '@/lib/ssr-api'
+import { getMenus } from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 // import getConfig from 'next/config'
 import usePageLocales from '@/hooks/usePageLocales'
@@ -14,11 +14,11 @@ import { DotsLoader } from '@/components/Loaders'
 import Block from '@/components/layout/Block'
 export async function getStaticProps(context) {
   // const { serverRuntimeConfig } = getConfig()
-  const common = await getCommonApiContent(context)
+  const menus = await getMenus(context)
   return {
     props: {
       texts: TEXTS_404,
-      ...common,
+      menus,
       ...(await serverSideTranslations(context.defaultLocale, ['common'])),
     },
     //once a day should do for 404

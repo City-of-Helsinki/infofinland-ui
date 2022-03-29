@@ -1,18 +1,23 @@
 import getConfig from 'next/config'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { getMenu, getResource, getResourceTypeFromContext } from 'next-drupal'
+import {
+  getMenu,
+  getResourceFromContext,
+  getResourceTypeFromContext,
+} from 'next-drupal'
 import ArticlePage from '@/src/page-templates/ArticlePage'
 import AboutPage from '@/src/page-templates/AboutPage'
 import { i18n } from '@/next-i18next.config'
 import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import {
-  getCommonApiContent,
+  getMenus,
   NOT_FOUND,
   getQueryParamsFor,
   getDefaultLocaleNode,
   menuErrorResponse,
-  getIdFromPath,
+  getThemeHeroImages,
 } from '@/lib/ssr-api'
+import HomePage from '@/src/page-templates/HomePage'
 
 export async function getStaticPaths() {
   return {
@@ -49,14 +54,10 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
-  const { params, locale } = context
-  const path = params.slug?.join('/') || params.slug
+  const { params } = context
+  params.slug = params.slug || ['/']
 
-  // Resolve path, get node uuid
-  const [id, type] = await Promise.all([
-    getIdFromPath({ path, context }),
-    getResourceTypeFromContext(context),
-  ])
+  const type = await getResourceTypeFromContext({ ...context, params })
 
   //Allow only pages and landing pages to be queried
   if (![NODE_TYPES.PAGE, NODE_TYPES.LANDING_PAGE].includes(type)) {
@@ -64,15 +65,10 @@ export async function getStaticProps(context) {
     return NOT_FOUND
   }
 
-  if (!id) {
-    return NOT_FOUND
-  }
-
-  const node = await getResource(type, id, {
-    locale,
+  const node = await getResourceFromContext(type, context, {
     params: getQueryParamsFor(type),
   }).catch((e) => {
-    console.error('Error requesting node ', id, e)
+    console.error('Error requesting node ', type, e)
     // throw e
   })
 
@@ -80,41 +76,58 @@ export async function getStaticProps(context) {
   if (!node) {
     return NOT_FOUND
   }
-  const common = await getCommonApiContent({ ...context, id })
 
   let fiNode = null // Must be JSON compatible
 
   if (type === NODE_TYPES.PAGE) {
     // Get finnish title if page is not in finnish
     if (context.locale !== i18n.fallbackLocale) {
-      fiNode = await getDefaultLocaleNode(id).catch((e) => {
+      fiNode = await getDefaultLocaleNode(node.id).catch((e) => {
         console.error('Error while getting Finnish title', e)
         return null
       })
     }
   }
 
-  let themeMenu = menuErrorResponse()
+  let menus = {}
+  if (node.field_layout === 'small') {
+    let menuName = serverRuntimeConfig.DRUPAL_MENUS.ABOUT
+    let menu = await getMenu(menuName)
+    menus = { [menuName]: menu }
+  } else {
+    menus = await getMenus({ ...context, id: node.id })
+  }
 
+  let themeMenu = menuErrorResponse()
+  let themes = null
   const { field_theme_menu_machine_name } = node
   if (field_theme_menu_machine_name) {
-    themeMenu = common.menus[node.field_theme_menu_machine_name]
+    themeMenu = menus[node.field_theme_menu_machine_name]
     if (!themeMenu) {
       themeMenu = await getMenu(field_theme_menu_machine_name)
     }
   }
-  //if page is in about-menu, use secondary layout
-  const isAboutPage =
-    common.menus.about.items.find(({ url }) => url === `/${locale}/${path}`) !==
-    undefined
+
+  if (type === NODE_TYPES.LANDING_PAGE) {
+    const themeImages = await getThemeHeroImages({
+      tree: menus.main.tree,
+      context,
+    })
+
+    themes = menus.main.tree.map(({ url, title, id }, i) => {
+      const image = themeImages[i]
+      return { url, title, id, image: image?.src || null }
+    })
+  }
+
   return {
     props: {
       type,
-      ...common,
+      themes,
+      menus,
       node,
       themeMenu,
       fiNode,
-      isAboutPage,
       ...(await serverSideTranslations(context.locale, ['common'])),
     },
     revalidate: serverRuntimeConfig.REVALIDATE_TIME,
@@ -123,10 +136,12 @@ export async function getStaticProps(context) {
 
 /***
  * Layout selector:
- * if page is in aboutMenu, use AboutPage, otherwise use ArticlePage
  */
 const Page = (props) => {
-  if (props?.isAboutPage) {
+  if (props?.type === NODE_TYPES.LANDING_PAGE) {
+    return <HomePage {...props} />
+  }
+  if (props?.node?.field_layout === 'small') {
     return <AboutPage {...props} />
   }
   return <ArticlePage {...props} />

@@ -103,7 +103,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
                 aria-required="true"
                 id="ifu-feedback-name"
                 className="ifu-feedback__input"
-                disable={isSubmitting}
+                disable={isSubmitting.toString()}
                 {...register('name', { required: true })}
               />
             </div>
@@ -124,7 +124,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
                 type="email"
                 id="ifu-feedback-email"
                 aria-required="true"
-                disable={isSubmitting}
+                disable={isSubmitting.toString()}
                 className="ifu-feedback__input"
                 {...register('sender_email', {
                   required: true,
@@ -150,7 +150,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
                 rows="6"
                 aria-required="true"
                 className="ifu-feedback__input"
-                disable={isSubmitting}
+                disable={isSubmitting.toString()}
                 {...register('message', { required: true })}
               ></textarea>
             </div>
@@ -160,7 +160,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
                   type="submit"
                   value="ok"
                   className="me-2"
-                  disable={isSubmitting}
+                  disable={isSubmitting.toString()}
                 >
                   {t('feedback.buttons.send')}
                 </Button>

@@ -14,7 +14,7 @@ const env = {
     CITIES: 'cities',
     CITIES_LANDING: 'cities-landing',
   },
-  REVALIDATE_TIME: 600, //seconds , 10 minutes
+  REVALIDATE_TIME: 1200, //seconds , 20 minutes
   FB_URL: 'https://www.facebook.com/infofinland.fi',
   INSTAGRAM_URL: 'https://www.instagram.com/infofinland.fi/',
   YOUTUBE_URL: 'https://www.youtube.com/c/infofinland',
@@ -26,14 +26,6 @@ const env = {
  * Export next.config.js values
  */
 module.exports = {
-  // async headers () {
-
-  //   return  [
-  //       // Apply these headers to all routes in your application.
-  //       {source: '/:path*',
-  //       headers: securityHeaders,}
-  //   ]
-  // },
   i18n,
   reactStrictMode: true,
   poweredByHeader: false,
