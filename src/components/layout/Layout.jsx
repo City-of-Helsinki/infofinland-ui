@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import PreloadFonts from './PreloadFonts'
+// import PreloadFonts from './PreloadFonts'
 import Favicons from './Favicons'
 import Messages from '@/components/messages/Messages'
 import FooterLinks from '@/components/layout/FooterLinks'
@@ -33,7 +33,7 @@ const CommonHead = ({ title = FALLBACK_TITLE, description = '', children }) => (
     {title && <title>{title}</title>}
     {description && <meta name="description" content={description} />}
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <PreloadFonts />
+    {/* <PreloadFonts /> */}
     <Favicons />
     {children}
   </Head>
