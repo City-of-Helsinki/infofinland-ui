@@ -23,9 +23,12 @@ const Error = () => (
 const Messages = () => {
   const { t } = useTranslation('common')
   const id = useAtomValue(nodeIdAtom)
-  const { locale } = useRouter()
+  const { locale, asPath } = useRouter()
   const fetcher = () => getMessages({ id, locale })
-  const { data, error, isValidating } = useSWR(`/${locale}/${id}`, fetcher)
+  const { data, error, isValidating } = useSWR(
+    `/${locale}/${id || asPath}`,
+    fetcher
+  )
 
   const [shownMessages, setShownMessages] = useAtom(shownMessagesAtom)
 

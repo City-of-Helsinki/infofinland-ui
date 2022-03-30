@@ -11,29 +11,30 @@ import { isSSR } from './useIsomorphicLayoutEffect'
 import { defer } from 'lodash'
 import { SEARCH_PAGE } from './useSearchRoute'
 // const DEV = process.env.NODE_ENV === 'development'
-const DEV = true
+
+let _paq = []
 
 export const Analytics = {
   hasStarted: false,
   _paq: undefined,
   _searchCount: false,
   setEnabled: (enabled) => {
-    DEV && console.log('setting tracking permission to', enabled)
+    // DEV && console.log('setting tracking permission to', enabled)
     Analytics.enabled = enabled
-    Analytics._paq?.push(['setDoNotTrack', !enabled])
+    _paq?.push(['setDoNotTrack', !enabled])
     return Analytics
   },
   trackPage: () => {
-    Analytics._paq?.push(['trackPageView'])
+    _paq?.push(['trackPageView'])
     return Analytics
   },
   trackSearch: ({ keyword, category = false, searchCount = false }) => {
-    Analytics._paq?.push(['trackSiteSearch', keyword, category, searchCount])
+    _paq?.push(['trackSiteSearch', keyword, category, searchCount])
     return Analytics
   },
   trackPageOrSearch: (path) => {
     if (Analytics.enabled !== true) {
-      DEV && console.log('Tracking not allowed by user')
+      // DEV && console.log('Tracking not allowed by user')
       return Analytics
     }
 
@@ -53,26 +54,23 @@ export const Analytics = {
     // Set document title manually only when route change is called.
     // Initial tracking uses title from server html
     defer(() => {
-      DEV && console.log('track from router', document.title)
-      Analytics._paq?.push(['setDocumentTitle', document.title])
+      // DEV && console.log('track from router', document.title)
+      _paq?.push(['setDocumentTitle', document.title])
       Analytics.trackPageOrSearch(path)
     })
   },
-  // connect: () => {
-  //   DEV && console.log('connect analytics to router')
-  //   Router.events.on('routeChangeComplete', Analytics.trackPageFromRoute)
-  //   return Analytics
-  // },
-  // disconnect: () => {
-  //   DEV && console.log('disconnect analytics to router')
-  //   Router.events.off('routeChangeComplete', Analytics.trackPageFromRoute)
-  //   return Analytics
-  // },
   init: ({ enabled = false, url, siteId }) => {
-    Analytics._paq = window._paq = window._paq || []
+    _paq = window._paq = window._paq || []
+
     Analytics.setEnabled(enabled)
+
+    if (!Analytics.enabled) {
+      // DEV && console.log('analytics not enabled. not intiating')
+      return Analytics
+    }
+
     if (Analytics.hasStarted) {
-      DEV && console.log('started already')
+      // DEV && console.log('started already')
       return Analytics
     }
 
@@ -81,12 +79,12 @@ export const Analytics = {
     //   Analytics._paq.push = console.log
     // }
 
-    Analytics._paq.push(['disableCookies'])
-    Analytics._paq.push(['enableLinkTracking'])
+    _paq.push(['disableCookies'])
+    _paq.push(['enableLinkTracking'])
     ;(function () {
       var u = url
-      Analytics._paq.push(['setTrackerUrl', u + 'tracker.php'])
-      Analytics._paq.push(['setSiteId', siteId])
+      _paq.push(['setTrackerUrl', u + 'tracker.php'])
+      _paq.push(['setSiteId', siteId])
       var d = document,
         g = d.createElement('script'),
         s = d.getElementsByTagName('script')[0]
@@ -96,7 +94,7 @@ export const Analytics = {
       s.parentNode.insertBefore(g, s)
     })()
 
-    DEV && console.log('initial page track')
+    // DEV && console.log('initial page track')
     Analytics.trackPageOrSearch(window.location.pathname)
     Analytics.hasStarted = true
     return Analytics
@@ -114,7 +112,7 @@ const useAnalytics = () => {
       getConfig().publicRuntimeConfig
     //Do not do anything until user has acknowledged the tracking rules
     if (isSSR() || !isCookieConsentSet) {
-      DEV && console.log('analytics consent is not yet acknowledged')
+      // DEV && console.log('analytics consent is not yet acknowledged')
       return
     }
 
@@ -136,8 +134,7 @@ const useAnalytics = () => {
     //     'set analytics allowed from useEffect when consent changes',
     //     isAnalyticsAllowed
     //   )
-
-  }, [isCookieConsentSet, isAnalyticsAllowed, searchCount,router])
+  }, [isCookieConsentSet, isAnalyticsAllowed, searchCount, router])
 
   return Analytics
 }
