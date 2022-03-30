@@ -100,9 +100,8 @@ export const Analytics = {
 
     /**And here we are back to our implementation */
     DEV && console.log('initial page track')
-    // Analytics._paq = window._paq
     Analytics.trackPageOrSearch(window.location.pathname)
-
+    Analytics.hasStarted=true
     return Analytics
   },
 }
