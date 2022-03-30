@@ -25,7 +25,8 @@ const Messages = () => {
   const id = useAtomValue(nodeIdAtom)
   const { locale } = useRouter()
   const fetcher = () => getMessages({ id, locale })
-  const { data, error, isValidating } = useSWR(`/${locale}/${id}`, fetcher)
+  const cacheKey = () => (id ? `/${locale}/${id}` : null)
+  const { data, error, isValidating } = useSWR(cacheKey(), fetcher)
 
   const [shownMessages, setShownMessages] = useAtom(shownMessagesAtom)
 

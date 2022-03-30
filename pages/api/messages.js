@@ -1,9 +1,9 @@
 import { getMessages } from '@/lib/ssr-api'
 export default async function handler(req, res) {
   const { id, locale } = req?.query
-  // No posts allowed
+  // No posts allowed, no missing params-errors revealed.
   if (req.method !== 'GET' || !id || !locale) {
-    res.status(400).end()
+    res.status(400).json([])
     return
   }
   let status = 200

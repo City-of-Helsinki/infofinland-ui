@@ -14,6 +14,9 @@ import { feedbackEmailAtom } from '@/src/store'
 import { useAtomValue } from 'jotai/utils'
 // eslint-disable-next-line react/display-name
 const FeedbackForm = forwardRef(({ onCancel }, ref) => {
+  // DEV NOTE: needs recomposition.
+  // Currently CSSTransition causes useSWR to refetch every time it is opened.
+
   const { t } = useTranslation('common')
   const feedbackEmail = useAtomValue(feedbackEmailAtom)
   const pageUrl = isSSR() === false ? window.location.href : ''
