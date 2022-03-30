@@ -5,23 +5,25 @@ import cls from 'classnames'
 import { longTextClass } from '@/components/Typo'
 import { i18n } from '@/next-i18next.config'
 import { map, omit } from 'lodash'
-import { getCommonApiContent } from '@/lib/ssr-api'
+import { getMenus } from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import getConfig from 'next/config'
+// import getConfig from 'next/config'
 import usePageLocales from '@/hooks/usePageLocales'
 import TextLink from '@/components/TextLink'
 import { DotsLoader } from '@/components/Loaders'
-
+import Block from '@/components/layout/Block'
 export async function getStaticProps(context) {
-  const { serverRuntimeConfig } = getConfig()
-  const common = await getCommonApiContent(context)
+  // const { serverRuntimeConfig } = getConfig()
+  const menus = await getMenus(context)
   return {
     props: {
       texts: TEXTS_404,
-      ...common,
+      menus,
       ...(await serverSideTranslations(context.defaultLocale, ['common'])),
     },
-    revalidate: serverRuntimeConfig.REVALIDATE_TIME,
+    //once a day should do for 404
+    revalidate: 60 * 60 * 24, //seconds
+    // Number(serverRuntimeConfig.REVALIDATE_TIME) * 60 * 24
   }
 }
 
@@ -263,9 +265,11 @@ export const PageNotFound = () => {
   return (
     <Layout>
       {!locales && !error && (
-        <div className="flex justify-center items-center h-64">
-          <DotsLoader />
-        </div>
+        <Block>
+          <div className="flex justify-center items-center w-full h-64">
+            <DotsLoader />
+          </div>
+        </Block>
       )}
 
       {(locales || error) && <Texts404 locales={locales} locale={locale} />}

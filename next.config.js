@@ -14,7 +14,8 @@ const env = {
     CITIES: 'cities',
     CITIES_LANDING: 'cities-landing',
   },
-  REVALIDATE_TIME: 600, //seconds , 10 minutes
+  // REVALIDATE_TIME: 1200, //seconds , 20 minutes
+  REVALIDATE_TIME: 60, //seconds ,
   FB_URL: 'https://www.facebook.com/infofinland.fi',
   INSTAGRAM_URL: 'https://www.instagram.com/infofinland.fi/',
   YOUTUBE_URL: 'https://www.youtube.com/c/infofinland',
@@ -26,14 +27,6 @@ const env = {
  * Export next.config.js values
  */
 module.exports = {
-  // async headers () {
-
-  //   return  [
-  //       // Apply these headers to all routes in your application.
-  //       {source: '/:path*',
-  //       headers: securityHeaders,}
-  //   ]
-  // },
   i18n,
   reactStrictMode: true,
   poweredByHeader: false,
@@ -43,6 +36,7 @@ module.exports = {
     MATOMO_URL: process.env.MATOMO_URL,
     MATOMO_SITE_ID: process.env.MATOMO_SITE_ID,
     MATOMO_DOMAINS: process.env.MATOMO_DOMAINS,
+    HOST: process.env.HOST,
     ...env,
   },
   serverRuntimeConfig: {
@@ -50,7 +44,7 @@ module.exports = {
     ELASTICSEARCH_URL: process.env.ELASTICSEARCH_URL,
     elasticsearch_password: process.env.elasticsearch_password,
     elasticsearch_certificate: process.env.elasticsearch_certificate,
-
+    HOST: process.env.HOST,
     NEXT_PUBLIC_DRUPAL_BASE_URL: process.env.NEXT_PUBLIC_DRUPAL_BASE_URL,
     NEXT_IMAGE_DOMAIN: process.env.NEXT_IMAGE_DOMAIN,
     DRUPAL_FRONT_PAGE: process.env.DRUPAL_FRONT_PAGE,

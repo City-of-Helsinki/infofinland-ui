@@ -1,5 +1,5 @@
 import { i18n } from '@/next-i18next.config'
-import { getIdFromPath } from '@/lib/ssr-api'
+import { translatePath } from 'next-drupal'
 
 export default async function handler(req, res) {
   // No posts allowed
@@ -14,7 +14,7 @@ export default async function handler(req, res) {
   let response = []
 
   const localeIds = await Promise.all(
-    i18n.locales.map((locale) => getIdFromPath({ path, context: { locale } }))
+    i18n.locales.map((locale) => translatePath(`/${locale}${path}`))
   ).catch((e) => {
     console.error('Error while resolving locales for', path, e)
     throw e
@@ -24,11 +24,11 @@ export default async function handler(req, res) {
     status = 404
   } else {
     response = localeIds
-      .map((id, i) => {
-        if (!id) {
+      .map((node, i) => {
+        if (!node) {
           return
         }
-        return { locale: i18n.locales[i], id, path }
+        return { locale: i18n.locales[i], id: node.entity.id, path }
       })
       .filter((l) => !!l)
   }
