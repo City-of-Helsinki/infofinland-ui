@@ -12,7 +12,7 @@ import { getMunicipalityParams, getThemeHeroParams } from './query-params'
 import { values } from 'lodash'
 import { getHeroFromNode } from './ssr-helpers'
 
-const NO_DEFAULT_LOCALE = 'dont-use'
+export const NO_DEFAULT_LOCALE = 'dont-use'
 
 export const menuErrorResponse = () => ({
   items: [],
