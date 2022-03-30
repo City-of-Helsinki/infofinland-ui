@@ -60,8 +60,6 @@ export const getSearchClient = () => {
     return new Client({ node: ELASTICSEARCH_URL })
   }
 
-  console.log({elasticsearch_password, elasticsearch_certificate, ELASTICSEARCH_URL})
-
   return new Client({
     node: ELASTICSEARCH_URL,
     auth: {
@@ -70,8 +68,8 @@ export const getSearchClient = () => {
     },
     tls: {
       ca: elasticsearch_certificate,
-      rejectUnauthorized: false
-    }
+      rejectUnauthorized: false,
+    },
     // ssl: {
     //   ca: elasticsearch_certificate,
     //   rejectUnauthorized: false,

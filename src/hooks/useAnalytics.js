@@ -1,4 +1,4 @@
-import { Router } from 'next/router'
+import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import { useAtomValue } from 'jotai/utils'
 import getConfig from 'next/config'
@@ -10,7 +10,8 @@ import {
 import { isSSR } from './useIsomorphicLayoutEffect'
 import { defer } from 'lodash'
 import { SEARCH_PAGE } from './useSearchRoute'
-const DEV = process.env.NODE_ENV === 'development'
+// const DEV = process.env.NODE_ENV === 'development'
+const DEV = true
 
 export const Analytics = {
   hasStarted: false,
@@ -18,6 +19,7 @@ export const Analytics = {
   _searchCount: false,
   setEnabled: (enabled) => {
     DEV && console.log('setting tracking permission to', enabled)
+    Analytics.enabled = enabled
     Analytics._paq?.push(['setDoNotTrack', !enabled])
     return Analytics
   },
@@ -30,6 +32,11 @@ export const Analytics = {
     return Analytics
   },
   trackPageOrSearch: (path) => {
+    if (Analytics.enabled !== true) {
+      DEV && console.log('Tracking not allowed by user')
+      return Analytics
+    }
+
     if (new RegExp(`${SEARCH_PAGE}`).test(path)) {
       Analytics.trackSearch({
         keyword: new URLSearchParams(window.location.search).get('search'),
@@ -51,37 +58,28 @@ export const Analytics = {
       Analytics.trackPageOrSearch(path)
     })
   },
-  connect: () => {
-    DEV && console.log('connect analytics to router')
-    Router.events.on('routeChangeComplete', Analytics.trackPageFromRoute)
-    return Analytics
-  },
-  disconnect: () => {
-    DEV && console.log('disconnect analytics to router')
-    Router.events.off('routeChangeComplete', Analytics.trackPageFromRoute)
-    return Analytics
-  },
+  // connect: () => {
+  //   DEV && console.log('connect analytics to router')
+  //   Router.events.on('routeChangeComplete', Analytics.trackPageFromRoute)
+  //   return Analytics
+  // },
+  // disconnect: () => {
+  //   DEV && console.log('disconnect analytics to router')
+  //   Router.events.off('routeChangeComplete', Analytics.trackPageFromRoute)
+  //   return Analytics
+  // },
   init: ({ enabled = false, url, siteId }) => {
-    // init only once
-
-    // if (Analytics.hasStarted) {
-    //   console.log('started already')
-    //   return Analytics
-    // }
-
     Analytics._paq = window._paq = window._paq || []
     Analytics.setEnabled(enabled)
-    // // Don't send anything in dev mode. just log it instead
-    if (process.env.NODE_ENV === 'development') {
-      Analytics._paq.push = console.log
-    }
-
     if (Analytics.hasStarted) {
-      // console.log('started already')
+      DEV && console.log('started already')
       return Analytics
     }
 
-    /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+    // // // Don't send anything in dev mode. just log it instead
+    // if (process.env.NODE_ENV === 'development') {
+    //   Analytics._paq.push = console.log
+    // }
 
     Analytics._paq.push(['disableCookies'])
     Analytics._paq.push(['enableLinkTracking'])
@@ -98,10 +96,9 @@ export const Analytics = {
       s.parentNode.insertBefore(g, s)
     })()
 
-    /**And here we are back to our implementation */
     DEV && console.log('initial page track')
     Analytics.trackPageOrSearch(window.location.pathname)
-    Analytics.hasStarted=true
+    Analytics.hasStarted = true
     return Analytics
   },
 }
@@ -110,43 +107,37 @@ const useAnalytics = () => {
   const isAnalyticsAllowed = useAtomValue(cookieConsentAtom)
   const isCookieConsentSet = useAtomValue(isCookieConsentSetAtom)
   const searchCount = useAtomValue(searchResultsCountAtom)
-  // Initialize analytics
-  useEffect(() => {
-    //but not in server side render cycles
-    if (isSSR()) {
-      return
-    }
-    DEV && console.log('init tracker')
+  const router = useRouter()
 
+  useEffect(() => {
     const { MATOMO_URL: url, MATOMO_SITE_ID: siteId } =
       getConfig().publicRuntimeConfig
-
-    Analytics.init({
-      url,
-      siteId,
-      enabled: navigator.doNotTrack !== '1' && !!isAnalyticsAllowed,
-      searchCount,
-    }).connect()
-
-    return () => Analytics.disconnect()
-    // Only run this once, no variables are being passed here.
-    // Only use first value of isAnalyticsAllowed
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  // Set enabled if already enabled by user, and when value changes
-  useEffect(() => {
+    //Do not do anything until user has acknowledged the tracking rules
     if (isSSR() || !isCookieConsentSet) {
       DEV && console.log('analytics consent is not yet acknowledged')
       return
     }
-    DEV &&
-      console.log(
-        'set analytics allowed from useEffect when consent changes',
-        isAnalyticsAllowed
-      )
-    Analytics.setEnabled(isAnalyticsAllowed)
-  }, [isCookieConsentSet, isAnalyticsAllowed])
+
+    Analytics.init({
+      url,
+      siteId,
+      enabled: navigator.doNotTrack !== '1' && isAnalyticsAllowed,
+      searchCount,
+    })
+
+    router.events.on('routeChangeComplete', Analytics.trackPageFromRoute)
+
+    return () => {
+      router.events.off('routeChangeComplete', Analytics.trackPageFromRoute)
+    }
+
+    // DEV &&
+    //   console.log(
+    //     'set analytics allowed from useEffect when consent changes',
+    //     isAnalyticsAllowed
+    //   )
+
+  }, [isCookieConsentSet, isAnalyticsAllowed, searchCount,router])
 
   return Analytics
 }

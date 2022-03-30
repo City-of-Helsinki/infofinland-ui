@@ -3,12 +3,14 @@ import Block from '@/components/layout/Block'
 import { useTranslation } from 'next-i18next'
 import { useAtom } from 'jotai'
 import ToggleSwitch from '@/components/ToggleSwitch'
-import { cookieConsentAtom } from '@/src/store'
+import { cookieConsentAtom, isCookieConsentSetAtom } from '@/src/store'
 import cls from 'classnames'
+import { useAtomValue } from 'jotai/utils'
 
 const CookieConsentForm = () => {
   const { t } = useTranslation('common')
   const [isAnalyticsAllowed, setConsent] = useAtom(cookieConsentAtom)
+  const ack = useAtomValue(isCookieConsentSetAtom)
   const toggleConsent = () => setConsent(!isAnalyticsAllowed)
 
   return (
@@ -26,7 +28,7 @@ const CookieConsentForm = () => {
       </Block>
       <Block about className={cls(' h-42')}>
         <p className="pt-8 text-center border-t border-bodytext-color">
-          {<CookieConsentActions />}
+          {!ack && <CookieConsentActions />}
         </p>
       </Block>
     </>
