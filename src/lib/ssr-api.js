@@ -122,6 +122,12 @@ export const getMessages = async ({ locale, id }) => {
     throw e
   })
 
+  const idlist = [frontPageNode.entity.uuid]
+
+  if (id) {
+    idlist.push(id)
+  }
+
   const params = new DrupalJsonApiParams()
     .addFields(NODE_TYPES.MESSAGE, [
       'body',
@@ -133,7 +139,7 @@ export const getMessages = async ({ locale, id }) => {
     // Show warnings first, then notifications
     .addSort('field_message_type', 'DESC')
     .addSort('id', 'ASC')
-    .addFilter('field_page.id', [id, frontPageNode.entity.uuid], 'IN')
+    .addFilter('field_page.id', idlist, 'IN')
     .getQueryObject()
 
   return getResourceCollection(NODE_TYPES.MESSAGE, {

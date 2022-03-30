@@ -3,7 +3,7 @@ export default async function handler(req, res) {
   const { id, locale } = req?.query
   let messages = []
   // No posts allowed, no missing params-errors revealed.
-  if (req.method !== 'GET' || !id || !locale) {
+  if (req.method !== 'GET' || !locale) {
     res.status(400).json(messages)
     return
   }
