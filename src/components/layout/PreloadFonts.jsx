@@ -6,7 +6,8 @@ const PreloadFonts = () => (
       as="font"
       type="font/ttf"
       crossOrigin=""
-    /> *
+    />{' '}
+    *
     <link
       rel="preload"
       href="/fonts/NotoSans/NotoSans-Regular.ttf"
@@ -21,14 +22,13 @@ const PreloadFonts = () => (
       type="font/ttf"
       crossOrigin=""
     />
-
     <link
-    rel="preload"
-    href="/fonts/NotoSans/NotoSans-Arabic.ttf"
-    as="font"
-    type="font/ttf"
-    crossOrigin=""
-  />
+      rel="preload"
+      href="/fonts/NotoSans/NotoSans-Arabic.ttf"
+      as="font"
+      type="font/ttf"
+      crossOrigin=""
+    />
   </>
 )
 
