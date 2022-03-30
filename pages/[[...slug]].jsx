@@ -17,6 +17,8 @@ import {
   menuErrorResponse,
   getThemeHeroImages,
 } from '@/lib/ssr-api'
+
+import { NO_DEFAULT_LOCALE } from '@/lib/ssr-api'
 import HomePage from '@/src/page-templates/HomePage'
 
 export async function getStaticPaths() {
@@ -52,12 +54,14 @@ export async function getStaticPaths() {
   // }
 }
 
+
+
 export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
   const { params } = context
   params.slug = params.slug || ['/']
 
-  const type = await getResourceTypeFromContext({ ...context, params })
+  const type = await getResourceTypeFromContext({ ...context, defaultLocale:NO_DEFAULT_LOCALE, params })
 
   //Allow only pages and landing pages to be queried
   if (![NODE_TYPES.PAGE, NODE_TYPES.LANDING_PAGE].includes(type)) {
@@ -65,7 +69,11 @@ export async function getStaticProps(context) {
     return NOT_FOUND
   }
 
-  const node = await getResourceFromContext(type, context, {
+  const node = await getResourceFromContext(type, {...context,
+    //Dont use default locale. Drupal and UI have different default locales.
+    //Always explicitly set the locale for drupal queries
+    defaultLocale:NO_DEFAULT_LOCALE
+  }, {
     params: getQueryParamsFor(type),
   }).catch((e) => {
     console.error('Error requesting node ', type, e)
