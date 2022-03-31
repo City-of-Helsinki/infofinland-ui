@@ -17,7 +17,7 @@ import {
   menuErrorResponse,
   getThemeHeroImages,
 } from '@/lib/ssr-api'
-
+import { LAYOUT_SMALL } from '@/components/layout/Layout'
 import { NO_DEFAULT_LOCALE } from '@/lib/ssr-api'
 import HomePage from '@/src/page-templates/HomePage'
 
@@ -158,7 +158,7 @@ const Page = (props) => {
   if (props?.type === NODE_TYPES.LANDING_PAGE) {
     return <HomePage {...props} />
   }
-  if (props?.node?.field_layout === 'small') {
+  if (props?.node?.field_layout === LAYOUT_SMALL) {
     return <AboutPage {...props} />
   }
   return <ArticlePage {...props} />

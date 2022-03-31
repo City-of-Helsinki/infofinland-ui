@@ -9,7 +9,6 @@ export default async function handler(req, res) {
   }
 
   const size = 10
-  // const { q, from, locale } = Elastic.getSearchParamsFromQuery(req)
   let search = { results: {}, error: 'no search params given' }
   const elastic = Elastic.getSearchClient()
 

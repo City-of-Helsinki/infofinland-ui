@@ -12,12 +12,12 @@ import { useRouter } from 'next/router'
 import CookieConsentBar from '@/components/layout/CookieConsent'
 import MainMenu from '@/components/navi/MainMenu'
 import cls from 'classnames'
-import { useAtomValue } from 'jotai/utils'
-
-import { nodeAtom } from '@/src/store'
-
 import AboutMenu from './AboutMenu'
 import getConfig from 'next/config'
+
+// Layout names from Drupal
+export const LAYOUT_BASIC = 'basic'
+export const LAYOUT_SMALL = 'small'
 
 export const FALLBACK_TITLE = 'infofinland.fi'
 
@@ -103,11 +103,11 @@ export const BlankLayout = ({ children, title, description }) => {
   )
 }
 
-export const SecondaryLayout = ({ children, className }) => {
+export const SecondaryLayout = ({ children, className ,node}) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
   useShowLangMessage(locale)
-  const node = useAtomValue(nodeAtom)
+
 
   return (
     <>
@@ -141,11 +141,10 @@ export const SecondaryLayout = ({ children, className }) => {
   )
 }
 
-const AppLayout = ({ children, className }) => {
+const AppLayout = ({ children, className,node }) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
   useShowLangMessage(locale)
-  const node = useAtomValue(nodeAtom)
 
   return (
     <>

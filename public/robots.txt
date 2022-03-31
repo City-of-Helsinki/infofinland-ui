@@ -1,6 +1,10 @@
 # *
 User-agent: *
-Disallow: /
+Allow: /*
+Disallow: /api/
+Disallow: 500
+Disallow: /locales
+Disallow: /404
 
 # Host
 Host: https://www.infofinland.fi
