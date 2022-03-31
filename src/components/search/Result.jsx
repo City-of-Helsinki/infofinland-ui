@@ -13,7 +13,7 @@ const Result = ({
 }) => {
   return (
     <section className="pb-8 mt-8 border-b border-gray-light" lang={language}>
-      <h2 className="mb-4 text-h5xl font-bold">
+      <h2 className="mb-4 text-h5xl font-bold capitalize">
         <TextLink href={url} locale={language}>
           <ParseHtml html={title[0]} />
         </TextLink>
