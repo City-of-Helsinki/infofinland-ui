@@ -4,15 +4,19 @@ import Block from '../layout/Block'
 
 const HEADING_TYPES = [CONTENT_TYPES.HEADING, CONTENT_TYPES.ACCORDION]
 const AnchorLinksBlock = ({ field_content }) => {
+  if (field_content?.length < 1) {
+    return null
+  }
+
   // TODO move to a separate function and test?
   const headings = field_content
     .filter(({ type }) => HEADING_TYPES.includes(type))
-    .map(({ field_title, field_accordion_items, id }) => {
+    .map(({ field_title, field_accordion_items, id } = {}) => {
       if (field_title) {
         return { title: field_title, id }
       }
       return field_accordion_items?.map(
-        ({ field_accordion_item_heading: title, id }) => ({ id, title })
+        ({ field_accordion_item_heading: title, id } = {}) => ({ id, title })
       )
     })
     .flat()

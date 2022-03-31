@@ -17,6 +17,7 @@ import { useAtomValue } from 'jotai/utils'
 import { nodeAtom } from '@/src/store'
 
 import AboutMenu from './AboutMenu'
+import getConfig from 'next/config'
 
 export const FALLBACK_TITLE = 'infofinland.fi'
 
@@ -28,16 +29,24 @@ if (process.env.NODE_ENV !== 'test') {
   ReactModal.setAppElement('#__next')
 }
 
-const CommonHead = ({ title = FALLBACK_TITLE, description = '', children }) => (
-  <Head>
-    {title && <title>{title}</title>}
-    {description && <meta name="description" content={description} />}
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {/* <PreloadFonts /> */}
-    <Favicons />
-    {children}
-  </Head>
-)
+const CommonHead = ({ title = FALLBACK_TITLE, description = '', children }) => {
+  const { HOST } = getConfig().publicRuntimeConfig
+  return (
+    <Head>
+      {title && <title>{title}</title>}
+      <meta property="og:url" content={HOST} />
+      <meta property="og:type" content="website" />
+      <meta property="og:title" content={title} />
+      <meta name="twitter:card" content="summary" />
+      <meta property="og:description" content={description} />
+      {description && <meta name="description" content={description} />}
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      {/* <PreloadFonts /> */}
+      <Favicons />
+      {children}
+    </Head>
+  )
+}
 
 export const BlankLayout = ({ children, title, description }) => {
   useSetLocalization(useRouter().locale)
