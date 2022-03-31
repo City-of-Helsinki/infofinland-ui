@@ -18,7 +18,6 @@ import getConfig from 'next/config'
 // Layout names from Drupal
 export const LAYOUT_BASIC = 'basic'
 export const LAYOUT_SMALL = 'small'
-
 export const FALLBACK_TITLE = 'infofinland.fi'
 
 /**
@@ -31,49 +30,53 @@ if (process.env.NODE_ENV !== 'test') {
 
 const CommonHead = ({ title = FALLBACK_TITLE, description = '', children }) => {
   const { HOST } = getConfig().publicRuntimeConfig
-  const {asPath} = useRouter()
+  const { asPath } = useRouter()
+  let url
+  try {
+    url = new URL(asPath, HOST).toString()
+  } catch (e) {
+    console.log('Error while making OpenGraph siteURL', HOST, asPath)
+  }
 
-  const url = new URL(asPath,HOST).toString()
   return (
     <>
-
-    <NextSeo
-      title={title}
-      description={description}
-      canonical="https://www.canonical.ie/"
-      openGraph={{
-        url,
-        title,
-        description,
-        // images: [
-        //   {
-        //     url: 'https://www.example.ie/og-image-01.jpg',
-        //     width: 800,
-        //     height: 600,
-        //     alt: 'Og Image Alt',
-        //     type: 'image/jpeg',
-        //   },
-        //   {
-        //     url: 'https://www.example.ie/og-image-02.jpg',
-        //     width: 900,
-        //     height: 800,
-        //     alt: 'Og Image Alt Second',
-        //     type: 'image/jpeg',
-        //   },
-        //   { url: 'https://www.example.ie/og-image-03.jpg' },
-        //   { url: 'https://www.example.ie/og-image-04.jpg' },
-        // ],
-        site_name: FALLBACK_TITLE,
-      }}
-      twitter={{
-        handle: '@handle',
-        site: '@site',
-        cardType: 'summary_large_image',
-      }}
-    />
+      <NextSeo
+        title={title}
+        description={description}
+        canonical="https://www.canonical.ie/"
+        openGraph={{
+          url,
+          title,
+          description,
+          // images: [
+          //   {
+          //     url: 'https://www.example.ie/og-image-01.jpg',
+          //     width: 800,
+          //     height: 600,
+          //     alt: 'Og Image Alt',
+          //     type: 'image/jpeg',
+          //   },
+          //   {
+          //     url: 'https://www.example.ie/og-image-02.jpg',
+          //     width: 900,
+          //     height: 800,
+          //     alt: 'Og Image Alt Second',
+          //     type: 'image/jpeg',
+          //   },
+          //   { url: 'https://www.example.ie/og-image-03.jpg' },
+          //   { url: 'https://www.example.ie/og-image-04.jpg' },
+          // ],
+          site_name: FALLBACK_TITLE,
+        }}
+        twitter={{
+          handle: '@handle',
+          site: '@site',
+          cardType: 'summary_large_image',
+        }}
+      />
       <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
-      {/* {title && <title>{title}</title>}
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* {title && <title>{title}</title>}
       <meta property="og:url" content={HOST} />
       <meta property="og:type" content="website" />
       <meta property="og:title" content={title} />
@@ -81,12 +84,11 @@ const CommonHead = ({ title = FALLBACK_TITLE, description = '', children }) => {
       <meta property="og:description" content={description} />
       {description && <meta name="description" content={description} />} */}
 
-      {/* <PreloadFonts /> */}
-      <Favicons />
-      {children}
-    </Head>
+        {/* <PreloadFonts /> */}
+        <Favicons />
+        {children}
+      </Head>
     </>
-
   )
 }
 
@@ -103,11 +105,10 @@ export const BlankLayout = ({ children, title, description }) => {
   )
 }
 
-export const SecondaryLayout = ({ children, className ,node}) => {
+export const SecondaryLayout = ({ children, className, node }) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
   useShowLangMessage(locale)
-
 
   return (
     <>
@@ -141,7 +142,7 @@ export const SecondaryLayout = ({ children, className ,node}) => {
   )
 }
 
-const AppLayout = ({ children, className,node }) => {
+const AppLayout = ({ children, className, node }) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
   useShowLangMessage(locale)

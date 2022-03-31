@@ -7,15 +7,14 @@ module.exports = {
   siteUrl,
   generateRobotsTxt: true,
 
-  exclude: ['/404', '/article-sitemap.xml','/500','/api/'],
+  exclude: ['/404', '/article-sitemap.xml', '/500', '/api/'],
   robotsTxtOptions: {
     policies: [
       {
         userAgent: '*',
         allow: ['/*'],
-        disallow:[ '/api/','500','/locales','/404'],
+        disallow: ['/api/', '500', '/locales', '/404'],
       },
-
     ],
     additionalSitemaps: [ARTICLE_SIDEMAP],
   },
@@ -49,7 +48,7 @@ module.exports = {
   // additionalPaths: async (config) => [
   //   await config.transform(config, '/additional-page'),
   // ],
-   //   additionalSitemaps: [
+  //   additionalSitemaps: [
   //     'https://example.com/my-custom-sitemap-1.xml',
   //     'https://example.com/my-custom-sitemap-2.xml',
   //     'https://example.com/my-custom-sitemap-3.xml',

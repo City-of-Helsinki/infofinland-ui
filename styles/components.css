@@ -43,7 +43,6 @@
     transform: rotate(180deg);
   }
 
-
   .ifu-breadcrumb__icon--home {
     @apply transform scale-125;
     --tw-translate-y: -0.22rem;

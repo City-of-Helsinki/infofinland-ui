@@ -40,7 +40,7 @@ const Messages = () => {
       <LanguageMessageCard />
 
       {/* {isValidating &&  <Loading />} */}
-      {!isValidating &&!data && error && <Error />}
+      {!isValidating && !data && error && <Error />}
       {data?.map(({ body, title, field_message_type, id }) => {
         const close = () => setShownMessages({ ...shownMessages, [id]: true })
         return (
