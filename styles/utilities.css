@@ -1,5 +1,3 @@
-@import './rtl.css';
-
 @layer utilities {
   .scrollbar-none::-webkit-scrollbar {
     display: none;

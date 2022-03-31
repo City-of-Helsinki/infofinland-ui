@@ -39,6 +39,11 @@
     --tw-translate-y: -0.04rem;
   }
 
+  [dir='rtl'] .ifu-breadcrumb__icon--arrow {
+    transform: rotate(180deg);
+  }
+
+
   .ifu-breadcrumb__icon--home {
     @apply transform scale-125;
     --tw-translate-y: -0.22rem;
