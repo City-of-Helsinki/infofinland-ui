@@ -6,20 +6,22 @@ const ARTICLE_SIDEMAP = `${siteUrl}/article-sitemap.xml`
 module.exports = {
   siteUrl,
   generateRobotsTxt: true,
-  // include:['/search'],
-  // exclude: ['/lang404', '/*/lang404', '/404', '/*/404', 'article-sitemap.xml','500'],
+
+  exclude: ['/404', '/article-sitemap.xml','/500','/api/'],
   robotsTxtOptions: {
     policies: [
       {
         userAgent: '*',
-        disallow: '/',
+        allow: ['/*'],
+        disallow:[ '/api/','500','/locales','/404'],
       },
+
     ],
     additionalSitemaps: [ARTICLE_SIDEMAP],
   },
-  // changefreq: 'daily',
-  // priority: 0.7,
-  // sitemapSize: 5000,
+  changefreq: 'daily',
+  priority: 0.7,
+  sitemapSize: 5000,
 
   // alternateRefs: [
   //   {
@@ -41,25 +43,13 @@ module.exports = {
   //     alternateRefs: config.alternateRefs ?? [],
   //   }
   // },
+  /*
+
+  */
   // additionalPaths: async (config) => [
   //   await config.transform(config, '/additional-page'),
   // ],
-  // robotsTxtOptions: {
-  //   policies: [
-  //     {
-  //       userAgent: '*',
-  //       allow: '/',
-  //     },
-  //     {
-  //       userAgent: 'test-bot',
-  //       allow: ['/path', '/path-2'],
-  //     },
-  //     {
-  //       userAgent: 'black-listed-bot',
-  //       disallow: ['/sub-path-1', '/path-2'],
-  //     },
-  //   ],
-  //   additionalSitemaps: [
+   //   additionalSitemaps: [
   //     'https://example.com/my-custom-sitemap-1.xml',
   //     'https://example.com/my-custom-sitemap-2.xml',
   //     'https://example.com/my-custom-sitemap-3.xml',

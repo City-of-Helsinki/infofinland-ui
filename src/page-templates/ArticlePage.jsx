@@ -36,7 +36,7 @@ const ArticlePage = ({ node, fiNode, themeMenu, menus }) => {
   const isThemePage = isRootPage({ items: themeMenu.items, path: localePath })
 
   return (
-    <Layout menus={menus}>
+    <Layout menus={menus} node={node}>
       <Article
         title={title}
         breadcrumbs={breadcrumbs}

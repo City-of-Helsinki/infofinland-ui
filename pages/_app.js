@@ -21,7 +21,6 @@ Router.events.on('routeChangeError', () => NProgress.done())
 function App({ Component, pageProps }) {
   // only works if process.env.NODE_ENV !== 'production'
   useAtomDevtools(pageAtom, 'ssr props')
-
   // store all props to atom store
   useHydratePage(pageProps)
 
