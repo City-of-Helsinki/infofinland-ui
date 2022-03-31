@@ -19,7 +19,7 @@ import getConfig from 'next/config'
 export const LAYOUT_BASIC = 'basic'
 export const LAYOUT_SMALL = 'small'
 export const FALLBACK_TITLE = 'infofinland.fi'
-
+const DEFAULT_SITE_URL = 'https://www.infofinland.fi'
 /**
  * Set ReactModal root element for a18y
  */
@@ -29,13 +29,16 @@ if (process.env.NODE_ENV !== 'test') {
 }
 
 const CommonHead = ({ title = FALLBACK_TITLE, description = '', children }) => {
-  const { HOST } = getConfig().publicRuntimeConfig
+  const { SITE_HOST } = getConfig().publicRuntimeConfig
   const { asPath } = useRouter()
   let url
+
   try {
-    url = new URL(asPath, HOST).toString()
+    url = new URL(asPath, SITE_HOST).toString()
   } catch (e) {
-    console.log('Error while making OpenGraph siteURL', HOST, asPath)
+    console.warn('Error while making OpenGraph siteURL', {SITE_HOST, asPath}, 'using DEFAULT_SITE_URL',DEFAULT_SITE_URL)
+    console.warn(e)
+    url = DEFAULT_SITE_URL
   }
 
   return (

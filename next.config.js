@@ -22,6 +22,30 @@ const env = {
   TWITTER_URL: 'https://twitter.com/InfoFinlandfi',
 }
 
+
+const publicRuntimeConfig = {
+  NEXT_PUBLIC_DRUPAL_BASE_URL: process.env.NEXT_PUBLIC_DRUPAL_BASE_URL,
+  MATOMO_URL: process.env.MATOMO_URL,
+  MATOMO_SITE_ID: process.env.MATOMO_SITE_ID,
+  MATOMO_DOMAINS: process.env.MATOMO_DOMAINS,
+  SITE_HOST: process.env.SITE_HOST,
+  ...env,
+}
+
+const serverRuntimeConfig = {
+  // Will only be available on the server side
+  ELASTICSEARCH_URL: process.env.ELASTICSEARCH_URL,
+  elasticsearch_password: process.env.elasticsearch_password,
+  elasticsearch_certificate: process.env.elasticsearch_certificate,
+  NEXT_IMAGE_DOMAIN: process.env.NEXT_IMAGE_DOMAIN,
+  DRUPAL_FRONT_PAGE: process.env.DRUPAL_FRONT_PAGE,
+  DRUPAL_SITE_ID: process.env.DRUPAL_SITE_ID,
+  DRUPAL_CLIENT_ID: process.env.DRUPAL_CLIENT_ID,
+  DRUPAL_PREVIEW_SECRET: process.env.DRUPAL_PREVIEW_SECRET,
+  DRUPAL_CLIENT_SECRET: process.env.DRUPAL_CLIENT_SECRET,
+  ...publicRuntimeConfig,
+  ...env,
+}
 /**
  *
  * Export next.config.js values
@@ -31,29 +55,8 @@ module.exports = {
   reactStrictMode: true,
   poweredByHeader: false,
   env,
-  publicRuntimeConfig: {
-    NEXT_PUBLIC_DRUPAL_BASE_URL: process.env.NEXT_PUBLIC_DRUPAL_BASE_URL,
-    MATOMO_URL: process.env.MATOMO_URL,
-    MATOMO_SITE_ID: process.env.MATOMO_SITE_ID,
-    MATOMO_DOMAINS: process.env.MATOMO_DOMAINS,
-    HOST: process.env.HOST,
-    ...env,
-  },
-  serverRuntimeConfig: {
-    // Will only be available on the server side
-    ELASTICSEARCH_URL: process.env.ELASTICSEARCH_URL,
-    elasticsearch_password: process.env.elasticsearch_password,
-    elasticsearch_certificate: process.env.elasticsearch_certificate,
-    HOST: process.env.HOST,
-    NEXT_PUBLIC_DRUPAL_BASE_URL: process.env.NEXT_PUBLIC_DRUPAL_BASE_URL,
-    NEXT_IMAGE_DOMAIN: process.env.NEXT_IMAGE_DOMAIN,
-    DRUPAL_FRONT_PAGE: process.env.DRUPAL_FRONT_PAGE,
-    DRUPAL_SITE_ID: process.env.DRUPAL_SITE_ID,
-    DRUPAL_CLIENT_ID: process.env.DRUPAL_CLIENT_ID,
-    DRUPAL_PREVIEW_SECRET: process.env.DRUPAL_PREVIEW_SECRET,
-    DRUPAL_CLIENT_SECRET: process.env.DRUPAL_CLIENT_SECRET,
-    ...env,
-  },
+  publicRuntimeConfig,
+  serverRuntimeConfig,
   images: {
     // populate static common image domains envs here manually
     // or via ENV variables

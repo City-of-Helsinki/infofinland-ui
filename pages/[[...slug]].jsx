@@ -83,7 +83,6 @@ export async function getStaticProps(context) {
       params: getQueryParamsFor(type),
     }
   ).catch((e) => {
-    console.log(e.status)
     console.error(`Error requesting node ${params.slug}`, type, e)
     // throw e
   })
