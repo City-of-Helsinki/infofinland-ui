@@ -138,6 +138,7 @@ export async function getStaticProps(context) {
 
   return {
     props: {
+      key:node.id,
       type,
       themes,
       menus,

@@ -39,8 +39,19 @@ that they wont move sideways when scrollbar becomes visible
     right: 2rem;
     top: 1.5rem;
   }
+
+
   [dir='rtl'] .ifu-mainmenu__submenu-icon {
     left: 2rem;
+  }
+
+  [dir='ltr'] .ifu-mainmenu__submenu-icon--open {
+    @apply rotate-90;
+  }
+
+  [dir='rtl'] .ifu-mainmenu__submenu-icon--open {
+    @apply -rotate-90;
+
   }
 
   @screen md {
