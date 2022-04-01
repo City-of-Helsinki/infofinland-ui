@@ -110,7 +110,7 @@ export const SearchPage = () => {
   } else if (searchCount === 0) {
     title = t('search.title.noresults')
   } else {
-    title = t('search.title.results')
+    title = `${t('search.title.results')} - ${q}`
   }
 
   return (
