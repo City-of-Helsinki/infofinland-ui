@@ -42,7 +42,7 @@ const CityMenu = () => {
           {t('localInfo.select')}
         </li>
         {error && !isValidating && (
-          <li className="block px-14 h-10">Error loading cities</li>
+          <li className="block px-14 h-10">{t('cities.error')}</li>
         )}
         {isValidating && !data && <Loader />}
         {!isValidating &&

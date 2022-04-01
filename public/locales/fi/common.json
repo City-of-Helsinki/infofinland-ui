@@ -18,7 +18,8 @@
     "yes": "Kyllä"
   },
   "cities": {
-    "title": "Valitse kunta"
+    "title": "Valitse kunta",
+    "error": "Kuntia ei saatavilla"
   },
   "cookies": {
     "allow": "Hyväksy kaikki evästeet",
@@ -101,7 +102,8 @@
     "open": "Näytä alasivut"
   },
   "messages": {
-    "title": "Ilmoitukset"
+    "title": "Ilmoitukset",
+    "error": "Ilmoituksia ei ladattu."
   },
   "search": {
     "error": "Haussa tapahtui virhe",
