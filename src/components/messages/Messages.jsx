@@ -11,11 +11,10 @@ import { useRouter } from 'next/router'
 import { IconExclamationCircle } from '../Icons'
 // import { DotsLoader } from '../Loaders'
 
-const Error = ({message}) => (
+const Error = ({ message }) => (
   <p className="flex items-center px-2 text-body-small text-red opacity-75">
     <IconExclamationCircle className="h-4 fill-red" />
     {message}
-
   </p>
 )
 
@@ -41,7 +40,9 @@ const Messages = () => {
       <LanguageMessageCard />
 
       {/* {isValidating &&  <Loading />} */}
-      {!isValidating && !data && error && <Error message={t('messages.error')}/>}
+      {!isValidating && !data && error && (
+        <Error message={t('messages.error')} />
+      )}
       {data?.map(({ body, title, field_message_type, id }) => {
         const close = () => setShownMessages({ ...shownMessages, [id]: true })
         return (
