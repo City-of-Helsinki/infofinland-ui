@@ -37,7 +37,7 @@ const LanguageSelector = ({ openMenu }) => {
               locale={code}
               passHref
               scroll={false}
-              prefetch={false}
+              // prefetch={false}
               key={`lang-${code}`}
             >
               <a
