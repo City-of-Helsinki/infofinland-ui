@@ -36,7 +36,12 @@ const CommonHead = ({ title = FALLBACK_TITLE, description = '', children }) => {
   try {
     url = new URL(asPath, SITE_HOST).toString()
   } catch (e) {
-    console.warn('Error while making OpenGraph siteURL', {SITE_HOST, asPath}, 'using DEFAULT_SITE_URL',DEFAULT_SITE_URL)
+    console.warn(
+      'Error while making OpenGraph siteURL',
+      { SITE_HOST, asPath },
+      'using DEFAULT_SITE_URL',
+      DEFAULT_SITE_URL
+    )
     console.warn(e)
     url = DEFAULT_SITE_URL
   }
