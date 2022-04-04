@@ -59,12 +59,7 @@ export async function getStaticProps(context) {
   const { params, locale } = context
   params.slug = params.slug || ['/']
   const path = params.slug.join('/')
-  if (/node/.test(params.slug[0])) {
-    console.warn(
-      `Warning: request to direct node ${path} blocked. 404 returned `
-    )
-    return NOT_FOUND
-  }
+  const isNodePath = /node/.test(params.slug[0])
 
   const type = await getResourceTypeFromContext({
     locale,
@@ -100,6 +95,21 @@ export async function getStaticProps(context) {
   if (!node) {
     console.warn(`Warning: no valid node for /${locale}/${path}`)
     return NOT_FOUND
+  }
+
+  if (isNodePath) {
+    if (node.path?.alias) {
+      return {
+        redirect: {
+          permanent: false,
+          destination: `/${locale}/${node.path.alias}`,
+        },
+      }
+    } else {
+      console.warn(
+        `Warning: request to direct node ${path} blocked. 404 returned `
+      )
+    }
   }
 
   let fiNode = null // Must be JSON compatible
