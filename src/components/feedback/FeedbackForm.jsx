@@ -84,7 +84,11 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
           )}
 
           <form onSubmit={handleSubmit(onSubmit, onError)}>
-            <input type="hidden" {...register('page')} value={pageUrl.split('#').shift()} />
+            <input
+              type="hidden"
+              {...register('page')}
+              value={pageUrl.split('#').shift()}
+            />
             <input
               type="hidden"
               {...register('subject')}

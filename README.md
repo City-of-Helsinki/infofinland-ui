@@ -282,3 +282,9 @@ module.exports = {
 The root page of the site is mapped to a specific `node` in in drupal instance. The default value in drupal should be set to a Landing Page type, assumed `/landingpage`
 
 Make sure your drupal instance contains one `Landing Page` with matching url to Drupal Basic Settings:: Front Page (`/landingpage` by convention).
+
+## Search
+
+### Indexing
+
+TODO

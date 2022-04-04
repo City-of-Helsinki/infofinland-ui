@@ -13,22 +13,30 @@ export default async function handler(req, res) {
   let status = 200
   let response = []
 
-  const localeIds = await Promise.all(
-    i18n.locales.map((locale) => translatePath(`/${locale}${path}`))
+  const nodes = await Promise.all(
+    i18n.locales.map(async (locale) => {
+      const localePath = `/${locale}${path}`
+      console.log({ localePath })
+      const node = await translatePath(localePath)
+      return { locale, node }
+    })
   ).catch((e) => {
     console.error('Error while resolving locales for', path, e)
     throw e
   })
 
-  if (localeIds === null) {
+  console.log(nodes)
+
+  if (nodes === null) {
     status = 404
   } else {
-    response = localeIds
-      .map((node, i) => {
-        if (!node) {
-          return
+    response = nodes
+      .map(({ locale, node }) => {
+        if (!node || locale !== node.entity.langcode) {
+          return null
         }
-        return { locale: i18n.locales[i], id: node.entity.id, path }
+
+        return { locale: node.entity.langcode, id: node.entity.id, path }
       })
       .filter((l) => !!l)
   }

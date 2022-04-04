@@ -2,13 +2,14 @@ import getConfig from 'next/config'
 import { Client } from '@elastic/elasticsearch'
 import { HIGHLIGHT_CLASS } from '@/components/search/Result'
 import { isString } from 'lodash'
-// import { siteUrl } from '@/next-sitemap'
 
 const DEFAULT_SIZE = 30
 const DEFAULT_FROM = 0
-const INDEX_PREFIX = 'first_'
 
-export const getIndexName = (locale) => `${INDEX_PREFIX}${locale}`
+const getIndexPrefix = () =>
+  getConfig().serverRuntimeConfig.SEARCH_INDEX_PREFIX || 'first_'
+
+export const getIndexName = (locale) => `${getIndexPrefix()}${locale}`
 export const HIGHLIGHT_FRAGMENT_SIZE = 3000
 export const HIGHLIGHT_NUM_OF_FRAGMENTS = 10
 export const ERROR = 'Error: Elastic Search query failed. '
@@ -70,10 +71,6 @@ export const getSearchClient = () => {
       ca: elasticsearch_certificate,
       rejectUnauthorized: false,
     },
-    // ssl: {
-    //   ca: elasticsearch_certificate,
-    //   rejectUnauthorized: false,
-    // },
   })
 }
 

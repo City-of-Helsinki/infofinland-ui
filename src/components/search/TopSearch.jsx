@@ -185,7 +185,7 @@ export const SWRResults = ({ onShowResults }) => {
 
   if (isValidating) {
     return (
-      <div className="flex items-center mx-4 h-16">
+      <div className="flex items-center mx-4 max-w-topbar h-16">
         <DotsLoader />{' '}
       </div>
     )

@@ -7,11 +7,13 @@ import { i18n } from '@/next-i18next.config'
 import { map, omit } from 'lodash'
 import { getMenus } from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-// import getConfig from 'next/config'
-import usePageLocales from '@/hooks/usePageLocales'
+
 import TextLink from '@/components/TextLink'
 import { DotsLoader } from '@/components/Loaders'
 import Block from '@/components/layout/Block'
+import { getLocalesForPath } from '@/lib/client-api'
+import useSWR from 'swr'
+
 export async function getStaticProps(context) {
   // const { serverRuntimeConfig } = getConfig()
   const menus = await getMenus(context)
@@ -146,6 +148,10 @@ const LocalesLinks = ({ locales, dir }) => {
     <p className="mt-2 leading-loose">
       {locales.map(({ locale, path, id }, i) => {
         const language = i18n.languages.find(({ code }) => code === locale)
+        console.log({ locale })
+        if (!language) {
+          return null
+        }
         return (
           <TextLink
             dir={dir}
@@ -260,7 +266,9 @@ const Texts404 = ({ locales = [], locale }) => {
 
 export const PageNotFound = () => {
   const { locale, asPath } = useRouter()
-  const { data: locales, error } = usePageLocales({ path: asPath })
+  const cacheKey = asPath ? asPath : null
+  const fetcher = () => getLocalesForPath({ path: asPath })
+  const { data: locales, error } = useSWR(cacheKey, fetcher)
 
   return (
     <Layout>
