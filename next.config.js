@@ -42,6 +42,7 @@ const serverRuntimeConfig = {
   DRUPAL_CLIENT_ID: process.env.DRUPAL_CLIENT_ID,
   DRUPAL_PREVIEW_SECRET: process.env.DRUPAL_PREVIEW_SECRET,
   DRUPAL_CLIENT_SECRET: process.env.DRUPAL_CLIENT_SECRET,
+  SEARCH_INDEX_PREFIX: process.env.SEARCH_INDEX_PREFIX,
   ...publicRuntimeConfig,
   ...env,
 }

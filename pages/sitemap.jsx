@@ -1,86 +1,101 @@
-import Head from 'next/head'
 import { SecondaryLayout } from '@/components/layout/Layout'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { useTranslation } from 'next-i18next'
 import TextLink from '@/components/TextLink'
-import * as DrupalApi from '@/lib/ssr-api'
+import cls from 'classnames'
 import Block from '@/components/layout/Block'
-// import getConfig from 'next/config'
-import { getMenus } from '@/lib/ssr-api'
-import { i18n } from '@/next-i18next.config'
-import { siteUrl } from '@/next-sitemap'
+import getConfig from 'next/config'
+import { getMenus, NOT_FOUND, NO_DEFAULT_LOCALE } from '@/lib/ssr-api'
+import { getMenu, getResourceByPath } from 'next-drupal'
+import { forEach } from 'lodash'
 import { useRouter } from 'next/router'
+import { useTranslation } from 'next-i18next'
 
-export async function getServerSideProps(context) {
-  // const { serverRuntimeConfig } = getConfig()
-  // const path = serverRuntimeConfig.SITEMAP_PAGE_PATH
+export async function getStaticProps(context) {
+  const { SITEMAP_PAGE_PATH, DRUPAL_MENUS, REVALIDATE_TIME } =
+    getConfig().serverRuntimeConfig
+  const menus = await getMenus(context)
+  const node = await getResourceByPath(SITEMAP_PAGE_PATH, {
+    locale: context.locale,
+    defaultLocale: NO_DEFAULT_LOCALE,
+  })
+  if (!node) {
+    return NOT_FOUND
+  }
 
-  const allmenus = (
-    await Promise.all(
-      i18n.locales.map((locale) => {
-        return getMenus({ locale })
-      })
-    )
-  )
-    .map((menu) => {
-      return [
-        ...menu.main.items,
-        ...menu['cities-landing'].items,
-        ...menu.cities.items,
-        ...menu.about.items,
-      ].map(({ url }) => url)
-    })
-    .flat()
+  const menuName = DRUPAL_MENUS.ABOUT
+  menus[menuName] = await getMenu(menuName)
 
-  const urls = allmenus.flat().map((path) => new URL(path, siteUrl).toString())
+  const urls = {}
+  forEach(menus, (menu, name) => {
+    if (name !== DRUPAL_MENUS.FOOTER)
+      urls[name] = menu.items.map(({ url, title }) => ({ url, title }))
+  })
 
-  const menus = await DrupalApi.getMenus(context)
-  // const node = await DrupalApi.getNodeFromPath({
-  //   path,
-  //   context,
-  //   type: NODE_TYPES.PAGE,
-  // })
-  // if (!node) {
-  //   return NOT_FOUND
-  // }
-  // Return 404 if node was null or sitemap doesnt exist
-
-  // if (!node || !sitemap) {
-  //   return NOT_FOUND
-  // }
-  // TODO Dont fetch common, only about-menu and footer menu and municipalities
   return {
     props: {
+      node,
       urls,
       menus,
       ...(await serverSideTranslations(context.locale, ['common'])),
     },
-    // revalidate: serverRuntimeConfig.REVALIDATE_TIME,
+    revalidate: REVALIDATE_TIME,
   }
 }
 
+const SitemapList = ({ urls, name }) => {
+  const { DRUPAL_MENUS } = getConfig().publicRuntimeConfig
+
+  return (
+    <ul
+      className={cls('py-4', {
+        'bg-blue-white':
+          name === DRUPAL_MENUS.MAIN || name === DRUPAL_MENUS.CITIES_LANDING,
+        'bg-green-white mt-4': name === DRUPAL_MENUS.CITIES,
+        'bg-gray-white mt-4': name === DRUPAL_MENUS.ABOUT,
+      })}
+    >
+      {urls?.map(({ url, title }) => {
+        const depth = url.split('/').length
+        return (
+          <li
+            key={`page-${url}`}
+            className={cls({
+              'ms-8 root-page mt-2': depth <= 3,
+              'ms-12': depth === 4,
+              'ms-16': depth === 5,
+            })}
+          >
+            <TextLink href={url}>
+              <span className={depth <= 3 ? 'font-bold' : ''}>{title}</span>
+            </TextLink>
+          </li>
+        )
+      })}
+    </ul>
+  )
+}
+
 export default function SiteMap(props) {
+  const { locale } = useRouter
   const { t } = useTranslation('common')
-  const { locale } = useRouter()
-  const localeTester = new RegExp(`/${locale}/`)
+  const { DRUPAL_MENUS } = getConfig().publicRuntimeConfig
+  const { node, urls } = props
   return (
     <SecondaryLayout {...props}>
-      <Head>
-        <title>{t('sitemap.title')}</title>
-      </Head>
       <Block>
-        <ul>
-          <h1 className="mt-8 mb-16 text-h1 md:text-h1xl">
-            {t('sitemap.title')}
-          </h1>
-          {props?.urls
-            .filter((url) => localeTester.test(url))
-            .map((url) => (
-              <li key={`page-${url}`}>
-                <TextLink href={url}>{url}</TextLink>
-              </li>
-            ))}
-        </ul>
+        <h1 className="mt-16 mb-8 text-h1 md:text-h1xl">{node.title}</h1>
+        <SitemapList
+          urls={[
+            { url: `/${locale}`, title: t('breadcrumbs.frontpage') },
+            ...urls.main,
+          ]}
+          name={DRUPAL_MENUS.MAIN}
+        />
+        <SitemapList
+          urls={[...urls[DRUPAL_MENUS.CITIES_LANDING], ...urls.cities]}
+          name={DRUPAL_MENUS.CITIES}
+        />
+        <SitemapList urls={urls.about} name={DRUPAL_MENUS.ABOUT} />
       </Block>
     </SecondaryLayout>
   )

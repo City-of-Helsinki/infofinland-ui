@@ -56,11 +56,18 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
-  const { params } = context
+  const { params, locale } = context
   params.slug = params.slug || ['/']
+  const path = params.slug.join('/')
+  if (/node/.test(params.slug[0])) {
+    console.warn(
+      `Warning: request to direct node ${path} blocked. 404 returned `
+    )
+    return NOT_FOUND
+  }
 
   const type = await getResourceTypeFromContext({
-    ...context,
+    locale,
     defaultLocale: NO_DEFAULT_LOCALE,
     params,
   })
@@ -74,7 +81,9 @@ export async function getStaticProps(context) {
   const node = await getResourceFromContext(
     type,
     {
+      locale,
       ...context,
+
       //Dont use default locale. Drupal and UI have different default locales.
       //Always explicitly set the locale for drupal queries
       defaultLocale: NO_DEFAULT_LOCALE,
@@ -83,12 +92,13 @@ export async function getStaticProps(context) {
       params: getQueryParamsFor(type),
     }
   ).catch((e) => {
-    console.error(`Error requesting node ${params.slug}`, type, e)
+    console.error(`Error requesting node ${path}`, type, e)
     // throw e
   })
 
   // Return 404 if node was null
   if (!node) {
+    console.warn(`Warning: no valid node for /${locale}/${path}`)
     return NOT_FOUND
   }
 
