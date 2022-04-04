@@ -7,7 +7,7 @@ const DEFAULT_SIZE = 30
 const DEFAULT_FROM = 0
 
 const getIndexPrefix = () =>
-  getConfig().serverRuntimeConfig.SEARCH_INDEX_PREFIX || 'first_'
+  getConfig().serverRuntimeConfig.SEARCH_INDEX_PREFIX || ''
 
 export const getIndexName = (locale) => `${getIndexPrefix()}${locale}`
 export const HIGHLIGHT_FRAGMENT_SIZE = 3000
