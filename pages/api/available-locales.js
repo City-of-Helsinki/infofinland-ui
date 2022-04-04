@@ -16,7 +16,6 @@ export default async function handler(req, res) {
   const nodes = await Promise.all(
     i18n.locales.map(async (locale) => {
       const localePath = `/${locale}${path}`
-      console.log({ localePath })
       const node = await translatePath(localePath)
       return { locale, node }
     })
@@ -24,8 +23,6 @@ export default async function handler(req, res) {
     console.error('Error while resolving locales for', path, e)
     throw e
   })
-
-  console.log(nodes)
 
   if (nodes === null) {
     status = 404

@@ -148,7 +148,6 @@ const LocalesLinks = ({ locales, dir }) => {
     <p className="mt-2 leading-loose">
       {locales.map(({ locale, path, id }, i) => {
         const language = i18n.languages.find(({ code }) => code === locale)
-        console.log({ locale })
         if (!language) {
           return null
         }
