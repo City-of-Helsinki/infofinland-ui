@@ -55,15 +55,12 @@ const TopMenuItem = forwardRef(
         {!items && (
           <Link href={url} locale={false} prefetch={false}>
             <a
-              className={cls(
-                'ifu-mainmenu__item--link',
-                {
-                  'font-bold': selected,
-                  'border-white': !selected,
-                  'border-blue':
-                    (selected && (!isOpen || !items)) || selectedIsHidden,
-                }
-              )}
+              className={cls('ifu-mainmenu__item--link', {
+                'font-bold': selected,
+                'border-white': !selected,
+                'border-blue':
+                  (selected && (!isOpen || !items)) || selectedIsHidden,
+              })}
             >
               {title}
             </a>

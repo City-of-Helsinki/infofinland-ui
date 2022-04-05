@@ -84,11 +84,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
           )}
 
           <form onSubmit={handleSubmit(onSubmit, onError)}>
-            <input
-              type="hidden"
-              {...register('page')}
-              value={urlWithoutHash}
-            />
+            <input type="hidden" {...register('page')} value={urlWithoutHash} />
             <input
               type="hidden"
               {...register('subject')}

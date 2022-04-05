@@ -34,8 +34,8 @@
   }
 
   .ifu-mainmenu__item--button {
-      @apply text-body-small ps-8 border-s-5 hover:bg-gray-white;
-    }
+    @apply text-body-small ps-8 border-s-5 hover:bg-gray-white;
+  }
 
   .ifu-mainmenu__item--subitem {
     @apply block py-3 text-body-small hover:bg-gray-white pe-4;

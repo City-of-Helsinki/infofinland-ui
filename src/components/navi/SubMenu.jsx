@@ -13,16 +13,12 @@ const SubMenuItem = forwardRef(
       <Link passHref href={url} locale={false} prefetch={false}>
         <a
           tabIndex={isOpen ? '0' : '-1'}
-          className={cls(
-            'ifu-mainmenu__item--subitem',
-            {
-              'ps-12 ': level === 1,
-              'ps-16': level === 2,
-              'border-s-5 border-blue/75 hover:border-blue  font-bold':
-                selected,
-              'border-s-5 border-white ': !selected,
-            }
-          )}
+          className={cls('ifu-mainmenu__item--subitem', {
+            'ps-12 ': level === 1,
+            'ps-16': level === 2,
+            'border-s-5 border-blue/75 hover:border-blue  font-bold': selected,
+            'border-s-5 border-white ': !selected,
+          })}
         >
           {title}
         </a>
@@ -95,14 +91,11 @@ const SubMenu = forwardRef(
     return (
       <>
         <div
-          className={cls(
-            'ifu-mainmenu__item--button',
-            {
-              'border-white ': !selected && !selectedIsHidden,
-              'border-blue/75 hover:border-blue': selectedIsHidden || selected,
-              'font-bold': selected,
-            }
-          )}
+          className={cls('ifu-mainmenu__item--button', {
+            'border-white ': !selected && !selectedIsHidden,
+            'border-blue/75 hover:border-blue': selectedIsHidden || selected,
+            'font-bold': selected,
+          })}
         >
           {/*
           Shame hack: adding extra span so that border colors will switch
