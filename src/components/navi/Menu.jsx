@@ -55,15 +55,12 @@ const TopMenuItem = forwardRef(
         {!items && (
           <Link href={url} locale={false} prefetch={false}>
             <a
-              className={cls(
-                'block text-body-small ps-8 py-4 border-s-5 hover:bg-gray-white pe-4',
-                {
-                  'font-bold': selected,
-                  'border-white': !selected,
-                  'border-blue':
-                    (selected && (!isOpen || !items)) || selectedIsHidden,
-                }
-              )}
+              className={cls('ifu-mainmenu__item--link', {
+                'font-bold': selected,
+                'border-white': !selected,
+                'border-blue':
+                  (selected && (!isOpen || !items)) || selectedIsHidden,
+              })}
             >
               {title}
             </a>
@@ -104,8 +101,7 @@ const Menu = ({ menu = {}, useTopBorder, city }) => {
    */
   useEffect(() => {
     setVisibility(indexFromRouter)
-    console.log(scrollRef)
-    scrollRef.current?.scrollIntoView({ behaviour: 'smooth', block: 'start' })
+    scrollRef.current?.scrollIntoView({ behaviour: 'smooth', block: 'center' })
   }, [localePath, indexFromRouter, scrollRef])
 
   if (!items || !tree) {

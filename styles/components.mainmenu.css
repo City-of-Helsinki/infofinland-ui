@@ -29,6 +29,17 @@
     max-height: 0;
     opacity: 0;
   }
+  .ifu-mainmenu__item--link {
+    @apply block text-body-small ps-8 py-4 border-s-5 hover:bg-gray-white pe-4;
+  }
+
+  .ifu-mainmenu__item--button {
+    @apply text-body-small ps-8 border-s-5 hover:bg-gray-white;
+  }
+
+  .ifu-mainmenu__item--subitem {
+    @apply block py-3 text-body-small hover:bg-gray-white pe-4;
+  }
 
   /*
 Accordion arrows are using absolute positioning so
