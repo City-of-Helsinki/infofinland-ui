@@ -104,14 +104,14 @@
   },
   "messages": {
     "title": "Ilmoitukset",
-    "error": "Ilmoituksia ei ladattu."
+    "error": "Virhe ilmoituksissa"
   },
   "search": {
     "error": "Haussa tapahtui virhe",
     "loading": "Haetaan tuloksia",
     "count": "Tuloksia",
     "placeholder": "Hae hakusanalla..",
-    "showmore": "Lisää tuloksia: {{more}}",
+    "showmore": "lisää tuloksia: {{more}}",
     "prev": "Edelllinen",
     "next": "Seuraava",
     "title": {

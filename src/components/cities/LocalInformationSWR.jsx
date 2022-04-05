@@ -74,7 +74,6 @@ const SWRContent = ({ city, isOpen }) => {
 
         {!isLoading && !isError && content && (
           <>
-            {' '}
             {content.field_municipality_info_text?.processed && (
               <ParseHtml
                 html={content.field_municipality_info_text?.processed}
