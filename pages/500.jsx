@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import cls from 'classnames'
 import { map, omit } from 'lodash'
-import { BlankLayout } from '@/components/layout/Layout'
+import { BlankLayout, FALLBACK_TITLE } from '@/components/layout/Layout'
 import { longTextClass } from '@/components/Typo'
 import { i18n } from '@/next-i18next.config'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
@@ -69,7 +69,7 @@ const Error500 = () => {
   const content = omit(TEXTS, locale)
 
   return (
-    <BlankLayout>
+    <BlankLayout node={{ title: FALLBACK_TITLE, description: '' }}>
       <Head>
         <title>{TEXTS[locale].title}</title>
       </Head>

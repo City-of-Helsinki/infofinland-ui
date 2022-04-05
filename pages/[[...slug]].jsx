@@ -127,7 +127,10 @@ export async function getStaticProps(context) {
   let menus = {}
   if (node.field_layout === 'small') {
     let menuName = serverRuntimeConfig.DRUPAL_MENUS.ABOUT
-    let menu = await getMenu(menuName)
+    let menu = await getMenu(menuName, {
+      locale,
+      defaultLocale: NO_DEFAULT_LOCALE,
+    })
     menus = { [menuName]: menu }
   } else {
     menus = await getMenus({ ...context, id: node.id })
@@ -139,7 +142,10 @@ export async function getStaticProps(context) {
   if (field_theme_menu_machine_name) {
     themeMenu = menus[node.field_theme_menu_machine_name]
     if (!themeMenu) {
-      themeMenu = await getMenu(field_theme_menu_machine_name)
+      themeMenu = await getMenu(field_theme_menu_machine_name, {
+        locale,
+        defaultLocale: NO_DEFAULT_LOCALE,
+      })
     }
   }
 

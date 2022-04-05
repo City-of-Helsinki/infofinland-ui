@@ -9,17 +9,34 @@ import {
 } from '@/components/languages/LanguageMenu'
 import CityMenu from '@/components/layout/CityMenu'
 import TopSearch from '../search/TopSearch'
+import cls from 'classnames'
+import { useAtomValue } from 'jotai/utils'
+import { pageIsLoadingAtom } from '@/src/store'
 import { useRouter } from 'next/router'
-
 const Logo = () => {
   const { locale } = useRouter()
+  const pageIsLoading = useAtomValue(pageIsLoadingAtom)
   return (
     <div
       className="relative z-20 flex-none py-3 md:py-4 px-3 bg-white transform translate-y-px md:ps-6 md:pe-2"
       role="banner"
     >
       <Link href="/" passHref prefetch={false} locale={locale}>
-        <a className=" ifu-topmenu__logo" title="infofinland.fi"></a>
+        <a
+          className={cls('ifu-topmenu__logo', {
+            'ifu-topmenu__logo--loading': pageIsLoading,
+          })}
+          title="infofinland.fi"
+        >
+          {pageIsLoading && (
+            <span className=" hidden lg:inline-block relative -translate-x-1 -translate-y-5">
+              <span className="absolute left-20 w-1 h-1 bg-red rounded animate-ping"></span>
+              <span className="absolute left-24 w-1 h-1 bg-blue rounded animate-ping"></span>
+              <span className="absolute left-28 w-1 h-1 bg-green rounded animate-ping"></span>
+              <span className="absolute left-32 w-1 h-1 bg-orange rounded animate-ping"></span>
+            </span>
+          )}
+        </a>
       </Link>
     </div>
   )
@@ -42,8 +59,10 @@ const TopMenu = () => {
         <LanguageSelector openMenu={() => setLangMenuVisibility(true)} />
         <LangMenuDrawer closeMenu={closeMenu} isOpen={open} />
         <div className="2xl:flex-none xl:flex-grow"></div>
-        <TopSearch />
-        <MobileNavi />
+        <div className="flex items-center">
+          <TopSearch />
+          <MobileNavi />
+        </div>
         <CityMenu />
       </div>
     </header>

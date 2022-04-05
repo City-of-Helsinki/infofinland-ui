@@ -270,7 +270,7 @@ export const PageNotFound = () => {
   const { data: locales, error } = useSWR(cacheKey, fetcher)
 
   return (
-    <Layout>
+    <Layout node={{}}>
       {!locales && !error && (
         <Block>
           <div className="flex justify-center items-center w-full h-64">
