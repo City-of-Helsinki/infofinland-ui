@@ -11,20 +11,20 @@
     }
   }
   .ifu-topmenu__logo {
-    background-image: url('/images/logo/logo.svg');
+    background-image: url('/images/logo/logo-small.svg');
     background-repeat: no-repeat;
     background-position: 0 0;
-    background-size: contain;
     display: block;
     /* Mobile first */
     width: 134px;
-    height: 28px;
+    height: 27px;
     transform: translateY(-0.1rem);
   }
   @screen md {
     .ifu-topmenu__logo {
-      width: 200px;
+      width: 202px;
       height: 41px;
+      background-image: url('/images/logo/logo-big.svg');
     }
   }
 

@@ -74,11 +74,15 @@ const SWRContent = ({ city, isOpen }) => {
 
         {!isLoading && !isError && content && (
           <>
-            <ParseHtml
-              html={content.field_municipality_info_text?.processed}
-              key={`localinfo-text-${content.id}`}
-            />
-
+            {content.field_municipality_info_text?.processed && (
+              <ParseHtml
+                html={content.field_municipality_info_text?.processed}
+                key={`localinfo-text-${content.id}`}
+              />
+            )}
+            {!content.field_municipality_info_text?.processed && (
+              <p>{t('localInfo.default_text')}</p>
+            )}
             {content?.field_municipality_info_link && (
               <LocalReadMore
                 content={getLinks({
@@ -87,11 +91,9 @@ const SWRContent = ({ city, isOpen }) => {
                 })}
               />
             )}
-
             {content?.field_municipality_info_ptv && (
               <ContactInfoFields {...content?.field_municipality_info_ptv} />
             )}
-
             <p className="mt-8">
               <TextLink className="font-bold" href={path.alias}>
                 {t('localInfo.readMore')}

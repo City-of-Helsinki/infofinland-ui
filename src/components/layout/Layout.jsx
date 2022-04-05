@@ -14,6 +14,7 @@ import MainMenu from '@/components/navi/MainMenu'
 import cls from 'classnames'
 import AboutMenu from './AboutMenu'
 import getConfig from 'next/config'
+import { getHeroFromNode } from '@/lib/ssr-helpers'
 
 // Layout names from Drupal
 export const LAYOUT_BASIC = 'basic'
@@ -28,7 +29,9 @@ if (process.env.NODE_ENV !== 'test') {
   ReactModal.setAppElement('#__next')
 }
 
-const CommonHead = ({ title = FALLBACK_TITLE, description = '', children }) => {
+const CommonHead = ({ node, children }) => {
+  const { title, field_description: description } = node
+  const hero = getHeroFromNode(node)
   const { SITE_HOST } = getConfig().publicRuntimeConfig
   const { asPath } = useRouter()
   let url
@@ -49,31 +52,20 @@ const CommonHead = ({ title = FALLBACK_TITLE, description = '', children }) => {
   return (
     <>
       <NextSeo
-        title={title}
-        description={description}
+        title={title || FALLBACK_TITLE}
+        description={description || ''}
         canonical="https://www.canonical.ie/"
         openGraph={{
           url,
           title,
           description,
-          // images: [
-          //   {
-          //     url: 'https://www.example.ie/og-image-01.jpg',
-          //     width: 800,
-          //     height: 600,
-          //     alt: 'Og Image Alt',
-          //     type: 'image/jpeg',
-          //   },
-          //   {
-          //     url: 'https://www.example.ie/og-image-02.jpg',
-          //     width: 900,
-          //     height: 800,
-          //     alt: 'Og Image Alt Second',
-          //     type: 'image/jpeg',
-          //   },
-          //   { url: 'https://www.example.ie/og-image-03.jpg' },
-          //   { url: 'https://www.example.ie/og-image-04.jpg' },
-          // ],
+          images: [
+            {
+              url: hero.src,
+              type: 'image/jpeg',
+              alt: FALLBACK_TITLE,
+            },
+          ],
           site_name: FALLBACK_TITLE,
         }}
         twitter={{
@@ -84,15 +76,6 @@ const CommonHead = ({ title = FALLBACK_TITLE, description = '', children }) => {
       />
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        {/* {title && <title>{title}</title>}
-      <meta property="og:url" content={HOST} />
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content={title} />
-      <meta name="twitter:card" content="summary" />
-      <meta property="og:description" content={description} />
-      {description && <meta name="description" content={description} />} */}
-
-        {/* <PreloadFonts /> */}
         <Favicons />
         {children}
       </Head>
@@ -100,11 +83,11 @@ const CommonHead = ({ title = FALLBACK_TITLE, description = '', children }) => {
   )
 }
 
-export const BlankLayout = ({ children, title, description }) => {
+export const BlankLayout = ({ children, node }) => {
   useSetLocalization(useRouter().locale)
   return (
     <>
-      <CommonHead title={title} description={description} />
+      <CommonHead node={node} />
       <main className="relative text-body bg-white" id="main">
         {children}
       </main>
@@ -117,10 +100,9 @@ export const SecondaryLayout = ({ children, className, node }) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
   useShowLangMessage(locale)
-
   return (
     <>
-      <CommonHead description={node?.field_description} title={node?.title} />
+      <CommonHead node={node} />
       <div
         className={cls(
           'relative text-body bg-white ifu-layout--secondary',
@@ -157,7 +139,7 @@ const AppLayout = ({ children, className, node }) => {
 
   return (
     <>
-      <CommonHead description={node?.field_description} title={node?.title} />
+      <CommonHead node={node} />
 
       <div
         className={cls(

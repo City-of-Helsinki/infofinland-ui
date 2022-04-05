@@ -23,7 +23,7 @@ export default function ContentMapper({ content, locale }) {
   }
   return content.map((item) => {
     const { type, id } = item
-    const key = `${type}-${id}`
+    const key = `${type}-${id}-${locale}`
 
     switch (type) {
       case CONTENT_TYPES.TEXT:

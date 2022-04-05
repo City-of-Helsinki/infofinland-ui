@@ -45,7 +45,7 @@ const ArticlePage = ({ node, fiNode, themeMenu, menus }) => {
     isRootPage({ tree: themeMenu.tree, path: localePath })
 
   return (
-    <Layout menus={menus} node={node}>
+    <Layout menus={menus} node={node} ogImageUrl={hero.src}>
       <Article
         title={title}
         breadcrumbs={breadcrumbs}

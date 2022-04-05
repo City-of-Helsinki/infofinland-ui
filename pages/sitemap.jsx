@@ -14,16 +14,17 @@ export async function getStaticProps(context) {
   const { SITEMAP_PAGE_PATH, DRUPAL_MENUS, REVALIDATE_TIME } =
     getConfig().serverRuntimeConfig
   const menus = await getMenus(context)
-  const node = await getResourceByPath(SITEMAP_PAGE_PATH, {
+  const options = {
     locale: context.locale,
     defaultLocale: NO_DEFAULT_LOCALE,
-  })
+  }
+  const node = await getResourceByPath(SITEMAP_PAGE_PATH, options)
   if (!node) {
     return NOT_FOUND
   }
 
   const menuName = DRUPAL_MENUS.ABOUT
-  menus[menuName] = await getMenu(menuName)
+  menus[menuName] = await getMenu(menuName, options)
 
   const urls = {}
   forEach(menus, (menu, name) => {
