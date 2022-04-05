@@ -94,6 +94,7 @@
     "select": "Valitse kunta",
     "select_current": "Valitse {{city}}",
     "selected_city": "Oma kunta: {{city}}",
+    "default_text": "jotain tähän",
     "title": "Paikallistietoa"
   },
   "mainMenu": {
