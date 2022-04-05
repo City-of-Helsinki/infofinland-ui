@@ -43,7 +43,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
   }, [isSubmitSuccessful, isSubmitting, scrollTarget])
 
   const scrollTarget = useRef()
-
+  const urlWithoutHash = pageUrl.split('#').shift()
   return (
     <div className="block mb-16 border-t border-gray-darker-op2">
       <div
@@ -55,7 +55,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
         </h3>
 
         <p className="mb-8 text-gray-dark break-words">
-          <b>{t('feedback.urlLabel')}:</b> {pageUrl}
+          <b>{t('feedback.urlLabel')}:</b> {urlWithoutHash}
         </p>
       </div>
       <div className="xl:grid grid-cols-2 gap-x-8">
@@ -87,12 +87,12 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
             <input
               type="hidden"
               {...register('page')}
-              value={pageUrl.split('#').shift()}
+              value={urlWithoutHash}
             />
             <input
               type="hidden"
               {...register('subject')}
-              value={`Palautetta sivusta: ${pageUrl}`}
+              value={`Palautetta sivusta: ${urlWithoutHash}`}
             />
             <div className="mb-2">
               <label

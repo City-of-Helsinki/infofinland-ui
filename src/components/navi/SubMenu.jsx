@@ -14,7 +14,7 @@ const SubMenuItem = forwardRef(
         <a
           tabIndex={isOpen ? '0' : '-1'}
           className={cls(
-            'block py-3 text-body-small hover:bg-gray-white pe-4 ',
+            'ifu-mainmenu__item--subitem',
             {
               'ps-12 ': level === 1,
               'ps-16': level === 2,
@@ -96,7 +96,7 @@ const SubMenu = forwardRef(
       <>
         <div
           className={cls(
-            'text-body-small ps-8 border-s-5 hover:bg-gray-white',
+            'ifu-mainmenu__item--button',
             {
               'border-white ': !selected && !selectedIsHidden,
               'border-blue/75 hover:border-blue': selectedIsHidden || selected,
