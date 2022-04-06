@@ -100,10 +100,14 @@ const Menu = ({ menu = {}, useTopBorder, city }) => {
    */
   useEffect(() => {
     setVisibility(indexFromRouter)
-    setTimeout(()=>{
-      if(indexFromRouter >= 0){
-        scrollRef.current?.scrollIntoView({ behaviour: 'smooth', block: 'start' })}}
-    ,100)
+    setTimeout(() => {
+      if (indexFromRouter >= 0) {
+        scrollRef.current?.scrollIntoView({
+          behaviour: 'smooth',
+          block: 'start',
+        })
+      }
+    }, 100)
   }, [localePath, indexFromRouter, scrollRef])
 
   if (!items || !tree) {
