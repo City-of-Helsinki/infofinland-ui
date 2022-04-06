@@ -87,18 +87,27 @@ export const getLinks = ({ collection, locale } = {}) => {
         url: mainTranslation?.field_language_link,
       }
 
-      const languages = field_links
-        ?.map(({ field_language, field_language_link }) => {
+      const allLanguages = field_links?.map(
+        ({ field_language, field_language_link }) => {
           return {
             url: field_language_link,
             title: field_language.name,
             locale: field_language.field_locale,
           }
-        })
+        }
+      )
+      // Sort official site languages first,
+      // then all locales not in the site locales in alphabetical order
+      const languages = allLanguages
+        .filter(({ locale }) => i18n.locales.indexOf(locale) !== -1)
         .sort(
-          // According to configured language order, same as in language menu
           (a, b) =>
             i18n.locales.indexOf(a.locale) - i18n.locales.indexOf(b.locale)
+        )
+        .concat(
+          allLanguages
+            .filter(({ locale }) => i18n.locales.indexOf(locale) === -1)
+            .sort()
         )
 
       return {
