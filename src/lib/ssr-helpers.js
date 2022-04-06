@@ -99,14 +99,14 @@ export const getLinks = ({ collection, locale } = {}) => {
       // Sort official site languages first,
       // then all locales not in the site locales in alphabetical order
       const languages = allLanguages
-        .filter(({ locale }) => i18n.locales.indexOf(locale) !== -1)
+        ?.filter(({ locale }) => i18n.locales.indexOf(locale) !== -1)
         .sort(
           (a, b) =>
             i18n.locales.indexOf(a.locale) - i18n.locales.indexOf(b.locale)
         )
         .concat(
           allLanguages
-            .filter(({ locale }) => i18n.locales.indexOf(locale) === -1)
+            ?.filter(({ locale }) => i18n.locales.indexOf(locale) === -1)
             .sort()
         )
 

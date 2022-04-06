@@ -114,7 +114,7 @@ export const SearchPage = () => {
   }
 
   return (
-    <Layout>
+    <Layout node={{ title }}>
       <Head>
         <title>{title}</title>
       </Head>
