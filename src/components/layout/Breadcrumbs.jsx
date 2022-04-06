@@ -32,7 +32,7 @@ const Breadcrumbs = ({ items }) => {
       {/* Mobile */}
       {parent && <MobileLink url={parent.url} title={parent.title} />}
 
-      {!parent && <MobileLink url="/" title={t('breadcrumbs.frontpage')} />}
+      {!parent && <MobileLink url={`/${locale}/`} title={t('breadcrumbs.frontpage')} />}
       {/* Desktop navi */}
       <div className="hidden md:block justify-items-start">
         <div className="flex-wrap leading-5 ps-4">
