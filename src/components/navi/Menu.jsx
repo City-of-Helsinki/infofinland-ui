@@ -94,14 +94,16 @@ const Menu = ({ menu = {}, useTopBorder, city }) => {
   })
 
   const scrollRef = useRef()
-
   const [openIndex, setVisibility] = useState(indexFromRouter)
   /**
    * Open the correct theme menu when route changes.
    */
   useEffect(() => {
     setVisibility(indexFromRouter)
-    scrollRef.current?.scrollIntoView({ behaviour: 'smooth', block: 'center' })
+    setTimeout(()=>{
+      if(indexFromRouter >= 0){
+        scrollRef.current?.scrollIntoView({ behaviour: 'smooth', block: 'start' })}}
+    ,100)
   }, [localePath, indexFromRouter, scrollRef])
 
   if (!items || !tree) {

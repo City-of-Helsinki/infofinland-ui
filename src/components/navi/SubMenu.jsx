@@ -8,8 +8,19 @@ import { forwardRef } from 'react'
 
 // eslint-disable-next-line react/display-name
 const SubMenuItem = forwardRef(
-  ({ title, url, selected, items, level, isOpen }, ref) => (
-    <li className="block" ref={ref}>
+  ({ title, url, selected, items, level, isOpen }, ref) => {
+
+    const refProps = {}
+    const subrefProps = {}
+
+    if(selected) {
+      refProps.ref = ref
+    } else {
+      subrefProps.ref = ref
+    }
+
+    return(
+    <li className="block" {...refProps}>
       <Link passHref href={url} locale={false} prefetch={false}>
         <a
           tabIndex={isOpen ? '0' : '-1'}
@@ -24,10 +35,10 @@ const SubMenuItem = forwardRef(
         </a>
       </Link>
       {items && (
-        <SubMenuItems items={items} level={level + 1} isOpen={isOpen} />
+        <SubMenuItems {...subrefProps} items={items} level={level + 1} isOpen={isOpen} />
       )}
     </li>
-  )
+  )}
 )
 
 // eslint-disable-next-line react/display-name
