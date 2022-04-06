@@ -17,41 +17,52 @@ import {
   menuErrorResponse,
   getThemeHeroImages,
 } from '@/lib/ssr-api'
+import { addPrerenderLocalesToPaths } from '@/lib/ssr-helpers'
 import { LAYOUT_SMALL } from '@/components/layout/Layout'
 import { NO_DEFAULT_LOCALE } from '@/lib/ssr-api'
 import HomePage from '@/src/page-templates/HomePage'
 
 export async function getStaticPaths() {
+  const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
+  // prerender all theme pages from main menu and cities menu
+  const menus = (
+    await Promise.all([
+      getMenu(DRUPAL_MENUS.MAIN, {
+        locale: 'en',
+        defaultLocale: NO_DEFAULT_LOCALE,
+      }),
+      getMenu(DRUPAL_MENUS.CITIES, {
+        locale: 'en',
+        defaultLocale: NO_DEFAULT_LOCALE,
+      }),
+    ])
+  )
+    .map(({ tree }) =>
+      tree.map(({ url }) => {
+        //remove root slash and language code
+        const [, , ...slug] = url.split('/')
+        return {
+          params: {
+            slug,
+          },
+        }
+      })
+    )
+    .flat()
+  // add predefined prerender locales to urls from mainmenu.
+  // any language should do. english should do the most.
+  const paths = addPrerenderLocalesToPaths([
+    {
+      //prerender frontpage
+      params: { slug: [''] },
+    },
+    ...menus,
+  ])
+
   return {
-    paths: [],
+    paths,
     fallback: 'blocking',
   }
-
-  // const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
-
-  // const { items } = await getMenu(DRUPAL_MENUS.MAIN, {
-  //   locale:'en',
-  //   defaultLocale:'-',
-  // })
-  // const paths = items
-  //   // Filter out theme pages
-  //   .filter(({ parent }) => parent !== '')
-  //   // Parse to theme and path slug
-  //   .map(({ url }) => {
-  //     //remove root slash and language code
-  //     const [, , ...slug] = url.split('/')
-  //     return {
-  //       params: {
-  //         slug,
-  //       },
-  //     }
-  //   })
-
-  // return {
-  //   paths,
-  //   // paths: addPrerenderLocalesToPaths(paths),
-  //   fallback: 'blocking',
-  // }
 }
 
 export async function getStaticProps(context) {
