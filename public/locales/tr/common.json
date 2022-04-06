@@ -15,6 +15,9 @@
     "skipTo": "İçeriğe geç",
     "yes": "Evet"
   },
+  "cities": {
+    "error": "Belediyeler henüz mevcut değil"
+  },
   "cookies": {
     "allow": "Bütün çerezleri onayla",
     "allowed": "İzin verildi",
@@ -79,6 +82,7 @@
   },
   "localInfo": {
     "clear": "Sil",
+    "default_text": "Konuyla ilgili daha detaylı bilgiyi belediye sayfasında bulabilirsiniz.",
     "error": "Belediyeye ait bilgiler yüklenemedi",
     "help": "Kendi belediyeniz hakkındaki bilgilere göz atın",
     "help_current_city": "Yerel hizmetler hakkındaki bilgileri görebilmek için sitede gezinirken bir belediye seçin.",
@@ -94,16 +98,23 @@
     "button": "Ana menü"
   },
   "messages": {
+    "error": "Bildirimlerde hata",
     "title": "Bildirimler"
   },
   "search": {
+    "count": "Arama sonucu:",
+    "error": "Aramada hata oluştu",
     "loading": "Sonuç aranıyor",
+    "next": "Bir sonraki",
     "placeholder": "Anahtar kelime ile arayın",
+    "prev": "Bir önceki",
+    "showmore": "Daha fazla sonuç: {{more}}",
     "title": {
       "noresults": "Arama sonucu bulunamadı",
       "results": "Arama sonuçları:",
       "start": "Sitede arayın"
-    }
+    },
+    "typemore": "Daha fazla yazın"
   },
   "video": {
     "button": "Videoyu aç"

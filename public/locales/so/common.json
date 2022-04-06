@@ -15,6 +15,9 @@
     "skipTo": "U gudub macluumaadka ku jira",
     "yes": "Haa"
   },
+  "cities": {
+    "error": "Lama helayo degmada"
+  },
   "cookies": {
     "allow": "Oggolow dhammaan xogaha kambuyuutarka ku kaydsama",
     "allowed": "Waa la oggolaaday",
@@ -79,6 +82,7 @@
   },
   "localInfo": {
     "clear": "Tirtir",
+    "default_text": "Macluumaadka dheeraadka ah ee mowduucan waxaad ka heleysaa bogga degmada.",
     "error": "Macluumaad degmada waa la dejin waayay",
     "help": "Fiiri macluumaadka degamadaada",
     "help_current": "Dooro degmo, waxaad markaas arki kartaa macluumaad ku saabsan adeegyada deegaanka, marka aad bogga ku dhex-jirto.",
@@ -94,16 +98,23 @@
     "button": "Liiska ugu weyn"
   },
   "messages": {
+    "error": "Khalad ayaa wargelinta ku jira",
     "title": "Wargelinnada"
   },
   "search": {
+    "count": "Natiijooyinka:",
+    "error": "Khalad ayaa raadinta ka dhacay",
     "loading": "Natiijooyin ayaa la raadinayaa",
+    "next": "Kan xiga",
     "placeholder": "Ku raadi erey",
+    "prev": "Kii hore",
+    "showmore": "Natijooyin kale: {{more}}",
     "title": {
       "noresults": "Natiijooyinka xog-raadinta lama hayo",
       "results": "Natiijooyinka xog-raadinta:",
       "start": "Ka raadi bogga"
-    }
+    },
+    "typemore": "Qor wax kale"
   },
   "video": {
     "button": "Fur fiidiyowga"

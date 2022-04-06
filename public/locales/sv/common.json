@@ -15,6 +15,10 @@
     "skipTo": "Gå till innehållet",
     "yes": "Ja"
   },
+  "cities": {
+    "error": "Inga kommuner tillgängliga",
+    "title": "Välj kommun"
+  },
   "cookies": {
     "allow": "Godkänn alla kakor",
     "allowed": "Tillåtet",
@@ -79,6 +83,7 @@
   },
   "localInfo": {
     "clear": "Töm",
+    "default_text": "Du hittar mer information om detta på kommunsidorna.",
     "error": "De kommunspecifika uppgifterna kunde inte laddas",
     "help": "Se din egen kommuns uppgifter",
     "help_current_city": "Välj kommun, så får du information om lokala tjänster på webbplatsen.",
@@ -94,16 +99,23 @@
     "button": "!Päävalikko"
   },
   "messages": {
+    "error": "Fel i anmälningar",
     "title": "Meddelanden"
   },
   "search": {
+    "count": "Resultat:",
+    "error": "Det uppstod ett fel i sökningen",
     "loading": "Resultat söks",
+    "next": "Nästa",
     "placeholder": "Sök med sökordet",
+    "prev": "Tillbaka",
+    "showmore": "fler resultat: {{more}}",
     "title": {
       "noresults": "Inga sökresultat",
       "results": "Sökresultat:",
       "start": "Sök på webbplatsen"
-    }
+    },
+    "typemore": "Skriv mer"
   },
   "video": {
     "button": "Öppna video"

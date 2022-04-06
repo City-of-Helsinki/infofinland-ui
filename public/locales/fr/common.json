@@ -15,6 +15,9 @@
     "skipTo": "Passer au contenu",
     "yes": "Oui"
   },
+  "cities": {
+    "error": "Communes non disponibles"
+  },
   "cookies": {
     "allow": "Accepter tous les cookies",
     "allowed": "Autorisé",
@@ -79,6 +82,7 @@
   },
   "localInfo": {
     "clear": "Effacer",
+    "default_text": "Vous trouverez davantage d'informations à ce sujet sur les pages des communes.",
     "error": "Impossible de télécharger les informations de la commune",
     "help": "Voir les informations concernant votre commune",
     "help_current_city": "Sélectionner la commune pour voir les informations sur les services locaux lorsque vous naviguez sur le site.",
@@ -94,16 +98,23 @@
     "button": "Menu principal"
   },
   "messages": {
+    "error": "Erreur dans les annonces",
     "title": "Annonces"
   },
   "search": {
+    "count": "Résultat :",
+    "error": "Une erreur s’est produite dans la recherche",
     "loading": "Recherche de résultats",
+    "next": "Suivant",
     "placeholder": "Chercher avec le mot de recherche",
+    "prev": "Précédent",
+    "showmore": "davantage de résultats : {{more}}",
     "title": {
       "noresults": "Aucun résultat de recherche",
       "results": "Résultats de la recherche:",
       "start": "Rechercher sur la page"
-    }
+    },
+    "typemore": "Écrivez davantage"
   },
   "video": {
     "button": "Ouvrir la vidéo"
