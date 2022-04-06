@@ -15,6 +15,10 @@
     "skipTo": "Skip to content",
     "yes": "Yes"
   },
+  "cities": {
+    "error": "Municipalities not available",
+    "title": "Select municipality"
+  },
   "cookies": {
     "allow": "Accept all cookies",
     "allowed": "Enabled",
@@ -79,6 +83,7 @@
   },
   "localInfo": {
     "clear": "Clear",
+    "default_text": "More information on this topic is available on the municipal page.",
     "error": "Municipality’s information could not be loaded",
     "help": "See your municipality’s information",
     "help_current_city": "Select your municipality in order to see information about local services when browsing the site.",
@@ -94,16 +99,23 @@
     "button": "Main menu"
   },
   "messages": {
+    "error": "Error in notifications",
     "title": "Messages"
   },
   "search": {
+    "count": "Results:",
+    "error": "An error occurred while searching",
     "loading": "Searching for results",
+    "next": "Next",
     "placeholder": "Search with a keyword",
+    "prev": "Previous",
+    "showmore": "more results: {{more}}",
     "title": {
       "noresults": "No search results",
       "results": "Search results:",
       "start": "Search the website"
-    }
+    },
+    "typemore": "Type more"
   },
   "video": {
     "button": "Open video"

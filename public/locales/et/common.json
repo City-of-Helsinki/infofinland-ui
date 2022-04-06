@@ -6,13 +6,6 @@
     "frontpage": "Avaleht",
     "title": "Jäljerida"
   },
-  "frontpage": {
-    "cities": {
-      "title": "Linnad",
-      "text": "InfoFinlandist leiad teavet ka kohalike teenuste kohta.",
-      "button": "Mine lehele Linnad"
-    }
-  },
   "buttons": {
     "close": "Sulge",
     "external": "Link viib saidilt välja",
@@ -21,6 +14,9 @@
     "search": "Otsi",
     "skipTo": "Mine sisu juurde",
     "yes": "Jah"
+  },
+  "cities": {
+    "error": "Omavalitsused pole saadaval"
   },
   "cookies": {
     "allow": "Nõustu kõigi küpsistega",
@@ -72,6 +68,13 @@
   "footer": {
     "helsinkiDisclaimer": "Veebisaiti InfoFinland.fi avaldab Helsingi linn ja seda finantseerivad riik ja InfoFinlandi liikmesomavalitsused."
   },
+  "frontpage": {
+    "cities": {
+      "button": "Mine lehele Linnad",
+      "text": "InfoFinlandist leiad teavet ka kohalike teenuste kohta.",
+      "title": "Linnad"
+    }
+  },
   "languageMenu": {
     "label": "Vali keel"
   },
@@ -84,6 +87,7 @@
   },
   "localInfo": {
     "clear": "Tühjenda",
+    "default_text": "Selle teema kohta leiad lisateavet kohaliku omavalitsuse lehelt.",
     "error": "Teavet kohaliku omavalitsuse kohta ei saanud laadida",
     "help": "Vaata teavet oma kohaliku omavalitsuse kohta",
     "help_current_city": "Vali omavalitsus, et näha saidil liikudes teavet kohalike teenuste kohta.",
@@ -99,16 +103,23 @@
     "button": "Peamenüü"
   },
   "messages": {
+    "error": "Viga teavitustes",
     "title": "Teavitused"
   },
   "search": {
+    "count": "Otsingu tulemused:",
+    "error": "Otsingul ilmnes viga",
     "loading": "Tulemuste otsimine",
+    "next": "Järgmine",
     "placeholder": "Otsi märksõnaga",
+    "prev": "Eelmine",
+    "showmore": "rohkem tulemusi:",
     "title": {
       "noresults": "Otsing ei andnud tulemusi",
       "results": "Otsingutulemused:",
       "start": "Otsi saidilt"
-    }
+    },
+    "typemore": "Täpsusta otsingut"
   },
   "video": {
     "button": "Ava video"

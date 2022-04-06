@@ -15,6 +15,9 @@
     "skipTo": "Ir al contenido",
     "yes": "Sí"
   },
+  "cities": {
+    "error": "Municipios no disponibles"
+  },
   "cookies": {
     "allow": "Permitir todas las cookies",
     "allowed": "Permitir",
@@ -79,6 +82,7 @@
   },
   "localInfo": {
     "clear": "Vaciar",
+    "default_text": "Encontrará más información sobre este tema en la web del municipio.",
     "error": "No se han podido cargar los datos del municipio",
     "help": "Consulte los datos de su municipio",
     "help_current": "Seleccione un municipio para poder ver la información sobre los servicios locales cuando vaya al portal.",
@@ -94,16 +98,23 @@
     "button": "Menú principal"
   },
   "messages": {
+    "error": "Error en las notificaciones",
     "title": "Mensajes"
   },
   "search": {
+    "count": "Resultados:",
+    "error": "Error en la búsqueda",
     "loading": "Buscando resultados",
+    "next": "Siguiente",
     "placeholder": "Buscar por palabras claves",
+    "prev": "Anterior",
+    "showmore": "más resultados: {{more}}",
     "title": {
       "noresults": "No hay resultados.",
       "results": "Resultados de la búsqueda:",
       "start": "Buscar en el portal"
-    }
+    },
+    "typemore": "Escriba algo más"
   },
   "video": {
     "button": "Abrir vídeo"
