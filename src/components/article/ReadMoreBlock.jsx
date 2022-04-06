@@ -14,7 +14,7 @@ export const ExternalLinkCollection = ({ content = [], locale }) => {
           className={cls({
             'mb-3 pb-3 border-b border-gray-hr': i + 1 < content.length,
           })}
-          key={`readmore-${siteName}`}
+          key={`readmore-${siteName}-${mainTranslation.id}`}
         >
           <h3 className="flex items-center text-small">
             <IconExternalSite
