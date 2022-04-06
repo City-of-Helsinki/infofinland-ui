@@ -8,26 +8,43 @@ import { forwardRef } from 'react'
 
 // eslint-disable-next-line react/display-name
 const SubMenuItem = forwardRef(
-  ({ title, url, selected, items, level, isOpen }, ref) => (
-    <li className="block" ref={ref}>
-      <Link passHref href={url} locale={false} prefetch={false}>
-        <a
-          tabIndex={isOpen ? '0' : '-1'}
-          className={cls('ifu-mainmenu__item--subitem', {
-            'ps-12 ': level === 1,
-            'ps-16': level === 2,
-            'border-s-5 border-blue/75 hover:border-blue  font-bold': selected,
-            'border-s-5 border-white ': !selected,
-          })}
-        >
-          {title}
-        </a>
-      </Link>
-      {items && (
-        <SubMenuItems items={items} level={level + 1} isOpen={isOpen} />
-      )}
-    </li>
-  )
+  ({ title, url, selected, items, level, isOpen }, ref) => {
+    const refProps = {}
+    const subrefProps = {}
+
+    if (selected) {
+      refProps.ref = ref
+    } else {
+      subrefProps.ref = ref
+    }
+
+    return (
+      <li className="block" {...refProps}>
+        <Link passHref href={url} locale={false} prefetch={false}>
+          <a
+            tabIndex={isOpen ? '0' : '-1'}
+            className={cls('ifu-mainmenu__item--subitem', {
+              'ps-12 ': level === 1,
+              'ps-16': level === 2,
+              'border-s-5 border-blue/75 hover:border-blue  font-bold':
+                selected,
+              'border-s-5 border-white ': !selected,
+            })}
+          >
+            {title}
+          </a>
+        </Link>
+        {items && (
+          <SubMenuItems
+            {...subrefProps}
+            items={items}
+            level={level + 1}
+            isOpen={isOpen}
+          />
+        )}
+      </li>
+    )
+  }
 )
 
 // eslint-disable-next-line react/display-name
