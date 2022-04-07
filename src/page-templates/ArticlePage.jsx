@@ -18,7 +18,7 @@ const ArticlePage = ({ node, fiNode, themeMenu, menus }) => {
   const { localePath, locale, asPath } = useRouterWithLocalizedPath()
   const {
     title,
-    revision_timestamp,
+    lastUpdated,
     field_description,
     field_use_anchor_links,
     field_municipality_selection,
@@ -49,7 +49,7 @@ const ArticlePage = ({ node, fiNode, themeMenu, menus }) => {
       <Article
         title={title}
         breadcrumbs={breadcrumbs}
-        date={revision_timestamp}
+        date={lastUpdated}
         fiTitle={fiNode?.title}
         color={hero.color}
         heroImage={hero.src}

@@ -38,7 +38,8 @@ export default function CookieConsentBar() {
   const isConsentSet = useAtomValue(isCookieConsentSetAtom)
   const { asPath, locale } = useRouter()
   const isAboutPage = asPath.startsWith(publicRuntimeConfig.COOKIE_PAGE_PATH)
-  return ( !isSSR() &&
+  return (
+    !isSSR() &&
     !isAboutPage &&
     !isConsentSet && (
       <CSSTransition
