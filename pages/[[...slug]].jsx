@@ -21,6 +21,7 @@ import { addPrerenderLocalesToPaths } from '@/lib/ssr-helpers'
 import { LAYOUT_SMALL } from '@/components/layout/Layout'
 import { NO_DEFAULT_LOCALE } from '@/lib/ssr-api'
 import HomePage from '@/src/page-templates/HomePage'
+import { DateTime } from 'luxon'
 
 export async function getStaticPaths() {
   const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
@@ -69,7 +70,8 @@ export async function getStaticProps(context) {
   const { serverRuntimeConfig } = getConfig()
   const { params, locale } = context
   params.slug = params.slug || ['/']
-  const path = params.slug.join('/')
+
+  const localePath = ['', locale, ...params.slug].join('/')
   const isNodePath = /node/.test(params.slug[0])
 
   const type = await getResourceTypeFromContext({
@@ -80,7 +82,10 @@ export async function getStaticProps(context) {
 
   //Allow only pages and landing pages to be queried
   if (![NODE_TYPES.PAGE, NODE_TYPES.LANDING_PAGE].includes(type)) {
-    console.error('Error resolving page. Node type not allowed:', type)
+    console.error(
+      `Error resolving page ${localePath} Node type not allowed:`,
+      type
+    )
     return NOT_FOUND
   }
 
@@ -98,13 +103,13 @@ export async function getStaticProps(context) {
       params: getQueryParamsFor(type),
     }
   ).catch((e) => {
-    console.error(`Error requesting node ${path}`, type, e)
+    console.error(`Error requesting node ${localePath}`, type, e)
     // throw e
   })
 
   // Return 404 if node was null
   if (!node) {
-    console.warn(`Warning: no valid node for /${locale}/${path}`)
+    console.warn(`Warning: no valid node for ${localePath}`)
     return NOT_FOUND
   }
 
@@ -118,7 +123,7 @@ export async function getStaticProps(context) {
       }
     } else {
       console.warn(
-        `Warning: request to direct node ${path} blocked. 404 returned `
+        `Warning: request to direct node ${localePath} blocked. 404 returned `
       )
     }
   }
@@ -129,7 +134,7 @@ export async function getStaticProps(context) {
     // Get finnish title if page is not in finnish
     if (context.locale !== i18n.fallbackLocale) {
       fiNode = await getDefaultLocaleNode(node.id).catch((e) => {
-        console.error('Error while getting Finnish title', e)
+        console.error('Error while getting Finnish title', localePath, e)
         return null
       })
     }
@@ -172,13 +177,17 @@ export async function getStaticProps(context) {
     })
   }
 
+  const lastUpdated = DateTime.fromISO(node.revision_timestamp).toFormat(
+    'dd.MM.yyyy'
+  )
+
   return {
     props: {
       key: node.id,
       type,
       themes,
       menus,
-      node,
+      node: { ...node, lastUpdated },
       themeMenu,
       fiNode,
       ...(await serverSideTranslations(context.locale, ['common'])),

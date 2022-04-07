@@ -1,7 +1,7 @@
 import cls from 'classnames'
 import { longTextClass } from '@/components/Typo'
 import { IconCalendar } from '@/components/Icons'
-import { DateTime } from 'luxon'
+// import { DateTime } from 'luxon'
 
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
@@ -52,9 +52,7 @@ export default function ArticleHeading({
             className="md:w-4 md:h-4 transform translate-y-px lg:ms-2"
             title={t('article.published')}
           />
-          <span className="px-2 transform translate-y-px">
-            {DateTime.fromISO(date).toFormat('dd.MM.yyyy')}
-          </span>
+          <span className="px-2 transform translate-y-px">{date}</span>
         </div>
       </div>
     </div>
