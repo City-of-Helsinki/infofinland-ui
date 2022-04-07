@@ -3,7 +3,7 @@ import ParseHtml from '../ParseHtml'
 import useSWR from 'swr'
 import { useRouter } from 'next/router'
 import { getFeedbackContent } from '@/lib/client-api'
-import { times } from 'lodash'
+import times from 'lodash/times'
 
 const Loader = () => (
   <div>

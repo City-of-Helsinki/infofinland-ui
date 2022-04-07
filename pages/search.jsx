@@ -19,9 +19,11 @@ import {
   searchResultsTermAtom,
   searchErrorAtom,
 } from '@/src/store'
+import { CACHE_HEADERS_60S } from '@/cache-headers'
 
 export async function getServerSideProps(context) {
   const menus = await getMenus(context)
+  context.res.setHeader(...CACHE_HEADERS_60S)
   const { size, q, from, index } = Elastic.getSearchParamsFromQuery(context)
   let results = null
   let error = null

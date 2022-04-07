@@ -1,5 +1,6 @@
 import { i18n } from '@/next-i18next.config'
 import { translatePath } from 'next-drupal'
+import { CACHE_HEADERS_10M } from '@/cache-headers'
 
 export default async function handler(req, res) {
   // No posts allowed
@@ -38,5 +39,8 @@ export default async function handler(req, res) {
       .filter((l) => !!l)
   }
 
-  res.status(status).json(response)
+  res
+    .setHeader(...CACHE_HEADERS_10M)
+    .status(status)
+    .json(response)
 }

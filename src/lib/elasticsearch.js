@@ -1,7 +1,7 @@
 import getConfig from 'next/config'
 import { Client } from '@elastic/elasticsearch'
 import { HIGHLIGHT_CLASS } from '@/components/search/Result'
-import { isString } from 'lodash'
+import isString from 'lodash/isString'
 
 const DEFAULT_SIZE = 30
 const DEFAULT_FROM = 0

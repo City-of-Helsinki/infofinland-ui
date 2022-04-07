@@ -1,6 +1,6 @@
 import cls from 'classnames'
 // import Image from 'next/image'
-import Breadcrumbs from '@/components/layout/Breadcrumbs'
+import Breadcrumbs from '@/components/article/Breadcrumbs'
 import HeroImage from './HeroImage'
 
 // Tailwind color classes. Must be written out, not interpolated, for minification

@@ -1,4 +1,6 @@
 import { getMessages } from '@/lib/ssr-api'
+import { CACHE_HEADERS_60S } from '@/cache-headers'
+
 export default async function handler(req, res) {
   const { id, locale } = req?.query
   let messages = []
@@ -14,5 +16,8 @@ export default async function handler(req, res) {
     return []
   })
 
-  res.status(status).json(messages)
+  res
+    .setHeader(...CACHE_HEADERS_60S)
+    .status(status)
+    .json(messages)
 }

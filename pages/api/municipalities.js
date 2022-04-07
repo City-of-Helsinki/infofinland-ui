@@ -1,4 +1,5 @@
 import { getMunicipalities } from '@/lib/ssr-api'
+import { CACHE_HEADERS_10M } from '@/cache-headers'
 export default async function handler(req, res) {
   const { locale } = req?.query
   // No posts allowed
@@ -14,5 +15,8 @@ export default async function handler(req, res) {
     return []
   })
 
-  res.status(status).json(municipalities)
+  res
+    .setHeader(...CACHE_HEADERS_10M)
+    .status(status)
+    .json(municipalities)
 }

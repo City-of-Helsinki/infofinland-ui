@@ -1,6 +1,7 @@
 import { getResource } from 'next-drupal'
 import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import { getLocalInfoParams } from '@/lib/query-params'
+import { CACHE_HEADERS_60S } from '@/cache-headers'
 
 export default async function handler(req, res) {
   // No posts allowed
@@ -26,7 +27,10 @@ export default async function handler(req, res) {
     status = 404
   }
 
-  res.status(status).json({
-    node,
-  })
+  res
+    .setHeader(...CACHE_HEADERS_60S)
+    .status(status)
+    .json({
+      node,
+    })
 }

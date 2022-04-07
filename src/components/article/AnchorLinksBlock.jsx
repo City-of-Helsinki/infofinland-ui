@@ -11,15 +11,17 @@ const AnchorLinksBlock = ({ field_content }) => {
   // TODO move to a separate function and test?
   const headings = field_content
     .filter(({ type }) => HEADING_TYPES.includes(type))
-    .map(({ field_title, field_accordion_items, id } = {}) => {
+    .map(({ field_title, field_accordion_items, id }) => {
       if (field_title) {
         return { title: field_title, id }
       }
       return field_accordion_items?.map(
-        ({ field_accordion_item_heading: title, id } = {}) => ({ id, title })
+        ({ field_accordion_item_heading: title, id }) => ({ id, title })
       )
     })
     .flat()
+    //ignore broken contents
+    .filter((h) => !!h)
 
   // Let's not render an empty block
   if (!headings || headings?.length === 0) {
