@@ -33,14 +33,13 @@ const LanguageSelector = ({ openMenu }) => {
         {i18n.languages.map(({ text, code }) => {
           const isLocalized =
             locales?.find((page) => page.locale === code) !== undefined
-          const prefetch = isLocalized && code !== locale
           return (
             <Link
               href={path}
               locale={code}
               passHref
               scroll={false}
-              prefetch={prefetch}
+              prefetch={false}
               key={`lang-${code}`}
             >
               <a
