@@ -1,18 +1,19 @@
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
 import { NextSeo } from 'next-seo'
 import Favicons from './Favicons'
-import Messages from '@/components/messages/Messages'
+// import Messages from '@/components/messages/Messages'
 import FooterLinks from '@/components/layout/FooterLinks'
-import FeedbackButtonBlock from '@/components/feedback/FeedbackForm'
+// import FeedbackBlock from '@/components/feedback/FeedbackBlock'
 import TopMenu from '@/components/layout/TopMenu'
 import ReactModal from 'react-modal'
 import useSetLocalization from '@/hooks/useSetLocalization'
 import useShowLangMessage from '@/hooks/useShowLangMessage'
 import { useRouter } from 'next/router'
-import CookieConsentBar from '@/components/layout/CookieConsent'
+// import CookieConsentBar from '@/components/layout/CookieConsent'
 import MainMenu from '@/components/navi/MainMenu'
 import cls from 'classnames'
-import AboutMenu from './AboutMenu'
+// import AboutMenu from './AboutMenu'
 import getConfig from 'next/config'
 import { getHeroFromNode } from '@/lib/ssr-helpers'
 
@@ -20,6 +21,16 @@ import { getHeroFromNode } from '@/lib/ssr-helpers'
 export const LAYOUT_BASIC = 'basic'
 export const LAYOUT_SMALL = 'small'
 export const FALLBACK_TITLE = 'infofinland.fi'
+
+const FeedbackBlock = dynamic(() =>
+  import('@/components/feedback/FeedbackBlock')
+)
+const Messages = dynamic(() => import('@/components/messages/Messages'))
+const AboutMenu = dynamic(() => import('./AboutMenu'))
+const CookieConsentBar = dynamic(() =>
+  import('@/components/layout/CookieConsent')
+)
+
 const DEFAULT_SITE_URL = 'https://www.infofinland.fi'
 /**
  * Set ReactModal root element for a18y
@@ -121,7 +132,7 @@ export const SecondaryLayout = ({ children, className, node }) => {
               <main id="main">{children}</main>
               <footer className="ifu-footer" id="footer">
                 <FooterLinks secondary />
-                <FeedbackButtonBlock />
+                <FeedbackBlock />
               </footer>
             </div>
           </div>
@@ -163,7 +174,7 @@ const AppLayout = ({ children, className, node }) => {
             <main id="main">{children}</main>
             <footer className="ifu-footer" id="footer">
               <FooterLinks />
-              <FeedbackButtonBlock />
+              <FeedbackBlock />
             </footer>
           </div>
         </div>

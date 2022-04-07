@@ -1,6 +1,7 @@
 import axios from 'axios'
 import getConfig from 'next/config'
 import { getFeedbackPage } from '@/lib/ssr-api'
+import { CACHE_HEADERS_10M } from '@/cache-headers'
 
 const WEBFORM_ID = 'contact'
 
@@ -21,7 +22,10 @@ export default async function handler(request, response) {
       return null
     })
 
-    return response.status(200).json(feedback)
+    return response
+      .setHeader(...CACHE_HEADERS_10M)
+      .status(200)
+      .json(feedback)
   }
 
   // Send feedback form to drupal

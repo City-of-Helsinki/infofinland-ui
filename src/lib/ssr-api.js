@@ -9,7 +9,7 @@ import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 import getConfig from 'next/config'
 import { CONTENT_TYPES, NODE_TYPES } from './DRUPAL_API_TYPES'
 import { getMunicipalityParams, getThemeHeroParams } from './query-params'
-import { values } from 'lodash'
+import values from 'lodash/values'
 import { getHeroFromNode } from './ssr-helpers'
 
 export const NO_DEFAULT_LOCALE = 'dont-use'

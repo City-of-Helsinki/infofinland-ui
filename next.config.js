@@ -1,5 +1,9 @@
 const { i18n } = require('./next-i18next.config')
 
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
+
 const env = {
   COOKIE_PAGE_PATH: '/cookie-settings',
   FEEDBACK_PAGE_PATH: '/feedback',
@@ -51,7 +55,8 @@ const serverRuntimeConfig = {
  *
  * Export next.config.js values
  */
-module.exports = {
+
+const config = {
   i18n,
   reactStrictMode: true,
   poweredByHeader: false,
@@ -68,3 +73,5 @@ module.exports = {
     return config
   },
 }
+
+module.exports = withBundleAnalyzer(config)

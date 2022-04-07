@@ -6,7 +6,7 @@ import Block from '@/components/layout/Block'
 import getConfig from 'next/config'
 import { getMenus, NOT_FOUND, NO_DEFAULT_LOCALE } from '@/lib/ssr-api'
 import { getMenu, getResourceByPath } from 'next-drupal'
-import { forEach } from 'lodash'
+import forEach from 'lodash/forEach'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 

@@ -3,16 +3,17 @@ import { H2 } from '../Typo'
 // import { BLOCK_MARGIN } from '../layout/Block'
 import LocalInformation from '@/components/cities/LocalInformation'
 import ReadMoreBlock from './ReadMoreBlock'
-import AccordionItems from './Accordion'
+import ImageBlock from './ImageBlock'
 import { CONTENT_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import { getImage, getLinks, getVideo } from '@/lib/ssr-helpers'
-
+import dynamic from 'next/dynamic'
 import PTVBlock from './PTVBlock'
 import { TEXT_HTML_FORMAT } from '@/lib/DRUPAL_API_TYPES'
-import Columns from './Columns'
 import HtmlBlock from './HtmlBlock'
-import ImageBlock from './ImageBlock'
-import VideoBlock from './VideoBlock'
+
+const AccordionItems = dynamic(() => import('./Accordion'))
+const Columns = dynamic(() => import('./Columns'))
+const VideoBlock = dynamic(() => import('./VideoBlock'))
 
 export const headingId = (id) => `heading-${id}`
 export const headingHash = (id) => `#${headingId(id)}`
