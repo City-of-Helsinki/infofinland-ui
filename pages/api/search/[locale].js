@@ -1,5 +1,5 @@
 import * as Elastic from '@/lib/elasticsearch'
-
+import logger from '@/logger'
 export default async function handler(req, res) {
   // No posts allowed
   const { q, from, locale } = Elastic.getSearchParamsFromQuery(req)
@@ -16,12 +16,12 @@ export default async function handler(req, res) {
   const indexExists = await elastic.indices.exists({ index })
 
   if (!indexExists) {
-    console.warn(Elastic.getIndexWarning({ index, q }))
+    logger.warn(Elastic.getIndexWarning({ index, q }))
     index = undefined
   }
 
   search = await elastic.search({ q, size, from, index }).catch((e) => {
-    console.error(
+    logger.error(
       Elastic.ERROR,
       e?.meta?.body?.error?.root_cause || e?.name || e
     )

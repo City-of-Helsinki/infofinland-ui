@@ -13,12 +13,15 @@ import Pagination from '@/components/search/Pagination'
 import Layout from '@/components/layout/Layout'
 import Head from 'next/head'
 import Block from '@/components/layout/Block'
-import SearchResults from '@/components/search/SaerchResults'
+import SearchResults from '@/components/search/SearchResults'
 import {
   searchResultsCountAtom,
   searchResultsTermAtom,
   searchErrorAtom,
 } from '@/src/store'
+// import logger from '@/logger'
+const logger = console
+
 import { CACHE_HEADERS_60S } from '@/cache-headers'
 
 export async function getServerSideProps(context) {
@@ -44,13 +47,14 @@ export async function getServerSideProps(context) {
   if (indexExists) {
     searchParams.index = index
   } else {
-    console.warn(Elastic.getIndexWarning({ index, q }))
+    logger.warn(Elastic.getIndexWarning({ index, q }))
   }
 
   if (q) {
     results = await elastic.search(searchParams).catch((e) => {
-      console.error(
+      logger.error(
         Elastic.ERROR,
+        { q, index, size, from },
         e?.meta?.body?.error?.root_cause || e?.name || e
       )
       error = e?.meta?.statusCode || e?.name || e

@@ -16,7 +16,8 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
 
   const { t } = useTranslation('common')
   const feedbackEmail = useAtomValue(feedbackEmailAtom)
-  const pageUrl = isSSR() === false ? window.location.href : ''
+  const urlWithoutHash =
+    isSSR() === false ? window.location.href.split('#').shift() : ''
   const {
     register,
     reset,
@@ -39,7 +40,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
   }, [isSubmitSuccessful, isSubmitting, scrollTarget])
 
   const scrollTarget = useRef()
-  const urlWithoutHash = pageUrl.split('#').shift()
+
   return (
     <div className="block mb-16 border-t border-gray-darker-op2">
       <div

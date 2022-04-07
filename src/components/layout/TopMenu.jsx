@@ -7,12 +7,16 @@ import {
   LanguageMenuButton,
   LangMenuDrawer,
 } from '@/components/languages/LanguageMenu'
-import CityMenu from '@/components/layout/CityMenu'
+// import CityMenu from '@/components/layout/CityMenu'
 import TopSearch from '../search/TopSearch'
 import cls from 'classnames'
 import { useAtomValue } from 'jotai/utils'
 import { pageIsLoadingAtom } from '@/src/store'
 import { useRouter } from 'next/router'
+import dynamic from 'next/dynamic'
+
+const CityMenu = dynamic(() => import('@/components/layout/CityMenu'))
+
 const Logo = () => {
   const { locale } = useRouter()
   const pageIsLoading = useAtomValue(pageIsLoadingAtom)
