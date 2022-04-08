@@ -25,6 +25,9 @@ import { DateTime } from 'luxon'
 import logger from '@/logger'
 import cache from '@/lib/server-cache'
 
+const USE_TIMER= process.env.USE_TIMER || false
+const T = 'pageTimer'
+
 export async function getStaticPaths() {
   const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
   // prerender all theme pages from main menu and cities menu
@@ -69,9 +72,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-  const T = 'pageTimer'
 
-  console.time(T)
+  USE_TIMER && console.time(T)
 
   const { serverRuntimeConfig } = getConfig()
   const { params, locale } = context
@@ -90,8 +92,8 @@ export async function getStaticProps(context) {
     cache.set(`type-of-${localePath}`, type, 1000000)
   }
 
-  console.log('type resolved')
-  console.timeLog(T)
+  USE_TIMER && console.log('type resolved')
+  USE_TIMER && console.timeLog(T)
 
   //Allow only pages and landing pages to be queried
   if (![NODE_TYPES.PAGE, NODE_TYPES.LANDING_PAGE].includes(type)) {
@@ -101,7 +103,9 @@ export async function getStaticProps(context) {
     })
     return NOT_FOUND
   }
+
   let node = cache.get(`node-${localePath}`)
+
   if (!node) {
     node = await getResourceFromContext(
       type,
@@ -122,8 +126,8 @@ export async function getStaticProps(context) {
     })
     cache.set(`node-${localePath}`, node)
   }
-  console.log('node resolved')
-  console.timeLog(T)
+  USE_TIMER && console.log('node resolved')
+  USE_TIMER && console.timeLog(T)
 
   // Return 404 if node was null
   if (!node) {
@@ -191,8 +195,9 @@ export async function getStaticProps(context) {
       cache.set(`menu-basic-${locale}`, menus)
     }
   }
-  console.log('menus resolved')
-  console.timeLog(T)
+
+  USE_TIMER && console.log('menus resolved')
+  USE_TIMER && console.timeLog(T)
 
   let themeMenu = menuErrorResponse()
   let themes = null
@@ -224,9 +229,10 @@ export async function getStaticProps(context) {
   const lastUpdated = DateTime.fromISO(node.revision_timestamp).toFormat(
     'dd.MM.yyyy'
   )
-  console.log('page ready')
 
-  console.timeEnd(T)
+  USE_TIMER && console.log('page ready')
+
+  USE_TIMER && console.timeEnd(T)
 
   return {
     props: {

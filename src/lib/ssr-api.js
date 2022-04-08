@@ -13,6 +13,10 @@ import { getMunicipalityParams, getThemeHeroParams } from './query-params'
 
 // import values from 'lodash/values'
 import { getHeroFromNode } from './ssr-helpers'
+// import  values from 'lodash/values'
+// import  some from 'lodash/some'
+// import { cache } from 'sharp'
+
 // import logger from '@/logger'
 const logger = console
 
@@ -132,6 +136,34 @@ export const getFeedbackPage = async ({ locale }) => {
 
   return node
 }
+
+
+// export const getPageFromCache = ({locale,localePath}) => {
+//   // const { serverRuntimeConfig } = getConfig()
+//   // const { params, locale } = context
+//   // params.slug = params.slug || ['/']
+
+//   // const localePath = ['', locale, ...params.slug].join('/')
+//   // const isNodePath = /node/.test(params.slug[0])
+
+//   const cachekeys =   {
+//     type:`type-of-${localePath}`,
+//     node:`node-${localePath}`,
+//     basicMenus:`menu-basic-${locale}`,
+//     smallMenu:`menu-small-${locale}`
+//   }
+
+
+//   const keylist= values(cachekeys)
+//   needsToLoad = some(keylist,(key) => cache.has(key) === false)
+//   if(!needsToLoad) {
+//     return cache.get(keylist)
+//   }
+
+//   return
+
+
+// }
 
 export const getMessages = async ({ locale, id }) => {
   const frontPageNode = await translatePath(
