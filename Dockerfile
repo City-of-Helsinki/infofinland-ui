@@ -93,4 +93,4 @@ ENV PORT=8080
 # We don't use it.
 ENV NEXT_TELEMETRY_DISABLED 1
 
-CMD ["CACHE_REPOPULATE=1","yarn", "start"]
+CMD ["yarn", "start"]
