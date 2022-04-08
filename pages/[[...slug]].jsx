@@ -25,7 +25,7 @@ import cache from '@/lib/server-cache'
 const USE_TIMER = process.env.USE_TIMER || false
 
 export async function getStaticPaths() {
-  const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
+  const { DRUPAL_MENUS,BUILD_ALL } = getConfig().serverRuntimeConfig
   // prerender all theme pages from main menu and cities menu
   const menus = (
     await Promise.all([
@@ -39,8 +39,7 @@ export async function getStaticPaths() {
       }),
     ])
   ) // items for all rendering pages, tree for rendering theme pages
-    .map(({ tree }) =>
-      tree.map(({ url }) => {
+    .map(({ tree,items }) => ( BUILD_ALL === '1' ? items : tree).map(({ url }) => {
         //remove root slash and language code
         const [, , ...slug] = url.split('/')
         return {
