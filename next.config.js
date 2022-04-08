@@ -39,6 +39,7 @@ const publicRuntimeConfig = {
 const serverRuntimeConfig = {
   // Will only be available onprocess.env. the server side
   CACHE_REPOPULATE: process.env.CACHE_REPOPULATE || false,
+  BUILD_ALL: process.env.BUILD_ALL || false,
   ELASTICSEARCH_URL: process.env.ELASTICSEARCH_URL,
   elasticsearch_password: process.env.elasticsearch_password,
   elasticsearch_certificate: process.env.elasticsearch_certificate,
