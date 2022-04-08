@@ -6,7 +6,7 @@ import { longTextClass } from '@/components/Typo'
 import { i18n } from '@/next-i18next.config'
 import map from 'lodash/map'
 import omit from 'lodash/omit'
-import { getMenus } from '@/lib/ssr-api'
+import { getCachedMenus } from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 
 import TextLink from '@/components/TextLink'
@@ -17,7 +17,7 @@ import useSWR from 'swr'
 
 export async function getStaticProps(context) {
   // const { serverRuntimeConfig } = getConfig()
-  const menus = await getMenus(context)
+  const menus = await getCachedMenus(context.locale)
   return {
     props: {
       texts: TEXTS_404,

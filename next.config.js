@@ -20,7 +20,7 @@ const env = {
     CITIES_LANDING: 'cities-landing',
   },
   // REVALIDATE_TIME: 1200, //seconds , 20 minutes
-  REVALIDATE_TIME: 60, //seconds ,
+  REVALIDATE_TIME: 10, //seconds ,
   FB_URL: 'https://www.facebook.com/infofinland.fi',
   INSTAGRAM_URL: 'https://www.instagram.com/infofinland.fi/',
   YOUTUBE_URL: 'https://www.youtube.com/c/infofinland',
@@ -37,7 +37,8 @@ const publicRuntimeConfig = {
 }
 
 const serverRuntimeConfig = {
-  // Will only be available on the server side
+  // Will only be available onprocess.env. the server side
+  CACHE_REPOPULATE: process.env.CACHE_REPOPULATE || false,
   ELASTICSEARCH_URL: process.env.ELASTICSEARCH_URL,
   elasticsearch_password: process.env.elasticsearch_password,
   elasticsearch_certificate: process.env.elasticsearch_certificate,

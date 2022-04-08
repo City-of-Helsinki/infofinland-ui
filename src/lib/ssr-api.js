@@ -2,6 +2,7 @@ import {
   getMenu,
   getResource,
   getResourceCollection,
+  getResourceFromContext,
   translatePath,
 } from 'next-drupal'
 import { i18n } from '../../next-i18next.config'
@@ -9,16 +10,12 @@ import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 import getConfig from 'next/config'
 import { CONTENT_TYPES, NODE_TYPES } from './DRUPAL_API_TYPES'
 import { getMunicipalityParams, getThemeHeroParams } from './query-params'
-
-
-// import values from 'lodash/values'
 import { getHeroFromNode } from './ssr-helpers'
-// import  values from 'lodash/values'
-// import  some from 'lodash/some'
-// import { cache } from 'sharp'
 
-// import logger from '@/logger'
-const logger = console
+import { getQueryParamsFor } from './query-params'
+import cache , {MENU_CACHE_TTL} from './server-cache'
+
+import logger from '@/logger'
 
 export const NO_DEFAULT_LOCALE = 'dont-use'
 
@@ -33,7 +30,53 @@ export * from './query-params'
 
 export const NOT_FOUND = { notFound: true }
 
-export const getMenus = async ({ locale }) => {
+//
+
+
+export const getCachedMenus = async (locale) => {
+  const { CACHE_REPOPULATE } = getConfig().serverRuntimeConfig || false
+  const { basicMenus: key } = getCacheKeysForPage({ locale })
+  if (cache.has(key)) {
+    logger.info('serving menus from cache', { cacheKey: key })
+    return cache.get(key)
+  }
+
+  const fetcher = () => getMainMenus({ locale })
+  logger.info('caching menus', { locale })
+  const menus = await fetcher()
+  cache.set(key, menus, MENU_CACHE_TTL)
+  CACHE_REPOPULATE === '1' &&
+    cache.on('expired', async (expiredKey) => {
+      if (expiredKey === key) {
+        logger.info('cache key expired, refetching', { cacheKey: key })
+        const fresh = await fetcher()
+        cache.set(key, fresh, MENU_CACHE_TTL)
+      }
+    })
+
+  return menus
+}
+
+export const getCachedAboutMenu = async (locale) => {
+  const { smallMenu: key } = getCacheKeysForPage({ locale })
+  if (cache.has(key)) {
+    return cache.get(key)
+  }
+
+  const fetcher = () =>
+    getMenu(getConfig().serverRuntimeConfig.DRUPAL_MENUS.ABOUT, {
+      locale,
+      defaultLocale: NO_DEFAULT_LOCALE,
+    })
+
+  logger.info('caching menu', { cacheKey: key })
+  const menu = await fetcher()
+  cache.set(key, menu, )
+
+  return menu
+}
+
+const getMainMenus = async ({ locale }) => {
   const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
 
   const [main, citiesLanding, cities, footer] = await Promise.all([
@@ -71,6 +114,53 @@ export const getMenus = async ({ locale }) => {
   ])
 
   return { main, footer, cities, 'cities-landing': citiesLanding }
+}
+
+export const getCachedNodeFromContext = async ({
+  context,
+  localePath,
+  type,
+}) => {
+  const { locale } = context
+  const { node: key } = getCacheKeysForPage({ locale, localePath })
+
+  const { CACHE_REPOPULATE } = getConfig().serverRuntimeConfig || false
+
+  const fetcher = () =>
+    getResourceFromContext(
+      type,
+      {
+        ...context,
+        defaultLocale: NO_DEFAULT_LOCALE,
+      },
+      {
+        params: getQueryParamsFor(type),
+      }
+    ).catch((e) => {
+      logger.error(`Error requesting node`, { type, localePath }, e)
+    })
+
+  if (cache.has(key)) {
+    logger.info('serving page from cache', { localePath })
+    return cache.get(key)
+  }
+
+  const node = await fetcher()
+  if (!node) {
+    return null
+  }
+  logger.info('caching page', { localePath })
+  cache.set(key, node)
+  CACHE_REPOPULATE === '1' &&
+    cache.on('expired', async (expiredKey) => {
+      if (expiredKey === key) {
+        logger.info('cache key expired, refetching', { cacheKey: key })
+        const freshNode = await fetcher()
+        cache.set(key, freshNode)
+      }
+    })
+
+  return node
 }
 
 export const getThemeHeroImages = async ({ tree, context }) => {
@@ -137,31 +227,22 @@ export const getFeedbackPage = async ({ locale }) => {
   return node
 }
 
+export const getCacheKeysForPage = ({ locale, localePath }) => ({
+  type: `type-of-${localePath}`,
+  node: `node-${localePath}`,
+  basicMenus: `menu-basic-${locale}`,
+  smallMenu: `menu-small-${locale}`,
+})
 
 // export const getPageFromCache = ({locale,localePath}) => {
-//   // const { serverRuntimeConfig } = getConfig()
-//   // const { params, locale } = context
-//   // params.slug = params.slug || ['/']
-
-//   // const localePath = ['', locale, ...params.slug].join('/')
-//   // const isNodePath = /node/.test(params.slug[0])
-
-//   const cachekeys =   {
-//     type:`type-of-${localePath}`,
-//     node:`node-${localePath}`,
-//     basicMenus:`menu-basic-${locale}`,
-//     smallMenu:`menu-small-${locale}`
-//   }
-
-
-//   const keylist= values(cachekeys)
-//   needsToLoad = some(keylist,(key) => cache.has(key) === false)
+//   const keylist= values(getCacheKeysForPage({locale,localePath}))
+//   const needsToLoad = some(keylist,(key) => cache.has(key) === false)
 //   if(!needsToLoad) {
+//     console.info('full cache for ',localePath)
 //     return cache.get(keylist)
 //   }
 
 //   return
-
 
 // }
 

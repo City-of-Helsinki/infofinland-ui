@@ -40,7 +40,7 @@ export default async function handler(req, res) {
 
         return { locale: node.entity.langcode, id: node.entity.id, path }
       })
-      .filter((l) => !!l)
+      .filter((l) => l !== null)
   }
 
   res
