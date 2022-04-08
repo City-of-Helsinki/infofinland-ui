@@ -9,16 +9,23 @@ import { getMenus } from '@/lib/ssr-api'
 import * as Elastic from '@/lib/elasticsearch'
 import SearchBar from '@/components/search/SearchBar'
 import { DotsLoader } from '@/components/Loaders'
-import Pagination from '@/components/search/Pagination'
+// import Pagination from '@/components/search/Pagination'
 import Layout from '@/components/layout/Layout'
 import Head from 'next/head'
 import Block from '@/components/layout/Block'
-import SearchResults from '@/components/search/SaerchResults'
+// import SearchResults from '@/components/search/SearchResults'
 import {
   searchResultsCountAtom,
   searchResultsTermAtom,
   searchErrorAtom,
 } from '@/src/store'
+import dynamic from 'next/dynamic'
+// import logger from '@/logger'
+const Pagination = dynamic(()=>import('@/components/search/Pagination'))
+const SearchResults  = dynamic(()=> import('@/components/search/SearchResults'))
+
+const logger = console
+
 import { CACHE_HEADERS_60S } from '@/cache-headers'
 
 export async function getServerSideProps(context) {
@@ -44,13 +51,14 @@ export async function getServerSideProps(context) {
   if (indexExists) {
     searchParams.index = index
   } else {
-    console.warn(Elastic.getIndexWarning({ index, q }))
+    logger.warn(Elastic.getIndexWarning({ index, q }))
   }
 
   if (q) {
     results = await elastic.search(searchParams).catch((e) => {
-      console.error(
+      logger.error(
         Elastic.ERROR,
+        { q, index, size, from },
         e?.meta?.body?.error?.root_cause || e?.name || e
       )
       error = e?.meta?.statusCode || e?.name || e

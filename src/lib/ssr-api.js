@@ -9,8 +9,16 @@ import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 import getConfig from 'next/config'
 import { CONTENT_TYPES, NODE_TYPES } from './DRUPAL_API_TYPES'
 import { getMunicipalityParams, getThemeHeroParams } from './query-params'
-import values from 'lodash/values'
+
+
+// import values from 'lodash/values'
 import { getHeroFromNode } from './ssr-helpers'
+// import  values from 'lodash/values'
+// import  some from 'lodash/some'
+// import { cache } from 'sharp'
+
+// import logger from '@/logger'
+const logger = console
 
 export const NO_DEFAULT_LOCALE = 'dont-use'
 
@@ -28,26 +36,41 @@ export const NOT_FOUND = { notFound: true }
 export const getMenus = async ({ locale }) => {
   const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
 
-  const menuNames = values(DRUPAL_MENUS).filter(
-    (menu) => menu !== DRUPAL_MENUS.ABOUT
-  )
+  const [main, citiesLanding, cities, footer] = await Promise.all([
+    getMenu(DRUPAL_MENUS.MAIN, {
+      locale,
+      defaultLocale: NO_DEFAULT_LOCALE,
+    }).catch((e) => {
+      logger.error('Error fetching main menu:', { e })
+      return menuErrorResponse()
+    }),
 
-  const menus = await Promise.all(
-    menuNames.map(async (menu) => {
-      const menuItems = await getMenu(menu, {
-        locale,
-        defaultLocale: NO_DEFAULT_LOCALE,
-      }).catch((e) => {
-        console.error('Error fetching menu:', menu, e)
-        return menuErrorResponse()
-      })
-      return { menuItems: menuItems, menu }
-    })
-  )
+    getMenu(DRUPAL_MENUS.CITIES_LANDING, {
+      locale,
+      defaultLocale: NO_DEFAULT_LOCALE,
+    }).catch((e) => {
+      logger.error('Error fetching cities-main menu:', { e })
+      return menuErrorResponse()
+    }),
 
-  return menus.reduce((menuObj, { menu, menuItems }) => {
-    return { ...menuObj, [menu]: menuItems }
-  }, {})
+    getMenu(DRUPAL_MENUS.CITIES, {
+      locale,
+      defaultLocale: NO_DEFAULT_LOCALE,
+    }).catch((e) => {
+      logger.error('Error fetching cities menu:', { e })
+      return menuErrorResponse()
+    }),
+
+    getMenu(DRUPAL_MENUS.FOOTER, {
+      locale,
+      defaultLocale: NO_DEFAULT_LOCALE,
+    }).catch((e) => {
+      logger.error('Error fetching footer menu:', { e })
+      return menuErrorResponse()
+    }),
+  ])
+
+  return { main, footer, cities, 'cities-landing': citiesLanding }
 }
 
 export const getThemeHeroImages = async ({ tree, context }) => {
@@ -69,7 +92,7 @@ export const getThemeHeroImages = async ({ tree, context }) => {
         locale: context.locale,
         params: getThemeHeroParams(),
       }).catch((e) => {
-        console.error(e)
+        logger.error('Error getting theme images', { id, e })
       })
     )
   )
@@ -114,11 +137,39 @@ export const getFeedbackPage = async ({ locale }) => {
   return node
 }
 
+
+// export const getPageFromCache = ({locale,localePath}) => {
+//   // const { serverRuntimeConfig } = getConfig()
+//   // const { params, locale } = context
+//   // params.slug = params.slug || ['/']
+
+//   // const localePath = ['', locale, ...params.slug].join('/')
+//   // const isNodePath = /node/.test(params.slug[0])
+
+//   const cachekeys =   {
+//     type:`type-of-${localePath}`,
+//     node:`node-${localePath}`,
+//     basicMenus:`menu-basic-${locale}`,
+//     smallMenu:`menu-small-${locale}`
+//   }
+
+
+//   const keylist= values(cachekeys)
+//   needsToLoad = some(keylist,(key) => cache.has(key) === false)
+//   if(!needsToLoad) {
+//     return cache.get(keylist)
+//   }
+
+//   return
+
+
+// }
+
 export const getMessages = async ({ locale, id }) => {
   const frontPageNode = await translatePath(
     getConfig().serverRuntimeConfig.DRUPAL_FRONT_PAGE
   ).catch((e) => {
-    console.error('error resolving front page for messages')
+    logger.error('Error resolving front page for messages', { locale, id })
     throw e
   })
 
