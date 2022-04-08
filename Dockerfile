@@ -63,7 +63,7 @@ FROM node:16-alpine AS runner
 WORKDIR /app
 # USER node:0
 ENV NODE_ENV production
-ENV CACHE_REPOPULATE 1
+ENV CACHE_REPOPULATE '1'
 #DEBUG add curl to container for network debugging purposes
 RUN apk --no-cache add curl
 
