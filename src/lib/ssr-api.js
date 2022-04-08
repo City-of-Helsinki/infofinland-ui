@@ -13,7 +13,7 @@ import { getMunicipalityParams, getThemeHeroParams } from './query-params'
 import { getHeroFromNode } from './ssr-helpers'
 
 import { getQueryParamsFor } from './query-params'
-import cache from './server-cache'
+import cache , {MENU_CACHE_TTL} from './server-cache'
 
 import logger from '@/logger'
 
@@ -30,7 +30,8 @@ export * from './query-params'
 
 export const NOT_FOUND = { notFound: true }
 
-const MENU_CACHE_TTL = 30
+//
+
 
 export const getCachedMenus = async (locale) => {
   const { CACHE_REPOPULATE } = getConfig().serverRuntimeConfig || false
@@ -49,7 +50,7 @@ export const getCachedMenus = async (locale) => {
       if (expiredKey === key) {
         logger.info('cache key expired, refetching', { cacheKey: key })
         const fresh = await fetcher()
-        cache.set(key, fresh, PAGE_CACHE_TTL)
+        cache.set(key, fresh, MENU_CACHE_TTL)
       }
     })
 
@@ -70,7 +71,7 @@ export const getCachedAboutMenu = async (locale) => {
 
   logger.info('caching menu', { cacheKey: key })
   const menu = await fetcher()
-  cache.set(key, menu, MENU_CACHE_TTL)
+  cache.set(key, menu, )
 
   return menu
 }
@@ -114,7 +115,7 @@ const getMainMenus = async ({ locale }) => {
 
   return { main, footer, cities, 'cities-landing': citiesLanding }
 }
-const PAGE_CACHE_TTL = 20
+
 export const getCachedNodeFromContext = async ({
   context,
   localePath,
@@ -149,13 +150,13 @@ export const getCachedNodeFromContext = async ({
     return null
   }
   logger.info('caching page', { localePath })
-  cache.set(key, node, PAGE_CACHE_TTL)
+  cache.set(key, node)
   CACHE_REPOPULATE === '1' &&
     cache.on('expired', async (expiredKey) => {
       if (expiredKey === key) {
         logger.info('cache key expired, refetching', { cacheKey: key })
         const freshNode = await fetcher()
-        cache.set(key, freshNode, PAGE_CACHE_TTL)
+        cache.set(key, freshNode)
       }
     })
 
