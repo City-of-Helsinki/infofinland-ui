@@ -5,7 +5,7 @@ import Router from 'next/router'
 import { useEffect, useState } from 'react'
 import { useAtomValue } from 'jotai/utils'
 import { Analytics } from '@/hooks/useAnalytics'
-import { getMenus } from '@/lib/ssr-api'
+import { getCachedMenus } from '@/lib/ssr-api'
 import * as Elastic from '@/lib/elasticsearch'
 import SearchBar from '@/components/search/SearchBar'
 import { DotsLoader } from '@/components/Loaders'
@@ -21,15 +21,15 @@ import {
 } from '@/src/store'
 import dynamic from 'next/dynamic'
 // import logger from '@/logger'
-const Pagination = dynamic(()=>import('@/components/search/Pagination'))
-const SearchResults  = dynamic(()=> import('@/components/search/SearchResults'))
+const Pagination = dynamic(() => import('@/components/search/Pagination'))
+const SearchResults = dynamic(() => import('@/components/search/SearchResults'))
 
 const logger = console
 
 import { CACHE_HEADERS_60S } from '@/cache-headers'
 
 export async function getServerSideProps(context) {
-  const menus = await getMenus(context)
+  const menus = await getCachedMenus(context.locale)
   context.res.setHeader(...CACHE_HEADERS_60S)
   const { size, q, from, index } = Elastic.getSearchParamsFromQuery(context)
   let results = null

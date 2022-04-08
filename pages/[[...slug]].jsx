@@ -1,21 +1,18 @@
 import getConfig from 'next/config'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import {
-  getMenu,
-  getResourceFromContext,
-  getResourceTypeFromContext,
-} from 'next-drupal'
+import { getMenu, getResourceTypeFromContext } from 'next-drupal'
 import ArticlePage from '@/src/page-templates/ArticlePage'
 import AboutPage from '@/src/page-templates/AboutPage'
 // import { i18n } from '@/next-i18next.config'
 import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import {
-  getMenus,
   NOT_FOUND,
-  getQueryParamsFor,
-  // getDefaultLocaleNode,
   menuErrorResponse,
   getThemeHeroImages,
+  getCacheKeysForPage,
+  getCachedMenus,
+  getCachedAboutMenu,
+  getCachedNodeFromContext,
 } from '@/lib/ssr-api'
 import { addPrerenderLocalesToPaths } from '@/lib/ssr-helpers'
 import { LAYOUT_SMALL } from '@/components/layout/Layout'
@@ -25,8 +22,7 @@ import { DateTime } from 'luxon'
 import logger from '@/logger'
 import cache from '@/lib/server-cache'
 
-const USE_TIMER= process.env.USE_TIMER || false
-const T = 'pageTimer'
+const USE_TIMER = process.env.USE_TIMER || false
 
 export async function getStaticPaths() {
   const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
@@ -42,7 +38,7 @@ export async function getStaticPaths() {
         defaultLocale: NO_DEFAULT_LOCALE,
       }),
     ])
-  )
+  ) // items for all rendering pages, tree for rendering theme pages
     .map(({ tree }) =>
       tree.map(({ url }) => {
         //remove root slash and language code
@@ -72,16 +68,19 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-
-  USE_TIMER && console.time(T)
-
-  const { serverRuntimeConfig } = getConfig()
+  const { REVALIDATE_TIME, CACHE_REPOPULATE } = getConfig().serverRuntimeConfig
   const { params, locale } = context
   params.slug = params.slug || ['/']
-
-  const localePath = ['', locale, ...params.slug].join('/')
+  logger.warn('cache autoupdate status:', { cacheRepopulate: CACHE_REPOPULATE })
+  const localePath =
+    params.slug[0] === '/'
+      ? `/${locale}`
+      : ['', locale, ...params.slug].join('/')
   const isNodePath = /node/.test(params.slug[0])
-  let type = cache.get(`type-of-${localePath}`)
+  const T = `pateTimer-for-${localePath}`
+  const cacheKeys = await getCacheKeysForPage({ locale, localePath })
+  USE_TIMER && console.time(T)
+  let type = cache.get(cacheKeys.type)
 
   if (!type) {
     type = await getResourceTypeFromContext({
@@ -89,7 +88,7 @@ export async function getStaticProps(context) {
       defaultLocale: NO_DEFAULT_LOCALE,
       params,
     })
-    cache.set(`type-of-${localePath}`, type, 1000000)
+    cache.set(cacheKeys.type, type, 1000000)
   }
 
   USE_TIMER && console.log('type resolved')
@@ -104,28 +103,8 @@ export async function getStaticProps(context) {
     return NOT_FOUND
   }
 
-  let node = cache.get(`node-${localePath}`)
+  const node = await getCachedNodeFromContext({ context, type, localePath })
 
-  if (!node) {
-    node = await getResourceFromContext(
-      type,
-      {
-        locale,
-        ...context,
-
-        //Dont use default locale. Drupal and UI have different default locales.
-        //Always explicitly set the locale for drupal queries
-        defaultLocale: NO_DEFAULT_LOCALE,
-      },
-      {
-        params: getQueryParamsFor(type),
-      }
-    ).catch((e) => {
-      logger.error(`Error requesting node`, { type, localePath }, e)
-      // throw e
-    })
-    cache.set(`node-${localePath}`, node)
-  }
   USE_TIMER && console.log('node resolved')
   USE_TIMER && console.timeLog(T)
 
@@ -172,28 +151,12 @@ export async function getStaticProps(context) {
   //     // console.timeEnd(T)
   //   }
   // }
-  // let menus = cache.get('menus')
+
   let menus = {}
-
-  // let menus = cache.get('menus')
   if (node.field_layout === 'small') {
-    let menuName = serverRuntimeConfig.DRUPAL_MENUS.ABOUT
-    menus[menuName] = cache.get(`menu-small-${locale}`)
-
-    if (!menus[menuName]) {
-      let menu = await getMenu(menuName, {
-        locale,
-        defaultLocale: NO_DEFAULT_LOCALE,
-      })
-      cache.set(`menu-small-${locale}`, menu)
-      menus[menuName] = menu
-    }
+    menus.about = await getCachedAboutMenu(locale)
   } else {
-    menus = cache.get(`menu-basic-${locale}`)
-    if (!menus) {
-      menus = await getMenus({ ...context, id: node.id })
-      cache.set(`menu-basic-${locale}`, menus)
-    }
+    menus = await getCachedMenus(locale)
   }
 
   USE_TIMER && console.log('menus resolved')
@@ -209,8 +172,12 @@ export async function getStaticProps(context) {
         locale,
         defaultLocale: NO_DEFAULT_LOCALE,
       })
-      console.log('theme menu loaded from drupal')
-      console.timeLog(T)
+      USE_TIMER &&
+        console.log(
+          'theme menu loaded from drupal',
+          field_theme_menu_machine_name
+        )
+      USE_TIMER && console.timeLog(T)
     }
   }
 
@@ -245,7 +212,7 @@ export async function getStaticProps(context) {
       fiNode,
       ...(await serverSideTranslations(locale, ['common'])),
     },
-    revalidate: serverRuntimeConfig.REVALIDATE_TIME,
+    revalidate: REVALIDATE_TIME,
   }
 }
 

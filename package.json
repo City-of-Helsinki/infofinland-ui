@@ -10,7 +10,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "CACHE_REPOPULATE=0 next build",
     "postbuild": "next-sitemap",
     "format": "prettier --write .",
     "start": "next start",

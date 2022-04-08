@@ -32,7 +32,7 @@ const LanguageSelector = ({ openMenu }) => {
         </button>
         {i18n.languages.map(({ text, code }) => {
           const isLocalized =
-            locales?.find((page) => page.locale === code) !== undefined
+            locales?.find((page) => page?.locale === code) !== undefined
           return (
             <Link
               href={path}

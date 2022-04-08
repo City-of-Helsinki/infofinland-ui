@@ -4,8 +4,13 @@ import TextLink from '@/components/TextLink'
 import cls from 'classnames'
 import Block from '@/components/layout/Block'
 import getConfig from 'next/config'
-import { getMenus, NOT_FOUND, NO_DEFAULT_LOCALE } from '@/lib/ssr-api'
-import { getMenu, getResourceByPath } from 'next-drupal'
+import {
+  getCachedMenus,
+  getCachedAboutMenu,
+  NOT_FOUND,
+  NO_DEFAULT_LOCALE,
+} from '@/lib/ssr-api'
+import { getResourceByPath } from 'next-drupal'
 import forEach from 'lodash/forEach'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
@@ -13,18 +18,21 @@ import { useTranslation } from 'next-i18next'
 export async function getStaticProps(context) {
   const { SITEMAP_PAGE_PATH, DRUPAL_MENUS, REVALIDATE_TIME } =
     getConfig().serverRuntimeConfig
-  const menus = await getMenus(context)
+  const { locale } = context
+  const menus = await getCachedMenus(locale)
   const options = {
     locale: context.locale,
     defaultLocale: NO_DEFAULT_LOCALE,
   }
-  const node = await getResourceByPath(SITEMAP_PAGE_PATH, options)
+  const node = await getResourceByPath(
+    `/${locale}${SITEMAP_PAGE_PATH}`,
+    options
+  )
   if (!node) {
     return NOT_FOUND
   }
 
-  const menuName = DRUPAL_MENUS.ABOUT
-  menus[menuName] = await getMenu(menuName, options)
+  menus.about = await getCachedAboutMenu(locale)
 
   const urls = {}
   forEach(menus, (menu, name) => {
@@ -37,7 +45,7 @@ export async function getStaticProps(context) {
       node,
       urls,
       menus,
-      ...(await serverSideTranslations(context.locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['common'])),
     },
     revalidate: REVALIDATE_TIME,
   }
