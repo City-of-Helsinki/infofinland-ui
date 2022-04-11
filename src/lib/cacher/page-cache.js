@@ -42,19 +42,15 @@ const getKey = (keyObj) => {
 //Refresh page cache entry on expiration
 cache.on('expired', async (expiredKey) => {
   if (getConfig().serverRuntimeConfig.CACHE_REPOPULATE === '1') {
-    console.debug('Page cache key expired,cache repopulation is ON', {
-      cacheRepopulate: '1',
-      expiredKey,
-    })
     const params = parseKey(expiredKey)
-    logger.info('Cache entry expired', {
+    logger.verbose('Page cache entry expired', {
       cacheKey: expiredKey,
       params,
       cacheName: CACHE_NAME,
     })
     const fresh = await getNode(params)
     if (fresh) {
-      logger.info('Refreshing entry ', {
+      logger.http('Refreshing node ', {
         cacheKey: expiredKey,
         cacheName: CACHE_NAME,
       })

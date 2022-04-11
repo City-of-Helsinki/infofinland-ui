@@ -3,7 +3,8 @@ import { getMainMenus } from '../ssr-api'
 import logger from '@/logger'
 import getConfig from 'next/config'
 
-export const MENU_CACHE_TTL = 120
+// export const MENU_CACHE_TTL = 120
+export const MENU_CACHE_TTL = 600
 /**
  *  Cache instance for menus. Cached for two (2)  minutes in production
  *  Could propably  be much longer.
@@ -22,9 +23,10 @@ const parseKey = (key) => {
   try {
     return JSON.parse(key)
   } catch (e) {
-    logger.error('Error while parsin cache key', e, {
+    logger.error('Error while parsin cache key',  {
       cacheKey: key,
       CACHE_NAME,
+      e
     })
     return []
   }
@@ -34,9 +36,10 @@ const getKey = (keyObj) => {
   try {
     return JSON.stringify(keyObj)
   } catch (e) {
-    logger.error('Error while creating cache key', e, {
+    logger.error('Error while creating cache key',{
       cacheKey: keyObj,
       CACHE_NAME,
+      e
     })
     return []
   }
@@ -45,25 +48,21 @@ const getKey = (keyObj) => {
 //Refresh menu cache entry on expiration
 cache.on('expired', async (expiredKey) => {
   if (getConfig().serverRuntimeConfig.CACHE_REPOPULATE === '1') {
-    logger.debug(' Menue cache key expired,cache repopulation is ON', {
-      cacheRepopulate: '1',
-      expiredKey,
-    })
     const params = parseKey(expiredKey)
-    logger.info('Cache entry expired', {
+    logger.verbose('Menu Cache entry expired', {
       cacheKey: expiredKey,
       params,
       cacheName: CACHE_NAME,
     })
     const fresh = await getMainMenus(params)
     if (fresh) {
-      logger.info('Refreshing entry ', {
+      logger.http('Refreshing menus ', {
         cacheKey: expiredKey,
         cacheName: CACHE_NAME,
       })
       cache.set(expiredKey, fresh)
     } else {
-      logger.warn('Unable to refresh expired entry', { cacheKey: expiredKey })
+      logger.warn('Unable to refresh expired menu', { cacheKey: expiredKey,params })
     }
   }
 })

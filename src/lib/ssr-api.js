@@ -42,7 +42,7 @@ export const getCachedMenus = async (locale) => {
   }
 
   const menus = await getMainMenus({ locale })
-  logger.info('Caching menus', { cacheKey: key, locale })
+  logger.http('Caching menus', { cacheKey: key, locale })
   menuCache.cache.set(key, menus)
 
   return menus
@@ -55,7 +55,7 @@ export const getCachedAboutMenu = async (locale) => {
   if (cache.has(key)) {
     return cache.get(key)
   }
-  logger.info('caching menu', { cacheKey: key })
+  logger.http('Caching about-menu', { cacheKey: key })
   const menu = await getMenu(menuName, {
     locale,
     defaultLocale: NO_DEFAULT_LOCALE,
@@ -112,14 +112,14 @@ export const getNode = ({ locale, localePath, type }) =>
     defaultLocale: NO_DEFAULT_LOCALE,
     params: getQueryParamsFor(type),
   }).catch((e) => {
-    logger.error(`Error requesting node`, { type, localePath }, e)
+    logger.error(`Error requesting node %s`, localePath,{ type, localePath,e })
   })
 
 export const getCachedNode = async ({ locale, localePath, type }) => {
   const key = pageCache.getKey({ locale, localePath, type })
 
   if (pageCache.cache.has(key)) {
-    logger.info('Serving page from cache', { localePath })
+    logger.info('Serving page %s from cache', localePath,{ localePath,locale,type })
     return pageCache.cache.get(key)
   }
 
@@ -129,7 +129,7 @@ export const getCachedNode = async ({ locale, localePath, type }) => {
     return null
   }
 
-  logger.info('caching page', { localePath, cacheKey: key })
+  logger.http('Caching page %s',localePath, { localePath, cacheKey: key })
   pageCache.cache.set(key, node)
   return node
 }
@@ -153,7 +153,7 @@ export const getThemeHeroImages = async ({ tree, context }) => {
         locale: context.locale,
         params: getThemeHeroParams(),
       }).catch((e) => {
-        logger.error('Error getting theme images', { id, e })
+        logger.error('Error getting theme images for page %s',id, { id, e })
       })
     )
   )

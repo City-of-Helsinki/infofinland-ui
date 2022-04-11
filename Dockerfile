@@ -74,6 +74,8 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/next-i18next.config.js ./next-i18next.config.js
+COPY --from=builder /app/error.log ./
+COPY --from=builder /app/events.log ./
 
 # env debug line for debugging environment variables in Azure.
 # If you are sure if all env vars are available in both build- and runtime,
@@ -83,6 +85,8 @@ COPY --from=builder /app/next-i18next.config.js ./next-i18next.config.js
 
 # node process user should be able to write to .next/*
 RUN chmod -R a+rwx ./.next
+RUN chmod -R a+rwx ./error.log
+RUN chmod -R a+rwx ./events.log
 
 
 EXPOSE 8080

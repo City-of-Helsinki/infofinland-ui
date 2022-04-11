@@ -23,7 +23,7 @@ export default async function handler(req, res) {
   search = await elastic.search({ q, size, from, index }).catch((e) => {
     logger.error(
       Elastic.ERROR,
-      e?.meta?.body?.error?.root_cause || e?.name || e
+      {error: e?.meta?.body?.error?.root_cause || e?.name || e}
     )
     throw e
   })
