@@ -24,7 +24,7 @@ import cache from '@/lib/cacher/server-cache'
 const USE_TIMER = process.env.USE_TIMER || false
 
 export async function getStaticPaths() {
-  const { DRUPAL_MENUS,BUILD_ALL } = getConfig().serverRuntimeConfig
+  const { DRUPAL_MENUS, BUILD_ALL } = getConfig().serverRuntimeConfig
   // prerender all theme pages from main menu and cities menu
   const menus = (
     await Promise.all([
@@ -38,7 +38,8 @@ export async function getStaticPaths() {
       }),
     ])
   ) // items for all rendering pages, tree for rendering theme pages
-    .map(({ tree,items }) => ( BUILD_ALL === '1' ? items : tree).map(({ url }) => {
+    .map(({ tree, items }) =>
+      (BUILD_ALL === '1' ? items : tree).map(({ url }) => {
         //remove root slash and language code
         const [, , ...slug] = url.split('/')
         return {
@@ -69,7 +70,9 @@ export async function getStaticProps(context) {
   const { REVALIDATE_TIME, CACHE_REPOPULATE } = getConfig().serverRuntimeConfig
   const { params, locale } = context
   params.slug = params.slug || ['/']
-  logger.debug('cache autoupdate status:', { cacheRepopulate: CACHE_REPOPULATE })
+  logger.debug('cache autoupdate status:', {
+    cacheRepopulate: CACHE_REPOPULATE,
+  })
   const localePath =
     params.slug[0] === '/'
       ? `/${locale}`
@@ -101,8 +104,7 @@ export async function getStaticProps(context) {
     return NOT_FOUND
   }
 
-  const node = await getCachedNode({ locale,
-    params, type, localePath })
+  const node = await getCachedNode({ locale, params, type, localePath })
 
   USE_TIMER && console.log('node resolved')
   USE_TIMER && console.timeLog(T)

@@ -12,6 +12,6 @@ const checkperiod = process.env.NODE_ENV !== 'production' ? 30 : 45
  *  Used for api calls and less used ssr items
  */
 
-const cache = new NodeCache({stdTTL, checkperiod})
+const cache = new NodeCache({ stdTTL, checkperiod })
 
- export default cache
+export default cache

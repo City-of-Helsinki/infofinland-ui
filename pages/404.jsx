@@ -24,8 +24,7 @@ export async function getStaticProps(context) {
       menus,
       ...(await serverSideTranslations(context.defaultLocale, ['common'])),
     },
-    revalidate: REVALIDATE_TIME
-
+    revalidate: REVALIDATE_TIME,
   }
 }
 

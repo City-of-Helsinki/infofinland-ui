@@ -14,7 +14,7 @@ import { getMunicipalityParams, getThemeHeroParams } from './query-params'
 import { getHeroFromNode } from './ssr-helpers'
 
 import { getQueryParamsFor } from './query-params'
-import cache from  './cacher/server-cache'
+import cache from './cacher/server-cache'
 import pageCache from './cacher/page-cache'
 import menuCache from './cacher/menu-cache'
 import logger from '@/logger'
@@ -34,34 +34,34 @@ export const NOT_FOUND = { notFound: true }
 
 //
 
-
 export const getCachedMenus = async (locale) => {
-  const key = menuCache.getKey({locale})
+  const key = menuCache.getKey({ locale })
   if (menuCache.cache.has(key)) {
-    logger.info('serving menus from cache', { cacheKey: key })
+    logger.info('Serving menus from cache', { cacheKey: key })
     return menuCache.cache.get(key)
   }
 
-  logger.info('caching menus', { locale })
   const menus = await getMainMenus({ locale })
-  cache.set(key, menus)
+  logger.info('Caching menus', { cacheKey: key, locale })
+  menuCache.cache.set(key, menus)
 
   return menus
 }
 
 export const getCachedAboutMenu = async (locale) => {
-const menuName= getConfig().serverRuntimeConfig.DRUPAL_MENUS.ABOUT
+  //Use generic cold cache for about-menu
+  const menuName = getConfig().serverRuntimeConfig.DRUPAL_MENUS.ABOUT
   const key = `${menuName}-${locale}}`
   if (cache.has(key)) {
     return cache.get(key)
   }
   logger.info('caching menu', { cacheKey: key })
-  const menu = await  getMenu(menuName, {
+  const menu = await getMenu(menuName, {
     locale,
     defaultLocale: NO_DEFAULT_LOCALE,
   })
 
-  cache.set(key, menu,600 )
+  cache.set(key, menu, 600)
 
   return menu
 }
@@ -106,38 +106,30 @@ export const getMainMenus = async ({ locale }) => {
   return { main, footer, cities, 'cities-landing': citiesLanding }
 }
 
-
-export const getNode = ({locale,localePath,type})  => getResourceByPath(
-  localePath,
-  {
+export const getNode = ({ locale, localePath, type }) =>
+  getResourceByPath(localePath, {
     locale,
     defaultLocale: NO_DEFAULT_LOCALE,
     params: getQueryParamsFor(type),
-  }
-).catch((e) => {
-  logger.error(`Error requesting node`, { type, localePath }, e)
-})
+  }).catch((e) => {
+    logger.error(`Error requesting node`, { type, localePath }, e)
+  })
 
-export const getCachedNode = async ({
-  locale,
-  localePath,
-  type,
-}) => {
-
-  const key = pageCache.getKey({locale,localePath,type})
+export const getCachedNode = async ({ locale, localePath, type }) => {
+  const key = pageCache.getKey({ locale, localePath, type })
 
   if (pageCache.cache.has(key)) {
-    logger.info('serving page from cache', { localePath })
+    logger.info('Serving page from cache', { localePath })
     return pageCache.cache.get(key)
   }
 
-  const node = await getNode({locale,localePath,type})
+  const node = await getNode({ locale, localePath, type })
 
   if (!node) {
     return null
   }
 
-  logger.info('caching page', { localePath,cacheKey:key })
+  logger.info('caching page', { localePath, cacheKey: key })
   pageCache.cache.set(key, node)
   return node
 }
@@ -240,4 +232,3 @@ export const getMessages = async ({ locale, id }) => {
     params,
   })
 }
-
