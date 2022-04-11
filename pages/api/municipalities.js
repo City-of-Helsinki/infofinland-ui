@@ -1,7 +1,9 @@
 import { getMunicipalities } from '@/lib/ssr-api'
 import { CACHE_HEADERS_10M } from '@/cache-headers'
 import logger from '@/logger'
-import cache from '@/lib/server-cache'
+import cache from '@/lib/cacher/server-cache'
+
+const MUNICIPALITIES_TTL= 600
 
 const cacheKey = (locale) => `municipalities-${locale}`
 
@@ -20,7 +22,7 @@ export default async function handler(req, res) {
       logger.error('Municipalities error', { locale, e })
       return []
     })
-    cache.set(cacheKey(locale), municipalities, 600)
+    cache.set(cacheKey(locale), municipalities, MUNICIPALITIES_TTL)
   }
 
   res

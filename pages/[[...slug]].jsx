@@ -9,10 +9,9 @@ import {
   NOT_FOUND,
   menuErrorResponse,
   getThemeHeroImages,
-  getCacheKeysForPage,
   getCachedMenus,
   getCachedAboutMenu,
-  getCachedNodeFromContext,
+  getCachedNode,
 } from '@/lib/ssr-api'
 import { addPrerenderLocalesToPaths } from '@/lib/ssr-helpers'
 import { LAYOUT_SMALL } from '@/components/layout/Layout'
@@ -20,7 +19,7 @@ import { NO_DEFAULT_LOCALE } from '@/lib/ssr-api'
 import HomePage from '@/src/page-templates/HomePage'
 import { DateTime } from 'luxon'
 import logger from '@/logger'
-import cache from '@/lib/server-cache'
+import cache from '@/lib/cacher/server-cache'
 
 const USE_TIMER = process.env.USE_TIMER || false
 
@@ -70,16 +69,16 @@ export async function getStaticProps(context) {
   const { REVALIDATE_TIME, CACHE_REPOPULATE } = getConfig().serverRuntimeConfig
   const { params, locale } = context
   params.slug = params.slug || ['/']
-  logger.warn('cache autoupdate status:', { cacheRepopulate: CACHE_REPOPULATE })
+  logger.debug('cache autoupdate status:', { cacheRepopulate: CACHE_REPOPULATE })
   const localePath =
     params.slug[0] === '/'
       ? `/${locale}`
       : ['', locale, ...params.slug].join('/')
   const isNodePath = /node/.test(params.slug[0])
   const T = `pateTimer-for-${localePath}`
-  const cacheKeys = await getCacheKeysForPage({ locale, localePath })
+  const typeCacheKey = `type-of-${localePath}`
   USE_TIMER && console.time(T)
-  let type = cache.get(cacheKeys.type)
+  let type = cache.get(typeCacheKey)
 
   if (!type) {
     type = await getResourceTypeFromContext({
@@ -87,7 +86,7 @@ export async function getStaticProps(context) {
       defaultLocale: NO_DEFAULT_LOCALE,
       params,
     })
-    cache.set(cacheKeys.type, type, 1000000)
+    cache.set(typeCacheKey, type, 1000000)
   }
 
   USE_TIMER && console.log('type resolved')
@@ -102,7 +101,8 @@ export async function getStaticProps(context) {
     return NOT_FOUND
   }
 
-  const node = await getCachedNodeFromContext({ context, type, localePath })
+  const node = await getCachedNode({ locale,
+    params, type, localePath })
 
   USE_TIMER && console.log('node resolved')
   USE_TIMER && console.timeLog(T)

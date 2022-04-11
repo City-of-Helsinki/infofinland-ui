@@ -1,7 +1,7 @@
 import { getMessages } from '@/lib/ssr-api'
 import { CACHE_HEADERS_60S } from '@/cache-headers'
 import logger from '@/logger'
-import cache from '@/lib/server-cache'
+import cache from '@/lib/cacher/server-cache'
 
 export default async function handler(req, res) {
   const { id, locale } = req?.query
