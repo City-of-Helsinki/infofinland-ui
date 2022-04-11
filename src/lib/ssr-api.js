@@ -2,7 +2,8 @@ import {
   getMenu,
   getResource,
   getResourceCollection,
-  getResourceFromContext,
+  // getResourceFromContext,
+  getResourceByPath,
   translatePath,
 } from 'next-drupal'
 import { i18n } from '../../next-i18next.config'
@@ -13,8 +14,9 @@ import { getMunicipalityParams, getThemeHeroParams } from './query-params'
 import { getHeroFromNode } from './ssr-helpers'
 
 import { getQueryParamsFor } from './query-params'
-import cache , {MENU_CACHE_TTL} from './server-cache'
-
+import cache from  './cacher/server-cache'
+import pageCache from './cacher/page-cache'
+import menuCache from './cacher/menu-cache'
 import logger from '@/logger'
 
 export const NO_DEFAULT_LOCALE = 'dont-use'
@@ -34,49 +36,37 @@ export const NOT_FOUND = { notFound: true }
 
 
 export const getCachedMenus = async (locale) => {
-  const { CACHE_REPOPULATE } = getConfig().serverRuntimeConfig || false
-  const { basicMenus: key } = getCacheKeysForPage({ locale })
-  if (cache.has(key)) {
+  const key = menuCache.getKey({locale})
+  if (menuCache.cache.has(key)) {
     logger.info('serving menus from cache', { cacheKey: key })
-    return cache.get(key)
+    return menuCache.cache.get(key)
   }
 
-  const fetcher = () => getMainMenus({ locale })
   logger.info('caching menus', { locale })
-  const menus = await fetcher()
-  cache.set(key, menus, MENU_CACHE_TTL)
-  CACHE_REPOPULATE === '1' &&
-    cache.on('expired', async (expiredKey) => {
-      if (expiredKey === key) {
-        logger.info('cache key expired, refetching', { cacheKey: key })
-        const fresh = await fetcher()
-        cache.set(key, fresh, MENU_CACHE_TTL)
-      }
-    })
+  const menus = await getMainMenus({ locale })
+  cache.set(key, menus)
 
   return menus
 }
 
 export const getCachedAboutMenu = async (locale) => {
-  const { smallMenu: key } = getCacheKeysForPage({ locale })
+const menuName= getConfig().serverRuntimeConfig.DRUPAL_MENUS.ABOUT
+  const key = `${menuName}-${locale}}`
   if (cache.has(key)) {
     return cache.get(key)
   }
-
-  const fetcher = () =>
-    getMenu(getConfig().serverRuntimeConfig.DRUPAL_MENUS.ABOUT, {
-      locale,
-      defaultLocale: NO_DEFAULT_LOCALE,
-    })
-
   logger.info('caching menu', { cacheKey: key })
-  const menu = await fetcher()
-  cache.set(key, menu, )
+  const menu = await  getMenu(menuName, {
+    locale,
+    defaultLocale: NO_DEFAULT_LOCALE,
+  })
+
+  cache.set(key, menu,600 )
 
   return menu
 }
 
-const getMainMenus = async ({ locale }) => {
+export const getMainMenus = async ({ locale }) => {
   const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
 
   const [main, citiesLanding, cities, footer] = await Promise.all([
@@ -116,50 +106,39 @@ const getMainMenus = async ({ locale }) => {
   return { main, footer, cities, 'cities-landing': citiesLanding }
 }
 
-export const getCachedNodeFromContext = async ({
-  context,
+
+export const getNode = ({locale,localePath,type})  => getResourceByPath(
+  localePath,
+  {
+    locale,
+    defaultLocale: NO_DEFAULT_LOCALE,
+    params: getQueryParamsFor(type),
+  }
+).catch((e) => {
+  logger.error(`Error requesting node`, { type, localePath }, e)
+})
+
+export const getCachedNode = async ({
+  locale,
   localePath,
   type,
 }) => {
-  const { locale } = context
-  const { node: key } = getCacheKeysForPage({ locale, localePath })
 
-  const { CACHE_REPOPULATE } = getConfig().serverRuntimeConfig || false
+  const key = pageCache.getKey({locale,localePath,type})
 
-  const fetcher = () =>
-    getResourceFromContext(
-      type,
-      {
-        ...context,
-        defaultLocale: NO_DEFAULT_LOCALE,
-      },
-      {
-        params: getQueryParamsFor(type),
-      }
-    ).catch((e) => {
-      logger.error(`Error requesting node`, { type, localePath }, e)
-    })
-
-  if (cache.has(key)) {
+  if (pageCache.cache.has(key)) {
     logger.info('serving page from cache', { localePath })
-    return cache.get(key)
+    return pageCache.cache.get(key)
   }
 
-  const node = await fetcher()
+  const node = await getNode({locale,localePath,type})
+
   if (!node) {
     return null
   }
-  logger.info('caching page', { localePath })
-  cache.set(key, node)
-  CACHE_REPOPULATE === '1' &&
-    cache.on('expired', async (expiredKey) => {
-      if (expiredKey === key) {
-        logger.info('cache key expired, refetching', { cacheKey: key })
-        const freshNode = await fetcher()
-        cache.set(key, freshNode)
-      }
-    })
 
+  logger.info('caching page', { localePath,cacheKey:key })
+  pageCache.cache.set(key, node)
   return node
 }
 
@@ -227,25 +206,6 @@ export const getFeedbackPage = async ({ locale }) => {
   return node
 }
 
-export const getCacheKeysForPage = ({ locale, localePath }) => ({
-  type: `type-of-${localePath}`,
-  node: `node-${localePath}`,
-  basicMenus: `menu-basic-${locale}`,
-  smallMenu: `menu-small-${locale}`,
-})
-
-// export const getPageFromCache = ({locale,localePath}) => {
-//   const keylist= values(getCacheKeysForPage({locale,localePath}))
-//   const needsToLoad = some(keylist,(key) => cache.has(key) === false)
-//   if(!needsToLoad) {
-//     console.info('full cache for ',localePath)
-//     return cache.get(keylist)
-//   }
-
-//   return
-
-// }
-
 export const getMessages = async ({ locale, id }) => {
   const frontPageNode = await translatePath(
     getConfig().serverRuntimeConfig.DRUPAL_FRONT_PAGE
@@ -280,3 +240,4 @@ export const getMessages = async ({ locale, id }) => {
     params,
   })
 }
+

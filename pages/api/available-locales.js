@@ -2,7 +2,7 @@ import { i18n } from '@/next-i18next.config'
 import { translatePath } from 'next-drupal'
 import { CACHE_HEADERS_10M } from '@/cache-headers'
 import logger from '@/logger'
-import cache from '@/lib/server-cache'
+import cache from '@/lib/cacher/server-cache'
 
 export default async function handler(req, res) {
   // No posts allowed
