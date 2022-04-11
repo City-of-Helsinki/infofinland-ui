@@ -3,7 +3,7 @@ import { CACHE_HEADERS_10M } from '@/cache-headers'
 import logger from '@/logger'
 import cache from '@/lib/cacher/server-cache'
 
-const MUNICIPALITIES_TTL= 600
+const MUNICIPALITIES_TTL = 600
 
 const cacheKey = (locale) => `municipalities-${locale}`
 
