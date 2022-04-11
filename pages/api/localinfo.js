@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     params: getLocalInfoParams(),
   }).catch((e) => {
     if (e.message === 'Not Found') {
-      logger.warn('No local info found for page %s',id, { id, e })
+      logger.warn('No local info found for page %s', id, { id, e })
       return null
     }
     logger.error('Error in local info fetch.', { id, e })

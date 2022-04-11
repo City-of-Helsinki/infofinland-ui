@@ -23,10 +23,10 @@ const parseKey = (key) => {
   try {
     return JSON.parse(key)
   } catch (e) {
-    logger.error('Error while parsin cache key',  {
+    logger.error('Error while parsing cache key', {
       cacheKey: key,
       CACHE_NAME,
-      e
+      e,
     })
     return []
   }
@@ -36,10 +36,10 @@ const getKey = (keyObj) => {
   try {
     return JSON.stringify(keyObj)
   } catch (e) {
-    logger.error('Error while creating cache key',{
+    logger.error('Error while creating cache key', {
       cacheKey: keyObj,
       CACHE_NAME,
-      e
+      e,
     })
     return []
   }
@@ -62,7 +62,10 @@ cache.on('expired', async (expiredKey) => {
       })
       cache.set(expiredKey, fresh)
     } else {
-      logger.warn('Unable to refresh expired menu', { cacheKey: expiredKey,params })
+      logger.warn('Unable to refresh expired menu', {
+        cacheKey: expiredKey,
+        params,
+      })
     }
   }
 })

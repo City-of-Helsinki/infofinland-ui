@@ -14,10 +14,10 @@
 
 import { createLogger, format, transports } from 'winston'
 
-const LEVEL = process.env.NODE_ENV === 'production' ? 'info': 'verbose'
+const LEVEL = process.env.NODE_ENV === 'production' ? 'info' : 'verbose'
 const ERROR_LOG = 'error.log'
 const ALL_EVENTS_LOG = 'events.log'
-const CONSOLE_LEVEL  =  process.env.NODE_ENV === 'production' ? 'warn': 'verbose'
+const CONSOLE_LEVEL = process.env.NODE_ENV === 'production' ? 'warn' : 'verbose'
 const logger = createLogger({
   level: LEVEL,
   format: format.combine(
@@ -35,7 +35,7 @@ const logger = createLogger({
   transports: [
     new transports.Console({
       format: format.combine(format.colorize(), format.simple()),
-      level:CONSOLE_LEVEL
+      level: CONSOLE_LEVEL,
     }),
     new transports.File({ filename: ERROR_LOG, level: 'error' }),
     new transports.File({ filename: ALL_EVENTS_LOG }),
@@ -43,4 +43,3 @@ const logger = createLogger({
 })
 
 export default logger
-

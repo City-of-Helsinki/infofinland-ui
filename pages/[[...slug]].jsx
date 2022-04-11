@@ -97,10 +97,14 @@ export async function getStaticProps(context) {
 
   //Allow only pages and landing pages to be queried
   if (![NODE_TYPES.PAGE, NODE_TYPES.LANDING_PAGE].includes(type)) {
-    logger.error(`Error resolving page %s. Node type not allowed.`, localePath,{
-      type,
+    logger.error(
+      `Error resolving page %s. Node type not allowed.`,
       localePath,
-    })
+      {
+        type,
+        localePath,
+      }
+    )
     return NOT_FOUND
   }
 

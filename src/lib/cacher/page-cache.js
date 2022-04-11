@@ -19,7 +19,7 @@ const parseKey = (key) => {
   try {
     return JSON.parse(key)
   } catch (e) {
-    logger.error('Error while parsin cache key', e, {
+    logger.error('Error while parsing cache key', e, {
       cacheKey: key,
       CACHE_NAME,
     })

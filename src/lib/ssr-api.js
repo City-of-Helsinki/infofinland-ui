@@ -112,14 +112,22 @@ export const getNode = ({ locale, localePath, type }) =>
     defaultLocale: NO_DEFAULT_LOCALE,
     params: getQueryParamsFor(type),
   }).catch((e) => {
-    logger.error(`Error requesting node %s`, localePath,{ type, localePath,e })
+    logger.error(`Error requesting node %s`, localePath, {
+      type,
+      localePath,
+      e,
+    })
   })
 
 export const getCachedNode = async ({ locale, localePath, type }) => {
   const key = pageCache.getKey({ locale, localePath, type })
 
   if (pageCache.cache.has(key)) {
-    logger.info('Serving page %s from cache', localePath,{ localePath,locale,type })
+    logger.info('Serving page %s from cache', localePath, {
+      localePath,
+      locale,
+      type,
+    })
     return pageCache.cache.get(key)
   }
 
@@ -129,7 +137,7 @@ export const getCachedNode = async ({ locale, localePath, type }) => {
     return null
   }
 
-  logger.http('Caching page %s',localePath, { localePath, cacheKey: key })
+  logger.http('Caching page %s', localePath, { localePath, cacheKey: key })
   pageCache.cache.set(key, node)
   return node
 }
@@ -153,7 +161,7 @@ export const getThemeHeroImages = async ({ tree, context }) => {
         locale: context.locale,
         params: getThemeHeroParams(),
       }).catch((e) => {
-        logger.error('Error getting theme images for page %s',id, { id, e })
+        logger.error('Error getting theme images for page %s', id, { id, e })
       })
     )
   )
