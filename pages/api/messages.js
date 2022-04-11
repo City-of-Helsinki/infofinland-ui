@@ -21,7 +21,7 @@ export default async function handler(req, res) {
         return messages
       })
       .catch((e) => {
-        logger.warn('Messages error', { id, locale, e })
+        logger.error('Messages error', { id, locale, e })
         return []
       })
   }

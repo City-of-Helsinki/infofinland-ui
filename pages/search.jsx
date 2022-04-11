@@ -56,11 +56,13 @@ export async function getServerSideProps(context) {
 
   if (q) {
     results = await elastic.search(searchParams).catch((e) => {
-      logger.error(
-        Elastic.ERROR,
-        { q, index, size, from },
-        e?.meta?.body?.error?.root_cause || e?.name || e
-      )
+      logger.error(Elastic.ERROR, {
+        q,
+        index,
+        size,
+        from,
+        error: e?.meta?.body?.error?.root_cause || e?.name || e,
+      })
       error = e?.meta?.statusCode || e?.name || e
       return {}
     })
