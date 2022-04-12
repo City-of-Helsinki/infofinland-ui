@@ -34,8 +34,21 @@ export async function getServerSideProps(context) {
   const { size, q, from, index } = Elastic.getSearchParamsFromQuery(context)
   let results = null
   let error = null
+
+  // const match = Elastic.FIELDS.reduce((matcher, field)=>{
+  //   console.log(matcher)
+  //   matcher[field] = q
+  //   return matcher
+  // },{})
+
   const searchParams = {
-    q,
+    // q,
+    query: {
+      multi_match: {
+        query: q,
+        type: 'phrase_prefix',
+      },
+    },
     size,
     from,
     body: {

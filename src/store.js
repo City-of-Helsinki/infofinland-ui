@@ -114,10 +114,7 @@ export const shownMessagesAtom = atomWithStorage(
  */
 export const menusAtom = atom((get) => get(pageAtom).menus)
 
-export const footerMenuAtom = selectAtom(
-  menusAtom,
-  (menus) => menus && menus['footer-about']
-)
+export const footerMenuAtom = selectAtom(menusAtom, (menus) => menus?.footer)
 export const citiesLandingMenuAtom = selectAtom(
   menusAtom,
   (menus) => menus && menus['cities-landing']

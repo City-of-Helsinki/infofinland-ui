@@ -115,7 +115,7 @@ export async function getStaticProps(context) {
 
   // Return 404 if node was null
   if (!node) {
-    logger.warn(`Warning: no valid node found`, { type, localePath })
+    logger.warn(`No valid node found for %s`, localePath, { type, localePath })
     return NOT_FOUND
   }
 
@@ -129,7 +129,8 @@ export async function getStaticProps(context) {
       }
     } else {
       logger.warn(
-        `Warning: request to direct node without path alias blocked. 404 returned `,
+        `Request to direct node %s without path alias blocked. 404 returned `,
+        localePath,
         {
           type,
           localePath,

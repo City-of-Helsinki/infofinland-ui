@@ -85,7 +85,7 @@ const TopMenuItem = forwardRef(
   }
 )
 
-const Menu = ({ menu = {}, useTopBorder, city }) => {
+const Menu = ({ menu = {}, useTopBorder, city, className }) => {
   const { items, tree } = menu
   const { localePath, locale } = useLocalizedPath()
   const indexFromRouter = getThemeIndexByPathName({
@@ -116,7 +116,7 @@ const Menu = ({ menu = {}, useTopBorder, city }) => {
   const setOpenIndex = (i) => setVisibility(i === openIndex ? null : i)
 
   return (
-    <nav className={cls({})}>
+    <nav className={className}>
       <ul
         className={cls('block', {
           'border-t border-gray-lighter': useTopBorder,
