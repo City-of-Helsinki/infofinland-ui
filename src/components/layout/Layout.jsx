@@ -1,25 +1,33 @@
 import Head from 'next/head'
-// import PreloadFonts from './PreloadFonts'
+import dynamic from 'next/dynamic'
+import { NextSeo } from 'next-seo'
 import Favicons from './Favicons'
-import Messages from '@/components/messages/Messages'
 import FooterLinks from '@/components/layout/FooterLinks'
-import FeedbackButtonBlock from '@/components/feedback/FeedbackForm'
 import TopMenu from '@/components/layout/TopMenu'
 import ReactModal from 'react-modal'
 import useSetLocalization from '@/hooks/useSetLocalization'
 import useShowLangMessage from '@/hooks/useShowLangMessage'
 import { useRouter } from 'next/router'
-import CookieConsentBar from '@/components/layout/CookieConsent'
 import MainMenu from '@/components/navi/MainMenu'
 import cls from 'classnames'
-import { useAtomValue } from 'jotai/utils'
+import getConfig from 'next/config'
+import { getHeroFromNode } from '@/lib/ssr-helpers'
 
-import { nodeAtom } from '@/src/store'
-
-import AboutMenu from './AboutMenu'
-
+// Layout names from Drupal
+export const LAYOUT_BASIC = 'basic'
+export const LAYOUT_SMALL = 'small'
 export const FALLBACK_TITLE = 'infofinland.fi'
 
+const FeedbackBlock = dynamic(() =>
+  import('@/components/feedback/FeedbackBlock')
+)
+const Messages = dynamic(() => import('@/components/messages/Messages'))
+const AboutMenu = dynamic(() => import('./AboutMenu'))
+const CookieConsentBar = dynamic(() =>
+  import('@/components/layout/CookieConsent')
+)
+
+const DEFAULT_SITE_URL = 'https://www.infofinland.fi'
 /**
  * Set ReactModal root element for a18y
  */
@@ -28,22 +36,65 @@ if (process.env.NODE_ENV !== 'test') {
   ReactModal.setAppElement('#__next')
 }
 
-const CommonHead = ({ title = FALLBACK_TITLE, description = '', children }) => (
-  <Head>
-    {title && <title>{title}</title>}
-    {description && <meta name="description" content={description} />}
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    {/* <PreloadFonts /> */}
-    <Favicons />
-    {children}
-  </Head>
-)
+const CommonHead = ({ node, children }) => {
+  const { title, field_description: description } = node
+  const hero = getHeroFromNode(node)
+  const { SITE_HOST } = getConfig().publicRuntimeConfig
+  const { asPath } = useRouter()
+  let url
 
-export const BlankLayout = ({ children, title, description }) => {
+  try {
+    url = new URL(asPath, SITE_HOST).toString()
+  } catch (e) {
+    console.warn(
+      'Error while making OpenGraph siteURL',
+      { SITE_HOST, asPath },
+      'using DEFAULT_SITE_URL',
+      DEFAULT_SITE_URL
+    )
+    console.warn(e)
+    url = DEFAULT_SITE_URL
+  }
+
+  return (
+    <>
+      <NextSeo
+        title={title || FALLBACK_TITLE}
+        description={description || ''}
+        canonical="https://www.canonical.ie/"
+        openGraph={{
+          url,
+          title,
+          description,
+          images: [
+            {
+              url: hero.src,
+              type: 'image/jpeg',
+              alt: FALLBACK_TITLE,
+            },
+          ],
+          site_name: FALLBACK_TITLE,
+        }}
+        twitter={{
+          handle: '@handle',
+          site: '@site',
+          cardType: 'summary_large_image',
+        }}
+      />
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <Favicons />
+        {children}
+      </Head>
+    </>
+  )
+}
+
+export const BlankLayout = ({ children, node }) => {
   useSetLocalization(useRouter().locale)
   return (
     <>
-      <CommonHead title={title} description={description} />
+      <CommonHead node={node} />
       <main className="relative text-body bg-white" id="main">
         {children}
       </main>
@@ -52,15 +103,13 @@ export const BlankLayout = ({ children, title, description }) => {
   )
 }
 
-export const SecondaryLayout = ({ children, className }) => {
+export const SecondaryLayout = ({ children, className, node }) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
   useShowLangMessage(locale)
-  const node = useAtomValue(nodeAtom)
-
   return (
     <>
-      <CommonHead description={node?.field_description} title={node?.title} />
+      <CommonHead node={node} />
       <div
         className={cls(
           'relative text-body bg-white ifu-layout--secondary',
@@ -79,7 +128,7 @@ export const SecondaryLayout = ({ children, className }) => {
               <main id="main">{children}</main>
               <footer className="ifu-footer" id="footer">
                 <FooterLinks secondary />
-                <FeedbackButtonBlock />
+                <FeedbackBlock />
               </footer>
             </div>
           </div>
@@ -90,15 +139,14 @@ export const SecondaryLayout = ({ children, className }) => {
   )
 }
 
-const AppLayout = ({ children, className }) => {
+const AppLayout = ({ children, className, node }) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
   useShowLangMessage(locale)
-  const node = useAtomValue(nodeAtom)
 
   return (
     <>
-      <CommonHead description={node?.field_description} title={node?.title} />
+      <CommonHead node={node} />
 
       <div
         className={cls(
@@ -122,7 +170,7 @@ const AppLayout = ({ children, className }) => {
             <main id="main">{children}</main>
             <footer className="ifu-footer" id="footer">
               <FooterLinks />
-              <FeedbackButtonBlock />
+              <FeedbackBlock />
             </footer>
           </div>
         </div>

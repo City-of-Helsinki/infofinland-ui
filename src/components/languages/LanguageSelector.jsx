@@ -2,14 +2,17 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { IconGlobe } from '@/components/Icons'
 import cls from 'classnames'
-import usePageLocales from '@/hooks/usePageLocales'
 import { useTranslation } from 'next-i18next'
 import { i18n } from '@/next-i18next.config'
+import { getLocalesForPath } from '@/lib/client-api'
+import useSWR from 'swr'
 
 const LanguageSelector = ({ openMenu }) => {
   const { locale, asPath: path } = useRouter()
   const { t } = useTranslation('common')
-  const { data: locales, error } = usePageLocales({ path })
+  const cacheKey = path ? path : null
+  const fetcher = () => getLocalesForPath({ path })
+  const { data: locales, error } = useSWR(cacheKey, fetcher)
 
   return (
     <>
@@ -29,8 +32,7 @@ const LanguageSelector = ({ openMenu }) => {
         </button>
         {i18n.languages.map(({ text, code }) => {
           const isLocalized =
-            locales?.find((page) => page.locale === code) !== undefined
-
+            locales?.find((page) => page?.locale === code) !== undefined
           return (
             <Link
               href={path}

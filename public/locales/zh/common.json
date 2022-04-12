@@ -15,6 +15,9 @@
     "skipTo": "切换至内容",
     "yes": "是"
   },
+  "cities": {
+    "error": "无相关市镇信息"
+  },
   "cookies": {
     "allow": "同意所有cookie。",
     "allowed": "已同意",
@@ -79,6 +82,7 @@
   },
   "localInfo": {
     "clear": "清空",
+    "default_text": "有关这一主题的更多信息，请访问城镇页面。",
     "error": "无法下载当地信息",
     "help": "了解当地信息",
     "help_current_city": "选择您的市以在浏览站点时查看关于本地服务的信息。",
@@ -94,16 +98,23 @@
     "button": "主菜单"
   },
   "messages": {
+    "error": "通知中存在错误",
     "title": "消息"
   },
   "search": {
+    "count": "Tuloksia:",
+    "error": "搜索中出现错误",
     "loading": "搜索结果",
+    "next": "下页",
     "placeholder": "通过关键词搜索",
+    "prev": "上页",
+    "showmore": "更多结果： {{more}}",
     "title": {
       "noresults": "无搜索结果",
       "results": "搜索结果：",
       "start": "搜索网站"
-    }
+    },
+    "typemore": "继续输入"
   },
   "video": {
     "button": "打开视频"

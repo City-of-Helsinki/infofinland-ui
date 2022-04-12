@@ -27,7 +27,7 @@ const HomePage = ({ node, themes }) => {
   const { field_description, field_content, title } = node
   const [aboutText, ...restOfContent] = field_content
   return (
-    <Layout className="ifu-landing">
+    <Layout className="ifu-landing" node={node}>
       <HomeHero title={title} src={hero?.src} />
 
       {field_description && (

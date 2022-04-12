@@ -2,7 +2,7 @@ import { useAtom } from 'jotai'
 import { useTranslation } from 'next-i18next'
 import { useAtomValue } from 'jotai/utils'
 import { nodeIdAtom, shownMessagesAtom } from '@/src/store'
-import { keys } from 'lodash'
+import keys from 'lodash/keys'
 import LanguageMessageCard from '@/components/messages/LanguageMessageCard'
 import MessageCard from './MessageCard'
 import useSWR from 'swr'
@@ -11,10 +11,10 @@ import { useRouter } from 'next/router'
 import { IconExclamationCircle } from '../Icons'
 // import { DotsLoader } from '../Loaders'
 
-const Error = () => (
+const Error = ({ message }) => (
   <p className="flex items-center px-2 text-body-small text-red opacity-75">
     <IconExclamationCircle className="h-4 fill-red" />
-    Could not load messages
+    {message}
   </p>
 )
 
@@ -40,7 +40,9 @@ const Messages = () => {
       <LanguageMessageCard />
 
       {/* {isValidating &&  <Loading />} */}
-      {!isValidating && error && <Error />}
+      {!isValidating && !data && error && (
+        <Error message={t('messages.error')} />
+      )}
       {data?.map(({ body, title, field_message_type, id }) => {
         const close = () => setShownMessages({ ...shownMessages, [id]: true })
         return (

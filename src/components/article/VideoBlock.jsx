@@ -1,10 +1,12 @@
 import { H3 } from '../Typo'
 import Block from '@/components/layout/Block'
-import ReactPlayer from 'react-player'
 import { useTranslation } from 'next-i18next'
+import dynamic from 'next/dynamic'
 
 const INITIAL_VOLUME = 0.8
 const INITIAL_MUTE = true
+
+const ReactPlayer = dynamic(() => import('react-player'))
 
 const VideoBlock = ({ url, title }) => {
   const { t } = useTranslation('common')

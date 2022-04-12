@@ -18,16 +18,18 @@ ARG NEXT_IMAGE_DOMAIN
 ARG DRUPAL_FRONT_PAGE
 ARG DRUPAL_SITE_ID
 ARG DRUPAL_CLIENT_ID
-ARG HOST
+ARG SITE_HOST
 
 ARG DRUPAL_PREVIEW_SECRET
 ARG DRUPAL_CLIENT_SECRET
-
+ARG BUILD_ALL
 ARG MATOMO_SITE_ID
 ARG MATOMO_URL
 ARG ELASTICSEARCH_URL
-
-ENV HOST = $HOST
+# Must be false in builds always
+ENV CACHE_REPOPULATE 0
+ENV BUILD_ALL=$BUILD_ALL
+ENV SITE_HOST=$SITE_HOST
 ENV NEXT_PUBLIC_DRUPAL_BASE_URL=$NEXT_PUBLIC_DRUPAL_BASE_URL
 ENV NEXT_IMAGE_DOMAIN=$NEXT_IMAGE_DOMAIN
 ENV DRUPAL_FRONT_PAGE=$DRUPAL_FRONT_PAGE
@@ -61,7 +63,7 @@ FROM node:16-alpine AS runner
 WORKDIR /app
 # USER node:0
 ENV NODE_ENV production
-
+ENV CACHE_REPOPULATE '1'
 #DEBUG add curl to container for network debugging purposes
 RUN apk --no-cache add curl
 
@@ -72,6 +74,8 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/next-i18next.config.js ./next-i18next.config.js
+COPY --from=builder /app/error.log ./
+COPY --from=builder /app/events.log ./
 
 # env debug line for debugging environment variables in Azure.
 # If you are sure if all env vars are available in both build- and runtime,
@@ -81,6 +85,8 @@ COPY --from=builder /app/next-i18next.config.js ./next-i18next.config.js
 
 # node process user should be able to write to .next/*
 RUN chmod -R a+rwx ./.next
+RUN chmod -R a+rwx ./error.log
+RUN chmod -R a+rwx ./events.log
 
 
 EXPOSE 8080

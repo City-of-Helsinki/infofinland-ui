@@ -4,26 +4,27 @@ import { useRouter } from 'next/router'
 import cls from 'classnames'
 import { longTextClass } from '@/components/Typo'
 import { i18n } from '@/next-i18next.config'
-import { map, omit } from 'lodash'
-import { getMenus } from '@/lib/ssr-api'
+import map from 'lodash/map'
+import omit from 'lodash/omit'
+import { getCachedMenus } from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-// import getConfig from 'next/config'
-import usePageLocales from '@/hooks/usePageLocales'
+import getConfig from 'next/config'
 import TextLink from '@/components/TextLink'
 import { DotsLoader } from '@/components/Loaders'
 import Block from '@/components/layout/Block'
+import { getLocalesForPath } from '@/lib/client-api'
+import useSWR from 'swr'
+
 export async function getStaticProps(context) {
-  // const { serverRuntimeConfig } = getConfig()
-  const menus = await getMenus(context)
+  const { REVALIDATE_TIME } = getConfig().serverRuntimeConfig
+  const menus = await getCachedMenus(context.locale)
   return {
     props: {
       texts: TEXTS_404,
       menus,
       ...(await serverSideTranslations(context.defaultLocale, ['common'])),
     },
-    //once a day should do for 404
-    revalidate: 60 * 60 * 24, //seconds
-    // Number(serverRuntimeConfig.REVALIDATE_TIME) * 60 * 24
+    revalidate: REVALIDATE_TIME,
   }
 }
 
@@ -146,6 +147,9 @@ const LocalesLinks = ({ locales, dir }) => {
     <p className="mt-2 leading-loose">
       {locales.map(({ locale, path, id }, i) => {
         const language = i18n.languages.find(({ code }) => code === locale)
+        if (!language) {
+          return null
+        }
         return (
           <TextLink
             dir={dir}
@@ -260,10 +264,12 @@ const Texts404 = ({ locales = [], locale }) => {
 
 export const PageNotFound = () => {
   const { locale, asPath } = useRouter()
-  const { data: locales, error } = usePageLocales({ path: asPath })
+  const cacheKey = asPath ? asPath : null
+  const fetcher = () => getLocalesForPath({ path: asPath })
+  const { data: locales, error } = useSWR(cacheKey, fetcher)
 
   return (
-    <Layout>
+    <Layout node={{}}>
       {!locales && !error && (
         <Block>
           <div className="flex justify-center items-center w-full h-64">

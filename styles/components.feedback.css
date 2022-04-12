@@ -26,4 +26,8 @@
   .ifu-feedback__input {
     @apply py-2 px-3 w-full block border-black border rounded shadow-input text-body-small;
   }
+
+  [dir='rtl'] .ifu-feedbackbutton__icon {
+    transform: rotateY(180deg);
+  }
 }

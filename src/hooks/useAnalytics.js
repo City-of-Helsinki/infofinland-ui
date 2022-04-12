@@ -8,7 +8,7 @@ import {
   searchResultsCountAtom,
 } from '../store'
 import { isSSR } from './useIsomorphicLayoutEffect'
-import { defer } from 'lodash'
+import defer from 'lodash/defer'
 import { SEARCH_PAGE } from './useSearchRoute'
 // const DEV = process.env.NODE_ENV === 'development'
 

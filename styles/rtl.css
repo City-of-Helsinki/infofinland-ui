@@ -1,9 +1,0 @@
-@layer utilities {
-  [dir='rtl'] .ifu-breadcrumb__icon--arrow {
-    transform: rotate(180deg);
-  }
-
-  [dir='rtl'] .ifu-feedbackbutton__icon {
-    transform: rotateY(180deg);
-  }
-}

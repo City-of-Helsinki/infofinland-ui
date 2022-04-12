@@ -4,6 +4,10 @@ import Block from '../layout/Block'
 
 const HEADING_TYPES = [CONTENT_TYPES.HEADING, CONTENT_TYPES.ACCORDION]
 const AnchorLinksBlock = ({ field_content }) => {
+  if (field_content?.length < 1) {
+    return null
+  }
+
   // TODO move to a separate function and test?
   const headings = field_content
     .filter(({ type }) => HEADING_TYPES.includes(type))
@@ -16,6 +20,8 @@ const AnchorLinksBlock = ({ field_content }) => {
       )
     })
     .flat()
+    //ignore broken contents
+    .filter((h) => !!h)
 
   // Let's not render an empty block
   if (!headings || headings?.length === 0) {

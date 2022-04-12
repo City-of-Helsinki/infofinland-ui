@@ -17,7 +17,6 @@ const MobileNavi = () => {
   const router = useRouter()
   const { t } = useTranslation('common')
   const { locale } = useRouter()
-
   const isAboutPage = useAtomValue(isAboutPageAtom)
 
   /*
@@ -58,7 +57,7 @@ const MobileNavi = () => {
         <div className="bg-white">
           {isAboutPage && (
             <Link href="/" locale={locale}>
-              <a className="block pb-4 mb-2 font-bold border-b border-gray-lighter">
+              <a className="flex items-center mt-4 mb-1 font-bold ms-2">
                 <IconAngleRight className="scale-150 rotate-180 ms-4 me-2" />
                 {t('breadcrumbs.frontpage')}
               </a>

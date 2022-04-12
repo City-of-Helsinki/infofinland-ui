@@ -11,12 +11,14 @@ import IngressBlock from '@/components/article/IngressBlock'
 import AnchorLinksBlock from '@/components/article/AnchorLinksBlock'
 import LocalInformationSelectCity from '@/components/cities/LocalInfoSelectCity'
 import { isRootPage } from '@/lib/menu-utils'
+import getConfig from 'next/config'
 
 const ArticlePage = ({ node, fiNode, themeMenu, menus }) => {
-  const { localePath, locale } = useRouterWithLocalizedPath()
+  const { CITIES_PAGE_PATH } = getConfig().publicRuntimeConfig
+  const { localePath, locale, asPath } = useRouterWithLocalizedPath()
   const {
     title,
-    revision_timestamp,
+    lastUpdated,
     field_description,
     field_use_anchor_links,
     field_municipality_selection,
@@ -28,19 +30,26 @@ const ArticlePage = ({ node, fiNode, themeMenu, menus }) => {
   })
 
   const breadcrumbs = useBreadCrumbs({
-    items: themeMenu.items,
+    //Cringe
+    items:
+      asPath === CITIES_PAGE_PATH
+        ? menus['cities-landing'].items
+        : themeMenu.items,
     path: localePath,
   })
 
   const hero = getHeroFromNode(node)
-  const isThemePage = isRootPage({ items: themeMenu.items, path: localePath })
+  //Cringe....
+  const showThemes =
+    asPath === CITIES_PAGE_PATH ||
+    isRootPage({ tree: themeMenu.tree, path: localePath })
 
   return (
-    <Layout menus={menus}>
+    <Layout menus={menus} node={node} ogImageUrl={hero.src}>
       <Article
         title={title}
         breadcrumbs={breadcrumbs}
-        date={revision_timestamp}
+        date={lastUpdated}
         fiTitle={fiNode?.title}
         color={hero.color}
         heroImage={hero.src}
@@ -59,7 +68,7 @@ const ArticlePage = ({ node, fiNode, themeMenu, menus }) => {
           <AnchorLinksBlock field_content={node.field_content} />
         )}
 
-        {isThemePage && themes?.length > 0 && (
+        {showThemes && themes?.length > 0 && (
           <Block hero>
             <ThemeList themes={themes} />
           </Block>

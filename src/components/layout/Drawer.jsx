@@ -19,8 +19,8 @@ const Drawer = ({ close, children, isOpen, contentLabel }) => (
         appear
         mountOnEnter
       >
-        <div className="ifu-drawer-body">
-          <div className="mb-2 h-12">
+        <div className=" pt-12 ifu-drawer-body">
+          <div className="fixed top-0 right-0 z-50 mb-2 h-10 bg-white shadow-whitewash-right right-0s ps-2">
             <CloseButton className="float-end me-6" close={close} />
           </div>
           {children}
@@ -52,7 +52,7 @@ export const DropDownModal = ({ close, children, isOpen }) => {
             'overflow-y-auto absolute md:-top-0 md:-left-44 xl:-left-48 z-50 w-screen md:w-drawer bg-white rounded shadow-dropdown'
           )}
         >
-          <div className="mb-2 h-12">
+          <div className="fixed right-0 mb-2 h-12">
             <CloseButton className="float-end me-6" close={close} />
           </div>
           {children}

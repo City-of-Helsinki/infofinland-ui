@@ -18,6 +18,7 @@
     "yes": "Kyllä"
   },
   "cities": {
+    "error": "Kuntia ei saatavilla",
     "title": "Valitse kunta"
   },
   "cookies": {
@@ -84,6 +85,7 @@
   },
   "localInfo": {
     "clear": "Tyhjennä",
+    "default_text": "Tästä aiheesta löydät lisää tietoa kuntasivulta.",
     "error": "Kuntatietoja ei voitu ladata",
     "help": "Katso oman kuntasi tiedot",
     "help_current_city": "Valitse kunta, niin voit nähdä tietoa paikallisista palveluista, kun liikut sivustolla.",
@@ -101,16 +103,17 @@
     "open": "Näytä alasivut"
   },
   "messages": {
+    "error": "Virhe ilmoituksissa",
     "title": "Ilmoitukset"
   },
   "search": {
+    "count": "Tuloksia:",
     "error": "Haussa tapahtui virhe",
     "loading": "Haetaan tuloksia",
-    "count": "Tuloksia",
-    "placeholder": "Hae hakusanalla..",
-    "showmore": "Lisää tuloksia: {{more}}",
-    "prev": "Edelllinen",
     "next": "Seuraava",
+    "placeholder": "Hae hakusanalla..",
+    "prev": "Edelllinen",
+    "showmore": "lisää tuloksia: {{more}}",
     "title": {
       "noresults": "Ei hakutuloksia",
       "results": "Hakutulokset",

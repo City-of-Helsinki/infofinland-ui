@@ -1,6 +1,8 @@
 import axios from 'axios'
 import getConfig from 'next/config'
 import { getFeedbackPage } from '@/lib/ssr-api'
+import { CACHE_HEADERS_10M } from '@/cache-headers'
+import logger from '@/logger'
 
 const WEBFORM_ID = 'contact'
 
@@ -12,16 +14,19 @@ export default async function handler(request, response) {
   if (request.method === 'GET') {
     const { locale } = request.query
     const feedback = await getFeedbackPage({ locale }).catch((e) => {
-      console.error(
+      logger.error(
         'Feedback content error',
-        locale,
         e?.response?.status,
-        e?.response?.data
+        e?.response?.data,
+        { locale }
       )
       return null
     })
 
-    return response.status(200).json(feedback)
+    return response
+      .setHeader(...CACHE_HEADERS_10M)
+      .status(200)
+      .json(feedback)
   }
 
   // Send feedback form to drupal
@@ -52,7 +57,7 @@ export default async function handler(request, response) {
 
       response.status(200).json({ ok: true })
     } catch (error) {
-      console.error(error.message, {
+      logger.error(error.message, {
         responseData: error.response?.data,
         requestBody: request?.body,
       })

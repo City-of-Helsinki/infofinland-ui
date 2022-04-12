@@ -5,6 +5,7 @@ import {
   selectAtom,
   splitAtom,
 } from 'jotai/utils'
+import { LAYOUT_SMALL } from './components/layout/Layout'
 import { LANG_MESSAGE_ID } from './components/messages/LanguageMessageCard'
 
 /** @module store */
@@ -57,7 +58,9 @@ export const pageAtom = atom({})
 
 pageAtom.debugLabel = 'page props root atom'
 
-export const isAboutPageAtom = atom((get) => get(pageAtom).isAboutPage)
+export const isAboutPageAtom = atom(
+  (get) => get(nodeAtom)?.field_layout === LAYOUT_SMALL
+)
 
 export const searchAtom = atom((get) => get(pageAtom).search)
 
@@ -111,10 +114,7 @@ export const shownMessagesAtom = atomWithStorage(
  */
 export const menusAtom = atom((get) => get(pageAtom).menus)
 
-export const footerMenuAtom = selectAtom(
-  menusAtom,
-  (menus) => menus && menus['footer-about']
-)
+export const footerMenuAtom = selectAtom(menusAtom, (menus) => menus?.footer)
 export const citiesLandingMenuAtom = selectAtom(
   menusAtom,
   (menus) => menus && menus['cities-landing']
@@ -151,3 +151,5 @@ export const isCookieConsentSetAtom = atom(
 
 /** the search keyword being typed to input */
 export const searchQueryValue = atom('')
+
+export const pageIsLoadingAtom = atom(false)

@@ -1,19 +1,18 @@
 import { SecondaryLayout } from '@/components/layout/Layout'
-import { useAtomValue } from 'jotai/utils'
-import { nodeAtom } from '@/src/store'
 import getConfig from 'next/config'
 import { useRouter } from 'next/router'
 import ContentMapper from '@/components/article/ContentMapper'
 import CookieConsentForm from '@/components/layout/CookieConsentForm'
 import Block from '@/components/layout/Block'
 import { H1 } from '@/components/Typo'
-export default function AboutPage() {
-  const { locale } = useRouter()
-  const { field_content, title } = useAtomValue(nodeAtom)
+export default function AboutPage({ node }) {
+  const { locale, asPath } = useRouter()
+  const { field_content, title } = node
   const { COOKIE_PAGE_PATH } = getConfig().publicRuntimeConfig
-  const isCookiePage = new RegExp(COOKIE_PAGE_PATH).test(COOKIE_PAGE_PATH)
+  const isCookiePage = new RegExp(COOKIE_PAGE_PATH).test(asPath)
+
   return (
-    <SecondaryLayout>
+    <SecondaryLayout node={node}>
       <Block>
         <H1 className="mt-16 mb-10">{title}</H1>
       </Block>
