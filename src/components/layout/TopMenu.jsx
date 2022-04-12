@@ -25,7 +25,7 @@ const Logo = () => {
       className="relative z-20 flex-none py-3 md:py-4 px-3 bg-white transform translate-y-px md:ps-6 md:pe-2"
       role="banner"
     >
-      <Link href="/" passHref prefetch={false} locale={locale}>
+      <Link href={`/${locale}`} passHref prefetch={false} locale={locale}>
         <a
           className={cls('ifu-topmenu__logo', {
             'ifu-topmenu__logo--loading': pageIsLoading,

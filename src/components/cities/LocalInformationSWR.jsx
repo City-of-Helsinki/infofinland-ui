@@ -95,7 +95,7 @@ const SWRContent = ({ city, isOpen }) => {
               <ContactInfoFields {...content?.field_municipality_info_ptv} />
             )}
             <p className="mt-8">
-              <TextLink className="font-bold" href={path.alias}>
+              <TextLink className="font-bold" href={path.alias} locale={locale}>
                 {t('localInfo.readMore')}
               </TextLink>
             </p>

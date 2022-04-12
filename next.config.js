@@ -62,6 +62,8 @@ const config = {
   i18n,
   reactStrictMode: true,
   poweredByHeader: false,
+  // Try this if weird caching issues still persist
+  // generateEtags: false,
   env,
   publicRuntimeConfig,
   serverRuntimeConfig,
