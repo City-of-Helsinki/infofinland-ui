@@ -9,22 +9,21 @@ import { getCachedMenus } from '@/lib/ssr-api'
 import * as Elastic from '@/lib/elasticsearch'
 import SearchBar from '@/components/search/SearchBar'
 import { DotsLoader } from '@/components/Loaders'
-// import Pagination from '@/components/search/Pagination'
 import Layout from '@/components/layout/Layout'
 import Head from 'next/head'
 import Block from '@/components/layout/Block'
-// import SearchResults from '@/components/search/SearchResults'
+
+import logger from '@/logger'
 import {
   searchResultsCountAtom,
   searchResultsTermAtom,
   searchErrorAtom,
 } from '@/src/store'
 import dynamic from 'next/dynamic'
-// import logger from '@/logger'
+
 const Pagination = dynamic(() => import('@/components/search/Pagination'))
 const SearchResults = dynamic(() => import('@/components/search/SearchResults'))
 
-const logger = console
 
 import { CACHE_HEADERS_60S } from '@/cache-headers'
 
@@ -70,6 +69,8 @@ export async function getServerSideProps(context) {
       return {}
     })
   }
+logger.verbose('results',{results})
+
 
   return {
     props: {
@@ -143,7 +144,7 @@ export const SearchPage = () => {
               <dd className="inline-block">{t('search.count')}</dd>
               <dt className="inline-block font-bold ms-1">{searchCount} </dt>
             </dl>
-            {searchCount > 0 && <Pagination className="mt-8" />}
+            {searchCount > 0 && <Pagination className="mx-8 lg:mx-10 mt-8" />}
           </div>
         )}
 
@@ -157,7 +158,7 @@ export const SearchPage = () => {
             <h3 className="mb-8 text-h4 translate-y-3">{t('search.error')} </h3>
           )}
           {searchCount > 0 && <SearchResults />}
-          {searchCount > 0 && <Pagination className="mt-16 mb-4" />}
+          {searchCount > 0 && <Pagination className="mx-8 mt-16 mb-4" />}
         </div>
       </Block>
     </Layout>
