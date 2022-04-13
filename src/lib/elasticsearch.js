@@ -12,8 +12,8 @@ const getIndexPrefix = () =>
   getConfig().serverRuntimeConfig.SEARCH_INDEX_PREFIX || ''
 
 export const getIndexName = (locale) => `${getIndexPrefix()}${locale}`
-export const HIGHLIGHT_FRAGMENT_SIZE = 1000
-export const HIGHLIGHT_NUM_OF_FRAGMENTS = 8
+export const HIGHLIGHT_FRAGMENT_SIZE = 500
+export const HIGHLIGHT_NUM_OF_FRAGMENTS = 5
 export const ERROR = 'Error: Elastic Search query failed. '
 
 export const FIELDS = Object.freeze([
@@ -76,8 +76,17 @@ export const getSearchClient = () => {
   })
 }
 
+export function getQuery(q) {
+  return {
+    multi_match: {
+      query: q,
+      type: 'phrase_prefix',
+    },
+  }
+}
+
 export function getSearchParamsFromQuery({ query, locale }) {
-  const q = query?.search || query.q || ''
+  const q = (query?.search || query.q || '').trim()
   const size = query?.size || DEFAULT_SIZE
   let languages = Array.isArray(query?.languages)
     ? query?.languages

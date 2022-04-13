@@ -13,7 +13,7 @@ import LocalInformationSelectCity from '@/components/cities/LocalInfoSelectCity'
 import { isRootPage } from '@/lib/menu-utils'
 import getConfig from 'next/config'
 
-const ArticlePage = ({ node, fiNode, themeMenu, menus }) => {
+const ArticlePage = ({ node, themeMenu, menus }) => {
   const { CITIES_PAGE_PATH } = getConfig().publicRuntimeConfig
   const { localePath, locale, asPath } = useRouterWithLocalizedPath()
   const {
@@ -22,6 +22,7 @@ const ArticlePage = ({ node, fiNode, themeMenu, menus }) => {
     field_description,
     field_use_anchor_links,
     field_municipality_selection,
+    field_finnish_title,
   } = node
 
   const themes = useThemeList({
@@ -50,7 +51,7 @@ const ArticlePage = ({ node, fiNode, themeMenu, menus }) => {
         title={title}
         breadcrumbs={breadcrumbs}
         date={lastUpdated}
-        fiTitle={fiNode?.title}
+        fiTitle={field_finnish_title}
         color={hero.color}
         heroImage={hero.src}
       >

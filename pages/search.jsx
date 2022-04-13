@@ -35,20 +35,10 @@ export async function getServerSideProps(context) {
   let results = null
   let error = null
 
-  // const match = Elastic.FIELDS.reduce((matcher, field)=>{
-  //   console.log(matcher)
-  //   matcher[field] = q
-  //   return matcher
-  // },{})
-
   const searchParams = {
-    // q,
-    query: {
-      multi_match: {
-        query: q,
-        type: 'phrase_prefix',
-      },
-    },
+    //use q for lucene syntax
+    // q
+    query: Elastic.getQuery(q),
     size,
     from,
     body: {
