@@ -3,11 +3,10 @@ import { longTextClass } from '@/components/Typo'
 import { IconCalendar } from '@/components/Icons'
 import { i18n } from '@/next-i18next.config'
 
-
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
-const {fallbackLocale} = i18n
+const { fallbackLocale } = i18n
 
 export default function ArticleHeading({
   forHeroImage = false,
@@ -23,13 +22,17 @@ export default function ArticleHeading({
   return (
     <div className={titleMargin}>
       <div className={cls({ 'absolute bottom-5 md:bottom-8': !forHeroImage })}>
-        { locale !== fallbackLocale  && <span
-          lang="fi"
-          className={cls('block text-action mb-3', {
-            'text-gray-darker': forHeroImage,
-            'text-bodytext-color mt-6': !forHeroImage,
-          })}
-        >{fiTitle}</span>}
+        {locale !== fallbackLocale && (
+          <span
+            lang="fi"
+            className={cls('block text-action mb-3', {
+              'text-gray-darker': forHeroImage,
+              'text-bodytext-color mt-6': !forHeroImage,
+            })}
+          >
+            {fiTitle}
+          </span>
+        )}
         {/* article title / hero text */}
         <h1
           className={cls(

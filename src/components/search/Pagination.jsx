@@ -13,8 +13,8 @@ import { useTranslation } from 'next-i18next'
 import getConfig from 'next/config'
 
 const pageUrl = ({ page, q }) => {
-  const { SEARCH_PAGE_PATH,SITE_HOST } = getConfig().publicRuntimeConfig
-  const url = new URL(SEARCH_PAGE_PATH,SITE_HOST)
+  const { SEARCH_PAGE_PATH, SITE_HOST } = getConfig().publicRuntimeConfig
+  const url = new URL(SEARCH_PAGE_PATH, SITE_HOST)
 
   url.searchParams.set('search', q)
   url.searchParams.set('page', page)

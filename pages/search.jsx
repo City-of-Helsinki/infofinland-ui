@@ -24,7 +24,6 @@ import dynamic from 'next/dynamic'
 const Pagination = dynamic(() => import('@/components/search/Pagination'))
 const SearchResults = dynamic(() => import('@/components/search/SearchResults'))
 
-
 import { CACHE_HEADERS_60S } from '@/cache-headers'
 
 export async function getServerSideProps(context) {
@@ -69,9 +68,6 @@ export async function getServerSideProps(context) {
       return {}
     })
   }
-logger.verbose('results',{results})
-
-
   return {
     props: {
       menus,

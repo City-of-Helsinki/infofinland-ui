@@ -81,7 +81,7 @@
   /* .ifu-pagination__button--prev {
     @apply w-0 flex-none inline-block font-bold text-left pe-1 lg:basis-1/5 me-2 relative;
   } */
-/* .ifu-pagination__button--next {
+  /* .ifu-pagination__button--next {
     @apply w-0 flex-grow inline-block font-bold text-right ps-1 lg:basis-1/5 ms-2 relative;
   } */
 
@@ -91,8 +91,8 @@
   }
 
   .ifu-pagination__button--prev a {
-    left:-2.5rem;
-    top:0;
+    left: -2.5rem;
+    top: 0;
     background-image: url('/images/icons/circle-arrow-left.svg');
     background-repeat: no-repeat;
     background-position: center center;
@@ -102,13 +102,11 @@
     font-size: 0;
     filter: blur(0.5px);
     @apply absolute block;
-
   }
 
-
   .ifu-pagination__button--next a {
-    right:-2.5rem;
-    top:0;
+    right: -2.5rem;
+    top: 0;
     background-image: url('/images/icons/circle-arrow-right.svg');
     background-repeat: no-repeat;
     background-position: center center;
@@ -119,7 +117,6 @@
     filter: blur(0.5px);
     @apply absolute  block;
   }
-
 
   .ifu-search__highlight {
     font-style: normal;

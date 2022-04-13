@@ -15,7 +15,6 @@ const FEEDBACK_CONTENT_URL = '/api/feedback'
  */
 
 export const getSearchResults = async ({ search, locale }) => {
-  console.log({ search, locale })
   const { data } = await axios(`${SEARCH_URL}${locale}`, { params: { search } })
   return data
 }
