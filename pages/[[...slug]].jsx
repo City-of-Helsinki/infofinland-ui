@@ -139,25 +139,6 @@ export async function getStaticProps(context) {
     }
   }
 
-  let fiNode = null // Must be JSON compatible
-
-  // if (type === NODE_TYPES.PAGE) {
-  //   // Get finnish title if page is not in finnish
-  //   if (context.locale !== i18n.fallbackLocale) {
-  //     fiNode = await getDefaultLocaleNode(node.id).catch((e) => {
-  //       logger.error('Error while getting Finnish title', {
-  //         type,
-  //         localePath,
-  //         e,
-  //       })
-  //       return null
-  //     })
-  //     console.log('fiNode resolved')
-  //     console.timeLog(T)
-  //     // console.timeEnd(T)
-  //   }
-  // }
-
   let menus = {}
   if (node.field_layout === 'small') {
     menus.about = await getCachedAboutMenu(locale)
@@ -199,6 +180,7 @@ export async function getStaticProps(context) {
     })
   }
 
+  // Format date in server. Don't load luxon to browser for one single formatting task.
   const lastUpdated = DateTime.fromISO(node.revision_timestamp).toFormat(
     'dd.MM.yyyy'
   )
@@ -215,7 +197,6 @@ export async function getStaticProps(context) {
       menus,
       node: { ...node, lastUpdated },
       themeMenu,
-      fiNode,
       ...(await serverSideTranslations(locale, ['common'])),
     },
     revalidate: REVALIDATE_TIME,
@@ -223,7 +204,7 @@ export async function getStaticProps(context) {
 }
 
 /***
- * Layout selector:
+ * Layout selector
  */
 const Page = (props) => {
   if (props?.type === NODE_TYPES.LANDING_PAGE) {

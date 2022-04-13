@@ -4,7 +4,9 @@ import { useRouter } from 'next/router'
 import ContentMapper from '@/components/article/ContentMapper'
 import CookieConsentForm from '@/components/layout/CookieConsentForm'
 import Block from '@/components/layout/Block'
-import { H1 } from '@/components/Typo'
+import { H1, longTextClass } from '@/components/Typo'
+import cls from 'classnames'
+
 export default function AboutPage({ node }) {
   const { locale, asPath } = useRouter()
   const { field_content, title } = node
@@ -14,7 +16,20 @@ export default function AboutPage({ node }) {
   return (
     <SecondaryLayout node={node}>
       <Block>
-        <H1 className="mt-16 mb-10">{title}</H1>
+        <H1
+          className={cls(
+            'mt-16 mb-10',
+            longTextClass(title, {
+              size: 16,
+              classes: [
+                ' text-h1 lg:text-h1xl',
+                'text-[2rem] lg:text-h1xl font-bold lg:font-normal',
+              ],
+            })
+          )}
+        >
+          {title}
+        </H1>
       </Block>
       {field_content?.length > 0 && (
         <ContentMapper content={field_content} locale={locale} />

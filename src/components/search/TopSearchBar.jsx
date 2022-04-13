@@ -87,7 +87,8 @@ const Result = ({ title, url }) => (
 export const SWRResults = ({ onShowResults }) => {
   const { t } = useTranslation('common')
   const _q = useAtomValue(searchQueryValue)
-  const [search] = useDebouncedValue(_q, 100)
+  const [rawSearch] = useDebouncedValue(_q, 100)
+  const search = rawSearch.trim()
   const { locale } = useRouter()
   const cacheKey = () => {
     if (search?.length < TRESHOLD) {
@@ -99,14 +100,14 @@ export const SWRResults = ({ onShowResults }) => {
   const fetcher =
     search.length < TRESHOLD
       ? () => ({ results: {} })
-      : (search) => getSearchResults({ search, locale })
+      : () => getSearchResults({ search, locale })
   const { data, error, isValidating } = useSWR(cacheKey, fetcher)
   const extraResults = data?.hits?.total?.value - data?.size
 
   if (isValidating) {
     return (
       <div className="flex items-center mx-4 max-w-topbar h-16">
-        <DotsLoader />{' '}
+        <DotsLoader />
       </div>
     )
   }

@@ -164,6 +164,7 @@ export const getPageQueryParams = () =>
       'field_theme_menu_machine_name',
       'field_feedback_email',
       'field_layout',
+      'field_finnish_title',
     ])
     .getQueryObject()
 

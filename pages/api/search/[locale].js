@@ -20,12 +20,20 @@ export default async function handler(req, res) {
     index = undefined
   }
 
-  search = await elastic.search({ q, size, from, index }).catch((e) => {
-    logger.error(Elastic.ERROR, {
-      error: e?.meta?.body?.error?.root_cause || e?.name || e,
+  search = await elastic
+    .search({
+      // q,
+      query: Elastic.getQuery(q),
+      size,
+      from,
+      index,
     })
-    throw e
-  })
+    .catch((e) => {
+      logger.error(Elastic.ERROR, {
+        error: e?.meta?.body?.error?.root_cause || e?.name || e,
+      })
+      throw e
+    })
 
   res.status(200).json({
     q,
