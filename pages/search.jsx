@@ -12,7 +12,6 @@ import { DotsLoader } from '@/components/Loaders'
 import Layout from '@/components/layout/Layout'
 import Block from '@/components/layout/Block'
 import CommonHead from '@/components/layout/CommonHead'
-
 import logger from '@/logger'
 import {
   searchResultsCountAtom,
@@ -27,9 +26,12 @@ const SearchResults = dynamic(() => import('@/components/search/SearchResults'))
 import { CACHE_HEADERS_60S } from '@/cache-headers'
 
 export async function getServerSideProps(context) {
+  const { SEARCH_PAGE_PATH } = getConfig().serverRuntimeConfig
+
   const menus = await getCachedMenus(context.locale)
   context.res.setHeader(...CACHE_HEADERS_60S)
-  const { size, q, from, index } = Elastic.getSearchParamsFromQuery(context)
+  const { size, q, from, index, locale } =
+    Elastic.getSearchParamsFromQuery(context)
   let results = null
   let error = null
 
@@ -67,6 +69,15 @@ export async function getServerSideProps(context) {
       error = e?.meta?.statusCode || e?.name || e
       return {}
     })
+  }
+
+  if (results?.hits?.total?.value > 0 && results?.hits?.total?.value < from) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: `/${locale}${SEARCH_PAGE_PATH}?search=${q}`,
+      },
+    }
   }
 
   return {
@@ -152,7 +163,7 @@ export const SearchPage = () => {
             )}
             {!loading && error && (
               <h3 className="mb-8 text-h4 translate-y-3">
-                {t('search.error')}{' '}
+                {t('search.error')}
               </h3>
             )}
             {searchCount > 0 && <SearchResults />}
