@@ -2,7 +2,6 @@ import { getHeroFromNode } from '@/lib/ssr-helpers'
 import Head from 'next/head'
 import getConfig from 'next/config'
 import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
-export const DEFAULT_SITE_URL = 'https://www.infofinland.fi'
 export const FALLBACK_TITLE = 'infofinland.fi'
 
 const CommonHead = ({ node }) => {
@@ -16,14 +15,12 @@ const CommonHead = ({ node }) => {
   try {
     url = new URL(localePath, SITE_HOST).toString()
   } catch (e) {
-    console.warn(
-      'Error while making OpenGraph siteURL',
-      { SITE_HOST, localePath },
-      'using DEFAULT_SITE_URL',
-      DEFAULT_SITE_URL
-    )
+    console.warn('Error while making OpenGraph siteURL', {
+      SITE_HOST,
+      localePath,
+    })
     console.warn(e)
-    url = DEFAULT_SITE_URL
+    url = SITE_HOST
   }
 
   return (

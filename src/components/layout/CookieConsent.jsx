@@ -17,13 +17,14 @@ export function CookieConsentActions() {
   return (
     <>
       <Button
-        className="block md:inline-block mx-auto mb-4 md:me-4"
+        className="block md:inline-block mx-auto mb-4 text-body-small md:me-4"
         onClick={deny}
       >
         {t('cookies.deny')}
       </Button>
       <Button
-        className="block md:inline-block mx-auto mb-4 md:me-12"
+        autoFocus
+        className="block md:inline-block mx-auto mb-4 border-3 md:me-12"
         onClick={allow}
       >
         {t('cookies.allow')}

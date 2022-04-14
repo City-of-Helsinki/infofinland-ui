@@ -1,6 +1,4 @@
 const { i18n } = require('./next-i18next.config')
-
-const DRUPAL_SITEMAP = `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/default/sitemap.xml`
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })

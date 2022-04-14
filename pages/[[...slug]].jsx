@@ -26,6 +26,7 @@ const USE_TIMER = process.env.USE_TIMER || false
 export async function getStaticPaths() {
   const { DRUPAL_MENUS, BUILD_ALL } = getConfig().serverRuntimeConfig
   // prerender all theme pages from main menu and cities menu
+  // any language should do. english should do the most.
   const menus = (
     await Promise.all([
       getMenu(DRUPAL_MENUS.MAIN, {
@@ -51,7 +52,6 @@ export async function getStaticPaths() {
     )
     .flat()
   // add predefined prerender locales to urls from mainmenu.
-  // any language should do. english should do the most.
   const paths = addPrerenderLocalesToPaths([
     {
       //prerender frontpage
@@ -220,5 +220,3 @@ const Page = (props) => {
   return <ArticlePage {...props} />
 }
 export default Page
-
-// export default ArticlePage
