@@ -76,10 +76,14 @@ export async function getStaticProps(context) {
       ? `/${locale}`
       : ['', locale, ...params.slug].join('/')
   const isNodePath = /node/.test(params.slug[0])
-  const T = `pateTimer-for-${localePath}`
+  const T = `pageTimer-for-${localePath}`
   const typeCacheKey = `type-of-${localePath}`
   USE_TIMER && console.time(T)
-  let type = cache.get(typeCacheKey)
+  let type = ''
+
+  if (cache.has(typeCacheKey)) {
+    type = cache.get(typeCacheKey)
+  }
 
   if (!type) {
     type = await getResourceTypeFromContext({
@@ -87,7 +91,9 @@ export async function getStaticProps(context) {
       defaultLocale: NO_DEFAULT_LOCALE,
       params,
     })
-    cache.set(typeCacheKey, type, 1000000)
+    if (type) {
+      cache.set(typeCacheKey, type)
+    }
   }
 
   USE_TIMER && console.log('type resolved')
