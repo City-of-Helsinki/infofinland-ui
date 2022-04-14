@@ -105,5 +105,5 @@ export function getSearchParamsFromQuery({ query, locale }) {
   if (query?.from) {
     from = query.from
   }
-  return { size, q, from, index, locale: locale || query?.locale, page }
+  return { size, q, from, index, locale: locale || query?.locale }
 }

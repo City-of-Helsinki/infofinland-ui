@@ -161,7 +161,7 @@ export const SearchPage = () => {
                 <DotsLoader />
               </div>
             )}
-            {!loading && error  (
+            {!loading && error && (
               <h3 className="mb-8 text-h4 translate-y-3">
                 {t('search.error')}
               </h3>
