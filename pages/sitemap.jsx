@@ -85,7 +85,7 @@ const SitemapList = ({ urls, name }) => {
   )
 }
 
-export default function SiteMap({node,urls}) {
+export default function SiteMap({ node, urls }) {
   const { locale } = useRouter
   const { t } = useTranslation('common')
   const { DRUPAL_MENUS } = getConfig().publicRuntimeConfig

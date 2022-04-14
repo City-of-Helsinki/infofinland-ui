@@ -1,5 +1,4 @@
 const { i18n } = require('./next-i18next.config')
-
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
@@ -32,7 +31,7 @@ const publicRuntimeConfig = {
   MATOMO_URL: process.env.MATOMO_URL,
   MATOMO_SITE_ID: process.env.MATOMO_SITE_ID,
   MATOMO_DOMAINS: process.env.MATOMO_DOMAINS,
-  SITE_HOST: process.env.SITE_HOST,
+  SITE_HOST: process.env.SITE_HOST || 'https://www.infofinland.fi',
   ...env,
 }
 
@@ -72,6 +71,15 @@ const config = {
     // or via ENV variables
     domains: [process.env.NEXT_IMAGE_DOMAIN],
   },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/sitemap.xml',
+  //       destination: '/api/sitemap.xml',
+  //       permanent: false,
+  //     },
+  //   ]
+  // },
   webpack: (config) => {
     config.module.rules.push({ test: /\.xml$/, loader: 'xml-loader' })
     return config

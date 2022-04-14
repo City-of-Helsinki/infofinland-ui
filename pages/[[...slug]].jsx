@@ -26,6 +26,7 @@ const USE_TIMER = process.env.USE_TIMER || false
 export async function getStaticPaths() {
   const { DRUPAL_MENUS, BUILD_ALL } = getConfig().serverRuntimeConfig
   // prerender all theme pages from main menu and cities menu
+  // any language should do. english should do the most.
   const menus = (
     await Promise.all([
       getMenu(DRUPAL_MENUS.MAIN, {
@@ -51,7 +52,6 @@ export async function getStaticPaths() {
     )
     .flat()
   // add predefined prerender locales to urls from mainmenu.
-  // any language should do. english should do the most.
   const paths = addPrerenderLocalesToPaths([
     {
       //prerender frontpage
@@ -76,10 +76,14 @@ export async function getStaticProps(context) {
       ? `/${locale}`
       : ['', locale, ...params.slug].join('/')
   const isNodePath = /node/.test(params.slug[0])
-  const T = `pateTimer-for-${localePath}`
+  const T = `pageTimer-for-${localePath}`
   const typeCacheKey = `type-of-${localePath}`
   USE_TIMER && console.time(T)
-  let type = cache.get(typeCacheKey)
+  let type = ''
+
+  if (cache.has(typeCacheKey)) {
+    type = cache.get(typeCacheKey)
+  }
 
   if (!type) {
     type = await getResourceTypeFromContext({
@@ -87,7 +91,9 @@ export async function getStaticProps(context) {
       defaultLocale: NO_DEFAULT_LOCALE,
       params,
     })
-    cache.set(typeCacheKey, type, 1000000)
+    if (type) {
+      cache.set(typeCacheKey, type)
+    }
   }
 
   USE_TIMER && console.log('type resolved')
@@ -214,5 +220,3 @@ const Page = (props) => {
   return <ArticlePage {...props} />
 }
 export default Page
-
-// export default ArticlePage

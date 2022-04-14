@@ -11,4 +11,4 @@ Host: https://www.infofinland.fi
 
 # Sitemaps
 Sitemap: https://www.infofinland.fi/sitemap.xml
-Sitemap: https://www.infofinland.fi/article-sitemap.xml
+# Sitemap: https://edit.infofinland.fi/default/sitemap.xml
