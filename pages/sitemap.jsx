@@ -85,29 +85,29 @@ const SitemapList = ({ urls, name }) => {
   )
 }
 
-export default function SiteMap(props) {
+export default function SiteMap({node,urls}) {
   const { locale } = useRouter
   const { t } = useTranslation('common')
   const { DRUPAL_MENUS } = getConfig().publicRuntimeConfig
-  const { node, urls } = props
+
   return (
     <>
       <CommonHead key={`head-sitemap-${node?.id}`} node={node} />
-      <SecondaryLayout {...props}>
+      <SecondaryLayout>
         <Block>
-          <h1 className="mt-16 mb-8 text-h1 md:text-h1xl">{node.title}</h1>
+          <h1 className="mt-16 mb-8 text-h1 md:text-h1xl">{node?.title}</h1>
           <SitemapList
             urls={[
               { url: `/${locale}`, title: t('breadcrumbs.frontpage') },
-              ...urls.main,
+              ...urls?.main,
             ]}
             name={DRUPAL_MENUS.MAIN}
           />
           <SitemapList
-            urls={[...urls[DRUPAL_MENUS.CITIES_LANDING], ...urls.cities]}
+            urls={[...urls[DRUPAL_MENUS.CITIES_LANDING], ...urls?.cities]}
             name={DRUPAL_MENUS.CITIES}
           />
-          <SitemapList urls={urls.about} name={DRUPAL_MENUS.ABOUT} />
+          <SitemapList urls={urls?.about} name={DRUPAL_MENUS.ABOUT} />
         </Block>
       </SecondaryLayout>
     </>
