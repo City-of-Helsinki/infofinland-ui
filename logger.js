@@ -29,8 +29,8 @@ const logger = createLogger({
     format.json()
   ),
   defaultMeta: {
-    service: process.env.SITE_HOST,
-    api: process.env.NEXT_PUBLIC_DRUPAL_BASE_URL,
+    site: process.env.SITE_HOST,
+    drupal: process.env.NEXT_PUBLIC_DRUPAL_BASE_URL,
   },
   transports: [
     new transports.Console({
