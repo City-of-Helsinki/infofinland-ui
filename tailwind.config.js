@@ -3,7 +3,7 @@ module.exports = {
   theme: {
     fontSize: {
       h1xl: ['4.5rem', '1.2'],
-      h1: ['3rem', '1.2'],
+      h1: ['3.2rem', '1.2'],
       h2xl: ['2.8rem', '1.2'],
       h2: ['1.8rem', '1.2'],
       h3xl: ['2rem', '1.2'],

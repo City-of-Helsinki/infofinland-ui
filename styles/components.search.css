@@ -50,7 +50,7 @@
     @apply inline-block flex-grow px-2 h-12;
   }
   .ifu-pagination {
-    @apply flex text-center relative justify-center  mx-0;
+    @apply flex text-center relative justify-center flex-wrap;
   }
 
   .ifu-pagination__page,
@@ -59,7 +59,11 @@
   }
 
   .ifu-pagination__page {
-    @apply inline-block flex-none mx-2 lg:mx-4;
+    @apply inline-block flex-none lg:w-6 mx-2;
+  }
+
+  .ifu-pagination__page a {
+    @apply block hover:font-bold hover:text-gray-dark;
   }
 
   .ifu-pagination__page--active {
@@ -67,20 +71,28 @@
   }
 
   .ifu-pagination__page--active a {
-    @apply cursor-default;
+    @apply cursor-default hover:text-link-hover;
   }
   .ifu-pagination__page--disabled,
   .ifu-pagination__button--disabled {
     @apply text-gray-dark cursor-default;
   }
 
+  /* .ifu-pagination__button--prev {
+    @apply w-0 flex-none inline-block font-bold text-left pe-1 lg:basis-1/5 me-2 relative;
+  } */
+  /* .ifu-pagination__button--next {
+    @apply w-0 flex-grow inline-block font-bold text-right ps-1 lg:basis-1/5 ms-2 relative;
+  } */
+
+  .ifu-pagination__button--next,
   .ifu-pagination__button--prev {
-    @apply w-8 flex-grow inline-block font-bold text-left pe-1 lg:basis-1/5 me-2 relative;
+    @apply w-0 flex-none inline-block lg:flex-grow;
   }
 
   .ifu-pagination__button--prev a {
-    position: absolute;
-    display: block;
+    left: -2.5rem;
+    top: 0;
     background-image: url('/images/icons/circle-arrow-left.svg');
     background-repeat: no-repeat;
     background-position: center center;
@@ -89,15 +101,12 @@
     width: var(--paginationButtonSize);
     font-size: 0;
     filter: blur(0.5px);
+    @apply absolute block;
   }
 
-  .ifu-pagination__button--next {
-    @apply w-8 flex-grow inline-block font-bold text-right ps-1 lg:basis-1/5 ms-2 relative;
-  }
   .ifu-pagination__button--next a {
-    display: block;
-    position: absolute;
-    right: 0;
+    right: -2.5rem;
+    top: 0;
     background-image: url('/images/icons/circle-arrow-right.svg');
     background-repeat: no-repeat;
     background-position: center center;
@@ -106,6 +115,7 @@
     width: var(--paginationButtonSize);
     font-size: 0;
     filter: blur(0.5px);
+    @apply absolute  block;
   }
 
   .ifu-search__highlight {

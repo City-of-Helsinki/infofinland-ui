@@ -12,8 +12,9 @@ import AnchorLinksBlock from '@/components/article/AnchorLinksBlock'
 import LocalInformationSelectCity from '@/components/cities/LocalInfoSelectCity'
 import { isRootPage } from '@/lib/menu-utils'
 import getConfig from 'next/config'
+import CommonHead from '@/components/layout/CommonHead'
 
-const ArticlePage = ({ node, fiNode, themeMenu, menus }) => {
+const ArticlePage = ({ node, themeMenu, menus }) => {
   const { CITIES_PAGE_PATH } = getConfig().publicRuntimeConfig
   const { localePath, locale, asPath } = useRouterWithLocalizedPath()
   const {
@@ -22,6 +23,7 @@ const ArticlePage = ({ node, fiNode, themeMenu, menus }) => {
     field_description,
     field_use_anchor_links,
     field_municipality_selection,
+    field_finnish_title,
   } = node
 
   const themes = useThemeList({
@@ -45,40 +47,43 @@ const ArticlePage = ({ node, fiNode, themeMenu, menus }) => {
     isRootPage({ tree: themeMenu.tree, path: localePath })
 
   return (
-    <Layout menus={menus} node={node} ogImageUrl={hero.src}>
-      <Article
-        title={title}
-        breadcrumbs={breadcrumbs}
-        date={lastUpdated}
-        fiTitle={fiNode?.title}
-        color={hero.color}
-        heroImage={hero.src}
-      >
-        {field_description && (
-          <IngressBlock field_description={field_description} />
-        )}
+    <>
+      <CommonHead key={`head-article-${node?.id}`} node={node} />
+      <Layout>
+        <Article
+          title={title}
+          breadcrumbs={breadcrumbs}
+          date={lastUpdated}
+          fiTitle={field_finnish_title}
+          color={hero.color}
+          heroImage={hero.src}
+        >
+          {field_description && (
+            <IngressBlock field_description={field_description} />
+          )}
 
-        {field_municipality_selection && (
-          <LocalInformationSelectCity
-            city={field_municipality_selection.name}
-          />
-        )}
+          {field_municipality_selection && (
+            <LocalInformationSelectCity
+              city={field_municipality_selection.name}
+            />
+          )}
 
-        {field_use_anchor_links && (
-          <AnchorLinksBlock field_content={node.field_content} />
-        )}
+          {field_use_anchor_links && (
+            <AnchorLinksBlock field_content={node.field_content} />
+          )}
 
-        {showThemes && themes?.length > 0 && (
-          <Block hero>
-            <ThemeList themes={themes} />
-          </Block>
-        )}
+          {showThemes && themes?.length > 0 && (
+            <Block hero>
+              <ThemeList themes={themes} />
+            </Block>
+          )}
 
-        {node.field_content?.length > 0 && (
-          <ContentMapper content={node.field_content} locale={locale} />
-        )}
-      </Article>
-    </Layout>
+          {node.field_content?.length > 0 && (
+            <ContentMapper content={node.field_content} locale={locale} />
+          )}
+        </Article>
+      </Layout>
+    </>
   )
 }
 export default ArticlePage

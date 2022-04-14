@@ -26,6 +26,7 @@ const USE_TIMER = process.env.USE_TIMER || false
 export async function getStaticPaths() {
   const { DRUPAL_MENUS, BUILD_ALL } = getConfig().serverRuntimeConfig
   // prerender all theme pages from main menu and cities menu
+  // any language should do. english should do the most.
   const menus = (
     await Promise.all([
       getMenu(DRUPAL_MENUS.MAIN, {
@@ -51,7 +52,6 @@ export async function getStaticPaths() {
     )
     .flat()
   // add predefined prerender locales to urls from mainmenu.
-  // any language should do. english should do the most.
   const paths = addPrerenderLocalesToPaths([
     {
       //prerender frontpage
@@ -67,21 +67,23 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-  const { REVALIDATE_TIME, CACHE_REPOPULATE } = getConfig().serverRuntimeConfig
+  const { REVALIDATE_TIME } = getConfig().serverRuntimeConfig
   const { params, locale } = context
   params.slug = params.slug || ['/']
-  logger.debug('cache autoupdate status:', {
-    cacheRepopulate: CACHE_REPOPULATE,
-  })
+
   const localePath =
     params.slug[0] === '/'
       ? `/${locale}`
       : ['', locale, ...params.slug].join('/')
   const isNodePath = /node/.test(params.slug[0])
-  const T = `pateTimer-for-${localePath}`
+  const T = `pageTimer-for-${localePath}`
   const typeCacheKey = `type-of-${localePath}`
   USE_TIMER && console.time(T)
-  let type = cache.get(typeCacheKey)
+  let type = ''
+
+  if (cache.has(typeCacheKey)) {
+    type = cache.get(typeCacheKey)
+  }
 
   if (!type) {
     type = await getResourceTypeFromContext({
@@ -89,7 +91,9 @@ export async function getStaticProps(context) {
       defaultLocale: NO_DEFAULT_LOCALE,
       params,
     })
-    cache.set(typeCacheKey, type, 1000000)
+    if (type) {
+      cache.set(typeCacheKey, type)
+    }
   }
 
   USE_TIMER && console.log('type resolved')
@@ -139,25 +143,6 @@ export async function getStaticProps(context) {
     }
   }
 
-  let fiNode = null // Must be JSON compatible
-
-  // if (type === NODE_TYPES.PAGE) {
-  //   // Get finnish title if page is not in finnish
-  //   if (context.locale !== i18n.fallbackLocale) {
-  //     fiNode = await getDefaultLocaleNode(node.id).catch((e) => {
-  //       logger.error('Error while getting Finnish title', {
-  //         type,
-  //         localePath,
-  //         e,
-  //       })
-  //       return null
-  //     })
-  //     console.log('fiNode resolved')
-  //     console.timeLog(T)
-  //     // console.timeEnd(T)
-  //   }
-  // }
-
   let menus = {}
   if (node.field_layout === 'small') {
     menus.about = await getCachedAboutMenu(locale)
@@ -199,6 +184,7 @@ export async function getStaticProps(context) {
     })
   }
 
+  // Format date in server. Don't load luxon to browser for one single formatting task.
   const lastUpdated = DateTime.fromISO(node.revision_timestamp).toFormat(
     'dd.MM.yyyy'
   )
@@ -215,7 +201,6 @@ export async function getStaticProps(context) {
       menus,
       node: { ...node, lastUpdated },
       themeMenu,
-      fiNode,
       ...(await serverSideTranslations(locale, ['common'])),
     },
     revalidate: REVALIDATE_TIME,
@@ -223,7 +208,7 @@ export async function getStaticProps(context) {
 }
 
 /***
- * Layout selector:
+ * Layout selector
  */
 const Page = (props) => {
   if (props?.type === NODE_TYPES.LANDING_PAGE) {
@@ -234,5 +219,4 @@ const Page = (props) => {
   }
   return <ArticlePage {...props} />
 }
-
 export default Page

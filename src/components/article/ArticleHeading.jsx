@@ -1,10 +1,12 @@
 import cls from 'classnames'
 import { longTextClass } from '@/components/Typo'
 import { IconCalendar } from '@/components/Icons'
-// import { DateTime } from 'luxon'
+import { i18n } from '@/next-i18next.config'
 
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
+
+const { fallbackLocale } = i18n
 
 export default function ArticleHeading({
   forHeroImage = false,
@@ -20,26 +22,26 @@ export default function ArticleHeading({
   return (
     <div className={titleMargin}>
       <div className={cls({ 'absolute bottom-5 md:bottom-8': !forHeroImage })}>
-        {/* article category */}
-        <span
-          lang="fi"
-          className={cls('block text-action mb-3', {
-            'text-gray-darker': forHeroImage,
-            'text-bodytext-color mt-6': !forHeroImage,
-            invisible: locale === 'fi',
-          })}
-        >
-          {fiTitle}
-        </span>
+        {locale !== fallbackLocale && (
+          <span
+            lang="fi"
+            className={cls('block text-action mb-3', {
+              'text-gray-darker': forHeroImage,
+              'text-bodytext-color mt-6': !forHeroImage,
+            })}
+          >
+            {fiTitle}
+          </span>
+        )}
         {/* article title / hero text */}
         <h1
           className={cls(
-            'mb-2 md:mb-6  max-w-article me-2 ifu-hero__title text-bodytext-color',
+            'mb-2 md:mb-6  max-w-article me-4 ifu-hero__title text-bodytext-color ',
             longTextClass(title, {
               size: 40,
               classes: [
-                ' text-h2 md:text-h1 lg:text-h1xl',
-                'text-h3 md:text-h3 lg:text-h1',
+                'text-h2 md:text-h1 lg:text-h1xl font-bold lg:font-normal',
+                'text-h3 md:text-h3 lg:text-[3.6rem]',
               ],
             })
           )}

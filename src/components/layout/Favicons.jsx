@@ -1,5 +1,7 @@
+import Head from 'next/head'
+
 const Favicons = () => (
-  <>
+  <Head>
     <link
       rel="apple-touch-icon-precomposed"
       sizes="57x57"
@@ -78,7 +80,7 @@ const Favicons = () => (
     <meta name="msapplication-square150x150logo" content="mstile-150x150.png" />
     <meta name="msapplication-wide310x150logo" content="mstile-310x150.png" />
     <meta name="msapplication-square310x310logo" content="mstile-310x310.png" />
-  </>
+  </Head>
 )
 
 export default Favicons

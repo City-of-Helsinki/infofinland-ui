@@ -13,8 +13,9 @@ import { useTranslation } from 'next-i18next'
 import getConfig from 'next/config'
 
 const pageUrl = ({ page, q }) => {
-  const { SEARCH_PAGE_PATH } = getConfig().publicRuntimeConfig
-  let url = new URL(SEARCH_PAGE_PATH, new URL('http://a.b'))
+  const { SEARCH_PAGE_PATH, SITE_HOST } = getConfig().publicRuntimeConfig
+  const url = new URL(SEARCH_PAGE_PATH, SITE_HOST)
+
   url.searchParams.set('search', q)
   url.searchParams.set('page', page)
   const { pathname, search } = url
@@ -39,18 +40,18 @@ const Pagination = ({ className }) => {
   }
 
   return (
-    <>
+    <div className={className}>
       <ReactPaginate
         breakLabel="..."
         nextLabel={t('search.next')}
         previousLabel={t('search.prev')}
         hrefBuilder={pageUrlWithSearchTerm}
         pageCount={pageCount}
-        pageRangeDisplayed={3}
+        pageRangeDisplayed={5}
         forcePage={currentPage}
         onPageChange={changePage}
         renderOnZeroPageCount={null}
-        containerClassName={cls('ifu-pagination', className)}
+        containerClassName={cls('ifu-pagination')}
         activeClassName="ifu-pagination__page--active"
         pageClassName="ifu-pagination__page"
         previousClassName="ifu-pagination__button--prev"
@@ -59,7 +60,7 @@ const Pagination = ({ className }) => {
         disabledClassName="ifu-pagination__button--disabled"
         disabledLinkClassName="ifu-pagination__page--disabled"
       />
-    </>
+    </div>
   )
 }
 export default Pagination

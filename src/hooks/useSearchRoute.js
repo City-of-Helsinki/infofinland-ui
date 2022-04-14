@@ -6,7 +6,7 @@ const useSearchRoute = ({ search, onSubmit }) => {
   const { push } = useRouter()
 
   // dont submit empty search term
-  if (search?.length < 1) {
+  if (search?.trim().length < 1) {
     return (e) => {
       e.preventDefault()
       return false
@@ -20,7 +20,7 @@ const useSearchRoute = ({ search, onSubmit }) => {
     )
     push({
       pathname: SEARCH_PAGE,
-      query: { search, languages },
+      query: { search: search.trim(), languages },
     })
     onSubmit && onSubmit()
   }
