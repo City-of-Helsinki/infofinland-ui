@@ -3,6 +3,7 @@ import Layout from '@/components/layout/Layout'
 import ThemeList from '@/components/home/ThemeList'
 import CitySelector from '@/components/home/CitySelector'
 import Block from '@/components/layout/Block'
+import CommonHead from '@/components/layout/CommonHead'
 
 import { getHeroFromNode } from '@/lib/ssr-helpers'
 import ContentMapper from '@/components/article/ContentMapper'
@@ -27,27 +28,30 @@ const HomePage = ({ node, themes }) => {
   const { field_description, field_content, title } = node
   const [aboutText, ...restOfContent] = field_content
   return (
-    <Layout className="ifu-landing" node={node}>
-      <HomeHero title={title} src={hero?.src} />
+    <>
+      <CommonHead key={`head-landing-${node?.id}`} node={node} />
+      <Layout className="ifu-landing">
+        <HomeHero title={title} src={hero?.src} />
 
-      {field_description && (
-        <IngressBlock field_description={field_description} />
-      )}
+        {field_description && (
+          <IngressBlock field_description={field_description} />
+        )}
 
-      <Block>
-        <ThemeList themes={themes} showImages />
-      </Block>
+        <Block>
+          <ThemeList themes={themes} showImages />
+        </Block>
 
-      <CitySelector />
+        <CitySelector />
 
-      {aboutText && (
-        <Columns
-          field_columns_left_column={aboutText}
-          RightColumnComponent={AboutImage}
-        />
-      )}
-      {restOfContent?.length > 0 && <ContentMapper content={restOfContent} />}
-    </Layout>
+        {aboutText && (
+          <Columns
+            field_columns_left_column={aboutText}
+            RightColumnComponent={AboutImage}
+          />
+        )}
+        {restOfContent?.length > 0 && <ContentMapper content={restOfContent} />}
+      </Layout>
+    </>
   )
 }
 

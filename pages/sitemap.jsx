@@ -14,6 +14,7 @@ import { getResourceByPath } from 'next-drupal'
 import forEach from 'lodash/forEach'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
+import CommonHead from '@/components/layout/CommonHead'
 
 export async function getStaticProps(context) {
   const { SITEMAP_PAGE_PATH, DRUPAL_MENUS, REVALIDATE_TIME } =
@@ -90,22 +91,25 @@ export default function SiteMap(props) {
   const { DRUPAL_MENUS } = getConfig().publicRuntimeConfig
   const { node, urls } = props
   return (
-    <SecondaryLayout {...props}>
-      <Block>
-        <h1 className="mt-16 mb-8 text-h1 md:text-h1xl">{node.title}</h1>
-        <SitemapList
-          urls={[
-            { url: `/${locale}`, title: t('breadcrumbs.frontpage') },
-            ...urls.main,
-          ]}
-          name={DRUPAL_MENUS.MAIN}
-        />
-        <SitemapList
-          urls={[...urls[DRUPAL_MENUS.CITIES_LANDING], ...urls.cities]}
-          name={DRUPAL_MENUS.CITIES}
-        />
-        <SitemapList urls={urls.about} name={DRUPAL_MENUS.ABOUT} />
-      </Block>
-    </SecondaryLayout>
+    <>
+      <CommonHead key={`head-sitemap-${node?.id}`} node={node} />
+      <SecondaryLayout {...props}>
+        <Block>
+          <h1 className="mt-16 mb-8 text-h1 md:text-h1xl">{node.title}</h1>
+          <SitemapList
+            urls={[
+              { url: `/${locale}`, title: t('breadcrumbs.frontpage') },
+              ...urls.main,
+            ]}
+            name={DRUPAL_MENUS.MAIN}
+          />
+          <SitemapList
+            urls={[...urls[DRUPAL_MENUS.CITIES_LANDING], ...urls.cities]}
+            name={DRUPAL_MENUS.CITIES}
+          />
+          <SitemapList urls={urls.about} name={DRUPAL_MENUS.ABOUT} />
+        </Block>
+      </SecondaryLayout>
+    </>
   )
 }

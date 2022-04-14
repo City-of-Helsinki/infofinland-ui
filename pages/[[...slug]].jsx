@@ -67,12 +67,10 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context) {
-  const { REVALIDATE_TIME, CACHE_REPOPULATE } = getConfig().serverRuntimeConfig
+  const { REVALIDATE_TIME } = getConfig().serverRuntimeConfig
   const { params, locale } = context
   params.slug = params.slug || ['/']
-  logger.debug('cache autoupdate status:', {
-    cacheRepopulate: CACHE_REPOPULATE,
-  })
+
   const localePath =
     params.slug[0] === '/'
       ? `/${locale}`
@@ -215,5 +213,6 @@ const Page = (props) => {
   }
   return <ArticlePage {...props} />
 }
-
 export default Page
+
+// export default ArticlePage

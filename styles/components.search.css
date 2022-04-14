@@ -71,7 +71,7 @@
   }
 
   .ifu-pagination__page--active a {
-    @apply cursor-default hover:text-black;
+    @apply cursor-default hover:text-link-hover;
   }
   .ifu-pagination__page--disabled,
   .ifu-pagination__button--disabled {

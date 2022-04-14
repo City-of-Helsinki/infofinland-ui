@@ -54,7 +54,6 @@ export default async function handler(request, response) {
         error.status = response.status
         throw error
       }
-
       response.status(200).json({ ok: true })
     } catch (error) {
       logger.error(error.message, {
