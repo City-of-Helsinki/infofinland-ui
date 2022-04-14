@@ -2,13 +2,13 @@
 User-agent: *
 Allow: /*
 Disallow: /api/
-Disallow: 500
-Disallow: /locales
+Disallow: /500
+Disallow: /locales/
 Disallow: /404
 
 # Host
-Host: http://localhost:3000
+Host: http://www.infofinland.fi
 
 # Sitemaps
-Sitemap: http://localhost:3000/sitemap.xml
-Sitemap: https://edit.infofinland.fi/default/sitemap.xml
+Sitemap: http://www.infofinlad.fi/sitemap.xml
+
