@@ -8,7 +8,7 @@ const SearchResults = () => {
   const q = useAtomValue(searchResultsTermAtom)
   const results = useAtomValue(searchResultsAtom)
   if (!results || results?.length < 1) {
-    return {}
+    return null
   }
 
   return results
