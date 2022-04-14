@@ -10,8 +10,8 @@ import * as Elastic from '@/lib/elasticsearch'
 import SearchBar from '@/components/search/SearchBar'
 import { DotsLoader } from '@/components/Loaders'
 import Layout from '@/components/layout/Layout'
-import Head from 'next/head'
 import Block from '@/components/layout/Block'
+import CommonHead from '@/components/layout/CommonHead'
 
 import logger from '@/logger'
 import {
@@ -68,6 +68,7 @@ export async function getServerSideProps(context) {
       return {}
     })
   }
+
   return {
     props: {
       menus,
@@ -126,38 +127,40 @@ export const SearchPage = () => {
   }
 
   return (
-    <Layout node={{ title }}>
-      <Head>
-        <title>{title}</title>
-      </Head>
-      <Block className="relative">
-        <h1 className="mt-16 text-h2 md:text-h3xl">{title}</h1>
-        <SearchBar search={q} />
+    <>
+      <CommonHead node={{ title }} key={`head-search-${q}`} />
+      <Layout>
+        <Block className="relative">
+          <h1 className="mt-16 text-h2 md:text-h3xl">{title}</h1>
+          <SearchBar search={q} />
 
-        {q && !error && (
-          <div className="pb-4">
-            <dl className="mb-2 text-body text-gray-dark">
-              <dd className="inline-block">{t('search.count')}</dd>
-              <dt className="inline-block font-bold ms-1">{searchCount} </dt>
-            </dl>
-            {searchCount > 0 && <Pagination className="mx-8 lg:mx-10 mt-8" />}
-          </div>
-        )}
-
-        <div className="mt-4 min-h-[4rem]">
-          {loading && searchCount === 0 && (
-            <div className="flex items-center -translate-y-4">
-              <DotsLoader />
+          {q && !error && (
+            <div className="pb-4">
+              <dl className="mb-2 text-body text-gray-dark">
+                <dd className="inline-block">{t('search.count')}</dd>
+                <dt className="inline-block font-bold ms-1">{searchCount} </dt>
+              </dl>
+              {searchCount > 0 && <Pagination className="mx-8 lg:mx-10 mt-8" />}
             </div>
           )}
-          {!loading && error && (
-            <h3 className="mb-8 text-h4 translate-y-3">{t('search.error')} </h3>
-          )}
-          {searchCount > 0 && <SearchResults />}
-          {searchCount > 0 && <Pagination className="mx-8 mt-16 mb-4" />}
-        </div>
-      </Block>
-    </Layout>
+
+          <div className="mt-4 min-h-[4rem]">
+            {loading && searchCount === 0 && (
+              <div className="flex items-center -translate-y-4">
+                <DotsLoader />
+              </div>
+            )}
+            {!loading && error && (
+              <h3 className="mb-8 text-h4 translate-y-3">
+                {t('search.error')}{' '}
+              </h3>
+            )}
+            {searchCount > 0 && <SearchResults />}
+            {searchCount > 0 && <Pagination className="mx-8 mt-16 mb-4" />}
+          </div>
+        </Block>
+      </Layout>
+    </>
   )
 }
 

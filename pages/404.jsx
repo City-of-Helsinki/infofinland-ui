@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Layout from '@/components/layout/Layout'
 import { useRouter } from 'next/router'
 import cls from 'classnames'
@@ -14,6 +13,7 @@ import { DotsLoader } from '@/components/Loaders'
 import Block from '@/components/layout/Block'
 import { getLocalesForPath } from '@/lib/client-api'
 import useSWR from 'swr'
+import CommonHead from '@/components/layout/CommonHead'
 
 export async function getStaticProps(context) {
   const { REVALIDATE_TIME } = getConfig().serverRuntimeConfig
@@ -171,7 +171,7 @@ const LocalesLinks = ({ locales, dir }) => {
   )
 }
 
-const Texts404 = ({ locales = [], locale }) => {
+const Texts404 = ({ locales = [], locale, path }) => {
   // if there are no localizations, show basic-404
   // if all localizations exist, page is not shown for other reasons. Show basic 404
   // if some localizations exist, show available-languages-404
@@ -182,9 +182,13 @@ const Texts404 = ({ locales = [], locale }) => {
   const content = omit(texts, locale)
   return (
     <>
-      <Head>
-        <title>{texts[locale].title}</title>
-      </Head>
+      <CommonHead
+        node={{
+          title: texts[locale].title,
+          field_description: texts[locale].help,
+        }}
+        key={`head-404-${path}`}
+      />
 
       <div
         className={cls(
@@ -278,7 +282,9 @@ export const PageNotFound = () => {
         </Block>
       )}
 
-      {(locales || error) && <Texts404 locales={locales} locale={locale} />}
+      {(locales || error) && (
+        <Texts404 locales={locales} locale={locale} path={asPath} />
+      )}
     </Layout>
   )
 }
