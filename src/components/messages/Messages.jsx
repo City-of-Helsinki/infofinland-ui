@@ -11,7 +11,7 @@ import { useRouter } from 'next/router'
 import { IconExclamationCircle } from '../Icons'
 import { useEffect } from 'react'
 import { useRef } from 'react'
-import  every from 'lodash/every'
+import every from 'lodash/every'
 // import { DotsLoader } from '../Loaders'
 
 const Error = ({ message }) => (
@@ -32,17 +32,20 @@ const Messages = () => {
     `/${locale}/${id || asPath}`,
     fetcher
   )
-
-  const [shownMessages, setShownMessages] = useAtom(shownMessagesAtom)
-  const messageIds = data?.map(({id})=>id) || []
-  const hasMessages = data?.length>0 && every( keys(shownMessages),shownId=>!messageIds.includes(shownId))
   const scrollRef = useRef(null)
-  useEffect(()=>{
-    hasMessages && scrollRef.current?.scrollIntoView({
-      behaviour:'smooth',
-      block:'start'
-    })
-  },[hasMessages,scrollRef])
+  const [shownMessages, setShownMessages] = useAtom(shownMessagesAtom)
+  const messageIds = data?.map(({ id }) => id) || []
+  const hasMessages =
+    data?.length > 0 &&
+    every(keys(shownMessages), (shownId) => !messageIds.includes(shownId))
+
+  useEffect(() => {
+    hasMessages &&
+      scrollRef.current?.scrollIntoView({
+        behaviour: 'smooth',
+        block: 'start',
+      })
+  }, [hasMessages, scrollRef])
 
   return (
     <section
