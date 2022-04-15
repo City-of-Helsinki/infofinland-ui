@@ -11,8 +11,7 @@
   .ifu-mainmenu__submenu,
   .ifu-mainmenu__topitem,
   .ifu-mainmenu__item--subitem,
-  /* .ifu-mainmenu__item--button  */
-  {
+  /* .ifu-mainmenu__item--button  */ {
     scroll-margin-top: 8rem;
   }
 
@@ -58,7 +57,6 @@ that they wont move sideways when scrollbar becomes visible
     50% {
       @apply bg-gray-lighter-teal/50;
     }
-
 
     100% {
       @apply bg-gray-lighter-teal/25;

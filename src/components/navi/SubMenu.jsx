@@ -13,7 +13,7 @@ import { useRef } from 'react'
  */
 const ACCORDION_DURATION_CLASS = 'duration-150'
 //Add some milliseconds to avoid race condition in animation and scroll.
-const ACCORCION_DURATION = Number(ACCORDION_DURATION_CLASS.split('-').pop())+5
+const ACCORCION_DURATION = Number(ACCORDION_DURATION_CLASS.split('-').pop()) + 5
 
 // eslint-disable-next-line react/display-name
 const SubMenuItem = forwardRef(
@@ -65,7 +65,7 @@ const SubMenuItems = forwardRef(({ items, isOpen, level }, ref) => {
    */
   return (
     <ul
-      className={cls('ifu-mainmenu__submenu',ACCORDION_DURATION_CLASS ,{
+      className={cls('ifu-mainmenu__submenu', ACCORDION_DURATION_CLASS, {
         'max-h-0 opacity-0 will-change-auto': !isOpen,
         'opacity-100 max-h-[500rem]  transition-all': isOpen,
       })}
@@ -107,17 +107,14 @@ const SubMenu = forwardRef(
     const clickRef = useRef(null)
 
     useEffect(() => {
-      if (isOpen ) {
-        setTimeout(()=>{
+      if (isOpen) {
+        setTimeout(() => {
           clickRef.current?.scrollIntoView({
             behaviour: 'smooth',
             block: 'start',
           })
           clickRef.current?.classList.add('ifu-mainmenu--scroll-flash')
-        },ACCORCION_DURATION
-
-        )
-
+        }, ACCORCION_DURATION)
       }
     }, [isOpen, clickRef])
 
@@ -130,10 +127,9 @@ const SubMenu = forwardRef(
             'border-blue/75 hover:border-blue': selectedIsHidden || selected,
             'font-bold': selected,
             // 'bg-gray-lighter/25': isOpen || selected,
-            'border-orange/50': isOpen && !selected
+            'border-orange/50': isOpen && !selected,
           })}
         >
-
           <span
             className={cls('border-e-5 w-full flex items-center', {
               'border-green-light/75 hover:border-green-light':

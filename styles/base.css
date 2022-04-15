@@ -1,6 +1,6 @@
 @layer base {
   html {
-     scroll-behavior: smooth;
+    scroll-behavior: smooth;
     /*set base font family in tailwind.config.js */
   }
 
