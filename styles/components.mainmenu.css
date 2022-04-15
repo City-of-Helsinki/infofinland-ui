@@ -8,37 +8,24 @@
     height: calc(100vh - 80px);
   }
 
-  .ifu-mainmenu__submenu {
+  .ifu-mainmenu__submenu,
+  .ifu-mainmenu__topitem,
+  .ifu-mainmenu__item--subitem,
+  /* .ifu-mainmenu__item--button  */
+  {
     scroll-margin-top: 8rem;
   }
 
-  .ifu-mainmenu__submenu--enter {
-    max-height: 0;
-    opacity: 0;
-  }
-
-  .ifu-mainmenu__submenu--enter-active {
-    @apply bg-white;
-    max-height: 100vh;
-    opacity: 1;
-    transition: opacity ease-out;
-    transition-duration: 0.4s;
-  }
-
-  .ifu-mainmenu__submenu--exit-active {
-    max-height: 0;
-    opacity: 0;
-  }
   .ifu-mainmenu__item--link {
-    @apply block text-body-small ps-8 py-4 border-s-5 hover:bg-gray-white pe-4;
+    @apply block text-body-small ps-8 py-4 border-s-5 hover:bg-gray-white/50 pe-4;
   }
 
   .ifu-mainmenu__item--button {
-    @apply text-body-small ps-8 border-s-5 hover:bg-gray-white;
+    @apply text-body-small ps-8 border-s-5 hover:bg-gray-white/50;
   }
 
   .ifu-mainmenu__item--subitem {
-    @apply block py-3 text-body-small hover:bg-gray-white pe-4;
+    @apply block py-2 text-body-small hover:bg-gray-white/50 pe-4 text-gray-darker;
   }
 
   /*
@@ -61,6 +48,25 @@ that they wont move sideways when scrollbar becomes visible
 
   [dir='rtl'] .ifu-mainmenu__submenu-icon--open {
     @apply -rotate-90;
+  }
+
+  @keyframes ifu-mainmenu--scroll-flash {
+    0% {
+      @apply bg-gray-lighter/50;
+    }
+
+    50% {
+      @apply bg-gray-lighter-teal/50;
+    }
+
+
+    100% {
+      @apply bg-gray-lighter-teal/25;
+    }
+  }
+
+  .ifu-mainmenu--scroll-flash {
+    animation: ifu-mainmenu--scroll-flash 1s;
   }
 
   @screen md {

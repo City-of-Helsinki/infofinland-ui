@@ -2,29 +2,35 @@ const PreloadFonts = () => (
   <>
     <link
       rel="preload"
-      href="/fonts/NotoSans/NotoSans-Bold.ttf"
-      as="font"
-      type="font/ttf"
-      crossOrigin=""
-    />{' '}
-    *
-    <link
-      rel="preload"
-      href="/fonts/NotoSans/NotoSans-Regular.ttf"
+      href="/fonts/NotoSans/notosans-regular-webfont.woff2"
       as="font"
       type="font/ttf"
       crossOrigin=""
     />
     <link
       rel="preload"
-      href="/fonts/NotoSans/NotoSansSC-Regular.otf"
+      href="/fonts/NotoSans/notosans-bold-webfont.woff2"
       as="font"
       type="font/ttf"
       crossOrigin=""
     />
     <link
       rel="preload"
-      href="/fonts/NotoSans/NotoSans-Arabic.ttf"
+      href="/fonts/NotoSans/notosanssc-regular-webfont.woff2"
+      as="font"
+      type="font/ttf"
+      crossOrigin=""
+    />
+    <link
+      rel="preload"
+      href="/fonts/NotoSans/notosanssc-bold-webfont.woff2"
+      as="font"
+      type="font/ttf"
+      crossOrigin=""
+    />
+    <link
+      rel="preload"
+      href="/fonts/NotoSans/notosans-arabic-webfont.woff2"
       as="font"
       type="font/ttf"
       crossOrigin=""

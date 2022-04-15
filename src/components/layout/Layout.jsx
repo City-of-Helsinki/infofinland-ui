@@ -93,7 +93,7 @@ const AppLayout = ({ children, className }) => {
           <Messages />
         </div>
 
-        <div className="hidden md:block overflow-y-auto fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop">
+        <div className="hidden md:block overflow-y-auto overscroll-none fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop">
           <Messages />
           <MainMenu />
         </div>

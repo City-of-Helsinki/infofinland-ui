@@ -6,6 +6,7 @@ import SubMenu from '@/components/navi/SubMenu'
 import useLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import { findRootForPath, getRootPages } from '@/lib/menu-utils'
 import { IconExclamationCircle } from '../Icons'
+import defer from 'lodash/defer'
 
 const getThemeIndexByPathName = ({ items, path }) => {
   let index
@@ -48,7 +49,7 @@ const TopMenuItem = forwardRef(
     return (
       <li
         {...refProps}
-        className={cls('block relative', {
+        className={cls('block relative ifu-mainmenu--topitem', {
           'border-e-5 border-green-light': secondarySelection && !items,
         })}
       >
@@ -93,6 +94,7 @@ const Menu = ({ menu = {}, useTopBorder, city, className }) => {
     path: localePath,
   })
 
+  // const [scrollRef, inView] = useInViewRef()
   const scrollRef = useRef()
   const [openIndex, setVisibility] = useState(indexFromRouter)
   /**
@@ -100,14 +102,14 @@ const Menu = ({ menu = {}, useTopBorder, city, className }) => {
    */
   useEffect(() => {
     setVisibility(indexFromRouter)
-    setTimeout(() => {
-      if (indexFromRouter >= 0) {
+    if (indexFromRouter >= 0) {
+      defer(() => {
         scrollRef.current?.scrollIntoView({
           behaviour: 'smooth',
           block: 'start',
         })
-      }
-    }, 100)
+      })
+    }
   }, [localePath, indexFromRouter, scrollRef])
 
   if (!items || !tree) {

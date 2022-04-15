@@ -100,6 +100,11 @@ export const searchResultPageCountAtom = atom((get) =>
 
 // export const messagesAtom = atom((get) => get(pageAtom).messages)
 
+// export const messagesAtom = atom((get) => {
+//   const node = get(nodeAtom)
+//   return getMessages({id:node.id,locale:node.langcode}).catch(e=>{return []})
+// })
+
 // set lang message as shown.
 export const shownMessagesAtom = atomWithStorage(
   SHOWN_MESSAGES_KEY,
@@ -109,6 +114,11 @@ export const shownMessagesAtom = atomWithStorage(
   storage
 )
 
+// const hasUnShownMessagesAtom = atom(get=>{
+//   get(shownMessagesAtom)
+//   get(messagesA)
+
+// })
 /**
  * Menu atom collection
  */

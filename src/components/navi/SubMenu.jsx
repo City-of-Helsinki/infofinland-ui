@@ -1,10 +1,19 @@
-import { CSSTransition } from 'react-transition-group'
 import { IconAngleDown, IconAngleUp } from '@/components/Icons'
 import Link from 'next/link'
 import cls from 'classnames'
 import useLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import { useTranslation } from 'next-i18next'
-import { forwardRef } from 'react'
+import { forwardRef, useEffect } from 'react'
+import { useRef } from 'react'
+
+/**
+ *
+ * Tailwind classes must be written out, or it will be ignored by unused class optimizer.
+ * Parse time from class name. Accordion animation time must match scroll scroll delay.
+ */
+const ACCORDION_DURATION_CLASS = 'duration-150'
+//Add some milliseconds to avoid race condition in animation and scroll.
+const ACCORCION_DURATION = Number(ACCORDION_DURATION_CLASS.split('-').pop())+5
 
 // eslint-disable-next-line react/display-name
 const SubMenuItem = forwardRef(
@@ -50,41 +59,31 @@ const SubMenuItem = forwardRef(
 // eslint-disable-next-line react/display-name
 const SubMenuItems = forwardRef(({ items, isOpen, level }, ref) => {
   const { localePath, locale } = useLocalizedPath()
+
+  /**
+   *
+   */
   return (
-    <CSSTransition
-      timeout={{ appear: 0, enter: 400, exit: 0 }}
-      in={isOpen}
-      appear
-      unmountOnExit
-      mountOnEnter
-      classNames={{
-        appear: 'ifu-mainmenu__submenu--appear',
-        appearActive: 'ifu-mainmenu__submenu--appear-active',
-        appearDone: 'ifu-mainmenu__submenu--appear-done',
-        enter: 'ifu-mainmenu__submenu--enter',
-        enterActive: 'ifu-mainmenu__submenu--enter-active',
-        enterDone: 'ifu-mainmenu__submenu--enter-done',
-        exit: 'ifu-mainmenu__submenu--exit',
-        exitActive: 'ifu-mainmenu__submenu--exit-active',
-        exitDone: 'ifu-mainmenu__submenu--exit-done',
-      }}
+    <ul
+      className={cls('ifu-mainmenu__submenu',ACCORDION_DURATION_CLASS ,{
+        'max-h-0 opacity-0 will-change-auto': !isOpen,
+        'opacity-100 max-h-[500rem]  transition-all': isOpen,
+      })}
     >
-      <ul className="ifu-mainmenu__submenu">
-        {items.map((props) => {
-          const selected = props.url === localePath
-          return (
-            <SubMenuItem
-              ref={ref}
-              key={`${props.url}-${props.id}-${locale}`}
-              {...props}
-              level={level}
-              selected={selected}
-              isOpen={isOpen}
-            />
-          )
-        })}
-      </ul>
-    </CSSTransition>
+      {items.map((props) => {
+        const selected = props.url === localePath
+        return (
+          <SubMenuItem
+            ref={ref}
+            key={`${props.url}-${props.id}-${locale}`}
+            {...props}
+            level={level}
+            selected={selected}
+            isOpen={isOpen}
+          />
+        )
+      })}
+    </ul>
   )
 })
 
@@ -105,18 +104,36 @@ const SubMenu = forwardRef(
   ) => {
     const { t } = useTranslation('common')
     const subMenuLabel = t(isOpen === true ? 'mainMenu.close' : 'mainMenu.open')
+    const clickRef = useRef(null)
+
+    useEffect(() => {
+      if (isOpen ) {
+        setTimeout(()=>{
+          clickRef.current?.scrollIntoView({
+            behaviour: 'smooth',
+            block: 'start',
+          })
+          clickRef.current?.classList.add('ifu-mainmenu--scroll-flash')
+        },ACCORCION_DURATION
+
+        )
+
+      }
+    }, [isOpen, clickRef])
+
     return (
       <>
         <div
+          ref={clickRef}
           className={cls('ifu-mainmenu__item--button', {
             'border-white ': !selected && !selectedIsHidden,
             'border-blue/75 hover:border-blue': selectedIsHidden || selected,
             'font-bold': selected,
+            // 'bg-gray-lighter/25': isOpen || selected,
+            'border-orange/50': isOpen && !selected
           })}
         >
-          {/*
-          Shame hack: adding extra span so that border colors will switch
-        accordingly in RTL without overly complicating the CSS works */}
+
           <span
             className={cls('border-e-5 w-full flex items-center', {
               'border-green-light/75 hover:border-green-light':
@@ -143,7 +160,7 @@ const SubMenu = forwardRef(
                   <IconAngleUp className="fill-gray-light ifu-mainmenu__submenu-icon--open ifu-mainmenu__submenu-icon" />
                 )}
                 {isOpen && (
-                  <IconAngleDown className="fill-gray-light ifu-mainmenu__submenu-close ifu-mainmenu__submenu-icon" />
+                  <IconAngleDown className="fill-gray-dark ifu-mainmenu__submenu-close ifu-mainmenu__submenu-icon" />
                 )}
               </button>
             </div>

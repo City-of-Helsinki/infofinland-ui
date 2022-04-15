@@ -47,6 +47,7 @@ const CommonHead = ({ node }) => {
         key={idKey('ogdescription')}
       />
       <meta name="og:image" content={src} key={idKey('ogimage')} />
+      <meta name="theme-color" content="#ffffff" />
     </Head>
   )
 }
