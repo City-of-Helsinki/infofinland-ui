@@ -33,7 +33,7 @@ const SubMenuItem = forwardRef(
           <a
             tabIndex={isOpen ? '0' : '-1'}
             className={cls('ifu-mainmenu__item--subitem', {
-              'ps-12 ': level === 1,
+              'ps-8 ': level === 1,
               'ps-16': level === 2,
               'border-s-5 border-blue/75 hover:border-blue  font-bold':
                 selected,

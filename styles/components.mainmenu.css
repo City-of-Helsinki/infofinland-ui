@@ -24,7 +24,7 @@
   }
 
   .ifu-mainmenu__item--subitem {
-    @apply block py-2 text-body-small hover:bg-gray-white/50 pe-4 text-gray-darker;
+    @apply block py-2 text-body-small hover:bg-gray-white/50 pe-4;
   }
 
   /*
