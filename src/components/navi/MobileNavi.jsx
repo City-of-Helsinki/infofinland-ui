@@ -8,7 +8,7 @@ import { useAtomValue } from 'jotai/utils'
 import { useTranslation } from 'next-i18next'
 import { isAboutPageAtom } from '@/src/store'
 import MainMenu from './MainMenu'
-import AboutMenu from '../layout/AboutMenu'
+import AboutMenu from './AboutMenu'
 
 const MobileNavi = () => {
   const [isOpen, setVisibility] = useState(false)
@@ -36,7 +36,7 @@ const MobileNavi = () => {
       router.events.off('routeChangeError', close)
     }
   }, [router])
-
+  const Menu = isAboutPage === true ? AboutMenu : MainMenu
   return (
     <>
       <div className="md:hidden md:mx-6 me-6 ms-2">
@@ -63,7 +63,7 @@ const MobileNavi = () => {
               </a>
             </Link>
           )}
-          {isAboutPage === true ? <AboutMenu /> : <MainMenu />}
+          <Menu />
         </div>
       </Drawer>
     </>

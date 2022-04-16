@@ -3,9 +3,7 @@ import { CACHE_HEADERS_10M } from '@/cache-headers'
 import logger from '@/logger'
 import cache from '@/lib/cacher/server-cache'
 
-const MUNICIPALITIES_TTL = 600
-
-const cacheKey = (locale) => `municipalities-${locale}`
+const MUNICIPALITIES_CACHE_TTL = 300
 
 export default async function handler(req, res) {
   const { locale } = req?.query
@@ -14,15 +12,18 @@ export default async function handler(req, res) {
     res.status(400).end()
     return
   }
-
+  let municipalities = []
   let status = 200
-  let municipalities = cache.get(cacheKey(locale))
-  if (!municipalities) {
+  let k = `municipalities-${locale}`
+
+  if (cache.has(k)) {
+    municipalities = cache.get(k)
+  } else {
     municipalities = await getMunicipalities({ locale }).catch((e) => {
       logger.error('Municipalities error', { locale, e })
-      return []
+      throw e
     })
-    cache.set(cacheKey(locale), municipalities, MUNICIPALITIES_TTL)
+    cache.set(k, municipalities, MUNICIPALITIES_CACHE_TTL)
   }
 
   res

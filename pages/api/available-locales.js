@@ -4,6 +4,8 @@ import { CACHE_HEADERS_10M } from '@/cache-headers'
 import logger from '@/logger'
 import cache from '@/lib/cacher/server-cache'
 
+const LOCALES_CACHE_TTL = 300
+
 export default async function handler(req, res) {
   // No posts allowed
   if (req.method !== 'GET') {
@@ -27,7 +29,7 @@ export default async function handler(req, res) {
       logger.error('API error while resolving locales.', { path }, e)
       throw e
     })
-    cache.set(k, nodes)
+    cache.set(k, nodes, LOCALES_CACHE_TTL)
   }
   if (nodes === null) {
     status = 404

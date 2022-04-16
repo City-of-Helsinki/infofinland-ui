@@ -72,15 +72,15 @@ const SWRContent = ({ city, isOpen }) => {
           </div>
         )}
 
-        {!isLoading && !isError && content && (
+        {!isLoading && !isError && field_municipality_info && (
           <>
-            {content.field_municipality_info_text?.processed && (
+            {content?.field_municipality_info_text?.processed && (
               <ParseHtml
                 html={content.field_municipality_info_text?.processed}
                 key={`localinfo-text-${content.id}`}
               />
             )}
-            {!content.field_municipality_info_text?.processed && (
+            {!content?.field_municipality_info_text?.processed && (
               <p>{t('localInfo.default_text')}</p>
             )}
             {content?.field_municipality_info_link && (

@@ -63,19 +63,15 @@
   }
 
   .ifu-pagination__page a {
-    @apply block hover:font-bold hover:text-gray-dark;
-  }
-
-  .ifu-pagination__page--active {
-    @apply font-bold;
+    @apply block hover:underline;
   }
 
   .ifu-pagination__page--active a {
-    @apply cursor-default hover:text-link-hover;
+    @apply cursor-default hover:no-underline  font-bold;
   }
   .ifu-pagination__page--disabled,
   .ifu-pagination__button--disabled {
-    @apply text-gray-dark cursor-default;
+    @apply text-gray-darker cursor-default;
   }
 
   /* .ifu-pagination__button--prev {
@@ -88,6 +84,10 @@
   .ifu-pagination__button--next,
   .ifu-pagination__button--prev {
     @apply w-0 flex-none inline-block lg:flex-grow;
+  }
+  .ifu-pagination__button--next.ifu-pagination__button--disabled,
+  .ifu-pagination__button--prev.ifu-pagination__button--disabled {
+    @apply opacity-75;
   }
 
   .ifu-pagination__button--prev a {

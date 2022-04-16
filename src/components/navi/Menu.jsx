@@ -94,7 +94,6 @@ const Menu = ({ menu = {}, useTopBorder, city, className }) => {
     path: localePath,
   })
 
-  // const [scrollRef, inView] = useInViewRef()
   const scrollRef = useRef()
   const [openIndex, setVisibility] = useState(indexFromRouter)
   /**

@@ -26,10 +26,10 @@ const SearchResults = dynamic(() => import('@/components/search/SearchResults'))
 import { CACHE_HEADERS_60S } from '@/cache-headers'
 
 export async function getServerSideProps(context) {
+  // export async function getServerSideProps(context) {
   const { SEARCH_PAGE_PATH } = getConfig().serverRuntimeConfig
 
   const menus = await getCachedMenus(context.locale)
-  context.res.setHeader(...CACHE_HEADERS_60S)
   const { size, q, from, index, locale } =
     Elastic.getSearchParamsFromQuery(context)
   let results = null
@@ -79,6 +79,8 @@ export async function getServerSideProps(context) {
       },
     }
   }
+
+  context.res.setHeader(...CACHE_HEADERS_60S)
 
   return {
     props: {

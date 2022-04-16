@@ -13,7 +13,6 @@ export default async function handler(req, res) {
 
   const { query } = req
   const { id } = query
-
   let status = 200
   const node = await getResource(NODE_TYPES.PAGE, id, {
     params: getLocalInfoParams(),
@@ -29,6 +28,8 @@ export default async function handler(req, res) {
 
   if (node === null) {
     status = 404
+    res.status(status).end()
+    return
   }
 
   res

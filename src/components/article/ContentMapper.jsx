@@ -1,6 +1,5 @@
 import cls from 'classnames'
 import { H2 } from '../Typo'
-// import { BLOCK_MARGIN } from '../layout/Block'
 import LocalInformation from '@/components/cities/LocalInformation'
 import ReadMoreBlock from './ReadMoreBlock'
 import ImageBlock from './ImageBlock'

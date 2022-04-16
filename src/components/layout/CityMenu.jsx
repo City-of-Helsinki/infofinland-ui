@@ -24,7 +24,6 @@ const CityMenu = () => {
   const [open, setOpen] = useAtom(cityMenuVisibilityAtom)
   const [city, setCity] = useAtom(selectedCityAtom)
   const { locale } = useRouter()
-
   const { data, error, isValidating } = useSWR(
     `/municipalities/${locale}`,
     () => getMunicipalities(locale)
@@ -47,12 +46,7 @@ const CityMenu = () => {
         {isValidating && !data && <Loader />}
         {!isValidating &&
           data?.map(({ name: cityName, id }) => (
-            <li
-              key={`municipality-${id}`}
-              className={cls('block', {
-                // 'bg-gray-lighter-teal': city === cityName,
-              })}
-            >
+            <li key={`municipality-${id}`} className={cls('block', {})}>
               <button
                 value={cityName}
                 aria-current={city === cityName}
