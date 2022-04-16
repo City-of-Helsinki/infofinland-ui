@@ -51,7 +51,7 @@ that they wont move sideways when scrollbar becomes visible
 
   @keyframes ifu-mainmenu--scroll-flash {
     0% {
-      @apply bg-gray-lighter/50;
+      @apply bg-gray-lighter/75;
     }
 
     50% {

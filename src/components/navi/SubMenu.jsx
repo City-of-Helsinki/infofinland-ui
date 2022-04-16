@@ -88,7 +88,7 @@ const SubMenu = ({
           'border-white ': !selected && !selectedIsHidden,
           'border-blue/75 hover:border-blue': selectedIsHidden || selected,
           'font-bold': selected,
-          'border-orange/50': isOpen && !selected,
+          'border-orange/50 border-s-3': isOpen && !selected,
         })}
       >
         <span
