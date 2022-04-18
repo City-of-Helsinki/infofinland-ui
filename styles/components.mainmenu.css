@@ -7,13 +7,13 @@
     /* SHAME! should use h-topbarxl . make it into css variable*/
     height: calc(100vh - 80px);
   }
-
+  /*
   .ifu-mainmenu__submenu,
   .ifu-mainmenu__topitem,
   .ifu-mainmenu__item--subitem,
-  /* .ifu-mainmenu__item--button  */ {
+   .ifu-mainmenu__item--button   {
     scroll-margin-top: 8rem;
-  }
+  } */
 
   .ifu-mainmenu__item--link {
     @apply block text-body-small ps-8 py-4 border-s-5 hover:bg-gray-white/50 pe-4;
