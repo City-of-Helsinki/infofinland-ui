@@ -16,7 +16,7 @@ const FeedbackBlock = dynamic(() =>
   import('@/components/feedback/FeedbackBlock')
 )
 const Messages = dynamic(() => import('@/components/messages/Messages'))
-const AboutMenu = dynamic(() => import('./AboutMenu'))
+const AboutMenu = dynamic(() => import('../navi/AboutMenu'))
 const CookieConsentBar = dynamic(() =>
   import('@/components/layout/CookieConsent')
 )
@@ -36,7 +36,6 @@ export const BlankLayout = ({ children }) => {
       <Favicons />
       {children}
     </main>
-    // <CookieConsentBar />
   )
 }
 
@@ -93,7 +92,7 @@ const AppLayout = ({ children, className }) => {
           <Messages />
         </div>
 
-        <div className="hidden md:block overflow-y-auto fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop">
+        <div className="hidden md:block overflow-y-auto overscroll-none fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop">
           <Messages />
           <MainMenu />
         </div>

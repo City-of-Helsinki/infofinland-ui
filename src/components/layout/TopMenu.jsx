@@ -2,11 +2,11 @@ import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 import useLangMenuToggle from '@/hooks/useLangMenuToggle'
 import MobileNavi from '@/components/navi/MobileNavi'
-import LanguageSelector from '@/components/languages/LanguageSelector'
+import LanguageSelector from '@/components/layout/languages/LanguageSelector'
 import {
   LanguageMenuButton,
   LangMenuDrawer,
-} from '@/components/languages/LanguageMenu'
+} from '@/components/layout/languages/LanguageMenu'
 // import CityMenu from '@/components/layout/CityMenu'
 import TopSearch from '../search/TopSearch'
 import cls from 'classnames'

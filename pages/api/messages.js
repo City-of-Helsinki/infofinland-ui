@@ -3,6 +3,8 @@ import { CACHE_HEADERS_60S } from '@/cache-headers'
 import logger from '@/logger'
 import cache from '@/lib/cacher/server-cache'
 
+const MESSAGES_CACHE_TTL = 60
+
 export default async function handler(req, res) {
   const { id, locale } = req?.query
   const k = `messages-${locale}-${id}`
@@ -12,18 +14,16 @@ export default async function handler(req, res) {
     return
   }
   let status = 200
+  let messages = []
+  if (cache.has(k)) {
+    messages = cache.get(k)
+  } else {
+    messages = await getMessages({ locale, id }).catch((e) => {
+      logger.error('Messages error', { id, locale, e })
+      throw e
+    })
 
-  let messages = cache.get(k)
-  if (!messages) {
-    messages = await getMessages({ locale, id })
-      .then((messages) => {
-        cache.set(k, messages, 120)
-        return messages
-      })
-      .catch((e) => {
-        logger.error('Messages error', { id, locale, e })
-        return []
-      })
+    cache.set(k, messages, MESSAGES_CACHE_TTL)
   }
 
   res

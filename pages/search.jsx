@@ -26,10 +26,10 @@ const SearchResults = dynamic(() => import('@/components/search/SearchResults'))
 import { CACHE_HEADERS_60S } from '@/cache-headers'
 
 export async function getServerSideProps(context) {
+  // export async function getServerSideProps(context) {
   const { SEARCH_PAGE_PATH } = getConfig().serverRuntimeConfig
 
   const menus = await getCachedMenus(context.locale)
-  context.res.setHeader(...CACHE_HEADERS_60S)
   const { size, q, from, index, locale } =
     Elastic.getSearchParamsFromQuery(context)
   let results = null
@@ -79,6 +79,8 @@ export async function getServerSideProps(context) {
       },
     }
   }
+
+  context.res.setHeader(...CACHE_HEADERS_60S)
 
   return {
     props: {
@@ -147,10 +149,12 @@ export const SearchPage = () => {
 
           {q && !error && (
             <div className="pb-4">
-              <dl className="mb-2 text-body text-gray-dark">
-                <dd className="inline-block">{t('search.count')}</dd>
-                <dt className="inline-block font-bold ms-1">{searchCount} </dt>
-              </dl>
+              <span className="mb-2 text-body text-gray-dark">
+                <span className="inline-block">{t('search.count')}</span>
+                <span className="inline-block font-bold ms-1">
+                  {searchCount}{' '}
+                </span>
+              </span>
               {searchCount > 0 && <Pagination className="mx-8 lg:mx-10 mt-8" />}
             </div>
           )}

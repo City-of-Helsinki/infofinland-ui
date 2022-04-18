@@ -1,6 +1,6 @@
 @layer base {
   html {
-    /* scroll-behavior: smooth; */
+    scroll-behavior: smooth;
     /*set base font family in tailwind.config.js */
   }
 
@@ -11,34 +11,39 @@
 
   @font-face {
     font-family: 'Noto Sans';
-    src: url('/fonts/NotoSans/NotoSans-Regular.ttf');
+    src: url('/fonts/NotoSans/notosans-regular-webfont.woff2');
     font-display: swap;
   }
 
   @font-face {
     font-family: 'Noto Sans';
-    src: url('/fonts/NotoSans/NotoSans-Bold.ttf');
+    src: url('/fonts/NotoSans/notosans-bold-webfont.woff2');
     font-weight: bold;
     font-display: swap;
   }
 
   @font-face {
     font-family: 'Noto Sans Chinese';
-    src: url('/fonts/NotoSans/NotoSansSC-Regular.otf');
+    src: url('/fonts/NotoSans/notosanssc-regular-webfont.woff2');
+
+    /*src: url('/fonts/NotoSans/NotoSansSC-Regular.otf');*/
     font-weight: normal;
     font-display: swap;
   }
 
   @font-face {
     font-family: 'Noto Sans Chinese';
-    src: url('/fonts/NotoSans/NotoSansSC-Bold.otf');
+
+    src: url('/fonts/NotoSans/notosanssc-bold-webfont.woff2');
+
+    /*src: url('/fonts/NotoSans/NotoSansSC-Bold.otf');*/
     font-weight: bold;
     font-display: swap;
   }
 
   @font-face {
     font-family: 'Noto Sans Arabic';
-    src: url('/fonts/NotoSans/NotoSans-Arabic.ttf');
+    src: url('/fonts/NotoSans/notosans-arabic-webfont.woff2');
     font-display: swap;
   }
 

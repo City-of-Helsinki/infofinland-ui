@@ -14,9 +14,8 @@ import { useRouter } from 'next/router'
 const FooterLinks = ({ secondary }) => {
   const { t, language } = useTranslation('common')
   const margin = secondary ? 'ifu-block--secondary' : 'ifu-block--article'
-  const {
-    publicRuntimeConfig: { FB_URL, TWITTER_URL, YOUTUBE_URL, INSTAGRAM_URL },
-  } = getConfig()
+  const { FB_URL, TWITTER_URL, YOUTUBE_URL, INSTAGRAM_URL } =
+    getConfig().publicRuntimeConfig
 
   const footerMenu = useAtomValue(footerMenuAtom)
 
