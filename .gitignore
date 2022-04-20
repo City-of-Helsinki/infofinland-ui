@@ -7,5 +7,4 @@ coverage
 .vercel
 .vscode
 .env.local*
-
 # .env.production

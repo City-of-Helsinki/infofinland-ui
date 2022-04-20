@@ -12,34 +12,46 @@
  *
  */
 
-import { createLogger, format, transports } from 'winston'
+import * as winston from 'winston'
+// import { createLogger, format, transports } from 'winston'
+import  'winston-daily-rotate-file';
 
 const LEVEL = process.env.NODE_ENV === 'production' ? 'info' : 'verbose'
-const ERROR_LOG = 'error.log'
-const ALL_EVENTS_LOG = 'events.log'
-const CONSOLE_LEVEL = process.env.NODE_ENV === 'production' ? 'warn' : 'verbose'
-const logger = createLogger({
+const ERROR_LOG = './logs/errors-%DATE%.log'
+const CONSOLE_LEVEL = process.env.NODE_ENV === 'production' ? 'info' : 'verbose'
+
+
+
+const errorRotation = new winston.transports.DailyRotateFile({
+  filename: ERROR_LOG,
+  datePattern: 'YYYY-MM-DD-HH',
+  zippedArchive: true,
+  maxFiles: '1d',
+  level: 'error',
+});
+
+
+const logger = winston.createLogger({
   level: LEVEL,
-  format: format.combine(
-    format.timestamp({
+  format: winston.format.combine(
+    winston.format.timestamp({
       format: 'DD-MM-YYYY HH:mm:ss',
     }),
-    format.errors({ stack: true }),
-    format.splat(),
-    format.json()
+    winston.format.errors({ stack: true }),
+    winston.format.splat(),
+    winston.format.json()
   ),
   defaultMeta: {
     site: process.env.SITE_HOST,
     drupal: process.env.NEXT_PUBLIC_DRUPAL_BASE_URL,
   },
   transports: [
-    new transports.Console({
-      format: format.combine(format.colorize(), format.simple()),
+    new winston.transports.Console({
+      format: winston.format.combine(winston.format.colorize(), winston.format.simple()),
       level: CONSOLE_LEVEL,
     }),
-    new transports.File({ filename: ERROR_LOG, level: 'error' }),
-    new transports.File({ filename: ALL_EVENTS_LOG }),
-  ],
+    errorRotation,
+],
 })
 
 export default logger
