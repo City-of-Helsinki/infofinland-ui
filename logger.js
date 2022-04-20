@@ -14,13 +14,11 @@
 
 import * as winston from 'winston'
 // import { createLogger, format, transports } from 'winston'
-import  'winston-daily-rotate-file';
+import 'winston-daily-rotate-file'
 
-const LEVEL = process.env.NODE_ENV === 'production' ? 'info' : 'verbose'
+// const LEVEL = process.env.NODE_ENV === 'production' ? 'info' : 'verbose'
 const ERROR_LOG = './logs/errors-%DATE%.log'
-const CONSOLE_LEVEL = process.env.NODE_ENV === 'production' ? 'info' : 'verbose'
-
-
+const CONSOLE_LEVEL = process.env.NODE_ENV === 'production' ? 'warn' : 'verbose'
 
 const errorRotation = new winston.transports.DailyRotateFile({
   filename: ERROR_LOG,
@@ -28,11 +26,10 @@ const errorRotation = new winston.transports.DailyRotateFile({
   zippedArchive: true,
   maxFiles: '1d',
   level: 'error',
-});
-
+})
 
 const logger = winston.createLogger({
-  level: LEVEL,
+  // level: LEVEL,
   format: winston.format.combine(
     winston.format.timestamp({
       format: 'DD-MM-YYYY HH:mm:ss',
@@ -47,11 +44,14 @@ const logger = winston.createLogger({
   },
   transports: [
     new winston.transports.Console({
-      format: winston.format.combine(winston.format.colorize(), winston.format.simple()),
+      format: winston.format.combine(
+        winston.format.colorize(),
+        winston.format.simple()
+      ),
       level: CONSOLE_LEVEL,
     }),
     errorRotation,
-],
+  ],
 })
 
 export default logger

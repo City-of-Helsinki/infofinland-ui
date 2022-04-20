@@ -37,7 +37,7 @@ export const NOT_FOUND = { notFound: true }
 export const getCachedMenus = async (locale) => {
   const key = menuCache.getKey({ locale })
   if (menuCache.cache.has(key)) {
-    logger.info('Serving menus from cache', { cacheKey: key })
+    logger.http('Serving menus from cache', { cacheKey: key })
     return menuCache.cache.get(key)
   }
 
@@ -123,7 +123,7 @@ export const getCachedNode = async ({ locale, localePath, type }) => {
   const key = pageCache.getKey({ locale, localePath, type })
 
   if (pageCache.cache.has(key)) {
-    logger.info('Serving page %s from cache', localePath, {
+    logger.http('Serving page %s from cache', localePath, {
       localePath,
       locale,
       type,
