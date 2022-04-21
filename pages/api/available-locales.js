@@ -1,10 +1,10 @@
 import { i18n } from '@/next-i18next.config'
 import { translatePath } from 'next-drupal'
-import { CACHE_HEADERS_10M } from '@/cache-headers'
+import { CACHE_HEADERS_30S } from '@/cache-headers'
 import logger from '@/logger'
 import cache from '@/lib/cacher/server-cache'
 
-const LOCALES_CACHE_TTL = 300
+const LOCALES_CACHE_TTL = 60
 
 export default async function handler(req, res) {
   // No posts allowed
@@ -46,7 +46,7 @@ export default async function handler(req, res) {
   }
 
   res
-    .setHeader(...CACHE_HEADERS_10M)
+    .setHeader(...CACHE_HEADERS_30S)
     .status(status)
     .json(response)
 }
