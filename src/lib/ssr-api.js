@@ -30,9 +30,7 @@ export const menuErrorResponse = () => ({
 // Export query params through ssr-api for convenience
 export * from './query-params'
 
-export const NOT_FOUND = { notFound: true }
-
-//
+export const NOT_FOUND = { notFound: true, }
 
 export const getCachedMenus = async (locale) => {
   const key = menuCache.getKey({ locale })
@@ -117,6 +115,7 @@ export const getNode = ({ locale, localePath, type }) =>
       localePath,
       e,
     })
+    // throw e
   })
 
 export const getCachedNode = async ({ locale, localePath, type }) => {

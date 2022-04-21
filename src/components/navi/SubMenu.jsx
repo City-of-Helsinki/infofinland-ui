@@ -29,7 +29,7 @@ const SubMenuItem = ({ title, url, selected, items, level, isOpen }) => {
   )
 }
 
-const SubMenuItems = ({ items, isOpen, level }, ref) => {
+const SubMenuItems = ({ items, isOpen, level }) => {
   const { localePath, locale } = useLocalizedPath()
 
   return (
@@ -43,7 +43,7 @@ const SubMenuItems = ({ items, isOpen, level }, ref) => {
         const selected = props.url === localePath
         return (
           <SubMenuItem
-            ref={ref}
+
             key={`${props.url}-${props.id}-${locale}`}
             {...props}
             level={level}

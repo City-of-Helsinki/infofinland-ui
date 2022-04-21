@@ -95,7 +95,7 @@
     "readMore": "Loe edasi",
     "reselect": "Vali teine omavalitsus",
     "select": "Vali omavalitsus",
-    "select_city": "Vali: {{city}}",
+    "select_current": "Vali: {{city}}",
     "selected_city": "Minu omavalitsus: {{city}}",
     "title": "Kohalik teave"
   },

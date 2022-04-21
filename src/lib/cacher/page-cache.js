@@ -56,7 +56,7 @@ cache.on('expired', async (expiredKey) => {
       })
       cache.set(expiredKey, fresh)
     } else {
-      logger.warn('Unable to refresh expired entry', { cacheKey: expiredKey })
+      logger.warn('Unable to refresh expired entry', { cacheKey: expiredKey,params })
     }
   }
 })
