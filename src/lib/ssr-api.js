@@ -14,7 +14,7 @@ import { getMunicipalityParams, getThemeHeroParams } from './query-params'
 import { getHeroFromNode } from './ssr-helpers'
 
 import { getQueryParamsFor } from './query-params'
-// import cache from './cacher/server-cache'
+import cache from './cacher/server-cache'
 import pageCache from './cacher/page-cache'
 import menuCache from './cacher/menu-cache'
 import logger from '@/logger'
@@ -46,12 +46,11 @@ export const getCachedMenus = async (locale) => {
 }
 
 export const getCachedAboutMenus = async (locale) => {
-  //Use generic cold cache for about-menu
   const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
   const key = `about-menus-${locale}}`
 
-  if (menuCache.cache.has(key)) {
-    return menuCache.cache.get(key)
+  if (cache.has(key)) {
+    return cache.get(key)
   }
 
   const [about, footer] = await Promise.all([
@@ -67,7 +66,7 @@ export const getCachedAboutMenus = async (locale) => {
 
   const menus = { about, footer }
   logger.http('Caching about-menu', { cacheKey: key })
-  menuCache.cache.set(key, menus, 600)
+  cache.set(key, menus, 600)
   return menus
 }
 
