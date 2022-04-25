@@ -48,7 +48,7 @@ export const BlankLayout = ({ children }) => {
 export const SecondaryLayout = ({ children, className, menus }) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
-  // useShowLangMessage(locale)
+  useShowLangMessage(locale)
 
   return (
     <div
