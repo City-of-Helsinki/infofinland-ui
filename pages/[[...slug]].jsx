@@ -5,7 +5,6 @@ import { getMenu } from 'next-drupal'
 import ArticlePage from '@/src/page-templates/ArticlePage'
 import AboutPage from '@/src/page-templates/AboutPage'
 import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
-// import useHydratePage from '@/hooks/useHydratePage'
 import {
   NOT_FOUND,
   menuErrorResponse,
@@ -24,7 +23,7 @@ import logger from '@/logger'
 const USE_TIMER = process.env.USE_TIMER || false
 
 export async function getStaticPaths() {
-// {locales}
+
   const { DRUPAL_MENUS, BUILD_ALL } = getConfig().serverRuntimeConfig
 
   // prerender all theme pages from main menu and cities menu
@@ -40,7 +39,7 @@ export async function getStaticPaths() {
       //   defaultLocale: NO_DEFAULT_LOCALE,
       // }),
     ])
-  ) // items for all rendering pages, tree for rendering theme pages
+  ) // items for all prerendering pages in menu, tree for rendering theme (root level) pages
     .map(({ tree, items }) =>
       (BUILD_ALL === '1' ? items : tree).map(({ url }) => {
         //remove root slash and language code
@@ -77,7 +76,7 @@ export async function getStaticProps(context) {
   const type = params.slug ? NODE_TYPES.PAGE : NODE_TYPES.LANDING_PAGE
 
   params.slug = params.slug || ['/']
-
+  const path = params.slug[0] === '/' ? params.slug[0] : `/${params.slug.join('/')}`
   const localePath =
     params.slug[0] === '/'
       ? `/${locale}`
@@ -99,11 +98,12 @@ export async function getStaticProps(context) {
     return NOT_FOUND
   }
 
-  if (isNodePath) {
+
+  if (isNodePath || node.path?.alias !== path) {
     if (node.path?.alias) {
       return {
         redirect: {
-          permanent: false,
+          permanent: true,
           destination: `/${locale}/${node.path.alias}`,
         },
       }
