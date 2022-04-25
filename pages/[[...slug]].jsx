@@ -11,6 +11,7 @@ import {
   getThemeHeroImages,
   getCachedMenus,
   getCachedAboutMenus,
+  getNode,
   getCachedNode,
 } from '@/lib/ssr-api'
 import { addPrerenderLocalesToPaths } from '@/lib/ssr-helpers'
@@ -70,7 +71,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   USE_TIMER && console.time(T)
 
-  const { REVALIDATE_TIME } = getConfig().serverRuntimeConfig
+  const { REVALIDATE_TIME, BUILD_PHASE } = getConfig().serverRuntimeConfig
   const { params, locale } = context
   const type = params.slug ? NODE_TYPES.PAGE : NODE_TYPES.LANDING_PAGE
 
@@ -86,8 +87,13 @@ export async function getStaticProps(context) {
 
   USE_TIMER && console.log('type resolved')
   USE_TIMER && console.timeLog(T)
+  let node
 
-  const node = await getCachedNode({ locale, params, type, localePath })
+  if (BUILD_PHASE) {
+    node = await getNode({ locale, params, type, localePath })
+  } else {
+    node = await getCachedNode({ locale, params, type, localePath })
+  }
 
   USE_TIMER && console.log('node resolved')
   USE_TIMER && console.timeLog(T)

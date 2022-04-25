@@ -10,7 +10,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "next dev",
-    "build": "CACHE_REPOPULATE=0 next build",
+    "build": "CACHE_REPOPULATE=0 BUILD_PHASE=1 next build",
     "format": "prettier --write .",
     "start": "next start",
     "twconfig": "tailwind-config-viewer -o --port 3600",
