@@ -98,23 +98,34 @@ export async function getStaticProps(context) {
     return NOT_FOUND
   }
 
-  if (isNodePath || node.path?.alias !== path) {
+  if (isNodePath) {
     if (node.path?.alias) {
+      logger.http('Redirecting Node id path to current path alias', {
+        requestPath: path,
+        redirectPath: node.path?.alias,
+      })
       return {
         redirect: {
-          permanent: true,
+          permanent: false,
           destination: `/${locale}/${node.path.alias}`,
         },
       }
     } else {
-      logger.warn(
-        `Request to direct node %s without path alias blocked. 404 returned `,
+      logger.warn(`Request to direct node %s without path alias.`, localePath, {
+        type,
         localePath,
-        {
-          type,
-          localePath,
-        }
-      )
+      })
+    }
+  } else if (node.path?.alias && node.path?.alias !== path) {
+    logger.info('Redirecting old node path to current node alias', {
+      path,
+      alias: node.path?.alias,
+    })
+    return {
+      redirect: {
+        permanent: true,
+        destination: `/${locale}/${node.path?.alias}`,
+      },
     }
   }
 
