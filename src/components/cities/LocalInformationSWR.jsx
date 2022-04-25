@@ -5,7 +5,7 @@ import TextLink from '../TextLink'
 import { DotsLoader } from '../Loaders'
 import { IconExclamationCircle } from '../Icons'
 import { ContactInfoFields } from '../article/PTVBlock'
-import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
+import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import useSWR from 'swr'
 import { ExternalLinkCollection } from '../article/ReadMoreBlock'
@@ -13,31 +13,22 @@ import ParseHtml from '@/components/ParseHtml'
 import { getLocalInformation } from '@/lib/client-api'
 import { nodeIdAtom } from '@/src/store'
 
-const useLocalInformation = ({ city, id }) => {
-  const cacheKey = !city ? null : `${city}-${id}`
-  const fetcher = !city ? () => {} : () => getLocalInformation({ id, city })
-  const { data, error } = useSWR(cacheKey, fetcher)
-
-  return {
-    node: data,
-    isLoading: !error && !data,
-    isError: error,
-  }
-}
-
 const SWRContent = ({ city, isOpen }) => {
   const { t } = useTranslation('common')
-  const { locale } = useRouterWithLocalizedPath()
-  const { node, isLoading, isError } = useLocalInformation({
-    city: city?.field_municipality?.name,
-    id: city?.field_municipality_page?.id,
-  })
+  const { locale } = useRouter()
+  const id = city?.field_municipality_page?.id
+  const name = city?.field_municipality?.name
+  const cacheKey = !city ? null : `${name}-${id}-${locale}`
+  const fetcher = !city
+    ? () => {}
+    : () => getLocalInformation({ id, name, locale })
+
+  const { data: node, error, isValidating } = useSWR(cacheKey, fetcher)
   const pageId = useAtomValue(nodeIdAtom)
   const { field_municipality_info, path } = node || {}
   const content = field_municipality_info?.find(
     ({ field_national_page: { id } }) => id === pageId
   )
-
   return (
     <CSSTransition
       in={isOpen}
@@ -57,12 +48,12 @@ const SWRContent = ({ city, isOpen }) => {
       timeout={{ appear: 0, enter: 300, exit: 0 }}
     >
       <div className="mt-8">
-        {isLoading && (
+        {isValidating && (
           <div className="flex items-center h-52">
             <DotsLoader color="green" />
           </div>
         )}
-        {isError && (
+        {error && (
           <div className="flex items-center h-24">
             <p className="m-auto mb-8 text-center text-gray-medium">
               <IconExclamationCircle className="mb-4 fill-green-light" />
@@ -72,7 +63,7 @@ const SWRContent = ({ city, isOpen }) => {
           </div>
         )}
 
-        {!isLoading && !isError && field_municipality_info && (
+        {!isValidating && !error && field_municipality_info && (
           <>
             {content?.field_municipality_info_text?.processed && (
               <ParseHtml

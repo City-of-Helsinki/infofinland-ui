@@ -47,7 +47,9 @@ const getKey = (keyObj) => {
 
 //Refresh menu cache entry on expiration
 cache.on('expired', async (expiredKey) => {
-  if (getConfig().serverRuntimeConfig.CACHE_REPOPULATE === '1') {
+  const { CACHE_REPOPULATE, BUILD_PHASE } = getConfig().serverRuntimeConfig
+
+  if (!BUILD_PHASE && CACHE_REPOPULATE === '1') {
     const params = parseKey(expiredKey)
     logger.verbose('Menu Cache entry expired', {
       cacheKey: expiredKey,

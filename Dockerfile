@@ -28,6 +28,7 @@ ARG MATOMO_URL
 ARG ELASTICSEARCH_URL
 # Must be false in builds always
 ENV CACHE_REPOPULATE 0
+ENV BUILD_PHASE 1
 ENV BUILD_ALL=$BUILD_ALL
 ENV SITE_HOST=$SITE_HOST
 ENV NEXT_PUBLIC_DRUPAL_BASE_URL=$NEXT_PUBLIC_DRUPAL_BASE_URL
@@ -75,7 +76,6 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/next-i18next.config.js ./next-i18next.config.js
 COPY --from=builder /app/logs ./logs
-
 
 # env debug line for debugging environment variables in Azure.
 # If you are sure if all env vars are available in both build- and runtime,
