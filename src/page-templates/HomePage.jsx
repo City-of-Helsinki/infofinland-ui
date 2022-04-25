@@ -23,14 +23,14 @@ const AboutImage = () => (
   </div>
 )
 
-const HomePage = ({ node, themes }) => {
+const HomePage = ({ node, themes, menus }) => {
   const hero = getHeroFromNode(node)
   const { field_description, field_content, title } = node
   const [aboutText, ...restOfContent] = field_content
   return (
     <>
       <CommonHead key={`head-landing-${node?.id}`} node={node} />
-      <Layout className="ifu-landing">
+      <Layout className="ifu-landing" menus={menus}>
         <HomeHero title={title} src={hero?.src} />
 
         {field_description && (

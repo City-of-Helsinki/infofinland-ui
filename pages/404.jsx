@@ -266,14 +266,14 @@ const Texts404 = ({ locales = [], locale, path }) => {
   )
 }
 
-export const PageNotFound = () => {
+export const PageNotFound = ({ menus }) => {
   const { locale, asPath } = useRouter()
   const cacheKey = asPath ? asPath : null
   const fetcher = () => getLocalesForPath({ path: asPath })
   const { data: locales, error } = useSWR(cacheKey, fetcher)
 
   return (
-    <Layout node={{}}>
+    <Layout menus={menus}>
       {!locales && !error && (
         <Block>
           <div className="flex justify-center items-center w-full h-64">

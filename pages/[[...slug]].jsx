@@ -1,16 +1,17 @@
+/* eslint-disable no-unreachable */
 import getConfig from 'next/config'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { getMenu } from 'next-drupal'
 import ArticlePage from '@/src/page-templates/ArticlePage'
 import AboutPage from '@/src/page-templates/AboutPage'
 import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
-// import { getPathsFromContext } from 'next-drupal'
+// import useHydratePage from '@/hooks/useHydratePage'
 import {
   NOT_FOUND,
   menuErrorResponse,
   getThemeHeroImages,
   getCachedMenus,
-  getCachedAboutMenu,
+  getCachedAboutMenus,
   getCachedNode,
 } from '@/lib/ssr-api'
 import { addPrerenderLocalesToPaths } from '@/lib/ssr-helpers'
@@ -23,19 +24,8 @@ import logger from '@/logger'
 const USE_TIMER = process.env.USE_TIMER || false
 
 export async function getStaticPaths() {
+// {locales}
   const { DRUPAL_MENUS, BUILD_ALL } = getConfig().serverRuntimeConfig
-  // const params =  {
-  //   "filter[status]": "1",
-  // }
-
-  // const paths =( await Promise.all([
-  //     getPathsFromContext(NODE_TYPES.PAGE,context, {
-  //       params
-  //     }),
-  //     getPathsFromContext(NODE_TYPES.LANDING_PAGE,context,params)
-  // ])).flat()
-
-
 
   // prerender all theme pages from main menu and cities menu
   // any language should do. english should do the most.
@@ -72,15 +62,16 @@ export async function getStaticPaths() {
     ...menus,
   ])
 
-
   return {
     paths,
     fallback: 'blocking',
   }
 }
 
+// export async function getServerSideProps(context) {
 export async function getStaticProps(context) {
   USE_TIMER && console.time(T)
+
   const { REVALIDATE_TIME } = getConfig().serverRuntimeConfig
   const { params, locale } = context
   const type = params.slug ? NODE_TYPES.PAGE : NODE_TYPES.LANDING_PAGE
@@ -93,43 +84,9 @@ export async function getStaticProps(context) {
       : ['', locale, ...params.slug].join('/')
   const isNodePath = /node/.test(params.slug[0])
   const T = `pageTimer-for-${localePath}`
-  // const typeCacheKey = `type-of-${localePath}`
-
-
-
-  // if (cache.has(typeCacheKey)) {
-  //   type = cache.get(typeCacheKey)
-  // }
-
-  // if (!type) {
-  //   type = await getResourceTypeFromContext({
-  //     locale,
-  //     defaultLocale: NO_DEFAULT_LOCALE,
-  //     params,
-  //   })
-  //   if (type) {
-  //     cache.set(typeCacheKey, type)
-  //   }
-  // }
-
-
-
 
   USE_TIMER && console.log('type resolved')
   USE_TIMER && console.timeLog(T)
-
-  //Allow only pages and landing pages to be queried
-  if (![NODE_TYPES.PAGE, NODE_TYPES.LANDING_PAGE].includes(type)) {
-    logger.error(
-      `Error resolving page %s. Node type not allowed.`,
-      localePath,
-      {
-        type,
-        localePath,
-      }
-    )
-    return NOT_FOUND
-  }
 
   const node = await getCachedNode({ locale, params, type, localePath })
 
@@ -164,7 +121,7 @@ export async function getStaticProps(context) {
 
   let menus = {}
   if (node.field_layout === 'small') {
-    menus.about = await getCachedAboutMenu(locale)
+    menus = await getCachedAboutMenus(locale)
   } else {
     menus = await getCachedMenus(locale)
   }

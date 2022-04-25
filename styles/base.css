@@ -1,7 +1,29 @@
 @layer base {
+  :root {
+    --scrollbar-foreground: #ddd;
+    --scrollbar-background: #fafafa;
+  }
   html {
     scroll-behavior: smooth;
     /*set base font family in tailwind.config.js */
+  }
+
+  * {
+    /* Foreground, Background */
+    scrollbar-color: var(--scrollbar-foreground) var(--scrollbar-background);
+  }
+  *::-webkit-scrollbar {
+    width: 6px; /* Mostly for vertical scrollbars */
+    height: 6px; /* Mostly for horizontal scrollbars */
+  }
+  *::-webkit-scrollbar-thumb {
+    /* Foreground */
+    background: var(--scrollbar-foreground);
+    border-radius: 10px;
+  }
+  *::-webkit-scrollbar-track {
+    /* Background */
+    background: var(--scrollbar-background);
   }
 
   /**

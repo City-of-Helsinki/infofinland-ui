@@ -8,7 +8,7 @@ import { H1, longTextClass } from '@/components/Typo'
 import cls from 'classnames'
 import CommonHead from '@/components/layout/CommonHead'
 
-export default function AboutPage({ node }) {
+export default function AboutPage({ node, menus }) {
   const { locale, asPath } = useRouter()
   const { field_content, title, field_description } = node
   const { COOKIE_PAGE_PATH } = getConfig().publicRuntimeConfig
@@ -17,7 +17,7 @@ export default function AboutPage({ node }) {
   return (
     <>
       <CommonHead key={`head-about-${node?.id}`} node={node} />
-      <SecondaryLayout node={node}>
+      <SecondaryLayout node={node} menus={menus}>
         <Block>
           <H1
             className={cls(

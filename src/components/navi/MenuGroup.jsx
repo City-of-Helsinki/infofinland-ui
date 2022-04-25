@@ -8,7 +8,7 @@ const MenuGroup = ({ menulist }) => {
         {...menu}
         key={`mainmenu-${i}`}
         useTopBorder={i > 0}
-        className={i + 1 === l ? 'mb-[50rem]' : ''}
+        className={i + 1 === l ? 'mb-24' : ''}
       />
     )
   })

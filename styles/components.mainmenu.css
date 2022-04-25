@@ -6,6 +6,7 @@
   .ifu-mainmenu__desktop {
     /* SHAME! should use h-topbarxl . make it into css variable*/
     height: calc(100vh - 80px);
+    /* @apply styled-scrollbars; */
   }
   /*
   .ifu-mainmenu__submenu,

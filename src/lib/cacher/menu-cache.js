@@ -14,7 +14,7 @@ export const MENU_CACHE_TTL = 600
 
 const CACHE_NAME = 'Menu Cache'
 
-const stdTTL = process.env.NODE_ENV !== 'production' ? 10 : MENU_CACHE_TTL
+const stdTTL = process.env.NODE_ENV !== 'production' ? 30 : MENU_CACHE_TTL
 const checkperiod = process.env.NODE_ENV !== 'production' ? 30 : 60
 
 const cache = new NodeCache({ stdTTL, checkperiod })

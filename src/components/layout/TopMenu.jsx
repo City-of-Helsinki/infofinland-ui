@@ -15,7 +15,9 @@ import { pageIsLoadingAtom } from '@/src/store'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 
-const CityMenu = dynamic(() => import('@/components/layout/CityMenu'))
+const CityMenu = dynamic(() => import('@/components/layout/CityMenu'), {
+  ssr: false,
+})
 
 const Logo = () => {
   const { locale } = useRouter()
@@ -46,7 +48,7 @@ const Logo = () => {
   )
 }
 
-const TopMenu = () => {
+const TopMenu = ({ menus }) => {
   const [open, setLangMenuVisibility] = useLangMenuToggle()
   const toggleLangMenu = () => setLangMenuVisibility(!open)
   const closeMenu = () => setLangMenuVisibility(false)
@@ -65,7 +67,7 @@ const TopMenu = () => {
         <div className="2xl:flex-none xl:flex-grow"></div>
         <div className="flex items-center">
           <TopSearch />
-          <MobileNavi />
+          <MobileNavi menus={menus} />
         </div>
         <CityMenu />
       </div>

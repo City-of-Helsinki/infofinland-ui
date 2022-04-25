@@ -88,7 +88,7 @@ const Menu = ({ menu = {}, useTopBorder, city, className }) => {
     return <MainNaviError />
   }
   const setOpenIndex = (i) => setVisibility(i === openIndex ? null : i)
-
+  const toggle = (i) => setOpenIndex(i)
   return (
     <nav className={className}>
       <ul
@@ -105,7 +105,7 @@ const Menu = ({ menu = {}, useTopBorder, city, className }) => {
               locale={locale}
               selected={props.url === localePath}
               isOpen={i === openIndex}
-              toggle={() => setOpenIndex(i)}
+              toggle={() => toggle(i)}
               selectedIsHidden={
                 i === indexFromRouter &&
                 openIndex !== i &&
