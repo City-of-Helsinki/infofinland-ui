@@ -14,7 +14,7 @@ import { getMunicipalityParams, getThemeHeroParams } from './query-params'
 import { getHeroFromNode } from './ssr-helpers'
 
 import { getQueryParamsFor } from './query-params'
-import cache from './cacher/server-cache'
+// import cache from './cacher/server-cache'
 import pageCache from './cacher/page-cache'
 import menuCache from './cacher/menu-cache'
 import logger from '@/logger'
@@ -30,7 +30,7 @@ export const menuErrorResponse = () => ({
 // Export query params through ssr-api for convenience
 export * from './query-params'
 
-export const NOT_FOUND = { notFound: true, }
+export const NOT_FOUND = { notFound: true }
 
 export const getCachedMenus = async (locale) => {
   const key = menuCache.getKey({ locale })
@@ -42,26 +42,33 @@ export const getCachedMenus = async (locale) => {
   const menus = await getMainMenus({ locale })
   logger.http('Caching menus', { cacheKey: key, locale })
   menuCache.cache.set(key, menus)
-
   return menus
 }
 
-export const getCachedAboutMenu = async (locale) => {
+export const getCachedAboutMenus = async (locale) => {
   //Use generic cold cache for about-menu
-  const menuName = getConfig().serverRuntimeConfig.DRUPAL_MENUS.ABOUT
-  const key = `${menuName}-${locale}}`
-  if (cache.has(key)) {
-    return cache.get(key)
+  const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
+  const key = `about-menus-${locale}}`
+
+  if (menuCache.cache.has(key)) {
+    return menuCache.cache.get(key)
   }
+
+  const [about, footer] = await Promise.all([
+    getMenu(DRUPAL_MENUS.ABOUT, {
+      locale,
+      defaultLocale: NO_DEFAULT_LOCALE,
+    }),
+    getMenu(DRUPAL_MENUS.FOOTER, {
+      locale,
+      defaultLocale: NO_DEFAULT_LOCALE,
+    }),
+  ])
+
+  const menus = { about, footer }
   logger.http('Caching about-menu', { cacheKey: key })
-  const menu = await getMenu(menuName, {
-    locale,
-    defaultLocale: NO_DEFAULT_LOCALE,
-  })
-
-  cache.set(key, menu, 600)
-
-  return menu
+  menuCache.cache.set(key, menus, 600)
+  return menus
 }
 
 export const getMainMenus = async ({ locale }) => {
@@ -115,6 +122,7 @@ export const getNode = ({ locale, localePath, type }) =>
       localePath,
       e,
     })
+    return null
     // throw e
   })
 
@@ -136,7 +144,11 @@ export const getCachedNode = async ({ locale, localePath, type }) => {
     return null
   }
 
-  logger.http('Caching page %s', localePath, { localePath, cacheKey: key })
+  logger.http('Caching page %s', localePath, {
+    localePath,
+    cacheKey: key,
+    node: node.id,
+  })
   pageCache.cache.set(key, node)
   return node
 }

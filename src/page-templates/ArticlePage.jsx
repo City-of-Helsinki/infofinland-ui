@@ -49,7 +49,7 @@ const ArticlePage = ({ node, themeMenu, menus }) => {
   return (
     <>
       <CommonHead key={`head-article-${node?.id}`} node={node} />
-      <Layout>
+      <Layout menus={menus}>
         <Article
           title={title}
           breadcrumbs={breadcrumbs}

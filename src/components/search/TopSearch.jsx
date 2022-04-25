@@ -7,7 +7,7 @@ import { searchQueryValue } from '@/src/store'
 import useSearchRoute from '@/hooks/useSearchRoute'
 import dynamic from 'next/dynamic'
 
-const SearchBar = dynamic(() => import('./TopSearchBar'))
+const SearchBar = dynamic(() => import('./TopSearchBar'), { ssr: false })
 
 const TopSearch = () => {
   const [isSearchOpen, setVisibility] = useState({

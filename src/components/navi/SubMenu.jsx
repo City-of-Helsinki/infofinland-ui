@@ -35,15 +35,14 @@ const SubMenuItems = ({ items, isOpen, level }) => {
   return (
     <ul
       className={cls('ifu-mainmenu__submenu', {
-        'hidden opacity-0 duration-300': !isOpen,
-        'opacity-100 transition-all': isOpen,
+        'opacity-0 max-h-0': !isOpen,
+        'opacity-100 transition-all max-h-full  duration-300': isOpen,
       })}
     >
       {items.map((props) => {
         const selected = props.url === localePath
         return (
           <SubMenuItem
-
             key={`${props.url}-${props.id}-${locale}`}
             {...props}
             level={level}
@@ -88,7 +87,7 @@ const SubMenu = ({
           'border-white ': !selected && !selectedIsHidden,
           'border-blue/75 hover:border-blue': selectedIsHidden || selected,
           'font-bold': selected,
-          'border-orange/50 border-s-3': isOpen && !selected,
+          'border-orange/25 border-s-5': isOpen && !selected,
         })}
       >
         <span

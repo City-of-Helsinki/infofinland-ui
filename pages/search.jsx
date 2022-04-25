@@ -18,15 +18,11 @@ import {
   searchResultsTermAtom,
   searchErrorAtom,
 } from '@/src/store'
-import dynamic from 'next/dynamic'
-
-const Pagination = dynamic(() => import('@/components/search/Pagination'))
-const SearchResults = dynamic(() => import('@/components/search/SearchResults'))
-
+import Pagination from '@/components/search/Pagination'
+import SearchResults from '@/components/search/SearchResults'
 import { CACHE_HEADERS_60S } from '@/cache-headers'
 
 export async function getServerSideProps(context) {
-  // export async function getServerSideProps(context) {
   const { SEARCH_PAGE_PATH } = getConfig().serverRuntimeConfig
 
   const menus = await getCachedMenus(context.locale)
@@ -97,7 +93,7 @@ export async function getServerSideProps(context) {
   }
 }
 
-export const SearchPage = () => {
+export const SearchPage = ({ menus }) => {
   const { SEARCH_PAGE_PATH } = getConfig().publicRuntimeConfig
   const { t } = useTranslation('common')
   const searchCount = useAtomValue(searchResultsCountAtom)
@@ -142,7 +138,7 @@ export const SearchPage = () => {
   return (
     <>
       <CommonHead node={{ title }} key={`head-search-${q}`} />
-      <Layout>
+      <Layout menus={menus}>
         <Block className="relative">
           <h1 className="mt-16 text-h2 md:text-h3xl">{title}</h1>
           <SearchBar search={q} />

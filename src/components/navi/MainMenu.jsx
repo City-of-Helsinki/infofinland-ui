@@ -1,26 +1,15 @@
-import { useAtomValue } from 'jotai/utils'
-
-import {
-  mainMenuAtom,
-  citiesLandingMenuAtom,
-  citiesMenuAtom,
-  selectedCityAtom,
-} from '@/src/store'
-
 import MenuGroup from './MenuGroup'
 
-const MainMenu = () => {
-  const mainMenu = useAtomValue(mainMenuAtom)
-  const citiesMenu = useAtomValue(citiesMenuAtom)
-  const citiesLandingMenu = useAtomValue(citiesLandingMenuAtom)
-  const selectedCity = useAtomValue(selectedCityAtom)
-
+const MainMenu = ({ menus }) => {
   return (
     <MenuGroup
       menulist={[
-        { menu: mainMenu },
-        { menu: citiesLandingMenu },
-        { menu: citiesMenu, city: selectedCity },
+        { menu: menus.main },
+        { menu: menus['cities-landing'] },
+        {
+          menu: menus.cities,
+          //  city: selectedCity
+        },
       ]}
     />
   )

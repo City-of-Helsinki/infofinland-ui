@@ -1,10 +1,7 @@
-import Menu from '@/components/navi/Menu'
-import { aboutMenuAtom } from '@/src/store'
-import { useAtomValue } from 'jotai/utils'
+// import Menu from '@/components/navi/Menu'
 
-const AboutMenu = () => {
-  const menu = useAtomValue(aboutMenuAtom)
-  return <Menu menu={menu} />
-}
+// const AboutMenu = ({menu}) => {
+//   return <Menu menu={menu.about} />
+// }
 
-export default AboutMenu
+// export default AboutMenu
