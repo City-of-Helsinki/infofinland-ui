@@ -23,7 +23,6 @@ import logger from '@/logger'
 const USE_TIMER = process.env.USE_TIMER || false
 
 export async function getStaticPaths() {
-
   const { DRUPAL_MENUS, BUILD_ALL } = getConfig().serverRuntimeConfig
 
   // prerender all theme pages from main menu and cities menu
@@ -76,7 +75,8 @@ export async function getStaticProps(context) {
   const type = params.slug ? NODE_TYPES.PAGE : NODE_TYPES.LANDING_PAGE
 
   params.slug = params.slug || ['/']
-  const path = params.slug[0] === '/' ? params.slug[0] : `/${params.slug.join('/')}`
+  const path =
+    params.slug[0] === '/' ? params.slug[0] : `/${params.slug.join('/')}`
   const localePath =
     params.slug[0] === '/'
       ? `/${locale}`
@@ -97,7 +97,6 @@ export async function getStaticProps(context) {
     logger.warn(`No valid node found for %s`, localePath, { type, localePath })
     return NOT_FOUND
   }
-
 
   if (isNodePath || node.path?.alias !== path) {
     if (node.path?.alias) {
