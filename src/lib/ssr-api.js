@@ -110,20 +110,48 @@ export const getMainMenus = async ({ locale }) => {
   return { main, footer, cities, 'cities-landing': citiesLanding }
 }
 
-export const getNode = ({ locale, localePath, type }) =>
-  getResourceByPath(localePath, {
-    locale,
-    defaultLocale: NO_DEFAULT_LOCALE,
-    params: getQueryParamsFor(type),
-  }).catch((e) => {
-    logger.error(`Error requesting node %s`, localePath, {
-      type,
-      localePath,
-      e,
+const RETRY_LIMIT = 10
+export const getNode = async ({ locale, localePath, type, retry = 0 }) => {
+  const getter = () =>
+    getResourceByPath(localePath, {
+      locale,
+      defaultLocale: NO_DEFAULT_LOCALE,
+      params: getQueryParamsFor(type),
+    }).catch((e) => {
+      logger.error(`Error requesting node %s`, localePath, {
+        type,
+        localePath,
+        e,
+      })
+      return null
+      // throw e
     })
-    return null
-    // throw e
-  })
+
+  if (retry < 1) {
+    return getter()
+  }
+
+  let node = null
+  let attempts = 0
+  while (node === null && attempts <= retry - 1 && attempts <= RETRY_LIMIT) {
+    if (attempts > 0) {
+      logger.warn('Retry attempts %s for %s', attempts, localePath)
+      await new Promise((res) => setTimeout(res, 1000))
+    }
+
+    node = await getter()
+    attempts++
+  }
+  if (!node) {
+    logger.error(
+      'Unable to build page %s after %s attempts',
+      localePath,
+      attempts
+    )
+    throw `Unable to build page ${localePath} after ${retry} attempts`
+  }
+  return node
+}
 
 export const getCachedNode = async ({ locale, localePath, type }) => {
   const key = pageCache.getKey({ locale, localePath, type })

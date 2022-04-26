@@ -10,7 +10,6 @@ const env = {
   CITIES_PAGE_PATH: '/cities',
   SEARCH_PAGE_PATH: '/search',
   PRERENDER_LOCALES: i18n.locales,
-  // PRERENDER_LOCALES: ['fi', 'en', 'sv'],
   DRUPAL_MENUS: {
     MAIN: 'main',
     FOOTER: 'footer-about',
