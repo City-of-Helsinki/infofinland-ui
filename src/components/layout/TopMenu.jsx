@@ -21,6 +21,7 @@ const CityMenu = dynamic(() => import('@/components/layout/CityMenu'), {
 
 const Logo = () => {
   const { locale } = useRouter()
+  const { t } = useTranslation('common')
   const pageIsLoading = useAtomValue(pageIsLoadingAtom)
   return (
     <div
@@ -32,7 +33,7 @@ const Logo = () => {
           className={cls('ifu-topmenu__logo', {
             'ifu-topmenu__logo--loading': pageIsLoading,
           })}
-          title="infofinland.fi"
+          title={t('breadcrumbs.frontpage')}
         >
           {pageIsLoading && (
             <span className=" hidden lg:inline-block relative -translate-x-1 -translate-y-5">

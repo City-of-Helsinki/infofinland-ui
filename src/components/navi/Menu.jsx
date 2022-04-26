@@ -40,6 +40,7 @@ const TopMenuItem = ({
       {!items && (
         <Link href={url} locale={false} prefetch={false}>
           <a
+            aria-current={selected ? 'page' : undefined}
             className={cls('ifu-mainmenu__item--link', {
               'font-bold': selected,
               'border-white': !selected,
