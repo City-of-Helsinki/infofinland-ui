@@ -1,6 +1,7 @@
 {
   "article": {
-    "published": "Julkaistu"
+    "published": "Julkaistu",
+    "index": "Tällä sivulla"
   },
   "breadcrumbs": {
     "frontpage": "Etusivu",

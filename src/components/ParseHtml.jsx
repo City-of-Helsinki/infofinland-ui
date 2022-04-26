@@ -12,7 +12,10 @@ const options = {
         return (
           <TextLink
             href={href || MISSING_TOKEN}
-            className={cls('font-bold', className)}
+            className={cls(
+              'underline border-link text hover:no-underline font-bold',
+              className
+            )}
             {...attributesToProps(rest)}
           >
             {domToReact(children, options)}

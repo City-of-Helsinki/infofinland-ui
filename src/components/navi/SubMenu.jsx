@@ -11,6 +11,7 @@ const SubMenuItem = ({ title, url, selected, items, level, isOpen }) => {
     <li className="block">
       <Link passHref href={url} locale={false} prefetch={false}>
         <a
+          aria-current={selected ? 'page' : undefined}
           tabIndex={isOpen ? '0' : '-1'}
           className={cls('ifu-mainmenu__item--subitem', {
             'ps-10 ': level === 1,
@@ -98,7 +99,10 @@ const SubMenu = ({
           })}
         >
           <Link passHref href={url} prefetch={false} locale={false}>
-            <a className="flex-grow py-4">
+            <a
+              className="flex-grow py-4"
+              aria-current={selected ? 'page' : undefined}
+            >
               <span className={cls('block', { 'font-bold': selected })}>
                 {title}
               </span>
@@ -110,7 +114,6 @@ const SubMenu = ({
               onClick={toggle}
               title={subMenuLabel}
               aria-label={subMenuLabel}
-              aria-expanded={isOpen}
             >
               {!isOpen && (
                 <IconAngleUp className="fill-gray-light ifu-mainmenu__submenu-icon--open ifu-mainmenu__submenu-icon" />

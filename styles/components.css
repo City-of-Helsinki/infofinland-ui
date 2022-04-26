@@ -20,7 +20,7 @@
   }
 
   .ifu-text-link {
-    @apply text-link hover:text-link-hover hover:underline;
+    @apply text-link hover:text-link-hover underline hover:no-underline;
   }
 
   .ifu-button {

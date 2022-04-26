@@ -26,7 +26,7 @@ const USE_TIMER = process.env.USE_TIMER || false
 export async function getStaticPaths() {
   const { DRUPAL_MENUS, BUILD_ALL } = getConfig().serverRuntimeConfig
 
-  // prerender all theme pages from main menu and cities menu
+  // prerender all theme pages from main menu.
   // any language should do. english should do the most.
   const menus = (
     await Promise.all([
@@ -90,7 +90,8 @@ export async function getStaticProps(context) {
   let node
 
   if (BUILD_PHASE) {
-    node = await getNode({ locale, params, type, localePath })
+    //Try a few times, sometimes Drupal router just gives random errors
+    node = await getNode({ locale, params, type, localePath, retry: 5 })
   } else {
     node = await getCachedNode({ locale, params, type, localePath })
   }

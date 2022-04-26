@@ -49,7 +49,6 @@ export const ExternalLinkCollection = ({ content = [], locale }) => {
                   title={langTitle}
                   href={url}
                   key={`link-${id}-${locale}`}
-                  lang={locale}
                   aria-describedby={`ifu-external-link--${mainTranslation.id}`}
                   className={cls('text-small leading-snug ifu-text-link pe-2', {
                     'ps-2': k > 0,

@@ -8,6 +8,23 @@ import { useTranslation } from 'next-i18next'
 
 import { i18n } from '@/next-i18next.config'
 
+//For accessibility and to avoid over-engineering and excessive imports,
+// Label translations are copied here for multi lang use.
+const LABELS = {
+  fi: 'Valitse kieli',
+  sv: 'Välj språk',
+  en: 'Select language',
+  ru: 'Выбрать язык',
+  et: 'Vali keel',
+  fr: 'Sélectionner la langue',
+  so: 'Dooro luqadda',
+  es: 'Elegir idioma',
+  tr: 'Dil seçin',
+  zh: '选择语言',
+  fa: 'زبان را انتخاب کن',
+  ar: 'اختر اللغة',
+}
+
 export const LanguageMenu = ({ closeMenu }) => {
   const { t } = useTranslation('common')
   const { asPath, locale } = useRouter()
@@ -40,9 +57,6 @@ export const LanguageMenu = ({ closeMenu }) => {
                 lang={code}
                 hrefLang={code}
               >
-                <span className="inline-block w-16 text-body-small font-bold text-gray-medium uppercase text-bodytext-color-op5 pe-8 float-start">
-                  {code}
-                </span>
                 <span className="inline-block text-body-small text-bodytext-color float-start">
                   {text}
                 </span>
@@ -66,6 +80,7 @@ export const LanguageMenuButton = ({ onClick }) => {
   const { t } = useTranslation('common')
   const { locale } = useRouter()
   const { text } = i18n.languages.find(({ code }) => code === locale)
+  const assisted = i18n.languages.filter(({ code }) => code !== locale)
   return (
     <button
       aria-haspopup="dialog"
@@ -73,8 +88,12 @@ export const LanguageMenuButton = ({ onClick }) => {
       className=" flex lg:hidden items-center h-10 md:me-2"
       onClick={onClick}
     >
-      {/* <span className=" inline-block text-action uppercase">{locale}</span> */}
       <span className="text-action uppercase">{text}</span>
+      {assisted.map(({ code }) => (
+        <span className="hidden" key={`assist-label-${code}`} lang={code}>
+          {LABELS[code]}
+        </span>
+      ))}
       <IconGlobe className="mx-2 xl:mx-0 w-4 md:w-5 md:h-5" />
     </button>
   )
