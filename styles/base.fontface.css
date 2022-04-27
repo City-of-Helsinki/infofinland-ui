@@ -1,0 +1,31 @@
+  /**
+   * Extend font settings but keep them in the base layer to
+   * preserverve cascading and specificity
+   */
+ @layer base {
+
+   @font-face {
+    font-family: 'Noto Sans';
+    src: url('/fonts/NotoSans/subset-NotoSans.woff2') format('woff2'),
+         url('/fonts/NotoSans/subset-NotoSans.woff') format('woff'),
+         url('/fonts/NotoSans/subset-NotoSans.ttf') format('truetype');
+    font-weight: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Noto Sans';
+    src: url('/fonts/NotoSans/subset-NotoSans-Bold.woff2') format('woff2'),
+         url('/fonts/NotoSans/subset-NotoSans-Bold.woff') format('woff');
+    font-weight: bold;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'Noto Sans Arabic';
+    src: url('/fonts/NotoSans/subset-NotoSansArabic-Regular.woff2') format('woff2'),
+         url('/fonts/NotoSans/subset-NotoSansArabic-Regular.woff') format('woff');
+    font-display: swap;
+  }
+
+}
