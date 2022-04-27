@@ -36,7 +36,7 @@ const TopSearch = () => {
           onClick={() =>
             setVisibility({ desktop: false, mobile: !isSearchOpen.mobile })
           }
-          className=" md:hidden w-8 h-8 text-action"
+          className=" md:hidden w-8 ms-2 h-8 text-action"
           title={t('buttons.search')}
           aria-expanded={isSearchOpen.mobile}
           aria-haspopup="dialog"
