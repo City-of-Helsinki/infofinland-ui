@@ -13,7 +13,7 @@ const options = {
           <TextLink
             href={href || MISSING_TOKEN}
             className={cls(
-              'underline border-link text hover:no-underline font-bold',
+              'underline font-bold',
               className
             )}
             {...attributesToProps(rest)}

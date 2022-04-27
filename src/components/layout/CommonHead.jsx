@@ -22,8 +22,8 @@ const CommonHead = ({ node }) => {
     console.warn(e)
     url = SITE_HOST
   }
-
-  return (
+const isZh =node.langcode === 'zh'
+  return (<>
     <Head>
       <title key="title">{field_meta?.title || title || FALLBACK_TITLE}</title>
       <meta
@@ -48,7 +48,29 @@ const CommonHead = ({ node }) => {
       />
       <meta name="og:image" content={src} key={idKey('ogimage')} />
       <meta name="theme-color" content="#ffffff" />
+      {/* Do not set chinese font face and link reload unless page is chinese
+      Chinese font is really big.
+      */}
+
+    {isZh &&   <link
+      rel="preload"
+      href="/fonts/NotoSans/subset-NotoSansSC-Regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossOrigin=""
+    />}
+
     </Head>
+    {/* Must be outside of <Head/> to work */}
+    {isZh &&   <style global jsx>{`
+      @font-face {
+        font-family: 'Noto Sans Chinese';
+        src:  url('/fonts/NotoSans/subset-NotoSansSC-Regular.woff2') format('woff2'),
+              url('/fonts/NotoSans/subset-NotoSansSC-Regular.woff') format('woff');
+        font-display: swap;
+      }
+    `}</style>}
+    </>
   )
 }
 
