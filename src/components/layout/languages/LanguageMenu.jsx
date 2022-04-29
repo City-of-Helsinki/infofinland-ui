@@ -52,9 +52,12 @@ export const LanguageMenu = ({ closeMenu }) => {
               prefetch={false}
             >
               <a
-                className={cls("flex items-center py-2 px-14 hover:bg-gray-white clear-start",{
-                  // 'system-zh-font':code === 'zh'
-                })}
+                className={cls(
+                  'flex items-center py-2 px-14 hover:bg-gray-white clear-start',
+                  {
+                    // 'system-zh-font':code === 'zh'
+                  }
+                )}
                 title={text}
                 lang={code}
                 hrefLang={code}

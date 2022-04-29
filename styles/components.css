@@ -20,8 +20,16 @@
   }
 
   .ifu-text-link {
-    @apply text-link hover:text-link-hover hover:no-underline;
+    @apply text-link hover:text-link-hover hover:underline;
   }
+
+  .ifu-text-link--underline {
+    @apply underline font-bold hover:no-underline;
+  }
+
+  /* [lang='fa'] .ifu-text-link--underline ,[lang='ar'] .ifu-text-link--underline {
+    @apply no-underline hover:no-underline hover:border-b-0 border-link-hover border-b;
+  } */
 
   .ifu-button {
     @apply text-black bg-white shadow-button hover:shadow-button-hover border-2 border-bodytext-color rounded px-4 py-2 leading-6  font-sans font-bold inline-block;
@@ -53,4 +61,6 @@
   }
   .ifu-topmenu__logo--loaded {
   }
+
+
 }

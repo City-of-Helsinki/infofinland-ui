@@ -144,11 +144,11 @@ export const getNode = async ({ locale, localePath, type, retry = 0 }) => {
   }
   if (!node) {
     logger.error(
-      'Unable to build page %s after %s attempts',
+      'Unable to get page %s after %s attempts',
       localePath,
       attempts
     )
-    throw `Unable to build page ${localePath} after ${retry} attempts`
+    throw `Unable to get page ${localePath} after ${retry} attempts`
   }
   return node
 }

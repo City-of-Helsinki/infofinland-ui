@@ -3,7 +3,6 @@
 /* Simplified chinese font face is set dynamically when content language is chinese */
 
 @layer base {
-
   html {
     scroll-behavior: smooth;
     /*set base font family in tailwind.config.js */
@@ -34,7 +33,7 @@
   }
 
   .system-zh-font {
-    font-family:serif;
+    font-family: serif;
   }
 
   /* img:-moz-broken {

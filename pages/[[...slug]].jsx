@@ -1,7 +1,7 @@
 /* eslint-disable no-unreachable */
 import getConfig from 'next/config'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { getMenu } from 'next-drupal'
+import { getMenu, getResourceTypeFromContext } from 'next-drupal'
 import ArticlePage from '@/src/page-templates/ArticlePage'
 import AboutPage from '@/src/page-templates/AboutPage'
 import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
@@ -69,8 +69,6 @@ export async function getStaticPaths() {
 
 // export async function getServerSideProps(context) {
 export async function getStaticProps(context) {
-  USE_TIMER && console.time(T)
-
   const { REVALIDATE_TIME, BUILD_PHASE } = getConfig().serverRuntimeConfig
   const { params, locale } = context
   const type = params.slug ? NODE_TYPES.PAGE : NODE_TYPES.LANDING_PAGE
@@ -84,10 +82,14 @@ export async function getStaticProps(context) {
       : ['', locale, ...params.slug].join('/')
   const isNodePath = /node/.test(params.slug[0])
   const T = `pageTimer-for-${localePath}`
-
-  USE_TIMER && console.log('type resolved')
+  USE_TIMER && console.time(T)
   USE_TIMER && console.timeLog(T)
-  let node
+  let node = await getResourceTypeFromContext(context)
+
+  if (![NODE_TYPES.LANDING_PAGE, NODE_TYPES.PAGE].includes(type)) {
+    logger.warn('Invalid node type', { type, localePath })
+    return NOT_FOUND
+  }
 
   if (BUILD_PHASE) {
     //Try a few times, sometimes Drupal router just gives random errors
@@ -123,7 +125,11 @@ export async function getStaticProps(context) {
         localePath,
       })
     }
-  } else if (node.path?.alias && node.path?.alias !== path) {
+  } else if (
+    type !== NODE_TYPES.LANDING_PAGE &&
+    node.path?.alias &&
+    node.path?.alias !== path
+  ) {
     logger.info('Redirecting old node path to current node alias', {
       path,
       alias: node.path?.alias,

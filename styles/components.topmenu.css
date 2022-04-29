@@ -17,7 +17,7 @@
     background-size: contain;
     display: block;
     /* Mobile first */
-     width: 120px;
+    width: 120px;
     height: 27px;
     transform: translateY(-0.1rem);
   }
