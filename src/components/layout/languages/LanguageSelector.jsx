@@ -59,7 +59,7 @@ const LanguageSelector = ({ openMenu }) => {
                     ' border-b-2 border-black': locale === code,
                   })}
                 >
-                  {code}
+                  {code === 'zh' ? text : code}
                 </span>
                 <span
                   className={cls(

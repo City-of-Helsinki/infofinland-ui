@@ -61,10 +61,9 @@ export const SecondaryLayout = ({ children, className, menus }) => {
       <TopMenu menus={menus} />
       <div className="md:mx-auto lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
         <div className=" md:flex md:items-stretch">
-          <div className="hidden md:block fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop">
+          <div className="hidden md:block flex-none self-start w-navi bg-white ifu-mainmenu__desktop">
             <Menu menu={menus.about} />
           </div>
-          <div className="hidden md:block flex-none w-navi border-black-op1 border-e-2"></div>
           <div className="ifu-layout__body">
             <main id="main">{children}</main>
             <footer className="ifu-footer" id="footer">

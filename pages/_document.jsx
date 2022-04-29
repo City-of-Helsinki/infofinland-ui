@@ -10,21 +10,19 @@ class MyDocument extends Document {
   }
 
   render() {
-    const {locale} = this.props;
-    const direction = i18n.rtlLocales.includes(locale)
-      ? 'rtl'
-      : 'ltr'
+    const { locale } = this.props
+    const direction = i18n.rtlLocales.includes(locale) ? 'rtl' : 'ltr'
     return (
       <Html dir={direction} lang={locale}>
-        <Head >
+        <Head>
           {/* Always preload these fonts.
            Chinese is set and loaded separately for chinese content only. See CommonHead */}
           <link
-          rel="preload"
-          href="/fonts/NotoSans/subset-NotoSans.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin=""
+            rel="preload"
+            href="/fonts/NotoSans/subset-NotoSans.woff2"
+            as="font"
+            type="font/woff2"
+            crossOrigin=""
           />
           <link
             rel="preload"

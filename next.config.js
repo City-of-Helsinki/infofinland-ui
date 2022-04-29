@@ -62,24 +62,15 @@ const config = {
   reactStrictMode: true,
   poweredByHeader: false,
   // Try this if weird caching issues still persist
-  // generateEtags: false,
+  generateEtags: false,
   env,
   publicRuntimeConfig,
   serverRuntimeConfig,
   images: {
-    // populate static common image domains envs here manually
-    // or via ENV variables
+  // populate static common image domains envs here manually
+  // or via ENV variables
     domains: [process.env.NEXT_IMAGE_DOMAIN],
   },
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/sitemap.xml',
-  //       destination: '/api/sitemap.xml',
-  //       permanent: false,
-  //     },
-  //   ]
-  // },
   webpack: (config) => {
     config.module.rules.push({ test: /\.xml$/, loader: 'xml-loader' })
     return config
