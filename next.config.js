@@ -67,8 +67,8 @@ const config = {
   publicRuntimeConfig,
   serverRuntimeConfig,
   images: {
-  // populate static common image domains envs here manually
-  // or via ENV variables
+    // populate static common image domains envs here manually
+    // or via ENV variables
     domains: [process.env.NEXT_IMAGE_DOMAIN],
   },
   webpack: (config) => {

@@ -144,7 +144,7 @@ const TEXTS_LANG_404 = {
 
 const LocalesLinks = ({ locales, dir }) => {
   return (
-    <p className="mt-2 leading-loose">
+    <p className="overflow-hidden mt-2 leading-loose">
       {locales.map(({ locale, path, id }, i) => {
         const language = i18n.languages.find(({ code }) => code === locale)
         if (!language) {
@@ -156,14 +156,18 @@ const LocalesLinks = ({ locales, dir }) => {
             key={`langlink-for-${locale}-${id}`}
             locale={locale}
             href={path}
-            className={cls({
-              'pe-2': i === 0,
-              'px-2 border-black': i > 0,
-              'border-s': dir === i18n.DIRECTION_LTR && i > 0,
-              'border-r': dir === i18n.DIRECTION_RTL && i > 0,
-            })}
+            className={cls('float-start inline-block', {})}
           >
-            {language.text}
+            <span
+              className={cls({
+                'pe-2': i === 0,
+                'px-2 border-black': i > 0,
+                'border-s': dir === i18n.DIRECTION_LTR && i > 0,
+                'border-r': dir === i18n.DIRECTION_RTL && i > 0,
+              })}
+            >
+              {language.text}
+            </span>
           </TextLink>
         )
       })}
