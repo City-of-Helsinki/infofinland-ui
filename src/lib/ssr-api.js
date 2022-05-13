@@ -30,7 +30,7 @@ export const menuErrorResponse = () => ({
 // Export query params through ssr-api for convenience
 export * from './query-params'
 
-export const NOT_FOUND = { notFound: true }
+export const NOT_FOUND = { notFound: true, revalidate: 3 }
 
 export const getCachedMenus = async (locale) => {
   const key = menuCache.getKey({ locale })
@@ -78,7 +78,7 @@ export const getMainMenus = async ({ locale }) => {
       locale,
       defaultLocale: NO_DEFAULT_LOCALE,
     }).catch((e) => {
-      logger.error('Error fetching main menu:', { e })
+      logger.error('Error fetching main menu:', { e, locale })
       return menuErrorResponse()
     }),
 
@@ -86,7 +86,7 @@ export const getMainMenus = async ({ locale }) => {
       locale,
       defaultLocale: NO_DEFAULT_LOCALE,
     }).catch((e) => {
-      logger.error('Error fetching cities-main menu:', { e })
+      logger.error('Error fetching cities-main menu:', { e, locale })
       return menuErrorResponse()
     }),
 
@@ -94,7 +94,7 @@ export const getMainMenus = async ({ locale }) => {
       locale,
       defaultLocale: NO_DEFAULT_LOCALE,
     }).catch((e) => {
-      logger.error('Error fetching cities menu:', { e })
+      logger.error('Error fetching cities menu:', { e, locale })
       return menuErrorResponse()
     }),
 
@@ -102,7 +102,7 @@ export const getMainMenus = async ({ locale }) => {
       locale,
       defaultLocale: NO_DEFAULT_LOCALE,
     }).catch((e) => {
-      logger.error('Error fetching footer menu:', { e })
+      logger.error('Error fetching footer menu:', { e, locale })
       return menuErrorResponse()
     }),
   ])

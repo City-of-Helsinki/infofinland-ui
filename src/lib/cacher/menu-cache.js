@@ -3,8 +3,8 @@ import { getMainMenus } from '../ssr-api'
 import logger from '@/logger'
 import getConfig from 'next/config'
 
-// export const MENU_CACHE_TTL = 120
-export const MENU_CACHE_TTL = 600
+export const MENU_CACHE_TTL = 120
+// export const MENU_CACHE_TTL = 600
 /**
  *  Cache instance for menus. Cached for two (2)  minutes in production
  *  Could propably  be much longer.

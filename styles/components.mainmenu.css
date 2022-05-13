@@ -33,13 +33,9 @@ Accordion arrows are using absolute positioning so
 that they wont move sideways when scrollbar becomes visible
 */
   .ifu-mainmenu__submenu-icon {
-    position: absolute;
+    /* position: absolute;
     right: 2rem;
-    top: 1.5rem;
-  }
-
-  [dir='rtl'] .ifu-mainmenu__submenu-icon {
-    left: 2rem;
+    top: 1.5rem; */
   }
 
   [dir='ltr'] .ifu-mainmenu__submenu-icon--open {
@@ -49,6 +45,10 @@ that they wont move sideways when scrollbar becomes visible
   [dir='rtl'] .ifu-mainmenu__submenu-icon--open {
     @apply -rotate-90;
   }
+
+  /* [dir='rtl'] .ifu-mainmenu__submenu-icon {
+    left:2rem;
+  } */
 
   @keyframes ifu-mainmenu--scroll-flash {
     0% {
@@ -69,14 +69,14 @@ that they wont move sideways when scrollbar becomes visible
   }
 
   @screen md {
-    .ifu-mainmenu__submenu-icon {
+    /* .ifu-mainmenu__submenu-icon {
       position: absolute;
-      left: 16rem;
+      right: 2rem;
       top: 1.5rem;
-    }
+    } */
 
-    [dir='rtl'] .ifu-mainmenu__submenu-icon {
-      right: 16rem;
-    }
+    /* [dir='rtl'] .ifu-mainmenu__submenu-icon {
+      right: 2rem;
+    } */
   }
 }

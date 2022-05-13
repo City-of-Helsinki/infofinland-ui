@@ -110,7 +110,7 @@ const SubMenu = ({
           </Link>
           <div className="flex-none">
             <button
-              className="block w-16 h-12"
+              className="inline-flex relative justify-center items-center w-16 h-12"
               onClick={toggle}
               title={subMenuLabel}
               aria-label={subMenuLabel}

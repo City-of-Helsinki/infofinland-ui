@@ -102,7 +102,7 @@ export async function getStaticProps(context) {
   USE_TIMER && console.timeLog(T)
 
   // Return 404 if node was null
-  if (!node) {
+  if (!node || node?.notFound) {
     logger.warn(`No valid node found for %s`, localePath, { type, localePath })
     return NOT_FOUND
   }
