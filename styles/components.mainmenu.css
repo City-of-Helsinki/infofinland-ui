@@ -28,15 +28,6 @@
     @apply block py-2 text-body-small hover:bg-gray-white/50 pe-4;
   }
 
-  /*
-Accordion arrows are using absolute positioning so
-that they wont move sideways when scrollbar becomes visible
-*/
-  .ifu-mainmenu__submenu-icon {
-    /* position: absolute;
-    right: 2rem;
-    top: 1.5rem; */
-  }
 
   [dir='ltr'] .ifu-mainmenu__submenu-icon--open {
     @apply rotate-90;
@@ -46,9 +37,6 @@ that they wont move sideways when scrollbar becomes visible
     @apply -rotate-90;
   }
 
-  /* [dir='rtl'] .ifu-mainmenu__submenu-icon {
-    left:2rem;
-  } */
 
   @keyframes ifu-mainmenu--scroll-flash {
     0% {
@@ -68,15 +56,4 @@ that they wont move sideways when scrollbar becomes visible
     animation: ifu-mainmenu--scroll-flash 1s;
   }
 
-  @screen md {
-    /* .ifu-mainmenu__submenu-icon {
-      position: absolute;
-      right: 2rem;
-      top: 1.5rem;
-    } */
-
-    /* [dir='rtl'] .ifu-mainmenu__submenu-icon {
-      right: 2rem;
-    } */
-  }
 }
