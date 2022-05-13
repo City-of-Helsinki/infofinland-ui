@@ -14,7 +14,7 @@ const DEV = process.env.NODE_ENV === 'development'
 
 export const Analytics = {
   hasStarted: false,
-  enabled:false,
+  enabled: false,
   _searchCount: false,
   setEnabled: (enabled) => {
     DEV && console.log('setting tracking permission to', enabled)
@@ -26,11 +26,11 @@ export const Analytics = {
     window._paq.push(['trackPageView'])
     return Analytics
   },
-  trackSearch: ({ keyword, category = false, searchCount = false,_paq }) => {
+  trackSearch: ({ keyword, category = false, searchCount = false, _paq }) => {
     _paq.push(['trackSiteSearch', keyword, category, searchCount])
     return Analytics
   },
-  trackPageOrSearch: (path,_paq) => {
+  trackPageOrSearch: (path, _paq) => {
     if (Analytics.enabled !== true) {
       DEV && console.log('Tracking not allowed by user')
       return Analytics
@@ -84,7 +84,7 @@ export const Analytics = {
     })()
 
     DEV && console.log('initial page track')
-    Analytics.trackPageOrSearch(window.location.pathname,window._paq)
+    Analytics.trackPageOrSearch(window.location.pathname, window._paq)
     Analytics.hasStarted = true
     return Analytics
   },
@@ -104,10 +104,11 @@ const useAnalytics = () => {
       // DEV && console.log('analytics consent is not yet acknowledged')
       return
     }
-    var _paq = window._paq = window._paq || []
+    var _paq = (window._paq = window._paq || [])
     // Don't send anything in dev mode. just log it instead
-    if(DEV) {_paq.push = console.log}
-
+    if (DEV) {
+      _paq.push = console.log
+    }
 
     Analytics.init({
       url,
@@ -116,12 +117,12 @@ const useAnalytics = () => {
       searchCount,
     })
 
-    const setTitleAndTrack = (path)=> {
-      defer(  ()=> {
-        DEV && console.log('tracking from router',path)
-        window._paq.push(['setCustomUrl', path]);
+    const setTitleAndTrack = (path) => {
+      defer(() => {
+        DEV && console.log('tracking from router', path)
+        window._paq.push(['setCustomUrl', path])
         window._paq.push(['setDocumentTitle', document.title])
-        Analytics.trackPageOrSearch(path,window._paq)
+        Analytics.trackPageOrSearch(path, window._paq)
       })
     }
 
