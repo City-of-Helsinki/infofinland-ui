@@ -28,7 +28,6 @@
     @apply block py-2 text-body-small hover:bg-gray-white/50 pe-4;
   }
 
-
   [dir='ltr'] .ifu-mainmenu__submenu-icon--open {
     @apply rotate-90;
   }
@@ -36,7 +35,6 @@
   [dir='rtl'] .ifu-mainmenu__submenu-icon--open {
     @apply -rotate-90;
   }
-
 
   @keyframes ifu-mainmenu--scroll-flash {
     0% {
@@ -55,5 +53,4 @@
   .ifu-mainmenu--scroll-flash {
     animation: ifu-mainmenu--scroll-flash 1s;
   }
-
 }
