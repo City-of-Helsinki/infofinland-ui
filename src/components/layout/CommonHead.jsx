@@ -52,7 +52,7 @@ const CommonHead = ({ node }) => {
           content={description}
           key={idKey('ogdescription')}
         />
-        <meta name="og:image" content={src} key={idKey('ogimage')} />
+        {src && <meta name="og:image" content={src} key={idKey('ogimage')} />}
         <meta name="theme-color" content="#ffffff" />
         {/* Do not set chinese font face and link reload unless page is chinese
       Chinese font is really big.
