@@ -220,6 +220,28 @@ export const getDefaultLocaleNode = async (id) =>
       .getQueryObject(),
   })
 
+// 3  minutes cache for municipalities
+const MUNICIPALITIES_CACHE_TTL = 300
+
+export const getCachedMunicipalities = async ({ locale }) => {
+  let k = `municipalities-${locale}`
+  if (cache.has(k)) {
+    logger.http('serving municipalities from cache')
+    return cache.get(k)
+  } else {
+    const municipalities = await getMunicipalities({ locale }).catch((e) => {
+      logger.error('Municipalities error', { locale, e })
+      return []
+    })
+
+    if (municipalities.length > 0) {
+      logger.http('caching municipalities')
+      cache.set(k, municipalities, MUNICIPALITIES_CACHE_TTL)
+    }
+    return municipalities
+  }
+}
+
 export const getMunicipalities = async ({ locale }) =>
   getResourceCollection(CONTENT_TYPES.MUNICIPALITY, {
     locale,
