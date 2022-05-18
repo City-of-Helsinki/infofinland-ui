@@ -63,9 +63,7 @@ const ArticlePage = ({ node, themeMenu, menus }) => {
           )}
 
           {field_municipality_selection && (
-            <LocalInformationSelectCity
-              city={field_municipality_selection.name}
-            />
+            <LocalInformationSelectCity {...field_municipality_selection} />
           )}
 
           {field_use_anchor_links && (

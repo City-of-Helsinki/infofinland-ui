@@ -12,6 +12,7 @@ import {
   getCachedMenus,
   getCachedAboutMenus,
   getNode,
+  getCachedMunicipalities,
   getCachedNode,
 } from '@/lib/ssr-api'
 import { addPrerenderLocalesToPaths } from '@/lib/ssr-helpers'
@@ -171,6 +172,8 @@ export async function getStaticProps(context) {
     }
   }
 
+  const municipalities = await getCachedMunicipalities({ locale })
+
   if (type === NODE_TYPES.LANDING_PAGE) {
     const themeImages = await getThemeHeroImages({
       tree: menus.main.tree,
@@ -197,6 +200,7 @@ export async function getStaticProps(context) {
       key: node.id,
       type,
       themes,
+      municipalities,
       menus,
       node: { ...node, lastUpdated },
       themeMenu,

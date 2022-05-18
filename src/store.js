@@ -35,8 +35,29 @@ const CITY_ATOM_KEY = 'city'
 
 const SHOWN_MESSAGES_KEY = 'shown-messages'
 
-/** Chosen municipality for local information blocks*/
-export const selectedCityAtom = atomWithStorage(CITY_ATOM_KEY, false, storage)
+/**
+ * Page atoms
+ */
+
+export const pageAtom = atom({})
+
+pageAtom.debugLabel = 'page props root atom'
+
+/**
+ * Municipalities in selected language.
+ *
+ */
+export const municipalitiesAtom = selectAtom(
+  pageAtom,
+  (page) => page?.municipalities
+)
+
+/** Chosen municipality id for local information blocks*/
+export const selectedCityIdAtom = atomWithStorage(CITY_ATOM_KEY, false, storage)
+export const selectedCityNameAtom = atom((get) => {
+  const id = get(selectedCityIdAtom)
+  return get(municipalitiesAtom)?.find((m) => m.id === id)?.name
+})
 
 /** Visibility state of municipality menu*/
 export const cityMenuVisibilityAtom = atom(false)
@@ -49,14 +70,6 @@ export const languageMessageIsOpenAtom = atom(false)
 
 /** Visibility state of feeback form */
 export const feedbackFormVisibilityAtom = atom(false)
-
-/**
- * Page atoms
- */
-
-export const pageAtom = atom({})
-
-pageAtom.debugLabel = 'page props root atom'
 
 export const isAboutPageAtom = atom(
   (get) => get(nodeAtom)?.field_layout === LAYOUT_SMALL
@@ -95,8 +108,6 @@ export const searchResultsCountAtom = selectAtom(
 export const searchResultPageCountAtom = atom((get) =>
   Math.ceil(get(searchResultsCountAtom) / get(searchResultPageSizeAtom))
 )
-
-// export const municipalitiesAtom = atom((get) => get(pageAtom).municipalities)
 
 // export const messagesAtom = atom((get) => get(pageAtom).messages)
 
