@@ -19,8 +19,8 @@ const Drawer = ({ close, children, isOpen, contentLabel }) => (
         appear
         mountOnEnter
       >
-        <div className=" pt-12 ifu-drawer-body">
-          <div className="fixed top-0 right-0 z-50 mb-2 h-10 bg-white shadow-whitewash-right right-0s ps-2">
+        <div className="overscroll-none pt-12 md:pt-0 ifu-drawer-body">
+          <div className="fixed md:static top-0 right-0 z-50 mb-2 h-10 bg-white shadow-whitewash-right right-0s ps-2">
             <CloseButton className="float-end me-6" close={close} />
           </div>
           {children}

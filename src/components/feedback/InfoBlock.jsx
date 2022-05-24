@@ -17,7 +17,6 @@ const Loader = () => (
 )
 
 const InfoBlock = () => {
-  // const { field_content } = useAtomValue(feedbackPageAtom) || []
   const { locale } = useRouter()
   const { data, error, isValidating } = useSWR(`/feedbackpage/${locale}`, () =>
     getFeedbackContent(locale)

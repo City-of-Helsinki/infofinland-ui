@@ -3,7 +3,7 @@
 exports[`IngressBlock should render the given HTML inside a Block 1`] = `
 <DocumentFragment>
   <div
-    class="mt-8 lg:mt-16 mb-8 lg:mb-8 text-body-large ifu-article__ingress ifu-block--article"
+    class="ifu-article__ingress ifu-block--article"
   >
     Alkukartoituksessa arvioidaan, mitkä palvelut auttavat sinua kotoutumaan.
   </div>

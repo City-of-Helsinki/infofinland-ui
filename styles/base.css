@@ -1,45 +1,39 @@
+@import './base.fontface';
+/* @import './base.simplified.chinese'; */
+/* Simplified chinese font face is set dynamically when content language is chinese */
+
 @layer base {
   html {
-    /* scroll-behavior: smooth; */
+    scroll-behavior: smooth;
     /*set base font family in tailwind.config.js */
   }
 
-  /**
-   * Extend font settings but keep them in the base layer to
-   * preserverve cascading and specificity
-   */
-
-  @font-face {
-    font-family: 'Noto Sans';
-    src: url('/fonts/NotoSans/NotoSans-Regular.ttf');
-    font-display: swap;
+  :root {
+    --scrollbar-foreground: #ddd;
+    --scrollbar-background: #fafafa;
   }
 
-  @font-face {
-    font-family: 'Noto Sans';
-    src: url('/fonts/NotoSans/NotoSans-Bold.ttf');
-    font-weight: bold;
-    font-display: swap;
+  /*Scrollbar definitions*/
+  * {
+    scrollbar-color: var(--scrollbar-foreground) var(--scrollbar-background);
   }
 
-  @font-face {
-    font-family: 'Noto Sans Chinese';
-    src: url('/fonts/NotoSans/NotoSansSC-Regular.otf');
-    font-weight: normal;
-    font-display: swap;
+  *::-webkit-scrollbar {
+    width: 6px; /* Mostly for vertical scrollbars */
+    height: 6px; /* Mostly for horizontal scrollbars */
+  }
+  *::-webkit-scrollbar-thumb {
+    /* Foreground */
+    background: var(--scrollbar-foreground);
+    border-radius: 10px;
+  }
+  *::-webkit-scrollbar-track {
+    /* Background */
+    background: var(--scrollbar-background);
   }
 
-  @font-face {
-    font-family: 'Noto Sans Chinese';
-    src: url('/fonts/NotoSans/NotoSansSC-Bold.otf');
-    font-weight: bold;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Noto Sans Arabic';
-    src: url('/fonts/NotoSans/NotoSans-Arabic.ttf');
-    font-display: swap;
+  .system-zh-font {
+    font-family: serif;
   }
 
   /* img:-moz-broken {

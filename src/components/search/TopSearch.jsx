@@ -7,7 +7,7 @@ import { searchQueryValue } from '@/src/store'
 import useSearchRoute from '@/hooks/useSearchRoute'
 import dynamic from 'next/dynamic'
 
-const SearchBar = dynamic(() => import('./TopSearchBar'))
+const SearchBar = dynamic(() => import('./TopSearchBar'), { ssr: false })
 
 const TopSearch = () => {
   const [isSearchOpen, setVisibility] = useState({
@@ -36,7 +36,7 @@ const TopSearch = () => {
           onClick={() =>
             setVisibility({ desktop: false, mobile: !isSearchOpen.mobile })
           }
-          className=" md:hidden w-8 h-8 text-action"
+          className=" md:hidden w-8 h-8 text-action ms-2"
           title={t('buttons.search')}
           aria-expanded={isSearchOpen.mobile}
           aria-haspopup="dialog"

@@ -90,7 +90,7 @@
     "readMore": "Daha fazla bilgi için",
     "reselect": "Başka bir belediye seçin",
     "select": "Bir belediye seçin",
-    "select_city": "Seç: {{city}}",
+    "select_current": "Seç: {{city}}",
     "selected_city": "Kendi belediyeniz: {{city}}",
     "title": "Yerel bilgiler"
   },

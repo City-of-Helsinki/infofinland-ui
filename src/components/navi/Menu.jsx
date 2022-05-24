@@ -1,4 +1,3 @@
-import { useRef, forwardRef } from 'react'
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import cls from 'classnames'
@@ -22,68 +21,53 @@ const getThemeIndexByPathName = ({ items, path }) => {
   })
   return index
 }
-// eslint-disable-next-line react/display-name
-const TopMenuItem = forwardRef(
-  (
-    {
-      title,
-      url,
-      items,
-      isOpen,
-      toggle,
-      selected,
-      selectedIsHidden,
-      secondarySelection,
-    },
-    ref
-  ) => {
-    const refProps = {}
-    const subRefProps = {}
-    if (selected) {
-      refProps.ref = ref
-    } else {
-      subRefProps.ref = ref
-    }
+const TopMenuItem = ({
+  title,
+  url,
+  items,
+  isOpen,
+  toggle,
+  selected,
+  selectedIsHidden,
+  secondarySelection,
+}) => {
+  return (
+    <li
+      className={cls('block relative ifu-mainmenu--topitem', {
+        'border-e-5 border-green-light': secondarySelection && !items,
+      })}
+    >
+      {!items && (
+        <Link href={url} locale={false} prefetch={false}>
+          <a
+            aria-current={selected ? 'page' : undefined}
+            className={cls('ifu-mainmenu__item--link', {
+              'font-bold': selected,
+              'border-white': !selected,
+              'border-blue':
+                (selected && (!isOpen || !items)) || selectedIsHidden,
+            })}
+          >
+            {title}
+          </a>
+        </Link>
+      )}
 
-    return (
-      <li
-        {...refProps}
-        className={cls('block relative', {
-          'border-e-5 border-green-light': secondarySelection && !items,
-        })}
-      >
-        {!items && (
-          <Link href={url} locale={false} prefetch={false}>
-            <a
-              className={cls('ifu-mainmenu__item--link', {
-                'font-bold': selected,
-                'border-white': !selected,
-                'border-blue':
-                  (selected && (!isOpen || !items)) || selectedIsHidden,
-              })}
-            >
-              {title}
-            </a>
-          </Link>
-        )}
-
-        {items && (
-          <SubMenu
-            {...subRefProps}
-            secondarySelection={secondarySelection}
-            url={url}
-            items={items}
-            title={title}
-            isOpen={isOpen}
-            toggle={toggle}
-            selected={selected}
-            selectedIsHidden={selectedIsHidden}
-          />
-        )}
-      </li>
-    )
-  }
-)
+      {items && (
+        <SubMenu
+          secondarySelection={secondarySelection}
+          url={url}
+          items={items}
+          title={title}
+          isOpen={isOpen}
+          toggle={toggle}
+          selected={selected}
+          selectedIsHidden={selectedIsHidden}
+        />
+      )}
+    </li>
+  )
+}
 
 const Menu = ({ menu = {}, useTopBorder, city, className }) => {
   const { items, tree } = menu
@@ -93,28 +77,19 @@ const Menu = ({ menu = {}, useTopBorder, city, className }) => {
     path: localePath,
   })
 
-  const scrollRef = useRef()
   const [openIndex, setVisibility] = useState(indexFromRouter)
   /**
    * Open the correct theme menu when route changes.
    */
   useEffect(() => {
     setVisibility(indexFromRouter)
-    setTimeout(() => {
-      if (indexFromRouter >= 0) {
-        scrollRef.current?.scrollIntoView({
-          behaviour: 'smooth',
-          block: 'start',
-        })
-      }
-    }, 100)
-  }, [localePath, indexFromRouter, scrollRef])
+  }, [localePath, indexFromRouter])
 
   if (!items || !tree) {
     return <MainNaviError />
   }
   const setOpenIndex = (i) => setVisibility(i === openIndex ? null : i)
-
+  const toggle = (i) => setOpenIndex(i)
   return (
     <nav className={className}>
       <ul
@@ -125,14 +100,13 @@ const Menu = ({ menu = {}, useTopBorder, city, className }) => {
         {tree.map((props, i) => {
           return (
             <TopMenuItem
-              ref={scrollRef}
               key={`link-${props.id}-${locale}`}
               secondarySelection={city === props.title}
               {...props}
               locale={locale}
               selected={props.url === localePath}
               isOpen={i === openIndex}
-              toggle={() => setOpenIndex(i)}
+              toggle={() => toggle(i)}
               selectedIsHidden={
                 i === indexFromRouter &&
                 openIndex !== i &&

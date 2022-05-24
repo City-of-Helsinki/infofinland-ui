@@ -107,9 +107,6 @@ const baseQueryParams = () =>
 
     // Cities (Municipalities)
     .addFields(CONTENT_TYPES.MUNICIPALITY, ['name'])
-// Feedback email address
-// .addFields(NODE_TYPES.PAGE, ['field_feedback_email'])
-// .addFields(NODE_TYPES.LANDING_PAGE, ['field_feedback_email'])
 
 export const getLandingPageQueryParams = () =>
   baseQueryParams()
@@ -146,7 +143,6 @@ export const getPageQueryParams = () =>
       // Local info liftup
       'field_municipality_selection',
       'field_theme_menu',
-      // 'field_municipality_info',
     ])
     .addFields(NODE_TYPES.PAGE, [
       'id',
@@ -165,6 +161,7 @@ export const getPageQueryParams = () =>
       'field_feedback_email',
       'field_layout',
       'field_finnish_title',
+      // 'moderation_state'
     ])
     .getQueryObject()
 
@@ -191,7 +188,6 @@ export const getLocalInfoParams = () =>
       'field_municipality_info.field_municipality_info_link.field_links.field_language',
       'field_municipality_info.field_municipality_info_ptv',
     ])
-    // .addFields(CONTENT_TYPES.MU, ['field_text'])
     .addFields(NODE_TYPES.PAGE, ['field_municipality_info', 'path'])
     .addFields(CONTENT_TYPES.LOCALINFO_CONTENT, [
       'field_municipality_info_link',

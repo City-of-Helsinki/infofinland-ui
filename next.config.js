@@ -10,7 +10,6 @@ const env = {
   CITIES_PAGE_PATH: '/cities',
   SEARCH_PAGE_PATH: '/search',
   PRERENDER_LOCALES: i18n.locales,
-  // PRERENDER_LOCALES: ['fi', 'en', 'sv', 'ar', 'ru','so','et','zh'],
   DRUPAL_MENUS: {
     MAIN: 'main',
     FOOTER: 'footer-about',
@@ -39,6 +38,7 @@ const serverRuntimeConfig = {
   // Will only be available onprocess.env. the server side
   CACHE_REPOPULATE: process.env.CACHE_REPOPULATE || false,
   BUILD_ALL: process.env.BUILD_ALL || false,
+  BUILD_PHASE: process.env.BUILD_PHASE || false,
   ELASTICSEARCH_URL: process.env.ELASTICSEARCH_URL,
   elasticsearch_password: process.env.elasticsearch_password,
   elasticsearch_certificate: process.env.elasticsearch_certificate,
@@ -62,7 +62,7 @@ const config = {
   reactStrictMode: true,
   poweredByHeader: false,
   // Try this if weird caching issues still persist
-  // generateEtags: false,
+  generateEtags: false,
   env,
   publicRuntimeConfig,
   serverRuntimeConfig,
@@ -71,15 +71,6 @@ const config = {
     // or via ENV variables
     domains: [process.env.NEXT_IMAGE_DOMAIN],
   },
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/sitemap.xml',
-  //       destination: '/api/sitemap.xml',
-  //       permanent: false,
-  //     },
-  //   ]
-  // },
   webpack: (config) => {
     config.module.rules.push({ test: /\.xml$/, loader: 'xml-loader' })
     return config

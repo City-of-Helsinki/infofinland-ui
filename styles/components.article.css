@@ -70,6 +70,10 @@
     @apply border-t border-black mt-16;
   }
 
+  .ifu-article__ingress {
+    @apply mt-8 lg:mt-16 mb-8 lg:mb-8 text-body-large;
+  }
+
   /**
 * Article body styles for markup content from Drupal
 */
@@ -119,6 +123,10 @@
     width: 0;
   }
 }
+
+/*
+Block types
+*/
 
 .ifu-block--article {
   @apply px-6 lg:mx-12 xl:mx-28 2xl:mx-48 3xl:ms-64 3xl:max-w-4xl;

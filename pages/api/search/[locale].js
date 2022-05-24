@@ -1,5 +1,7 @@
 import * as Elastic from '@/lib/elasticsearch'
 import logger from '@/logger'
+import { CACHE_HEADERS_60S } from '@/cache-headers'
+
 export default async function handler(req, res) {
   // No posts allowed
   const { q, from, locale } = Elastic.getSearchParamsFromQuery(req)
@@ -30,15 +32,22 @@ export default async function handler(req, res) {
     })
     .catch((e) => {
       logger.error(Elastic.ERROR, {
+        q,
+        size,
+        from,
+        index,
         error: e?.meta?.body?.error?.root_cause || e?.name || e,
       })
       throw e
     })
 
-  res.status(200).json({
-    q,
-    size,
-    from,
-    ...search,
-  })
+  res
+    .status(200)
+    .setHeader(...CACHE_HEADERS_60S)
+    .json({
+      q,
+      size,
+      from,
+      ...search,
+    })
 }
