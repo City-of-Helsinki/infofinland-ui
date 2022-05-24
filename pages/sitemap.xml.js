@@ -12,7 +12,8 @@ export const getServerSideProps = async ({ res }) => {
   if (error) {
     logger.error('Sitemap error', { error, sitemapLength: sitemap?.length })
   }
-  res.setHeader('Content-Type', 'text/xml').setHeader(...CACHE_HEADERS_60S)
+  res.setHeader('Content-Type', 'application/xml; charset=utf-8')
+  res.setHeader(...CACHE_HEADERS_60S)
   res.write(sitemap)
   res.end()
   //to suppress error in nextjs

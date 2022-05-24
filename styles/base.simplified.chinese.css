@@ -1,0 +1,6 @@
+@font-face {
+  font-family: 'Noto Sans Chinese';
+  src: url('/fonts/NotoSans/subset-NotoSansSC-Regular.woff2') format('woff2'),
+    url('/fonts/NotoSans/subset-NotoSansSC-Regular.woff') format('woff');
+  font-display: swap;
+}

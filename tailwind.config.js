@@ -29,7 +29,6 @@ module.exports = {
       'button-hover': 'none',
       'themecard-blue': ' 0px 2px #CCDDED',
       'themecard-green': ' 0px 2px #C4D6B7',
-      // dropdown: '0px 4px 17px 0px rgba(0, 0, 0, 0.25)',
       topbar: '0px 4px 4px 0px rgba(0, 0, 0, 0.15)',
       input: 'inset 2px 2px 4px rgba(0, 0, 0, 0.15)',
       '404title': ' 0px 1px 5px 0px rgba(0, 0, 0, 0.15)',

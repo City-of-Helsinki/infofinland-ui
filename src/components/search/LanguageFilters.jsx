@@ -14,7 +14,9 @@ const LanguageFilters = () => {
   const { query, locale } = useRouter()
   const { languages } = query
   const [selectedLanguages, setLanguages] = useState(getLangMap(languages))
-  const [show, setShow] = useState(false)
+  const hasManyLanguages =
+    Object.values(selectedLanguages).filter((bool) => bool).length > 1
+  const [show, setShow] = useState(hasManyLanguages)
   const toggle = () => setShow(!show)
 
   useEffect(() => {

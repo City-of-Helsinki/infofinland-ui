@@ -6,7 +6,6 @@ import { useAtomValue, useUpdateAtom } from 'jotai/utils'
 import { useRouter } from 'next/router'
 import { CSSTransition } from 'react-transition-group'
 import getConfig from 'next/config'
-import { isSSR } from '@/hooks/useIsomorphicLayoutEffect'
 
 export function CookieConsentActions() {
   const { t } = useTranslation('common')
@@ -34,13 +33,13 @@ export function CookieConsentActions() {
 }
 
 export default function CookieConsentBar() {
-  const { publicRuntimeConfig } = getConfig()
+  const { COOKIE_PAGE_PATH } = getConfig().publicRuntimeConfig
   const { t } = useTranslation('common')
   const isConsentSet = useAtomValue(isCookieConsentSetAtom)
   const { asPath, locale } = useRouter()
-  const isAboutPage = asPath.startsWith(publicRuntimeConfig.COOKIE_PAGE_PATH)
+  const isAboutPage = asPath.startsWith(COOKIE_PAGE_PATH)
   return (
-    !isSSR() &&
+    // !isSSR() &&
     !isAboutPage &&
     !isConsentSet && (
       <CSSTransition
@@ -78,7 +77,7 @@ export default function CookieConsentBar() {
                   locale={locale}
                   prefetch={false}
                   passHref
-                  href={publicRuntimeConfig.COOKIE_PAGE_PATH}
+                  href={COOKIE_PAGE_PATH}
                 >
                   <a className="font-bold text-black underline">
                     {t('cookies.readMore')}

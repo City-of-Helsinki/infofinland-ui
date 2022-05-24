@@ -10,7 +10,7 @@ exports[`Block should render the given HTML inside a Block 1`] = `
     >
       Paragraph content
       <a
-        class="ifu-text-link font-bold"
+        class="ifu-text-link ifu-text-link--underline"
         href="http://link.ki/fi"
       >
         linkki

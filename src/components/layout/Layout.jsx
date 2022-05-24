@@ -8,17 +8,23 @@ import { useRouter } from 'next/router'
 import MainMenu from '@/components/navi/MainMenu'
 import cls from 'classnames'
 import Favicons from './Favicons'
+import Menu from '@/components/navi/Menu'
+
 // Layout names from Drupal
 export const LAYOUT_BASIC = 'basic'
 export const LAYOUT_SMALL = 'small'
 
-const FeedbackBlock = dynamic(() =>
-  import('@/components/feedback/FeedbackBlock')
+const FeedbackBlock = dynamic(
+  () => import('@/components/feedback/FeedbackBlock'),
+  { ssr: false }
 )
-const Messages = dynamic(() => import('@/components/messages/Messages'))
-const AboutMenu = dynamic(() => import('./AboutMenu'))
-const CookieConsentBar = dynamic(() =>
-  import('@/components/layout/CookieConsent')
+const Messages = dynamic(() => import('@/components/messages/Messages'), {
+  ssr: false,
+})
+
+const CookieConsentBar = dynamic(
+  () => import('@/components/layout/CookieConsent'),
+  { ssr: false }
 )
 
 /**
@@ -36,11 +42,10 @@ export const BlankLayout = ({ children }) => {
       <Favicons />
       {children}
     </main>
-    // <CookieConsentBar />
   )
 }
 
-export const SecondaryLayout = ({ children, className }) => {
+export const SecondaryLayout = ({ children, className, menus }) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
   useShowLangMessage(locale)
@@ -53,17 +58,16 @@ export const SecondaryLayout = ({ children, className }) => {
       )}
     >
       <Favicons />
-      <TopMenu />
+      <TopMenu menus={menus} />
       <div className="md:mx-auto lg:max-w-screen-lg xl:max-w-screen-xl 2xl:max-w-screen-2xl">
         <div className=" md:flex md:items-stretch">
-          <div className="hidden md:block fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop">
-            <AboutMenu />
+          <div className="hidden md:block flex-none self-start w-navi bg-white ifu-mainmenu__desktop">
+            <Menu menu={menus.about} />
           </div>
-          <div className="hidden md:block flex-none w-navi border-black-op1 border-e-2"></div>
           <div className="ifu-layout__body">
             <main id="main">{children}</main>
             <footer className="ifu-footer" id="footer">
-              <FooterLinks secondary />
+              <FooterLinks secondary tree={menus.footer.tree} />
               <FeedbackBlock />
             </footer>
           </div>
@@ -74,7 +78,7 @@ export const SecondaryLayout = ({ children, className }) => {
   )
 }
 
-const AppLayout = ({ children, className }) => {
+const AppLayout = ({ children, className, menus }) => {
   const { locale } = useRouter()
   useSetLocalization(locale)
   useShowLangMessage(locale)
@@ -87,21 +91,21 @@ const AppLayout = ({ children, className }) => {
       )}
     >
       <Favicons />
-      <TopMenu />
+      <TopMenu menus={menus} />
       <div className=" md:flex md:items-stretch">
         <div className="md:hidden">
           <Messages />
         </div>
 
-        <div className="hidden md:block overflow-y-auto fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop">
+        <div className="hidden md:block overflow-y-auto overscroll-none fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop">
           <Messages />
-          <MainMenu />
+          <MainMenu menus={menus} />
         </div>
         <div className="hidden md:block flex-none w-navi border-black-op1 border-e-2"></div>
         <div className="ifu-layout__body">
           <main id="main">{children}</main>
           <footer className="ifu-footer" id="footer">
-            <FooterLinks />
+            <FooterLinks tree={menus.footer.tree} />
             <FeedbackBlock />
           </footer>
         </div>

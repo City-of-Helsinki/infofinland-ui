@@ -8,9 +8,10 @@ import { useAtomValue } from 'jotai/utils'
 import { useTranslation } from 'next-i18next'
 import { isAboutPageAtom } from '@/src/store'
 import MainMenu from './MainMenu'
-import AboutMenu from '../layout/AboutMenu'
+import Menu from './Menu'
+// import AboutMenu from './AboutMenu'
 
-const MobileNavi = () => {
+const MobileNavi = ({ menus }) => {
   const [isOpen, setVisibility] = useState(false)
   const open = () => setVisibility(true)
   const close = () => setVisibility(false)
@@ -39,13 +40,13 @@ const MobileNavi = () => {
 
   return (
     <>
-      <div className="md:hidden md:mx-6 me-6 ms-2">
+      <div className="md:hidden md:mx-4 me-6 ms-2">
         {!isOpen && (
           <button
             aria-haspopup="dialog"
             onClick={open}
             title={t('mainMenu.button')}
-            className="z-50"
+            className="z-50 w-8"
             autoFocus={!isOpen}
           >
             <IconMenu />
@@ -63,7 +64,11 @@ const MobileNavi = () => {
               </a>
             </Link>
           )}
-          {isAboutPage === true ? <AboutMenu /> : <MainMenu />}
+          {isAboutPage ? (
+            <Menu menu={menus.about} />
+          ) : (
+            <MainMenu menus={menus} />
+          )}
         </div>
       </Drawer>
     </>

@@ -3,8 +3,8 @@ import { getMainMenus } from '../ssr-api'
 import logger from '@/logger'
 import getConfig from 'next/config'
 
-// export const MENU_CACHE_TTL = 120
-export const MENU_CACHE_TTL = 600
+export const MENU_CACHE_TTL = 120
+// export const MENU_CACHE_TTL = 600
 /**
  *  Cache instance for menus. Cached for two (2)  minutes in production
  *  Could propably  be much longer.
@@ -14,7 +14,7 @@ export const MENU_CACHE_TTL = 600
 
 const CACHE_NAME = 'Menu Cache'
 
-const stdTTL = process.env.NODE_ENV !== 'production' ? 10 : MENU_CACHE_TTL
+const stdTTL = process.env.NODE_ENV !== 'production' ? 30 : MENU_CACHE_TTL
 const checkperiod = process.env.NODE_ENV !== 'production' ? 30 : 60
 
 const cache = new NodeCache({ stdTTL, checkperiod })
@@ -47,7 +47,9 @@ const getKey = (keyObj) => {
 
 //Refresh menu cache entry on expiration
 cache.on('expired', async (expiredKey) => {
-  if (getConfig().serverRuntimeConfig.CACHE_REPOPULATE === '1') {
+  const { CACHE_REPOPULATE, BUILD_PHASE } = getConfig().serverRuntimeConfig
+
+  if (!BUILD_PHASE && CACHE_REPOPULATE === '1') {
     const params = parseKey(expiredKey)
     logger.verbose('Menu Cache entry expired', {
       cacheKey: expiredKey,

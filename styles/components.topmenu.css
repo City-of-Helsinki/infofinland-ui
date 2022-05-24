@@ -13,10 +13,11 @@
   .ifu-topmenu__logo {
     background-image: url('/images/logo/logo-small.svg');
     background-repeat: no-repeat;
-    background-position: 0 0;
+
+    background-size: contain;
     display: block;
     /* Mobile first */
-    width: 134px;
+    width: 120px;
     height: 27px;
     transform: translateY(-0.1rem);
   }

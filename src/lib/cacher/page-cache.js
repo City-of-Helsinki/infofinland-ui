@@ -10,7 +10,7 @@ import getConfig from 'next/config'
 
 const CACHE_NAME = 'Page Cache'
 
-const stdTTL = process.env.NODE_ENV !== 'production' ? 10 : 60
+const stdTTL = process.env.NODE_ENV !== 'production' ? 30 : 60
 const checkperiod = process.env.NODE_ENV !== 'production' ? 30 : 45
 
 const cache = new NodeCache({ stdTTL, checkperiod })
@@ -41,7 +41,8 @@ const getKey = (keyObj) => {
 
 //Refresh page cache entry on expiration
 cache.on('expired', async (expiredKey) => {
-  if (getConfig().serverRuntimeConfig.CACHE_REPOPULATE === '1') {
+  const { CACHE_REPOPULATE, BUILD_PHASE } = getConfig().serverRuntimeConfig
+  if (!BUILD_PHASE && CACHE_REPOPULATE === '1') {
     const params = parseKey(expiredKey)
     logger.verbose('Page cache entry expired', {
       cacheKey: expiredKey,
@@ -56,7 +57,11 @@ cache.on('expired', async (expiredKey) => {
       })
       cache.set(expiredKey, fresh)
     } else {
-      logger.warn('Unable to refresh expired entry', { cacheKey: expiredKey })
+      logger.warn('Unable to refresh expired entry', {
+        cacheKey: expiredKey,
+        params,
+        entry: fresh,
+      })
     }
   }
 })

@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic'
 const INITIAL_VOLUME = 0.8
 const INITIAL_MUTE = true
 
-const ReactPlayer = dynamic(() => import('react-player'))
+const ReactPlayer = dynamic(() => import('react-player'), { ssr: false })
 
 const VideoBlock = ({ url, title }) => {
   const { t } = useTranslation('common')

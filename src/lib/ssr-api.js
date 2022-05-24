@@ -30,40 +30,44 @@ export const menuErrorResponse = () => ({
 // Export query params through ssr-api for convenience
 export * from './query-params'
 
-export const NOT_FOUND = { notFound: true }
-
-//
+export const NOT_FOUND = { notFound: true, revalidate: 3 }
 
 export const getCachedMenus = async (locale) => {
   const key = menuCache.getKey({ locale })
   if (menuCache.cache.has(key)) {
-    logger.info('Serving menus from cache', { cacheKey: key })
+    logger.http('Serving menus from cache', { cacheKey: key })
     return menuCache.cache.get(key)
   }
 
   const menus = await getMainMenus({ locale })
   logger.http('Caching menus', { cacheKey: key, locale })
   menuCache.cache.set(key, menus)
-
   return menus
 }
 
-export const getCachedAboutMenu = async (locale) => {
-  //Use generic cold cache for about-menu
-  const menuName = getConfig().serverRuntimeConfig.DRUPAL_MENUS.ABOUT
-  const key = `${menuName}-${locale}}`
+export const getCachedAboutMenus = async (locale) => {
+  const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
+  const key = `about-menus-${locale}}`
+
   if (cache.has(key)) {
     return cache.get(key)
   }
+
+  const [about, footer] = await Promise.all([
+    getMenu(DRUPAL_MENUS.ABOUT, {
+      locale,
+      defaultLocale: NO_DEFAULT_LOCALE,
+    }),
+    getMenu(DRUPAL_MENUS.FOOTER, {
+      locale,
+      defaultLocale: NO_DEFAULT_LOCALE,
+    }),
+  ])
+
+  const menus = { about, footer }
   logger.http('Caching about-menu', { cacheKey: key })
-  const menu = await getMenu(menuName, {
-    locale,
-    defaultLocale: NO_DEFAULT_LOCALE,
-  })
-
-  cache.set(key, menu, 600)
-
-  return menu
+  cache.set(key, menus, 600)
+  return menus
 }
 
 export const getMainMenus = async ({ locale }) => {
@@ -74,7 +78,7 @@ export const getMainMenus = async ({ locale }) => {
       locale,
       defaultLocale: NO_DEFAULT_LOCALE,
     }).catch((e) => {
-      logger.error('Error fetching main menu:', { e })
+      logger.error('Error fetching main menu:', { e, locale })
       return menuErrorResponse()
     }),
 
@@ -82,7 +86,7 @@ export const getMainMenus = async ({ locale }) => {
       locale,
       defaultLocale: NO_DEFAULT_LOCALE,
     }).catch((e) => {
-      logger.error('Error fetching cities-main menu:', { e })
+      logger.error('Error fetching cities-main menu:', { e, locale })
       return menuErrorResponse()
     }),
 
@@ -90,7 +94,7 @@ export const getMainMenus = async ({ locale }) => {
       locale,
       defaultLocale: NO_DEFAULT_LOCALE,
     }).catch((e) => {
-      logger.error('Error fetching cities menu:', { e })
+      logger.error('Error fetching cities menu:', { e, locale })
       return menuErrorResponse()
     }),
 
@@ -98,7 +102,7 @@ export const getMainMenus = async ({ locale }) => {
       locale,
       defaultLocale: NO_DEFAULT_LOCALE,
     }).catch((e) => {
-      logger.error('Error fetching footer menu:', { e })
+      logger.error('Error fetching footer menu:', { e, locale })
       return menuErrorResponse()
     }),
   ])
@@ -106,24 +110,54 @@ export const getMainMenus = async ({ locale }) => {
   return { main, footer, cities, 'cities-landing': citiesLanding }
 }
 
-export const getNode = ({ locale, localePath, type }) =>
-  getResourceByPath(localePath, {
-    locale,
-    defaultLocale: NO_DEFAULT_LOCALE,
-    params: getQueryParamsFor(type),
-  }).catch((e) => {
-    logger.error(`Error requesting node %s`, localePath, {
-      type,
-      localePath,
-      e,
+const RETRY_LIMIT = 10
+export const getNode = async ({ locale, localePath, type, retry = 0 }) => {
+  const getter = () =>
+    getResourceByPath(localePath, {
+      locale,
+      defaultLocale: NO_DEFAULT_LOCALE,
+      params: getQueryParamsFor(type),
+    }).catch((e) => {
+      logger.error(`Error requesting node %s`, localePath, {
+        type,
+        localePath,
+        e,
+      })
+      return null
+      // throw e
     })
-  })
+
+  if (retry < 1) {
+    return getter()
+  }
+
+  let node = null
+  let attempts = 0
+  while (node === null && attempts <= retry - 1 && attempts <= RETRY_LIMIT) {
+    if (attempts > 0) {
+      logger.warn('Retry attempts %s for %s', attempts, localePath)
+      await new Promise((res) => setTimeout(res, 1000))
+    }
+
+    node = await getter()
+    attempts++
+  }
+  if (!node) {
+    logger.error(
+      'Unable to get page %s after %s attempts',
+      localePath,
+      attempts
+    )
+    throw `Unable to get page ${localePath} after ${retry} attempts`
+  }
+  return node
+}
 
 export const getCachedNode = async ({ locale, localePath, type }) => {
   const key = pageCache.getKey({ locale, localePath, type })
 
   if (pageCache.cache.has(key)) {
-    logger.info('Serving page %s from cache', localePath, {
+    logger.http('Serving page %s from cache', localePath, {
       localePath,
       locale,
       type,
@@ -137,7 +171,11 @@ export const getCachedNode = async ({ locale, localePath, type }) => {
     return null
   }
 
-  logger.http('Caching page %s', localePath, { localePath, cacheKey: key })
+  logger.http('Caching page %s', localePath, {
+    localePath,
+    cacheKey: key,
+    node: node.id,
+  })
   pageCache.cache.set(key, node)
   return node
 }
@@ -181,6 +219,28 @@ export const getDefaultLocaleNode = async (id) =>
       .addFields(NODE_TYPES.PAGE, ['title'])
       .getQueryObject(),
   })
+
+// 3  minutes cache for municipalities
+const MUNICIPALITIES_CACHE_TTL = 300
+
+export const getCachedMunicipalities = async ({ locale }) => {
+  let k = `municipalities-${locale}`
+  if (cache.has(k)) {
+    logger.http('serving municipalities from cache')
+    return cache.get(k)
+  } else {
+    const municipalities = await getMunicipalities({ locale }).catch((e) => {
+      logger.error('Municipalities error', { locale, e })
+      return []
+    })
+
+    if (municipalities.length > 0) {
+      logger.http('caching municipalities')
+      cache.set(k, municipalities, MUNICIPALITIES_CACHE_TTL)
+    }
+    return municipalities
+  }
+}
 
 export const getMunicipalities = async ({ locale }) =>
   getResourceCollection(CONTENT_TYPES.MUNICIPALITY, {

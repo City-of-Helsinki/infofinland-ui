@@ -1,6 +1,5 @@
 import cls from 'classnames'
 import { H2 } from '../Typo'
-// import { BLOCK_MARGIN } from '../layout/Block'
 import LocalInformation from '@/components/cities/LocalInformation'
 import ReadMoreBlock from './ReadMoreBlock'
 import ImageBlock from './ImageBlock'
@@ -10,10 +9,10 @@ import dynamic from 'next/dynamic'
 import PTVBlock from './PTVBlock'
 import { TEXT_HTML_FORMAT } from '@/lib/DRUPAL_API_TYPES'
 import HtmlBlock from './HtmlBlock'
+import Columns from './Columns'
 
-const AccordionItems = dynamic(() => import('./Accordion'))
-const Columns = dynamic(() => import('./Columns'))
-const VideoBlock = dynamic(() => import('./VideoBlock'))
+const AccordionItems = dynamic(() => import('./Accordion'), { ssr: false })
+const VideoBlock = dynamic(() => import('./VideoBlock'), { ssr: false })
 
 export const headingId = (id) => `heading-${id}`
 export const headingHash = (id) => `#${headingId(id)}`

@@ -1,9 +1,13 @@
 import { IconMapMarker } from '@/components/Icons'
-
+import { useAtomValue } from 'jotai/utils'
 import { useAtom } from 'jotai'
 import SWRContent from './LocalInformationSWR'
 import { useUpdateAtom } from 'jotai/utils'
-import { selectedCityAtom, cityMenuVisibilityAtom } from '@/src/store'
+import {
+  selectedCityIdAtom,
+  selectedCityNameAtom,
+  cityMenuVisibilityAtom,
+} from '@/src/store'
 import Block from '@/components/layout/Block'
 import { IconAngleDown } from '@/components/Icons'
 import { useTranslation } from 'next-i18next'
@@ -11,16 +15,17 @@ import { useRouter } from 'next/router'
 const CITY_BUTTON_ID = 'ifu-localinfo__button'
 const LocalInformation = ({ cities = [] }) => {
   const { t } = useTranslation('common')
-  const [selectedCity, setCity] = useAtom(selectedCityAtom)
+  const [selectedCityId, setCity] = useAtom(selectedCityIdAtom)
+  const selectedCityName = useAtomValue(selectedCityNameAtom)
   const setOpen = useUpdateAtom(cityMenuVisibilityAtom)
   const openMenu = () => setOpen(true)
   const clearCity = () => setCity(null)
   const { locale } = useRouter()
   const city = cities.find(({ field_municipality }) => {
-    return field_municipality?.name === selectedCity
+    return field_municipality?.id === selectedCityId
   })
 
-  const isOpen = !!selectedCity && !!city
+  const isOpen = !!selectedCityId && !!city
 
   return (
     <div className="mb-8">
@@ -38,13 +43,13 @@ const LocalInformation = ({ cities = [] }) => {
             onClick={openMenu}
           >
             <span className="underline">
-              {!selectedCity && t('localInfo.select')}
-              {selectedCity && selectedCity}
+              {!selectedCityName && t('localInfo.select')}
+              {selectedCityName && selectedCityName}
             </span>
             <IconAngleDown className="w-3 h-3 fill-black ms-2" />
           </button>
           <div className="flex-grow"></div>
-          {selectedCity && (
+          {selectedCityName && (
             <button
               className="inline-block flex-none text-body"
               onClick={clearCity}
@@ -53,12 +58,12 @@ const LocalInformation = ({ cities = [] }) => {
             </button>
           )}
         </div>
-        {!selectedCity && (
+        {!selectedCityName && (
           <p className="mt-2">
             <label htmlFor={CITY_BUTTON_ID}>{t('localInfo.help')}</label>
           </p>
         )}
-        {!city && selectedCity && (
+        {!city && selectedCityName && (
           <p className="mt-2">{t('localInfo.noInfo')}</p>
         )}
         <SWRContent isOpen={isOpen} city={city} />
