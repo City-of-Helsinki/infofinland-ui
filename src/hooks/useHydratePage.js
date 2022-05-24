@@ -1,12 +1,12 @@
 import { useHydrateAtoms, useUpdateAtom } from 'jotai/utils'
-import { pageAtom, cookieConsentAtom, selectedCityAtom } from '@/src/store'
+import { pageAtom, cookieConsentAtom, selectedCityIdAtom } from '@/src/store'
 import { useEffect } from 'react'
 
 const useHydratePage = (pageProps) => {
   useHydrateAtoms([
     [pageAtom, pageProps],
     [cookieConsentAtom, undefined],
-    [selectedCityAtom, undefined],
+    [selectedCityIdAtom, undefined],
   ])
 
   const setPage = useUpdateAtom(pageAtom)

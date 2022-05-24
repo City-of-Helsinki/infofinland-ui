@@ -1,5 +1,4 @@
 import cls from 'classnames'
-// import Image from 'next/image'
 import Breadcrumbs from '@/components/article/Breadcrumbs'
 import HeroImage from './HeroImage'
 

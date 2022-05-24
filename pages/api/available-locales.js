@@ -1,8 +1,10 @@
 import { i18n } from '@/next-i18next.config'
 import { translatePath } from 'next-drupal'
-import { CACHE_HEADERS_10M } from '@/cache-headers'
+import { CACHE_HEADERS_30S } from '@/cache-headers'
 import logger from '@/logger'
 import cache from '@/lib/cacher/server-cache'
+
+const LOCALES_CACHE_TTL = 60
 
 export default async function handler(req, res) {
   // No posts allowed
@@ -27,7 +29,7 @@ export default async function handler(req, res) {
       logger.error('API error while resolving locales.', { path }, e)
       throw e
     })
-    cache.set(k, nodes)
+    cache.set(k, nodes, LOCALES_CACHE_TTL)
   }
   if (nodes === null) {
     status = 404
@@ -44,7 +46,7 @@ export default async function handler(req, res) {
   }
 
   res
-    .setHeader(...CACHE_HEADERS_10M)
+    .setHeader(...CACHE_HEADERS_30S)
     .status(status)
     .json(response)
 }

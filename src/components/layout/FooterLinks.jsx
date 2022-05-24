@@ -2,23 +2,17 @@ import { IconFacebook, IconInstagram, IconTwitter, IconYoutube } from '../Icons'
 import Link from 'next/link'
 import cls from 'classnames'
 import getConfig from 'next/config'
-
 import { useTranslation } from 'next-i18next'
-import { useAtomValue } from 'jotai/utils'
-import { footerMenuAtom } from '@/src/store'
 import { useRouter } from 'next/router'
 
 /**
- * SOME Urls are defined in next.config.js
+ * SoMe Urls are defined in next.config.js
  * */
-const FooterLinks = ({ secondary }) => {
+const FooterLinks = ({ secondary, tree }) => {
   const { t, language } = useTranslation('common')
   const margin = secondary ? 'ifu-block--secondary' : 'ifu-block--article'
-  const {
-    publicRuntimeConfig: { FB_URL, TWITTER_URL, YOUTUBE_URL, INSTAGRAM_URL },
-  } = getConfig()
-
-  const footerMenu = useAtomValue(footerMenuAtom)
+  const { FB_URL, TWITTER_URL, YOUTUBE_URL, INSTAGRAM_URL } =
+    getConfig().publicRuntimeConfig
 
   const { locale } = useRouter()
 
@@ -53,7 +47,7 @@ const FooterLinks = ({ secondary }) => {
       </div>
 
       <div className="mb-4 text-center sm:text-left divide-black divide-s">
-        {footerMenu?.tree?.map(({ title, url }, i) => {
+        {tree.map(({ title, url }, i) => {
           return (
             <Link
               href={url}

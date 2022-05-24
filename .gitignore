@@ -1,4 +1,5 @@
 node_modules
+/logs
 *.log
 .DS_Store
 .next
@@ -7,5 +8,3 @@ coverage
 .vercel
 .vscode
 .env.local*
-
-# .env.production

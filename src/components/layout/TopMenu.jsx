@@ -2,11 +2,11 @@ import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 import useLangMenuToggle from '@/hooks/useLangMenuToggle'
 import MobileNavi from '@/components/navi/MobileNavi'
-import LanguageSelector from '@/components/languages/LanguageSelector'
+import LanguageSelector from '@/components/layout/languages/LanguageSelector'
 import {
   LanguageMenuButton,
   LangMenuDrawer,
-} from '@/components/languages/LanguageMenu'
+} from '@/components/layout/languages/LanguageMenu'
 // import CityMenu from '@/components/layout/CityMenu'
 import TopSearch from '../search/TopSearch'
 import cls from 'classnames'
@@ -15,10 +15,13 @@ import { pageIsLoadingAtom } from '@/src/store'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'
 
-const CityMenu = dynamic(() => import('@/components/layout/CityMenu'))
+const CityMenu = dynamic(() => import('@/components/layout/CityMenu'), {
+  ssr: false,
+})
 
 const Logo = () => {
   const { locale } = useRouter()
+  const { t } = useTranslation('common')
   const pageIsLoading = useAtomValue(pageIsLoadingAtom)
   return (
     <div
@@ -30,7 +33,7 @@ const Logo = () => {
           className={cls('ifu-topmenu__logo', {
             'ifu-topmenu__logo--loading': pageIsLoading,
           })}
-          title="infofinland.fi"
+          title={t('breadcrumbs.frontpage')}
         >
           {pageIsLoading && (
             <span className=" hidden lg:inline-block relative -translate-x-1 -translate-y-5">
@@ -46,7 +49,7 @@ const Logo = () => {
   )
 }
 
-const TopMenu = () => {
+const TopMenu = ({ menus }) => {
   const [open, setLangMenuVisibility] = useLangMenuToggle()
   const toggleLangMenu = () => setLangMenuVisibility(!open)
   const closeMenu = () => setLangMenuVisibility(false)
@@ -65,7 +68,7 @@ const TopMenu = () => {
         <div className="2xl:flex-none xl:flex-grow"></div>
         <div className="flex items-center">
           <TopSearch />
-          <MobileNavi />
+          <MobileNavi menus={menus} />
         </div>
         <CityMenu />
       </div>

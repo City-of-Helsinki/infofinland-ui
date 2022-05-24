@@ -49,7 +49,7 @@ const ArticlePage = ({ node, themeMenu, menus }) => {
   return (
     <>
       <CommonHead key={`head-article-${node?.id}`} node={node} />
-      <Layout>
+      <Layout menus={menus}>
         <Article
           title={title}
           breadcrumbs={breadcrumbs}
@@ -63,9 +63,7 @@ const ArticlePage = ({ node, themeMenu, menus }) => {
           )}
 
           {field_municipality_selection && (
-            <LocalInformationSelectCity
-              city={field_municipality_selection.name}
-            />
+            <LocalInformationSelectCity {...field_municipality_selection} />
           )}
 
           {field_use_anchor_links && (
