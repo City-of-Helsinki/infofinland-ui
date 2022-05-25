@@ -1,6 +1,7 @@
 {
   "article": {
-    "published": "Avaldatud"
+    "published": "Avaldatud",
+    "index": "Sellel lehel"
   },
   "breadcrumbs": {
     "frontpage": "Avaleht",
