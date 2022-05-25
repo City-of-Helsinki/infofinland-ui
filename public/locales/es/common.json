@@ -1,6 +1,7 @@
 {
   "article": {
-    "published": "Publicado"
+    "published": "Publicado",
+    "index": "En esta página"
   },
   "breadcrumbs": {
     "frontpage": "Inicio",
