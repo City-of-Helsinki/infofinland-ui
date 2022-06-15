@@ -1,6 +1,7 @@
 {
   "article": {
-    "published": "Опубликовано"
+    "published": "Опубликовано",
+    "index": "На этой странице"
   },
   "breadcrumbs": {
     "frontpage": "Главная страница",

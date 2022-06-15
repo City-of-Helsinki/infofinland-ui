@@ -1,6 +1,7 @@
 {
   "article": {
-    "published": "已发布"
+    "published": "已发布",
+    "index": "此页"
   },
   "breadcrumbs": {
     "frontpage": "首页",
