@@ -26,8 +26,8 @@ const FooterLinks = ({ secondary, tree }) => {
           lang={language}
         />
         <p
-          className={`mx-8 md:mx-0 text-tiny text-center sm:text-${
-            direction === 'rtl' ? 'right' : 'left'
+          className={`mx-8 md:mx-0 text-tiny text-center ${
+            direction === 'rtl' ? 'sm:text-right' : 'sm:text-left'
           } text-gray`}
         >
           {t('footer.helsinkiDisclaimer')}
@@ -52,8 +52,8 @@ const FooterLinks = ({ secondary, tree }) => {
       </div>
 
       <div
-        className={`mb-4 text-center sm:text-${
-          direction === 'rtl' ? 'right' : 'left'
+        className={`mb-4 text-center ${
+          direction === 'rtl' ? 'sm:text-right' : 'sm:text-left'
         } divide-black divide-s`}
       >
         {tree.map(({ title, url }, i) => {
