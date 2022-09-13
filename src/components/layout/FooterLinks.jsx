@@ -4,7 +4,7 @@ import cls from 'classnames'
 import getConfig from 'next/config'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
-
+import { i18n } from '@/next-i18next.config'
 /**
  * SoMe Urls are defined in next.config.js
  * */
@@ -16,6 +16,8 @@ const FooterLinks = ({ secondary, tree }) => {
 
   const { locale } = useRouter()
 
+  const direction = i18n.rtlLocales.includes(locale) ? 'rtl' : 'ltr'
+
   return (
     <div className={cls(margin, 'mt-16 mb-16')}>
       <div className="py-10 border-t border-b border-gray-light ifu-footer__brand">
@@ -23,8 +25,11 @@ const FooterLinks = ({ secondary, tree }) => {
           className="mx-auto sm:mx-0 mb-5 ifu-footer__hki-logo"
           lang={language}
         />
-
-        <p className=" mx-8 md:mx-0 text-tiny text-center sm:text-left text-gray">
+        <p
+          className={`mx-8 md:mx-0 text-tiny text-center ${
+            direction === 'rtl' ? 'sm:text-right' : 'sm:text-left'
+          } text-gray`}
+        >
           {t('footer.helsinkiDisclaimer')}
         </p>
       </div>
@@ -46,7 +51,11 @@ const FooterLinks = ({ secondary, tree }) => {
         </a>
       </div>
 
-      <div className="mb-4 text-center sm:text-left divide-black divide-s">
+      <div
+        className={`mb-4 text-center ${
+          direction === 'rtl' ? 'sm:text-right' : 'sm:text-left'
+        } divide-black divide-s`}
+      >
         {tree.map(({ title, url }, i) => {
           return (
             <Link
