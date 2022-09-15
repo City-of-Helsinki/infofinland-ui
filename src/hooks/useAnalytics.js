@@ -20,8 +20,10 @@ export const Analytics = {
     DEV && console.log('setting tracking permission to', enabled)
     Analytics.enabled = enabled
     // window._paq.push(['setDoNotTrack', !enabled])
-    if(enabled !== true){
-      window._paq.push(['requireCookieConsent']);
+    if (enabled !== true) {
+      window._paq.push(['requireCookieConsent'])
+    } else {
+      window._paq.push(['setCookieConsentGiven'])
     }
     return Analytics
   },
@@ -35,8 +37,8 @@ export const Analytics = {
   },
   trackPageOrSearch: (path, _paq) => {
     // if (Analytics.enabled !== true) {
-    //   DEV && console.log('Tracking not allowed by user')
-    //   return Analytics
+    //   // DEV && console.log('Tracking not allowed by user')
+    //   // return Analytics
     // }
 
     if (new RegExp(`${SEARCH_PAGE}`).test(path)) {
@@ -55,11 +57,6 @@ export const Analytics = {
     window._paq = window._paq || []
 
     Analytics.setEnabled(enabled)
-
-    if (!Analytics.enabled) {
-      DEV && console.log('analytics not enabled. not intiating')
-      window._paq.push(['requireCookieConsent'])
-    }
 
     if (Analytics.hasStarted) {
       DEV && console.log('started already')
@@ -112,7 +109,7 @@ const useAnalytics = () => {
     if (DEV) {
       _paq.push = console.log
     }
-    
+
     Analytics.init({
       url,
       siteId,
