@@ -68,7 +68,7 @@ export const Analytics = {
       window._paq.push = console.log
     }
 
-    window._paq.push(['disableCookies'])
+    // window._paq.push(['disableCookies'])
     window._paq.push(['enableLinkTracking'])
     ;(function () {
       var u = url
