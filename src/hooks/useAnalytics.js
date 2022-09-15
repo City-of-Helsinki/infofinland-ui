@@ -19,10 +19,7 @@ export const Analytics = {
   setEnabled: (enabled) => {
     DEV && console.log('setting tracking permission to', enabled)
     Analytics.enabled = enabled
-    // window._paq.push(['setDoNotTrack', !enabled])
-    if (enabled !== true) {
-      window._paq.push(['requireCookieConsent'])
-    } else {
+    if (enabled === true) {
       window._paq.push(['setCookieConsentGiven'])
     }
     return Analytics
@@ -56,16 +53,18 @@ export const Analytics = {
   init: ({ enabled = false, url, siteId }) => {
     window._paq = window._paq || []
 
+    // // // // Don't send anything in dev mode. just log it instead
+    if (process.env.NODE_ENV === 'development') {
+      window._paq.push = console.log
+    }
+
+    window._paq.push(['requireCookieConsent'])
+
     Analytics.setEnabled(enabled)
 
     if (Analytics.hasStarted) {
       DEV && console.log('started already')
       return Analytics
-    }
-
-    // // // // Don't send anything in dev mode. just log it instead
-    if (process.env.NODE_ENV === 'development') {
-      window._paq.push = console.log
     }
 
     // window._paq.push(['disableCookies'])
