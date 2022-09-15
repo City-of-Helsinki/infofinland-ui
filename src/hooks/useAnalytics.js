@@ -63,11 +63,6 @@ export const Analytics = {
     }
     window._paq.push(['requireCookieConsent'])
     window._paq.push(['enableLinkTracking'])
-
-    if (Analytics.enabled === true) {
-      window._paq.push(['setCookieConsentGiven'])
-    }
-
     ;(function () {
       var u = url
       window._paq.push(['setTrackerUrl', u + 'tracker.php'])
@@ -82,6 +77,9 @@ export const Analytics = {
     })()
 
     DEV && console.log('initial page track')
+    if (enabled === true) {
+      window._paq.push(['setCookieConsentGiven'])
+    }
     Analytics.trackPageOrSearch(window.location.pathname, window._paq)
     Analytics.hasStarted = true
     return Analytics
