@@ -31,10 +31,11 @@ export const Analytics = {
     return Analytics
   },
   trackPageOrSearch: (path, _paq) => {
-    if (Analytics.enabled !== true) {
-      DEV && console.log('Tracking not allowed by user')
-      return Analytics
-    }
+    // Not needed, because requireCookieConsent is set if Analytics is disabled
+    // if (Analytics.enabled !== true) {
+    //   DEV && console.log('Tracking not allowed by user')
+    //   return Analytics
+    // }
 
     if (new RegExp(`${SEARCH_PAGE}`).test(path)) {
       Analytics.trackSearch({
@@ -54,8 +55,9 @@ export const Analytics = {
     Analytics.setEnabled(enabled)
 
     if (!Analytics.enabled) {
-      DEV && console.log('analytics not enabled. not intiating')
-      return Analytics
+      DEV && console.log('analytics not enabled. setting requireCookieConsent')
+      window._paq.push(['requireCookieConsent']);
+      // return Analytics
     }
 
     if (Analytics.hasStarted) {
@@ -69,7 +71,6 @@ export const Analytics = {
     }
 
     window._paq.push(['disableCookies'])
-    window._paq.push(['requireCookieConsent']);
     window._paq.push(['enableLinkTracking'])
     ;(function () {
       var u = url
