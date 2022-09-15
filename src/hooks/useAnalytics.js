@@ -19,9 +19,6 @@ export const Analytics = {
   setEnabled: (enabled) => {
     DEV && console.log('setting tracking permission to', enabled)
     Analytics.enabled = enabled
-    if (enabled === true) {
-      window._paq.push(['setCookieConsentGiven'])
-    }
     return Analytics
   },
   trackPage: () => {
@@ -58,17 +55,19 @@ export const Analytics = {
       window._paq.push = console.log
     }
 
-    window._paq.push(['requireCookieConsent'])
-
     Analytics.setEnabled(enabled)
 
     if (Analytics.hasStarted) {
       DEV && console.log('started already')
       return Analytics
     }
-
-    // window._paq.push(['disableCookies'])
+    window._paq.push(['requireCookieConsent'])
     window._paq.push(['enableLinkTracking'])
+
+    if (Analytics.enabled === true) {
+      window._paq.push(['setCookieConsentGiven'])
+    }
+
     ;(function () {
       var u = url
       window._paq.push(['setTrackerUrl', u + 'tracker.php'])
@@ -119,6 +118,9 @@ const useAnalytics = () => {
     const setTitleAndTrack = (path) => {
       defer(() => {
         DEV && console.log('tracking from router', path)
+        if (Analytics.enabled === true) {
+          window._paq.push(['setCookieConsentGiven'])
+        }
         window._paq.push(['setCustomUrl', path])
         window._paq.push(['setDocumentTitle', document.title])
         Analytics.trackPageOrSearch(path, window._paq)
