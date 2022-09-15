@@ -31,11 +31,10 @@ export const Analytics = {
     return Analytics
   },
   trackPageOrSearch: (path, _paq) => {
-    // Not needed, because requireCookieConsent is set if Analytics is disabled
-    // if (Analytics.enabled !== true) {
-    //   DEV && console.log('Tracking not allowed by user')
-    //   return Analytics
-    // }
+    if (Analytics.enabled !== true) {
+      DEV && console.log('Tracking not allowed by user')
+      return Analytics
+    }
 
     if (new RegExp(`${SEARCH_PAGE}`).test(path)) {
       Analytics.trackSearch({
@@ -55,9 +54,8 @@ export const Analytics = {
     Analytics.setEnabled(enabled)
 
     if (!Analytics.enabled) {
-      DEV && console.log('analytics not enabled. setting requireCookieConsent')
-      window._paq.push(['requireCookieConsent']);
-      // return Analytics
+      DEV && console.log('analytics not enabled. not intiating')
+      return Analytics
     }
 
     if (Analytics.hasStarted) {
@@ -112,10 +110,16 @@ const useAnalytics = () => {
       _paq.push = console.log
     }
 
+    // Track users without cookies
+    // requireCookieConsent - tracking requests will still be sent but no cookies will be set.
+    if(!isAnalyticsAllowed){
+      window._paq.push(['requireCookieConsent']);
+    }
+
     Analytics.init({
       url,
       siteId,
-      enabled: navigator.doNotTrack !== '1' && isAnalyticsAllowed,
+      enabled: navigator.doNotTrack !== '1',
       searchCount,
     })
 
