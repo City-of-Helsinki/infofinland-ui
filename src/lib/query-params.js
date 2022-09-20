@@ -178,6 +178,7 @@ export const getThemeHeroParams = () =>
 
 export const getMunicipalityParams = () =>
   new DrupalJsonApiParams()
+    .addSort('weight')
     .addFields(CONTENT_TYPES.MUNICIPALITY, ['id', 'name'])
     .getQueryObject()
 
