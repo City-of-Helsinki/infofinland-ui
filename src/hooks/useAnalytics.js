@@ -116,6 +116,7 @@ const useAnalytics = () => {
     const setTitleAndTrack = (path) => {
       defer(() => {
         DEV && console.log('tracking from router', path)
+        window._paq.push(['requireCookieConsent'])
         if (Analytics.enabled === true) {
           window._paq.push(['setCookieConsentGiven'])
         }
