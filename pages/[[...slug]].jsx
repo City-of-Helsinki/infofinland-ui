@@ -103,11 +103,18 @@ export async function getStaticProps(context) {
         ? `/${locale}/${redirectToSlug.slice(2)}`
         : `/${redirectToSlug.slice(1)}`
 
+      redirectTo = redirectTo.endsWith('/')
+        ? redirectTo.slice(0, -1)
+        : redirectTo
+
+      logger.http('Redirecting URLs', {
+        requestPath: path,
+        destination: redirectTo,
+      })
+
       return {
         redirect: {
-          destination: redirectTo.endsWith('/')
-            ? redirectTo.slice(0, -1)
-            : redirectTo,
+          destination: redirectTo,
           permanent: redirect.status === '301',
         },
       }
