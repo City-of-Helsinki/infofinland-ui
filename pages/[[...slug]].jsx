@@ -100,8 +100,8 @@ export async function getStaticProps(context) {
       let redirectToLocale = redirectToSlug[1]
 
       let redirectTo = locales.includes(redirectToLocale)
-        ? `/${locale}/${redirectToSlug.slice(2)}`
-        : `/${redirectToSlug.slice(1)}`
+        ? `/${locale}/${redirectToSlug.slice(2).join('/')}`
+        : `/${redirectToSlug.slice(1).join('/')}`
 
       redirectTo = redirectTo.endsWith('/')
         ? redirectTo.slice(0, -1)
