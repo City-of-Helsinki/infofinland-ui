@@ -1,7 +1,11 @@
 /* eslint-disable no-unreachable */
 import getConfig from 'next/config'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { getMenu, getResourceTypeFromContext } from 'next-drupal'
+import {
+  getMenu,
+  getResourceTypeFromContext,
+  translatePathFromContext,
+} from 'next-drupal'
 import ArticlePage from '@/src/page-templates/ArticlePage'
 import AboutPage from '@/src/page-templates/AboutPage'
 import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
@@ -71,9 +75,7 @@ export async function getStaticPaths() {
 // export async function getServerSideProps(context) {
 export async function getStaticProps(context) {
   const { REVALIDATE_TIME, BUILD_PHASE } = getConfig().serverRuntimeConfig
-  const { params, locale } = context
-  const type = params.slug ? NODE_TYPES.PAGE : NODE_TYPES.LANDING_PAGE
-
+  const { params, locale, locales } = context
   params.slug = params.slug || ['/']
   const path =
     params.slug[0] === '/' ? params.slug[0] : `/${params.slug.join('/')}`
@@ -85,12 +87,46 @@ export async function getStaticProps(context) {
   const T = `pageTimer-for-${localePath}`
   USE_TIMER && console.time(T)
   USE_TIMER && console.timeLog(T)
-  let node = await getResourceTypeFromContext(context)
+
+  if (!BUILD_PHASE) {
+    const pathFromContext = await translatePathFromContext(context)
+    if (pathFromContext?.redirect?.length) {
+      const [redirect] = pathFromContext.redirect
+
+      let redirectToSlug = redirect.to.split('/')
+      let redirectToLocale = redirectToSlug[1]
+
+      let redirectTo = locales.includes(redirectToLocale)
+        ? `/${locale}/${redirectToSlug.slice(2).join('/')}`
+        : `/${redirectToSlug.slice(1).join('/')}`
+
+      redirectTo = redirectTo.endsWith('/')
+        ? redirectTo.slice(0, -1)
+        : redirectTo
+
+      logger.http('Redirecting URLs', {
+        requestPath: path,
+        destination: redirectTo,
+      })
+
+      return {
+        redirect: {
+          destination: redirectTo,
+          permanent: redirect.status === '301',
+        },
+      }
+    }
+  }
+
+  let type = await getResourceTypeFromContext(context)
+  type = type ? type : params.slug ? NODE_TYPES.PAGE : NODE_TYPES.LANDING_PAGE
 
   if (![NODE_TYPES.LANDING_PAGE, NODE_TYPES.PAGE].includes(type)) {
     logger.warn('Invalid node type', { type, localePath })
     return NOT_FOUND
   }
+
+  let node = {}
 
   if (BUILD_PHASE) {
     //Try a few times, sometimes Drupal router just gives random errors
