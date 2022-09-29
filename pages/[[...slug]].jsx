@@ -76,7 +76,6 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const { REVALIDATE_TIME, BUILD_PHASE } = getConfig().serverRuntimeConfig
   const { params, locale, locales } = context
-
   params.slug = params.slug || ['/']
   const path =
     params.slug[0] === '/' ? params.slug[0] : `/${params.slug.join('/')}`
