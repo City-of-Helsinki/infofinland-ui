@@ -120,6 +120,7 @@ export async function getStaticProps(context) {
   }
 
   let type = await getResourceTypeFromContext(context)
+  type = type ? type : (params.slug ? NODE_TYPES.PAGE : NODE_TYPES.LANDING_PAGE)
 
   if (![NODE_TYPES.LANDING_PAGE, NODE_TYPES.PAGE].includes(type)) {
     logger.warn('Invalid node type', { type, localePath })
