@@ -76,7 +76,6 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const { REVALIDATE_TIME, BUILD_PHASE } = getConfig().serverRuntimeConfig
   const { params, locale, locales } = context
-  const type = params.slug ? NODE_TYPES.PAGE : NODE_TYPES.LANDING_PAGE
 
   params.slug = params.slug || ['/']
   const path =
@@ -89,7 +88,6 @@ export async function getStaticProps(context) {
   const T = `pageTimer-for-${localePath}`
   USE_TIMER && console.time(T)
   USE_TIMER && console.timeLog(T)
-  let node = await getResourceTypeFromContext(context)
 
   if (!BUILD_PHASE) {
     const pathFromContext = await translatePathFromContext(context)
@@ -121,10 +119,14 @@ export async function getStaticProps(context) {
     }
   }
 
+  let type = await getResourceTypeFromContext(context)
+
   if (![NODE_TYPES.LANDING_PAGE, NODE_TYPES.PAGE].includes(type)) {
     logger.warn('Invalid node type', { type, localePath })
     return NOT_FOUND
   }
+
+  let node = {}
 
   if (BUILD_PHASE) {
     //Try a few times, sometimes Drupal router just gives random errors
