@@ -122,6 +122,36 @@ export async function getStaticProps(context) {
   let type = await getResourceTypeFromContext(context)
   type = type ? type : params.slug ? NODE_TYPES.PAGE : NODE_TYPES.LANDING_PAGE
 
+  if (!BUILD_PHASE) {
+    const pathFromContext = await translatePathFromContext(context)
+    if (pathFromContext?.redirect?.length) {
+      const [redirect] = pathFromContext.redirect
+
+      let redirectToSlug = redirect.to.split('/')
+      let redirectToLocale = redirectToSlug[1]
+
+      let redirectTo = locales.includes(redirectToLocale)
+        ? `/${locale}/${redirectToSlug.slice(2).join('/')}`
+        : `/${redirectToSlug.slice(1).join('/')}`
+
+      redirectTo = redirectTo.endsWith('/')
+        ? redirectTo.slice(0, -1)
+        : redirectTo
+
+      logger.http('Redirecting URLs', {
+        requestPath: path,
+        destination: redirectTo,
+      })
+
+      return {
+        redirect: {
+          destination: redirectTo,
+          permanent: redirect.status === '301',
+        },
+      }
+    }
+  }
+
   if (![NODE_TYPES.LANDING_PAGE, NODE_TYPES.PAGE].includes(type)) {
     logger.warn('Invalid node type', { type, localePath })
     return NOT_FOUND
