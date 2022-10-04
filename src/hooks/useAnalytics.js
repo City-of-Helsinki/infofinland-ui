@@ -30,11 +30,9 @@ export const Analytics = {
     return Analytics
   },
   trackPageOrSearch: (path, _paq) => {
-    // if (Analytics.enabled !== true) {
-    //   // DEV && console.log('Tracking not allowed by user')
-    //   // return Analytics
-    // }
-
+    if (Analytics.enabled === true) {
+      window._paq.push(['setCookieConsentGiven'])
+    }
     if (new RegExp(`${SEARCH_PAGE}`).test(path)) {
       Analytics.trackSearch({
         keyword: new URLSearchParams(window.location.search).get('search'),
@@ -77,9 +75,6 @@ export const Analytics = {
     })()
 
     DEV && console.log('initial page track')
-    if (enabled === true) {
-      window._paq.push(['setCookieConsentGiven'])
-    }
     Analytics.trackPageOrSearch(window.location.pathname, window._paq)
     Analytics.hasStarted = true
     return Analytics
@@ -117,9 +112,6 @@ const useAnalytics = () => {
       defer(() => {
         DEV && console.log('tracking from router', path)
         window._paq.push(['requireCookieConsent'])
-        if (Analytics.enabled === true) {
-          window._paq.push(['setCookieConsentGiven'])
-        }
         window._paq.push(['setCustomUrl', path])
         window._paq.push(['setDocumentTitle', document.title])
         Analytics.trackPageOrSearch(path, window._paq)
