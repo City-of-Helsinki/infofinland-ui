@@ -104,9 +104,7 @@ const useAnalytics = () => {
     Analytics.init({
       url,
       siteId,
-      enabled: isCookieConsentSet
-          ? isAnalyticsAllowed
-          : false,
+      enabled: isCookieConsentSet ? isAnalyticsAllowed : false,
       searchCount,
     })
 
