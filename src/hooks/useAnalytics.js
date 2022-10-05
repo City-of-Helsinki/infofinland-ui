@@ -30,11 +30,9 @@ export const Analytics = {
     return Analytics
   },
   trackPageOrSearch: (path, _paq) => {
-    // if (Analytics.enabled !== true) {
-    //   // DEV && console.log('Tracking not allowed by user')
-    //   // return Analytics
-    // }
-
+    if (Analytics.enabled === true) {
+      window._paq.push(['setCookieConsentGiven'])
+    }
     if (new RegExp(`${SEARCH_PAGE}`).test(path)) {
       Analytics.trackSearch({
         keyword: new URLSearchParams(window.location.search).get('search'),
@@ -96,7 +94,7 @@ const useAnalytics = () => {
     const { MATOMO_URL: url, MATOMO_SITE_ID: siteId } =
       getConfig().publicRuntimeConfig
     //Do not do anything until user has acknowledged the tracking rules
-    if (isSSR() || !isCookieConsentSet) {
+    if (isSSR() || navigator.doNotTrack == '1') {
       // DEV && console.log('analytics consent is not yet acknowledged')
       return
     }
@@ -109,7 +107,7 @@ const useAnalytics = () => {
     Analytics.init({
       url,
       siteId,
-      enabled: navigator.doNotTrack !== '1' && isAnalyticsAllowed,
+      enabled: isCookieConsentSet ? isAnalyticsAllowed : false,
       searchCount,
     })
 
@@ -117,9 +115,6 @@ const useAnalytics = () => {
       defer(() => {
         DEV && console.log('tracking from router', path)
         window._paq.push(['requireCookieConsent'])
-        if (Analytics.enabled === true) {
-          window._paq.push(['setCookieConsentGiven'])
-        }
         window._paq.push(['setCustomUrl', path])
         window._paq.push(['setDocumentTitle', document.title])
         Analytics.trackPageOrSearch(path, window._paq)
