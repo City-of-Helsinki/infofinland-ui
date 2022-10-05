@@ -75,6 +75,9 @@ export const Analytics = {
     })()
 
     DEV && console.log('initial page track')
+    if (enabled === true) {
+      window._paq.push(['setCookieConsentGiven'])
+    }
     Analytics.trackPageOrSearch(window.location.pathname, window._paq)
     Analytics.hasStarted = true
     return Analytics
