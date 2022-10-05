@@ -91,7 +91,7 @@ const useAnalytics = () => {
     const { MATOMO_URL: url, MATOMO_SITE_ID: siteId } =
       getConfig().publicRuntimeConfig
     //Do not do anything until user has acknowledged the tracking rules
-    if (isSSR() || !isCookieConsentSet) {
+    if (isSSR()) {
       // DEV && console.log('analytics consent is not yet acknowledged')
       return
     }
@@ -104,7 +104,10 @@ const useAnalytics = () => {
     Analytics.init({
       url,
       siteId,
-      enabled: navigator.doNotTrack !== '1' && isAnalyticsAllowed,
+      enabled:
+        navigator.doNotTrack !== '1' && isCookieConsentSet
+          ? isAnalyticsAllowed
+          : false,
       searchCount,
     })
 
