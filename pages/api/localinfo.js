@@ -1,7 +1,7 @@
 import { getResource } from 'next-drupal'
 import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import { getLocalInfoParams } from '@/lib/query-params'
-import { CACHE_HEADERS_60S } from '@/cache-headers'
+import { CACHE_HEADERS_10M } from '@/cache-headers'
 import logger from '@/logger'
 import { NO_DEFAULT_LOCALE } from '@/lib/ssr-api'
 
@@ -36,7 +36,7 @@ export default async function handler(req, res) {
   }
 
   res
-    .setHeader(...CACHE_HEADERS_60S)
+    .setHeader(...CACHE_HEADERS_10M)
     .status(status)
     .json({
       node,
