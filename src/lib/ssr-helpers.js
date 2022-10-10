@@ -132,3 +132,24 @@ export const getSearchResult = ({ _source, highlight, _id }) => {
 
   return result
 }
+
+export const getRedirect = (redirectList, context) => {
+  if (redirectList?.length) {
+    const { locale, locales } = context
+    const [redirect] = redirectList
+    let redirectToSlug = redirect.to.split('/')
+    let redirectToLocale = redirectToSlug[1]
+
+    let redirectTo = locales.includes(redirectToLocale)
+      ? `/${locale}/${redirectToSlug.slice(2).join('/')}`
+      : (redirectTo = `/${redirectToSlug.slice(1).join('/')}`)
+
+    redirectTo = redirectTo.endsWith('/') ? redirectTo.slice(0, -1) : redirectTo
+
+    return {
+      to: redirectTo,
+      status: redirect.status,
+    }
+  }
+  return null
+}
