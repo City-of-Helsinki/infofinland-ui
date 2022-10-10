@@ -1,11 +1,7 @@
 /* eslint-disable no-unreachable */
 import getConfig from 'next/config'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import {
-  getMenu,
-  getResourceTypeFromContext,
-  translatePathFromContext,
-} from 'next-drupal'
+import { getMenu, getResourceTypeFromContext } from 'next-drupal'
 import ArticlePage from '@/src/page-templates/ArticlePage'
 import AboutPage from '@/src/page-templates/AboutPage'
 import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
@@ -18,6 +14,7 @@ import {
   getNode,
   getCachedMunicipalities,
   getCachedNode,
+  getRedirectFromContext,
 } from '@/lib/ssr-api'
 import { addPrerenderLocalesToPaths } from '@/lib/ssr-helpers'
 import { LAYOUT_SMALL } from '@/components/layout/Layout'
@@ -75,7 +72,7 @@ export async function getStaticPaths() {
 // export async function getServerSideProps(context) {
 export async function getStaticProps(context) {
   const { REVALIDATE_TIME, BUILD_PHASE } = getConfig().serverRuntimeConfig
-  const { params, locale, locales } = context
+  const { params, locale } = context
   params.slug = params.slug || ['/']
   const path =
     params.slug[0] === '/' ? params.slug[0] : `/${params.slug.join('/')}`
@@ -89,29 +86,11 @@ export async function getStaticProps(context) {
   USE_TIMER && console.timeLog(T)
 
   if (!BUILD_PHASE) {
-    const pathFromContext = await translatePathFromContext(context)
-    if (pathFromContext?.redirect?.length) {
-      const [redirect] = pathFromContext.redirect
-
-      let redirectToSlug = redirect.to.split('/')
-      let redirectToLocale = redirectToSlug[1]
-
-      let redirectTo = locales.includes(redirectToLocale)
-        ? `/${locale}/${redirectToSlug.slice(2).join('/')}`
-        : `/${redirectToSlug.slice(1).join('/')}`
-
-      redirectTo = redirectTo.endsWith('/')
-        ? redirectTo.slice(0, -1)
-        : redirectTo
-
-      logger.http('Redirecting URLs', {
-        requestPath: path,
-        destination: redirectTo,
-      })
-
+    const redirect = await getRedirectFromContext(context)
+    if (redirect) {
       return {
         redirect: {
-          destination: redirectTo,
+          destination: redirect.to,
           permanent: redirect.status === '301',
         },
       }

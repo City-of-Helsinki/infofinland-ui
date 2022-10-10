@@ -5,13 +5,14 @@ import {
   // getResourceFromContext,
   getResourceByPath,
   translatePath,
+  translatePathFromContext,
 } from 'next-drupal'
 import { i18n } from '../../next-i18next.config'
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 import getConfig from 'next/config'
 import { CONTENT_TYPES, NODE_TYPES } from './DRUPAL_API_TYPES'
 import { getMunicipalityParams, getThemeHeroParams } from './query-params'
-import { getHeroFromNode } from './ssr-helpers'
+import { getHeroFromNode, getRedirect } from './ssr-helpers'
 
 import { getQueryParamsFor } from './query-params'
 import cache from './cacher/server-cache'
@@ -299,4 +300,25 @@ export const getMessages = async ({ locale, id }) => {
     defaultLocale: NO_DEFAULT_LOCALE,
     params,
   })
+}
+
+export const getRedirectFromContext = async (context) => {
+  if (!context) {
+    logger.error('Error resolving redirect - no context provided')
+    return
+  }
+
+  const { locale, defaultLocale, params } = context
+
+  // If locale = default locale add it to beggining of slug, otherwise default locale redirections won't work
+  if (locale === defaultLocale) {
+    params.slug.unshift(locale)
+  }
+
+  const pathFromContext = await translatePathFromContext(context).catch((e) => {
+    logger.error('Error resolving redirect')
+    throw e
+  })
+
+  return getRedirect(pathFromContext?.redirect, context)
 }
