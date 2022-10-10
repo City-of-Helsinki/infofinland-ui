@@ -316,7 +316,7 @@ export const getRedirectFromContext = async (context) => {
   }
 
   const pathFromContext = await translatePathFromContext(context).catch((e) => {
-    logger.error('Error resolving redirect', { locale, id })
+    logger.error('Error resolving redirect')
     throw e
   })
 

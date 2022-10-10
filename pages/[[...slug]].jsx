@@ -72,7 +72,7 @@ export async function getStaticPaths() {
 // export async function getServerSideProps(context) {
 export async function getStaticProps(context) {
   const { REVALIDATE_TIME, BUILD_PHASE } = getConfig().serverRuntimeConfig
-  const { params, locale, defaultLocale, locales } = context
+  const { params, locale } = context
   params.slug = params.slug || ['/']
   const path =
     params.slug[0] === '/' ? params.slug[0] : `/${params.slug.join('/')}`
