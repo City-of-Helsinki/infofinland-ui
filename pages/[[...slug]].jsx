@@ -75,7 +75,7 @@ export async function getStaticPaths() {
 // export async function getServerSideProps(context) {
 export async function getStaticProps(context) {
   const { REVALIDATE_TIME, BUILD_PHASE } = getConfig().serverRuntimeConfig
-  const { params, locale, locales } = context
+  const { params, locale, defaultLocale, locales } = context
   params.slug = params.slug || ['/']
   const path =
     params.slug[0] === '/' ? params.slug[0] : `/${params.slug.join('/')}`
@@ -88,8 +88,15 @@ export async function getStaticProps(context) {
   USE_TIMER && console.time(T)
   USE_TIMER && console.timeLog(T)
 
+  console.log(context)
+
   if (!BUILD_PHASE) {
-    const pathFromContext = await translatePathFromContext(context)
+
+    if(locale === defaultLocale){
+      params.slug.unshift(locale)
+    }
+
+    const pathFromContext = await translatePathFromContext(context);
     if (pathFromContext?.redirect?.length) {
       const [redirect] = pathFromContext.redirect
 
@@ -119,6 +126,8 @@ export async function getStaticProps(context) {
   }
 
   let type = await getResourceTypeFromContext(context)
+
+  console.log(context)
   type = type ? type : params.slug ? NODE_TYPES.PAGE : NODE_TYPES.LANDING_PAGE
 
   if (![NODE_TYPES.LANDING_PAGE, NODE_TYPES.PAGE].includes(type)) {
