@@ -53,9 +53,13 @@ const TEXTS_404 = {
     title: 'La page est introuvable',
     help: 'VVous pouvez chercher la page en effectuant une recherche ou sur le plan du site.',
   },
-  so: {
-    title: 'Bogga lama helin',
-    help: 'Ku raadi bogga raadinta ama ka raadi kaartada bogga.',
+  // so: {
+  //   title: 'Bogga lama helin',
+  //   help: 'Ku raadi bogga raadinta ama ka raadi kaartada bogga.',
+  // },
+  uk: {
+    title: '!!Bogga lama helin',
+    help: '!!Ku raadi bogga raadinta ama ka raadi kaartada bogga.',
   },
   es: {
     title: 'Página no localizada',
@@ -108,7 +112,13 @@ const TEXTS_LANG_404 = {
     languages:
       'Vous trouverez davantage d’informations sur le sujet dans les langues suivantes :',
   },
-  so: {
+  // so: {
+  //   title: 'Luqaddan bogga laguma helo',
+  //   help: 'Nasiibdarro luqadda aad dooratay kuma jirto bogga.',
+  //   languages:
+  //     'Macluumaadka ku saabsan mowduucan waxaad ku heleysaa luqadaha soo socda:',
+  // },
+  uk: {
     title: 'Luqaddan bogga laguma helo',
     help: 'Nasiibdarro luqadda aad dooratay kuma jirto bogga.',
     languages:

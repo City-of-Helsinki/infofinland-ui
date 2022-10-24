@@ -1,0 +1,128 @@
+{
+  "article": {
+    "published": "!Julkaistu",
+    "index": "!Tällä sivulla"
+  },
+  "breadcrumbs": {
+    "frontpage": "!Etusivu",
+    "title": "!Murupolku"
+  },
+  "buttons": {
+    "close": "!Sulje",
+    "external": "!Linkki johtaa palvelun ulkopuolelle",
+    "no": "!Ei",
+    "ok": "!OK",
+    "open": "!Avaa",
+    "readMore": "!Lue lisää",
+    "search": "!Hae",
+    "skipTo": "!Siirry sisältöön",
+    "yes": "!Kyllä"
+  },
+  "cities": {
+    "error": "!Kuntia ei saatavilla",
+    "title": "!Valitse kunta"
+  },
+  "cookies": {
+    "allow": "!Hyväksy kaikki evästeet",
+    "allowed": "S!allittu",
+    "denied": "!Kielletty",
+    "deny": "!Vain välttämättömät",
+    "labels": {
+      "analytics": "!Salli käyttöseuranta laatunvalvontatarkoituksiin"
+    },
+    "readMore": "!Evästeasetukset",
+    "settings": {
+      "title": "!Evästeasetukset"
+    },
+    "text": "!Tämä sivusto käyttää välttämättömiä evästeitä suorituskyvyn varmistamiseksi sekä yleisen käytön seurantaan. Lisäksi käytämme kohdennusevästeitä käyttäjäkokemuksen parantamiseksi.",
+    "title": "!infoFinland.fi käyttää evästeitä"
+  },
+  "feedback": {
+    "buttons": {
+      "cancel": "!Peruuta",
+      "close": "!Sulje",
+      "open": "!Lähetä palautetta tästä sivusta",
+      "send": "!Lähetä",
+      "sendAgain": "!Lähetä uusi"
+    },
+    "info1": "!Lomakkeessa on kolme kenttää.",
+    "info2": "!Nimi, sähköposti ja palautteen teksti ovat kaikki pakollisia tietoja.",
+    "labels": {
+      "email": "!Sähköposti",
+      "feedback": "!Palautteesi",
+      "name": "!Nimi"
+    },
+    "states": {
+      "fail": "!Lähetys epäonnistui. Yritä uudestaan.",
+      "invalid": "!Pakollinen kenttä",
+      "submitting": "!Lähetetään palautetta...",
+      "success": "!Kiitos palautteestasi"
+    },
+    "title": "!Lähetä palautetta",
+    "urlLabel": "!Sivun osoite"
+  },
+  "footer": {
+    "helsinkiDisclaimer": "!InfoFinland.fi-sivustoa julkaisee Helsingin kaupunki, ja sitä rahoittavat valtio ja InfoFinlandin jäsenkunnat."
+  },
+  "frontpage": {
+    "cities": {
+      "button": "!Katso Kaupungit",
+      "text": "!InfoFinlandista löydät tietoa myös paikallisista palveluista.",
+      "title": "!Kaupungit"
+    }
+  },
+  "images": {
+    "photographer": "!Kuva"
+  },
+  "languageMenu": {
+    "label": "!Valitse kieli"
+  },
+  "languageMessage": {
+    "text": "!Infofinland.fi:ssä on 12 kieltä. Haluatko valita toisen kielen?",
+    "title": "!Haluatko vaihtaa kieltä?"
+  },
+  "languageSelector": {
+    "button": "!Kielet"
+  },
+  "localInfo": {
+    "clear": "!Tyhjennä",
+    "default_text": "!Tästä aiheesta löydät lisää tietoa kuntasivulta.",
+    "error": "!Kuntatietoja ei voitu ladata",
+    "help": "!Katso oman kuntasi tiedot",
+    "help_current_city": "!Valitse kunta, niin voit nähdä tietoa paikallisista palveluista, kun liikut sivustolla.",
+    "noInfo": "!Kunnasta ei ole saatavilla tietoja",
+    "readMore": "!Lue lisää",
+    "reselect": "!Valitse toinen kunta",
+    "select": "!Valitse kunta",
+    "select_current": "!Valitse {{city}}",
+    "selected_city": "!Oma kunta: {{city}}",
+    "title": "!Paikallistietoa"
+  },
+  "mainMenu": {
+    "button": "!Päävalikko",
+    "close": "!Piilota alasivut",
+    "open": "!Näytä alasivut"
+  },
+  "messages": {
+    "error": "!Virhe ilmoituksissa",
+    "title": "!Ilmoitukset"
+  },
+  "search": {
+    "count": "T!uloksia:",
+    "error": "!Haussa tapahtui virhe",
+    "loading": "!Haetaan tuloksia",
+    "next": "!Seuraava",
+    "placeholder": "!Hae hakusanalla..",
+    "prev": "!Edelllinen",
+    "showmore": "!lisää tuloksia: {{more}}",
+    "title": {
+      "noresults": "!Ei hakutuloksia",
+      "results": "!Hakutulokset",
+      "start": "!Hae sivustolta"
+    },
+    "typemore": "!Kirjoita lisää"
+  },
+  "video": {
+    "button": "!Avaa video"
+  }
+}
