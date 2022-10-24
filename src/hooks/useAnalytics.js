@@ -19,7 +19,6 @@ export const Analytics = {
   setEnabled: (enabled) => {
     DEV && console.log('setting tracking permission to', enabled)
     Analytics.enabled = enabled
-    window._paq.push(['setDoNotTrack', !enabled])
     return Analytics
   },
   trackPage: () => {
@@ -31,11 +30,9 @@ export const Analytics = {
     return Analytics
   },
   trackPageOrSearch: (path, _paq) => {
-    if (Analytics.enabled !== true) {
-      DEV && console.log('Tracking not allowed by user')
-      return Analytics
+    if (Analytics.enabled === true) {
+      window._paq.push(['setCookieConsentGiven'])
     }
-
     if (new RegExp(`${SEARCH_PAGE}`).test(path)) {
       Analytics.trackSearch({
         keyword: new URLSearchParams(window.location.search).get('search'),
@@ -51,24 +48,18 @@ export const Analytics = {
   init: ({ enabled = false, url, siteId }) => {
     window._paq = window._paq || []
 
-    Analytics.setEnabled(enabled)
-
-    if (!Analytics.enabled) {
-      DEV && console.log('analytics not enabled. not intiating')
-      return Analytics
-    }
-
-    if (Analytics.hasStarted) {
-      DEV && console.log('started already')
-      return Analytics
-    }
-
     // // // // Don't send anything in dev mode. just log it instead
     if (process.env.NODE_ENV === 'development') {
       window._paq.push = console.log
     }
 
-    window._paq.push(['disableCookies'])
+    Analytics.setEnabled(enabled)
+
+    if (Analytics.hasStarted) {
+      DEV && console.log('started already')
+      return Analytics
+    }
+    window._paq.push(['requireCookieConsent'])
     window._paq.push(['enableLinkTracking'])
     ;(function () {
       var u = url
@@ -84,6 +75,9 @@ export const Analytics = {
     })()
 
     DEV && console.log('initial page track')
+    if (enabled === true) {
+      window._paq.push(['setCookieConsentGiven'])
+    }
     Analytics.trackPageOrSearch(window.location.pathname, window._paq)
     Analytics.hasStarted = true
     return Analytics
@@ -100,7 +94,7 @@ const useAnalytics = () => {
     const { MATOMO_URL: url, MATOMO_SITE_ID: siteId } =
       getConfig().publicRuntimeConfig
     //Do not do anything until user has acknowledged the tracking rules
-    if (isSSR() || !isCookieConsentSet) {
+    if (isSSR() || navigator.doNotTrack == '1') {
       // DEV && console.log('analytics consent is not yet acknowledged')
       return
     }
@@ -113,13 +107,14 @@ const useAnalytics = () => {
     Analytics.init({
       url,
       siteId,
-      enabled: navigator.doNotTrack !== '1' && isAnalyticsAllowed,
+      enabled: isCookieConsentSet ? isAnalyticsAllowed : false,
       searchCount,
     })
 
     const setTitleAndTrack = (path) => {
       defer(() => {
         DEV && console.log('tracking from router', path)
+        window._paq.push(['requireCookieConsent'])
         window._paq.push(['setCustomUrl', path])
         window._paq.push(['setDocumentTitle', document.title])
         Analytics.trackPageOrSearch(path, window._paq)

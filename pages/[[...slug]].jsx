@@ -14,6 +14,7 @@ import {
   getNode,
   getCachedMunicipalities,
   getCachedNode,
+  getRedirectFromContext,
 } from '@/lib/ssr-api'
 import { addPrerenderLocalesToPaths } from '@/lib/ssr-helpers'
 import { LAYOUT_SMALL } from '@/components/layout/Layout'
@@ -72,8 +73,6 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const { REVALIDATE_TIME, BUILD_PHASE } = getConfig().serverRuntimeConfig
   const { params, locale } = context
-  const type = params.slug ? NODE_TYPES.PAGE : NODE_TYPES.LANDING_PAGE
-
   params.slug = params.slug || ['/']
   const path =
     params.slug[0] === '/' ? params.slug[0] : `/${params.slug.join('/')}`
@@ -85,12 +84,28 @@ export async function getStaticProps(context) {
   const T = `pageTimer-for-${localePath}`
   USE_TIMER && console.time(T)
   USE_TIMER && console.timeLog(T)
-  let node = await getResourceTypeFromContext(context)
+
+  if (!BUILD_PHASE) {
+    const redirect = await getRedirectFromContext(context)
+    if (redirect) {
+      return {
+        redirect: {
+          destination: redirect.to,
+          permanent: redirect.status === '301',
+        },
+      }
+    }
+  }
+
+  let type = await getResourceTypeFromContext(context)
+  type = type ? type : params.slug ? NODE_TYPES.PAGE : NODE_TYPES.LANDING_PAGE
 
   if (![NODE_TYPES.LANDING_PAGE, NODE_TYPES.PAGE].includes(type)) {
     logger.warn('Invalid node type', { type, localePath })
     return NOT_FOUND
   }
+
+  let node = {}
 
   if (BUILD_PHASE) {
     //Try a few times, sometimes Drupal router just gives random errors
