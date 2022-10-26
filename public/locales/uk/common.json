@@ -1,128 +1,128 @@
 {
   "article": {
-    "published": "!Julkaistu",
-    "index": "!Tällä sivulla"
+    "published": "Опубліковано",
+    "index": "На цій сторінці"
   },
   "breadcrumbs": {
-    "frontpage": "!Etusivu",
-    "title": "!Murupolku"
+    "frontpage": "Головна сторінка",
+    "title": "Навігаційний ланцюжок"
   },
   "buttons": {
-    "close": "!Sulje",
-    "external": "!Linkki johtaa palvelun ulkopuolelle",
-    "no": "!Ei",
-    "ok": "!OK",
-    "open": "!Avaa",
-    "readMore": "!Lue lisää",
-    "search": "!Hae",
-    "skipTo": "!Siirry sisältöön",
-    "yes": "!Kyllä"
+    "close": "Закрити",
+    "external": "Посилання на зовнішній ресурс",
+    "no": "Ні",
+    "ok": "OK",
+    "open": "Відкрити",
+    "readMore": "Докладніше",
+    "search": "Пошук",
+    "skipTo": "Перейти до вмісту",
+    "yes": "Так"
   },
   "cities": {
-    "error": "!Kuntia ei saatavilla",
-    "title": "!Valitse kunta"
+    "error": "Муніципалітети недоступні",
+    "title": "Вибрати муніципалітет"
   },
   "cookies": {
-    "allow": "!Hyväksy kaikki evästeet",
-    "allowed": "S!allittu",
-    "denied": "!Kielletty",
-    "deny": "!Vain välttämättömät",
+    "allow": "Дозволити всі файли cookie",
+    "allowed": "Дозволено",
+    "denied": "Заборонено",
+    "deny": "Лише необхідні",
     "labels": {
-      "analytics": "!Salli käyttöseuranta laatunvalvontatarkoituksiin"
+      "analytics": "Дозволити відстеження рівня відвідуваності для контролю якості."
     },
-    "readMore": "!Evästeasetukset",
+    "readMore": "Налаштування файлів cookie",
     "settings": {
-      "title": "!Evästeasetukset"
+      "title": "Налаштування файлів cookie"
     },
-    "text": "!Tämä sivusto käyttää välttämättömiä evästeitä suorituskyvyn varmistamiseksi sekä yleisen käytön seurantaan. Lisäksi käytämme kohdennusevästeitä käyttäjäkokemuksen parantamiseksi.",
-    "title": "!infoFinland.fi käyttää evästeitä"
+    "text": "Для забезпечення належної продуктивності, а також для відстеження рівня відвідуваності на цьому сайті використовуються необхідні файли cookie. Крім того, ми застосовуємо цільові файли cookie для покращення користувацького досвіду.",
+    "title": "На сайті Infofinland.fi використовуються файли cookie"
   },
   "feedback": {
     "buttons": {
-      "cancel": "!Peruuta",
-      "close": "!Sulje",
-      "open": "!Lähetä palautetta tästä sivusta",
-      "send": "!Lähetä",
-      "sendAgain": "!Lähetä uusi"
+      "cancel": "Скасувати",
+      "close": "Закрити",
+      "open": "Надіслати відгук про цю сторінку",
+      "send": "!Відправити",
+      "sendAgain": "Відправити новий"
     },
     "info1": "!Lomakkeessa on kolme kenttää.",
     "info2": "!Nimi, sähköposti ja palautteen teksti ovat kaikki pakollisia tietoja.",
     "labels": {
-      "email": "!Sähköposti",
+      "email": "Ел. пошта",
       "feedback": "!Palautteesi",
-      "name": "!Nimi"
+      "name": "Ім'я"
     },
     "states": {
-      "fail": "!Lähetys epäonnistui. Yritä uudestaan.",
-      "invalid": "!Pakollinen kenttä",
-      "submitting": "!Lähetetään palautetta...",
-      "success": "!Kiitos palautteestasi"
+      "fail": "Помилка під час надсилання відгуку",
+      "invalid": "Обов'язкове поле",
+      "submitting": "Надсилання відгуку",
+      "success": "Дякуємо за відгук"
     },
-    "title": "!Lähetä palautetta",
-    "urlLabel": "!Sivun osoite"
+    "title": "Відгук",
+    "urlLabel": "Адреса сторінки"
   },
   "footer": {
-    "helsinkiDisclaimer": "!InfoFinland.fi-sivustoa julkaisee Helsingin kaupunki, ja sitä rahoittavat valtio ja InfoFinlandin jäsenkunnat."
+    "helsinkiDisclaimer": "Сайт InfoFinland.fi організовано адміністрацією м. Гельсінкі; його фінансує держава, а також комуни, що беруть участь у реалізації цього проєкту."
   },
   "frontpage": {
     "cities": {
-      "button": "!Katso Kaupungit",
-      "text": "!InfoFinlandista löydät tietoa myös paikallisista palveluista.",
-      "title": "!Kaupungit"
+      "button": "Переглянути міста",
+      "text": "На сайті InfoFinland ви також знайдете інформацію про місцеві служби.",
+      "title": "Міста"
     }
   },
   "images": {
-    "photographer": "!Kuva"
+    "photographer": "Зображення"
   },
   "languageMenu": {
-    "label": "!Valitse kieli"
+    "label": "Вибрати мову"
   },
   "languageMessage": {
-    "text": "!Infofinland.fi:ssä on 12 kieltä. Haluatko valita toisen kielen?",
-    "title": "!Haluatko vaihtaa kieltä?"
+    "text": "Інформацію на сайті Infofinland.fi наведено 12 мовами. Вибрати іншу мову?",
+    "title": "Змінити мову?"
   },
   "languageSelector": {
-    "button": "!Kielet"
+    "button": "Мови"
   },
   "localInfo": {
-    "clear": "!Tyhjennä",
-    "default_text": "!Tästä aiheesta löydät lisää tietoa kuntasivulta.",
-    "error": "!Kuntatietoja ei voitu ladata",
-    "help": "!Katso oman kuntasi tiedot",
-    "help_current_city": "!Valitse kunta, niin voit nähdä tietoa paikallisista palveluista, kun liikut sivustolla.",
-    "noInfo": "!Kunnasta ei ole saatavilla tietoja",
-    "readMore": "!Lue lisää",
-    "reselect": "!Valitse toinen kunta",
-    "select": "!Valitse kunta",
-    "select_current": "!Valitse {{city}}",
-    "selected_city": "!Oma kunta: {{city}}",
-    "title": "!Paikallistietoa"
+    "clear": "Очистити",
+    "default_text": "Додаткову інформацію на цю тему ви знайдете на сторінці муніципалітету.",
+    "error": "Не вдалося завантажити інформацію про муніципалітет",
+    "help": "Переглянути інформацію про свій муніципалітет",
+    "help_current_city": "Виберіть муніципалітет, щоб під час навігації по сайту відображалася інформація про місцеві послуги.",
+    "noInfo": "Немає даних про муніципалітет",
+    "readMore": "Докладніше",
+    "reselect": "Вибрати інший муніципалітет",
+    "select": "Вибрати муніципалітет",
+    "select_current": "Вибрати: {{city}}",
+    "selected_city": "Мій муніципалітет: {{city}}",
+    "title": "Місцева інформація"
   },
   "mainMenu": {
-    "button": "!Päävalikko",
-    "close": "!Piilota alasivut",
-    "open": "!Näytä alasivut"
+    "button": "Головне меню",
+    "close": "Приховати сторінки рубрик",
+    "open": "Показати сторінки рубрик"
   },
   "messages": {
-    "error": "!Virhe ilmoituksissa",
-    "title": "!Ilmoitukset"
+    "error": "Помилка в повідомленнях",
+    "title": "Повідомлення"
   },
   "search": {
-    "count": "T!uloksia:",
-    "error": "!Haussa tapahtui virhe",
-    "loading": "!Haetaan tuloksia",
-    "next": "!Seuraava",
-    "placeholder": "!Hae hakusanalla..",
-    "prev": "!Edelllinen",
-    "showmore": "!lisää tuloksia: {{more}}",
+    "count": "Результати:",
+    "error": "Під час пошуку сталася помилка",
+    "loading": "Пошук результатів",
+    "next": "Вперед",
+    "placeholder": "Пошук за ключовим словом",
+    "prev": "Назад",
+    "showmore": "Ще результати: {{more}}",
     "title": {
-      "noresults": "!Ei hakutuloksia",
-      "results": "!Hakutulokset",
-      "start": "!Hae sivustolta"
+      "noresults": "Немає результатів пошуку",
+      "results": "Результати пошуку",
+      "start": "Пошук на сайті"
     },
-    "typemore": "!Kirjoita lisää"
+    "typemore": "Доповнити"
   },
   "video": {
-    "button": "!Avaa video"
+    "button": "Відкрити відео"
   }
 }
