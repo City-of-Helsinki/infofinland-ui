@@ -46,6 +46,10 @@ const TEXTS = {
     title: 'Khalad baa bogga ka dhacay',
     help: 'Markale dib u soo kici bogga',
   },
+  uk: {
+    title: 'Виникла помилка',
+    help: 'Перезавантажити сторінку',
+  },
   es: {
     title: 'Se ha producido un error en el portal',
     help: 'Recargue la página.',

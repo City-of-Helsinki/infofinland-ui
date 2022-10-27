@@ -57,6 +57,10 @@ const TEXTS_404 = {
     title: 'Bogga lama helin',
     help: 'Ku raadi bogga raadinta ama ka raadi kaartada bogga.',
   },
+  uk: {
+    title: 'Сторінку не знайдено',
+    help: '!!Ku raadi bogga raadinta ama ka raadi kaartada bogga.',
+  },
   es: {
     title: 'Página no localizada',
     help: 'Puede buscar la página correspondiente mediante “acceso” o a través del mapa de sitio.',
@@ -113,6 +117,12 @@ const TEXTS_LANG_404 = {
     help: 'Nasiibdarro luqadda aad dooratay kuma jirto bogga.',
     languages:
       'Macluumaadka ku saabsan mowduucan waxaad ku heleysaa luqadaha soo socda:',
+  },
+  uk: {
+    title: 'Сторінка цією мовою не знайдена',
+    help: 'На жаль, сторінки вибраною вами мовою не існує.',
+    languages:
+      'Інформація на цю тему доступна такими мовами:',
   },
   es: {
     title: 'La página no existe en este idioma',
