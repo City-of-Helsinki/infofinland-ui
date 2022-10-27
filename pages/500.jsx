@@ -42,13 +42,13 @@ const TEXTS = {
     title: 'Une erreur s’est produite sur la page',
     help: 'Télécharger à nouveau la page',
   },
-  // so: {
-  //   title: 'Khalad baa bogga ka dhacay',
-  //   help: 'Markale dib u soo kici bogga',
-  // },
+  so: {
+    title: 'Khalad baa bogga ka dhacay',
+    help: 'Markale dib u soo kici bogga',
+  },
   uk: {
-    title: '!!Khalad baa bogga ka dhacay',
-    help: '!!Markale dib u soo kici bogga',
+    title: 'Виникла помилка',
+    help: 'Перезавантажити сторінку',
   },
   es: {
     title: 'Se ha producido un error en el portal',
