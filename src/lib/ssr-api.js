@@ -19,6 +19,9 @@ import cache from './cacher/server-cache'
 import pageCache from './cacher/page-cache'
 import menuCache from './cacher/menu-cache'
 import logger from '@/logger'
+import { DrupalClient } from "next-drupal"
+
+const drupal = new DrupalClient(process.env.NEXT_PUBLIC_DRUPAL_BASE_URL)
 
 export const NO_DEFAULT_LOCALE = 'dont-use'
 
@@ -73,35 +76,42 @@ export const getCachedAboutMenus = async (locale) => {
 
 export const getMainMenus = async ({ locale }) => {
   const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
-
   const [main, citiesLanding, cities, footer] = await Promise.all([
-    getMenu(DRUPAL_MENUS.MAIN, {
+    drupal.getMenu(DRUPAL_MENUS.MAIN, {
       locale,
       defaultLocale: NO_DEFAULT_LOCALE,
+      withCache:true,
+      cacheKey:`main-menu-${locale}`
     }).catch((e) => {
       logger.error('Error fetching main menu:', { e, locale })
       return menuErrorResponse()
     }),
 
-    getMenu(DRUPAL_MENUS.CITIES_LANDING, {
+    drupal.getMenu(DRUPAL_MENUS.CITIES_LANDING, {
       locale,
       defaultLocale: NO_DEFAULT_LOCALE,
+      withCache:true,
+      cacheKey:`cities-landing-menu-${locale}`
     }).catch((e) => {
       logger.error('Error fetching cities-main menu:', { e, locale })
       return menuErrorResponse()
     }),
 
-    getMenu(DRUPAL_MENUS.CITIES, {
+    drupal.getMenu(DRUPAL_MENUS.CITIES, {
       locale,
       defaultLocale: NO_DEFAULT_LOCALE,
+      withCache:true,
+      cacheKey:`cities-${locale}`
     }).catch((e) => {
       logger.error('Error fetching cities menu:', { e, locale })
       return menuErrorResponse()
     }),
 
-    getMenu(DRUPAL_MENUS.FOOTER, {
+    drupal.getMenu(DRUPAL_MENUS.FOOTER, {
       locale,
       defaultLocale: NO_DEFAULT_LOCALE,
+      withCache:true,
+      cacheKey:`footer-${locale}`
     }).catch((e) => {
       logger.error('Error fetching footer menu:', { e, locale })
       return menuErrorResponse()
@@ -112,7 +122,7 @@ export const getMainMenus = async ({ locale }) => {
 }
 
 const RETRY_LIMIT = 10
-export const getNode = async ({ locale, localePath, type, retry = 0 }) => {
+export const  = async ({ locale, localePath, type, retry = 0 }) => {
   const getter = () =>
     getResourceByPath(localePath, {
       locale,
@@ -166,7 +176,7 @@ export const getCachedNode = async ({ locale, localePath, type }) => {
     return pageCache.cache.get(key)
   }
 
-  const node = await getNode({ locale, localePath, type })
+  const node = await ({ locale, localePath, type })
 
   if (!node) {
     return null

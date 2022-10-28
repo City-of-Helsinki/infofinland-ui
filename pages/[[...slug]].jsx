@@ -109,7 +109,7 @@ export async function getStaticProps(context) {
 
   if (BUILD_PHASE) {
     //Try a few times, sometimes Drupal router just gives random errors
-    node = await getNode({ locale, params, type, localePath, retry: 5 })
+    node = await getNode({ locale, params, type, localePath, retry: 5 ,context})
   } else {
     node = await getCachedNode({ locale, params, type, localePath })
   }
