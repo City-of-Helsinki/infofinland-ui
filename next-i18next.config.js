@@ -4,7 +4,7 @@ const languages = [
   { code: 'en', text: 'English' },
   { code: 'ru', text: 'Pусский' },
   { code: 'et', text: 'Eesti keel' },
-  { code: 'uk', text: 'Україна' },
+  { code: 'uk', text: 'Українська' },
   { code: 'fr', text: 'Français' },
   // { code: 'so', text: 'Soomaali' },
   { code: 'es', text: 'Español' },
