@@ -31,7 +31,7 @@ export async function getStaticProps(context) {
 const TEXTS_404 = {
   fi: {
     title: 'Sivua ei löydy.',
-    help: 'Voit etsiä sivun haulla tai sivukartasta.',
+    help: 'Потрібну сторінку можна шукати за допомогою функції пошуку або на карті сайту.',
   },
   sv: {
     title: 'Sidan kunde inte hittas.',
