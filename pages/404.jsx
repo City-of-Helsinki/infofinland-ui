@@ -31,7 +31,7 @@ export async function getStaticProps(context) {
 const TEXTS_404 = {
   fi: {
     title: 'Sivua ei löydy.',
-    help: 'Потрібну сторінку можна шукати за допомогою функції пошуку або на карті сайту.',
+    help: 'Voit etsiä sivun haulla tai sivukartasta.',
   },
   sv: {
     title: 'Sidan kunde inte hittas.',
@@ -59,7 +59,7 @@ const TEXTS_404 = {
   },
   uk: {
     title: 'Сторінку не знайдено',
-    help: '!!Ku raadi bogga raadinta ama ka raadi kaartada bogga.',
+    help: 'Потрібну сторінку можна шукати за допомогою функції пошуку або на карті сайту.',
   },
   es: {
     title: 'Página no localizada',
