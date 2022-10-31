@@ -1,15 +1,13 @@
 import { findParent } from '@/lib/menu-utils'
-import { useAtomValue } from 'jotai/utils'
-import { menusAtom } from '../store'
-// TODO tests
+
 export default function useBreadCrumbs({ items, path }) {
-  const menus = useAtomValue(menusAtom)
+
   const page = items.find(({ url }) => url === path)
-  const breadcrumbs = [page]
-  //Cringe :(
   if (!page) {
     return []
   }
+
+  const breadcrumbs = [page]
 
   if (page?.parent === '') {
     return breadcrumbs
