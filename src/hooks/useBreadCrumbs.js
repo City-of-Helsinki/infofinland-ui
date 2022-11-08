@@ -1,7 +1,6 @@
 import { findParent } from '@/lib/menu-utils'
 
 export default function useBreadCrumbs({ items, path }) {
-
   const page = items.find(({ url }) => url === path)
   if (!page) {
     return []
