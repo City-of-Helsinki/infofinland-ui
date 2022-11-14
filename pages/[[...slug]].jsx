@@ -13,7 +13,6 @@ import {
   getCachedAboutMenus,
   getNode,
   getCachedMunicipalities,
-  getCachedNode,
   getRedirectFromContext,
 } from '@/lib/ssr-api'
 import { addPrerenderLocalesToPaths } from '@/lib/ssr-helpers'
@@ -71,9 +70,7 @@ export async function getStaticPaths() {
 
 // export async function getServerSideProps(context) {
 export async function getStaticProps(context) {
-  const {
-    //  REVALIDATE_TIME,
-     BUILD_PHASE } = getConfig().serverRuntimeConfig
+  const { BUILD_PHASE } = getConfig().serverRuntimeConfig
   const { params, locale } = context
   params.slug = params.slug || ['/']
   const path =
@@ -113,7 +110,7 @@ export async function getStaticProps(context) {
     //Try a few times, sometimes Drupal router just gives random errors
     node = await getNode({ locale, params, type, localePath, retry: 5 })
   } else {
-    node = await getCachedNode({ locale, params, type, localePath })
+    node = await getNode({ locale, params, type, localePath })
   }
 
   USE_TIMER && console.log('node resolved')

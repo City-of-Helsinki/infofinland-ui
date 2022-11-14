@@ -17,8 +17,7 @@ import { useTranslation } from 'next-i18next'
 import CommonHead from '@/components/layout/CommonHead'
 
 export async function getStaticProps(context) {
-  const { SITEMAP_PAGE_PATH, DRUPAL_MENUS } =
-    getConfig().serverRuntimeConfig
+  const { SITEMAP_PAGE_PATH, DRUPAL_MENUS } = getConfig().serverRuntimeConfig
   const { locale } = context
   const menus = await getCachedMenus(locale)
   const options = {
@@ -48,7 +47,6 @@ export async function getStaticProps(context) {
       menus,
       ...(await serverSideTranslations(locale, ['common'])),
     },
-
   }
 }
 
