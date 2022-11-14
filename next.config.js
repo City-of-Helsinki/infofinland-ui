@@ -11,7 +11,7 @@ const env = {
   SEARCH_PAGE_PATH: '/search',
   PRERENDER_LOCALES: [
     // i18n.locales
-    'fi'
+    'fi',
   ],
   DRUPAL_MENUS: {
     MAIN: 'main',
