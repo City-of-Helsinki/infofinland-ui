@@ -7,7 +7,6 @@ import map from 'lodash/map'
 import omit from 'lodash/omit'
 import { getCachedMenus } from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import getConfig from 'next/config'
 import TextLink from '@/components/TextLink'
 import { DotsLoader } from '@/components/Loaders'
 import Block from '@/components/layout/Block'
@@ -16,7 +15,6 @@ import useSWR from 'swr'
 import CommonHead from '@/components/layout/CommonHead'
 
 export async function getStaticProps(context) {
-  // const { REVALIDATE_TIME } = getConfig().serverRuntimeConfig
   const menus = await getCachedMenus(context.locale)
   return {
     props: {
@@ -24,7 +22,6 @@ export async function getStaticProps(context) {
       menus,
       ...(await serverSideTranslations(context.defaultLocale, ['common'])),
     },
-    // revalidate: REVALIDATE_TIME,
   }
 }
 
