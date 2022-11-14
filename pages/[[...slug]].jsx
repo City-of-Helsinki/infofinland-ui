@@ -223,7 +223,6 @@ export async function getStaticProps(context) {
       themeMenu,
       ...(await serverSideTranslations(locale, ['common'])),
     },
-    // revalidate: REVALIDATE_TIME,
   }
 }
 
