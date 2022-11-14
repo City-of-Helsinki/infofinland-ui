@@ -71,7 +71,9 @@ export async function getStaticPaths() {
 
 // export async function getServerSideProps(context) {
 export async function getStaticProps(context) {
-  const { REVALIDATE_TIME, BUILD_PHASE } = getConfig().serverRuntimeConfig
+  const {
+    //  REVALIDATE_TIME,
+     BUILD_PHASE } = getConfig().serverRuntimeConfig
   const { params, locale } = context
   params.slug = params.slug || ['/']
   const path =
@@ -221,7 +223,7 @@ export async function getStaticProps(context) {
       themeMenu,
       ...(await serverSideTranslations(locale, ['common'])),
     },
-    revalidate: REVALIDATE_TIME,
+    // revalidate: REVALIDATE_TIME,
   }
 }
 

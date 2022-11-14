@@ -16,7 +16,7 @@ import useSWR from 'swr'
 import CommonHead from '@/components/layout/CommonHead'
 
 export async function getStaticProps(context) {
-  const { REVALIDATE_TIME } = getConfig().serverRuntimeConfig
+  // const { REVALIDATE_TIME } = getConfig().serverRuntimeConfig
   const menus = await getCachedMenus(context.locale)
   return {
     props: {
@@ -24,7 +24,7 @@ export async function getStaticProps(context) {
       menus,
       ...(await serverSideTranslations(context.defaultLocale, ['common'])),
     },
-    revalidate: REVALIDATE_TIME,
+    // revalidate: REVALIDATE_TIME,
   }
 }
 
