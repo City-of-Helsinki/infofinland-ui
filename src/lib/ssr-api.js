@@ -19,6 +19,7 @@ import cache from './cacher/server-cache'
 import pageCache from './cacher/page-cache'
 import menuCache from './cacher/menu-cache'
 import logger from '@/logger'
+import getDrupalClient from './drupal-client'
 
 export const NO_DEFAULT_LOCALE = 'dont-use'
 
@@ -112,9 +113,11 @@ export const getMainMenus = async ({ locale }) => {
 }
 
 const RETRY_LIMIT = 10
-export const getNode = async ({ locale, localePath, type, retry = 0 }) => {
+export const getNode = async ({ locale, localePath, type, retry = 0 ,withAuth}) => {
   const getter = () =>
+    // getDrupalClient().
     getResourceByPath(localePath, {
+      // withAuth,
       locale,
       defaultLocale: NO_DEFAULT_LOCALE,
       params: getQueryParamsFor(type),
