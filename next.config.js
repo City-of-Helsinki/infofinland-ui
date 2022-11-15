@@ -9,6 +9,7 @@ const env = {
   SITEMAP_PAGE_PATH: '/sitemap',
   CITIES_PAGE_PATH: '/cities',
   SEARCH_PAGE_PATH: '/search',
+  LANDING_PAGE_PATH: '/landingpage',
   PRERENDER_LOCALES: [
     //TODO read from ENV variables instead of hard coding.
     // i18n.locales
