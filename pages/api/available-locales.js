@@ -1,13 +1,15 @@
 import { i18n } from '@/next-i18next.config'
-import { translatePath } from 'next-drupal'
 import { CACHE_HEADERS_10M } from '@/cache-headers'
 import logger from '@/logger'
 import cache from '@/lib/cacher/server-cache'
+import getDrupalClient from '@/lib/drupal-client'
 
 const LOCALES_CACHE_TTL = 600
 
 export default async function handler(req, res) {
   // No posts allowed
+  const drupal = getDrupalClient()
+
   if (req.method !== 'GET') {
     res.status(400).end()
     return
@@ -22,7 +24,7 @@ export default async function handler(req, res) {
     nodes = await Promise.all(
       i18n.locales.map(async (locale) => {
         const localePath = `/${locale}${path}`
-        const node = await translatePath(localePath)
+        const node = await drupal.translatePath(localePath)
         return { locale, node }
       })
     ).catch((e) => {
