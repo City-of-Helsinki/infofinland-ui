@@ -10,24 +10,29 @@ import {
   NOT_FOUND,
   NO_DEFAULT_LOCALE,
 } from '@/lib/ssr-api'
-import { getResourceByPath } from 'next-drupal'
 import forEach from 'lodash/forEach'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import CommonHead from '@/components/layout/CommonHead'
 import { i18n } from '@/next-i18next.config'
+import getDrupalClient from '@/lib/drupal-client'
 
-export async function getStaticProps({ locale }) {
+export async function getStaticProps(context) {
+  const { locale, preview } = context
   const { SITEMAP_PAGE_PATH, DRUPAL_MENUS } = getConfig().serverRuntimeConfig
+
   if (i18n.disabledLocales.includes(locale)) {
     return NOT_FOUND
   }
+  
+  const withAuth = !!preview
+  const drupal = getDrupalClient(withAuth)
   const menus = await getCachedMenus(locale)
   const options = {
     locale,
     defaultLocale: NO_DEFAULT_LOCALE,
   }
-  const node = await getResourceByPath(
+  const node = await drupal.getResourceByPath(
     `/${locale}${SITEMAP_PAGE_PATH}`,
     options
   )
@@ -35,7 +40,7 @@ export async function getStaticProps({ locale }) {
     return NOT_FOUND
   }
 
-  menus.about = (await getCachedAboutMenus(locale)).about
+  menus.about = (await getCachedAboutMenus({ locale, withAuth })).about
 
   const urls = {}
   forEach(menus, (menu, name) => {
