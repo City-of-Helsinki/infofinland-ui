@@ -1,7 +1,7 @@
 /* eslint-disable no-unreachable */
 import getConfig from 'next/config'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { getMenu, getResourceTypeFromContext } from 'next-drupal'
+import { getMenu } from 'next-drupal'
 import ArticlePage from '@/src/page-templates/ArticlePage'
 import AboutPage from '@/src/page-templates/AboutPage'
 import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
@@ -14,7 +14,6 @@ import {
   getNode,
   getCachedMunicipalities,
   getRedirectFromContext,
-  getQueryParamsFor
 } from '@/lib/ssr-api'
 import { addPrerenderLocalesToPaths } from '@/lib/ssr-helpers'
 import { LAYOUT_SMALL } from '@/components/layout/Layout'
@@ -73,30 +72,31 @@ export async function getStaticPaths() {
 // export async function getServerSideProps(context) {
 export async function getStaticProps(context) {
   const withAuth = !!context.preview
-  const { BUILD_PHASE } = getConfig().serverRuntimeConfig
   const { params, locale } = context
-  const drupal = getDrupalClient(withAuth);
+  const { BUILD_PHASE } = getConfig().serverRuntimeConfig
+  const drupal = getDrupalClient(withAuth)
+  const ctx = { ...context, defaultLocale: NO_DEFAULT_LOCALE }
 
-
-  const ctx = {...context};
-  if(!( 'slug' in ctx.params)) {
+  if (!('slug' in ctx.params)) {
     ctx.params.slug = ['landingpage']
   }
 
-  const translatedPath = await drupal.translatePathFromContext(ctx);
-
-  if(!translatedPath) {
+  const translatedPath = await drupal.translatePathFromContext(ctx)
+  if (!translatedPath) {
     return NOT_FOUND
   }
 
   const entityLangcode = translatedPath?.entity?.langcode
   // If page doesn't exist on current language.
-    if (locale !== entityLangcode) {
+  if (locale !== entityLangcode) {
+    logger.warn('Requested language version not found', {
+      locale,
+      entityLangcode,
+    })
     return NOT_FOUND
   }
 
-
-  const localePath = translatedPath?.entity.path;
+  const localePath = translatedPath?.entity.path
   const path = `/${ctx.params.slug.join('/')}`
 
   const T = `pageTimer-for-${localePath}`
@@ -115,7 +115,6 @@ export async function getStaticProps(context) {
     }
   }
 
-
   let type = translatedPath?.jsonapi?.resourceName
   // await getResourceTypeFromContext(context)
   type = type ? type : params.slug ? NODE_TYPES.PAGE : NODE_TYPES.LANDING_PAGE
@@ -126,14 +125,13 @@ export async function getStaticProps(context) {
   }
 
   let node = {}
-
+  const uuid = translatedPath.entity.uuid
   if (BUILD_PHASE) {
     //Try a few times, sometimes Drupal router just gives random errors
-    node = await getNode({ locale, params, type, localePath, retry: 5 })
+    node = await getNode({ locale, type, localePath, retry: 5, uuid })
   } else {
-
-    node = await drupal.getResource(type,translatedPath.entity.uuid,{params:getQueryParamsFor(type),locale,defaultLocale:NO_DEFAULT_LOCALE})
-    // node = await getNode({ locale, params, type, localePath ,withAuth})
+    // node = await drupal.getResource(type,translatedPath.entity.uuid,{params:getQueryParamsFor(type),locale,defaultLocale:NO_DEFAULT_LOCALE})
+    node = await getNode({ locale, type, localePath, withAuth, uuid })
   }
 
   USE_TIMER && console.log('node resolved')
@@ -169,7 +167,6 @@ export async function getStaticProps(context) {
     node.path?.alias &&
     node.path?.alias !== path
   ) {
-    console.log({alias:node.path?.alias, path})
     logger.info('Redirecting old node alias to current node alias', {
       path,
       alias: node.path?.alias,
@@ -184,9 +181,11 @@ export async function getStaticProps(context) {
 
   let menus = {}
   if (node.field_layout === 'small') {
-    menus = await getCachedAboutMenus(locale)
+    menus = await getCachedAboutMenus({ locale, withAuth })
   } else {
-    menus = await getCachedMenus(locale)
+    //Note, withAuth disables cache as it may cause a leak to published site at this point.
+    // Needs further refactoring
+    menus = await getCachedMenus({ locale, withAuth })
   }
 
   USE_TIMER && console.log('menus resolved')
@@ -198,8 +197,9 @@ export async function getStaticProps(context) {
   if (field_theme_menu_machine_name) {
     themeMenu = menus[field_theme_menu_machine_name]
     if (!themeMenu) {
-      themeMenu = await getMenu(field_theme_menu_machine_name, {
+      themeMenu = await drupal.getMenu(field_theme_menu_machine_name, {
         locale,
+        withAuth,
         defaultLocale: NO_DEFAULT_LOCALE,
       })
       USE_TIMER &&
@@ -211,12 +211,13 @@ export async function getStaticProps(context) {
     }
   }
 
-  const municipalities = await getCachedMunicipalities({ locale })
+  const municipalities = await getCachedMunicipalities({ locale, withAuth })
 
   if (type === NODE_TYPES.LANDING_PAGE) {
     const themeImages = await getThemeHeroImages({
       tree: menus.main.tree,
       context,
+      withAuth,
     })
 
     themes = menus.main.tree.map(({ url, title, id }, i) => {
