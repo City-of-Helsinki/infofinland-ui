@@ -20,7 +20,7 @@ export async function getStaticProps(context) {
     props: {
       texts: TEXTS_404,
       menus,
-      ...(await serverSideTranslations(context.defaultLocale, ['common'])),
+      ...(await serverSideTranslations(context.locale, ['common'])),
     },
   }
 }
