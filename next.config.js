@@ -12,6 +12,14 @@ const env = {
   PRERENDER_LOCALES: [
     // i18n.locales
     'fi',
+    'ru',
+    'es',
+    'et',
+    'tr',
+    'ar',
+    'fa',
+    'sv',
+    'zh',
   ],
   DRUPAL_MENUS: {
     MAIN: 'main',

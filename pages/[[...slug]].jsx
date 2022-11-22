@@ -40,7 +40,7 @@ export async function getStaticPaths() {
       //   defaultLocale: NO_DEFAULT_LOCALE,
       // }),
     ])
-  ) // items for all prerendering pages in menu, tree for rendering theme (root level) pages
+  ) // items for prerendering all pages in menu, tree for rendering theme (root level) pages
     .map(({ tree, items }) =>
       (BUILD_ALL === '1' ? items : tree).map(({ url }) => {
         //remove root slash and language code
