@@ -33,7 +33,7 @@ export const LanguageMenu = ({ closeMenu }) => {
       <label className="block px-14 mb-8 text-body-large font-bold">
         {t('languageMenu.label')}
       </label>
-      {i18n.languages.map((lang) => {
+      {i18n.supportedLanguages.map((lang) => {
         const { text, code } = lang
         const isSelected = locale === code
         return (
@@ -82,10 +82,15 @@ export const LangMenuDrawer = ({ closeMenu, isOpen }) => (
 )
 
 export const LanguageMenuButton = ({ onClick }) => {
+  console.log(i18n.supportedLanguages)
   const { t } = useTranslation('common')
-  const { locale } = useRouter()
-  const { text } = i18n.languages.find(({ code }) => code === locale)
-  const assisted = i18n.languages.filter(({ code }) => code !== locale)
+  let { locale } = useRouter()
+  if (i18n.disabledLocales.includes(locale)) {
+    locale = i18n.defaultLocale
+  }
+
+  const { text } = i18n.supportedLanguages.find(({ code }) => code === locale)
+  const assisted = i18n.supportedLanguages.filter(({ code }) => code !== locale)
   return (
     <button
       aria-haspopup="dialog"

@@ -30,7 +30,7 @@ const LanguageSelector = ({ openMenu }) => {
           </span>
           <IconGlobe className="xl:hidden mx-2 xl:mx-0 w-5 h-5" />
         </button>
-        {i18n.languages.map(({ text, code }) => {
+        {i18n.supportedLanguages.map(({ text, code }) => {
           const isLocalized =
             locales?.find((page) => page?.locale === code) !== undefined
           return (
