@@ -86,6 +86,16 @@ const config = {
     config.module.rules.push({ test: /\.xml$/, loader: 'xml-loader' })
     return config
   },
+  async redirects() {
+    return [
+      {
+        source: '/so',
+        locale: false,
+        destination: '/so/not-supported',
+        permanent: false,
+      },
+    ]
+  },
 }
 
 module.exports = withBundleAnalyzer(config)
