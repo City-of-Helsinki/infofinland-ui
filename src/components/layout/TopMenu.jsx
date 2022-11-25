@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { useTranslation } from 'next-i18next'
 import useLangMenuToggle from '@/hooks/useLangMenuToggle'
 import MobileNavi from '@/components/navi/MobileNavi'
@@ -28,23 +27,22 @@ const Logo = () => {
       className="relative z-20 flex-none py-3 md:py-4 px-3 bg-white transform translate-y-px md:ps-6 md:pe-2"
       role="banner"
     >
-      <Link href={`/${locale}`} passHref prefetch={false} locale={locale}>
-        <a
-          className={cls('ifu-topmenu__logo', {
-            'ifu-topmenu__logo--loading': pageIsLoading,
-          })}
-          title={t('breadcrumbs.frontpage')}
-        >
-          {pageIsLoading && (
-            <span className=" hidden lg:inline-block relative -translate-x-1 -translate-y-5">
-              <span className="absolute left-20 w-1 h-1 bg-red rounded animate-ping"></span>
-              <span className="absolute left-24 w-1 h-1 bg-blue rounded animate-ping"></span>
-              <span className="absolute left-28 w-1 h-1 bg-green rounded animate-ping"></span>
-              <span className="absolute left-32 w-1 h-1 bg-orange rounded animate-ping"></span>
-            </span>
-          )}
-        </a>
-      </Link>
+      <a
+        href={`/${locale}`}
+        className={cls('ifu-topmenu__logo', {
+          'ifu-topmenu__logo--loading': pageIsLoading,
+        })}
+        title={t('breadcrumbs.frontpage')}
+      >
+        {pageIsLoading && (
+          <span className=" hidden lg:inline-block relative -translate-x-1 -translate-y-5">
+            <span className="absolute left-20 w-1 h-1 bg-red rounded animate-ping"></span>
+            <span className="absolute left-24 w-1 h-1 bg-blue rounded animate-ping"></span>
+            <span className="absolute left-28 w-1 h-1 bg-green rounded animate-ping"></span>
+            <span className="absolute left-32 w-1 h-1 bg-orange rounded animate-ping"></span>
+          </span>
+        )}
+      </a>
     </div>
   )
 }
