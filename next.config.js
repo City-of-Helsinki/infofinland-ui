@@ -92,7 +92,7 @@ const config = {
         source: '/so',
         locale: false,
         destination: '/so/not-supported',
-        permanent: false,
+        permanent: true,
       },
     ]
   },
