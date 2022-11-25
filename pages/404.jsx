@@ -13,14 +13,13 @@ import Block from '@/components/layout/Block'
 import { getLocalesForPath } from '@/lib/client-api'
 import useSWR from 'swr'
 import CommonHead from '@/components/layout/CommonHead'
-
-export async function getStaticProps(context) {
-  const menus = await getCachedMenus(context.locale)
+export async function getStaticProps({ locale }) {
+  const menus = await getCachedMenus(locale)
   return {
     props: {
       texts: TEXTS_404,
       menus,
-      ...(await serverSideTranslations(context.locale, ['common'])),
+      ...(await serverSideTranslations(locale, ['common'])),
     },
   }
 }

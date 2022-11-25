@@ -15,13 +15,16 @@ import forEach from 'lodash/forEach'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import CommonHead from '@/components/layout/CommonHead'
+import { i18n } from '@/next-i18next.config'
 
-export async function getStaticProps(context) {
+export async function getStaticProps({ locale }) {
   const { SITEMAP_PAGE_PATH, DRUPAL_MENUS } = getConfig().serverRuntimeConfig
-  const { locale } = context
+  if (i18n.disabledLocales.includes(locale)) {
+    return NOT_FOUND
+  }
   const menus = await getCachedMenus(locale)
   const options = {
-    locale: context.locale,
+    locale,
     defaultLocale: NO_DEFAULT_LOCALE,
   }
   const node = await getResourceByPath(
