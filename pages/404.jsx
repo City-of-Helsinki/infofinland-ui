@@ -185,8 +185,6 @@ const Texts404 = ({ locales = [], locale, path }) => {
   // if there are no localizations, show basic-404
   // if all localizations exist, page is not shown for other reasons. Show basic 404
   // if some localizations exist, show available-languages-404
-
-  console.log({ l: locales.length, i18n: i18n.locales.length })
   const texts =
     locales.length > 0 || locales.length === i18n.locales.length
       ? TEXTS_LANG_404

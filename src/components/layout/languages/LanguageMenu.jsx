@@ -82,7 +82,6 @@ export const LangMenuDrawer = ({ closeMenu, isOpen }) => (
 )
 
 export const LanguageMenuButton = ({ onClick }) => {
-  console.log(i18n.supportedLanguages)
   const { t } = useTranslation('common')
   let { locale } = useRouter()
   if (i18n.disabledLocales.includes(locale)) {
