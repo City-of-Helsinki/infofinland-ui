@@ -10,6 +10,7 @@ const env = {
   CITIES_PAGE_PATH: '/cities',
   SEARCH_PAGE_PATH: '/search',
   PRERENDER_LOCALES: [
+    //TODO read from ENV variables instead of hard coding.
     // i18n.locales
     'fi',
     'ru',
@@ -91,7 +92,13 @@ const config = {
       {
         source: '/so',
         locale: false,
-        destination: '/so/not-supported',
+        destination: '/so/landingpage',
+        permanent: true,
+      },
+      {
+        source: '/so/search',
+        locale: false,
+        destination: '/search',
         permanent: true,
       },
     ]
