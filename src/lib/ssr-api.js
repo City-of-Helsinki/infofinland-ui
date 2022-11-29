@@ -134,13 +134,6 @@ export const getNode = async ({
         locale,
         defaultLocale: NO_DEFAULT_LOCALE,
       })
-
-      // getResourceByPath(localePath, {
-      //
-      //   locale,
-      //   defaultLocale: NO_DEFAULT_LOCALE,
-      //   params: getQueryParamsFor(type),
-      // })
       .catch((e) => {
         logger.error(`Error requesting node %s`, localePath, {
           type,
