@@ -85,7 +85,7 @@ const config = {
     domains: [
       process.env.NEXT_IMAGE_DOMAIN,
       // TODO Allow multiple domains to be configured from azure.
-      'infofinland.hel.ninja'
+      'infofinland-edit.hel.ninja',
     ],
   },
   webpack: (config) => {
