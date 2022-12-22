@@ -82,7 +82,11 @@ const config = {
   images: {
     // populate static common image domains envs here manually
     // or via ENV variables
-    domains: [process.env.NEXT_IMAGE_DOMAIN],
+    domains: [
+      process.env.NEXT_IMAGE_DOMAIN,
+      // TODO Allow multiple domains to be configured from azure.
+      'infofinland.hel.ninja'
+    ],
   },
   webpack: (config) => {
     config.module.rules.push({ test: /\.xml$/, loader: 'xml-loader' })
