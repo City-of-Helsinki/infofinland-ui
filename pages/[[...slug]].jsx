@@ -87,8 +87,9 @@ export async function getStaticProps(context) {
   }
 
   const entityLangcode = translatedPath?.entity?.langcode
+  const isRedirect = translatedPath?.redirect;
   // If page doesn't exist on current language.
-  if (locale !== entityLangcode) {
+  if (!isRedirect && locale !== entityLangcode) {
     logger.warn('Requested language version not found', {
       locale,
       entityLangcode,
