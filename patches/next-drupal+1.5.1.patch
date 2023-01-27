@@ -1,0 +1,17 @@
+diff --git a/node_modules/next-drupal/src/client.ts b/node_modules/next-drupal/src/client.ts
+index 7314186..822c101 100644
+--- a/node_modules/next-drupal/src/client.ts
++++ b/node_modules/next-drupal/src/client.ts
+@@ -689,10 +689,11 @@ export class DrupalClient {
+ 
+     const url = this.buildUrl(subrequestsPath, {
+       _format: "json",
++      query: JSON.stringify(payload),
+     })
+ 
+     const response = await this.fetch(url.toString(), {
+-      method: "POST",
++      method: "GET",
+       credentials: "include",
+       redirect: "follow",
+       body: JSON.stringify(payload),
