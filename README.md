@@ -133,7 +133,10 @@ Build Dockerfile, start container. See `localhost:8080`
 ```bash
 docker build --build-arg [NEXT_DRUPAL_SITE_ID|and other variables]='env values to docker container'  -t infofinlandui .
 ```
-
+OR (but you need to clear all comments from env file)
+```bash
+docker build -t infofinlandui $(for i in `cat .env.local`; do out+="--build-arg $i " ; done; echo $out;out="") .
+```
 - Check that image is built without errors.
 - Select the new image from Docker-tab, Run Interactive, See localhost:8080.
 

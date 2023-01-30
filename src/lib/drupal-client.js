@@ -6,6 +6,7 @@ export const getDrupalClient = (withAuth) => {
     DRUPAL_PREVIEW_SECRET,
     DRUPAL_CLIENT_ID,
     DRUPAL_CLIENT_SECRET,
+    REVALIDATE_TIME,
   } = getConfig().serverRuntimeConfig
   return new DrupalClient(NEXT_PUBLIC_DRUPAL_BASE_URL, {
     auth: {
@@ -17,6 +18,7 @@ export const getDrupalClient = (withAuth) => {
     // Make preview work in development environment.
     forceIframeSameSiteCookie: process.env.NODE_ENV === 'development',
     ...(withAuth && { withAuth: true }),
+    next: { revalidate: REVALIDATE_TIME }
   })
 }
 
