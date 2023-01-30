@@ -26,7 +26,14 @@ import getDrupalClient from '@/lib/drupal-client'
 const USE_TIMER = process.env.USE_TIMER || false
 
 export async function getStaticPaths() {
-  const { DRUPAL_MENUS, BUILD_ALL } = getConfig().serverRuntimeConfig
+  const { DRUPAL_MENUS, BUILD_ALL, BUILD_PHASE } = getConfig().serverRuntimeConfig;
+
+  if (BUILD_PHASE) {
+    return {
+      paths: [],
+      fallback: 'blocking',
+    }
+  }
 
   // prerender all theme pages from main menu.
   // any language should do. english should do the most.
