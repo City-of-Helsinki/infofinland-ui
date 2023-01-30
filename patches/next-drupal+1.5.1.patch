@@ -15,3 +15,20 @@ index 7314186..822c101 100644
        credentials: "include",
        redirect: "follow",
        body: JSON.stringify(payload),
+diff --git a/node_modules/next-drupal/src/get-resource.ts b/node_modules/next-drupal/src/get-resource.ts
+index 24517c4..f3d4739 100644
+--- a/node_modules/next-drupal/src/get-resource.ts
++++ b/node_modules/next-drupal/src/get-resource.ts
+@@ -138,10 +138,11 @@ export async function getResourceByPath<T extends JsonApiResource>(
+ 
+   const url = buildUrl(subrequestsPath, {
+     _format: "json",
++    query: JSON.stringify(payload),
+   })
+ 
+   const response = await fetch(url.toString(), {
+-    method: "POST",
++    method: "GET",
+     credentials: "include",
+     headers: await buildHeaders(options),
+     redirect: "follow",
