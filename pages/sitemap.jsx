@@ -19,12 +19,12 @@ import getDrupalClient from '@/lib/drupal-client'
 
 export async function getStaticProps(context) {
   const { locale, preview } = context
-  const { SITEMAP_PAGE_PATH, DRUPAL_MENUS } = getConfig().serverRuntimeConfig
+  const { SITEMAP_PAGE_PATH, DRUPAL_MENUS, REVALIDATE_TIME } = getConfig().serverRuntimeConfig
 
   if (i18n.disabledLocales.includes(locale)) {
     return NOT_FOUND
   }
-  
+
   const withAuth = !!preview
   const drupal = getDrupalClient(withAuth)
   const menus = await getCachedMenus(locale)
@@ -55,6 +55,7 @@ export async function getStaticProps(context) {
       menus,
       ...(await serverSideTranslations(locale, ['common'])),
     },
+    revalidate: REVALIDATE_TIME
   }
 }
 

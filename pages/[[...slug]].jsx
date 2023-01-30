@@ -73,7 +73,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const withAuth = !!context.preview
   const { params, locale } = context
-  const { BUILD_PHASE } = getConfig().serverRuntimeConfig
+  const { BUILD_PHASE, REVALIDATE_TIME } = getConfig().serverRuntimeConfig
   const drupal = getDrupalClient(withAuth)
   const ctx = { ...context, defaultLocale: NO_DEFAULT_LOCALE }
 
@@ -247,7 +247,7 @@ export async function getStaticProps(context) {
       themeMenu,
       ...(await serverSideTranslations(locale, ['common'])),
     },
-    revalidate: 60,
+    revalidate: REVALIDATE_TIME,
   }
 }
 
