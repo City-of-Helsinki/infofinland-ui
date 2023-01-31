@@ -235,7 +235,7 @@ export async function getStaticProps(context) {
   }
 
   // Format date in server. Don't load luxon to browser for one single formatting task.
-  const lastUpdated = DateTime.fromISO(node.revision_timestamp).toFormat(
+  const lastUpdated = DateTime.fromISO(node.changed).toFormat(
     'dd.MM.yyyy'
   )
 
