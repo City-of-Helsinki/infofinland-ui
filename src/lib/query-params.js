@@ -113,6 +113,7 @@ export const getLandingPageQueryParams = () =>
     .addFields(NODE_TYPES.LANDING_PAGE, [
       'id',
       'title',
+      'changed',
       'revision_timestamp',
       'langcode',
       'field_content',
@@ -146,6 +147,7 @@ export const getPageQueryParams = () =>
     ])
     .addFields(NODE_TYPES.PAGE, [
       'id',
+      'changed',
       'title',
       'path',
       'revision_timestamp',
