@@ -49,7 +49,7 @@
     "info2": "!Nimi, sähköposti ja palautteen teksti ovat kaikki pakollisia tietoja.",
     "labels": {
       "email": "Ел. пошта",
-      "feedback": "!Palautteesi",
+      "feedback": "Відгук",
       "name": "Ім'я"
     },
     "states": {
