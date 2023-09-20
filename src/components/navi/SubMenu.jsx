@@ -36,7 +36,7 @@ const SubMenuItems = ({ items, isOpen, level }) => {
   return (
     <ul
       className={cls('ifu-mainmenu__submenu', {
-        'opacity-0 max-h-0': !isOpen,
+        'opacity-0 hidden max-h-0': !isOpen,
         'opacity-100 transition-all max-h-full  duration-300': isOpen,
       })}
     >
