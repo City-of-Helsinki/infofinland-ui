@@ -1,23 +1,15 @@
-import {
-  getMenu,
-  getResource,
-  getResourceCollection,
-  // getResourceFromContext,
-  getResourceByPath,
-  translatePath,
-} from 'next-drupal'
-import { i18n } from '../../next-i18next.config'
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 import getConfig from 'next/config'
 import { CONTENT_TYPES, NODE_TYPES } from './DRUPAL_API_TYPES'
 import { getMunicipalityParams, getThemeHeroParams } from './query-params'
-import { getHeroFromNode } from './ssr-helpers'
+import { getHeroFromNode, getRedirect } from './ssr-helpers'
 
 import { getQueryParamsFor } from './query-params'
 import cache from './cacher/server-cache'
 import pageCache from './cacher/page-cache'
 import menuCache from './cacher/menu-cache'
 import logger from '@/logger'
+import getDrupalClient from './drupal-client'
 
 export const NO_DEFAULT_LOCALE = 'dont-use'
 
@@ -30,35 +22,41 @@ export const menuErrorResponse = () => ({
 // Export query params through ssr-api for convenience
 export * from './query-params'
 
-export const NOT_FOUND = { notFound: true }
+export const NOT_FOUND = { notFound: true, revalidate: 3 }
 
-export const getCachedMenus = async (locale) => {
+export const getCachedMenus = async ({ locale, withAuth }) => {
   const key = menuCache.getKey({ locale })
   if (menuCache.cache.has(key)) {
     logger.http('Serving menus from cache', { cacheKey: key })
     return menuCache.cache.get(key)
   }
 
-  const menus = await getMainMenus({ locale })
+  const menus = await getMainMenus({ locale, withAuth })
   logger.http('Caching menus', { cacheKey: key, locale })
-  menuCache.cache.set(key, menus)
+  //Note, withAuth disables cache as it may cause a leak to published site at this point.
+  // Needs further refactoring
+  if (!withAuth) {
+    menuCache.cache.set(key, menus)
+  }
   return menus
 }
 
-export const getCachedAboutMenus = async (locale) => {
+export const getCachedAboutMenus = async ({ locale, withAuth }) => {
   const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
   const key = `about-menus-${locale}}`
+  const drupal = getDrupalClient(withAuth)
 
   if (cache.has(key)) {
+    logger.http('Serving about-menus from cache', { cacheKey: key })
     return cache.get(key)
   }
 
   const [about, footer] = await Promise.all([
-    getMenu(DRUPAL_MENUS.ABOUT, {
+    drupal.getMenu(DRUPAL_MENUS.ABOUT, {
       locale,
       defaultLocale: NO_DEFAULT_LOCALE,
     }),
-    getMenu(DRUPAL_MENUS.FOOTER, {
+    drupal.getMenu(DRUPAL_MENUS.FOOTER, {
       locale,
       defaultLocale: NO_DEFAULT_LOCALE,
     }),
@@ -66,64 +64,111 @@ export const getCachedAboutMenus = async (locale) => {
 
   const menus = { about, footer }
   logger.http('Caching about-menu', { cacheKey: key })
-  cache.set(key, menus, 600)
+  if (!withAuth) {
+    cache.set(key, menus, 600)
+  }
   return menus
 }
 
-export const getMainMenus = async ({ locale }) => {
+export const getMainMenus = async ({ locale, withAuth }) => {
   const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
-
+  const drupal = getDrupalClient(withAuth)
   const [main, citiesLanding, cities, footer] = await Promise.all([
-    getMenu(DRUPAL_MENUS.MAIN, {
-      locale,
-      defaultLocale: NO_DEFAULT_LOCALE,
-    }).catch((e) => {
-      logger.error('Error fetching main menu:', { e })
-      return menuErrorResponse()
-    }),
+    drupal
+      .getMenu(DRUPAL_MENUS.MAIN, {
+        locale,
+        defaultLocale: NO_DEFAULT_LOCALE,
+      })
+      .catch((e) => {
+        logger.error('Error fetching main menu:', { e, locale })
+        return menuErrorResponse()
+      }),
 
-    getMenu(DRUPAL_MENUS.CITIES_LANDING, {
-      locale,
-      defaultLocale: NO_DEFAULT_LOCALE,
-    }).catch((e) => {
-      logger.error('Error fetching cities-main menu:', { e })
-      return menuErrorResponse()
-    }),
+    drupal
+      .getMenu(DRUPAL_MENUS.CITIES_LANDING, {
+        locale,
+        defaultLocale: NO_DEFAULT_LOCALE,
+      })
+      .catch((e) => {
+        logger.error('Error fetching cities-main menu:', { e, locale })
+        return menuErrorResponse()
+      }),
 
-    getMenu(DRUPAL_MENUS.CITIES, {
-      locale,
-      defaultLocale: NO_DEFAULT_LOCALE,
-    }).catch((e) => {
-      logger.error('Error fetching cities menu:', { e })
-      return menuErrorResponse()
-    }),
+    drupal
+      .getMenu(DRUPAL_MENUS.CITIES, {
+        locale,
+        defaultLocale: NO_DEFAULT_LOCALE,
+      })
+      .catch((e) => {
+        logger.error('Error fetching cities menu:', { e, locale })
+        return menuErrorResponse()
+      }),
 
-    getMenu(DRUPAL_MENUS.FOOTER, {
-      locale,
-      defaultLocale: NO_DEFAULT_LOCALE,
-    }).catch((e) => {
-      logger.error('Error fetching footer menu:', { e })
-      return menuErrorResponse()
-    }),
+    drupal
+      .getMenu(DRUPAL_MENUS.FOOTER, {
+        locale,
+        defaultLocale: NO_DEFAULT_LOCALE,
+      })
+      .catch((e) => {
+        logger.error('Error fetching footer menu:', { e, locale })
+        return menuErrorResponse()
+      }),
   ])
 
   return { main, footer, cities, 'cities-landing': citiesLanding }
 }
 
-export const getNode = ({ locale, localePath, type }) =>
-  getResourceByPath(localePath, {
-    locale,
-    defaultLocale: NO_DEFAULT_LOCALE,
-    params: getQueryParamsFor(type),
-  }).catch((e) => {
-    logger.error(`Error requesting node %s`, localePath, {
-      type,
+const RETRY_LIMIT = 10
+export const getNode = async ({
+  locale,
+  localePath,
+  type,
+  retry = 0,
+  withAuth,
+  uuid,
+}) => {
+  const getter = () =>
+    getDrupalClient(withAuth)
+      .getResource(type, uuid, {
+        params: getQueryParamsFor(type),
+        locale,
+        defaultLocale: NO_DEFAULT_LOCALE,
+      })
+      .catch((e) => {
+        logger.error(`Error requesting node %s`, localePath, {
+          type,
+          localePath,
+          e,
+        })
+        return null
+        // throw e
+      })
+
+  if (retry < 1) {
+    return getter()
+  }
+
+  let node = null
+  let attempts = 0
+  while (node === null && attempts <= retry - 1 && attempts <= RETRY_LIMIT) {
+    if (attempts > 0) {
+      logger.warn('Retry attempts %s for %s', attempts, localePath)
+      await new Promise((res) => setTimeout(res, 1000))
+    }
+
+    node = await getter()
+    attempts++
+  }
+  if (!node) {
+    logger.error(
+      'Unable to get page %s after %s attempts',
       localePath,
-      e,
-    })
-    return null
-    // throw e
-  })
+      attempts
+    )
+    throw `Unable to get page ${localePath} after ${retry} attempts`
+  }
+  return node
+}
 
 export const getCachedNode = async ({ locale, localePath, type }) => {
   const key = pageCache.getKey({ locale, localePath, type })
@@ -152,9 +197,10 @@ export const getCachedNode = async ({ locale, localePath, type }) => {
   return node
 }
 
-export const getThemeHeroImages = async ({ tree, context }) => {
+export const getThemeHeroImages = async ({ tree, context, withAuth }) => {
+  const drupal = getDrupalClient(withAuth)
   const responses = await Promise.all(
-    tree.map((page) => translatePath(page.url))
+    tree.map((page) => drupal.translatePath(page.url))
   )
 
   if (!responses) {
@@ -167,12 +213,14 @@ export const getThemeHeroImages = async ({ tree, context }) => {
 
   const nodes = await Promise.all(
     ids.map((id) =>
-      getResource(NODE_TYPES.PAGE, id, {
-        locale: context.locale,
-        params: getThemeHeroParams(),
-      }).catch((e) => {
-        logger.error('Error getting theme images for page %s', id, { id, e })
-      })
+      drupal
+        .getResource(NODE_TYPES.PAGE, id, {
+          locale: context.locale,
+          params: getThemeHeroParams(),
+        })
+        .catch((e) => {
+          logger.error('Error getting theme images for page %s', id, { id, e })
+        })
     )
   )
 
@@ -183,17 +231,32 @@ export const getThemeHeroImages = async ({ tree, context }) => {
   return nodes.map(getHeroFromNode)
 }
 
-export const getDefaultLocaleNode = async (id) =>
-  getResource(NODE_TYPES.PAGE, id, {
-    locale: i18n.fallbackLocale, //fi
-    defaultLocale: NO_DEFAULT_LOCALE,
-    params: new DrupalJsonApiParams()
-      .addFields(NODE_TYPES.PAGE, ['title'])
-      .getQueryObject(),
-  })
+// 3  minutes cache for municipalities
+const MUNICIPALITIES_CACHE_TTL = 300
 
-export const getMunicipalities = async ({ locale }) =>
-  getResourceCollection(CONTENT_TYPES.MUNICIPALITY, {
+export const getCachedMunicipalities = async ({ locale, withAuth }) => {
+  let k = `municipalities-${locale}`
+  if (cache.has(k)) {
+    logger.http('serving municipalities from cache', { key: k })
+    return cache.get(k)
+  } else {
+    const municipalities = await getMunicipalities({ locale, withAuth }).catch(
+      (e) => {
+        logger.error('Municipalities error', { locale, e })
+        return []
+      }
+    )
+
+    if (municipalities.length > 0) {
+      logger.http('caching municipalities', { key: k })
+      cache.set(k, municipalities, MUNICIPALITIES_CACHE_TTL)
+    }
+    return municipalities
+  }
+}
+
+export const getMunicipalities = async ({ locale, withAuth }) =>
+  getDrupalClient(withAuth).getResourceCollection(CONTENT_TYPES.MUNICIPALITY, {
     locale,
     defaultLocale: NO_DEFAULT_LOCALE,
     params: getMunicipalityParams(),
@@ -202,9 +265,9 @@ export const getMunicipalities = async ({ locale }) =>
 export const getFeedbackPage = async ({ locale }) => {
   const { FEEDBACK_PAGE_PATH } = getConfig().serverRuntimeConfig
   const path = `/${locale}${FEEDBACK_PAGE_PATH}`
-  const nodeMeta = await translatePath(path)
+  const nodeMeta = await getDrupalClient().translatePath(path)
   const id = nodeMeta.entity?.uuid
-  const node = await getResource(NODE_TYPES.PAGE, id, {
+  const node = await getDrupalClient().getResource(NODE_TYPES.PAGE, id, {
     locale: locale,
     defaultLocale: NO_DEFAULT_LOCALE,
     params: new DrupalJsonApiParams()
@@ -217,12 +280,13 @@ export const getFeedbackPage = async ({ locale }) => {
 }
 
 export const getMessages = async ({ locale, id }) => {
-  const frontPageNode = await translatePath(
-    getConfig().serverRuntimeConfig.DRUPAL_FRONT_PAGE
-  ).catch((e) => {
-    logger.error('Error resolving front page for messages', { locale, id })
-    throw e
-  })
+  const drupal = getDrupalClient()
+  const frontPageNode = await drupal
+    .translatePath(getConfig().serverRuntimeConfig.DRUPAL_FRONT_PAGE)
+    .catch((e) => {
+      logger.error('Error resolving front page for messages', { locale, id })
+      throw e
+    })
 
   const idlist = [frontPageNode.entity.uuid]
 
@@ -244,9 +308,32 @@ export const getMessages = async ({ locale, id }) => {
     .addFilter('field_page.id', idlist, 'IN')
     .getQueryObject()
 
-  return getResourceCollection(NODE_TYPES.MESSAGE, {
+  return drupal.getResourceCollection(NODE_TYPES.MESSAGE, {
     locale,
     defaultLocale: NO_DEFAULT_LOCALE,
     params,
   })
+}
+
+export const getRedirectFromContext = async (context) => {
+  if (!context) {
+    logger.error('Error resolving redirect - no context provided')
+    return
+  }
+
+  const { locale, defaultLocale, params } = context
+
+  // If locale = default locale add it to beggining of slug, otherwise default locale redirections won't work
+  if (locale === defaultLocale) {
+    params.slug.unshift(locale)
+  }
+
+  const pathFromContext = await getDrupalClient()
+    .translatePathFromContext(context)
+    .catch((e) => {
+      logger.error('Error resolving redirect')
+      throw e
+    })
+
+  return getRedirect(pathFromContext?.redirect, context)
 }

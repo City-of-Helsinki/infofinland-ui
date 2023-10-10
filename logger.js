@@ -18,7 +18,9 @@ import 'winston-daily-rotate-file'
 
 // const LEVEL = process.env.NODE_ENV === 'production' ? 'info' : 'verbose'
 const ERROR_LOG = './logs/errors-%DATE%.log'
-const CONSOLE_LEVEL = process.env.NODE_ENV === 'production' ? 'http' : 'verbose'
+const CONSOLE_LEVEL =
+  process.env.CONSOLE_LOGGER_LEVEL ||
+  (process.env.NODE_ENV === 'production' ? 'warn' : 'verbose')
 
 const errorRotation = new winston.transports.DailyRotateFile({
   filename: ERROR_LOG,

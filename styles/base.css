@@ -1,17 +1,23 @@
+@import './base.fontface';
+/* @import './base.simplified.chinese'; */
+/* Simplified chinese font face is set dynamically when content language is chinese */
+
 @layer base {
-  :root {
-    --scrollbar-foreground: #ddd;
-    --scrollbar-background: #fafafa;
-  }
   html {
     scroll-behavior: smooth;
     /*set base font family in tailwind.config.js */
   }
 
+  :root {
+    --scrollbar-foreground: #ddd;
+    --scrollbar-background: #fafafa;
+  }
+
+  /*Scrollbar definitions*/
   * {
-    /* Foreground, Background */
     scrollbar-color: var(--scrollbar-foreground) var(--scrollbar-background);
   }
+
   *::-webkit-scrollbar {
     width: 6px; /* Mostly for vertical scrollbars */
     height: 6px; /* Mostly for horizontal scrollbars */
@@ -26,47 +32,8 @@
     background: var(--scrollbar-background);
   }
 
-  /**
-   * Extend font settings but keep them in the base layer to
-   * preserverve cascading and specificity
-   */
-
-  @font-face {
-    font-family: 'Noto Sans';
-    src: url('/fonts/NotoSans/notosans-regular-webfont.woff2');
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Noto Sans';
-    src: url('/fonts/NotoSans/notosans-bold-webfont.woff2');
-    font-weight: bold;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Noto Sans Chinese';
-    src: url('/fonts/NotoSans/notosanssc-regular-webfont.woff2');
-
-    /*src: url('/fonts/NotoSans/NotoSansSC-Regular.otf');*/
-    font-weight: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Noto Sans Chinese';
-
-    src: url('/fonts/NotoSans/notosanssc-bold-webfont.woff2');
-
-    /*src: url('/fonts/NotoSans/NotoSansSC-Bold.otf');*/
-    font-weight: bold;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: 'Noto Sans Arabic';
-    src: url('/fonts/NotoSans/notosans-arabic-webfont.woff2');
-    font-display: swap;
+  .system-zh-font {
+    font-family: serif;
   }
 
   /* img:-moz-broken {

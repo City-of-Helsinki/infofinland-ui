@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { CACHE_HEADERS_60S } from '@/cache-headers'
+import { CACHE_HEADERS_10M } from '@/cache-headers'
 import logger from '@/logger'
 
 const DRUPAL_SITEMAP = `${process.env.NEXT_PUBLIC_DRUPAL_BASE_URL}/default/sitemap.xml`
@@ -13,7 +13,7 @@ export const getServerSideProps = async ({ res }) => {
     logger.error('Sitemap error', { error, sitemapLength: sitemap?.length })
   }
   res.setHeader('Content-Type', 'application/xml; charset=utf-8')
-  res.setHeader(...CACHE_HEADERS_60S)
+  res.setHeader(...CACHE_HEADERS_10M)
   res.write(sitemap)
   res.end()
   //to suppress error in nextjs

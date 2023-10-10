@@ -54,14 +54,24 @@ const Breadcrumbs = ({ items }) => {
 
           {items?.map(({ title, url, id }, i) => (
             <div key={`crumb-${id}`} className="inline-block">
-              <Link href={url} passHref prefetch={false} locale={false}>
-                <a
-                  className="text-small md:text-body-small hover:underline"
-                  title={title}
+              {i + 1 === items.length ? (
+                <span
+                  className="text-small md:text-body-small"
+                  aria-current="page"
                 >
+                  {' '}
                   {title}
-                </a>
-              </Link>
+                </span>
+              ) : (
+                <Link href={url} passHref prefetch={false} locale={false}>
+                  <a
+                    className="text-small md:text-body-small hover:underline"
+                    title={title}
+                  >
+                    {title}
+                  </a>
+                </Link>
+              )}
               {i + 1 < items.length && (
                 <IconAngleRight
                   className=" mx-3 ifu-breadcrumb__icon--arrow"

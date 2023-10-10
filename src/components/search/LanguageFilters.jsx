@@ -5,7 +5,7 @@ import { IconGlobe } from '../Icons'
 import { IconCircleArrowRight } from '../Icons'
 import { useRouter } from 'next/router'
 const getLangMap = (languages) =>
-  i18n.locales.reduce((obj, lang) => {
+  i18n.supportedLocales.reduce((obj, lang) => {
     obj[lang] = languages?.includes(lang)
     return obj
   }, {})
@@ -42,7 +42,7 @@ const LanguageFilters = () => {
         </button>
       )}
       {show &&
-        i18n.languages.map(({ code, text }) => {
+        i18n.supportedLanguages.map(({ code, text }) => {
           const id = `query-lang-${code}`
 
           return (

@@ -1,6 +1,7 @@
 {
   "article": {
-    "published": "Publicado"
+    "published": "Publicado",
+    "index": "En esta página"
   },
   "breadcrumbs": {
     "frontpage": "Inicio",
@@ -30,7 +31,7 @@
     "settings": {
       "title": "Configuración de cookies"
     },
-    "text": "Este porta usa cookies imprescindibles para asegurar el funcionamiento y para el seguimiento del uso general. Además, usamos cookies de objetivos para mejorar la experiencia del usuario.",
+    "text": "Este portal usa cookies imprescindibles para asegurar el funcionamiento y para el seguimiento del uso general. Además, usamos cookies de objetivos para mejorar la experiencia del usuario.",
     "title": "InfoFinland.fi usa cookies."
   },
   "feedback": {

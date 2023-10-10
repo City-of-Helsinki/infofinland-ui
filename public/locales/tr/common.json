@@ -1,6 +1,7 @@
 {
   "article": {
-    "published": "Yayınlandı"
+    "published": "Yayınlandı",
+    "index": "Bu sayfada"
   },
   "breadcrumbs": {
     "frontpage": "Ana sayfa",

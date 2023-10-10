@@ -27,7 +27,7 @@ const SEARCH_BUTTON_LABEL_ID = 'ifu-searchbar__label'
 const TopSearchBar = ({ onSubmit, onChange, query }) => {
   const { t } = useTranslation('common')
   return (
-    <>
+    <section>
       <form
         className="pt-4 max-w-topbar bg-white"
         action="/hae"
@@ -35,13 +35,10 @@ const TopSearchBar = ({ onSubmit, onChange, query }) => {
       >
         <label
           htmlFor={SEARCH_BUTTON_LABEL_ID}
-          className={cls(
-            ' mx-4 md:mx-6 text-gray-medium  transition-opacity ',
-            {
-              'opacity-0 duration-50': query.length === 0,
-              'opacity-100 duration-150': query.length > 0,
-            }
-          )}
+          className={cls(' mx-4 md:mx-6 text-gray-dark  transition-opacity ', {
+            'opacity-0 duration-50': query.length === 0,
+            'opacity-100 duration-150': query.length > 0,
+          })}
         >
           {t('search.placeholder')}
         </label>
@@ -72,7 +69,7 @@ const TopSearchBar = ({ onSubmit, onChange, query }) => {
         </div>
       </form>
       <SWRResults onShowResults={onSubmit} />
-    </>
+    </section>
   )
 }
 
@@ -112,7 +109,7 @@ export const SWRResults = ({ onShowResults }) => {
     )
   }
   return (
-    <div className="mx-4 md:mx-6 mt-4">
+    <section className="mx-4 md:mx-6 mt-4">
       {data?.hits?.hits?.length < 1 && data.q !== '' && (
         <p className="h-12">{t('search.title.noresults')}</p>
       )}
@@ -134,7 +131,7 @@ export const SWRResults = ({ onShowResults }) => {
           </LinkButton>
         </div>
       )}
-    </div>
+    </section>
   )
 }
 

@@ -9,6 +9,10 @@
     @apply bg-white;
   }
 
+  .ifu-footer__hki-logo:lang(uk) {
+    background-image: url('/images/helsinki/helsinki-uk.png');
+  }
+
   .ifu-footer__hki-logo:lang(ar) {
     background-image: url('/images/helsinki/01_HELSINKI-ARABIA_Tunnus_BLACK.png');
   }

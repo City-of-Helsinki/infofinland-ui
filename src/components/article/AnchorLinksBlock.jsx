@@ -1,7 +1,7 @@
 import { CONTENT_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import { headingHash } from './ContentMapper'
 import Block from '../layout/Block'
-
+import { useTranslation } from 'next-i18next'
 const HEADING_TYPES = [CONTENT_TYPES.HEADING, CONTENT_TYPES.ACCORDION]
 
 const getHeadings = (field_content) =>
@@ -20,6 +20,7 @@ const getHeadings = (field_content) =>
     .filter((h) => !!h)
 
 const AnchorLinksBlock = ({ field_content }) => {
+  const { t } = useTranslation('common')
   if (field_content?.length < 1) {
     return null
   }
@@ -32,7 +33,10 @@ const AnchorLinksBlock = ({ field_content }) => {
 
   return (
     <Block>
-      <ul className="py-4 mb-4 list-disc list-outside ms-2 lg:ms-4 ps-4">
+      <ul
+        className="pt-2 mb-10 list-disc list-outside ms-2 lg:ms-4 ps-4"
+        title={t('article.index')}
+      >
         {headings.map(({ id, title }) => {
           return (
             <li className="ps-2" key={`heading-anchor-${id}`}>

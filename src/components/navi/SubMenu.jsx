@@ -11,6 +11,7 @@ const SubMenuItem = ({ title, url, selected, items, level, isOpen }) => {
     <li className="block">
       <Link passHref href={url} locale={false} prefetch={false}>
         <a
+          aria-current={selected ? 'page' : undefined}
           tabIndex={isOpen ? '0' : '-1'}
           className={cls('ifu-mainmenu__item--subitem', {
             'ps-10 ': level === 1,
@@ -35,7 +36,7 @@ const SubMenuItems = ({ items, isOpen, level }) => {
   return (
     <ul
       className={cls('ifu-mainmenu__submenu', {
-        'opacity-0 max-h-0': !isOpen,
+        'opacity-0 hidden max-h-0': !isOpen,
         'opacity-100 transition-all max-h-full  duration-300': isOpen,
       })}
     >
@@ -98,7 +99,10 @@ const SubMenu = ({
           })}
         >
           <Link passHref href={url} prefetch={false} locale={false}>
-            <a className="flex-grow py-4">
+            <a
+              className="flex-grow py-4"
+              aria-current={selected ? 'page' : undefined}
+            >
               <span className={cls('block', { 'font-bold': selected })}>
                 {title}
               </span>
@@ -106,11 +110,10 @@ const SubMenu = ({
           </Link>
           <div className="flex-none">
             <button
-              className="block w-16 h-12"
+              className="inline-flex relative justify-center items-center w-16 h-12"
               onClick={toggle}
               title={subMenuLabel}
               aria-label={subMenuLabel}
-              aria-expanded={isOpen}
             >
               {!isOpen && (
                 <IconAngleUp className="fill-gray-light ifu-mainmenu__submenu-icon--open ifu-mainmenu__submenu-icon" />

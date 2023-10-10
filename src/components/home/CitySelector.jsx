@@ -5,12 +5,18 @@ import Image from 'next/image'
 import Block from '@/components/layout/Block'
 import getConfig from 'next/config'
 import { useTranslation } from 'next-i18next'
+import { i18n } from '@/next-i18next.config'
 
 const CitySelector = () => {
   const { CITIES_PAGE_PATH } = getConfig().publicRuntimeConfig
-  const { push } = useRouter()
-  const goToCities = () => push(CITIES_PAGE_PATH)
   const { t } = useTranslation('common')
+  const router = useRouter()
+  let locale = router.locale
+
+  if (i18n.disabledLocales.includes(locale)) {
+    return null
+  }
+  const goToCities = () => router.push(CITIES_PAGE_PATH)
 
   return (
     <Block className="pt-8 border-t border-gray-darker">

@@ -1,8 +1,4 @@
 @layer utilities {
-  .scrollbar-none::-webkit-scrollbar {
-    display: none;
-  }
-
   .text-shadow-home {
     text-shadow: 2px 2px 5px rgb(0 0 0 / 50%), -2px -2px 5px rgb(0 0 0 / 20%),
       0px 0px 50px rgb(0 0 0 / 30%);

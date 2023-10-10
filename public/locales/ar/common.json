@@ -1,6 +1,7 @@
 {
   "article": {
-    "published": "تم نشره"
+    "published": "تم نشره",
+    "index": "من هذه الصفحة"
   },
   "breadcrumbs": {
     "frontpage": "الصفحة الرئيسية",

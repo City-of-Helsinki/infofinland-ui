@@ -9,8 +9,20 @@ const env = {
   SITEMAP_PAGE_PATH: '/sitemap',
   CITIES_PAGE_PATH: '/cities',
   SEARCH_PAGE_PATH: '/search',
-  PRERENDER_LOCALES: i18n.locales,
-  // PRERENDER_LOCALES: ['fi', 'en', 'sv'],
+  LANDING_PAGE_PATH: '/landingpage',
+  PRERENDER_LOCALES: [
+    //TODO read from ENV variables instead of hard coding.
+    // i18n.locales
+    'fi',
+    'ru',
+    'es',
+    'et',
+    'tr',
+    'ar',
+    'fa',
+    'sv',
+    'zh',
+  ],
   DRUPAL_MENUS: {
     MAIN: 'main',
     FOOTER: 'footer-about',
@@ -19,7 +31,7 @@ const env = {
     CITIES_LANDING: 'cities-landing',
   },
 
-  REVALIDATE_TIME: 30, //seconds ,
+  REVALIDATE_TIME: 60, //seconds
   FB_URL: 'https://www.facebook.com/infofinland.fi',
   INSTAGRAM_URL: 'https://www.instagram.com/infofinland.fi/',
   YOUTUBE_URL: 'https://www.youtube.com/c/infofinland',
@@ -39,6 +51,7 @@ const serverRuntimeConfig = {
   // Will only be available onprocess.env. the server side
   CACHE_REPOPULATE: process.env.CACHE_REPOPULATE || false,
   BUILD_ALL: process.env.BUILD_ALL || false,
+  BUILD_PHASE: process.env.BUILD_PHASE || false,
   ELASTICSEARCH_URL: process.env.ELASTICSEARCH_URL,
   elasticsearch_password: process.env.elasticsearch_password,
   elasticsearch_certificate: process.env.elasticsearch_certificate,
@@ -62,27 +75,38 @@ const config = {
   reactStrictMode: true,
   poweredByHeader: false,
   // Try this if weird caching issues still persist
-  // generateEtags: false,
+  generateEtags: false,
   env,
   publicRuntimeConfig,
   serverRuntimeConfig,
   images: {
     // populate static common image domains envs here manually
     // or via ENV variables
-    domains: [process.env.NEXT_IMAGE_DOMAIN],
+    domains: [
+      process.env.NEXT_IMAGE_DOMAIN,
+      // TODO Allow multiple domains to be configured from azure.
+      'infofinland-edit.hel.ninja',
+    ],
   },
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/sitemap.xml',
-  //       destination: '/api/sitemap.xml',
-  //       permanent: false,
-  //     },
-  //   ]
-  // },
   webpack: (config) => {
     config.module.rules.push({ test: /\.xml$/, loader: 'xml-loader' })
     return config
+  },
+  async redirects() {
+    return [
+      {
+        source: '/so',
+        locale: false,
+        destination: '/so/landingpage',
+        permanent: true,
+      },
+      {
+        source: '/so/search',
+        locale: false,
+        destination: '/search',
+        permanent: true,
+      },
+    ]
   },
 }
 

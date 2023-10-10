@@ -7,24 +7,20 @@ import map from 'lodash/map'
 import omit from 'lodash/omit'
 import { getCachedMenus } from '@/lib/ssr-api'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import getConfig from 'next/config'
 import TextLink from '@/components/TextLink'
 import { DotsLoader } from '@/components/Loaders'
 import Block from '@/components/layout/Block'
 import { getLocalesForPath } from '@/lib/client-api'
 import useSWR from 'swr'
 import CommonHead from '@/components/layout/CommonHead'
-
-export async function getStaticProps(context) {
-  const { REVALIDATE_TIME } = getConfig().serverRuntimeConfig
-  const menus = await getCachedMenus(context.locale)
+export async function getStaticProps({ locale }) {
+  const menus = await getCachedMenus(locale)
   return {
     props: {
       texts: TEXTS_404,
       menus,
-      ...(await serverSideTranslations(context.defaultLocale, ['common'])),
+      ...(await serverSideTranslations(locale, ['common'])),
     },
-    revalidate: REVALIDATE_TIME,
   }
 }
 
@@ -56,6 +52,10 @@ const TEXTS_404 = {
   so: {
     title: 'Bogga lama helin',
     help: 'Ku raadi bogga raadinta ama ka raadi kaartada bogga.',
+  },
+  uk: {
+    title: 'Сторінку не знайдено',
+    help: 'Потрібну сторінку можна шукати за допомогою функції пошуку або на карті сайту.',
   },
   es: {
     title: 'Página no localizada',
@@ -114,6 +114,11 @@ const TEXTS_LANG_404 = {
     languages:
       'Macluumaadka ku saabsan mowduucan waxaad ku heleysaa luqadaha soo socda:',
   },
+  uk: {
+    title: 'Сторінка цією мовою не знайдена',
+    help: 'На жаль, сторінки вибраною вами мовою не існує.',
+    languages: 'Інформація на цю тему доступна такими мовами:',
+  },
   es: {
     title: 'La página no existe en este idioma',
     help: 'Lamentablemente, la página no existe en el idioma que ha elegido.',
@@ -144,7 +149,7 @@ const TEXTS_LANG_404 = {
 
 const LocalesLinks = ({ locales, dir }) => {
   return (
-    <p className="mt-2 leading-loose">
+    <p className="overflow-hidden mt-2 leading-loose">
       {locales.map(({ locale, path, id }, i) => {
         const language = i18n.languages.find(({ code }) => code === locale)
         if (!language) {
@@ -156,14 +161,18 @@ const LocalesLinks = ({ locales, dir }) => {
             key={`langlink-for-${locale}-${id}`}
             locale={locale}
             href={path}
-            className={cls({
-              'pe-2': i === 0,
-              'px-2 border-black': i > 0,
-              'border-s': dir === i18n.DIRECTION_LTR && i > 0,
-              'border-r': dir === i18n.DIRECTION_RTL && i > 0,
-            })}
+            className={cls('float-start inline-block', {})}
           >
-            {language.text}
+            <span
+              className={cls({
+                'pe-2': i === 0,
+                'px-2 border-black': i > 0,
+                'border-s': dir === i18n.DIRECTION_LTR && i > 0,
+                'border-r': dir === i18n.DIRECTION_RTL && i > 0,
+              })}
+            >
+              {language.text}
+            </span>
           </TextLink>
         )
       })}
