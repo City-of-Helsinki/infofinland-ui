@@ -70,6 +70,56 @@ export const getCachedAboutMenus = async ({ locale, withAuth }) => {
   return menus
 }
 
+export const getCachedMainMenus = async ({ locale, withAuth }) => {
+  const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
+  const key = `main-menus-${locale}}`
+  const drupal = getDrupalClient(withAuth)
+
+  if (cache.has(key)) {
+    logger.http('Serving main-menus from cache', { cacheKey: key })
+    return cache.get(key)
+  }
+
+  const [main] = await Promise.all([
+    drupal.getMenu(DRUPAL_MENUS.MAIN, {
+      locale,
+      defaultLocale: NO_DEFAULT_LOCALE,
+    }),
+  ])
+
+  const menus = { main }
+  logger.http('Caching main-menu', { cacheKey: key })
+  if (!withAuth) {
+    cache.set(key, menus, 600)
+  }
+  return menus
+}
+
+export const getCachedCitiesMenus = async ({ locale, withAuth }) => {
+  const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
+  const key = `cities-menus-${locale}}`
+  const drupal = getDrupalClient(withAuth)
+
+  if (cache.has(key)) {
+    logger.http('Serving cities-menus from cache', { cacheKey: key })
+    return cache.get(key)
+  }
+
+  const [cities] = await Promise.all([
+    drupal.getMenu(DRUPAL_MENUS.CITIES, {
+      locale,
+      defaultLocale: NO_DEFAULT_LOCALE,
+    }),
+  ])
+
+  const menus = { cities }
+  logger.http('Caching cities-menu', { cacheKey: key })
+  if (!withAuth) {
+    cache.set(key, menus, 600)
+  }
+  return menus
+}
+
 export const getMainMenus = async ({ locale, withAuth }) => {
   const { DRUPAL_MENUS } = getConfig().serverRuntimeConfig
   const drupal = getDrupalClient(withAuth)
