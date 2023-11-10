@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@elastic/elasticsearch": "8.1.0",
-    "@next/bundle-analyzer": "12.1.4",
+    "@next/bundle-analyzer": "12.3.4",
     "@next/env": "12.0.8",
     "autoprefixer": "10.4.2",
     "axios": "1.6.0",
