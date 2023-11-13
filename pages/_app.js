@@ -2,7 +2,7 @@ import '../styles/main.css'
 import 'nprogress/nprogress.css'
 import { appWithTranslation } from 'next-i18next'
 import useHydratePage from '@/hooks/useHydratePage'
-import { useAtomDevtools } from 'jotai/devtools'
+import { useAtomDevtools } from 'jotai-devtools'
 import { pageAtom, pageIsLoadingAtom } from '@/src/store'
 import Router from 'next/router'
 import NProgress from 'nprogress'
@@ -21,8 +21,12 @@ Router.events.on('routeChangeComplete', () => NProgress.done())
 Router.events.on('routeChangeError', () => NProgress.done())
 
 function App({ Component, pageProps }) {
-  // only works if process.env.NODE_ENV !== 'production'
-  useAtomDevtools(pageAtom, 'ssr props')
+  // Check if window is defined before using useAtomDevtools
+  if (typeof window !== 'undefined') {
+    // only works if process.env.NODE_ENV !== 'production'
+    useAtomDevtools(pageAtom, 'ssr props');
+  }
+
   useHydratePage(pageProps)
 
   useAnalytics()
