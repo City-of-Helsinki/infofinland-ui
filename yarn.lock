@@ -1474,10 +1474,10 @@
     methods "^1.1.2"
     path-to-regexp "^6.1.0"
 
-"@next/bundle-analyzer@12.3.4":
-  version "12.3.4"
-  resolved "https://registry.yarnpkg.com/@next/bundle-analyzer/-/bundle-analyzer-12.3.4.tgz#37c587525288a3dea64213c991590532246e8bb8"
-  integrity sha512-eKjgRICzbLTmod0UnJcArFVs5uEAiuZwB6NCf84m+btW7jdylUVoOYf1wi5tA14xk5L9Lho7Prm6/XJ8gxYzfQ==
+"@next/bundle-analyzer@12.1.4":
+  version "12.1.4"
+  resolved "https://registry.yarnpkg.com/@next/bundle-analyzer/-/bundle-analyzer-12.1.4.tgz#22afb920b769a54a8da118af0786df0a1f4fca47"
+  integrity sha512-Xw3gxBTOAS5bcayUl2hDYeCbAFIR+7poiGW4Wi/KGcsjgVRetKBS6akZ1AZsz36CUOdCxajKO45B6CeAaKtcqA==
   dependencies:
     webpack-bundle-analyzer "4.3.0"
 
@@ -1485,11 +1485,6 @@
   version "12.1.5"
   resolved "https://registry.yarnpkg.com/@next/env/-/env-12.1.5.tgz#a21ba6708022d630402ca2b340316e69a0296dfc"
   integrity sha512-+34yUJslfJi7Lyx6ELuN8nWcOzi27izfYnZIC1Dqv7kmmfiBVxgzR3BXhlvEMTKC2IRJhXVs2FkMY+buQe3k7Q==
-
-"@next/env@12.3.4":
-  version "12.3.4"
-  resolved "https://registry.yarnpkg.com/@next/env/-/env-12.3.4.tgz#c787837d36fcad75d72ff8df6b57482027d64a47"
-  integrity sha512-H/69Lc5Q02dq3o+dxxy5O/oNxFsZpdL6WREtOOtOM1B/weonIwDXkekr1KV5DPVPr12IHFPrMrcJQ6bgPMfn7A==
 
 "@next/env@12.3.4":
   version "12.3.4"
