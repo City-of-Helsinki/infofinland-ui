@@ -7,6 +7,8 @@ import getConfig from 'next/config'
 import {
   getCachedMenus,
   getCachedAboutMenus,
+  getCachedMainMenus,
+  getCachedCitiesMenus,
   NOT_FOUND,
   NO_DEFAULT_LOCALE,
 } from '@/lib/ssr-api'
@@ -41,6 +43,8 @@ export async function getStaticProps(context) {
   }
 
   menus.about = (await getCachedAboutMenus({ locale, withAuth })).about
+  menus.cities = (await getCachedCitiesMenus({ locale, withAuth })).cities
+  menus.main = (await getCachedMainMenus({ locale, withAuth })).main
 
   const urls = {}
   forEach(menus, (menu, name) => {
