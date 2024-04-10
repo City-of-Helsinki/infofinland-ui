@@ -132,7 +132,6 @@ export const getPageQueryParams = () =>
       // Video content
       'field_content.field_remote_video',
       // Contact information fragments
-      'field_content.field_contact_data',
       'field_content.field_municipality_liftup_item',
       // 'field_content.field_municipality_liftup_item.field_municipality_page',
       'field_content.field_municipality_liftup_item.field_municipality',
@@ -189,12 +188,10 @@ export const getLocalInfoParams = () =>
     .addInclude([
       'field_municipality_info',
       'field_municipality_info.field_municipality_info_link.field_links.field_language',
-      'field_municipality_info.field_municipality_info_ptv',
     ])
     .addFields(NODE_TYPES.PAGE, ['field_municipality_info', 'path'])
     .addFields(CONTENT_TYPES.LOCALINFO_CONTENT, [
       'field_municipality_info_link',
-      'field_municipality_info_ptv',
       'field_municipality_info_text',
       'field_national_page',
     ]) //Link Collection block
