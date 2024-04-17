@@ -21,17 +21,6 @@ export default function ArticleHeading({
   return (
     <div className={titleMargin}>
       <div className={cls({ 'absolute bottom-5 md:bottom-8': !forHeroImage })}>
-        {locale !== fallbackLocale && (
-          <span
-            lang="fi"
-            className={cls('block text-action mb-3', {
-              'text-gray-darker': forHeroImage,
-              'text-bodytext-color mt-6': !forHeroImage,
-            })}
-          >
-            {fiTitle}
-          </span>
-        )}
         {/* article title / hero text */}
         <h1
           className={cls(
