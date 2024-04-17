@@ -1,20 +1,14 @@
 import cls from 'classnames'
 import { longTextClass } from '@/components/Typo'
 import { IconCalendar } from '@/components/Icons'
-import { i18n } from '@/next-i18next.config'
-import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
-
-const { fallbackLocale } = i18n
 
 export default function ArticleHeading({
   forHeroImage = false,
   title,
   date,
   themeHero,
-  fiTitle,
 }) {
-  const { locale } = useRouter()
   const { t } = useTranslation('common')
 
   const titleMargin = themeHero ? 'ifu-block--article' : 'ifu-block--hero'
