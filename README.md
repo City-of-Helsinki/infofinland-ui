@@ -20,7 +20,7 @@ Clone [the InfoFinland UI](https://github.com/City-of-Helsinki/infofinland-ui) r
 ```bash
 git clone git@github.com:City-of-Helsinki/infofinland-ui.git
 cd info-finland-ui
-git checkout develop
+git checkout dev
 git checkout -b feature/newstuff
 ```
 
