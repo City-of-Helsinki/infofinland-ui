@@ -37,16 +37,15 @@ export default async function handler(request, response) {
         message,
         page,
         name,
-        feedback_email,
-        subject = 'Palautetta sivustolta: <otsikko puuttuu>',
+        uuid,
       } = request?.body
       const form_response = await axios.post(POST_URL, {
         sender_email,
         message,
         page,
-        subject,
+        subject: `Palautetta sivustolta: ${page}`,
         name,
-        feedback_email,
+        uuid,
         webform_id: WEBFORM_ID,
       })
       if (form_response?.status !== 200) {
