@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import InfoBlock from '@/components/feedback/InfoBlock'
 import { isSSR } from '@/hooks/useIsomorphicLayoutEffect'
 import axios from 'axios'
-import { feedbackEmailAtom } from '@/src/store'
+import {nodeIdAtom} from '@/src/store'
 import { useAtomValue } from 'jotai/utils'
 
 // eslint-disable-next-line react/display-name
@@ -15,7 +15,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
   // Consider using async atom and useAtom hook instead if this becomes a real issue.
 
   const { t } = useTranslation('common')
-  const feedbackEmail = useAtomValue(feedbackEmailAtom)
+  const nodeId = useAtomValue(nodeIdAtom)
   const urlWithoutHash =
     isSSR() === false ? window.location.href.split('#').shift() : ''
   const {
@@ -27,7 +27,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
   } = useForm()
 
   const onSubmit = async (data) =>
-    axios.post('/api/feedback', { ...data, feedback_email: feedbackEmail })
+    axios.post('/api/feedback', { ...data, uuid: nodeId })
 
   const onError = (errors, e) => {
     console.error({ errors, e })
@@ -82,11 +82,6 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
 
           <form onSubmit={handleSubmit(onSubmit, onError)}>
             <input type="hidden" {...register('page')} value={urlWithoutHash} />
-            <input
-              type="hidden"
-              {...register('subject')}
-              value={`Palautetta sivusta: ${urlWithoutHash}`}
-            />
             <div className="mb-2">
               <label
                 htmlFor="ifu-feedback-name"

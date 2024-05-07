@@ -151,10 +151,6 @@ export const themeMenuAtom = atom((get) => get(pageAtom).themeMenu)
 
 export const nodeAtom = selectAtom(pageAtom, (page) => page?.node)
 export const nodeIdAtom = selectAtom(pageAtom, (page) => page?.node?.id)
-export const feedbackEmailAtom = selectAtom(
-  pageAtom,
-  (page) => page?.node?.field_feedback_email
-)
 
 /** Cookie consent atom */
 export const cookieConsentAtom = atomWithStorage(
