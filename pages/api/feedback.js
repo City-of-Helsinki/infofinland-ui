@@ -4,7 +4,7 @@ import { getFeedbackPage } from '@/lib/ssr-api'
 import { CACHE_HEADERS_10M } from '@/cache-headers'
 import logger from '@/logger'
 
-const WEBFORM_ID = 'contact'
+const WEBFORM_ID = 'infofinland_contact'
 
 export default async function handler(request, response) {
   const { NEXT_PUBLIC_DRUPAL_BASE_URL } = getConfig().serverRuntimeConfig
