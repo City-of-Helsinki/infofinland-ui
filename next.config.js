@@ -49,6 +49,7 @@ const publicRuntimeConfig = {
 
 const serverRuntimeConfig = {
   // Will only be available onprocess.env. the server side
+  DEBUG: process.env.DEBUG || false,
   CACHE_REPOPULATE: process.env.CACHE_REPOPULATE || false,
   BUILD_ALL: process.env.BUILD_ALL || false,
   BUILD_PHASE: process.env.BUILD_PHASE || false,
