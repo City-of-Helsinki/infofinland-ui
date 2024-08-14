@@ -1,16 +1,16 @@
 # =======================================
-FROM node:16-alpine AS deps
+FROM registry.access.redhat.com/ubi8/nodejs-16 AS deps
 # =======================================
 
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 # USER node:0
-RUN apk add --no-cache libc6-compat
+RUN microdnf install -y glibc-langpack-en && microdnf clean all
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
 # =======================================
-FROM node:16-alpine AS builder
+FROM registry.access.redhat.com/ubi8/nodejs-16 AS builder
 # =======================================
 # USER node:0
 ARG NEXT_PUBLIC_DRUPAL_BASE_URL
@@ -58,7 +58,7 @@ RUN rm -rf node_modules
 RUN yarn install --production --ignore-scripts --prefer-offline
 
 # =======================================
-FROM node:16-alpine AS runner
+FROM registry.access.redhat.com/ubi8/nodejs-16 AS runner
 # =======================================
 
 WORKDIR /app
@@ -66,7 +66,7 @@ WORKDIR /app
 ENV NODE_ENV production
 ENV CACHE_REPOPULATE '1'
 #DEBUG add curl to container for network debugging purposes
-RUN apk --no-cache add curl
+RUN microdnf install -y curl && microdnf clean all
 
 
 COPY --from=builder /app/.next ./.next
