@@ -1,5 +1,5 @@
 # =======================================
-FROM registry.access.redhat.com/ubi8/nodejs-16 AS deps
+FROM registry.access.redhat.com/ubi8/nodejs-18 AS deps
 # =======================================
 
 # Temporarily switch to root user to install packages and set up the environment
@@ -7,23 +7,16 @@ USER root
 
 # Install additional dependencies and yarn
 RUN yum install -y glibc-langpack-en && yum clean all
-RUN npm install -g yarn
-
-# Set the default user for subsequent operations
-USER 1001
+RUN curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
+RUN yum -y install yarn
 
 WORKDIR /app
 COPY package.json yarn.lock ./
 
-# Ensure /app directory has the correct ownership for user 1001
-USER root
-RUN chown -R 1001:0 /app
-
-USER 1001
 RUN yarn install --frozen-lockfile
 
 # =======================================
-FROM registry.access.redhat.com/ubi8/nodejs-16 AS builder
+FROM registry.access.redhat.com/ubi8/nodejs-18 AS builder
 # =======================================
 
 # Set build arguments and environment variables
@@ -68,15 +61,11 @@ RUN rm -rf node_modules
 RUN yarn install --production --ignore-scripts --prefer-offline
 
 # =======================================
-FROM registry.access.redhat.com/ubi8/nodejs-16 AS runner
+FROM registry.access.redhat.com/ubi8/nodejs-18 AS runner
 # =======================================
 
-# Temporarily switch to root user to install packages
-USER root
 RUN yum install -y curl && yum clean all
 
-# Set the default user for the runtime container
-USER 1001
 
 WORKDIR /app
 COPY --from=builder /app/.next ./.next
@@ -87,9 +76,8 @@ COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/next-i18next.config.js ./next-i18next.config.js
 COPY --from=builder /app/logs ./logs
 
-# Ensure the node process user has access to necessary directories
-# Avoiding chmod changes; ensuring correct ownership and permissions from the start
-RUN chown -R 1001:0 /app
+RUN chown -R :0 /app && chmod -R g+wx /app
+USER nobody:0
 
 EXPOSE 8080
 ENV PORT=8080
