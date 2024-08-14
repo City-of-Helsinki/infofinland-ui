@@ -2,17 +2,16 @@
 FROM registry.access.redhat.com/ubi8/nodejs-18 AS deps
 # =======================================
 
-# Temporarily switch to root user to install packages and set up the environment
 USER root
 
-# Install additional dependencies and yarn
-RUN yum install -y glibc-langpack-en && yum clean all
-RUN curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
-RUN yum -y install yarn
+# Install additional dependencies and yarn in a single RUN command
+RUN yum install -y glibc-langpack-en curl && \
+    curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo && \
+    yum -y install yarn && \
+    yum clean all
 
 WORKDIR /app
 COPY package.json yarn.lock ./
-
 RUN yarn install --frozen-lockfile
 
 # =======================================
@@ -33,21 +32,21 @@ ARG MATOMO_SITE_ID
 ARG MATOMO_URL
 ARG ELASTICSEARCH_URL
 
-ENV CACHE_REPOPULATE=0
-ENV BUILD_PHASE=1
-ENV BUILD_ALL=$BUILD_ALL
-ENV SITE_HOST=$SITE_HOST
-ENV NEXT_PUBLIC_DRUPAL_BASE_URL=$NEXT_PUBLIC_DRUPAL_BASE_URL
-ENV NEXT_IMAGE_DOMAIN=$NEXT_IMAGE_DOMAIN
-ENV DRUPAL_FRONT_PAGE=$DRUPAL_FRONT_PAGE
-ENV DRUPAL_SITE_ID=$DRUPAL_SITE_ID
-ENV DRUPAL_CLIENT_ID=$DRUPAL_CLIENT_ID
-ENV DRUPAL_PREVIEW_SECRET=$DRUPAL_PREVIEW_SECRET
-ENV DRUPAL_CLIENT_SECRET=$DRUPAL_CLIENT_SECRET
-ENV MATOMO_SITE_ID=$MATOMO_SITE_ID
-ENV MATOMO_URL=$MATOMO_URL
-ENV ELASTICSEARCH_URL=$ELASTICSEARCH_URL
-ENV NEXT_TELEMETRY_DISABLED=1
+ENV CACHE_REPOPULATE=0 \
+    BUILD_PHASE=1 \
+    BUILD_ALL=$BUILD_ALL \
+    SITE_HOST=$SITE_HOST \
+    NEXT_PUBLIC_DRUPAL_BASE_URL=$NEXT_PUBLIC_DRUPAL_BASE_URL \
+    NEXT_IMAGE_DOMAIN=$NEXT_IMAGE_DOMAIN \
+    DRUPAL_FRONT_PAGE=$DRUPAL_FRONT_PAGE \
+    DRUPAL_SITE_ID=$DRUPAL_SITE_ID \
+    DRUPAL_CLIENT_ID=$DRUPAL_CLIENT_ID \
+    DRUPAL_PREVIEW_SECRET=$DRUPAL_PREVIEW_SECRET \
+    DRUPAL_CLIENT_SECRET=$DRUPAL_CLIENT_SECRET \
+    MATOMO_SITE_ID=$MATOMO_SITE_ID \
+    MATOMO_URL=$MATOMO_URL \
+    ELASTICSEARCH_URL=$ELASTICSEARCH_URL \
+    NEXT_TELEMETRY_DISABLED=1
 
 WORKDIR /app
 COPY . .
@@ -57,15 +56,14 @@ COPY --from=deps /app/node_modules ./node_modules
 RUN yarn build
 
 # Remove dev dependencies and keep only production dependencies
-RUN rm -rf node_modules
-RUN yarn install --production --ignore-scripts --prefer-offline
+RUN rm -rf node_modules && \
+    yarn install --production --ignore-scripts --prefer-offline
 
 # =======================================
 FROM registry.access.redhat.com/ubi8/nodejs-18 AS runner
 # =======================================
 
 RUN yum install -y curl && yum clean all
-
 
 WORKDIR /app
 COPY --from=builder /app/.next ./.next
