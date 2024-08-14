@@ -14,6 +14,7 @@ USER 1001
 
 WORKDIR /app
 COPY package.json yarn.lock ./
+RUN mkdir -p /app && chmod -R u+rwx /app
 RUN yarn install --frozen-lockfile
 
 # =======================================
