@@ -7,7 +7,10 @@ FROM registry.access.redhat.com/ubi8/nodejs-16 AS deps
 
 # Temporarily switch to root user to install packages
 USER root
-RUN yum install -y curl && yum clean all
+RUN yum install -y glibc-langpack-en && yum clean all
+
+# Install yarn globally using npm
+RUN npm install -g yarn
 
 # Switch back to default user
 USER 1001
