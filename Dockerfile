@@ -14,7 +14,12 @@ USER 1001
 
 WORKDIR /app
 COPY package.json yarn.lock ./
-RUN mkdir -p /app && chmod -R u+rwx /app
+
+# Ensure /app directory has the correct ownership for user 1001
+USER root
+RUN chown -R 1001:0 /app
+
+USER 1001
 RUN yarn install --frozen-lockfile
 
 # =======================================
@@ -82,9 +87,9 @@ COPY --from=builder /app/package.json ./package.json
 COPY --from=builder /app/next-i18next.config.js ./next-i18next.config.js
 COPY --from=builder /app/logs ./logs
 
-# Ensure proper permissions for directories
-RUN chmod -R a+rwx ./.next
-RUN chmod -R a+rwx ./logs
+# Ensure the node process user has access to necessary directories
+# Avoiding chmod changes; ensuring correct ownership and permissions from the start
+RUN chown -R 1001:0 /app
 
 EXPOSE 8080
 ENV PORT=8080
