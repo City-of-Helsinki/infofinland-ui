@@ -4,7 +4,7 @@ FROM registry.access.redhat.com/ubi8/nodejs-16 AS deps
 
 # Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
 # USER node:0
-RUN microdnf install -y glibc-langpack-en && microdnf clean all
+RUN yum install -y glibc-langpack-en && yum clean all
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
@@ -66,7 +66,7 @@ WORKDIR /app
 ENV NODE_ENV production
 ENV CACHE_REPOPULATE '1'
 #DEBUG add curl to container for network debugging purposes
-RUN microdnf install -y curl && microdnf clean all
+RUN yum install -y curl && yum clean all
 
 
 COPY --from=builder /app/.next ./.next
