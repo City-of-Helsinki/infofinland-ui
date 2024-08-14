@@ -4,7 +4,7 @@ FROM registry.access.redhat.com/ubi8/nodejs-18 AS deps
 
 USER root
 
-# Install additional dependencies and yarn in a single RUN command
+# Install additional dependencies and Yarn in a single RUN command
 RUN yum install -y glibc-langpack-en curl && \
     curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo && \
     yum -y install yarn && \
@@ -15,7 +15,7 @@ COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
 # =======================================
-FROM registry.access.redhat.com/ubi8/nodejs-18 AS builder
+FROM deps AS builder
 # =======================================
 
 # Set build arguments and environment variables
@@ -50,7 +50,6 @@ ENV CACHE_REPOPULATE=0 \
 
 WORKDIR /app
 COPY . .
-COPY --from=deps /app/node_modules ./node_modules
 
 # Build the project
 RUN yarn build
@@ -59,26 +58,34 @@ RUN yarn build
 RUN rm -rf node_modules && \
     yarn install --production --ignore-scripts --prefer-offline
 
-# =======================================
-FROM registry.access.redhat.com/ubi8/nodejs-18 AS runner
-# =======================================
+# ==========================================
+FROM builder AS production
+# ==========================================
 
-RUN yum install -y curl && yum clean all
+ARG NEXT_PUBLIC_CAPTCHA_KEY
+ARG NEWSLETTER_BASE_URL
+ARG NEWSLETTER_APIKEY
+ENV NEWSLETTER_BASE_URL=$NEWSLETTER_BASE_URL
+ENV NEWSLETTER_APIKEY=$NEWSLETTER_APIKEY
 
 WORKDIR /app
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/next.config.js ./next.config.js
+
+ENV PATH $PATH:/app/node_modules/.bin
+ENV NODE_ENV production
+
+# Copy necessary files for production
+COPY --from=builder /app/next.config.js /app/next-i18next.config.js /app/package.json /app/
+COPY --from=builder /app/.next/standalone .
+COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/next-i18next.config.js ./next-i18next.config.js
-COPY --from=builder /app/logs ./logs
 
-RUN chown -R :0 /app && chmod -R g+wx /app
-USER nobody:0
+# OpenShift write access to Next cache folder
+USER root
+RUN chgrp -R 0 /app/.next/server/pages && chmod g+w -R /app/.next/server/pages
+USER default
 
-EXPOSE 8080
-ENV PORT=8080
-ENV NEXT_TELEMETRY_DISABLED=1
+# Expose port
+EXPOSE $PORT
 
-CMD ["yarn", "start"]
+# Start Next.js server
+CMD ["node", "./server.js"]
