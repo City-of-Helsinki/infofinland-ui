@@ -1,28 +1,18 @@
 # =======================================
-FROM registry.access.redhat.com/ubi8/nodejs-18 AS deps
+FROM node:16-alpine AS deps
 # =======================================
 
-# Set root user for installation
-USER root
-
-# Install additional dependencies and Yarn in a single RUN command
-RUN yum install -y glibc-langpack-en curl --setopt=tsflags=nodocs && \
-    curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo && \
-    yum -y install yarn --setopt=tsflags=nodocs && \
-    yum clean all
-
+# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
+# USER node:0
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
-
-# Copy only the package files for installing dependencies
 COPY package.json yarn.lock ./
-
-# Install dependencies without writing yarn logs to disk
-RUN yarn install --frozen-lockfile --silent
+RUN yarn install --frozen-lockfile
 
 # =======================================
-FROM registry.access.redhat.com/ubi8/nodejs-18 AS builder
+FROM node:16-alpine AS builder
 # =======================================
-
+# USER node:0
 ARG NEXT_PUBLIC_DRUPAL_BASE_URL
 ARG NEXT_IMAGE_DOMAIN
 ARG DRUPAL_FRONT_PAGE
@@ -68,7 +58,7 @@ RUN rm -rf node_modules
 RUN yarn install --production --ignore-scripts --prefer-offline
 
 # =======================================
-FROM registry.access.redhat.com/ubi8/nodejs-18 AS runner
+FROM node:16-alpine AS runner
 # =======================================
 
 WORKDIR /app
