@@ -1,16 +1,18 @@
 # =======================================
-FROM node:16-alpine AS deps
+FROM registry.access.redhat.com/ubi8/nodejs-16 AS deps
 # =======================================
 
-# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
-# USER node:0
-RUN apk add --no-cache libc6-compat
+USER root
+RUN yum install -y glibc-langpack-en curl --setopt=tsflags=nodocs && \
+    curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo && \
+    yum -y install yarn --setopt=tsflags=nodocs && \
+    yum clean all
 WORKDIR /app
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
 # =======================================
-FROM node:16-alpine AS builder
+FROM registry.access.redhat.com/ubi8/nodejs-16 AS builder
 # =======================================
 # USER node:0
 ARG NEXT_PUBLIC_DRUPAL_BASE_URL
@@ -50,6 +52,10 @@ WORKDIR /app
 COPY . .
 COPY --from=deps /app/node_modules ./node_modules
 
+# install yarn
+USER root
+RUN curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
+RUN yum -y install yarn
 
 RUN yarn build
 # Prune dev & build deps until we can use Yarn 2 which does it on the next line
@@ -58,16 +64,13 @@ RUN rm -rf node_modules
 RUN yarn install --production --ignore-scripts --prefer-offline
 
 # =======================================
-FROM node:16-alpine AS runner
+FROM registry.access.redhat.com/ubi8/nodejs-16 AS runner
 # =======================================
 
 WORKDIR /app
 # USER node:0
 ENV NODE_ENV production
 ENV CACHE_REPOPULATE '1'
-#DEBUG add curl to container for network debugging purposes
-RUN apk --no-cache add curl
-
 
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/next.config.js ./next.config.js
@@ -82,11 +85,9 @@ COPY --from=builder /app/logs ./logs
 # copy .env.production to runner so that runtime can have new env vars from repo if needed
 #COPY --from=builder /app/.env.production .env.production
 
-
-# node process user should be able to write to .next/*
-RUN chmod -R a+rwx ./.next
-RUN chmod -R a+rwx ./logs
-
+RUN chgrp -R 0 ./.next/ && chmod g+w -R ./.next/
+RUN chgrp -R 0 ./.logs/ && chmod g+w -R ./.logs/
+USER default
 
 EXPOSE 8080
 ENV PORT=8080
