@@ -20,7 +20,7 @@ COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile --silent
 
 # =======================================
-FROM registry.access.redhat.com/ubi8/nodejs-18 AS builder
+FROM deps AS builder
 # =======================================
 
 ARG NEXT_PUBLIC_DRUPAL_BASE_URL
@@ -68,7 +68,7 @@ RUN rm -rf node_modules
 RUN yarn install --production --ignore-scripts --prefer-offline
 
 # =======================================
-FROM registry.access.redhat.com/ubi8/nodejs-18 AS runner
+FROM builder AS runner
 # =======================================
 
 WORKDIR /app
