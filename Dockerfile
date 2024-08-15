@@ -20,81 +20,90 @@ COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile --silent
 
 # =======================================
-FROM deps AS builder
+FROM registry.access.redhat.com/ubi8/nodejs-18 AS builder
 # =======================================
 
-# Set build arguments and environment variables
 ARG NEXT_PUBLIC_DRUPAL_BASE_URL
 ARG NEXT_IMAGE_DOMAIN
 ARG DRUPAL_FRONT_PAGE
 ARG DRUPAL_SITE_ID
 ARG DRUPAL_CLIENT_ID
 ARG SITE_HOST
+
 ARG DRUPAL_PREVIEW_SECRET
 ARG DRUPAL_CLIENT_SECRET
 ARG BUILD_ALL
 ARG MATOMO_SITE_ID
 ARG MATOMO_URL
 ARG ELASTICSEARCH_URL
+# Must be false in builds always
+ENV CACHE_REPOPULATE 0
+ENV BUILD_PHASE 1
+ENV BUILD_ALL=$BUILD_ALL
+ENV SITE_HOST=$SITE_HOST
+ENV NEXT_PUBLIC_DRUPAL_BASE_URL=$NEXT_PUBLIC_DRUPAL_BASE_URL
+ENV NEXT_IMAGE_DOMAIN=$NEXT_IMAGE_DOMAIN
+ENV DRUPAL_FRONT_PAGE=$DRUPAL_FRONT_PAGE
+ENV DRUPAL_SITE_ID=$DRUPAL_SITE_ID
+ENV DRUPAL_CLIENT_ID=$DRUPAL_CLIENT_ID
 
-ENV CACHE_REPOPULATE=0 \
-    BUILD_PHASE=1 \
-    BUILD_ALL=$BUILD_ALL \
-    SITE_HOST=$SITE_HOST \
-    NEXT_PUBLIC_DRUPAL_BASE_URL=$NEXT_PUBLIC_DRUPAL_BASE_URL \
-    NEXT_IMAGE_DOMAIN=$NEXT_IMAGE_DOMAIN \
-    DRUPAL_FRONT_PAGE=$DRUPAL_FRONT_PAGE \
-    DRUPAL_SITE_ID=$DRUPAL_SITE_ID \
-    DRUPAL_CLIENT_ID=$DRUPAL_CLIENT_ID \
-    DRUPAL_PREVIEW_SECRET=$DRUPAL_PREVIEW_SECRET \
-    DRUPAL_CLIENT_SECRET=$DRUPAL_CLIENT_SECRET \
-    MATOMO_SITE_ID=$MATOMO_SITE_ID \
-    MATOMO_URL=$MATOMO_URL \
-    ELASTICSEARCH_URL=$ELASTICSEARCH_URL \
-    NEXT_TELEMETRY_DISABLED=1
+ENV DRUPAL_PREVIEW_SECRET=$DRUPAL_PREVIEW_SECRET
+ENV DRUPAL_CLIENT_SECRET=$DRUPAL_CLIENT_SECRET
+
+ENV MATOMO_SITE_ID=$MATOMO_SITE_ID
+ENV MATOMO_URL=$MATOMO_URL
+ENV ELASTICSEARCH_URL=$ELASTICSEARCH_URL
+
+ENV NEXT_TELEMETRY_DISABLED 1
 
 WORKDIR /app
-
-# Copy only the necessary source files
 COPY . .
+COPY --from=deps /app/node_modules ./node_modules
 
-# Build the project
+
 RUN yarn build
+# Prune dev & build deps until we can use Yarn 2 which does it on the next line
+RUN rm -rf node_modules
+# Install only production runtime deps
+RUN yarn install --production --ignore-scripts --prefer-offline
 
-# Remove dev dependencies and keep only production dependencies
-RUN yarn install --production --ignore-scripts --prefer-offline --silent && \
-    rm -rf /app/node_modules /app/.cache /root/.cache
-
-# ==========================================
-FROM registry.access.redhat.com/ubi8/nodejs-18-minimal AS production
-# ==========================================
-
-ARG NEXT_PUBLIC_CAPTCHA_KEY
-ARG NEWSLETTER_BASE_URL
-ARG NEWSLETTER_APIKEY
-
-ENV NEXT_PUBLIC_CAPTCHA_KEY=$NEXT_PUBLIC_CAPTCHA_KEY \
-    NEWSLETTER_BASE_URL=$NEWSLETTER_BASE_URL \
-    NEWSLETTER_APIKEY=$NEWSLETTER_APIKEY \
-    NODE_ENV=production \
-    PATH=$PATH:/app/node_modules/.bin \
-    PORT=8080
+# =======================================
+FROM registry.access.redhat.com/ubi8/nodejs-18 AS runner
+# =======================================
 
 WORKDIR /app
+# USER node:0
+ENV NODE_ENV production
+ENV CACHE_REPOPULATE '1'
+#DEBUG add curl to container for network debugging purposes
+RUN apk --no-cache add curl
 
-# Copy necessary files for production from the builder stage
-COPY --from=builder /app/next.config.js /app/next-i18next.config.js /app/package.json /app/
-COPY --from=builder /app/.next/standalone ./
-COPY --from=builder /app/.next/static ./.next/static
+
+COPY --from=builder /app/.next ./.next
+COPY --from=builder /app/next.config.js ./next.config.js
 COPY --from=builder /app/public ./public
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package.json ./package.json
+COPY --from=builder /app/next-i18next.config.js ./next-i18next.config.js
+COPY --from=builder /app/logs ./logs
 
-# OpenShift write access to Next cache folder
-USER root
-RUN chgrp -R 0 /app/.next/server/pages && chmod g+w -R /app/.next/server/pages
-USER default
+# env debug line for debugging environment variables in Azure.
+# If you are sure if all env vars are available in both build- and runtime,
+# copy .env.production to runner so that runtime can have new env vars from repo if needed
+#COPY --from=builder /app/.env.production .env.production
 
-# Expose the application port
-EXPOSE $PORT
 
-# Start Next.js server
-CMD ["node", "./server.js"]
+# node process user should be able to write to .next/*
+RUN chmod -R a+rwx ./.next
+RUN chmod -R a+rwx ./logs
+
+
+EXPOSE 8080
+ENV PORT=8080
+
+# Next.js collects completely anonymous telemetry data about general usage.
+# Learn more here: https://nextjs.org/telemetry
+# We don't use it.
+ENV NEXT_TELEMETRY_DISABLED 1
+
+CMD ["yarn", "start"]
