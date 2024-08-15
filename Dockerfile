@@ -2,17 +2,22 @@
 FROM registry.access.redhat.com/ubi8/nodejs-18 AS deps
 # =======================================
 
+# Set root user for installation
 USER root
 
 # Install additional dependencies and Yarn in a single RUN command
-RUN yum install -y glibc-langpack-en curl && \
+RUN yum install -y glibc-langpack-en curl --setopt=tsflags=nodocs && \
     curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo && \
-    yum -y install yarn && \
+    yum -y install yarn --setopt=tsflags=nodocs && \
     yum clean all
 
 WORKDIR /app
+
+# Copy only the package files for installing dependencies
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+
+# Install dependencies without writing yarn logs to disk
+RUN yarn install --frozen-lockfile --silent
 
 # =======================================
 FROM deps AS builder
@@ -49,33 +54,37 @@ ENV CACHE_REPOPULATE=0 \
     NEXT_TELEMETRY_DISABLED=1
 
 WORKDIR /app
+
+# Copy only the necessary source files
 COPY . .
 
 # Build the project
 RUN yarn build
 
 # Remove dev dependencies and keep only production dependencies
-RUN rm -rf node_modules && \
-    yarn install --production --ignore-scripts --prefer-offline
+RUN yarn install --production --ignore-scripts --prefer-offline --silent && \
+    rm -rf /app/node_modules /app/.cache /root/.cache
 
 # ==========================================
-FROM builder AS production
+FROM registry.access.redhat.com/ubi8/nodejs-18-minimal AS production
 # ==========================================
 
 ARG NEXT_PUBLIC_CAPTCHA_KEY
 ARG NEWSLETTER_BASE_URL
 ARG NEWSLETTER_APIKEY
-ENV NEWSLETTER_BASE_URL=$NEWSLETTER_BASE_URL
-ENV NEWSLETTER_APIKEY=$NEWSLETTER_APIKEY
+
+ENV NEXT_PUBLIC_CAPTCHA_KEY=$NEXT_PUBLIC_CAPTCHA_KEY \
+    NEWSLETTER_BASE_URL=$NEWSLETTER_BASE_URL \
+    NEWSLETTER_APIKEY=$NEWSLETTER_APIKEY \
+    NODE_ENV=production \
+    PATH=$PATH:/app/node_modules/.bin \
+    PORT=8080
 
 WORKDIR /app
 
-ENV PATH $PATH:/app/node_modules/.bin
-ENV NODE_ENV production
-
-# Copy necessary files for production
+# Copy necessary files for production from the builder stage
 COPY --from=builder /app/next.config.js /app/next-i18next.config.js /app/package.json /app/
-COPY --from=builder /app/.next/standalone .
+COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 
@@ -84,7 +93,7 @@ USER root
 RUN chgrp -R 0 /app/.next/server/pages && chmod g+w -R /app/.next/server/pages
 USER default
 
-# Expose port
+# Expose the application port
 EXPOSE $PORT
 
 # Start Next.js server
