@@ -84,10 +84,11 @@ COPY --from=builder /app/logs ./logs
 # If you are sure if all env vars are available in both build- and runtime,
 # copy .env.production to runner so that runtime can have new env vars from repo if needed
 #COPY --from=builder /app/.env.production .env.production
+
+# node process user should be able to write to .next/*
 USER root
-RUN chgrp -R 0 ./next/ && chmod g+w -R ./.next/
-RUN chgrp -R 0 ./logs/ && chmod g+w -R ./logs/
-USER default
+RUN chmod -R a+rwx ./.next
+RUN chmod -R a+rwx ./logs
 
 EXPOSE 8080
 ENV PORT=8080
