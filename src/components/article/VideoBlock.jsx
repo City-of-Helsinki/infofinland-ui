@@ -16,7 +16,7 @@ const VideoBlock = ({ url, title }) => {
       <div
         className="flex justify-center pt-2 mt-4 border-t border-gray-lighter aspect-video"
         role="button"
-        arial-label={t('video.button')}
+        aria-label={t('video.button')}
       >
         <ReactPlayer
           light

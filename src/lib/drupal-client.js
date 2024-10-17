@@ -18,7 +18,7 @@ export const getDrupalClient = (withAuth) => {
     // Make preview work in development environment.
     forceIframeSameSiteCookie: process.env.NODE_ENV === 'development',
     ...(withAuth && { withAuth: true }),
-    next: { revalidate: REVALIDATE_TIME }
+    next: { revalidate: REVALIDATE_TIME },
   })
 }
 

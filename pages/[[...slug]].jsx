@@ -26,7 +26,8 @@ import getDrupalClient from '@/lib/drupal-client'
 const USE_TIMER = process.env.USE_TIMER || false
 
 export async function getStaticPaths() {
-  const { DRUPAL_MENUS, BUILD_ALL, BUILD_PHASE } = getConfig().serverRuntimeConfig;
+  const { DRUPAL_MENUS, BUILD_ALL, BUILD_PHASE } =
+    getConfig().serverRuntimeConfig
 
   if (BUILD_PHASE) {
     return {
@@ -94,7 +95,7 @@ export async function getStaticProps(context) {
   }
 
   const entityLangcode = translatedPath?.entity?.langcode
-  const isRedirect = translatedPath?.redirect;
+  const isRedirect = translatedPath?.redirect
   // If page doesn't exist on current language.
   if (!isRedirect && locale !== entityLangcode) {
     logger.warn('Requested language version not found', {
@@ -235,9 +236,7 @@ export async function getStaticProps(context) {
   }
 
   // Format date in server. Don't load luxon to browser for one single formatting task.
-  const lastUpdated = DateTime.fromISO(node.changed).toFormat(
-    'dd.MM.yyyy'
-  )
+  const lastUpdated = DateTime.fromISO(node.changed).toFormat('dd.MM.yyyy')
 
   USE_TIMER && console.log('page ready')
 
