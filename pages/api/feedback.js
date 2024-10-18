@@ -32,13 +32,7 @@ export default async function handler(request, response) {
   // Send feedback form to drupal
   if (request.method === 'POST') {
     try {
-      const {
-        sender_email,
-        message,
-        page,
-        name,
-        uuid,
-      } = request?.body
+      const { sender_email, message, page, name, uuid } = request?.body
       const form_response = await axios.post(POST_URL, {
         sender_email,
         message,

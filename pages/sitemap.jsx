@@ -21,7 +21,8 @@ import getDrupalClient from '@/lib/drupal-client'
 
 export async function getStaticProps(context) {
   const { locale, preview } = context
-  const { SITEMAP_PAGE_PATH, DRUPAL_MENUS, REVALIDATE_TIME } = getConfig().serverRuntimeConfig
+  const { SITEMAP_PAGE_PATH, DRUPAL_MENUS, REVALIDATE_TIME } =
+    getConfig().serverRuntimeConfig
 
   if (i18n.disabledLocales.includes(locale)) {
     return NOT_FOUND
@@ -59,7 +60,7 @@ export async function getStaticProps(context) {
       menus,
       ...(await serverSideTranslations(locale, ['common'])),
     },
-    revalidate: REVALIDATE_TIME
+    revalidate: REVALIDATE_TIME,
   }
 }
 
@@ -104,10 +105,10 @@ export default function SiteMap({ node, urls, menus }) {
   return (
     <>
       <CommonHead key={`head-sitemap-${node?.id}`} node={node} />
-       <SecondaryLayout node={node} menus={menus}>
-         <Block>
-           <h1 className="mt-16 mb-8 text-h1 md:text-h1xl">{node?.title}</h1>
-           <SitemapList
+      <SecondaryLayout node={node} menus={menus}>
+        <Block>
+          <h1 className="mt-16 mb-8 text-h1 md:text-h1xl">{node?.title}</h1>
+          <SitemapList
             urls={[
               { url: `/${locale}`, title: t('breadcrumbs.frontpage') },
               ...urls?.main,
@@ -115,16 +116,19 @@ export default function SiteMap({ node, urls, menus }) {
             name={DRUPAL_MENUS.MAIN}
           />
 
-           <SitemapList
-             urls={[
-               { url: `/${locale}/${DRUPAL_MENUS.CITIES}`, title: t('frontpage.cities.title') },
-               ...urls?.cities,
-             ]}
-             name={DRUPAL_MENUS.CITIES}
-           />
-           <SitemapList urls={urls?.about} name={DRUPAL_MENUS.ABOUT} />
-         </Block>
-       </SecondaryLayout>
+          <SitemapList
+            urls={[
+              {
+                url: `/${locale}/${DRUPAL_MENUS.CITIES}`,
+                title: t('frontpage.cities.title'),
+              },
+              ...urls?.cities,
+            ]}
+            name={DRUPAL_MENUS.CITIES}
+          />
+          <SitemapList urls={urls?.about} name={DRUPAL_MENUS.ABOUT} />
+        </Block>
+      </SecondaryLayout>
     </>
   )
 }

@@ -18,5 +18,11 @@ module.exports = {
         ],
       },
     ],
+    'react/no-unknown-property': [
+      'error',
+      {
+        ignore: ['jsx', 'global'],
+      },
+    ],
   },
 }

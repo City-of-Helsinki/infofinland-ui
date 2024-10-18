@@ -7,10 +7,10 @@ trigger:
       - dev
   paths:
     exclude:
-    - '*.md'
-    - '.github/'
-    - 'pipelines/infofinland-ui-production.yml'
-    - 'pipelines/infofinland-ui-staging.yml'
+      - '*.md'
+      - '.github/'
+      - 'pipelines/infofinland-ui-production.yml'
+      - 'pipelines/infofinland-ui-staging.yml'
 
 # Pull request (PR) triggers cause a pipeline to run whenever a pull request is
 # opened with one of the specified target branches, or when updates are made to
@@ -38,10 +38,10 @@ extends:
   # Filename in Azure DevOps Repository
   template: components/infofinland-ui/pipelines/infofinland-ui-test.yml@infofinland-pipelines
   # parameters:
-    # Application build arguments and config map values as key value pairs.
-    # Does not contain all buildArguments or configMap values, the rest located in infofinland-pipelines
-    # The values here will override the values defined in the infofinland-pipelines repository
-    # buildArgs:
-    #   DEBUG: 1
-    # configMap: # pod environment variables
-    #   DEBUG: 1
+  # Application build arguments and config map values as key value pairs.
+  # Does not contain all buildArguments or configMap values, the rest located in infofinland-pipelines
+  # The values here will override the values defined in the infofinland-pipelines repository
+  # buildArgs:
+  #   DEBUG: 1
+  # configMap: # pod environment variables
+  #   DEBUG: 1
