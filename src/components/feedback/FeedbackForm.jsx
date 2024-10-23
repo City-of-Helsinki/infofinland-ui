@@ -5,7 +5,7 @@ import { useForm } from 'react-hook-form'
 import InfoBlock from '@/components/feedback/InfoBlock'
 import { isSSR } from '@/hooks/useIsomorphicLayoutEffect'
 import axios from 'axios'
-import {nodeIdAtom} from '@/src/store'
+import { nodeIdAtom } from '@/src/store'
 import { useAtomValue } from 'jotai/utils'
 
 // eslint-disable-next-line react/display-name
@@ -99,7 +99,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
                 aria-required="true"
                 id="ifu-feedback-name"
                 className="ifu-feedback__input"
-                disable={isSubmitting.toString()}
+                disabled={isSubmitting.toString()}
                 {...register('name', { required: true })}
               />
             </div>
@@ -120,7 +120,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
                 type="email"
                 id="ifu-feedback-email"
                 aria-required="true"
-                disable={isSubmitting.toString()}
+                disabled={isSubmitting.toString()}
                 className="ifu-feedback__input"
                 {...register('sender_email', {
                   required: true,
@@ -146,7 +146,7 @@ const FeedbackForm = forwardRef(({ onCancel }, ref) => {
                 rows="6"
                 aria-required="true"
                 className="ifu-feedback__input"
-                disable={isSubmitting.toString()}
+                disabled={isSubmitting.toString()}
                 {...register('message', { required: true })}
               ></textarea>
             </div>
