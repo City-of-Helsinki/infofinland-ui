@@ -12,7 +12,7 @@ const SubMenuItem = ({ title, url, selected, items, level, isOpen }) => {
       <Link passHref href={url} locale={false} prefetch={false}>
         <a
           aria-current={selected ? 'page' : undefined}
-          tabIndex={isOpen ? '0' : '-1'}
+          tabIndex={isOpen ? 0 : -1}
           className={cls('ifu-mainmenu__item--subitem', {
             'ps-10 ': level === 1,
             'ps-14': level === 2,
