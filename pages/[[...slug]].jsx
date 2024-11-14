@@ -188,6 +188,9 @@ export async function getStaticProps(context) {
     }
   }
 
+  // Next.js complains about large page data on every page. The major
+  // contributor seems to be huge menu structure that is included on each page.
+  // See more info here: https://nextjs.org/docs/messages/large-page-data.
   let menus = {}
   if (node.field_layout === 'small') {
     menus = await getCachedAboutMenus({ locale, withAuth })

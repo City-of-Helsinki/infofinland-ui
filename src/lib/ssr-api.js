@@ -1,7 +1,7 @@
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 import getConfig from 'next/config'
 import { CONTENT_TYPES, NODE_TYPES } from './DRUPAL_API_TYPES'
-import { getMunicipalityParams, getThemeHeroParams } from './query-params'
+import { getMenuParams, getMunicipalityParams, getThemeHeroParams } from './query-params'
 import { getHeroFromNode, getRedirect } from './ssr-helpers'
 
 import { getQueryParamsFor } from './query-params'
@@ -55,10 +55,12 @@ export const getCachedAboutMenus = async ({ locale, withAuth }) => {
     drupal.getMenu(DRUPAL_MENUS.ABOUT, {
       locale,
       defaultLocale: NO_DEFAULT_LOCALE,
+      params: getMenuParams(),
     }),
     drupal.getMenu(DRUPAL_MENUS.FOOTER, {
       locale,
       defaultLocale: NO_DEFAULT_LOCALE,
+      params: getMenuParams(),
     }),
   ])
 
@@ -84,6 +86,7 @@ export const getCachedMainMenus = async ({ locale, withAuth }) => {
     drupal.getMenu(DRUPAL_MENUS.MAIN, {
       locale,
       defaultLocale: NO_DEFAULT_LOCALE,
+      params: getMenuParams(),
     }),
   ])
 
@@ -109,6 +112,7 @@ export const getCachedCitiesMenus = async ({ locale, withAuth }) => {
     drupal.getMenu(DRUPAL_MENUS.CITIES, {
       locale,
       defaultLocale: NO_DEFAULT_LOCALE,
+      params: getMenuParams(),
     }),
   ])
 
@@ -128,6 +132,7 @@ export const getMainMenus = async ({ locale, withAuth }) => {
       .getMenu(DRUPAL_MENUS.MAIN, {
         locale,
         defaultLocale: NO_DEFAULT_LOCALE,
+        params: getMenuParams(),
       })
       .catch((e) => {
         logger.error('Error fetching main menu:', { e, locale })
@@ -138,6 +143,7 @@ export const getMainMenus = async ({ locale, withAuth }) => {
       .getMenu(DRUPAL_MENUS.CITIES_LANDING, {
         locale,
         defaultLocale: NO_DEFAULT_LOCALE,
+        params: getMenuParams(),
       })
       .catch((e) => {
         logger.error('Error fetching cities-main menu:', { e, locale })
@@ -148,6 +154,7 @@ export const getMainMenus = async ({ locale, withAuth }) => {
       .getMenu(DRUPAL_MENUS.CITIES, {
         locale,
         defaultLocale: NO_DEFAULT_LOCALE,
+        params: getMenuParams(),
       })
       .catch((e) => {
         logger.error('Error fetching cities menu:', { e, locale })
@@ -158,6 +165,7 @@ export const getMainMenus = async ({ locale, withAuth }) => {
       .getMenu(DRUPAL_MENUS.FOOTER, {
         locale,
         defaultLocale: NO_DEFAULT_LOCALE,
+        params: getMenuParams(),
       })
       .catch((e) => {
         logger.error('Error fetching footer menu:', { e, locale })
@@ -310,7 +318,13 @@ export const getMunicipalities = async ({ locale, withAuth }) =>
     locale,
     defaultLocale: NO_DEFAULT_LOCALE,
     params: getMunicipalityParams(),
-  })
+  }).then(
+    // Filter unused properties:
+    municipalities => municipalities.map(municipality => ({
+      id: municipality.id,
+      name: municipality.name,
+    }))
+  )
 
 export const getFeedbackPage = async ({ locale }) => {
   const { FEEDBACK_PAGE_PATH } = getConfig().serverRuntimeConfig
