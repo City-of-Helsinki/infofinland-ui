@@ -1,5 +1,4 @@
 import { IconAngleDown, IconAngleUp } from '@/components/Icons'
-import Link from 'next/link'
 import cls from 'classnames'
 import useLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import { useTranslation } from 'next-i18next'
@@ -9,20 +8,19 @@ import { useRef } from 'react'
 const SubMenuItem = ({ title, url, selected, items, level, isOpen }) => {
   return (
     <li className="block">
-      <Link passHref href={url} locale={false} prefetch={false}>
-        <a
-          aria-current={selected ? 'page' : undefined}
-          tabIndex={isOpen ? 0 : -1}
-          className={cls('ifu-mainmenu__item--subitem', {
-            'ps-10 ': level === 1,
-            'ps-14': level === 2,
-            'border-s-5 border-blue/75 hover:border-blue  font-bold': selected,
-            'border-s-5 border-white ': !selected,
-          })}
-        >
-          {title}
-        </a>
-      </Link>
+      <a
+        href={url}
+        aria-current={selected ? 'page' : undefined}
+        tabIndex={isOpen ? 0 : -1}
+        className={cls('ifu-mainmenu__item--subitem', {
+          'ps-10 ': level === 1,
+          'ps-14': level === 2,
+          'border-s-5 border-blue/75 hover:border-blue  font-bold': selected,
+          'border-s-5 border-white ': !selected,
+        })}
+      >
+        {title}
+      </a>
       {items && (
         <SubMenuItems items={items} level={level + 1} isOpen={isOpen} />
       )}
@@ -98,16 +96,15 @@ const SubMenu = ({
             'border-white hover:border-gray-white': !secondarySelection,
           })}
         >
-          <Link passHref href={url} prefetch={false} locale={false}>
-            <a
-              className="flex-grow py-4"
-              aria-current={selected ? 'page' : undefined}
-            >
-              <span className={cls('block', { 'font-bold': selected })}>
-                {title}
-              </span>
-            </a>
-          </Link>
+          <a
+            href={url}
+            className="flex-grow py-4"
+            aria-current={selected ? 'page' : undefined}
+          >
+            <span className={cls('block', { 'font-bold': selected })}>
+              {title}
+            </span>
+          </a>
           <div className="flex-none">
             <button
               className="inline-flex relative justify-center items-center w-16 h-12"

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
 import cls from 'classnames'
 import SubMenu from '@/components/navi/SubMenu'
 import useLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
@@ -21,6 +20,7 @@ const getThemeIndexByPathName = ({ items, path }) => {
   })
   return index
 }
+
 const TopMenuItem = ({
   title,
   url,
@@ -38,19 +38,18 @@ const TopMenuItem = ({
       })}
     >
       {!items && (
-        <Link href={url} locale={false} prefetch={false}>
-          <a
-            aria-current={selected ? 'page' : undefined}
-            className={cls('ifu-mainmenu__item--link', {
-              'font-bold': selected,
-              'border-white': !selected,
-              'border-blue':
-                (selected && (!isOpen || !items)) || selectedIsHidden,
-            })}
-          >
-            {title}
-          </a>
-        </Link>
+        <a
+          href={url}
+          aria-current={selected ? 'page' : undefined}
+          className={cls('ifu-mainmenu__item--link', {
+            'font-bold': selected,
+            'border-white': !selected,
+            'border-blue':
+              (selected && (!isOpen || !items)) || selectedIsHidden,
+          })}
+        >
+          {title}
+        </a>
       )}
 
       {items && (
