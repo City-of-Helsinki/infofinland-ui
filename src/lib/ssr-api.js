@@ -310,7 +310,13 @@ export const getMunicipalities = async ({ locale, withAuth }) =>
     locale,
     defaultLocale: NO_DEFAULT_LOCALE,
     params: getMunicipalityParams(),
-  })
+  }).then(
+    // Filter unused properties:
+    municipalities => municipalities.map(municipality => ({
+      id: municipality.id,
+      name: municipality.name,
+    }))
+  )
 
 export const getFeedbackPage = async ({ locale }) => {
   const { FEEDBACK_PAGE_PATH } = getConfig().serverRuntimeConfig
