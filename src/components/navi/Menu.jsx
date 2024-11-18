@@ -4,6 +4,7 @@ import SubMenu from '@/components/navi/SubMenu'
 import useLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import { findRootForPath, getRootPages } from '@/lib/menu-utils'
 import { IconExclamationCircle } from '../Icons'
+import NaviLink from "@/components/navi/NaviLink";
 
 const getThemeIndexByPathName = ({ items, path }) => {
   let index
@@ -38,7 +39,7 @@ const TopMenuItem = ({
       })}
     >
       {!items && (
-        <a
+        <NaviLink
           href={url}
           aria-current={selected ? 'page' : undefined}
           className={cls('ifu-mainmenu__item--link', {
@@ -49,7 +50,7 @@ const TopMenuItem = ({
           })}
         >
           {title}
-        </a>
+        </NaviLink>
       )}
 
       {items && (

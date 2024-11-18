@@ -4,11 +4,12 @@ import useLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import { useTranslation } from 'next-i18next'
 import { useEffect } from 'react'
 import { useRef } from 'react'
+import NaviLink from "@/components/navi/NaviLink";
 
 const SubMenuItem = ({ title, url, selected, items, level, isOpen }) => {
   return (
     <li className="block">
-      <a
+      <NaviLink
         href={url}
         aria-current={selected ? 'page' : undefined}
         tabIndex={isOpen ? 0 : -1}
@@ -20,7 +21,7 @@ const SubMenuItem = ({ title, url, selected, items, level, isOpen }) => {
         })}
       >
         {title}
-      </a>
+      </NaviLink>
       {items && (
         <SubMenuItems items={items} level={level + 1} isOpen={isOpen} />
       )}
@@ -96,7 +97,7 @@ const SubMenu = ({
             'border-white hover:border-gray-white': !secondarySelection,
           })}
         >
-          <a
+          <NaviLink
             href={url}
             className="flex-grow py-4"
             aria-current={selected ? 'page' : undefined}
@@ -104,7 +105,7 @@ const SubMenu = ({
             <span className={cls('block', { 'font-bold': selected })}>
               {title}
             </span>
-          </a>
+          </NaviLink>
           <div className="flex-none">
             <button
               className="inline-flex relative justify-center items-center w-16 h-12"
