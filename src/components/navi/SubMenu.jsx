@@ -1,28 +1,27 @@
 import { IconAngleDown, IconAngleUp } from '@/components/Icons'
-import Link from 'next/link'
 import cls from 'classnames'
 import useLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import { useTranslation } from 'next-i18next'
 import { useEffect } from 'react'
 import { useRef } from 'react'
+import NaviLink from "@/components/navi/NaviLink";
 
 const SubMenuItem = ({ title, url, selected, items, level, isOpen }) => {
   return (
     <li className="block">
-      <Link passHref href={url} locale={false} prefetch={false}>
-        <a
-          aria-current={selected ? 'page' : undefined}
-          tabIndex={isOpen ? 0 : -1}
-          className={cls('ifu-mainmenu__item--subitem', {
-            'ps-10 ': level === 1,
-            'ps-14': level === 2,
-            'border-s-5 border-blue/75 hover:border-blue  font-bold': selected,
-            'border-s-5 border-white ': !selected,
-          })}
-        >
-          {title}
-        </a>
-      </Link>
+      <NaviLink
+        href={url}
+        aria-current={selected ? 'page' : undefined}
+        tabIndex={isOpen ? 0 : -1}
+        className={cls('ifu-mainmenu__item--subitem', {
+          'ps-10 ': level === 1,
+          'ps-14': level === 2,
+          'border-s-5 border-blue/75 hover:border-blue  font-bold': selected,
+          'border-s-5 border-white ': !selected,
+        })}
+      >
+        {title}
+      </NaviLink>
       {items && (
         <SubMenuItems items={items} level={level + 1} isOpen={isOpen} />
       )}
@@ -98,16 +97,15 @@ const SubMenu = ({
             'border-white hover:border-gray-white': !secondarySelection,
           })}
         >
-          <Link passHref href={url} prefetch={false} locale={false}>
-            <a
-              className="flex-grow py-4"
-              aria-current={selected ? 'page' : undefined}
-            >
-              <span className={cls('block', { 'font-bold': selected })}>
-                {title}
-              </span>
-            </a>
-          </Link>
+          <NaviLink
+            href={url}
+            className="flex-grow py-4"
+            aria-current={selected ? 'page' : undefined}
+          >
+            <span className={cls('block', { 'font-bold': selected })}>
+              {title}
+            </span>
+          </NaviLink>
           <div className="flex-none">
             <button
               className="inline-flex relative justify-center items-center w-16 h-12"
