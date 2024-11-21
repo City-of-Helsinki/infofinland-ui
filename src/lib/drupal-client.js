@@ -1,5 +1,6 @@
 import { DrupalClient } from 'next-drupal'
 import getConfig from 'next/config'
+
 export const getDrupalClient = (withAuth) => {
   const {
     NEXT_PUBLIC_DRUPAL_BASE_URL,

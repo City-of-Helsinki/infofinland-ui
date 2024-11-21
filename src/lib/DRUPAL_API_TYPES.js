@@ -31,6 +31,7 @@ export const CONTENT_TYPES = {
   LANGUAGE: 'taxonomy_term--language',
   MUNICIPALITY: 'taxonomy_term--municipalitys',
   HERO_COLOR: 'taxonomy_term--colors',
+  MENU_LINK_CONTENT: 'menu_link_content--menu_link_content',
 }
 
 export const TEXT_HTML_FORMAT = 'full_html'

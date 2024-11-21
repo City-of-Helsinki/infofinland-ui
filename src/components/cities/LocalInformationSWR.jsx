@@ -12,6 +12,7 @@ import { ExternalLinkCollection } from '../article/ReadMoreBlock'
 import ParseHtml from '@/components/ParseHtml'
 import { getLocalInformation } from '@/lib/client-api'
 import { nodeIdAtom } from '@/src/store'
+import { useRef } from 'react'
 
 const SWRContent = ({ city, isOpen }) => {
   const { t } = useTranslation('common')
@@ -29,9 +30,13 @@ const SWRContent = ({ city, isOpen }) => {
   const content = field_municipality_info?.find(
     ({ field_national_page: { id } }) => id === pageId
   )
+
+  const nodeRef = useRef(null)
+
   return (
     <CSSTransition
       in={isOpen}
+      nodeRef={nodeRef}
       classNames={{
         appear: 'ifu-local-info__content--appear',
         appearActive: 'ifu-local-info__content--appear-active',
