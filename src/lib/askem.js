@@ -14,10 +14,12 @@ const loadAskemScript = () => {
       if (window.askem.reset) {
         resolve(window.askem.reset);
         clearInterval(intervalId);
+        return;
       }
       if (i > max) {
         reject(false);
         clearInterval(intervalId);
+        return;
       }
       i++;
     }, 750);

@@ -1,41 +1,40 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import getConfig from 'next/config'
-import { loadAskemScript, removeAskemScript } from '@/lib/askem'
+import { loadAskemScript } from '@/lib/askem'
 
 // Only set the script tag once and reset after locale or title changes.
-const useAddAskem = async (locale = 'fi', title = 'Infofinland') => {
-  const [askemScript, setAskemScript] = useState(false);
+const useAddAskem = async (locale, title) => {
+  let apiKey = useRef('');
+  let askemReset = useRef('');
 
   useEffect(() => {
-    if (!askemScript) {
-      resetAskemAfterPageLoad();
-    }
-    else {
-      askemScript();
-    }
+    doAskemReset();
 
-    async function resetAskemAfterPageLoad(){
-      const reset = await loadAskemScript();
-      if (!reset) {
-        return () => { removeAskemScript() }
-      }
-
-      setAskemScript(reset);
-
+    // Wait for the askem-libary to be initialized on first page load
+    // or just reset the library.
+    async function doAskemReset(){
+      let reset = null;
       const configKey = `REACT_AND_SHARE_APIKEY_${locale.toUpperCase()}`;
-      const apiKey = getConfig().publicRuntimeConfig[configKey.toUpperCase()];
+      apiKey.current = getConfig().publicRuntimeConfig[configKey.toUpperCase()];
 
-      if (apiKey) {
-        window.askem.settings = {
-          apiKey: apiKey,
-          title: title,
-          canonicalUrl: window.location.href,
-          categories: ['Infofinland'],
-        };
-        reset();
+      if (!apiKey.current) {
+        return () => {};
+      }
+
+      if (!askemReset.current) {
+        setSettings();
+        reset = await loadAskemScript();
+        askemReset.current = reset;
+        askemReset.current();
       }
     }
-  }, [locale, title, askemScript]);
+
+    function setSettings() {
+      if (window.askem) {window.askem.settings = {apiKey: apiKey.current, title: title,canonicalUrl: window.location.href}}
+      else {window.askem = {settings: {apiKey: apiKey.current, title: title,canonicalUrl: window.location.href}};}
+    }
+
+  }, [locale, title]);
 }
 
 export default useAddAskem;
