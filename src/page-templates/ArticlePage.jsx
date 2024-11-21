@@ -13,6 +13,8 @@ import LocalInformationSelectCity from '@/components/cities/LocalInfoSelectCity'
 import { isRootPage } from '@/lib/menu-utils'
 import getConfig from 'next/config'
 import CommonHead from '@/components/layout/CommonHead'
+import Askem from '@/components/Askem'
+import useAddAskem from '@/hooks/useAddAskem'
 
 const ArticlePage = ({ node, themeMenu, menus }) => {
   const { CITIES_PAGE_PATH } = getConfig().publicRuntimeConfig
@@ -45,6 +47,8 @@ const ArticlePage = ({ node, themeMenu, menus }) => {
   const showThemes =
     asPath === CITIES_PAGE_PATH ||
     isRootPage({ tree: themeMenu.tree, path: localePath })
+
+  useAddAskem(locale, node.title);
 
   return (
     <>
@@ -80,6 +84,7 @@ const ArticlePage = ({ node, themeMenu, menus }) => {
             <ContentMapper content={node.field_content} locale={locale} />
           )}
         </Article>
+        <Askem locale={locale} title={title} />
       </Layout>
     </>
   )

@@ -9,16 +9,11 @@ import MainMenu from '@/components/navi/MainMenu'
 import cls from 'classnames'
 import Favicons from './Favicons'
 import Menu from '@/components/navi/Menu'
-import { Askem } from '@/components/Askem'
 
 // Layout names from Drupal
 export const LAYOUT_BASIC = 'basic'
 export const LAYOUT_SMALL = 'small'
 
-const FeedbackBlock = dynamic(
-  () => import('@/components/feedback/FeedbackBlock'),
-  { ssr: false }
-)
 const Messages = dynamic(() => import('@/components/messages/Messages'), {
   ssr: false,
 })
@@ -31,7 +26,6 @@ const CookieConsentBar = dynamic(
 /**
  * Set ReactModal root element for a18y
  */
-
 if (process.env.NODE_ENV !== 'test') {
   ReactModal.setAppElement('#__next')
 }
@@ -69,7 +63,6 @@ export const SecondaryLayout = ({ children, className, menus }) => {
             <main id="main">{children}</main>
             <footer className="ifu-footer" id="footer">
               <FooterLinks secondary tree={menus.footer.tree} />
-              <FeedbackBlock />
             </footer>
           </div>
         </div>
@@ -105,7 +98,6 @@ const AppLayout = ({ children, className, menus }) => {
         <div className="hidden md:block flex-none w-navi border-black-op1 border-e-2"></div>
         <div className="ifu-layout__body">
           <main id="main">{children}</main>
-          <Askem locale={locale}></Askem>
           <footer className="ifu-footer" id="footer">
             <FooterLinks tree={menus.footer.tree} />
           </footer>
