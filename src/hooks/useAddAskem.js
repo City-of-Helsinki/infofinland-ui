@@ -8,7 +8,7 @@ const useAddAskem = async (locale = 'fi', title = 'Infofinland') => {
 
   useEffect(() => {
     if (!askemScript) {
-      // resetAskemAfterPageLoad();
+      resetAskemAfterPageLoad();
     }
     else {
       askemScript();
