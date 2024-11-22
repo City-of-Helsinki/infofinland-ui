@@ -25,8 +25,8 @@ const useAddAskem = async (locale, title) => {
         setSettings();
         reset = await loadAskemScript();
         askemReset.current = reset;
-        askemReset.current();
       }
+      askemReset.current();
     }
 
     function setSettings() {
