@@ -25,6 +25,8 @@ const useAddAskem = async (locale, title) => {
         console.log(`An error occurred while loading Askem script: ${error}`);
       });
       reset();
+
+      return () => {};
     }
 
     function setSettings() {
