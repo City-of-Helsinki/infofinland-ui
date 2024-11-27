@@ -21,12 +21,9 @@ const useAddAskem = async (locale, title) => {
       }
 
       setSettings();
-
-      reset = await loadAskemScript().catch((error)=> {
-        console.log(`Error while initializing askem script: ${error}`);
-        return () => {};
+      reset = await loadAskemScript().catch((error)=>{
+        console.log(`An error occurred while loading Askem script: ${error}`);
       });
-
       reset();
 
       return () => {};
@@ -34,9 +31,10 @@ const useAddAskem = async (locale, title) => {
 
     function setSettings() {
       const settings = {
-        apikey: apiKey.current,
+        apiKey: apiKey.current,
         title: title,
-        canonicalUrl: window.location.href
+        canonicalUrl: window.location.href,
+        disableFonts: true
       }
       if (window.askem) {
         window.askem.settings = settings
