@@ -9,6 +9,7 @@ import MainMenu from '@/components/navi/MainMenu'
 import cls from 'classnames'
 import Favicons from './Favicons'
 import Menu from '@/components/navi/Menu'
+import Askem from '@/components/Askem'
 
 // Layout names from Drupal
 export const LAYOUT_BASIC = 'basic'
@@ -100,6 +101,7 @@ const AppLayout = ({ children, className, menus }) => {
           <main id="main">{children}</main>
           <footer className="ifu-footer" id="footer">
             <FooterLinks tree={menus.footer.tree} />
+            <Askem />
           </footer>
         </div>
       </div>

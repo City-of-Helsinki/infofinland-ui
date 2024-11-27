@@ -21,8 +21,8 @@ const useAddAskem = async (locale, title) => {
         return () => {};
       }
 
+      setSettings();
       if (!askemReset.current) {
-        setSettings();
         reset = await loadAskemScript();
         askemReset.current = reset;
       }
@@ -30,8 +30,19 @@ const useAddAskem = async (locale, title) => {
     }
 
     function setSettings() {
-      if (window.askem) {window.askem.settings = {apiKey: apiKey.current, title: title,canonicalUrl: window.location.href}}
-      else {window.askem = {settings: {apiKey: apiKey.current, title: title,canonicalUrl: window.location.href}};}
+      const settings = {
+        apikey: apiKey.current,
+        title: title,
+        canonicalUrl: window.location.href,
+        disableFa: true,
+        disableFonts: true
+      }
+      if (window.askem) {
+        window.askem.settings = settings
+      }
+      else {
+        window.askem = {settings: settings}
+      }
     }
 
   }, [locale, title]);

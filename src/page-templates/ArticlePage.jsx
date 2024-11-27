@@ -13,7 +13,6 @@ import LocalInformationSelectCity from '@/components/cities/LocalInfoSelectCity'
 import { isRootPage } from '@/lib/menu-utils'
 import getConfig from 'next/config'
 import CommonHead from '@/components/layout/CommonHead'
-import Askem from '@/components/Askem'
 
 const ArticlePage = ({ node, themeMenu, menus }) => {
   const { CITIES_PAGE_PATH } = getConfig().publicRuntimeConfig
@@ -81,7 +80,6 @@ const ArticlePage = ({ node, themeMenu, menus }) => {
             <ContentMapper content={node.field_content} locale={locale} />
           )}
         </Article>
-        <Askem locale={locale} title={title} />
       </Layout>
     </>
   )
