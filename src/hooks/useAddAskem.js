@@ -5,7 +5,6 @@ import { loadAskemScript } from '@/lib/askem'
 // Only set the script tag once and reset after locale or title changes.
 const useAddAskem = async (locale, title) => {
   let apiKey = useRef('');
-  let askemReset = useRef('');
 
   useEffect(() => {
     doAskemReset();
@@ -22,19 +21,17 @@ const useAddAskem = async (locale, title) => {
       }
 
       setSettings();
-      if (!askemReset.current) {
-        reset = await loadAskemScript();
-        askemReset.current = reset;
-      }
-      askemReset.current();
+      reset = await loadAskemScript().catch((error)=>{
+        console.log(`An error occurred while loading Askem script: ${error}`);
+      });
+      reset();
     }
 
     function setSettings() {
       const settings = {
-        apikey: apiKey.current,
+        apiKey: apiKey.current,
         title: title,
         canonicalUrl: window.location.href,
-        disableFa: true,
         disableFonts: true
       }
       if (window.askem) {
