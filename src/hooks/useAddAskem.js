@@ -33,8 +33,7 @@ const useAddAskem = async (locale, title) => {
       const settings = {
         apikey: apiKey.current,
         title: title,
-        canonicalUrl: window.location.href,
-        disableFonts: true
+        canonicalUrl: window.location.href
       }
       if (window.askem) {
         window.askem.settings = settings
