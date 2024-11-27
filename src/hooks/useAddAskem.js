@@ -34,7 +34,6 @@ const useAddAskem = async (locale, title) => {
         apikey: apiKey.current,
         title: title,
         canonicalUrl: window.location.href,
-        disableFa: true,
         disableFonts: true
       }
       if (window.askem) {
