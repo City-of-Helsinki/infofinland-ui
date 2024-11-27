@@ -21,11 +21,11 @@ const useAddAskem = async (locale, title) => {
         return () => {};
       }
 
-      setSettings();
       if (!askemReset.current) {
         reset = await loadAskemScript();
         askemReset.current = reset;
       }
+      setSettings();
       askemReset.current();
     }
 
@@ -34,7 +34,6 @@ const useAddAskem = async (locale, title) => {
         apikey: apiKey.current,
         title: title,
         canonicalUrl: window.location.href,
-        disableFa: true,
         disableFonts: true
       }
       if (window.askem) {
