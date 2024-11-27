@@ -21,11 +21,11 @@ const useAddAskem = async (locale, title) => {
         return () => {};
       }
 
+      setSettings();
       if (!askemReset.current) {
         reset = await loadAskemScript();
         askemReset.current = reset;
       }
-      setSettings();
       askemReset.current();
     }
 
