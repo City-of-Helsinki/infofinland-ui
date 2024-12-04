@@ -22,6 +22,7 @@ import HomePage from '@/src/page-templates/HomePage'
 import { DateTime } from 'luxon'
 import logger from '@/logger'
 import getDrupalClient from '@/lib/drupal-client'
+import useAddAskem from '@/hooks/useAddAskem'
 
 const USE_TIMER = process.env.USE_TIMER || false
 
@@ -264,6 +265,9 @@ export async function getStaticProps(context) {
  * Layout selector
  */
 const Page = (props) => {
+  const {node} = props;
+  useAddAskem(node.langcode, node.title);
+
   if (props?.type === NODE_TYPES.LANDING_PAGE) {
     return <HomePage {...props} />
   }

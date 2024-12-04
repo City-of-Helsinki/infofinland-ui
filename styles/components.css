@@ -5,13 +5,13 @@
 @import './components.topmenu.css';
 @import './components.hero.css';
 @import './components.loaders.css';
-@import './components.feedback.css';
 @import './components.article.css';
 @import './components.footer.css';
 @import './components.local-info.css';
 @import './components.search.css';
 @import './components.cookies.css';
 @import './components.accordion.css';
+@import './components.askem.css';
 
 @layer components {
   .ifu-layout__body {
