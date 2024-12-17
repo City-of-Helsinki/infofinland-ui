@@ -6,7 +6,7 @@
 import * as Sentry from '@sentry/nextjs'
 import getConfig from 'next/config'
 
-const { SENTRY_PUBLIC_DSN: dsn, SENTRY_RELEASE: release, SENTRY_ENVIRONMENT: environment } =
+const { SENTRY_DSN: dsn, SENTRY_RELEASE: release, SENTRY_ENVIRONMENT: environment } =
   getConfig().serverRuntimeConfig
 
 console.log('client', dsn, release, environment)
