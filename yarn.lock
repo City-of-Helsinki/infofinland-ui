@@ -2002,7 +2002,7 @@
   resolved "https://registry.yarnpkg.com/@sentry/core/-/core-8.45.1.tgz#da3b13a8fd2276e8a1d4f5a38f9b8a0ed6647b49"
   integrity sha512-1fGmkr0paZshh38mD29c4CfkRkgFoYDaAGyDLoGYfTbEph/lU8RHB2HWzN93McqNdMEhl1DRRyqIasUZoPlqSA==
 
-"@sentry/nextjs@8.45.1":
+"@sentry/nextjs@^8":
   version "8.45.1"
   resolved "https://registry.yarnpkg.com/@sentry/nextjs/-/nextjs-8.45.1.tgz#4bad8fe78709c8efe63f34d5b4ed86bfa086efd6"
   integrity sha512-EcUuQHGAk8cheuPfjRCXacjoD5ClDsB9qssYBVIvJozNEW5C+A0eJwPj/Qd1C05tdcJ6MMdMRv0NrTHdCN1v1A==
