@@ -8,8 +8,6 @@ import getConfig from 'next/config'
 const { SENTRY_DSN_PUBLIC: dsn, SENTRY_RELEASE: release, SENTRY_ENVIRONMENT: environment } =
   getConfig().publicRuntimeConfig
 
-console.log('client', dsn, release, environment)
-
 Sentry.init({
   dsn,
   release,
