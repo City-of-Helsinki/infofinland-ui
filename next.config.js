@@ -138,6 +138,10 @@ module.exports = withSentryConfig(module.exports, {
   sentryUrl: process.env.SENTRY_URL,
   authToken: process.env.SENTRY_AUTH_TOKEN,
 
+  sourcemaps: {
+    disable: !process.env.SENTRY_AUTH_TOKEN,
+  },
+
   // Only print logs for uploading source maps in CI
   silent: false,
 
