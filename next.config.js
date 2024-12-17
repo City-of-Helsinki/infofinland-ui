@@ -1,4 +1,5 @@
 const { i18n } = require('./next-i18next.config')
+const { withSentryConfig } = require("@sentry/nextjs")
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
@@ -39,6 +40,9 @@ const env = {
 }
 
 const publicRuntimeConfig = {
+  SENTRY_DSN_PUBLIC: process.env.SENTRY_DSN_PUBLIC,
+  SENTRY_RELEASE: process.env.SENTRY_RELEASE,
+  SENTRY_ENVIRONMENT: process.env.SENTRY_ENVIRONMENT,
   NEXT_PUBLIC_DRUPAL_BASE_URL: process.env.NEXT_PUBLIC_DRUPAL_BASE_URL,
   MATOMO_URL: process.env.MATOMO_URL,
   MATOMO_SITE_ID: process.env.MATOMO_SITE_ID,
@@ -60,6 +64,9 @@ const publicRuntimeConfig = {
 }
 
 const serverRuntimeConfig = {
+  SENTRY_DSN: process.env.SENTRY_DSN,
+  SENTRY_RELEASE: process.env.SENTRY_RELEASE,
+  SENTRY_ENVIRONMENT: process.env.SENTRY_ENVIRONMENT,
   // Will only be available onprocess.env. the server side
   CACHE_REPOPULATE: process.env.CACHE_REPOPULATE || false,
   BUILD_ALL: process.env.BUILD_ALL || false,
@@ -122,4 +129,8 @@ const config = {
   },
 }
 
-module.exports = withBundleAnalyzer(config)
+module.exports = withSentryConfig(withBundleAnalyzer(config), {
+
+
+  silent: false, // Can be used to suppress logs
+})
