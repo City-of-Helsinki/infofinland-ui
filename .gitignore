@@ -9,3 +9,6 @@ coverage
 .vscode
 .env.local*
 .idea/*
+
+# Sentry Config File
+.env.sentry-build-plugin
