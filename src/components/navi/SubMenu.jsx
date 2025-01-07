@@ -4,7 +4,7 @@ import useLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 import { useTranslation } from 'next-i18next'
 import { useEffect } from 'react'
 import { useRef } from 'react'
-import NaviLink from "@/components/navi/NaviLink";
+import NaviLink from '@/components/navi/NaviLink'
 
 const SubMenuItem = ({ title, url, selected, items, level, isOpen }) => {
   return (

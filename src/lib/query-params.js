@@ -185,7 +185,12 @@ export const getMunicipalityParams = () =>
 
 export const getMenuParams = () =>
   new DrupalJsonApiParams()
-    .addFields(CONTENT_TYPES.MENU_LINK_CONTENT, ['id', 'url', 'title','parent'])
+    .addFields(CONTENT_TYPES.MENU_LINK_CONTENT, [
+      'id',
+      'url',
+      'title',
+      'parent',
+    ])
     .getQueryObject()
 
 export const getLocalInfoParams = () =>
