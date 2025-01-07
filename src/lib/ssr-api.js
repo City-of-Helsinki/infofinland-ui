@@ -1,7 +1,11 @@
 import { DrupalJsonApiParams } from 'drupal-jsonapi-params'
 import getConfig from 'next/config'
 import { CONTENT_TYPES, NODE_TYPES } from './DRUPAL_API_TYPES'
-import { getMenuParams, getMunicipalityParams, getThemeHeroParams } from './query-params'
+import {
+  getMenuParams,
+  getMunicipalityParams,
+  getThemeHeroParams,
+} from './query-params'
 import { getHeroFromNode, getRedirect } from './ssr-helpers'
 
 import { getQueryParamsFor } from './query-params'
@@ -314,17 +318,20 @@ export const getCachedMunicipalities = async ({ locale, withAuth }) => {
 }
 
 export const getMunicipalities = async ({ locale, withAuth }) =>
-  getDrupalClient(withAuth).getResourceCollection(CONTENT_TYPES.MUNICIPALITY, {
-    locale,
-    defaultLocale: NO_DEFAULT_LOCALE,
-    params: getMunicipalityParams(),
-  }).then(
-    // Filter unused properties:
-    municipalities => municipalities.map(municipality => ({
-      id: municipality.id,
-      name: municipality.name,
-    }))
-  )
+  getDrupalClient(withAuth)
+    .getResourceCollection(CONTENT_TYPES.MUNICIPALITY, {
+      locale,
+      defaultLocale: NO_DEFAULT_LOCALE,
+      params: getMunicipalityParams(),
+    })
+    .then(
+      // Filter unused properties:
+      (municipalities) =>
+        municipalities.map((municipality) => ({
+          id: municipality.id,
+          name: municipality.name,
+        }))
+    )
 
 export const getFeedbackPage = async ({ locale }) => {
   const { FEEDBACK_PAGE_PATH } = getConfig().serverRuntimeConfig

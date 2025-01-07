@@ -5,8 +5,11 @@
 import * as Sentry from '@sentry/nextjs'
 import getConfig from 'next/config'
 
-const { SENTRY_DSN: dsn, SENTRY_RELEASE: release, SENTRY_ENVIRONMENT: environment } =
-  getConfig().serverRuntimeConfig
+const {
+  SENTRY_DSN: dsn,
+  SENTRY_RELEASE: release,
+  SENTRY_ENVIRONMENT: environment,
+} = getConfig().serverRuntimeConfig
 
 Sentry.init({
   dsn,

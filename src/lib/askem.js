@@ -7,36 +7,36 @@ const loadAskemScript = () => {
       document.body.append(getAskemScriptTag())
     }
 
-    let i = 1;
-    const max = 3;
+    let i = 1
+    const max = 3
 
-    const intervalId = setInterval(()=> {
+    const intervalId = setInterval(() => {
       if (window.askem.reset) {
-        resolve(window.askem.reset);
-        clearInterval(intervalId);
-        return;
+        resolve(window.askem.reset)
+        clearInterval(intervalId)
+        return
       }
       if (i > max) {
-        reject(false);
-        clearInterval(intervalId);
-        return;
+        reject(false)
+        clearInterval(intervalId)
+        return
       }
-      i++;
-    }, 750);
+      i++
+    }, 750)
   })
 }
 
 const removeAskemScript = () => {
-  document.body.removeChild(getAskemScriptTag());
+  document.body.removeChild(getAskemScriptTag())
 }
 
 const getAskemScriptTag = () => {
-  const script = document.createElement('script');
-  script.src = 'https://cdn.askem.com/plugin/askem.js';
-  script.type = 'text/javascript';
-  script.id = 'if-askem-script';
+  const script = document.createElement('script')
+  script.src = 'https://cdn.askem.com/plugin/askem.js'
+  script.type = 'text/javascript'
+  script.id = 'if-askem-script'
 
-  return script;
+  return script
 }
 
-export {loadAskemScript, getAskemScriptTag, removeAskemScript};
+export { loadAskemScript, getAskemScriptTag, removeAskemScript }
