@@ -17,6 +17,8 @@
   --askem-max-width: 688px;
   --button-spacing: 24px;
   --border-color: #000000;
+  --disclaimer-color: #000000;
+  --header-reactions-spacing: 24px;
   --hover-background: #000000;
   --hover-color: #ffffff;
   --icon-color: #000000;
@@ -43,6 +45,10 @@
     max-width: var(--askem-max-width);
   }
 
+  .askem-plugin .askem-reactions-group {
+    margin-block-start: var(--header-reactions-spacing);
+  }
+
   .askem-plugin .askem-inputs,
   .askem-plugin .askem-reactions-group {
     padding-inline: var(--wrapper-spacing);
@@ -52,7 +58,8 @@
   /* Button styles for the whole plugin. */
   .askem-plugin {
     .askem-reactions-group .askem-reaction .askem-reaction-button,
-    .askem-inputs .askem-form-submit {
+    .askem-inputs .askem-form-submit:not(.disabled),
+    .askem-inputs .askem-form-submit.disabled {
       box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
         var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
       font-weight: 700;
@@ -169,6 +176,11 @@
     top: auto;
   }
 
+  /* Override Askem header font size. */
+  .askem-plugin .askem-header {
+    font-size: 18px;
+  }
+
   /* Override some of the Askem textarea styles. */
   .askem-plugin .askem-inputs .askem-input-field {
     --tw-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15);
@@ -176,6 +188,17 @@
     border-radius: 5px;
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
       var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+  }
+
+  /* Override some of the Askem input area header styles. */
+  .askem-plugin .askem-inputs .askem-input-header {
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  .askem-plugin .askem-inputs .askem-input-disclaimer {
+    color: var(--disclaimer-color);
+    font-size: 16px;
   }
 
   /* Override some of the Askem submit button styles. */
