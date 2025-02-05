@@ -11,7 +11,7 @@ exports[`VideoBlock should render a ReactPlayer with given url  and title inside
       Video Title
     </h3>
     <div
-      arial-label="video.button"
+      aria-label="video.button"
       class="flex justify-center pt-2 mt-4 border-t border-gray-lighter aspect-video"
       role="button"
     />

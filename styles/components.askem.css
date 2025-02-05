@@ -2,90 +2,219 @@
   Askem CSS Style Guide
 */
 
+/* The feedback section should be hidden on front page. */
 .ifu-landing section.feedback {
   display: none;
 }
 
-section.feedback {
+/* This hides the Askem-footer that links to their website. */
+.askem-footer {
+  display: none;
 }
 
-div.askem {
-  height: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+/* Variables to be used inside the Askem plugin */
+.askem * {
+  --askem-max-width: 688px;
+  --button-spacing: 24px;
+  --border-color: #000000;
+  --disclaimer-color: #000000;
+  --header-reactions-spacing: 24px;
+  --hover-background: #000000;
+  --hover-color: #ffffff;
+  --icon-color: #000000;
+  --icon-size: 24px;
+  --icon-spacing: 8px;
+  --selected-color: #ffffff;
+  --submit-button-spacing: 24px;
+  --tw-shadow: 0px 2px rgba(0, 0, 0, 0.15);
+  --wrapper-spacing: 5px;
 }
 
-/* General styles */
-.askem-plugin {
-  /* You can add your general and the Askem wrapper styling here, such as font-family. */
-}
-.askem-plugin .askem-header {
-  /* This affects all headers in the plugin */
-}
+.feedback {
+  overflow: hidden;
 
-/* Reaction button */
-.askem-plugin .askem-reactions-group .askem-reaction-button {
-  --tw-border-opacity: 1;
-  --tw-bg-opacity: 1;
-  --tw-text-opacity: 1;
-  --tw-shadow: 0px 2px rgba(0, 0, 0, .15);
-  --tw-shadow-colored: 0px 2px var(--tw-shadow-color);
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-  border-color: rgb(51 51 51 / var(--tw-border-opacity));
-  border-radius: 5px;
-  border-width: 2px;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
-  display: inline-block;
-  font-family: Noto Sans, Noto Sans Arabic, Noto Sans Chinese, sans-serif;
-  font-weight: 700;
-  line-height: 1.5rem;
-  padding: .5rem 1rem;
-}
+  .askem {
+    height: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 
-/* Label */
-.askem-plugin .askem-reactions-group .askem-reaction-button .askem-label {
-  /* Add reaction button label text styles here. */
-}
+  .askem-plugin {
+    font-family: Noto Sans, Noto Sans Arabic, Noto Sans Chinese, sans-serif;
+    margin-block: 4rem;
+    max-width: var(--askem-max-width);
+  }
 
-/* For hover/active styles, just add :hover after .askem-reaction-button */
-/* For selected button styles, add .selected to .askem-reaction (e.g. .askem-plugin .askem-reactions-group .askem-reaction.selected .askem-reaction-button) */
+  .askem-plugin .askem-inputs,
+  .askem-plugin .askem-reactions-group {
+    padding-inline: var(--wrapper-spacing);
+    padding-block-end: var(--wrapper-spacing);
+  }
 
-/* Feedback form */
-/* Textarea */
-.askem-plugin .askem-inputs .askem-input-field {
-  --tw-border-opacity: 1;
-  --tw-shadow: inset 2px 2px 4px rgba(0, 0, 0, .15);
-  --tw-shadow-colored: inset 2px 2px 4px var(--tw-shadow-color);
-  border-color: rgb(0 0 0 / var(--tw-border-opacity));
-  border-radius: 5px;
-  border-width: 1px;
-  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-  display: block;
-  font-size: 1rem;
-  line-height: 1.5rem;
-  padding: .5rem .75rem;
-  width: 100%;
-}
-/* Disclaimer text */
-.askem-plugin .askem-inputs .askem-input-disclaimer {
-  /* Add disclaimer text styles here */
-}
+  /* Button styles for the whole plugin. */
+  .askem-plugin {
+    .askem-reactions-group .askem-reaction .askem-reaction-button,
+    .askem-inputs .askem-form-submit:not(.disabled),
+    .askem-inputs .askem-form-submit.disabled {
+      box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+        var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+      font-weight: 700;
+      left: 0;
+      line-height: 1.5;
+      padding: 0.5rem 1rem;
+      top: 0;
 
-/* Submit button */
-.askem-plugin .askem-inputs .askem-input-submit {
-  --tw-border-opacity: 1;
-  --tw-bg-opacity: 1;
-  --tw-text-opacity: 1;
-  --tw-shadow: 0px 2px rgba(0, 0, 0, .15);
-  --tw-shadow-colored: 0px 2px var(--tw-shadow-color);
-  background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-  border-color: rgb(51 51 51 / var(--tw-border-opacity));
-  border-radius: 5px;
-  border-width: 2px;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
-  display: inline-block;
-  font-family: Noto Sans, Noto Sans Arabic, Noto Sans Chinese, sans-serif;
-  font-weight: 700;
-  line-height: 1.5rem;
-  padding: .5rem 1rem;
+      /* No need for the gray background on the buttons. */
+      &::before {
+        display: none;
+      }
+
+      /* Button hover styles. */
+      &:hover {
+        background-color: var(--hover-background);
+        color: var(--hover-color);
+        left: 0;
+        top: 0;
+
+        .askem-label {
+          color: var(--hover-color);
+        }
+      }
+
+      /* Button focus styles */
+      &:focus-visible {
+        left: 0;
+        outline-color: rgba(0, 0, 50, 0.3);
+        outline-style: solid;
+        outline-width: 3px;
+        top: 0;
+      }
+    }
+  }
+
+  /* Reaction styles */
+  .askem-plugin .askem-reactions-group .askem-reaction {
+    margin-inline-end: var(--button-spacing);
+
+    /* No need for the gray background on the reaction. */
+    &::before {
+      display: none;
+    }
+
+    /* Button icon hover styles. */
+    .askem-reaction-button {
+      &.after-icons::after {
+        -webkit-mask-position: center;
+        -webkit-mask-repeat: no-repeat;
+        -webkit-mask-size: var(--icon-size) var(--icon-size);
+        background-color: var(--icon-color);
+        background-size: contain;
+        content: '';
+        display: flex;
+        height: var(--icon-size);
+        margin-inline-start: var(--icon-spacing);
+        mask-position: center;
+        mask-repeat: no-repeat;
+        mask-size: var(--icon-size) var(--icon-size);
+        max-width: none;
+        opacity: 1;
+        position: static;
+        transform: none;
+        transition: none;
+        width: var(--icon-size);
+      }
+
+      &:hover {
+        &.after-icons::after {
+          background-color: var(--hover-color);
+        }
+      }
+    }
+
+    /* Positive reaction. */
+    &.icon-check-mark .askem-reaction-button::after {
+      -webkit-mask-image: url('/images/icons/face-smile.svg');
+      background-image: none;
+      mask-image: url('/images/icons/face-smile.svg');
+    }
+
+    /* Neutral reaction. */
+    &.icon-question-mark .askem-reaction-button::after {
+      -webkit-mask-image: url('/images/icons/face-neutral.svg');
+      background-image: none;
+      mask-image: url('/images/icons/face-neutral.svg');
+    }
+
+    /* Negative reaction. */
+    &.icon-ex-mark .askem-reaction-button::after {
+      -webkit-mask-image: url('/images/icons/face-sad.svg');
+      background-image: none;
+      mask-image: url('/images/icons/face-sad.svg');
+    }
+
+    /* Selected reaction styles. */
+    &.selected .askem-reaction-button.after-icons {
+      .askem-label {
+        color: var(--selected-color);
+        opacity: 1;
+      }
+
+      &::after {
+        background-color: var(--selected-color);
+      }
+    }
+  }
+
+  /* Don't hide the reaction buttons after reaction. */
+  .askem-plugin.stage-reacted .askem-reactions {
+    animation: none;
+    left: auto;
+    top: auto;
+  }
+
+  /* Override Askem header font size. */
+  .askem-plugin .askem-header {
+    font-size: 18px;
+  }
+
+  /* Override the spacing between header and reactions. */
+  .askem-plugin .askem-reactions-group {
+    margin-block-start: var(--header-reactions-spacing);
+  }
+
+  /* Override some of the Askem textarea styles. */
+  .askem-plugin .askem-inputs .askem-input-field {
+    --tw-shadow: inset 2px 2px 4px rgba(0, 0, 0, 0.15);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+      var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow) !important;
+  }
+
+  /* Override some of the Askem input area header styles. */
+  .askem-plugin .askem-inputs .askem-input-header {
+    font-size: 18px;
+    font-weight: 400;
+  }
+
+  /* Override the disclaimer text styling. */
+  .askem-plugin .askem-inputs .askem-input-disclaimer {
+    color: var(--disclaimer-color);
+    font-size: 16px;
+    opacity: 1;
+  }
+
+  /* Override some of the Askem submit button styles. */
+  .askem-plugin .askem-inputs .askem-form-submit {
+    margin-top: var(--submit-button-spacing);
+  }
+
+  /* Override reaction container animation and positioning to avoid html-elements jumping. */
+  .askem-plugin .after-reaction.active {
+    animation: none;
+    left: auto;
+    opacity: 1;
+    position: static;
+    top: auto;
+  }
 }

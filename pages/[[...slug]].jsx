@@ -265,8 +265,8 @@ export async function getStaticProps(context) {
  * Layout selector
  */
 const Page = (props) => {
-  const {node} = props;
-  useAddAskem(node.langcode, node.title);
+  const { node } = props
+  useAddAskem(node.langcode, node.title)
 
   if (props?.type === NODE_TYPES.LANDING_PAGE) {
     return <HomePage {...props} />
