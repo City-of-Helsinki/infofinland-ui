@@ -144,7 +144,7 @@ export const IconInstagram = (svgProps) => (
   </svg>
 )
 
-export const IconTwitter = (svgProps) => (
+export const IconLinkedin = (svgProps) => (
   <svg
     aria-labelledby={svgProps?.id}
     className={svgClass(svgProps.className)}
@@ -155,18 +155,23 @@ export const IconTwitter = (svgProps) => (
     xmlns="http://www.w3.org/2000/svg"
   >
     {svgProps.title && <title id={svgProps?.id}>{svgProps?.title}</title>}
-
     <path
       fillRule="evenodd"
-      clipRule="evenodd"
-      d="M17.4557 34.0974V34.0974C8.36743 34.0974 1 26.6878 1 17.5487C1 8.40957 8.36743 1 17.4557 1C26.5447 1 33.9113 8.40957 33.9113 17.5487C33.9113 26.6878 26.5447 34.0974 17.4557 34.0974Z"
+      clip-rule="evenodd"
+      d="M17.4557 34.0974V34.0974C8.36743 34.0974 1 26.6878 1 17.5487C1 8.40957 8.36743 1 17.4557 1C26.5447 1 33.9122 8.40957 33.9122 17.5487C33.9122 26.6878 26.5447 34.0974 17.4557 34.0974Z"
       stroke="black"
-      strokeWidth="1.5"
+      stroke-width="1.5"
     />
     <path
-      fillRule="evenodd"
-      clipRule="evenodd"
-      d="M8.6875 23.0885C10.2803 24.1155 12.1706 24.7137 14.2027 24.7137C20.8827 24.7137 24.6554 19.0407 24.428 13.952C25.131 13.4424 25.7415 12.8059 26.2232 12.0798C25.5781 12.3668 24.8837 12.5624 24.1574 12.6485C24.8993 12.2016 25.47 11.4929 25.7389 10.6468C25.0437 11.0616 24.2732 11.3633 23.4543 11.5259C22.798 10.8224 21.8633 10.3833 20.8282 10.3833C18.5055 10.3833 16.7995 12.5624 17.3235 14.825C14.3333 14.6746 11.6829 13.2346 9.90849 11.045C8.96594 12.672 9.41992 14.799 11.0222 15.8755C10.4325 15.8572 9.87649 15.6937 9.39138 15.4233C9.3542 17.099 10.5475 18.6668 12.2778 19.0163C11.7711 19.1555 11.2168 19.1868 10.653 19.0781C11.1104 20.5155 12.4395 21.5607 14.0142 21.5903C12.5018 22.7824 10.5968 23.3155 8.6875 23.0885Z"
+      d="M26.8,25.7h-3.6v-6.8c0-.8-.3-1.3-.6-1.6-.7-.7-2.3-.5-2.9.2-.3.4-.6.8-.6,1.7v6.4h-3.6v-11.7h3.5v1.6c.1,0,0,0,.1,0,1-1.4,2.2-1.9,4-1.8,2.7.2,3.6,2,3.8,4.5v7.5h0Z"
+      fill="black"
+    />
+    <polygon
+      points="13.2 14 13.2 25.7 9.5 25.7 9.5 14.1 9.6 14 13.2 14"
+      fill="black"
+    />
+    <path
+      d="M11.3,8.2c2.9,0,2.8,4.5-.3,4.2-2.4-.3-2.4-4.2.3-4.2Z"
       fill="black"
     />
   </svg>
@@ -425,7 +430,7 @@ const iconMap = new Map()
 iconMap.set('facebook', [IconFacebook, 'm'])
 iconMap.set('instagram', [IconInstagram, 'm'])
 iconMap.set('youtube', [IconYoutube, 'm'])
-iconMap.set('twitter', [IconTwitter, 'm'])
+iconMap.set('linkedin', [IconLinkedin, 'm'])
 iconMap.set('angledown', [IconAngleDown, 's'])
 iconMap.set('angleright', [IconAngleRight, 'xs'])
 iconMap.set('angleup', [IconAngleUp, 's'])

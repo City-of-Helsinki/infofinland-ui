@@ -1,4 +1,9 @@
-import { IconFacebook, IconInstagram, IconTwitter, IconYoutube } from '../Icons'
+import {
+  IconFacebook,
+  IconInstagram,
+  IconLinkedin,
+  IconYoutube,
+} from '../Icons'
 import Link from 'next/link'
 import cls from 'classnames'
 import getConfig from 'next/config'
@@ -11,7 +16,7 @@ import { i18n } from '@/next-i18next.config'
 const FooterLinks = ({ secondary, tree }) => {
   const { t, language } = useTranslation('common')
   const margin = secondary ? 'ifu-block--secondary' : 'ifu-block--article'
-  const { FB_URL, TWITTER_URL, YOUTUBE_URL, INSTAGRAM_URL } =
+  const { FB_URL, LINKEDIN_URL, YOUTUBE_URL, INSTAGRAM_URL } =
     getConfig().publicRuntimeConfig
 
   const { locale } = useRouter()
@@ -38,16 +43,16 @@ const FooterLinks = ({ secondary, tree }) => {
           <IconFacebook title="Facebook" />
         </a>
 
-        <a href={TWITTER_URL} rel="noreferrer" className="inline-block">
-          <IconTwitter title="Twitter" />
-        </a>
-
         <a href={INSTAGRAM_URL} rel="noreferrer" className="inline-block">
           <IconInstagram title="Instagram" />
         </a>
 
         <a href={YOUTUBE_URL} rel="noreferrer" className="inline-block">
           <IconYoutube title="Youtube" />
+        </a>
+
+        <a href={LINKEDIN_URL} rel="noreferrer" className="inline-block">
+          <IconLinkedin title="LinkedIn" />
         </a>
       </div>
 
