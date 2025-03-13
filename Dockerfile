@@ -1,5 +1,5 @@
 # =======================================
-FROM registry.access.redhat.com/ubi8/nodejs-20 AS deps
+FROM registry.access.redhat.com/ubi8/nodejs-20-minimal AS deps
 # =======================================
 
 USER root
