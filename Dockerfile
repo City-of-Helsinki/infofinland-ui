@@ -1,5 +1,5 @@
 # =======================================
-FROM registry.access.redhat.com/ubi8/nodejs-20-minimal AS deps
+FROM registry.access.redhat.com/ubi8/nodejs-20 AS deps
 # =======================================
 
 USER root
@@ -98,7 +98,7 @@ RUN rm -rf node_modules
 RUN yarn install --production --ignore-scripts --prefer-offline
 
 # =======================================
-FROM registry.access.redhat.com/ubi8/nodejs-20 AS runner
+FROM registry.access.redhat.com/ubi8/nodejs-20-minimal AS runner
 # =======================================
 
 WORKDIR /app
@@ -122,7 +122,7 @@ COPY --from=builder /app/logs ./logs
 # node process user should be able to write to .next/*
 USER root
 RUN curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | tee /etc/yum.repos.d/yarn.repo
-RUN yum -y install yarn
+RUN dnf -y install yarn
 
 RUN chmod -R a+rwx ./.next
 RUN chmod -R a+rwx ./logs
