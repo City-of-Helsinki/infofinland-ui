@@ -5,12 +5,17 @@ import useRouterWithLocalizedPath from '@/hooks/useRouterWithLocalizedPath'
 export const FALLBACK_TITLE = 'infofinland.fi'
 
 const CommonHead = ({ node }) => {
-  const { title, field_description, id, field_metatags } = node
+  const { title: field_title, field_description, id, field_metatags } = node
   const { src = '' } = getHeroFromNode(node)
   const { SITE_HOST } = getConfig().publicRuntimeConfig
   const { localePath } = useRouterWithLocalizedPath()
   let url
-  const description = field_metatags?.description || field_description || ''
+  const metatags =
+    typeof field_metatags === 'string'
+      ? JSON.parse(field_metatags)
+      : field_metatags || {}
+  const title = metatags?.title || field_title || FALLBACK_TITLE
+  const description = metatags?.description || field_description || ''
   const idKey = (token) => `${token}-${id}`
   try {
     // Remove any trailing slashes.
@@ -28,9 +33,7 @@ const CommonHead = ({ node }) => {
   return (
     <>
       <Head>
-        <title key="title">
-          {field_metatags?.title || title || FALLBACK_TITLE}
-        </title>
+        <title key="title">{title}</title>
         <link rel="canonical" href={url} />
         <meta
           name="viewport"
