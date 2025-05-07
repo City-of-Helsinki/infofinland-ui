@@ -3,6 +3,7 @@ import { IconCheck, IconGlobe } from '@/components/Icons'
 import Drawer from '@/components/layout/Drawer'
 import { useRouter } from 'next/router'
 import cls from 'classnames'
+import { useState, useEffect } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
@@ -28,6 +29,15 @@ const LABELS = {
 export const LanguageMenu = ({ closeMenu }) => {
   const { t } = useTranslation('common')
   const { asPath, locale } = useRouter()
+  const [href, setHref] = useState('');
+
+  // Do not cache the language selection links as the href will include
+  // whatever the user might've included in the URL pathname and we do not
+  // want other users to see that.
+  useEffect(() => {
+    setHref(asPath)
+  }, [asPath])
+
   return (
     <div>
       <label className="block px-14 mb-8 text-body-large font-bold">
@@ -46,7 +56,7 @@ export const LanguageMenu = ({ closeMenu }) => {
           >
             <Link
               passHref
-              href={asPath}
+              href={href}
               locale={code}
               scroll={false}
               prefetch={false}
