@@ -6,6 +6,7 @@ import { useTranslation } from 'next-i18next'
 import { i18n } from '@/next-i18next.config'
 import { getLocalesForPath } from '@/lib/client-api'
 import useSWR from 'swr'
+import { useState, useEffect } from 'react'
 
 const LanguageSelector = ({ openMenu }) => {
   const { locale, asPath: path } = useRouter()
@@ -13,6 +14,14 @@ const LanguageSelector = ({ openMenu }) => {
   const cacheKey = path ? path : null
   const fetcher = () => getLocalesForPath({ path })
   const { data: locales, error } = useSWR(cacheKey, fetcher)
+  const [href, setHref] = useState('');
+
+  // Do not cache the language selection links as the href will include
+  // whatever the user might've included in the URL pathname and we do not
+  // want other users to see that.
+  useEffect(() => {
+    setHref(path)
+  }, [path])
 
   return (
     <>
@@ -35,7 +44,7 @@ const LanguageSelector = ({ openMenu }) => {
             locales?.find((page) => page?.locale === code) !== undefined
           return (
             <Link
-              href={path}
+              href={href}
               locale={code}
               passHref
               scroll={false}
