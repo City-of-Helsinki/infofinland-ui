@@ -2,7 +2,7 @@ import getConfig from 'next/config'
 import { Client } from '@elastic/elasticsearch'
 import { HIGHLIGHT_CLASS } from '@/components/search/Result'
 import isString from 'lodash/isString'
-import DOMPurify from "isomorphic-dompurify";
+import { sanitiseStrict } from '@/lib/utils'
 // import logger from '@/logger'
 const logger = console
 
@@ -87,7 +87,7 @@ export function getQuery(q) {
 }
 
 export function getSearchParamsFromQuery({ query, locale }) {
-  const q = DOMPurify.sanitize((query?.search || query.q || '').trim())
+  const q = sanitiseStrict((query?.search || query.q || '').trim())
   const size = Number(query?.size) || DEFAULT_SIZE
   let languages = Array.isArray(query?.languages)
     ? query?.languages

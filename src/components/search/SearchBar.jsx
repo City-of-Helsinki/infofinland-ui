@@ -3,7 +3,7 @@ import useSearchRoute from '@/hooks/useSearchRoute'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'next-i18next'
 import LanguageFilters from '@/components/search/LanguageFilters'
-import DOMPurify from "isomorphic-dompurify";
+import { sanitiseStrict } from '@/lib/utils'
 
 const SearchBar = ({ search }) => {
   // Sync search field with URL
@@ -25,7 +25,9 @@ const SearchBar = ({ search }) => {
           placeholder={t('search.placeholder')}
           name="search"
           value={qw || ''}
-          onChange={({ target: { value } }) => setQuery(DOMPurify.sanitize(value))}
+          onChange={({ target: { value } }) =>
+            setQuery(sanitiseStrict(value))
+          }
           className="ifu-search__input--page"
         />
         <button className="inline-flex flex-none items-center w-12 h-12">
