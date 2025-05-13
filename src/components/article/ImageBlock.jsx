@@ -1,5 +1,5 @@
 import Block from '@/components/layout/Block'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import { useTranslation } from 'next-i18next'
 import cls from 'classnames'
 import { RingsLoader } from '../Loaders'

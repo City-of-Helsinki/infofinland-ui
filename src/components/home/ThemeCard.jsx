@@ -1,6 +1,6 @@
 import cls from 'classnames'
 import Link from 'next/link'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import { longTextClass } from '@/components/Typo'
 import { RingsLoader } from '../Loaders'
 import { useState } from 'react'
