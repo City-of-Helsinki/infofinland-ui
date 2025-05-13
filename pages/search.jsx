@@ -21,8 +21,14 @@ import {
 import Pagination from '@/components/search/Pagination'
 import SearchResults from '@/components/search/SearchResults'
 import { CACHE_HEADERS_60S } from '@/cache-headers'
+import { sanitiseStrict } from '@/lib/utils'
 
 export async function getServerSideProps(context) {
+  // Sanitise all query params in context.
+  for (const param in context.query) {
+    context.query[param] = sanitiseStrict(context.query[param])
+  }
+
   const { SEARCH_PAGE_PATH } = getConfig().serverRuntimeConfig
 
   const menus = await getCachedMenus(context.locale)
