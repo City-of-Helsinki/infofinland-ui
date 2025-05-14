@@ -14,7 +14,7 @@
     "format": "prettier --write .",
     "start": "next start",
     "twconfig": "tailwind-config-viewer -o --port 3600",
-    "test": "jest",
+    "test": "jest --coverage",
     "analyze": "ANALYZE=true yarn build",
     "postinstall": "patch-package"
   },
