@@ -6,6 +6,7 @@ import { useAtom } from 'jotai'
 import { searchQueryValue } from '@/src/store'
 import useSearchRoute from '@/hooks/useSearchRoute'
 import dynamic from 'next/dynamic'
+import { sanitiseStrict } from '@/lib/utils'
 
 const SearchBar = dynamic(() => import('./TopSearchBar'), { ssr: false })
 
@@ -27,7 +28,8 @@ const TopSearch = () => {
   }
   const onSubmit = useSearchRoute({ onSubmit: reset, search: query })
 
-  const onChange = ({ target: { value } }) => setQuery(value)
+  const onChange = ({ target: { value } }) =>
+    setQuery(sanitiseStrict(value))
 
   return (
     <>
