@@ -72,6 +72,7 @@
     "eslint-plugin-tailwindcss": "1.x",
     "jest": "27.4.4",
     "line-reader": "0.4.0",
+    "node-mocks-http": "1.17.2",
     "postcss": "8.5.3",
     "postcss-cli": "9.0.1",
     "postcss-import": "14.0.2",

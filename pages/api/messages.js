@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   const k = `messages-${locale}-${id}`
   // No posts allowed, no missing params-errors revealed.
   if (req.method !== 'GET' || !locale) {
-    res.status(400).json(messages)
+    res.status(400)
     return
   }
   let status = 200
