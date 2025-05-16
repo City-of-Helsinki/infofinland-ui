@@ -41,7 +41,8 @@ function App({ Component, pageProps }) {
     }
   })
 
-  return <Component {...pageProps} />
+  const { key, ...restPageProps } = pageProps
+  return <Component key={key} {...restPageProps} />
 }
 
 export default appWithTranslation(App)

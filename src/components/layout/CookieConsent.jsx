@@ -40,9 +40,8 @@ export default function CookieConsentBar() {
   const isAboutPage = asPath.startsWith(COOKIE_PAGE_PATH)
   return (
     // !isSSR() &&
-    !isAboutPage &&
-    !isConsentSet && (
-      <CSSTransition
+    (!isAboutPage &&
+      !isConsentSet && (<CSSTransition
         classNames={{
           appear: 'ifu-cookies__banner--appear',
           appearActive: 'ifu-cookies__banner--appear-active',
@@ -60,34 +59,33 @@ export default function CookieConsentBar() {
         appear
         unmountOnExit
       >
-        <section className="sticky bottom-0 items-center px-6 lg:px-16 pt-6 lg:pt-12 text-center lg:text-left bg-white rounded-t shadow-bottom-bar min-bottom-bar lg:rounded-none">
-          <h2 className="mb-4 text-body-large font-bold">
-            {t('cookies.title')}
-          </h2>
-          <div className="lg:flex lg:gap-12 pb-6 max-w-topbar">
-            <div className="lg:w-1/2">
-              <p className="mb-8 text-action lg:text-body">
-                {t('cookies.text')}
-              </p>
-            </div>
-            <div className="gap-4 justify-items-center items-center">
-              <CookieConsentActions />
-              {!isConsentSet && (
-                <Link
-                  locale={locale}
-                  prefetch={false}
-                  passHref
-                  href={COOKIE_PAGE_PATH}
-                >
-                  <a className="font-bold text-black underline">
-                    {t('cookies.readMore')}
-                  </a>
-                </Link>
-              )}
-            </div>
+      <section className="sticky bottom-0 items-center px-6 lg:px-16 pt-6 lg:pt-12 text-center lg:text-left bg-white rounded-t shadow-bottom-bar min-bottom-bar lg:rounded-none">
+        <h2 className="mb-4 text-body-large font-bold">
+          {t('cookies.title')}
+        </h2>
+        <div className="lg:flex lg:gap-12 pb-6 max-w-topbar">
+          <div className="lg:w-1/2">
+            <p className="mb-8 text-action lg:text-body">
+              {t('cookies.text')}
+            </p>
           </div>
-        </section>
-      </CSSTransition>
-    )
-  )
+          <div className="gap-4 justify-items-center items-center">
+            <CookieConsentActions />
+            {!isConsentSet && (
+              <Link
+                locale={locale}
+                prefetch={false}
+                passHref
+                href={COOKIE_PAGE_PATH}
+                className="font-bold text-black underline">
+
+                {t('cookies.readMore')}
+
+              </Link>
+            )}
+          </div>
+        </div>
+      </section>
+    </CSSTransition>))
+  );
 }
