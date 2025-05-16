@@ -1,4 +1,4 @@
-import Image from 'next/image'
+import Image from "next/legacy/image"
 
 const HomeHero = ({ title, src }) => (
   <div className="relative mb-14 h-homehero md:h-homeheroxl bg-blue-white">

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import ArticleHeading from './ArticleHeading'
 import cls from 'classnames'
 import { RingsLoader } from '../Loaders'

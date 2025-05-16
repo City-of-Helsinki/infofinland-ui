@@ -16,8 +16,7 @@ export const getDrupalClient = (withAuth) => {
     },
     //cache: redisCache,
     previewSecret: DRUPAL_PREVIEW_SECRET,
-    // Make preview work in development environment.
-    forceIframeSameSiteCookie: process.env.NODE_ENV === 'development',
+    useDefaultEndpoints: true,
     ...(withAuth && { withAuth: true }),
     next: { revalidate: REVALIDATE_TIME },
   })

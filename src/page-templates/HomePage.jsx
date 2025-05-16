@@ -9,7 +9,7 @@ import { getHeroFromNode } from '@/lib/ssr-helpers'
 import ContentMapper from '@/components/article/ContentMapper'
 import IngressBlock from '@/components/article/IngressBlock'
 import Columns from '@/components/article/Columns'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 
 const AboutImage = () => (
   <div className="flex justify-center items-center pt-8 mx-auto lg:mt-0">

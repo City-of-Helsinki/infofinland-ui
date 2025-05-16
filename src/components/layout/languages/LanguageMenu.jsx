@@ -60,29 +60,27 @@ export const LanguageMenu = ({ closeMenu }) => {
               locale={code}
               scroll={false}
               prefetch={false}
-            >
-              <a
-                className={cls(
-                  'flex items-center py-2 px-14 hover:bg-gray-white clear-start',
-                  {
-                    // 'system-zh-font':code === 'zh'
-                  }
-                )}
-                title={text}
-                lang={code}
-                hrefLang={code}
-              >
-                <span className="inline-block text-body-small text-bodytext-color float-start">
-                  {text}
-                </span>
-                {isSelected && <IconCheck className="ms-4" />}
-              </a>
+              className={cls(
+                'flex items-center py-2 px-14 hover:bg-gray-white clear-start',
+                {
+                  // 'system-zh-font':code === 'zh'
+                }
+              )}
+              title={text}
+              lang={code}
+              hrefLang={code}>
+
+              <span className="inline-block text-body-small text-bodytext-color float-start">
+                {text}
+              </span>
+              {isSelected && <IconCheck className="ms-4" />}
+
             </Link>
           </div>
-        )
+        );
       })}
     </div>
-  )
+  );
 }
 
 export const LangMenuDrawer = ({ closeMenu, isOpen }) => (

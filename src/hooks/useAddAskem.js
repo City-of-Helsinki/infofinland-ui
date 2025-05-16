@@ -3,7 +3,7 @@ import getConfig from 'next/config'
 import { loadAskemScript } from '@/lib/askem'
 
 // Only set the script tag once and reset after locale or title changes.
-const useAddAskem = async (locale, title) => {
+const useAddAskem = (locale, title) => {
   let apiKey = useRef('')
 
   useEffect(() => {
@@ -24,7 +24,9 @@ const useAddAskem = async (locale, title) => {
       reset = await loadAskemScript().catch((error) => {
         console.log(`An error occurred while loading Askem script: ${error}`)
       })
-      reset()
+      if (reset && typeof reset === 'function') {
+        reset()
+      }
 
       return () => {}
     }

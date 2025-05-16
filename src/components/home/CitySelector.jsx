@@ -1,6 +1,6 @@
 import Button from '@/components/Button'
 import { useRouter } from 'next/router'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 // import image from '@/public/images/suomi-kartta.png'
 import Block from '@/components/layout/Block'
 import getConfig from 'next/config'

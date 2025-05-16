@@ -12,7 +12,7 @@ import getConfig from 'next/config'
  * Sidenote: using array.at is safe because tests are run in node, not browser
  */
 
-describe('ssr-api', () => {
+describe('ssr-helpers', () => {
   describe('getImage', () => {
     it('should return image props from paragraph--image item', () => {
       const image = getImage({

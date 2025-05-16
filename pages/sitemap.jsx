@@ -111,7 +111,7 @@ export default function SiteMap({ node, urls, menus }) {
           <SitemapList
             urls={[
               { url: `/${locale}`, title: t('breadcrumbs.frontpage') },
-              ...urls?.main,
+              ...(urls?.main || []),
             ]}
             name={DRUPAL_MENUS.MAIN}
           />
@@ -122,11 +122,11 @@ export default function SiteMap({ node, urls, menus }) {
                 url: `/${locale}/${DRUPAL_MENUS.CITIES}`,
                 title: t('frontpage.cities.title'),
               },
-              ...urls?.cities,
+              ...(urls?.cities || []),
             ]}
             name={DRUPAL_MENUS.CITIES}
           />
-          <SitemapList urls={urls?.about} name={DRUPAL_MENUS.ABOUT} />
+          <SitemapList urls={urls?.about || []} name={DRUPAL_MENUS.ABOUT} />
         </Block>
       </SecondaryLayout>
     </>

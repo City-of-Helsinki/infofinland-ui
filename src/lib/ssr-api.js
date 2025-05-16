@@ -35,7 +35,12 @@ export const getCachedMenus = async ({ locale, withAuth }) => {
     return menuCache.cache.get(key)
   }
 
-  const menus = await getMainMenus({ locale, withAuth })
+    // JSON parsing is used to remove any undefined values, as
+    // Next.js will not serialize them.
+  const menus = JSON.parse(JSON.stringify(
+    await getMainMenus({ locale, withAuth })
+  ))
+
   logger.http('Caching menus', { cacheKey: key, locale })
   //Note, withAuth disables cache as it may cause a leak to published site at this point.
   // Needs further refactoring
@@ -68,7 +73,9 @@ export const getCachedAboutMenus = async ({ locale, withAuth }) => {
     }),
   ])
 
-  const menus = { about, footer }
+  // JSON parsing is used to remove any undefined values, as
+  // Next.js will not serialize them.
+  const menus = JSON.parse(JSON.stringify({ about, footer }))
   logger.http('Caching about-menu', { cacheKey: key })
   if (!withAuth) {
     cache.set(key, menus, 600)
@@ -94,7 +101,9 @@ export const getCachedMainMenus = async ({ locale, withAuth }) => {
     }),
   ])
 
-  const menus = { main }
+  // JSON parsing is used to remove any undefined values, as
+  // Next.js will not serialize them.
+  const menus = JSON.parse(JSON.stringify({ main }))
   logger.http('Caching main-menu', { cacheKey: key })
   if (!withAuth) {
     cache.set(key, menus, 600)
@@ -120,7 +129,9 @@ export const getCachedCitiesMenus = async ({ locale, withAuth }) => {
     }),
   ])
 
-  const menus = { cities }
+  // JSON parsing is used to remove any undefined values, as
+  // Next.js will not serialize them.
+  const menus = JSON.parse(JSON.stringify({ cities }))
   logger.http('Caching cities-menu', { cacheKey: key })
   if (!withAuth) {
     cache.set(key, menus, 600)
@@ -177,7 +188,9 @@ export const getMainMenus = async ({ locale, withAuth }) => {
       }),
   ])
 
-  return { main, footer, cities, 'cities-landing': citiesLanding }
+  // JSON parsing is used to remove any undefined values, as
+  // Next.js will not serialize them.
+  return JSON.parse(JSON.stringify({ main, footer, cities, 'cities-landing': citiesLanding }))
 }
 
 const RETRY_LIMIT = 10

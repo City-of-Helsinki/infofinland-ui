@@ -157,10 +157,10 @@ export const IconLinkedin = (svgProps) => (
     {svgProps.title && <title id={svgProps?.id}>{svgProps?.title}</title>}
     <path
       fillRule="evenodd"
-      clip-rule="evenodd"
+      clipRule="evenodd"
       d="M17.4557 34.0974V34.0974C8.36743 34.0974 1 26.6878 1 17.5487C1 8.40957 8.36743 1 17.4557 1C26.5447 1 33.9122 8.40957 33.9122 17.5487C33.9122 26.6878 26.5447 34.0974 17.4557 34.0974Z"
       stroke="black"
-      stroke-width="1.5"
+      strokeWidth="1.5"
     />
     <path
       d="M26.8,25.7h-3.6v-6.8c0-.8-.3-1.3-.6-1.6-.7-.7-2.3-.5-2.9.2-.3.4-.6.8-.6,1.7v6.4h-3.6v-11.7h3.5v1.6c.1,0,0,0,.1,0,1-1.4,2.2-1.9,4-1.8,2.7.2,3.6,2,3.8,4.5v7.5h0Z"
