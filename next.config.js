@@ -111,6 +111,7 @@ const config = {
     config.module.rules.push({ test: /\.xml$/, loader: 'xml-loader' })
     return config
   },
+  transpilePackages: ['axios'],
   async redirects() {
     return [
       {

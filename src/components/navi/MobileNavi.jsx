@@ -53,15 +53,17 @@ const MobileNavi = ({ menus }) => {
           </button>
         )}
       </div>
-
       <Drawer close={close} isOpen={isOpen}>
         <div className="bg-white">
           {isAboutPage && (
-            <Link href="/" locale={locale}>
-              <a className="flex items-center mt-4 mb-1 font-bold ms-2">
-                <IconAngleRight className="scale-150 rotate-180 ms-4 me-2" />
-                {t('breadcrumbs.frontpage')}
-              </a>
+            <Link
+              href="/"
+              locale={locale}
+              className="flex items-center mt-4 mb-1 font-bold ms-2">
+
+              <IconAngleRight className="scale-150 rotate-180 ms-4 me-2" />
+              {t('breadcrumbs.frontpage')}
+
             </Link>
           )}
           {isAboutPage ? (
@@ -72,7 +74,7 @@ const MobileNavi = ({ menus }) => {
         </div>
       </Drawer>
     </>
-  )
+  );
 }
 
 export default MobileNavi

@@ -12,12 +12,18 @@ const TextLink = ({
   const text = typeof children === 'string' ? children.trim() : children
 
   return (
-    <Link href={href} passHref prefetch={false} locale={locale}>
-      <a className={cls('ifu-text-link', className)} {...linkProps}>
-        {text}
-      </a>
+    <Link
+      href={href}
+      passHref
+      prefetch={false}
+      locale={locale}
+      className={cls('ifu-text-link', className)}
+      {...linkProps}>
+
+      {text}
+
     </Link>
-  )
+  );
 }
 
 export default TextLink

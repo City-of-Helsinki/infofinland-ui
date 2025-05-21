@@ -50,44 +50,42 @@ const LanguageSelector = ({ openMenu }) => {
               scroll={false}
               prefetch={false}
               key={`lang-${code}`}
-            >
-              <a
+              className={cls(
+                'xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase ',
+                {
+                  'text-black': error || !locales || isLocalized,
+                  'text-gray': locales?.length > 0 && !isLocalized && !error,
+                }
+              )}
+              title={text}
+              hrefLang={code}
+              lang={code}>
+
+              <span
+                className={cls('xl:hidden', {
+                  ' border-b-2 border-black': locale === code,
+                })}
+              >
+                {code === 'zh' ? text : code}
+              </span>
+              <span
                 className={cls(
-                  'xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase ',
+                  'hidden xl:inline-block hover:border-black border-b-2 transition-all ease duration-150',
                   {
-                    'text-black': error || !locales || isLocalized,
-                    'text-gray': locales?.length > 0 && !isLocalized && !error,
+                    'border-black': locale === code,
+                    'border-white': locale !== code,
                   }
                 )}
-                title={text}
-                hrefLang={code}
-                lang={code}
               >
-                <span
-                  className={cls('xl:hidden', {
-                    ' border-b-2 border-black': locale === code,
-                  })}
-                >
-                  {code === 'zh' ? text : code}
-                </span>
-                <span
-                  className={cls(
-                    'hidden xl:inline-block hover:border-black border-b-2 transition-all ease duration-150',
-                    {
-                      'border-black': locale === code,
-                      'border-white': locale !== code,
-                    }
-                  )}
-                >
-                  {text}
-                </span>
-              </a>
+                {text}
+              </span>
+
             </Link>
-          )
+          );
         })}
       </div>
     </>
-  )
+  );
 }
 
 export default LanguageSelector

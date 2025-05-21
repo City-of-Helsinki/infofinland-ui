@@ -55,7 +55,6 @@ const FooterLinks = ({ secondary, tree }) => {
           <IconLinkedin title="LinkedIn" />
         </a>
       </div>
-
       <div
         className={`mb-4 text-center ${
           direction === 'rtl' ? 'sm:text-right' : 'sm:text-left'
@@ -69,13 +68,13 @@ const FooterLinks = ({ secondary, tree }) => {
               key={`footer-link-${i}`}
               locale={locale}
               prefetch={false}
-            >
-              <a className="ifu-footer__link">{title}</a>
+              className="ifu-footer__link">
+              {title}
             </Link>
-          )
+          );
         })}
       </div>
     </div>
-  )
+  );
 }
 export default FooterLinks

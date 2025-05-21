@@ -1,7 +1,7 @@
 import logger from '@/logger'
 
 export default async function handler(request, response) {
-  let slug = request.query.slug
+  let slug = request.query.path
   const secret = request.query.secret
 
   // Validate secret.
