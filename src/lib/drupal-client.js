@@ -1,4 +1,4 @@
-import { DrupalClient } from 'next-drupal'
+import { NextDrupalPages } from 'next-drupal'
 import getConfig from 'next/config'
 
 export const getDrupalClient = (withAuth) => {
@@ -9,7 +9,7 @@ export const getDrupalClient = (withAuth) => {
     DRUPAL_CLIENT_SECRET,
     REVALIDATE_TIME,
   } = getConfig().serverRuntimeConfig
-  return new DrupalClient(NEXT_PUBLIC_DRUPAL_BASE_URL, {
+  return new NextDrupalPages(NEXT_PUBLIC_DRUPAL_BASE_URL, {
     auth: {
       clientId: DRUPAL_CLIENT_ID,
       clientSecret: DRUPAL_CLIENT_SECRET,

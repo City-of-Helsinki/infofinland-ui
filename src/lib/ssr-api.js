@@ -421,3 +421,28 @@ export const getRedirectFromContext = async (context) => {
 
   return getRedirect(pathFromContext?.redirect, context)
 }
+
+/**
+ * Get the translated path from context.
+ *
+ * This is to bypass a bug in the NextDrupal library where the path is not
+ * translated if the actual path starts with the same letters as the locale.
+ * 
+ * We can move back to using `NextDrupalPages.translatePathFromContext()`
+ * method when the bug is fixed.
+ *
+ * @see https://github.com/chapter-three/next-drupal/issues/854
+ *
+ * @param {Object} context - The context object
+ * @returns {Promise<Object>} - The translated path
+ */
+export const getTranslatedPathFromContext = async (context) => {
+  const drupal = getDrupalClient()
+
+  let path = drupal.getPathFromContext(context)
+  if (!path.startsWith(`/${context.locale}/`)) {
+    path = `/${context.locale}${path}`
+  }
+
+  return drupal.translatePath(path)
+}

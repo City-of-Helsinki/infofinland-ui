@@ -4,6 +4,7 @@ import {
   getCachedMainMenus,
   getCachedCitiesMenus,
   getMainMenus,
+  getTranslatedPathFromContext,
 } from '@/lib/ssr-api'
 
 jest.mock('@/lib/cacher/menu-cache', () => ({
@@ -30,7 +31,9 @@ jest.mock('@/lib/drupal-client', () => ({
           ]
         }
       }
-    }))
+    })),
+    getPathFromContext: jest.fn(() => '/enable/testing'),
+    translatePath: jest.fn((path) => path),
   }))
 }))
 
@@ -70,9 +73,17 @@ describe('ssr-api', () => {
   describe('getMainMenus', () => {
     it('should remove undefined values from menus', async () => {
       const menus = await getMainMenus({ locale: 'en' })
-      console.log(menus.main.data.menu.items[0])
       expect(menus).toBeDefined()
       expect(menus.main.data.menu.items[0]).not.toHaveProperty('items')
+    })
+  })
+
+  describe('getTranslatedPathFromContext', () => {
+    it('should return the translated path', async () => {
+      const path = await getTranslatedPathFromContext({ 
+        locale: 'en',
+      })
+      expect(path).toBe('/en/enable/testing')
     })
   })
 })
