@@ -6,6 +6,7 @@ import ArticlePage from '@/src/page-templates/ArticlePage'
 import AboutPage from '@/src/page-templates/AboutPage'
 import { NODE_TYPES } from '@/lib/DRUPAL_API_TYPES'
 import {
+  NO_DEFAULT_LOCALE,
   NOT_FOUND,
   menuErrorResponse,
   getThemeHeroImages,
@@ -14,10 +15,10 @@ import {
   getNode,
   getCachedMunicipalities,
   getRedirectFromContext,
+  getTranslatedPathFromContext
 } from '@/lib/ssr-api'
 import { addPrerenderLocalesToPaths } from '@/lib/ssr-helpers'
 import { LAYOUT_SMALL } from '@/components/layout/Layout'
-import { NO_DEFAULT_LOCALE } from '@/lib/ssr-api'
 import HomePage from '@/src/page-templates/HomePage'
 import { DateTime } from 'luxon'
 import logger from '@/logger'
@@ -90,7 +91,7 @@ export async function getStaticProps(context) {
     ctx.params.slug = ['landingpage']
   }
 
-  const translatedPath = await drupal.translatePathFromContext(ctx)
+  const translatedPath = await getTranslatedPathFromContext(ctx)
   if (!translatedPath) {
     return NOT_FOUND
   }

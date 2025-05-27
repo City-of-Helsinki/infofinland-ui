@@ -1,6 +1,6 @@
 import cls from 'classnames'
 import Link from 'next/link'
-import Image from 'next/image'
+import Image from "next/legacy/image"
 import { longTextClass } from '@/components/Typo'
 import { RingsLoader } from '../Loaders'
 import { useState } from 'react'
@@ -28,28 +28,31 @@ const ThemeImage = ({ src, color }) => {
 }
 
 const ThemeCard = ({ title, url, image, blue, green }) => (
-  <Link passHref href={url} prefetch={false} locale={false}>
-    <a
-      className={cls('rounded block', {
-        'bg-blue-white hover:bg-blue-lighter shadow-themecard-blue': blue,
-        'bg-green-lighter hover:bg-green-light shadow-themecard-green': green,
-      })}
-    >
-      {image && <ThemeImage src={image} color={blue ? 'blue' : 'green'} />}
-      <span className="flex md:h-24">
-        <span
-          className={cls(
-            'px-4 font-bold  my-4',
-            longTextClass(title, {
-              size: MAX_TITLE_LENGTH,
-              classes: ['text-body-large', 'text-body'],
-            })
-          )}
-        >
-          {title}
-        </span>
+  <Link
+    passHref
+    href={url}
+    prefetch={false}
+    locale={false}
+    className={cls('rounded block', {
+      'bg-blue-white hover:bg-blue-lighter shadow-themecard-blue': blue,
+      'bg-green-lighter hover:bg-green-light shadow-themecard-green': green,
+    })}>
+
+    {image && <ThemeImage src={image} color={blue ? 'blue' : 'green'} />}
+    <span className="flex md:h-24">
+      <span
+        className={cls(
+          'px-4 font-bold  my-4',
+          longTextClass(title, {
+            size: MAX_TITLE_LENGTH,
+            classes: ['text-body-large', 'text-body'],
+          })
+        )}
+      >
+        {title}
       </span>
-    </a>
+    </span>
+
   </Link>
 )
 
