@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react'
-import { CSSTransition } from 'react-transition-group'
+import { CSSTransitionWithRef } from '../CSSTransitionWithRef'
 import { H2 } from '../Typo'
 import Block from '../layout/Block'
 import ContentMapper from './ContentMapper'
@@ -90,7 +90,7 @@ const Accordion = ({ content, heading, toggle, isOpen, last, id, locale }) => {
           </H2>
         </div>
       </Block>
-      <CSSTransition
+      <CSSTransitionWithRef
         in={isOpen}
         classNames={{
           appear: 'ifu-accordion--appear',
@@ -123,7 +123,7 @@ const Accordion = ({ content, heading, toggle, isOpen, last, id, locale }) => {
         >
           <ContentMapper content={content} locale={locale} />
         </div>
-      </CSSTransition>
+      </CSSTransitionWithRef>
     </>
   )
 }
