@@ -12,7 +12,6 @@ import { ExternalLinkCollection } from '../article/ReadMoreBlock'
 import ParseHtml from '@/components/ParseHtml'
 import { getLocalInformation } from '@/lib/client-api'
 import { nodeIdAtom } from '@/src/store'
-import { useRef } from 'react'
 
 const SWRContent = ({ city, isOpen }) => {
   const { t } = useTranslation('common')
