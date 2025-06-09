@@ -1,10 +1,19 @@
 // eslint.config.js
-const { defineConfig } = require("eslint/config");
+const { FlatCompat } = require('@eslint/eslintrc')
+const js = require("@eslint/js");
 
-module.exports = defineConfig([
-	{
+const compat = new FlatCompat({
+  baseDirectory: __dirname,
+  recommendedConfig: js.configs.recommended,
+})
+
+module.exports = [
+  ...compat.config({
+    env: {
+      es6: true,
+      jest: true,
+    },
     extends: ['eslint:recommended', 'plugin:tailwindcss/recommended', 'next'],
-    plugins: ['tailwindcss', 'import', 'react'],
     rules: {
       'tailwindcss/no-custom-classname': 0,
       'import/no-extraneous-dependencies': [
@@ -25,10 +34,10 @@ module.exports = defineConfig([
         },
       ],
     },
-    ignores: [
+    ignorePatterns: [
       '!.*.js',
       'coverage/**/*',
       '.next/**/*',
     ],
-	},
-]);
+  }),
+];
