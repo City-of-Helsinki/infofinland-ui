@@ -1,5 +1,5 @@
 import Drawer from './Drawer'
-import { useAtom } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import {
   selectedCityIdAtom,
   cityMenuVisibilityAtom,
@@ -8,7 +8,6 @@ import {
 import { IconCheck } from '@/components/Icons'
 import cls from 'classnames'
 import { useTranslation } from 'next-i18next'
-import { useAtomValue } from 'jotai/utils'
 
 const CityMenu = () => {
   const { t } = useTranslation('common')

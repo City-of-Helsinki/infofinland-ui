@@ -1,4 +1,4 @@
-import { useAtomValue } from 'jotai/utils'
+import { useAtomValue } from 'jotai'
 import { CSSTransitionWithRef } from '../CSSTransitionWithRef'
 import { getLinks } from '@/lib/ssr-helpers'
 import TextLink from '../TextLink'

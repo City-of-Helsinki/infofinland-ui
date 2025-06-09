@@ -2,14 +2,14 @@ import Button from '@/components/Button'
 import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
 import { isCookieConsentSetAtom, cookieConsentAtom } from '@/src/store'
-import { useAtomValue, useUpdateAtom } from 'jotai/utils'
+import { useAtomValue, useSetAtom } from 'jotai'
 import { useRouter } from 'next/router'
 import { CSSTransitionWithRef } from '../CSSTransitionWithRef'
 import getConfig from 'next/config'
 
 export function CookieConsentActions() {
   const { t } = useTranslation('common')
-  const setConsent = useUpdateAtom(cookieConsentAtom)
+  const setConsent = useSetAtom(cookieConsentAtom)
   const allow = () => setConsent(true)
   const deny = () => setConsent(false)
 
