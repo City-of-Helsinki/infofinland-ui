@@ -1,11 +1,10 @@
 import { CookieConsentActions } from '@/components/layout/CookieConsent'
 import Block from '@/components/layout/Block'
 import { useTranslation } from 'next-i18next'
-import { useAtom } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import ToggleSwitch from '@/components/ToggleSwitch'
 import { cookieConsentAtom, isCookieConsentSetAtom } from '@/src/store'
 import cls from 'classnames'
-import { useAtomValue } from 'jotai/utils'
 
 const CookieConsentForm = () => {
   const { t } = useTranslation('common')

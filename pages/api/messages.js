@@ -8,9 +8,10 @@ const MESSAGES_CACHE_TTL = 600
 export default async function handler(req, res) {
   const { id, locale } = req?.query || {}
   const k = `messages-${locale}-${id}`
+
   // No posts allowed, no missing params-errors revealed.
   if (req.method !== 'GET' || !locale) {
-    res.status(400)
+    res.status(400).json([])
     return
   }
   let status = 200
