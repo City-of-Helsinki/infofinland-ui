@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-css-tags */
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import { i18n } from '@/next-i18next.config'
+import { i18nCustom } from '@/next-i18next.config'
 
 class MyDocument extends Document {
   static async getStaticProps(ctx) {
@@ -11,7 +11,7 @@ class MyDocument extends Document {
 
   render() {
     const { locale } = this.props
-    const direction = i18n.rtlLocales.includes(locale) ? 'rtl' : 'ltr'
+    const direction = i18nCustom.rtlLocales.includes(locale) ? 'rtl' : 'ltr'
     return (
       <Html dir={direction} lang={locale}>
         <Head>

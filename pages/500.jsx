@@ -5,7 +5,7 @@ import omit from 'lodash/omit'
 import { BlankLayout } from '@/components/layout/Layout'
 import CommonHead from '@/components/layout/CommonHead'
 import { longTextClass } from '@/components/Typo'
-import { i18n } from '@/next-i18next.config'
+import { i18nCustom } from '@/next-i18next.config'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { IconExclamationBubble } from '@/components/Icons'
 import InfoFinlandLogoSVG from '@/components/logo'
@@ -131,7 +131,7 @@ const Error500 = () => {
                 key={`${locale}-content`}
                 lang={locale}
                 className="mb-8 lg:mb-0"
-                dir={i18n.rtlLocales.includes(locale) ? 'rtl' : 'ltr'}
+                dir={i18nCustom.rtlLocales.includes(locale) ? 'rtl' : 'ltr'}
               >
                 <p className="text-body-small font-bold">{title}</p>
                 <p className="text-body-small">{help}</p>

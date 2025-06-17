@@ -9,7 +9,7 @@ import cls from 'classnames'
 import getConfig from 'next/config'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
-import { i18n } from '@/next-i18next.config'
+import { i18nCustom } from '@/next-i18next.config'
 /**
  * SoMe Urls are defined in next.config.js
  * */
@@ -21,7 +21,7 @@ const FooterLinks = ({ secondary, tree }) => {
 
   const { locale } = useRouter()
 
-  const direction = i18n.rtlLocales.includes(locale) ? 'rtl' : 'ltr'
+  const direction = i18nCustom.rtlLocales.includes(locale) ? 'rtl' : 'ltr'
 
   return (
     <div className={cls(margin, 'mt-16 mb-16')}>

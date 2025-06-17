@@ -2,7 +2,7 @@ import Layout from '@/components/layout/Layout'
 import { useRouter } from 'next/router'
 import cls from 'classnames'
 import { longTextClass } from '@/components/Typo'
-import { i18n } from '@/next-i18next.config'
+import { i18n, i18nCustom } from '@/next-i18next.config'
 import map from 'lodash/map'
 import omit from 'lodash/omit'
 import { getCachedMenus } from '@/lib/ssr-api'
@@ -151,7 +151,7 @@ const LocalesLinks = ({ locales, dir }) => {
   return (
     <p className="overflow-hidden mt-2 leading-loose">
       {locales.map(({ locale, path, id }, i) => {
-        const language = i18n.languages.find(({ code }) => code === locale)
+        const language = i18nCustom.languages.find(({ code }) => code === locale)
         if (!language) {
           return null
         }
@@ -167,8 +167,8 @@ const LocalesLinks = ({ locales, dir }) => {
               className={cls({
                 'pe-2': i === 0,
                 'px-2 border-black': i > 0,
-                'border-s': dir === i18n.DIRECTION_LTR && i > 0,
-                'border-r': dir === i18n.DIRECTION_RTL && i > 0,
+                'border-s': dir === i18nCustom.DIRECTION_LTR && i > 0,
+                'border-r': dir === i18nCustom.DIRECTION_RTL && i > 0,
               })}
             >
               {language.text}
@@ -238,9 +238,9 @@ const Texts404 = ({ locales = [], locale, path }) => {
             <LocalesLinks
               locales={locales}
               dir={
-                i18n.rtlLocales.includes(locale)
-                  ? i18n.DIRECTION_RTL
-                  : i18n.DIRECTION_LTR
+                i18nCustom.rtlLocales.includes(locale)
+                  ? i18nCustom.DIRECTION_RTL
+                  : i18nCustom.DIRECTION_LTR
               }
             />
           </>
@@ -249,9 +249,9 @@ const Texts404 = ({ locales = [], locale, path }) => {
 
       <div className="lg:grid md:grid-rows-6 md:grid-flow-col md:gap-x-32 md:gap-y-8 mt-8 mb-8 md:mb-16 ifu-block--hero">
         {map(content, ({ title, help }, additionalLocale) => {
-          const dir = i18n.rtlLocales.includes(additionalLocale)
-            ? i18n.DIRECTION_RTL
-            : i18n.DIRECTION_LTR
+          const dir = i18nCustom.rtlLocales.includes(additionalLocale)
+            ? i18nCustom.DIRECTION_RTL
+            : i18nCustom.DIRECTION_LTR
           return (
             <div
               key={`${additionalLocale}-content`}

@@ -197,7 +197,7 @@ describe('ssr-helpers', () => {
   })
 
   describe('addPrerenderLocalesToPaths', () => {
-    it('should add next.config.env.PRERENDER_LOCALES to given paths', () => {
+    it('should add next.config.publicRuntimeConfig.PRERENDER_LOCALES to given paths', () => {
       const withLocales = addPrerenderLocalesToPaths([{ a: 1 }])
       const { serverRuntimeConfig } = getConfig()
       expect(withLocales).toHaveLength(
