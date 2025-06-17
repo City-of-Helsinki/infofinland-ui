@@ -9,7 +9,7 @@ import {
 // import CityMenu from '@/components/layout/CityMenu'
 import TopSearch from '../search/TopSearch'
 import cls from 'classnames'
-import { useAtomValue } from 'jotai/utils'
+import { useAtomValue } from 'jotai'
 import { pageIsLoadingAtom } from '@/src/store'
 import { useRouter } from 'next/router'
 import dynamic from 'next/dynamic'

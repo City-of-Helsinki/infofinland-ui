@@ -1,5 +1,5 @@
 import cls from 'classnames'
-import { CSSTransition } from 'react-transition-group'
+import { CSSTransitionWithRef } from '../CSSTransitionWithRef'
 import { useTranslation } from 'next-i18next'
 import ParseHtml from '../ParseHtml'
 
@@ -45,7 +45,7 @@ const MessageCard = ({
   }
 
   return (
-    <CSSTransition
+    <CSSTransitionWithRef
       classNames={{
         appear: 'ifu-messages__card--appear',
         appearActive: 'ifu-messages__card--appear-active',
@@ -89,7 +89,7 @@ const MessageCard = ({
           </div>
         </div>
       </section>
-    </CSSTransition>
+    </CSSTransitionWithRef>
   )
 }
 

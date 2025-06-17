@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LocalInfoSelectCity should render 1`] = `
+<DocumentFragment>
+  <div
+    class="mb-8"
+  >
+    <div
+      class="py-2 bg-green-lighter min-h-14 lg:min-h-16  lg:rounded-t ifu-block--article"
+    >
+      <div
+        class="flex items-center w-full"
+      >
+        <svg
+          class="inline-block inline-block h-6 -translate-x-3 lg:-translate-x-4 me-2"
+          fill="none"
+          height="42"
+          viewBox="0 0 36 42"
+          width="36"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M18 21C15.525 21 13.5 19.11 13.5 16.8C13.5 14.49 15.525 12.6 18 12.6C20.475 12.6 22.5 14.49 22.5 16.8C22.5 19.11 20.475 21 18 21ZM31.5 17.22C31.5 9.597 25.5375 4.2 18 4.2C10.4625 4.2 4.5 9.597 4.5 17.22C4.5 22.134 8.8875 28.644 18 36.414C27.1125 28.644 31.5 22.134 31.5 17.22ZM18 0C27.45 0 36 6.762 36 17.22C36 24.192 29.9925 32.445 18 42C6.0075 32.445 0 24.192 0 17.22C0 6.762 8.55 0 18 0Z"
+            fill="black"
+          />
+        </svg>
+        <h3
+          class="flex-grow text-body font-bold -translate-x-4"
+        >
+          localInfo.title
+        </h3>
+      </div>
+    </div>
+    <div
+      class="py-8 mb-4 bg-green-white ifu-block--article"
+    >
+      <p
+        class="mb-8"
+      >
+        localInfo.help_current_city
+      </p>
+      <div
+        class="flex"
+      >
+        <button
+          class="inline-block flex-none text-body-large font-bold"
+        >
+          <span
+            class="underline"
+          >
+            localInfo.select_current
+          </span>
+        </button>
+        <div
+          class="flex-grow"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

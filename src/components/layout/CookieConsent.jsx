@@ -2,14 +2,14 @@ import Button from '@/components/Button'
 import { useTranslation } from 'next-i18next'
 import Link from 'next/link'
 import { isCookieConsentSetAtom, cookieConsentAtom } from '@/src/store'
-import { useAtomValue, useUpdateAtom } from 'jotai/utils'
+import { useAtomValue, useSetAtom } from 'jotai'
 import { useRouter } from 'next/router'
-import { CSSTransition } from 'react-transition-group'
+import { CSSTransitionWithRef } from '../CSSTransitionWithRef'
 import getConfig from 'next/config'
 
 export function CookieConsentActions() {
   const { t } = useTranslation('common')
-  const setConsent = useUpdateAtom(cookieConsentAtom)
+  const setConsent = useSetAtom(cookieConsentAtom)
   const allow = () => setConsent(true)
   const deny = () => setConsent(false)
 
@@ -41,7 +41,7 @@ export default function CookieConsentBar() {
   return (
     // !isSSR() &&
     (!isAboutPage &&
-      !isConsentSet && (<CSSTransition
+      !isConsentSet && (<CSSTransitionWithRef
         classNames={{
           appear: 'ifu-cookies__banner--appear',
           appearActive: 'ifu-cookies__banner--appear-active',
@@ -86,6 +86,6 @@ export default function CookieConsentBar() {
           </div>
         </div>
       </section>
-    </CSSTransition>))
+    </CSSTransitionWithRef>))
   );
 }

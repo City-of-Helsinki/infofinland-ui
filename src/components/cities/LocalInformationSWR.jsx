@@ -1,5 +1,5 @@
-import { useAtomValue } from 'jotai/utils'
-import { CSSTransition } from 'react-transition-group'
+import { useAtomValue } from 'jotai'
+import { CSSTransitionWithRef } from '../CSSTransitionWithRef'
 import { getLinks } from '@/lib/ssr-helpers'
 import TextLink from '../TextLink'
 import { DotsLoader } from '../Loaders'
@@ -12,7 +12,6 @@ import { ExternalLinkCollection } from '../article/ReadMoreBlock'
 import ParseHtml from '@/components/ParseHtml'
 import { getLocalInformation } from '@/lib/client-api'
 import { nodeIdAtom } from '@/src/store'
-import { useRef } from 'react'
 
 const SWRContent = ({ city, isOpen }) => {
   const { t } = useTranslation('common')
@@ -31,12 +30,9 @@ const SWRContent = ({ city, isOpen }) => {
     ({ field_national_page: { id } }) => id === pageId
   )
 
-  const nodeRef = useRef(null)
-
   return (
-    <CSSTransition
+    <CSSTransitionWithRef
       in={isOpen}
-      nodeRef={nodeRef}
       classNames={{
         appear: 'ifu-local-info__content--appear',
         appearActive: 'ifu-local-info__content--appear-active',
@@ -98,7 +94,7 @@ const SWRContent = ({ city, isOpen }) => {
           </>
         )}
       </div>
-    </CSSTransition>
+    </CSSTransitionWithRef>
   )
 }
 

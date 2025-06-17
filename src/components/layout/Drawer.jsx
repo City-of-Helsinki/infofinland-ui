@@ -1,4 +1,4 @@
-import { CSSTransition } from 'react-transition-group'
+import { CSSTransitionWithRef } from '../CSSTransitionWithRef'
 import cls from 'classnames'
 import ReactModal from 'react-modal'
 import { CloseButton } from '@/components/Button'
@@ -12,7 +12,7 @@ const Drawer = ({ close, children, isOpen, contentLabel }) => (
     overlayClassName="ifu-modal__overlay"
   >
     <div className="relative">
-      <CSSTransition
+      <CSSTransitionWithRef
         classNames={'ifu-drawer-'}
         timeout={5000}
         in={isOpen}
@@ -25,7 +25,7 @@ const Drawer = ({ close, children, isOpen, contentLabel }) => (
           </div>
           {children}
         </div>
-      </CSSTransition>
+      </CSSTransitionWithRef>
     </div>
   </ReactModal>
 )

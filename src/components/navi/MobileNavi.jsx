@@ -3,7 +3,7 @@ import { IconMenu, IconAngleRight } from '@/components/Icons'
 import Drawer from '@/components/layout/Drawer'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
-import { useAtomValue } from 'jotai/utils'
+import { useAtomValue } from 'jotai'
 
 import { useTranslation } from 'next-i18next'
 import { isAboutPageAtom } from '@/src/store'

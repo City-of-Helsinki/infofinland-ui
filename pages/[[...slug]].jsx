@@ -224,6 +224,9 @@ export async function getStaticProps(context) {
       USE_TIMER && console.timeLog(T)
     }
   }
+  // JSON parsing is used to remove any undefined values, as
+  // Next.js will not serialize them.
+  themeMenu = JSON.parse(JSON.stringify(themeMenu))
 
   const municipalities = await getCachedMunicipalities({ locale, withAuth })
 

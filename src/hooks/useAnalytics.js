@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import { useAtomValue } from 'jotai/utils'
+import { useAtomValue } from 'jotai'
 import getConfig from 'next/config'
 import {
   cookieConsentAtom,
