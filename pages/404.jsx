@@ -17,7 +17,6 @@ export async function getStaticProps({ locale }) {
   const menus = await getCachedMenus(locale)
   return {
     props: {
-      texts: TEXTS_404,
       menus,
       ...(await serverSideTranslations(locale, ['common'])),
     },
