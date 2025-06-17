@@ -1,6 +1,6 @@
 import Result from '@/components/search/Result'
 import { getSearchResult } from '@/lib/ssr-helpers'
-import { useAtomValue } from 'jotai/utils'
+import { useAtomValue } from 'jotai'
 
 import { searchResultsAtom, searchResultsTermAtom } from '@/src/store'
 

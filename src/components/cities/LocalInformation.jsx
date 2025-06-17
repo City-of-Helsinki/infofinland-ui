@@ -1,8 +1,6 @@
 import { IconMapMarker } from '@/components/Icons'
-import { useAtomValue } from 'jotai/utils'
-import { useAtom } from 'jotai'
+import { useAtomValue, useSetAtom, useAtom } from 'jotai'
 import SWRContent from './LocalInformationSWR'
-import { useUpdateAtom } from 'jotai/utils'
 import {
   selectedCityIdAtom,
   selectedCityNameAtom,
@@ -17,7 +15,7 @@ const LocalInformation = ({ cities = [] }) => {
   const { t } = useTranslation('common')
   const [selectedCityId, setCity] = useAtom(selectedCityIdAtom)
   const selectedCityName = useAtomValue(selectedCityNameAtom)
-  const setOpen = useUpdateAtom(cityMenuVisibilityAtom)
+  const setOpen = useSetAtom(cityMenuVisibilityAtom)
   const openMenu = () => setOpen(true)
   const clearCity = () => setCity(null)
   const { locale } = useRouter()

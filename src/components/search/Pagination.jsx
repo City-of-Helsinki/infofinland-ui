@@ -8,7 +8,7 @@ import {
 import { useRouter } from 'next/router'
 import cls from 'classnames'
 import ReactPaginate from 'react-paginate'
-import { useAtomValue } from 'jotai/utils'
+import { useAtomValue } from 'jotai'
 import { useTranslation } from 'next-i18next'
 import getConfig from 'next/config'
 

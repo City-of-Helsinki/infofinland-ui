@@ -11,7 +11,7 @@ const baseQueryParams = () =>
       // Hero
       'field_hero.field_hero_image.field_media_image',
       'field_hero.field_hero_bg_color',
-      //Columns
+      // Columns
       'field_content.field_columns_left_column.field_image.field_media_image',
       'field_content.field_columns_right_column.field_image.field_media_image',
     ])
@@ -51,7 +51,7 @@ const baseQueryParams = () =>
     .addFields(CONTENT_TYPES.MEDIA_VIDEO, ['field_media_oembed_video', 'name'])
 
     // PVT contact info
-    .addFields(CONTENT_TYPES.PVT, ['field_contact_data'])
+    .addFields(CONTENT_TYPES.PTV, ['field_contact_data'])
     .addFields(NODE_TYPES.PVT_NODE, [
       'field_email_address',
       'field_office_id',

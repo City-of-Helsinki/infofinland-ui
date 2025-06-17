@@ -3,10 +3,10 @@ import Block from '@/components/layout/Block'
 import cls from 'classnames'
 import { IconMapMarker, IconCross } from '@/components/Icons'
 import { useTranslation } from 'next-i18next'
-import { useAtomValue, useUpdateAtom } from 'jotai/utils'
+import { useAtomValue, useSetAtom } from 'jotai'
 
 const LocalInformationSelectCity = ({ id: pageCityId, name: pageCityName }) => {
-  const setCity = useUpdateAtom(selectedCityIdAtom)
+  const setCity = useSetAtom(selectedCityIdAtom)
   const selectedCityName = useAtomValue(selectedCityNameAtom)
 
   const { t } = useTranslation('common')
