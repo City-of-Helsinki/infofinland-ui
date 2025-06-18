@@ -191,8 +191,12 @@ describe('ssr-helpers', () => {
     })
 
     it('should fail gracefully', () => {
+      jest.spyOn(console, 'error').mockImplementation()
       const links = getLinks()
       expect(links).toBeUndefined()
+      expect(console.error).toHaveBeenCalledWith(
+        expect.stringContaining('Cannot resolve main link without locale'),
+      )
     })
   })
 

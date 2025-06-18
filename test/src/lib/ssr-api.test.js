@@ -6,6 +6,7 @@ import {
   getMainMenus,
   getTranslatedPathFromContext,
 } from '@/lib/ssr-api'
+import logger from '@/logger'
 
 jest.mock('@/lib/cacher/menu-cache', () => ({
   cache: {
@@ -40,25 +41,40 @@ jest.mock('@/lib/drupal-client', () => ({
 describe('ssr-api', () => {
   describe('getCachedMenus', () => {
     it('should remove undefined values from menus', async () => {
+      jest.spyOn(logger, 'http').mockImplementation()
       const menus = await getCachedMenus({ locale: 'en' })
       expect(menus).toBeDefined()
       expect(menus.main.data.menu.items[0]).not.toHaveProperty('items')
+      expect(logger.http).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.any(Object)
+      )
     })
   })
 
   describe('getCachedAboutMenus', () => {
     it('should remove undefined values from menus', async () => {
+      jest.spyOn(logger, 'http').mockImplementation()
       const menus = await getCachedAboutMenus({ locale: 'en' })
       expect(menus).toBeDefined()
       expect(menus.about.data.menu.items[0]).not.toHaveProperty('items')
+      expect(logger.http).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.any(Object)
+      )
     })
   })
 
   describe('getCachedMainMenus', () => {
     it('should remove undefined values from menus', async () => {
+      jest.spyOn(logger, 'http').mockImplementation()
       const menus = await getCachedMainMenus({ locale: 'en' })
       expect(menus).toBeDefined()
       expect(menus.main.data.menu.items[0]).not.toHaveProperty('items')
+      expect(logger.http).toHaveBeenCalledWith(
+        expect.any(String),
+        expect.any(Object)
+      )
     })
   })
 

@@ -7,6 +7,17 @@ import React from 'react'
 import { render } from '@testing-library/react'
 import ImageBlock, { ArticleImage } from '@/components/article/ImageBlock'
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => {
+    return {
+      t: (i18nKey) => i18nKey,
+      i18n: {
+        changeLanguage: () => new Promise(() => {}),
+      },
+    };
+  },
+}));
+
 describe('ImageBlock', () => {
   it('should render the given image inside a Block', () => {
     const { asFragment } = render(
