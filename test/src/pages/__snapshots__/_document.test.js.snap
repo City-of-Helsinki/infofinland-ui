@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`pages _document should render 1`] = `
+<div>
+  <div
+    data-dir="ltr"
+    data-lang="fi"
+  />
+</div>
+`;
+
+exports[`pages _document should render with rtl locale 1`] = `
+<div>
+  <div
+    data-dir="rtl"
+    data-lang="ar"
+  />
+</div>
+`;

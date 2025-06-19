@@ -16,7 +16,7 @@ import forEach from 'lodash/forEach'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 import CommonHead from '@/components/layout/CommonHead'
-import { i18n } from '@/next-i18next.config'
+import { i18nCustom } from '@/next-i18next.config'
 import getDrupalClient from '@/lib/drupal-client'
 
 export async function getStaticProps(context) {
@@ -24,7 +24,7 @@ export async function getStaticProps(context) {
   const { SITEMAP_PAGE_PATH, DRUPAL_MENUS, REVALIDATE_TIME } =
     getConfig().serverRuntimeConfig
 
-  if (i18n.disabledLocales.includes(locale)) {
+  if (i18nCustom.disabledLocales.includes(locale)) {
     return NOT_FOUND
   }
 

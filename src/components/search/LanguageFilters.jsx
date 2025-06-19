@@ -1,11 +1,11 @@
-import { i18n } from '@/next-i18next.config'
+import { i18nCustom } from '@/next-i18next.config'
 import { useTranslation } from 'next-i18next'
 import { useEffect, useState } from 'react'
 import { IconGlobe } from '../Icons'
 import { IconCircleArrowRight } from '../Icons'
 import { useRouter } from 'next/router'
 const getLangMap = (languages) =>
-  i18n.supportedLocales.reduce((obj, lang) => {
+  i18nCustom.supportedLocales.reduce((obj, lang) => {
     obj[lang] = languages?.includes(lang)
     return obj
   }, {})
@@ -42,7 +42,7 @@ const LanguageFilters = () => {
         </button>
       )}
       {show &&
-        i18n.supportedLanguages.map(({ code, text }) => {
+        i18nCustom.supportedLanguages.map(({ code, text }) => {
           const id = `query-lang-${code}`
 
           return (

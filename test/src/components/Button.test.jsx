@@ -10,6 +10,17 @@ import React from 'react'
 import { render } from '@testing-library/react'
 import Button, { CloseButton, LinkButton } from '@/components/Button'
 
+jest.mock('react-i18next', () => ({
+  useTranslation: () => {
+    return {
+      t: (i18nKey) => i18nKey,
+      i18n: {
+        changeLanguage: () => new Promise(() => {}),
+      },
+    };
+  },
+}));
+
 describe('Buttons', () => {
   describe('Button', () => {
     it('should render Button component with ifu-button base class', () => {

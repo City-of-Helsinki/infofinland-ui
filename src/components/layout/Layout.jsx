@@ -63,7 +63,7 @@ export const SecondaryLayout = ({ children, className, menus }) => {
           <div className="ifu-layout__body">
             <main id="main">{children}</main>
             <footer className="ifu-footer" id="footer">
-              <FooterLinks secondary tree={menus.footer.tree} />
+              <FooterLinks secondary tree={menus.footer?.tree || []} />
             </footer>
           </div>
         </div>
@@ -100,7 +100,7 @@ const AppLayout = ({ children, className, menus }) => {
         <div className="ifu-layout__body">
           <main id="main">{children}</main>
           <footer className="ifu-footer" id="footer">
-            <FooterLinks tree={menus.footer.tree} />
+            <FooterLinks tree={menus.footer?.tree || []} />
             <Askem />
           </footer>
         </div>

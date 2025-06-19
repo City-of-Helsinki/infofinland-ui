@@ -11,28 +11,6 @@ const env = {
   CITIES_PAGE_PATH: '/cities',
   SEARCH_PAGE_PATH: '/search',
   LANDING_PAGE_PATH: '/landingpage',
-  PRERENDER_LOCALES: [
-    //TODO read from ENV variables instead of hard coding.
-    // i18n.locales
-    'fi',
-    'ru',
-    'es',
-    'et',
-    'tr',
-    'ar',
-    'fa',
-    'sv',
-    'zh',
-  ],
-  DRUPAL_MENUS: {
-    MAIN: 'main',
-    FOOTER: 'footer-about',
-    ABOUT: 'about',
-    CITIES: 'cities',
-    CITIES_LANDING: 'cities-landing',
-  },
-
-  REVALIDATE_TIME: 60, //seconds
   FB_URL: 'https://www.facebook.com/infofinland.fi',
   INSTAGRAM_URL: 'https://www.instagram.com/infofinland.fi/',
   YOUTUBE_URL: 'https://www.youtube.com/c/infofinland',
@@ -60,6 +38,27 @@ const publicRuntimeConfig = {
   REACT_AND_SHARE_APIKEY_ZH: process.env.REACT_AND_SHARE_APIKEY_ZH || '',
   REACT_AND_SHARE_APIKEY_FA: process.env.REACT_AND_SHARE_APIKEY_FA || '',
   REACT_AND_SHARE_APIKEY_AR: process.env.REACT_AND_SHARE_APIKEY_AR || '',
+  REVALIDATE_TIME: 60, //seconds
+  PRERENDER_LOCALES: [
+    //TODO read from ENV variables instead of hard coding.
+    // i18n.locales
+    'fi',
+    'ru',
+    'es',
+    'et',
+    'tr',
+    'ar',
+    'fa',
+    'sv',
+    'zh',
+  ],
+  DRUPAL_MENUS: {
+    MAIN: 'main',
+    FOOTER: 'footer-about',
+    ABOUT: 'about',
+    CITIES: 'cities',
+    CITIES_LANDING: 'cities-landing',
+  },
   ...env,
 }
 
@@ -85,10 +84,10 @@ const serverRuntimeConfig = {
   ...env,
 }
 /**
- *
  * Export next.config.js values
+ *
+ * @type {import('next').NextConfig}
  */
-
 const config = {
   i18n,
   reactStrictMode: true,

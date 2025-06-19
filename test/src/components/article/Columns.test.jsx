@@ -7,6 +7,18 @@ import React from 'react'
 import { render } from '@testing-library/react'
 import Columns from '@/components/article/Columns'
 import { CONTENT_TYPES, TEXT_HTML_FORMAT } from '@/lib/DRUPAL_API_TYPES'
+
+jest.mock('react-i18next', () => ({
+  useTranslation: () => {
+    return {
+      t: (i18nKey) => i18nKey,
+      i18n: {
+        changeLanguage: () => new Promise(() => {}),
+      },
+    };
+  },
+}));
+
 const CONTENT =
   'Alkukartoituksessa arvioidaan, mitkä palvelut auttavat sinua kotoutumaan.'
 

@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { IconGlobe } from '@/components/Icons'
 import cls from 'classnames'
 import { useTranslation } from 'next-i18next'
-import { i18n } from '@/next-i18next.config'
+import { i18nCustom } from '@/next-i18next.config'
 import { getLocalesForPath } from '@/lib/client-api'
 import useSWR from 'swr'
 import { useState, useEffect } from 'react'
@@ -39,7 +39,7 @@ const LanguageSelector = ({ openMenu }) => {
           </span>
           <IconGlobe className="xl:hidden mx-2 xl:mx-0 w-5 h-5" />
         </button>
-        {i18n.supportedLanguages.map(({ text, code }) => {
+        {i18nCustom.supportedLanguages.map(({ text, code }) => {
           const isLocalized =
             locales?.find((page) => page?.locale === code) !== undefined
           return (

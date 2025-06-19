@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
 
-exports[`VideoBlock should render a ReactPlayer with given url  and title inside a Block 1`] = `
+exports[`VideoBlock should render a ReactPlayer with given url and title inside a Block 1`] = `
 <DocumentFragment>
   <div
     class="my-16 ifu-block--article"
@@ -14,7 +14,9 @@ exports[`VideoBlock should render a ReactPlayer with given url  and title inside
       aria-label="video.button"
       class="flex justify-center pt-2 mt-4 border-t border-gray-lighter aspect-video"
       role="button"
-    />
+    >
+      ReactPlayer
+    </div>
   </div>
 </DocumentFragment>
 `;

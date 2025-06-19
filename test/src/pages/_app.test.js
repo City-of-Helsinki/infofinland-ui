@@ -23,10 +23,10 @@ useRouter.mockImplementation(() => ({
 }))
 
 describe('App', () => {
-  it('should render', () => {
+  it('should render', async () => {
     render(<App Component={() => <div>Test</div>} pageProps={{}} />);
 
-    waitFor(() => {
+    await waitFor(() => {
       expect(screen.getByText('Test')).toBeInTheDocument();
     });
   });
