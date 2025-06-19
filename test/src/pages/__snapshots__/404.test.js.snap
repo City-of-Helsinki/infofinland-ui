@@ -172,7 +172,7 @@ exports[`pages 404 should render the page 1`] = `
             </svg>
           </button>
           <a
-            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-gray"
             href="/foo/bar"
             hreflang="fi"
             lang="fi"
@@ -190,7 +190,7 @@ exports[`pages 404 should render the page 1`] = `
             </span>
           </a>
           <a
-            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-gray"
             href="/foo/bar"
             hreflang="sv"
             lang="sv"
@@ -208,7 +208,7 @@ exports[`pages 404 should render the page 1`] = `
             </span>
           </a>
           <a
-            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-gray"
             href="/foo/bar"
             hreflang="en"
             lang="en"
@@ -226,7 +226,7 @@ exports[`pages 404 should render the page 1`] = `
             </span>
           </a>
           <a
-            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-gray"
             href="/foo/bar"
             hreflang="ru"
             lang="ru"
@@ -244,7 +244,7 @@ exports[`pages 404 should render the page 1`] = `
             </span>
           </a>
           <a
-            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-gray"
             href="/foo/bar"
             hreflang="et"
             lang="et"
@@ -262,7 +262,7 @@ exports[`pages 404 should render the page 1`] = `
             </span>
           </a>
           <a
-            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-gray"
             href="/foo/bar"
             hreflang="uk"
             lang="uk"
@@ -280,7 +280,7 @@ exports[`pages 404 should render the page 1`] = `
             </span>
           </a>
           <a
-            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-gray"
             href="/foo/bar"
             hreflang="fr"
             lang="fr"
@@ -298,7 +298,7 @@ exports[`pages 404 should render the page 1`] = `
             </span>
           </a>
           <a
-            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-gray"
             href="/foo/bar"
             hreflang="es"
             lang="es"
@@ -316,7 +316,7 @@ exports[`pages 404 should render the page 1`] = `
             </span>
           </a>
           <a
-            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-gray"
             href="/foo/bar"
             hreflang="tr"
             lang="tr"
@@ -334,7 +334,7 @@ exports[`pages 404 should render the page 1`] = `
             </span>
           </a>
           <a
-            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-gray"
             href="/foo/bar"
             hreflang="zh"
             lang="zh"
@@ -352,7 +352,7 @@ exports[`pages 404 should render the page 1`] = `
             </span>
           </a>
           <a
-            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-gray"
             href="/foo/bar"
             hreflang="fa"
             lang="fa"
@@ -370,7 +370,7 @@ exports[`pages 404 should render the page 1`] = `
             </span>
           </a>
           <a
-            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-gray"
             href="/foo/bar"
             hreflang="ar"
             lang="ar"
@@ -561,6 +561,23 @@ exports[`pages 404 should render the page 1`] = `
               </div>
             </div>
           </section>
+          <p
+            class="flex items-center px-2 text-body-small text-red opacity-75"
+          >
+            <svg
+              class="inline-block h-4 fill-red"
+              fill="none"
+              height="35"
+              viewBox="0 0 35 35"
+              width="35"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.5 0C7.84 0 0 7.84 0 17.5C0 27.16 7.84 35 17.5 35C27.16 35 35 27.16 35 17.5C35 7.84 27.16 0 17.5 0ZM19.25 26.25H15.75V22.75H19.25V26.25ZM19.25 19.25H15.75V8.75H19.25V19.25Z"
+              />
+            </svg>
+            messages.error
+          </p>
         </section>
       </div>
       <div
@@ -619,6 +636,23 @@ exports[`pages 404 should render the page 1`] = `
               </div>
             </div>
           </section>
+          <p
+            class="flex items-center px-2 text-body-small text-red opacity-75"
+          >
+            <svg
+              class="inline-block h-4 fill-red"
+              fill="none"
+              height="35"
+              viewBox="0 0 35 35"
+              width="35"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M17.5 0C7.84 0 0 7.84 0 17.5C0 27.16 7.84 35 17.5 35C27.16 35 35 27.16 35 17.5C35 7.84 27.16 0 17.5 0ZM19.25 26.25H15.75V22.75H19.25V26.25ZM19.25 19.25H15.75V8.75H19.25V19.25Z"
+              />
+            </svg>
+            messages.error
+          </p>
         </section>
         <div
           class="flex relative justify-center items-center h-40 text-neon-red opacity-20 filter grayscale"
@@ -694,19 +728,302 @@ exports[`pages 404 should render the page 1`] = `
           id="main"
         >
           <div
-            class="ifu-block--article"
+            class="flex items-center border-s-10 border-neon-pink shadow-404title rounded h-32 mt-6 md:mt-12 mx-2 md:px-6 lg:px-12 lg:mx-12  xl:mx-28 2xl:mx-48  3xl:ms-64  3xl:max-w-4xl"
+          >
+            <span
+              aria-hidden="true"
+              class="flex-none px-4 text-h2 md:text-h1xl font-bold"
+            >
+              404
+            </span>
+            <h1
+              class="flex-grow text-body md:text-body-large md:ms-6 lg:ms-12"
+            >
+              Sivua ei löydy tällä kielellä
+              <span
+                class="hidden md:block text-small"
+              />
+            </h1>
+          </div>
+          <div
+            class="pb-8 mt-10 border-b border-gray-lighter ifu-block--hero"
+          >
+            <p
+              class="mb-2 lg:mb-0 lg:text-body-large font-bold leading-snug lg:leading-normal"
+            >
+              Valitettavasti sivua ei ole valitsemallasi kielellä.
+            </p>
+            Löydät tietoa aiheesta seuraavilla kielillä:
+            <p
+              class="overflow-hidden mt-2 leading-loose"
+            />
+          </div>
+          <div
+            class="lg:grid md:grid-rows-6 md:grid-flow-col md:gap-x-32 md:gap-y-8 mt-8 mb-8 md:mb-16 ifu-block--hero"
           >
             <div
-              class="flex justify-center items-center w-full h-64"
+              class="mb-8 lg:mb-0 text-body-small"
+              dir="ltr"
+              lang="sv"
             >
-              <div
-                class="ifu-loader__feedback--ellipsis m-auto block blue"
+              <p
+                class="font-bold leading-loose"
               >
-                <div />
-                <div />
-                <div />
-                <div />
-              </div>
+                Sidan finns inte på detta språk
+              </p>
+              <p
+                class=""
+              >
+                Tyvärr finns sidan inte på det språk du har valt.
+              </p>
+              <p>
+                Du hittar information om ärendet på följande språk:
+              </p>
+              <p
+                class="overflow-hidden mt-2 leading-loose"
+              />
+            </div>
+            <div
+              class="mb-8 lg:mb-0 text-body-small"
+              dir="ltr"
+              lang="en"
+            >
+              <p
+                class="font-bold leading-loose"
+              >
+                Page not found in this language
+              </p>
+              <p
+                class=""
+              >
+                Unfortunately, the page does not exist in the language of your choice.
+              </p>
+              <p>
+                Information is available in the following languages:
+              </p>
+              <p
+                class="overflow-hidden mt-2 leading-loose"
+              />
+            </div>
+            <div
+              class="mb-8 lg:mb-0 text-body-small"
+              dir="ltr"
+              lang="ru"
+            >
+              <p
+                class="font-bold leading-loose"
+              >
+                Страница на данном языке не найдена
+              </p>
+              <p
+                class=""
+              >
+                К сожалению, страницы на выбранном вами языке, не существует.
+              </p>
+              <p>
+                Информация по теме доступна на следующих языках:
+              </p>
+              <p
+                class="overflow-hidden mt-2 leading-loose"
+              />
+            </div>
+            <div
+              class="mb-8 lg:mb-0 text-body-small"
+              dir="ltr"
+              lang="et"
+            >
+              <p
+                class="font-bold leading-loose"
+              >
+                Leht ei ole selles keeles saadaval
+              </p>
+              <p
+                class=""
+              >
+                Kahjuks ei ole leht sinu valitud keeles saadaval.
+              </p>
+              <p>
+                Leiad teema kohta teavet järgmistes keeltes:
+              </p>
+              <p
+                class="overflow-hidden mt-2 leading-loose"
+              />
+            </div>
+            <div
+              class="mb-8 lg:mb-0 text-body-small"
+              dir="ltr"
+              lang="fr"
+            >
+              <p
+                class="font-bold leading-loose"
+              >
+                La page est introuvable dans cette langue
+              </p>
+              <p
+                class=""
+              >
+                Malheureusement, cette page n’est pas disponible dans la langue sélectionnée.
+              </p>
+              <p>
+                Vous trouverez davantage d’informations sur le sujet dans les langues suivantes :
+              </p>
+              <p
+                class="overflow-hidden mt-2 leading-loose"
+              />
+            </div>
+            <div
+              class="mb-8 lg:mb-0 text-body-small"
+              dir="ltr"
+              lang="so"
+            >
+              <p
+                class="font-bold leading-loose"
+              >
+                Luqaddan bogga laguma helo
+              </p>
+              <p
+                class=""
+              >
+                Nasiibdarro luqadda aad dooratay kuma jirto bogga.
+              </p>
+              <p>
+                Macluumaadka ku saabsan mowduucan waxaad ku heleysaa luqadaha soo socda:
+              </p>
+              <p
+                class="overflow-hidden mt-2 leading-loose"
+              />
+            </div>
+            <div
+              class="mb-8 lg:mb-0 text-body-small"
+              dir="ltr"
+              lang="uk"
+            >
+              <p
+                class="font-bold leading-loose"
+              >
+                Сторінка цією мовою не знайдена
+              </p>
+              <p
+                class=""
+              >
+                На жаль, сторінки вибраною вами мовою не існує.
+              </p>
+              <p>
+                Інформація на цю тему доступна такими мовами:
+              </p>
+              <p
+                class="overflow-hidden mt-2 leading-loose"
+              />
+            </div>
+            <div
+              class="mb-8 lg:mb-0 text-body-small"
+              dir="ltr"
+              lang="es"
+            >
+              <p
+                class="font-bold leading-loose"
+              >
+                La página no existe en este idioma
+              </p>
+              <p
+                class=""
+              >
+                Lamentablemente, la página no existe en el idioma que ha elegido.
+              </p>
+              <p>
+                Encontrará información sobre este tema en los siguientes idiomas:
+              </p>
+              <p
+                class="overflow-hidden mt-2 leading-loose"
+              />
+            </div>
+            <div
+              class="mb-8 lg:mb-0 text-body-small"
+              dir="ltr"
+              lang="tr"
+            >
+              <p
+                class="font-bold leading-loose"
+              >
+                Sayfa bu dilde mevcut değil
+              </p>
+              <p
+                class=""
+              >
+                Ne yazık ki sayfa seçtiğiniz dilde mevcut değil.
+              </p>
+              <p>
+                Konuyla ilgili bilgiyi aşağıdaki dillerde bulabilirsiniz:
+              </p>
+              <p
+                class="overflow-hidden mt-2 leading-loose"
+              />
+            </div>
+            <div
+              class="mb-8 lg:mb-0 text-body-small"
+              dir="ltr"
+              lang="zh"
+            >
+              <p
+                class="font-bold leading-loose"
+              >
+                本页不支持该语言
+              </p>
+              <p
+                class=""
+              >
+                很遗憾！
+              </p>
+              <p>
+                本页不支持您所选的语言您可通过下列语言了解相关信息：
+              </p>
+              <p
+                class="overflow-hidden mt-2 leading-loose"
+              />
+            </div>
+            <div
+              class="mb-8 lg:mb-0 text-body-small"
+              dir="rtl"
+              lang="fa"
+            >
+              <p
+                class="font-bold leading-loose"
+              >
+                ین صفحه در حال حاضر در دسترس نیست
+              </p>
+              <p
+                class=""
+              >
+                متأسفانه این صفحه به زبانی که انتخاب کردید وجود ندارد. 
+              </p>
+              <p>
+                می توانید در مورد این موضوع به زبان های زیر اطلاعات کسب کنید:
+              </p>
+              <p
+                class="overflow-hidden mt-2 leading-loose"
+              />
+            </div>
+            <div
+              class="mb-8 lg:mb-0 text-body-small"
+              dir="rtl"
+              lang="ar"
+            >
+              <p
+                class="font-bold leading-loose"
+              >
+                الصفحة غير متوفرة بهذه اللغة
+              </p>
+              <p
+                class=""
+              >
+                للأسف الصفحة غير متوفرة باللغة التي اخترتها. 
+              </p>
+              <p>
+                تجد معلومات عن الموضوع باللغات التالية:
+              </p>
+              <p
+                class="overflow-hidden mt-2 leading-loose"
+              />
             </div>
           </div>
         </main>

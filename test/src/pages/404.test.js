@@ -23,6 +23,11 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
+
+jest.mock('@/lib/client-api', () => ({
+  getLocalesForPath: jest.fn().mockResolvedValue(['fi', 'sv', 'en', 'ru', 'et', 'fr', 'so', 'uk', 'es', 'tr', 'ar', 'zh'])
+}))
+
 describe('pages', () => {
   describe('404', () => {
     it('should render the page', async () => {

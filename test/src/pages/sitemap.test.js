@@ -1,5 +1,5 @@
 import { act, render } from '@testing-library/react';
-import SiteMap from '@/pages/sitemap';
+import SiteMap, { getStaticProps } from '@/pages/sitemap';
 
 jest.mock('next/router', () => ({
   useRouter: jest.fn().mockReturnValue({
@@ -23,6 +23,30 @@ jest.mock('react-i18next', () => ({
   },
 }));
 
+jest.mock('@/lib/ssr-api', () => ({
+  getCachedMenus: jest.fn().mockResolvedValue({
+    main: { items: [] },
+    cities: { items: [] },
+    about: { items: [] },
+  }),
+  getCachedAboutMenus: jest.fn().mockResolvedValue({
+    about: { items: [] },
+  }),
+  getCachedCitiesMenus: jest.fn().mockResolvedValue({
+    cities: { items: [] },
+  }),
+  getCachedMainMenus: jest.fn().mockResolvedValue({
+    main: { items: [] },
+  }),
+}))
+
+jest.mock('@/lib/drupal-client', () => ({
+  __esModule: true,
+  default: jest.fn(() => ({
+    getResourceByPath: jest.fn().mockResolvedValue('test-node')
+  }))
+}))
+
 describe('pages', () => {
   describe('sitemap', () => {
     it('should render the page', async () => {
@@ -32,6 +56,13 @@ describe('pages', () => {
         container = component.container
       })
       expect(container).toMatchSnapshot()
+    })
+
+    it('should get the static props', async () => {
+      const props = await getStaticProps({ locale: 'fi', preview: false })
+      expect(props.props.urls).toBeDefined()
+      expect(props.props.menus).toBeDefined()
+      expect(props.props.node).toBeDefined()
     })
   })
 })
