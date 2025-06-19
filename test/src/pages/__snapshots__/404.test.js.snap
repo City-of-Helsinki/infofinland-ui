@@ -1,0 +1,938 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`pages 404 should render the page 1`] = `
+<div>
+  <div
+    class="relative text-body bg-white ifu-layout--article"
+  >
+    <header
+      class="sticky top-0 z-20 xl:justify-center items-center h-topbar md:h-topbarxl bg-white shadow-topbar"
+    >
+      <div
+        class="flex items-center w-full 3xl:max-w-topbar h-topbar md:h-topbarxl"
+      >
+        <div
+          class="relative z-20 flex-none py-3 md:py-4 px-3 bg-white transform translate-y-px md:ps-6 md:pe-2"
+          role="banner"
+        >
+          <a
+            class="ifu-topmenu__logo"
+            href="/fi"
+            title="breadcrumbs.frontpage"
+          />
+        </div>
+        <a
+          class="ifu-topmenu__skiplink"
+          href="#main"
+        >
+          buttons.skipTo
+        </a>
+        <div
+          class="flex-grow"
+        />
+        <button
+          aria-haspopup="dialog"
+          class=" flex lg:hidden items-center h-10 md:me-2"
+          title="languageMenu.label"
+        >
+          <span
+            class="text-action uppercase"
+          >
+            Suomi
+          </span>
+          <span
+            class="hidden"
+            lang="sv"
+          >
+            Välj språk
+          </span>
+          <span
+            class="hidden"
+            lang="en"
+          >
+            Select language
+          </span>
+          <span
+            class="hidden"
+            lang="ru"
+          >
+            Выбрать язык
+          </span>
+          <span
+            class="hidden"
+            lang="et"
+          >
+            Vali keel
+          </span>
+          <span
+            class="hidden"
+            lang="uk"
+          />
+          <span
+            class="hidden"
+            lang="fr"
+          >
+            Sélectionner la langue
+          </span>
+          <span
+            class="hidden"
+            lang="es"
+          >
+            Elegir idioma
+          </span>
+          <span
+            class="hidden"
+            lang="tr"
+          >
+            Dil seçin
+          </span>
+          <span
+            class="hidden"
+            lang="zh"
+          >
+            选择语言
+          </span>
+          <span
+            class="hidden"
+            lang="fa"
+          >
+            زبان را انتخاب کن
+          </span>
+          <span
+            class="hidden"
+            lang="ar"
+          >
+            اختر اللغة
+          </span>
+          <svg
+            class="inline-block mx-2 xl:mx-0 w-4 md:w-5 md:h-5"
+            viewBox="0 0 200 200"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M100,175.69A75.69,75.69,0,1,1,175.69,100,75.78,75.78,0,0,1,100,175.69Zm0-141.38A65.69,65.69,0,1,0,165.69,100,65.77,65.77,0,0,0,100,34.31Z"
+              fill="black"
+            />
+            <path
+              d="M100,175.69c-19.49,0-30-39-30-75.69s10.51-75.69,30-75.69,30,39,30,75.69S119.49,175.69,100,175.69Zm0-141.38c-8.15,0-20,25.59-20,65.69,0,18.33,2.5,35.49,7,48.32,3.73,10.55,8.82,17.37,13,17.37,8.15,0,20-25.59,20-65.69,0-18.33-2.5-35.49-7-48.32C109.23,41.13,104.14,34.31,100,34.31Z"
+              fill="black"
+            />
+            <path
+              d="M170.69,105H29.31a5,5,0,0,1,0-10H170.69a5,5,0,0,1,0,10Z"
+              fill="black"
+            />
+            <path
+              d="M163.05,73H37a5,5,0,0,1,0-10h126.1a5,5,0,0,1,0,10Z"
+              fill="black"
+            />
+            <path
+              d="M163.05,137H37a5,5,0,0,1,0-10h126.1a5,5,0,0,1,0,10Z"
+              fill="black"
+            />
+          </svg>
+        </button>
+        <div
+          class=" hidden lg:block text-action leading-10 divide-x xl:divide-x-0 divide-black me-4 md:ms-1"
+          dir="ltr"
+        >
+          <button
+            aria-haspopup="dialog"
+            class=" xl:hidden lg:px-0 pe-2 ps-2"
+          >
+            <span
+              class="hidden md:inline-block xl:hidden"
+            >
+              languageSelector.button
+            </span>
+            <svg
+              class="inline-block xl:hidden mx-2 xl:mx-0 w-5 h-5"
+              viewBox="0 0 200 200"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M100,175.69A75.69,75.69,0,1,1,175.69,100,75.78,75.78,0,0,1,100,175.69Zm0-141.38A65.69,65.69,0,1,0,165.69,100,65.77,65.77,0,0,0,100,34.31Z"
+                fill="black"
+              />
+              <path
+                d="M100,175.69c-19.49,0-30-39-30-75.69s10.51-75.69,30-75.69,30,39,30,75.69S119.49,175.69,100,175.69Zm0-141.38c-8.15,0-20,25.59-20,65.69,0,18.33,2.5,35.49,7,48.32,3.73,10.55,8.82,17.37,13,17.37,8.15,0,20-25.59,20-65.69,0-18.33-2.5-35.49-7-48.32C109.23,41.13,104.14,34.31,100,34.31Z"
+                fill="black"
+              />
+              <path
+                d="M170.69,105H29.31a5,5,0,0,1,0-10H170.69a5,5,0,0,1,0,10Z"
+                fill="black"
+              />
+              <path
+                d="M163.05,73H37a5,5,0,0,1,0-10h126.1a5,5,0,0,1,0,10Z"
+                fill="black"
+              />
+              <path
+                d="M163.05,137H37a5,5,0,0,1,0-10h126.1a5,5,0,0,1,0,10Z"
+                fill="black"
+              />
+            </svg>
+          </button>
+          <a
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            href="/foo/bar"
+            hreflang="fi"
+            lang="fi"
+            title="Suomi"
+          >
+            <span
+              class="xl:hidden  border-b-2 border-black"
+            >
+              fi
+            </span>
+            <span
+              class="hidden xl:inline-block hover:border-black border-b-2 transition-all ease duration-150 border-black"
+            >
+              Suomi
+            </span>
+          </a>
+          <a
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            href="/foo/bar"
+            hreflang="sv"
+            lang="sv"
+            title="Svenska"
+          >
+            <span
+              class="xl:hidden"
+            >
+              sv
+            </span>
+            <span
+              class="hidden xl:inline-block hover:border-black border-b-2 transition-all ease duration-150 border-white"
+            >
+              Svenska
+            </span>
+          </a>
+          <a
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            href="/foo/bar"
+            hreflang="en"
+            lang="en"
+            title="English"
+          >
+            <span
+              class="xl:hidden"
+            >
+              en
+            </span>
+            <span
+              class="hidden xl:inline-block hover:border-black border-b-2 transition-all ease duration-150 border-white"
+            >
+              English
+            </span>
+          </a>
+          <a
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            href="/foo/bar"
+            hreflang="ru"
+            lang="ru"
+            title="Pусский"
+          >
+            <span
+              class="xl:hidden"
+            >
+              ru
+            </span>
+            <span
+              class="hidden xl:inline-block hover:border-black border-b-2 transition-all ease duration-150 border-white"
+            >
+              Pусский
+            </span>
+          </a>
+          <a
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            href="/foo/bar"
+            hreflang="et"
+            lang="et"
+            title="Eesti keel"
+          >
+            <span
+              class="xl:hidden"
+            >
+              et
+            </span>
+            <span
+              class="hidden xl:inline-block hover:border-black border-b-2 transition-all ease duration-150 border-white"
+            >
+              Eesti keel
+            </span>
+          </a>
+          <a
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            href="/foo/bar"
+            hreflang="uk"
+            lang="uk"
+            title="Українська"
+          >
+            <span
+              class="xl:hidden"
+            >
+              uk
+            </span>
+            <span
+              class="hidden xl:inline-block hover:border-black border-b-2 transition-all ease duration-150 border-white"
+            >
+              Українська
+            </span>
+          </a>
+          <a
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            href="/foo/bar"
+            hreflang="fr"
+            lang="fr"
+            title="Français"
+          >
+            <span
+              class="xl:hidden"
+            >
+              fr
+            </span>
+            <span
+              class="hidden xl:inline-block hover:border-black border-b-2 transition-all ease duration-150 border-white"
+            >
+              Français
+            </span>
+          </a>
+          <a
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            href="/foo/bar"
+            hreflang="es"
+            lang="es"
+            title="Español"
+          >
+            <span
+              class="xl:hidden"
+            >
+              es
+            </span>
+            <span
+              class="hidden xl:inline-block hover:border-black border-b-2 transition-all ease duration-150 border-white"
+            >
+              Español
+            </span>
+          </a>
+          <a
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            href="/foo/bar"
+            hreflang="tr"
+            lang="tr"
+            title="Türkçe"
+          >
+            <span
+              class="xl:hidden"
+            >
+              tr
+            </span>
+            <span
+              class="hidden xl:inline-block hover:border-black border-b-2 transition-all ease duration-150 border-white"
+            >
+              Türkçe
+            </span>
+          </a>
+          <a
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            href="/foo/bar"
+            hreflang="zh"
+            lang="zh"
+            title="中文"
+          >
+            <span
+              class="xl:hidden"
+            >
+              中文
+            </span>
+            <span
+              class="hidden xl:inline-block hover:border-black border-b-2 transition-all ease duration-150 border-white"
+            >
+              中文
+            </span>
+          </a>
+          <a
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            href="/foo/bar"
+            hreflang="fa"
+            lang="fa"
+            title=" فارسی"
+          >
+            <span
+              class="xl:hidden"
+            >
+              fa
+            </span>
+            <span
+              class="hidden xl:inline-block hover:border-black border-b-2 transition-all ease duration-150 border-white"
+            >
+               فارسی
+            </span>
+          </a>
+          <a
+            class="xl:inline-block px-3 2xl:px-4 font-bold text-center uppercase  text-black"
+            href="/foo/bar"
+            hreflang="ar"
+            lang="ar"
+            title="العربية"
+          >
+            <span
+              class="xl:hidden"
+            >
+              ar
+            </span>
+            <span
+              class="hidden xl:inline-block hover:border-black border-b-2 transition-all ease duration-150 border-white"
+            >
+              العربية
+            </span>
+          </a>
+        </div>
+        <div
+          class="2xl:flex-none xl:flex-grow"
+        />
+        <div
+          class="flex items-center"
+        >
+          <div
+            class="flex-none text-right md:w-26 md:pe-4"
+          >
+            <button
+              aria-expanded="false"
+              aria-haspopup="dialog"
+              class=" md:hidden w-8 h-8 text-action ms-2"
+              title="buttons.search"
+            >
+              <span
+                class="px-2 transform translate-y-0.5"
+              >
+                <svg
+                  class="inline-block"
+                  fill="none"
+                  height="17"
+                  viewBox="0 0 17 17"
+                  width="17"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z"
+                    fill-rule="evenodd"
+                    stroke="black"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M10.7061 10.7059L16.0001 16"
+                    stroke="black"
+                    stroke-width="2"
+                  />
+                </svg>
+              </span>
+            </button>
+            <button
+              class=" hidden md:inline-block h-8 text-action text-right"
+              title="buttons.search"
+            >
+              <span
+                class="px-2 transform translate-y-0.5"
+              >
+                <svg
+                  class="inline-block"
+                  fill="none"
+                  height="17"
+                  viewBox="0 0 17 17"
+                  width="17"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M12.4705 6.73533C12.4705 9.90241 9.903 12.4707 6.73526 12.4707C3.56823 12.4707 1 9.90241 1 6.73533C1 3.56756 3.56823 1 6.73526 1C9.903 1 12.4705 3.56756 12.4705 6.73533Z"
+                    fill-rule="evenodd"
+                    stroke="black"
+                    stroke-width="2"
+                  />
+                  <path
+                    d="M10.7061 10.7059L16.0001 16"
+                    stroke="black"
+                    stroke-width="2"
+                  />
+                </svg>
+              </span>
+              <span
+                class="hidden md:inline-block"
+              >
+                buttons.search
+              </span>
+            </button>
+          </div>
+          <div
+            class="md:hidden md:mx-4 me-6 ms-2"
+          >
+            <button
+              aria-haspopup="dialog"
+              class="z-50 w-8"
+              title="mainMenu.button"
+            >
+              <svg
+                class="inline-block"
+                fill="none"
+                height="14"
+                viewBox="0 0 23 14"
+                width="23"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M0 1H22.75"
+                  stroke="black"
+                  stroke-width="2"
+                />
+                <path
+                  d="M0 7H23"
+                  stroke="black"
+                  stroke-width="2"
+                />
+                <path
+                  d="M0 13H23"
+                  stroke="black"
+                  stroke-width="2"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div
+      class=" md:flex md:items-stretch"
+    >
+      <div
+        class="md:hidden"
+      >
+        <section
+          aria-label="messages.title"
+          class="grid bg-gray-lighter border-b border-gray-lighter grid-colums-1 ifu-messages"
+        >
+          <section
+            class="bg-gray-lighter ifu-messages__card--appear-done ifu-messages__card--enter-done"
+          >
+            <div
+              class=" flex my-2 bg-white rounded shadow-md me-2 ms-2"
+            >
+              <div
+                class="w-2 flex-none rounded-s  bg-neon-green"
+              />
+              <div
+                class=" flex flex-col flex-1 flex-grow p-4 min-h-card ifu-messages__card-body"
+              >
+                <h2
+                  class="flex-none mb-2 text-message font-bold"
+                >
+                  languageMessage.title
+                </h2>
+                <div
+                  class=" text-message"
+                >
+                  languageMessage.text
+                </div>
+                <div
+                  class="mt-2 text-right"
+                >
+                  <button
+                    class="text-tiny font-bold hover:underline uppercase"
+                    title="buttons.no"
+                  >
+                    <span
+                      class="px-3"
+                    >
+                      buttons.no
+                    </span>
+                  </button>
+                  <button
+                    class="text-tiny font-bold hover:underline uppercase"
+                    title="buttons.yes"
+                  >
+                    <span
+                      class="px-3"
+                    >
+                      buttons.yes
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+      </div>
+      <div
+        class="hidden md:block overflow-y-auto overscroll-none fixed flex-none self-start w-navi bg-white ifu-mainmenu__desktop"
+      >
+        <section
+          aria-label="messages.title"
+          class="grid bg-gray-lighter border-b border-gray-lighter grid-colums-1 ifu-messages"
+        >
+          <section
+            class="bg-gray-lighter ifu-messages__card--appear-done ifu-messages__card--enter-done"
+          >
+            <div
+              class=" flex my-2 bg-white rounded shadow-md me-2 ms-2"
+            >
+              <div
+                class="w-2 flex-none rounded-s  bg-neon-green"
+              />
+              <div
+                class=" flex flex-col flex-1 flex-grow p-4 min-h-card ifu-messages__card-body"
+              >
+                <h2
+                  class="flex-none mb-2 text-message font-bold"
+                >
+                  languageMessage.title
+                </h2>
+                <div
+                  class=" text-message"
+                >
+                  languageMessage.text
+                </div>
+                <div
+                  class="mt-2 text-right"
+                >
+                  <button
+                    class="text-tiny font-bold hover:underline uppercase"
+                    title="buttons.no"
+                  >
+                    <span
+                      class="px-3"
+                    >
+                      buttons.no
+                    </span>
+                  </button>
+                  <button
+                    class="text-tiny font-bold hover:underline uppercase"
+                    title="buttons.yes"
+                  >
+                    <span
+                      class="px-3"
+                    >
+                      buttons.yes
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </section>
+        <div
+          class="flex relative justify-center items-center h-40 text-neon-red opacity-20 filter grayscale"
+        >
+          <svg
+            class="inline-block inline-block fill-current"
+            fill="none"
+            height="35"
+            viewBox="0 0 35 35"
+            width="35"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.5 0C7.84 0 0 7.84 0 17.5C0 27.16 7.84 35 17.5 35C27.16 35 35 27.16 35 17.5C35 7.84 27.16 0 17.5 0ZM19.25 26.25H15.75V22.75H19.25V26.25ZM19.25 19.25H15.75V8.75H19.25V19.25Z"
+            />
+          </svg>
+        </div>
+        <p
+          class="mx-3 text-small text-center text-gray"
+        >
+          Oops. Could not load main navigation
+        </p>
+        <div
+          class="flex relative justify-center items-center h-40 text-neon-red opacity-20 filter grayscale"
+        >
+          <svg
+            class="inline-block inline-block fill-current"
+            fill="none"
+            height="35"
+            viewBox="0 0 35 35"
+            width="35"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.5 0C7.84 0 0 7.84 0 17.5C0 27.16 7.84 35 17.5 35C27.16 35 35 27.16 35 17.5C35 7.84 27.16 0 17.5 0ZM19.25 26.25H15.75V22.75H19.25V26.25ZM19.25 19.25H15.75V8.75H19.25V19.25Z"
+            />
+          </svg>
+        </div>
+        <p
+          class="mx-3 text-small text-center text-gray"
+        >
+          Oops. Could not load main navigation
+        </p>
+        <div
+          class="flex relative justify-center items-center h-40 text-neon-red opacity-20 filter grayscale"
+        >
+          <svg
+            class="inline-block inline-block fill-current"
+            fill="none"
+            height="35"
+            viewBox="0 0 35 35"
+            width="35"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M17.5 0C7.84 0 0 7.84 0 17.5C0 27.16 7.84 35 17.5 35C27.16 35 35 27.16 35 17.5C35 7.84 27.16 0 17.5 0ZM19.25 26.25H15.75V22.75H19.25V26.25ZM19.25 19.25H15.75V8.75H19.25V19.25Z"
+            />
+          </svg>
+        </div>
+        <p
+          class="mx-3 text-small text-center text-gray"
+        >
+          Oops. Could not load main navigation
+        </p>
+      </div>
+      <div
+        class="hidden md:block flex-none w-navi border-black-op1 border-e-2"
+      />
+      <div
+        class="ifu-layout__body"
+      >
+        <main
+          id="main"
+        >
+          <div
+            class="ifu-block--article"
+          >
+            <div
+              class="flex justify-center items-center w-full h-64"
+            >
+              <div
+                class="ifu-loader__feedback--ellipsis m-auto block blue"
+              >
+                <div />
+                <div />
+                <div />
+                <div />
+              </div>
+            </div>
+          </div>
+        </main>
+        <footer
+          class="ifu-footer"
+          id="footer"
+        >
+          <div
+            class="ifu-block--article mt-16 mb-16"
+          >
+            <div
+              class="py-10 border-t border-b border-gray-light ifu-footer__brand"
+            >
+              <div
+                class="mx-auto sm:mx-0 mb-5 ifu-footer__hki-logo"
+              />
+              <p
+                class="mx-8 md:mx-0 text-tiny text-center sm:text-left text-gray"
+              >
+                footer.helsinkiDisclaimer
+              </p>
+            </div>
+            <div
+              class="flex justify-center sm:justify-start items-center py-11 sm:py-7 mb-5 space-s-4"
+            >
+              <a
+                class="inline-block"
+                href="https://www.facebook.com/infofinland.fi"
+                rel="noreferrer"
+              >
+                <svg
+                  class="inline-block"
+                  fill="none"
+                  height="35"
+                  viewBox="0 0 35 35"
+                  width="35"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>
+                    Facebook
+                  </title>
+                  <path
+                    clip-rule="evenodd"
+                    d="M17.4565 34.0974V34.0974C8.36743 34.0974 1 26.6878 1 17.5487C1 8.40957 8.36743 1 17.4565 1C26.5447 1 33.9122 8.40957 33.9122 17.5487C33.9122 26.6878 26.5447 34.0974 17.4565 34.0974Z"
+                    fill-rule="evenodd"
+                    stroke="black"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    clip-rule="evenodd"
+                    d="M14.9483 27.5506H18.9546V17.4628H21.7494L22.0477 14.0863H18.9546V12.1628C18.9546 11.3663 19.1128 11.0506 19.879 11.0506H22.0477V7.54541H19.2737C16.293 7.54541 14.9483 8.86628 14.9483 11.3932V14.0863H12.8652V17.5054H14.9483V27.5506Z"
+                    fill="black"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </a>
+              <a
+                class="inline-block"
+                href="https://www.instagram.com/infofinland.fi/"
+                rel="noreferrer"
+              >
+                <svg
+                  class="inline-block"
+                  fill="none"
+                  height="35"
+                  viewBox="0 0 35 35"
+                  width="35"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>
+                    Instagram
+                  </title>
+                  <path
+                    clip-rule="evenodd"
+                    d="M17.4557 34.0974V34.0974C8.36743 34.0974 1 26.6878 1 17.5487C1 8.40957 8.36743 1 17.4557 1C26.5447 1 33.9122 8.40957 33.9122 17.5487C33.9122 26.6878 26.5447 34.0974 17.4557 34.0974Z"
+                    fill-rule="evenodd"
+                    stroke="black"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    clip-rule="evenodd"
+                    d="M17.4551 8.47461C15.0045 8.47461 14.6984 8.48591 13.7351 8.52939C12.7752 8.57374 12.1189 8.72765 11.5448 8.952C10.9516 9.18331 10.4483 9.49374 9.94674 9.99809C9.44521 10.5024 9.1365 11.0085 8.90648 11.6059C8.68252 12.1824 8.5312 12.8416 8.48709 13.8077C8.44299 14.7755 8.43262 15.085 8.43262 17.5485C8.43262 20.0129 8.44299 20.3216 8.48709 21.2894C8.5312 22.2555 8.68252 22.9146 8.90648 23.492C9.1365 24.0885 9.44521 24.5946 9.94674 25.099C10.4483 25.6033 10.9516 25.9137 11.5448 26.145C12.1189 26.3694 12.7752 26.5233 13.7351 26.5677C14.6984 26.6111 15.0045 26.6216 17.4551 26.6216C19.9057 26.6216 20.2127 26.6111 21.176 26.5677C22.1359 26.5233 22.7922 26.3694 23.3655 26.145C23.9587 25.9137 24.4628 25.6033 24.9644 25.099C25.4659 24.5946 25.7737 24.0885 26.0046 23.492C26.2277 22.9146 26.3799 22.2555 26.424 21.2894C26.4681 20.3216 26.4785 20.0129 26.4785 17.5485C26.4785 15.085 26.4681 14.7755 26.424 13.8077C26.3799 12.8416 26.2277 12.1824 26.0046 11.6059C25.7737 11.0085 25.4659 10.5024 24.9644 9.99809C24.4628 9.49374 23.9587 9.18331 23.3655 8.952C22.7922 8.72765 22.1359 8.57374 21.176 8.52939C20.2127 8.48591 19.9057 8.47461 17.4551 8.47461ZM17.455 10.1104C19.8641 10.1104 20.1495 10.1199 21.1016 10.1625C21.981 10.2025 22.4583 10.3512 22.7765 10.4756C23.1985 10.6399 23.4986 10.8364 23.8142 11.1538C24.1307 11.4712 24.3252 11.7738 24.4895 12.1973C24.6123 12.5164 24.7593 12.9973 24.8 13.8825C24.8432 14.839 24.8527 15.1251 24.8527 17.5486C24.8527 19.9721 24.8432 20.2582 24.8 21.2147C24.7593 22.0999 24.6123 22.5808 24.4895 22.8999C24.3252 23.3234 24.1307 23.626 23.8142 23.9434C23.4986 24.2599 23.1985 24.4573 22.7765 24.6217C22.4583 24.746 21.981 24.8938 21.1016 24.9347C20.1495 24.9782 19.865 24.9869 17.455 24.9869C15.0459 24.9869 14.7606 24.9782 13.8094 24.9347C12.9299 24.8938 12.4518 24.746 12.1344 24.6217C11.7124 24.4573 11.4124 24.2599 11.0959 23.9434C10.7802 23.626 10.5857 23.3234 10.4214 22.8999C10.2986 22.5808 10.1516 22.0999 10.111 21.2147C10.0677 20.2582 10.0582 19.9721 10.0582 17.5486C10.0582 15.1251 10.0677 14.839 10.111 13.8825C10.1516 12.9973 10.2986 12.5164 10.4214 12.1973C10.5857 11.7738 10.7802 11.4712 11.0959 11.1538C11.4124 10.8364 11.7124 10.6399 12.1344 10.4756C12.4518 10.3512 12.9299 10.2025 13.8094 10.1625C14.7606 10.1199 15.0459 10.1104 17.455 10.1104Z"
+                    fill="black"
+                    fill-rule="evenodd"
+                  />
+                  <path
+                    clip-rule="evenodd"
+                    d="M17.4557 20.5731C15.7946 20.5731 14.4482 19.2183 14.4482 17.5479C14.4482 15.8783 15.7946 14.5244 17.4557 14.5244C19.1169 14.5244 20.4641 15.8783 20.4641 17.5479C20.4641 19.2183 19.1169 20.5731 17.4557 20.5731ZM17.4556 12.8896C14.8968 12.8896 12.8232 14.9757 12.8232 17.5479C12.8232 20.1218 14.8968 22.2079 17.4556 22.2079C20.0151 22.2079 22.0887 20.1218 22.0887 17.5479C22.0887 14.9757 20.0151 12.8896 17.4556 12.8896Z"
+                    fill="black"
+                    fill-rule="evenodd"
+                  />
+                  <path
+                    clip-rule="evenodd"
+                    d="M23.3547 12.7054C23.3547 13.3063 22.8696 13.7941 22.2721 13.7941C21.6746 13.7941 21.1895 13.3063 21.1895 12.7054C21.1895 12.1045 21.6746 11.6167 22.2721 11.6167C22.8696 11.6167 23.3547 12.1045 23.3547 12.7054Z"
+                    fill="black"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+              </a>
+              <a
+                class="inline-block"
+                href="https://www.youtube.com/c/infofinland"
+                rel="noreferrer"
+              >
+                <svg
+                  class="inline-block"
+                  fill="none"
+                  height="35"
+                  viewBox="0 0 35 35"
+                  width="35"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>
+                    Youtube
+                  </title>
+                  <path
+                    clip-rule="evenodd"
+                    d="M17.4557 34.0974V34.0974C8.36743 34.0974 1 26.6878 1 17.5487C1 8.40957 8.36743 1 17.4557 1C26.5447 1 33.9122 8.40957 33.9122 17.5487C33.9122 26.6878 26.5447 34.0974 17.4557 34.0974Z"
+                    fill-rule="evenodd"
+                    stroke="black"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M26.5543 13.0496C26.4452 12.6536 26.2318 12.2926 25.9354 12.0026C25.6389 11.7126 25.2699 11.5038 24.8652 11.397C23.3743 11 17.3995 11 17.3995 11C17.3995 11 11.4231 11 9.93527 11.3908C9.52964 11.4979 9.15997 11.7075 8.86345 11.9987C8.56693 12.2899 8.35403 12.6523 8.24615 13.0496C7.84668 14.5068 7.84668 17.5489 7.84668 17.5489C7.84668 17.5489 7.84668 20.5909 8.24615 22.0481C8.35499 22.4442 8.56832 22.8054 8.86478 23.0955C9.16123 23.3855 9.53039 23.5942 9.93527 23.7007C11.4246 24.0916 17.3995 24.0916 17.3995 24.0916C17.3995 24.0916 23.3758 24.0916 24.8652 23.7007C25.2699 23.5939 25.6389 23.3851 25.9354 23.0951C26.2318 22.8051 26.4452 22.4441 26.5543 22.0481C26.9522 20.5909 26.9522 17.5489 26.9522 17.5489C26.9522 17.5489 26.9475 14.5068 26.5543 13.0496Z"
+                    fill="#282828"
+                  />
+                  <path
+                    d="M15.4883 20.353V14.7458L20.4534 17.5494L15.4883 20.353Z"
+                    fill="white"
+                  />
+                </svg>
+              </a>
+              <a
+                class="inline-block"
+                href="https://www.linkedin.com/company/infofinland"
+                rel="noreferrer"
+              >
+                <svg
+                  class="inline-block"
+                  fill="none"
+                  height="35"
+                  viewBox="0 0 35 35"
+                  width="35"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <title>
+                    LinkedIn
+                  </title>
+                  <path
+                    clip-rule="evenodd"
+                    d="M17.4557 34.0974V34.0974C8.36743 34.0974 1 26.6878 1 17.5487C1 8.40957 8.36743 1 17.4557 1C26.5447 1 33.9122 8.40957 33.9122 17.5487C33.9122 26.6878 26.5447 34.0974 17.4557 34.0974Z"
+                    fill-rule="evenodd"
+                    stroke="black"
+                    stroke-width="1.5"
+                  />
+                  <path
+                    d="M26.8,25.7h-3.6v-6.8c0-.8-.3-1.3-.6-1.6-.7-.7-2.3-.5-2.9.2-.3.4-.6.8-.6,1.7v6.4h-3.6v-11.7h3.5v1.6c.1,0,0,0,.1,0,1-1.4,2.2-1.9,4-1.8,2.7.2,3.6,2,3.8,4.5v7.5h0Z"
+                    fill="black"
+                  />
+                  <polygon
+                    fill="black"
+                    points="13.2 14 13.2 25.7 9.5 25.7 9.5 14.1 9.6 14 13.2 14"
+                  />
+                  <path
+                    d="M11.3,8.2c2.9,0,2.8,4.5-.3,4.2-2.4-.3-2.4-4.2.3-4.2Z"
+                    fill="black"
+                  />
+                </svg>
+              </a>
+            </div>
+            <div
+              class="mb-4 text-center sm:text-left divide-black divide-s"
+            />
+          </div>
+          <section
+            class="bg-blue-white feedback"
+          >
+            <div
+              class="askem px-2 lg:px-0 lg:mx-12 xl:mx-28 2xl:mx-48  3xl:ms-64  3xl:max-w-4xl h-20"
+            />
+          </section>
+        </footer>
+      </div>
+    </div>
+    <section
+      class="sticky bottom-0 items-center px-6 lg:px-16 pt-6 lg:pt-12 text-center lg:text-left bg-white rounded-t shadow-bottom-bar min-bottom-bar lg:rounded-none ifu-cookies__banner--appear-done ifu-cookies__banner--enter-done"
+    >
+      <h2
+        class="mb-4 text-body-large font-bold"
+      >
+        cookies.title
+      </h2>
+      <div
+        class="lg:flex lg:gap-12 pb-6 max-w-topbar"
+      >
+        <div
+          class="lg:w-1/2"
+        >
+          <p
+            class="mb-8 text-action lg:text-body"
+          >
+            cookies.text
+          </p>
+        </div>
+        <div
+          class="gap-4 justify-items-center items-center"
+        >
+          <button
+            class="ifu-button block md:inline-block mx-auto mb-4 text-body-small md:me-4"
+          >
+            cookies.deny
+          </button>
+          <button
+            class="ifu-button block md:inline-block mx-auto mb-4 border-3 md:me-12"
+          >
+            cookies.allow
+          </button>
+          <a
+            class="font-bold text-black underline"
+            href="/cookie-settings"
+          >
+            cookies.readMore
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+`;
