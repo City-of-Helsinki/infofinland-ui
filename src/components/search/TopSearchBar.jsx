@@ -1,6 +1,6 @@
 import cls from 'classnames'
 import { getSearchResult } from '@/lib/ssr-helpers'
-import { useAtomValue } from 'jotai/utils'
+import { useAtomValue } from 'jotai'
 import { LinkButton } from '../Button'
 import { DotsLoader } from '../Loaders'
 import { getSearchResults } from '@/lib/client-api'

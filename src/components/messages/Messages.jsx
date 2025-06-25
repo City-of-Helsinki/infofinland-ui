@@ -1,6 +1,5 @@
-import { useAtom } from 'jotai'
+import { useAtom, useAtomValue } from 'jotai'
 import { useTranslation } from 'next-i18next'
-import { useAtomValue } from 'jotai/utils'
 import { nodeIdAtom, shownMessagesAtom } from '@/src/store'
 import keys from 'lodash/keys'
 import LanguageMessageCard from '@/components/messages/LanguageMessageCard'
