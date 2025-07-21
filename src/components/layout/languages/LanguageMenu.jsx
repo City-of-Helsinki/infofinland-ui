@@ -7,7 +7,7 @@ import { useState, useEffect } from 'react'
 
 import { useTranslation } from 'next-i18next'
 
-import { i18n } from '@/next-i18next.config'
+import { i18n, i18nCustom } from '@/next-i18next.config'
 
 //For accessibility and to avoid over-engineering and excessive imports,
 // Label translations are copied here for multi lang use.
@@ -43,7 +43,7 @@ export const LanguageMenu = ({ closeMenu }) => {
       <label className="block px-14 mb-8 text-body-large font-bold">
         {t('languageMenu.label')}
       </label>
-      {i18n.supportedLanguages.map((lang) => {
+      {i18nCustom.supportedLanguages.map((lang) => {
         const { text, code } = lang
         const isSelected = locale === code
         return (
@@ -92,12 +92,12 @@ export const LangMenuDrawer = ({ closeMenu, isOpen }) => (
 export const LanguageMenuButton = ({ onClick }) => {
   const { t } = useTranslation('common')
   let { locale } = useRouter()
-  if (i18n.disabledLocales.includes(locale)) {
+  if (i18nCustom.disabledLocales.includes(locale)) {
     locale = i18n.defaultLocale
   }
 
-  const { text } = i18n.supportedLanguages.find(({ code }) => code === locale)
-  const assisted = i18n.supportedLanguages.filter(({ code }) => code !== locale)
+  const { text } = i18nCustom.supportedLanguages.find(({ code }) => code === locale)
+  const assisted = i18nCustom.supportedLanguages.filter(({ code }) => code !== locale)
   return (
     <button
       aria-haspopup="dialog"

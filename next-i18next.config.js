@@ -28,17 +28,19 @@ const DIRECTION_RTL = 'rtl'
 
 module.exports = {
   i18n: {
-    reloadOnPrerender: process.env.NODE_ENV === 'development',
     locales,
-    languages,
+    defaultLocale: 'en',
+  },
+  reloadOnPrerender: process.env.NODE_ENV === 'development',
+  i18nCustom: {
     disabledLocales,
     supportedLocales,
     supportedLanguages,
+    languages,
     rtlLocales,
-    defaultLocale: 'en',
     fallbackLocale: 'fi',
     DIRECTION_LTR,
     DIRECTION_RTL,
     // localeDetection: false,
-  },
+  }
 }

@@ -1,5 +1,5 @@
 import getConfig from 'next/config'
-import { i18n } from '../../next-i18next.config'
+import { i18n, i18nCustom } from '../../next-i18next.config'
 
 export const addPrerenderLocalesToPaths = (paths) =>
   getConfig()
@@ -78,7 +78,7 @@ export const getLinks = ({ collection, locale } = {}) => {
             console.error(ERROR_MISSING_LANGUAGE)
             return
           }
-          return field_language?.field_locale === i18n.fallbackLocale
+          return field_language?.field_locale === i18nCustom.fallbackLocale
         })
       }
       mainTranslation = {
