@@ -191,13 +191,17 @@ describe('ssr-helpers', () => {
     })
 
     it('should fail gracefully', () => {
+      jest.spyOn(console, 'error').mockImplementation()
       const links = getLinks()
       expect(links).toBeUndefined()
+      expect(console.error).toHaveBeenCalledWith(
+        expect.stringContaining('Cannot resolve main link without locale'),
+      )
     })
   })
 
   describe('addPrerenderLocalesToPaths', () => {
-    it('should add next.config.env.PRERENDER_LOCALES to given paths', () => {
+    it('should add next.config.publicRuntimeConfig.PRERENDER_LOCALES to given paths', () => {
       const withLocales = addPrerenderLocalesToPaths([{ a: 1 }])
       const { serverRuntimeConfig } = getConfig()
       expect(withLocales).toHaveLength(

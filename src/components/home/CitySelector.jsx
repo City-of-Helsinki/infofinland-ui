@@ -5,7 +5,7 @@ import Image from "next/legacy/image"
 import Block from '@/components/layout/Block'
 import getConfig from 'next/config'
 import { useTranslation } from 'next-i18next'
-import { i18n } from '@/next-i18next.config'
+import { i18nCustom } from '@/next-i18next.config'
 
 const CitySelector = () => {
   const { CITIES_PAGE_PATH } = getConfig().publicRuntimeConfig
@@ -13,7 +13,7 @@ const CitySelector = () => {
   const router = useRouter()
   let locale = router.locale
 
-  if (i18n.disabledLocales.includes(locale)) {
+  if (i18nCustom.disabledLocales.includes(locale)) {
     return null
   }
   const goToCities = () => router.push(CITIES_PAGE_PATH)

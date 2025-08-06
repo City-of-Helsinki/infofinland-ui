@@ -216,7 +216,7 @@ Change this if you need to to optimize page refreshing time and server loads.
 
 ```js
 // next.config.js
-const env = {
+const publicRuntimeConfig = {
   ...  REVALIDATE_TIME: 60, //seconds
 ```
 
@@ -244,7 +244,7 @@ See `async getStaticPaths() ` in `/pages` files.
 
 ```js
 // next.config.js
-const env = {
+const publicRuntimeConfig = {
     ...
     PRERENDER_LOCALES: ['fi', 'en', 'sv', 'ar', 'ru'],
     ...
