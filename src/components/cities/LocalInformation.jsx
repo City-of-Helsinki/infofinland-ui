@@ -10,6 +10,8 @@ import Block from '@/components/layout/Block'
 import { IconAngleDown } from '@/components/Icons'
 import { useTranslation } from 'next-i18next'
 import { useRouter } from 'next/router'
+import { useState, useEffect } from 'react'
+
 const CITY_BUTTON_ID = 'ifu-localinfo__button'
 const LocalInformation = ({ cities = [] }) => {
   const { t } = useTranslation('common')
@@ -24,13 +26,30 @@ const LocalInformation = ({ cities = [] }) => {
   })
 
   const isOpen = !!selectedCityId && !!city
+  const [localInfoTexts, setLocalInfoTexts] = useState({
+    title: t('localInfo.title'),
+    buttonText: t('localInfo.select'),
+    helpText: t('localInfo.help'),
+    noInfoText: t('localInfo.noInfo'),
+    clearText: t('localInfo.clear'),
+  })
+
+  useEffect(() => {
+    setLocalInfoTexts({
+      title: t('localInfo.title'),
+      buttonText: t('localInfo.select'),
+      helpText: t('localInfo.help'),
+      noInfoText: t('localInfo.noInfo'),
+      clearText: t('localInfo.clear'),
+    })
+  }, [locale])
 
   return (
     <div className="mb-8">
       <Block className="flex items-center h-14 lg:h-16 bg-green-lighter lg:rounded-t">
         <h3 className="md:flex-grow text-body font-bold -translate-x-4">
           <IconMapMarker className="h-7 me-2" />
-          {t('localInfo.title')}
+          {localInfoTexts.title}
         </h3>
       </Block>
       <Block className="py-8 mb-4 bg-green-white">
@@ -41,7 +60,7 @@ const LocalInformation = ({ cities = [] }) => {
             onClick={openMenu}
           >
             <span className="underline">
-              {!selectedCityName && t('localInfo.select')}
+              {!selectedCityName && localInfoTexts.buttonText}
               {selectedCityName && selectedCityName}
             </span>
             <IconAngleDown className="w-3 h-3 fill-black ms-2" />
@@ -52,17 +71,17 @@ const LocalInformation = ({ cities = [] }) => {
               className="inline-block flex-none text-body"
               onClick={clearCity}
             >
-              {t('localInfo.clear')}
+              {localInfoTexts.clearText}
             </button>
           )}
         </div>
         {!selectedCityName && (
           <p className="mt-2">
-            <label htmlFor={CITY_BUTTON_ID}>{t('localInfo.help')}</label>
+            <label htmlFor={CITY_BUTTON_ID}>{localInfoTexts.helpText}</label>
           </p>
         )}
         {!city && selectedCityName && (
-          <p className="mt-2">{t('localInfo.noInfo')}</p>
+          <p className="mt-2">{localInfoTexts.noInfoText}</p>
         )}
         <SWRContent isOpen={isOpen} city={city} />
         {/* SEO Listing */}

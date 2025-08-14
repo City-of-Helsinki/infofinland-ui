@@ -1,11 +1,11 @@
 import cls from 'classnames'
 import { longTextClass } from '@/components/Typo'
 import { IconCalendar } from '@/components/Icons'
-import { i18n } from '@/next-i18next.config'
+import { i18nCustom } from '@/next-i18next.config'
 import { useRouter } from 'next/router'
 import { useTranslation } from 'next-i18next'
 
-const { fallbackLocale } = i18n
+const { fallbackLocale } = i18nCustom
 
 export default function ArticleHeading({
   forHeroImage = false,
