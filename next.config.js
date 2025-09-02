@@ -1,5 +1,4 @@
 const { i18n } = require('./next-i18next.config')
-const { withSentryConfig } = require('@sentry/nextjs')
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
 })
@@ -18,9 +17,6 @@ const env = {
 }
 
 const publicRuntimeConfig = {
-  SENTRY_DSN_PUBLIC: process.env.SENTRY_DSN_PUBLIC,
-  SENTRY_RELEASE: process.env.SENTRY_RELEASE,
-  SENTRY_ENVIRONMENT: process.env.SENTRY_ENVIRONMENT,
   NEXT_PUBLIC_DRUPAL_BASE_URL: process.env.NEXT_PUBLIC_DRUPAL_BASE_URL,
   MATOMO_URL: process.env.MATOMO_URL,
   MATOMO_SITE_ID: process.env.MATOMO_SITE_ID,
@@ -63,9 +59,6 @@ const publicRuntimeConfig = {
 }
 
 const serverRuntimeConfig = {
-  SENTRY_DSN: process.env.SENTRY_DSN,
-  SENTRY_RELEASE: process.env.SENTRY_RELEASE,
-  SENTRY_ENVIRONMENT: process.env.SENTRY_ENVIRONMENT,
   // Will only be available onprocess.env. the server side
   CACHE_REPOPULATE: process.env.CACHE_REPOPULATE || false,
   BUILD_ALL: process.env.BUILD_ALL || false,
@@ -130,32 +123,3 @@ const config = {
 }
 
 module.exports = withBundleAnalyzer(config)
-module.exports = withSentryConfig(module.exports, {
-  // For all available options, see:
-  // https://github.com/getsentry/sentry-webpack-plugin#options
-  org: process.env.SENTRY_ORG,
-  project: process.env.SENTRY_PROJECT,
-  sentryUrl: process.env.SENTRY_URL,
-  authToken: process.env.SENTRY_AUTH_TOKEN,
-
-  sourcemaps: {
-    disable: !process.env.SENTRY_AUTH_TOKEN,
-  },
-
-  silent: false,
-
-  // Upload a larger set of source maps for prettier stack traces (increases build time)
-  widenClientFileUpload: false,
-
-  // Uncomment to route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
-  // This can increase your server load as well as your hosting bill.
-  // Note: Check that the configured route will not match with your Next.js middleware, otherwise reporting of client-
-  // side errors will fail.
-  // tunnelRoute: "/monitoring",
-
-  // Hides source maps from generated client bundles
-  hideSourceMaps: true,
-
-  // Automatically tree-shake Sentry logger statements to reduce bundle size
-  disableLogger: true,
-})
