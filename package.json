@@ -22,7 +22,6 @@
     "@elastic/elasticsearch": "8.1.0",
     "@next/bundle-analyzer": "15.3.3",
     "@next/env": "15.3.3",
-    "@sentry/nextjs": "^8",
     "autoprefixer": "10.4.21",
     "axios": "1.10.0",
     "classnames": "2.5.1",
