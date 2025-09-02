@@ -20,8 +20,8 @@
   },
   "dependencies": {
     "@elastic/elasticsearch": "8.1.0",
-    "@next/bundle-analyzer": "15.3.3",
-    "@next/env": "15.3.3",
+    "@next/bundle-analyzer": "15.5.2",
+    "@next/env": "15.5.2",
     "autoprefixer": "10.4.21",
     "axios": "1.10.0",
     "classnames": "2.5.1",
@@ -33,7 +33,7 @@
     "jotai-devtools": "0.12.0",
     "lodash": "4.17.21",
     "luxon": "3.6.1",
-    "next": "15.3.3",
+    "next": "15.5.2",
     "next-absolute-url": "1.2.2",
     "next-drupal": "2.0.0",
     "next-i18next": "15.4.2",
@@ -61,7 +61,7 @@
   "devDependencies": {
     "@babel/core": "7.x",
     "@eslint/eslintrc": "3.3.1",
-    "@next/eslint-plugin-next": "15.3.3",
+    "@next/eslint-plugin-next": "15.5.2",
     "@svgr/webpack": "8.1.0",
     "@testing-library/dom": "10.4.0",
     "@testing-library/jest-dom": "6.6.3",
@@ -69,7 +69,7 @@
     "babel-jest": "30.0.0",
     "cssnano": "7.0.7",
     "eslint": "9.29.0",
-    "eslint-config-next": "15.3.3",
+    "eslint-config-next": "15.5.2",
     "eslint-config-prettier": "10.1.5",
     "eslint-plugin-tailwindcss": "3.18.0",
     "jest": "30.0.0",
@@ -85,5 +85,8 @@
     "tailwind-config-viewer": "2.0.4",
     "typescript": "5.8.3",
     "yarn": "1.22.22"
+  },
+  "resolutions": {
+    "tmp": "0.2.5"
   }
 }
