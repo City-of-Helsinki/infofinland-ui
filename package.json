@@ -83,8 +83,7 @@
     "postcss-loader": "8.1.1",
     "prettier": "3.5.3",
     "react-test-renderer": "19.1.0",
-    "typescript": "5.8.3",
-    "yarn": "1.22.22"
+    "typescript": "5.8.3"
   },
   "resolutions": {
     "string-width": "4.2.3",
