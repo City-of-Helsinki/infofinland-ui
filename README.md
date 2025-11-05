@@ -159,14 +159,6 @@ EXAMPLE:
 }
 ```
 
-### Tailwind Config viewer
-
-The project includes a [Tailwind config viewer](https://www.npmjs.com/package/tailwind-config-viewer) for inspecting and developing desing assets and tokens.
-
-```bash
-yarn twconfig
-```
-
 ### Images
 
 In the UI, use React SVG components as much as possible.

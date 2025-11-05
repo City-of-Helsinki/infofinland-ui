@@ -13,7 +13,6 @@
     "build": "CACHE_REPOPULATE=0 BUILD_PHASE=1 next build",
     "format": "prettier --write .",
     "start": "next start",
-    "twconfig": "tailwind-config-viewer -o --port 3600",
     "test": "jest --coverage",
     "analyze": "ANALYZE=true yarn build",
     "postinstall": "patch-package"
@@ -82,7 +81,6 @@
     "postcss-loader": "8.1.1",
     "prettier": "3.5.3",
     "react-test-renderer": "19.1.0",
-    "tailwind-config-viewer": "2.0.4",
     "typescript": "5.8.3",
     "yarn": "1.22.22"
   },
