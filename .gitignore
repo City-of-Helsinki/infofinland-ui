@@ -9,3 +9,5 @@ coverage
 .vscode
 .env.local*
 .idea/*
+.yarn/cache
+.pnp.*
