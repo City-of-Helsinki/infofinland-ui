@@ -41,6 +41,7 @@ const CommonHead = ({ node }) => {
           key={idKey('viewport')}
         />
         <meta charSet="utf-8" key="charset" />
+        <meta name="robots" content="noindex, nofollow" key={idKey('robots')} />
         <meta
           name="description"
           content={description}
