@@ -1,14 +1,3 @@
-# *
+# Block all search engines from indexing this site
 User-agent: *
-Allow: /*
-Disallow: /api/
-Disallow: /500
-Disallow: /locales
-Disallow: /404
-
-# Host
-Host: https://www.infofinland.fi
-
-# Sitemaps
-Sitemap: https://www.infofinland.fi/sitemap.xml
-# Sitemap: https://edit.infofinland.fi/default/sitemap.xml
+Disallow: /
